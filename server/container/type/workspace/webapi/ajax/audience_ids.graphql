@@ -1,0 +1,5 @@
+query container_workspace_audience_ids(
+  $input: container_workspace_audience_ids_input!
+) {
+  ids: container_workspace_audience_ids(input: $input)
+}

@@ -1,0 +1,78 @@
+"""
+Parameters for goals status change mutation
+"""
+input hierarchy_goal_perform_linked_goals_change_status_input {
+  participant_instance_id: core_id!
+  goal_assignment_id: core_id!
+  goal_type: totara_hierarchy_goal_scope!
+  scale_value_id: core_id!
+  section_element_id: core_id!
+}
+extend type Mutation {
+  """
+  Goals status change
+  """
+  hierarchy_goal_perform_linked_goals_change_status(
+    input: hierarchy_goal_perform_linked_goals_change_status_input
+  ): hierarchy_goal_perform_linked_goals_change_status_result!
+}
+
+type hierarchy_goal_perform_linked_goals_change_status_result {
+  perform_status: hierarchy_goal_perform_status!
+  already_exists: Boolean
+}
+
+"""
+Represents a status change made in the subject instance
+"""
+type hierarchy_goal_perform_status {
+  id: core_id!
+  user_id: core_id!
+  user: core_user!
+  """
+  If the activity got deleted we can't load the user that made the change or the role
+  """
+  status_changer_user: core_user
+  status_changer_relationship: totara_core_relationship
+  """
+  Role of the user making the change with respect to the user viewing the rating.
+  """
+  status_changer_role(format: core_format = PLAIN): String!
+  activity: mod_perform_activity
+  """
+  The scale value can be null
+  """
+  scale_value: hierarchy_goal_goal_scale_value
+  created_at(format: core_date_format = TIMESTAMP): core_date!
+}
+
+"""
+Goal scale value
+"""
+type hierarchy_goal_goal_scale_value {
+  id: core_id!
+  """
+  Human readable label for this scale value item
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Rich text description of this scale value item
+  """
+  description(format: core_format = HTML): String
+  """
+  ID of the scale this scale value is associated with
+  """
+  scaleid: core_id!
+  """
+  Numeric sort order used to arrange the values in a scale relative to each other
+  """
+  sortorder: Int!
+  """
+  ID of the user who made the last change to this scale value record
+  """
+  usermodified: core_id
+  """
+  True if the scale value is equal to or higher than the scale's minimum proficient value.
+  """
+  proficient: Boolean!
+}

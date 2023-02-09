@@ -1,0 +1,18 @@
+query mod_perform_participant_instance($participant_instance_id: core_id!) {
+  mod_perform_participant_instance(
+    participant_instance_id: $participant_instance_id
+  ) {
+    participant {
+      fullname
+    }
+    subject_instance {
+      subject_user {
+        fullname
+      }
+    }
+    core_relationship {
+      name
+    }
+    created_at
+  }
+}

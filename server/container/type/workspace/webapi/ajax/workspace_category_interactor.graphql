@@ -1,0 +1,18 @@
+query container_workspace_workspace_category_interactor(
+  $workspace_id: param_integer
+) {
+  category_interactor: container_workspace_workspace_category_interactor(
+    workspace_id: $workspace_id
+  ) {
+    __typename
+    can_create_public
+    can_create_private
+    can_create_hidden
+    can_create
+    context_id
+    user {
+      __typename
+      id
+    }
+  }
+}

@@ -1,0 +1,2 @@
+auth,idnumber,username,password,firstname,lastname,email,lastnamephonetic,firstnamephonetic,middlename,alternatename
+manual,XSS<script>alert(“doom_bringer”)</script>,username1,not cached,秀英,黃,username1@example.com,李,Paul,Timm,Luca

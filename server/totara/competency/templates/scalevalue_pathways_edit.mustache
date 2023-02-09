@@ -1,0 +1,88 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Riana Rossouw <riana.rossouw@totaralearning.com>
+     @package totara_competency
+}}
+{{!
+
+        @template totara_competency/scalevalue_pathways
+        This template shows grouped detail for single-value pathways
+
+        Classes required for JS:
+        * none
+
+        Data attributes required for JS:
+        * data-tw-editScaleValuePaths-scale-id
+        *
+
+        Context variables required for this template:
+        * scalevalues
+        **  id
+        **  name
+        **  pathways
+        **  proficient
+}}
+
+<div class="tw-editScaleValuePaths" data-tw-editAchievementPaths-draggable="" data-tw-editAchievementPaths-order-key="scalevalues" draggable="false">
+
+    <div class="tw-editScaleValuePaths__header">
+        <h4 class="tw-editScaleValuePaths__header-title tw-editAchievementPaths--hidden" data-tw-editAchievementPaths-on-ordering="show">
+            {{#str}}single_value_paths, totara_competency{{/str}}
+        </h4>
+
+        <div class="tw-editScaleValuePaths__header-legend" data-tw-editAchievementPaths-on-ordering="hide">
+            {{#str}}single_value_proficient_mark_help, totara_competency{{/str}}
+            {{#flex_icon}}check-circle-o-success, single_value_proficient_mark, totara_competency{{/flex_icon}}
+        </div>
+
+        <div class="tw-editScaleValuePaths__header-drag tw-editAchievementPaths--hidden" data-tw-editAchievementPaths-on-ordering="show">
+            {{#flex_icon}}arrows{{/flex_icon}}
+        </div>
+    </div>
+
+    <div class="tw-editScaleValuePaths__scales" data-tw-editAchievementPaths-on-ordering="hide">
+        {{#scale_values}}
+        <div class="tw-editScaleValuePaths__scales-scale" data-tw-editScaleValuePaths-scale-id="{{id}}" data-tw-editScaleValuePaths-pathway-list="{{num_pathways}}">
+
+            <div class="tw-editScaleValuePaths__scaleHeader {{^pathways}}tw-editScaleValuePaths__scaleHeader-empty{{/pathways}}">
+                <h4 class="tw-editScaleValuePaths__scaleHeader-title">
+                    {{#proficient}}{{#flex_icon}}check-circle-o-success, single_value_proficient_mark, totara_competency{{/flex_icon}}{{/proficient}}
+                    {{name}}
+                </h4>
+
+                <div class="tw-editScaleValuePaths__scaleHeader-add">
+                    <button aria-expanded="false" class="tw-editScaleValuePaths__addButton" aria-label="Add" type="button" data-tw-editScaleValuePaths-add="">
+                        <span>
+                            <span aria-hidden="true" class="">
+                                {{#flex_icon}}plus{{/flex_icon}}
+                            </span>
+                            <span>{{#str}}add_criteria_group, totara_competency{{/str}}</span>
+                        </span>
+                    </button>
+
+                    {{> totara_competency/scalevalue_add_criteria_select}}
+                </div>
+            </div>
+
+            {{#pathways}}{{> totara_competency/partial_pathway}}{{/pathways}}
+        </div>
+        {{/scale_values}}
+    </div>
+</div>
+

@@ -1,0 +1,14 @@
+This file describes API changes in /client/component/performelement_custom_rating_scale,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+* Replaced several components to centralise common functionality improving consistency and reducing duplication
+    * CustomRatingScaleElementAdminDisplay.vue replaced with CustomRatingScaleAdminView.vue
+    * CustomRatingScaleElementAdminForm.vue replaced with CustomRatingScaleAdminEdit.vue
+    * CustomRatingScaleElementAdminReadOnlyDisplay.vue replaced with CustomRatingScaleAdminSummary.vue
+* Removed CustomRatingScaleElementParticipantResponse.vue, generic ResponseDisplay.vue component is used instead
+* Replaced CustomRatingScaleElementParticipantForm.vue with CustomRatingScaleParticipantForm.vue
+* Updated CustomRatingScaleParticipantForm.vue to have more control of it's display and to handle switching
+  between difference states using a generic helper component ElementParticipantFormContent.
+    * Changed validation to use core validation rules where possible
+    * Changes to template (wrapping the formScope with helper component), SCSS & lang strings

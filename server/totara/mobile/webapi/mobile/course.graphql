@@ -1,0 +1,69 @@
+query totara_mobile_course($courseid: core_id!, $guestpw: String) {
+  mobile_course: totara_mobile_course(courseid: $courseid, guestpw: $guestpw) {
+    course(courseid: $courseid) {
+      id
+      fullname
+      shortname
+      summary(format: MOBILE)
+      summaryformat
+      startdate(format: ISO8601)
+      enddate(format: ISO8601)
+      lang
+      image
+      format
+      sections {
+        id
+        title(format: PLAIN)
+        available
+        availablereason(format: PLAIN)
+        summary(format: MOBILE)
+        summaryformat
+        data: modules {
+          id
+          instanceid
+          modtype
+          name(format: PLAIN)
+          available
+          availablereason(format: PLAIN)
+          viewurl
+          completion
+          completionstatus
+          showdescription
+          description(format: MOBILE)
+          descriptionformat
+          gradefinal
+          gradepercentage
+          __typename
+        }
+        __typename
+      }
+      criteriaaggregation
+      criteria {
+        id
+        type
+        typeaggregation
+        criteria
+        requirement
+        status
+        complete
+        completiondate(format: ISO8601)
+        __typename
+      }
+      showGrades: showgrades
+      completionEnabled: completionenabled
+      completion {
+        id
+        statuskey
+        progress
+        timecompleted(format: ISO8601)
+        __typename
+      }
+      __typename
+    }
+    gradeFinal: formatted_gradefinal
+    gradeMax: formatted_grademax
+    native: mobile_coursecompat
+    imageSrc: mobile_image
+    __typename
+  }
+}

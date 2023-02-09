@@ -1,0 +1,73 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/event_page_navigation
+
+    This template generates a page navigation on the event page.
+
+    Context variables required for this template:
+    * class: part of css class
+    * movetotop: the text of "Move to top"
+    * navs:
+    * navs.icon: flex_icon or pix_icon template data
+    * navs.label: label
+    * navs.link: url or #anchor
+
+    Example content (json):
+    {
+        "class": "signup",
+        "movetotop": "Scroll to top",
+        "navs": [
+            {
+                "icon": {
+                    "template": "core\/flex_icon",
+                    "context": {
+                        "classes": "fa-arrow-left",
+                        "identifier": "arrow-left",
+                        "customdata": []
+                    }
+                },
+                "label": "All events",
+                "link": "..."
+            },
+            {
+                "label": "Event",
+                "link": "#f2f-eventinfo"
+            },
+            {
+                "label": "Sessions",
+                "link": "#f2f-sessions"
+            }
+        ]
+    }
+}}
+
+<div class="mod_facetoface__navigation" data-core-autoinitialise-amd="mod_facetoface/event_page_navigation" data-core-autoinitialise="true">
+    <nav class="mod_facetoface__navigation__items">
+        {{#navs}}
+            <a href="{{{link}}}">{{#icon}}{{#context}}{{> &&template }}{{/context}}{{/icon}}{{label}}</a>
+        {{/navs}}
+    </nav>
+    {{#movetotop}}<a href="#" class="mod_facetoface__navigation__top">{{.}}</a>{{/movetotop}}
+</div>

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpIcon Checks snapshot 1`] = `
+<div
+  class="tui-formHelpIcon"
+>
+  <popover-stub
+    closeable="true"
+    contextmode="contained"
+    position="top"
+    triggers="click"
+  >
+     help text
+  </popover-stub>
+   
+  <div
+    class="tui-formHelpIcon__desc"
+    id="example"
+  >
+    help text
+  </div>
+</div>
+`;

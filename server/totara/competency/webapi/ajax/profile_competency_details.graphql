@@ -1,0 +1,40 @@
+query totara_competency_profile_competency_details(
+  $user_id: core_id!
+  $competency_id: core_id!
+  $status: Int
+) {
+  totara_competency_profile_competency_details(
+    user_id: $user_id
+    competency_id: $competency_id
+    status: $status
+  ) {
+    competency {
+      id
+      fullname
+      description
+    }
+    items {
+      assignment {
+        id
+        archived_at(format: DATE)
+        created_at(format: DATE)
+        type
+        user_group_type
+        progress_name
+        reason_assigned
+        can_archive
+        is_assigned(user_id: $user_id)
+        unassigned_at(format: DATE, user_id: $user_id)
+      }
+      my_value {
+        id
+        name
+        percentage
+        proficient
+      }
+      min_value {
+        id
+      }
+    }
+  }
+}

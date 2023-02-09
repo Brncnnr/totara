@@ -1,0 +1,11 @@
+mutation mod_approval_workflow_stage_interaction_configure_transition(
+  $input: mod_approval_workflow_stage_interaction_transition_input!
+) {
+  mod_approval_workflow_stage_interaction_configure_transition(input: $input) {
+    transition {
+      id
+      transition
+      __typename
+    }
+  }
+}

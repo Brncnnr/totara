@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VirtualScroll Checks snapshot 1`] = `
+<div
+  aria-label="List"
+  role="feed"
+  style="display: block; height: 100%; overflow-y: auto;"
+>
+  <div
+    style="padding: 0px 0px 0px;"
+  >
+    <article
+      aria-labelledby="article-1"
+      aria-posinset="1"
+      aria-setsize="2"
+      tabindex="0"
+    >
+      <div
+        id="article-1"
+      >
+        hello
+      </div>
+    </article>
+    <article
+      aria-labelledby="article-2"
+      aria-posinset="2"
+      aria-setsize="2"
+      tabindex="0"
+    >
+      <div
+        id="article-2"
+      >
+        hello
+      </div>
+    </article>
+  </div>
+  <div
+    class="loader"
+  >
+    
+  </div>
+  <div />
+</div>
+`;

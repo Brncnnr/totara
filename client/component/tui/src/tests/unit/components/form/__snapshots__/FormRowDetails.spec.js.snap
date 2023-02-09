@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRowDetails Checks snapshot 1`] = `
+<div
+  class="tui-formRow__details"
+  id="example"
+/>
+`;

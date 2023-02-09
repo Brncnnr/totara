@@ -1,0 +1,75 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_dashboard_sessions
+
+    This template generates a session list area of the seminar event dashboard.
+
+    Context variables required for this template:
+    * type: the string passed to the render_session_list AJAX request
+    * debug: an array of debug information
+    * reservation: reservation information
+    * pastlink: the template data for show_previous_events
+    * pastlink.template: the template name
+    * pastlink.context: the template data
+    * table: the template data to render a session list table
+    * table.template: the template name
+    * table.context: the template data
+    * legacystateclass: please do not use
+
+    Example content (json):
+    {
+        "type": "upcoming",
+        "debug": [ ... ],
+        "reservation": "Last reservations are 2 days before the event starts.",
+        "pastlink": {
+            "template": "mod_facetoface/show_previous_events",
+            "context": { ... }
+        },
+        "table": {
+            "template": "core/table",
+            "context": { ... }
+        },
+        "legacystateclass": ""
+    }
+}}
+
+<div class="mod_facetoface__sessions mod_facetoface__sessions--{{type}}">
+    <div class="mod_facetoface__sessions__spinner" role="presentation">{{#flex_icon}} loading {{/flex_icon}}</div>
+    {{#debug}}
+        <div class="mod_facetoface__sessions__debug" role="presentation">{{{.}}}</div>
+    {{/debug}}
+    {{#reservation}}
+        <div class="mod_facetoface__sessionlist__reservation">{{{.}}}</div>
+    {{/reservation}}
+    {{#pastlink}}
+        <div class="mod_facetoface__sessionlist__pastlink">{{#context}}{{> &&template }}{{/context}}</div>
+    {{/pastlink}}
+    {{^table}}
+        <div class="mod_facetoface__sessions__empty mod_facetoface__sessionlist--empty">{{#str}} noresults, mod_facetoface {{/str}}</div>
+    {{/table}}
+    {{#table}}
+        <div class="mod_facetoface__sessionlist {{legacystateclass}}">{{#context}}{{> &&template }}{{/context}}</div>
+    {{/table}}
+</div>

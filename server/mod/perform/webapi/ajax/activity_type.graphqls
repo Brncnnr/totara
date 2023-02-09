@@ -1,0 +1,21 @@
+"""
+Represents a specific activity type (system wide category of performance activity)
+"""
+type mod_perform_activity_type {
+  id: core_id
+  """
+  Raw name field for this type. In future when we have system types this will be a key used to locate the type's language string.
+  """
+  name: String!
+  """
+  Human readable display name for the type to be used to describe it to end users.
+  """
+  display_name(format: core_format = PLAIN): String!
+}
+
+extend type Query {
+  """
+  Return a list of all activity types
+  """
+  mod_perform_activity_types: [mod_perform_activity_type!]!
+}

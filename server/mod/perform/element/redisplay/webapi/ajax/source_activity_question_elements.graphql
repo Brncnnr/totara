@@ -1,0 +1,20 @@
+query performelement_redisplay_source_activity_question_elements(
+  $input: source_activity_question_elements_input!
+) {
+  performelement_redisplay_source_activity_question_elements(input: $input) {
+    sections {
+      id
+      title: display_title
+      respondable_section_elements {
+        id
+        element {
+          title
+          element_plugin {
+            name
+            plugin_name
+          }
+        }
+      }
+    }
+  }
+}

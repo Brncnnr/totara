@@ -1,0 +1,69 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Riana Rossouw <riana.rossouw@totaralearning.com>
+     @package pathway_criteria_group
+}}
+{{!
+
+    @template pathway_criteria_group/partial_criterion
+
+    This template shows a criterion
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+
+    Context variables required for this template:
+
+    Other context variables for following partials:
+
+}}
+
+{{#criteria}}
+{{#showand}}{{> totara_competency/divider_and}}{{/showand}}
+
+<div class="tw-editScaleValuePathGroupCriterion" data-tw-editScaleValuePaths-criterion-key="{{key}}"
+{{#id}}data-tw-editScaleValuePaths-criterion-id="{{.}}"{{/id}}>
+
+    <div class="tw-editScaleValuePathGroupCriterion__detail" data-tw-editScaleValuePaths-criterion-detail="">
+        {{> pathway_criteria_group/partial_criterion_detail}}
+    </div>
+
+    <div class="tw-editScaleValuePathGroupCriterion__actions" data-tw-editAchievementPaths-on-ordering="hide">
+        <button type="button" class="tw-editAchievementPaths__group-actionsButton {{#deleted}}tw-editAchievementPaths--hidden{{/deleted}}"
+        aria-label="{{#str}}criteria_remove, pathway_criteria_group{{/str}}" data-tw-editScaleValuePaths-criterion-action="remove">
+            <span>
+                <span aria-hidden="true" class="">
+                    {{#flex_icon}}trash{{/flex_icon}}
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="tw-editAchievementPaths__group-actionsButton {{^canundo}}tw-editAchievementPaths--hidden{{/canundo}}"
+        aria-label="{{#str}}criteria_remove_undo, pathway_criteria_group{{/str}}" data-tw-editScaleValuePaths-criterion-action="undo">
+            <span>
+                <span aria-hidden="true" class="">
+                    {{#flex_icon}}undo{{/flex_icon}}
+                </span>
+            </span>
+        </button>
+    </div>
+</div>
+{{/criteria}}

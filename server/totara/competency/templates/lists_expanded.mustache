@@ -1,0 +1,55 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_core
+}}
+{{!
+
+    @template totara_competency/lists_expanded
+
+    This template generates a list expand container
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-list-expanded: Used to check if expand area
+    * data-tw-list-expandedClose: Trigger to close expand area
+    * data-tw-list-expandedTarget: Target for injecting context
+
+    Context variables required for this template:
+    * none
+}}
+
+<div class="tw-list__expanded" data-tw-list-expanded="">
+    <div class="tw-list__expanded_arrow"></div>
+    <div class="tw-list__expanded_placement">
+        <a href="#" class="tw-list__expanded_close" data-tw-list-expandedClose="">
+            {{#flex_icon}}close, close, totara_core{{/flex_icon}}
+        </a>
+        <div class="tw-list__expanded_content" data-tw-list-expandedTarget="">
+            <div class="tw-list__expanded_loading">
+                <span>
+                    {{#str}}loading, core{{/str}}
+                    {{#flex_icon}}loading{{/flex_icon}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+mutation mod_approval_workflow_version_add_stage(
+  $input: mod_approval_workflow_version_add_stage_input!
+) {
+  mod_approval_workflow_version_add_stage(input: $input) {
+    stage {
+      id
+    }
+  }
+}

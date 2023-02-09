@@ -1,0 +1,65 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+
+    @template totara_competency/competency_expanded
+
+    This template generates the expanded row view for competancy assignment lists
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * Content variables for totara_competency/crumb_with_title
+    * assigned_user_groups: list of assigned user groups
+    * assigned_user_groups -> user_group_name: string, assigned user group name
+    * description: HTML, output for description
+
+}}
+
+<div class="tw-assignComp__expanded">
+    {{> totara_competency/crumb_with_title }}
+
+    <div class="tw-assignComp__expanded_block">
+        <h4 class="tw-assignComp__expanded_block_title">
+            {{#str}}competencydescription, totara_hierarchy{{/str}}
+        </h4>
+        {{{description}}}
+    </div>
+
+    <div class="tw-assignComp__expanded_block">
+        <h4 class="tw-assignComp__expanded_block_title">
+            {{#str}}assigned_user_groups, totara_competency{{/str}}
+        </h4>
+        {{^assigned_user_groups}}
+        {{#str}}no_user_groups, totara_competency{{/str}}
+        {{/assigned_user_groups}}
+        {{#assigned_user_groups.0}}<ul>{{/assigned_user_groups.0}}
+        {{#assigned_user_groups}}
+            <li>{{user_group_name}}</li>
+        {{/assigned_user_groups}}
+        {{#assigned_user_groups.0}}</ul>{{/assigned_user_groups.0}}
+    </div>
+</div>

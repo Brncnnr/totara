@@ -1,0 +1,100 @@
+This files describes API changes in /client/component/totara_comment,
+information provided here is intended especially for developers.
+
+=== 17.1 ===
+
+* Updated ReplyForm.vue to disable the submit button while the component hasn't finished mounted. This is to fix an issue where you could submit before the editor has loaded.
+  * Template & JS changes
+
+=== 17.0 ===
+
+* Added hasError to box/CommentBox, box/ReplyBox, comment/Comment, content/CommentReplyContent, form/CommentForm, form/EditCommentReplyForm and form/ReplyForm
+  * Template changes
+* Changed default of variant prop in SidePanelCommentBox to "basic", as area-specific variants are no longer supported.
+* Added support for passing extra-extensions through box/SidePanelCommentBox, box/CommentForm, form/EditCommentReplyForm, and form/ReplyForm
+  * Prop addition
+  * Template changes
+
+=== 16.0 ===
+
+* Updates in CommentReplyHeader.vue
+  * Template changes
+* Updates in Comment.vue
+  * Template changes
+* Updates in Reply.vue
+  * Template changes
+
+=== 14.0 ===
+
+* Updates in CommentBox.vue:
+  * Added new optional prop "editor"
+  * Template changes
+    * Added prop "editor" to CommentForm.vue and CommentThread.vue
+
+* Updates in CommentThread.vue:
+  * Added new optional prop "editor"
+  * Template changes
+    * Added prop "editor" to Comment.vue
+
+* Updates in ReplyBox.vue:
+  * Added new optional prop "editor"
+  * Template changes
+    * Added prop "editor" to ReplyForm.vue and Reply.vue
+
+* Updates SidePanelCommentBox.vue:
+  * Added new optional prop "editorVariantName"
+  * Added new optional prop "editorContextId"
+  * Template changes
+    * Added prop "editor" to CommentBox.vue
+
+* Updates in Comment.vue:
+  * Added new optional prop "editor"
+  * Template changes
+    * Added prop "editor" to ReplyBox.vue and CommentReplyContent.vue
+
+* Updates in CommentReplyContent.vue:
+  * Added new optional prop "editor"
+  * Template changes
+    * Added prop "editor" to EditCommentReplyForm.vue
+
+* Updates in CommenForm.vue:
+  * Template changes
+    * Replaced props "area" and "component" with "usage-identifier" for component editor_weka Weka.vue
+    * Added props "variant", "compact" and "context-id" to component editor_weka Weka.vue
+    * Removed condition rendering for editor_weka Weka.vue on fetching editor options
+    * Removed the prop "options" for editor_weka Weka.vue
+  * Prop "component" had been deprecated and no longer used, please update all calls
+  * Prop "area" had been deprecated and no longer used, please update all calls
+  * Prop "instanceId" had been deprecated and no longer used, please update all calls
+  * Added optional prop "editor"
+  * Data attribute "editorOption" had been deprecated and no longer used
+
+* Updates in EditCommetnReplyForm.vue:
+  * Template changes
+    * Replaced props "component", "area" and "instance-id" with "usage-identifier" for component editor_weka Weka.vue
+    * Changed the condition rendering for editor_weka Weka.vue to loading draft "item" instead of "editorOption"
+    * Added prop "variant", "context-id" and "compact" to editor_weka Weka.vue
+  * Added optional prop "editor"
+  * The data attribute "editorOption" had been deprecated and no longer used, please update all calls
+
+* Updates in ReplyForm.vue:
+  * Template changes
+    * Replaced props "component" and "area" with "usage-identifier" for component editor_weka Weka.vue
+    * Removed condition rendering for editor_weka Weka.vue on fetching editor options
+    * Added props "variant", "compact" and "context-id" to component editor_weka Weka.vue
+  * Added new optional prop "editor"
+  * Data attribute "editorOption" had been deprecated and no longer used. Please update all calls
+
+* Updates in Reply.vue:
+  * Added new optional prop "editor"
+  * Template changes
+    * Added prop "editor" to component CommentReplyContent.vue
+
+* Added new optional prop "canViewAuthor" in Reply.vue
+* Added new optional prop "canViewAuthor" in Comment.vue
+* Renamed CSS class name from "tui-commentUserLink--small" to "tui-commentUserLink--smallLink"
+* Renamed CSS class name from "tui-commentUserLink--large" to "tui-commentUserLink--largeLink"
+* Updated prop "profileUrl" to optional instead of required in "CommentReplyHeader.vue"
+* Updated prop "profileUrl" to optional instead of required in "CommentUserLink.vue"
+* Deprecated prop "component" in ReplyForm.vue, this prop will no longer be used.
+* Deprecated prop "area" in ReplyForm.vue, this prop will no longer be used.

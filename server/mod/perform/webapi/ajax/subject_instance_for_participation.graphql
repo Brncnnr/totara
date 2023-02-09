@@ -1,0 +1,31 @@
+query mod_perform_subject_instance_for_participation(
+  $subject_instance_id: core_id!
+) {
+  mod_perform_subject_instance_for_participant(
+    subject_instance_id: $subject_instance_id
+  ) {
+    id
+    activity {
+      name
+      sections {
+        section_relationships {
+          core_relationship {
+            id
+            idnumber
+            name
+          }
+        }
+      }
+    }
+    subject_user {
+      id
+      fullname
+    }
+    participant_instances {
+      core_relationship {
+        id
+        name
+      }
+    }
+  }
+}

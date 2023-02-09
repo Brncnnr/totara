@@ -1,0 +1,67 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/header
+
+    Page header for evidence
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * back_link: array, link back to the previous screen
+    * back_link -> url: string, URL for the back link
+    * back_link -> label: string, the link text
+    * title: string, the page title
+    * smaller_title: boolean, should the title be a bit smaller?
+    * has_buttons: boolean, are there buttons?
+    * buttons: array, page buttons
+    * buttons -> url: string, URL for the button
+    * buttons -> label: string, the button text
+    * tabs: HTML, tabbed navigation menu
+
+    Example context (json):
+    {
+        "backlink": {
+            "url": "#BackURL",
+            "label": "« Back to all evidence types"
+        },
+        "title": "Manage evidence types",
+        "smaller_title": false,
+        "has_buttons": true,
+        "buttons": [
+            {
+                "url": "#ButtonURL",
+                "label": "Add evidence type"
+            }
+        ],
+        "tabs": "<div class=\"tabtree\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a>General</a></li><li class=\"disabled\"><a>Custom Fields</a></li></ul></div>"
+    }
+}}
+<div class="tw-evidence__header">
+    {{#backlink}}<a href="{{{url}}}" class="tw-evidence__header_backLink">{{label}}</a>{{/backlink}}
+    {{#title}}{{>totara_evidence/title_buttons}}{{/title}}
+    {{#tabs}}{{{tabs}}}{{/tabs}}
+</div>

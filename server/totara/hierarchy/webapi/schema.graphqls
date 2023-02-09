@@ -1,0 +1,207 @@
+"""
+Input for identifying a position.
+
+The position must be identified by providing one of the following:
+
+* The position's internal database id
+* The position's idnumber
+
+A position reference must uniquely identify a single position to be valid.
+"""
+input totara_hierarchy_position_reference {
+  """
+  Identify a position by internal database id.
+  """
+  id: core_id
+  """
+  Identify a position by its idnumber. idnumber is a unique reference used to represent the position across multiple systems.
+  """
+  idnumber: String
+}
+
+"""
+Input for identifying an organisation.
+
+The organisation must be identified by providing one of the following:
+
+* The organisation's internal database id
+* The organisation's idnumber
+
+An organisation reference must uniquely identify a single organisation to be valid.
+"""
+input totara_hierarchy_organisation_reference {
+  """
+  Identify an organisation by internal database id.
+  """
+  id: core_id
+  """
+  Identify an organisation by its idnumber. idnumber is a unique reference used to represent the organisation across multiple systems.
+  """
+  idnumber: String
+}
+
+"""
+Hierarchy framework interface. Defines standard fields available in all hierarchy frameworks. A framework is a collection
+of hierarchy items arranged in a tree.
+"""
+interface totara_hierarchy_framework {
+  """
+  Internal database id of the framework.
+  """
+  id: core_id!
+  """
+  Full name of the framework.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the framework across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the framework. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the framework.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+}
+
+"""
+Hierarchy type interface. Defines standard fields available in all hierarchy types.
+A hierarchy type is a user-defined classification which can be assigned to hierarchy items
+leading to certain custom fields being available on that item.
+"""
+interface totara_hierarchy_type {
+  """
+  Internal database id of the hierarchy type.
+  """
+  id: core_id!
+  """
+  Type full name.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the type across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the type. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the type.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+}
+
+"""
+Hierarchy item interface. Defines standard fields available in all hierarchy items. A hierarchy item is a single node
+in a tree-like hierarchy of items.
+"""
+interface totara_hierarchy_item {
+  """
+  Internal database id of the hierarchy item.
+  """
+  id: core_id!
+  """
+  Full name of the hierarchy item.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the hierarchy item across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the hierarchy item. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the hierarchy item.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+  """
+  The internal database id of the hierarchy framework this item belongs to.
+  """
+  frameworkid: core_id
+  """
+  The hierarchy framework this item belongs to.
+  """
+  framework: totara_hierarchy_framework
+  """
+  An ordered list of parent database ids for this hierarchy item, indicating the hierarchy of parent items. Includes the
+  current item and separated by forward slashes, e.g. item with id=6 might be: /1/4/6
+  This is a computed value.
+  """
+  path: String!
+  """
+  Flag determining whether the hierarchy item is visible to end users or not.
+  """
+  visible: Boolean!
+  """
+  The id of this hierarchy item's immediate parent in the framework hierarchy. Set to 0 if this is a top-level item.
+  """
+  parentid: core_id
+  """
+  The parent item in the hierarchy. Null if a top-level item.
+  """
+  parent: totara_hierarchy_item
+  """
+  Collection of hierarchy items that are immediately below this one in the framework hierarchy. Empty if this item
+  has no children.
+  """
+  children: [totara_hierarchy_item!]!
+  """
+  The id of the hierarchy item type, or 0 if this is a generic item.
+  """
+  typeid: core_id
+  """
+  Hierarchy item type object.
+  """
+  type: totara_hierarchy_type
+}

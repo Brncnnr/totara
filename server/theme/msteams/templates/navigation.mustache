@@ -1,0 +1,87 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package theme_msteams
+}}
+
+{{!
+    @template theme_msteams/navigation
+
+    This template generates the navigation bar in a MS Teams tab page.
+
+    Context variables required for this template:
+    * links:
+    * links.icon: flex_icon or pix_icon template data
+    * links.text: label
+    * links.href: url
+    * links.attributes: attributes
+    * links.marginauto: classname
+    * logout:
+    * logout.logouthref: url
+    * logout.logouttitle: label
+    * logout.logouttext: label
+
+    Example content (json):
+    {
+        "links": [
+            {
+                "href": "https://localhost/site/course/view.php?id=2",
+                "text": "Open in new window",
+                "icon": {
+                    "template": "core/flex_icon",
+                    "context": {
+                        "classes": "fa-globe",
+                        "identifier": "theme_msteams|open-externally",
+                        "customdata": []
+                    }
+                },
+                "attributes": [
+                    {
+                        "name": "target",
+                        "value": "_blank"
+                    }
+                ]
+                "marginauto": true
+            }
+        ]
+
+        "logout" : [
+            {
+                "logouthref": "'https://localhost/login/logout.php?sesskey=sesskey&redirecturl=https://localhost/server/totara/msteams/tabs/catalog.php",
+                "logouttitle": "Login as user"
+                "logouttext": "Sign out"
+            }
+        ]
+    }
+}}
+
+<div class="totara_msteams__navigation">
+    {{#links}}
+        <a class="totara_msteams__navigation__link  {{#marginauto}}totara_msteams__navigation__margin{{/marginauto}}" href="{{href}}" {{#attributes}}{{name}}="{{value}}"{{/attributes}}>
+            {{#icon}}{{#context}}{{> &&template }}{{/context}}{{/icon}}
+            <span class="totara_msteams__navigation__link__label">{{text}}</span>
+        </a>
+    {{/links}}
+    {{#logout}}
+        <div {{#links}}class="totara_msteams__navigation__logoutlink" {{/links}} {{^links}}class="totara_msteams__navigation__logout totara_msteams__navigation__logout_margin"{{/links}}  >
+            <span class="totara_msteams__navigation__logout__title">{{logouttitle}}</span>
+            <a class="totara_msteams__navigation__logout__link" href="{{logouthref}}">{{logouttext}}</a>
+        </div>
+    {{/logout}}
+</div>

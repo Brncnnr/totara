@@ -1,0 +1,13 @@
+query totara_competency_achievement_paths(
+  $assignment_id: core_id!
+  $user_id: core_id!
+) {
+  totara_competency_achievement_paths(
+    assignment_id: $assignment_id
+    user_id: $user_id
+  ) {
+    class
+    type
+    name
+  }
+}

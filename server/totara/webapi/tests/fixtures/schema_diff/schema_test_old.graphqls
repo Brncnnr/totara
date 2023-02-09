@@ -1,0 +1,146 @@
+"""
+Schema diff test schema
+"""
+type Mutation {
+  """
+  This documentation will be changed
+  """
+  my_mutation(
+    input: my_mutation_input!
+    arg_will_change_kind: Boolean
+    arg_will_be_removed: Boolean
+  ): my_mutation_result
+}
+
+"""
+Core query type
+"""
+type Query {
+  """
+  Here is a query
+  """
+  my_query(
+    visibility: my_enum!
+    arg_will_change_kind: Boolean
+    arg_will_be_removed: Boolean
+  ): my_query_result
+}
+
+"""
+Input type for my_mutation mutation.
+"""
+input my_mutation_input {
+  widget_id: my_id!
+  field_will_change_kind: Boolean
+  field_will_be_removed: Boolean
+  field_default_value_will_change: my_enum! = PUBLIC
+  input_field_type_will_be_required: String
+}
+
+input type_will_change_kind {
+  info: String!
+}
+
+input input_type_will_be_removed {
+  item_id: my_id!
+}
+
+enum my_enum {
+  PUBLIC
+  PRIVATE
+  HIDDEN
+  ENUM_WILL_BE_REMOVED
+}
+
+enum my_other_enum {
+  PUBLIC
+  DRAFT
+  ARCHIVED
+}
+
+"""
+Result type for my_mutation
+"""
+type my_mutation_result {
+  success: Boolean!
+  field_will_change_kind: Boolean
+  field_will_be_removed: Boolean
+  arg_will_be_removed(visibility: my_enum = PUBLIC): String
+  arg_will_change_kind(visibility: my_other_enum = PUBLIC): String
+  required_arg_will_added: String
+  arg_default_value_will_change(visibility: my_enum = PUBLIC): String
+  optional_arg_will_be_added(visibility: my_enum = PUBLIC): String
+  field_type_will_become_nullable: String!
+}
+
+"""
+Result type for my_query
+"""
+type my_query_result {
+  items: [search_result]
+}
+
+type type_will_be_removed {
+  info: String!
+}
+
+interface active {
+  id: my_id!
+  active: Boolean!
+}
+
+interface visible {
+  id: my_id!
+  public: Boolean!
+  status: my_enum!
+}
+
+interface interface_will_be_removed {
+  timestamp: Int!
+}
+
+type model_one implements visible {
+  id: my_id!
+  name: String!
+  public: Boolean!
+  status: my_enum!
+}
+
+type model_two implements active & interface_will_be_removed {
+  id: my_id!
+  title: String!
+  active: Boolean!
+  timestamp: Int!
+}
+
+type model_three implements active & visible & interface_will_be_removed {
+  id: my_id!
+  summary: String!
+  active: Boolean!
+  public: Boolean!
+  status: my_enum!
+  timestamp: Int!
+}
+
+type type_will_be_removed_from_union {
+  id: my_id!
+  slug: String!
+}
+
+union search_result =
+    model_one
+  | model_two
+  | model_three
+  | type_will_be_removed_from_union
+
+"""
+This documentation will be removed
+"""
+scalar my_id
+
+directive @my_directive(
+  action: String = "Default value"
+  directive_arg_will_be_removed: Int
+) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | ENUM_VALUE
+
+directive @directive_will_be_removed(input: String!) on FIELD_DEFINITION

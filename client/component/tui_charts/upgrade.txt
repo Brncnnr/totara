@@ -1,0 +1,5 @@
+This files describes API changes in /client/component/totara_playlist,
+information provided here is intended especially for developers.
+
+=== 15.0 ==
+* Upgraded ChartJS to 2.9.4

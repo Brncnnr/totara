@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandedRow Checks snapshot 1`] = `
+<div
+  class="tui-dataTableExpandableRow"
+>
+  <div
+    class="tui-dataTableExpandableRow__placement"
+  >
+    <div
+      class="tui-dataTableExpandableRow__content"
+    />
+  </div>
+</div>
+`;

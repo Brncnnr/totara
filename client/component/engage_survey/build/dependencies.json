@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    {
+      "name": "totara_engage"
+    },
+    {
+      "name": "totara_reaction"
+    }
+  ]
+}

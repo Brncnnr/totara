@@ -1,0 +1,194 @@
+This files describes API changes in /mod/perform/*,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+* mod_perform\controllers\reporting\performance\renders_performance_reports::get_rendered_action_card() is deprecated,
+  please use mod_perform\controllers\reporting\performance\renders_performance_reports::get_action_card()
+* mod_perform\rb\traits\element_trait::get_element_type_options() is deprecated, use mod_perform\rb\filter\element_type::get_item_options()
+* mod_perform\rb\traits\participant_instance_trait::get_relationship_type_options() is deprecated, use mod_perform\rb\filter\relationship_name::get_item_options()
+* The check_notification_trigger_task has been deprecated in favour of the new Centralised Notification mod_perform\totara_notification\resolver\participant_due_date_resolver.As such the following are deprecated and no longer in use:
+    - class: mod_perform\task\check_notification_trigger_task
+    - lang string: check_notification_trigger_task
+* server\mod\perform\db\messages.php deprecated to server\mod\perform\db\deprecated_messages.php,
+  centralised notifications are now used instead - no longer any need for legacy notification preferences for performance activities
+* mod/perform/classes/notification/dealer.php deprecated - no longer called as centralised notifications are now used.
+* mod/perform/classes/notification/dealer_participant_selection.php - no longer called as centralised notifications are now used.
+* mod/perform/classes/notification/factory::create_dealer_on_subject_instance is deprecated - no longer called as centralised notifications are now used.
+* mod/perform/classes/notification/factory::create_dealer_on_subject_instances_for_manual_participants is deprecated - no longer called as centralised notifications are now used.
+* mod/perform/classes/notification/factory::create_dealer_on_participant_instances is deprecated - no longer called as centralised notifications are now used.
+* mod/perform/classes/notification/factory::create_mailer_on_notification is deprecated - no longer called as centralised notifications are now used.
+* mod/perform/classes/notification/mailer.php is deprecated - no longer called as centralised notifications are now used.
+
+=== 16.0 ===
+* Added the manually deletion process for Manage participation participant instances
+* Added the manually deletion process(including the participant pending status) for Manage participation subject instances
+* Added a 'close_pending' parameter (default is false) to \mod_perform\models\activity\subject_instance::manually_close() that allows closing of pending subject instances.
+  Any custom observers of the 'subject_instance_availability_closed' event should be checked to take that into account.
+* Allowed deletion of activities referenced by redisplay elements in other activities. This is to prevent the impossibility of
+  deletion when a set-up with circular references is in place. These changes were made:
+    * Methods add_warning() and get_warnings() were added to the trait \mod_perform\hook\pre_delete_helper. This is for adding
+      warnings that will not prevent deletion.
+    * mod_perform\watcher\activity_deletion_check watcher does not add a reason for preventing deletion anymore to the hook
+      \mod_perform\hook\pre_activity_deleted. Instead, it adds a warning.
+    * Added a 'warnings' element to the GraphQL type 'mod_perform_deletion_check'.
+* Added "User Status" report filter for Performance activity embedded reports
+    * 'Performance activity participant instances' embedded report
+    * 'Performance activity subject instances' embedded report
+    * 'Performance activity participant sections: Manage participation' embedded report
+    * 'Performance activity subject instances: Manage participation' embedded report
+    * 'Performance activity participant instances: Manage participation' embedded report
+    * 'Performance activity response reporting: Subject instances for single subject user' embedded report
+    * 'Performance activity response reporting: Subject users' embedded report
+* \mod_perform\entity\activity\element_repository::get_subject_user_ids_using_element() is now marked as deprecated, there's no alternative
+* Added an 'extra' field to the mod_perform_user_grouping type.
+    * This is a JSON string for additional but grouping specific data.
+    * Currently it is used to record user card details for the individual grouping type.
+* Deprecated GraphQL mutation mod_perform_toggle_activity_close_on_completion_setting. Please use mod_perform_update_activity_workflow_settings
+  instead.
+* mod_perform\models\activity\participant_instance::is_participant_deleted() and is_subject_or_participant_deleted()
+  is now deprecated, should_be_hidden() should be used instead.
+* mod_perform\models\activity\participant_instance::is_subject_or_participant_deleted() is now deprecated,
+  should_be_hidden() should be used instead.
+* The manual participant selector role section (originally in the activity's General Info section) has been moved to the
+  assignment tab. As such these elements have been deprecated:
+     * lang strings:
+       * general_info_participant_selection_description
+       * general_info_participant_selection_heading
+     * The mod_perform_update_activity mutation's "relationships" parameter;
+       * This can still be used but will trigger a debugging message to be emitted.
+* Added a condition to prevent the notifications being sent to closed instances
+* Deprecated:
+     * The repeating_type column in the perform_track table; replaced with the repeating_trigger column
+     * SCHEDULE_REPEATING_AFTER constants in server/mod/perform/classes/constants.php; these have been subsumed
+       into mod_perform\models\activity\trigger\repeating\trigger subclasses.
+     * SCHEDULE_REPEATING_TYPE constants in the mod_perform\entity\activity\track class; these have been subsumed
+       into mod_perform\models\activity\trigger\repeating\trigger subclasses.
+     * The repeating_type property of mod_perform\models\activity\track and the underlying get_repeating_type() method
+       that gets that property
+     * The get_repeating_types() method in of mod_perform\models\activity\track
+     * These graphql structures in server/mod/perform/webapi/track.graphqls:
+       * repeating_type field in the mod_perform_track type; replaced by the new repeating_trigger_type
+         and repeating_trigger_interval fields
+       * repeating_type field mod_perform_track_schedule_input type; replaced by the new repeating_trigger_type
+         and repeating_trigger_interval fields
+       * mod_perform_track_repeating_type_enums type; replaced by the repeating_trigger_interval_enums/track_repeating_trigger_type_enums
+         combination
+
+* Added new columns to these perform tables:
+     * perform_track table - repeating_trigger
+     * perform_subject_instance - closed_at
+
+--- Update to graphQL ---
+* Updated field 'name' and 'description' scalar type 'param_text' to 'String' for mutation 'mod_perform_update_activity' and 'mod_perform_create_activity'
+
+=== 15.0 ===
+* \mod_perform\data_providers\activity\subject_instance_for_participant::get_subject_sections_page() is now deprecated in favour of
+  \mod_perform\data_providers\activity\subject_instance_for_participant::get_offset_page() switching the pagination from cursor based
+  to offset based pagination.
+* Deprecated the following:
+    * mod_perform\entity\activity\filters\subject_instances_about; use mod_perform\entity\activity\filters\subject_instances_about_role instead.
+    * GraphQL enum mod_perform_subject_instance_about_filter has been deprecated, please update all calls to mod_perform_subject_instance_filters
+    * GraphQL input mod_perform_subject_instance_filters has deprecated the "about" filter; use the new "about_role" filter instead.
+    * The due_date and is_overdue attributes in the mod_perform_subject_instance type; use the new attribute due_on instead.
+
+=== 14.0 ===
+* respondable_element_plugin::validate_response() function now includes new parameter 'is_draft_validation'
+  to check response validation in draft mode. This function signature changed to abstract function and all respondable
+  elements should implement this method.
+* activity_setting::create() function no longer checks if the current user has permission to manage the activity. The
+  check should be performed before calling this function, where applicable.
+* Deprecated the following methods:
+    * track_user_assigned_bulk::create_from_user_assignments(); use
+      track_user_assigned_bulk::create_from_track_assignment instead.
+* Notification settings are no longer lazy-loaded, and instead notification records are created upon the creation of
+  the activity itself. There is now no longer a distinction between 'real' and 'sparse' notifications.
+  The following have been deprecated as part of this change:
+  * GraphQL query mod_perform_create_notification has been deprecated, please update all calls to mod_perform_toggle_notification
+  * GraphQL type mod_perform_create_notification_result has been deprecated, please update all calls to mod_perform_toggle_notification_result
+  * GraphQL input mod_perform_create_notification_input has been deprecated, please update all calls to mod_perform_toggle_notification_input
+  * \mod_perform\webapi\resolver\mutation\create_notification - use \mod_perform\webapi\resolver\mutation\toggle_notification instead.
+  * \mod_perform\models\activity\details\notification_sparse - notifications are no longer lazy loaded, please use
+    \mod_perform\models\activity\notification instead.
+  * \mod_perform\models\activity\details\notification_real - all functionality has been moved into
+    \mod_perform\models\activity\notification so use that instead.
+  * \mod_perform\models\activity\details\notification_interface - interface is no longer necessary
+  * \mod_perform\models\activity\notification::__construct() - no longer needs to inherit it's parent constructor.
+  * \mod_perform\models\activity\notification::get_class_key() - reference the class_key property directly instead.
+  * \mod_perform\models\activity\notification::get_active() - reference the active property directly instead.
+  * \mod_perform\models\activity\notification::delete() - notification records should not be manually deleted.
+  * \mod_perform\models\activity\notification::exists() - redundant as notifications will always exist.
+  * \mod_perform\models\activity\notification_recipient::__construct() - no longer needs to inherit it's parent constructor.
+  * \mod_perform\models\activity\notification_recipient::get_notification_id() - reference the core_notification_id property directly instead.
+  * \mod_perform\models\activity\notification_recipient::get_active() - reference the active property directly instead.
+* GraphQL type mod_perform_my_subject_instance now support pagination. Actual results are returned in items.
+* GraphQL query mod_perform_my_subject_instances now return mod_perform_subject_sections_page which include items as well as pagination information
+* \mod_perform\classes\models\activity\element_plugin::get_participant_response_component() - should only be used on respondable_element_plugin and classes extending it.
+* \mod_perform\models\activity\details\subject_instance_notification::load_by_activity() is deprecated; instead load
+  subject instances using the subject instance repository, then subject_instance_notification::load_by_subject_instance().
+* mod_perform\entities\activity\filters\subject_instance_id has been moved to mod_perform\entity\activity\filters\subject_instance_id
+* mod_perform\entities\activity\filters\subject_instances_about has been moved to mod_perform\entity\activity\filters\subject_instances_about
+* mod_perform\entities\activity\activity has been moved to mod_perform\entity\activity\activity
+* mod_perform\entities\activity\activity_repository has been moved to mod_perform\entity\activity\activity_repository
+* mod_perform\entities\activity\activity_setting has been moved to mod_perform\entity\activity\activity_setting
+* mod_perform\entities\activity\activity_setting_repository has been moved to mod_perform\entity\activity\activity_setting_repository
+* mod_perform\entities\activity\activity_type has been moved to mod_perform\entity\activity\activity_type
+* mod_perform\entities\activity\activity_type_repository has been moved to mod_perform\entity\activity\activity_type_repository
+* mod_perform\entities\activity\element has been moved to mod_perform\entity\activity\element
+* mod_perform\entities\activity\element_identifier has been moved to mod_perform\entity\activity\element_identifier
+* mod_perform\entities\activity\element_identifier_repository has been moved to mod_perform\entity\activity\element_identifier_repository
+* mod_perform\entities\activity\element_repository has been moved to mod_perform\entity\activity\element_repository
+* mod_perform\entities\activity\element_response has been moved to mod_perform\entity\activity\element_response
+* mod_perform\entities\activity\element_response_repository has been moved to mod_perform\entity\activity\element_response_repository
+* mod_perform\entities\activity\external_participant has been moved to mod_perform\entity\activity\external_participant
+* mod_perform\entities\activity\external_participant_repository has been moved to mod_perform\entity\activity\external_participant_repository
+* mod_perform\entities\activity\manual_relationship_selection has been moved to mod_perform\entity\activity\manual_relationship_selection
+* mod_perform\entities\activity\manual_relationship_selection_progress has been moved to mod_perform\entity\activity\manual_relationship_selection_progress
+* mod_perform\entities\activity\manual_relationship_selection_progress_repository has been moved to mod_perform\entity\activity\manual_relationship_selection_progress_repository
+* mod_perform\entities\activity\manual_relationship_selection_repository has been moved to mod_perform\entity\activity\manual_relationship_selection_repository
+* mod_perform\entities\activity\manual_relationship_selector has been moved to mod_perform\entity\activity\manual_relationship_selector
+* mod_perform\entities\activity\manual_relationship_selector_repository has been moved to mod_perform\entity\activity\manual_relationship_selector_repository
+* mod_perform\entities\activity\notification has been moved to mod_perform\entity\activity\notification
+* mod_perform\entities\activity\notification_recipient has been moved to mod_perform\entity\activity\notification_recipient
+* mod_perform\entities\activity\participant_instance has been moved to mod_perform\entity\activity\participant_instance
+* mod_perform\entities\activity\participant_instance_repository has been moved to mod_perform\entity\activity\participant_instance_repository
+* mod_perform\entities\activity\participant_section has been moved to mod_perform\entity\activity\participant_section
+* mod_perform\entities\activity\participant_section_repository has been moved to mod_perform\entity\activity\participant_section_repository
+* mod_perform\entities\activity\section has been moved to mod_perform\entity\activity\section
+* mod_perform\entities\activity\section_element has been moved to mod_perform\entity\activity\section_element
+* mod_perform\entities\activity\section_element_repository has been moved to mod_perform\entity\activity\section_element_repository
+* mod_perform\entities\activity\section_relationship has been moved to mod_perform\entity\activity\section_relationship
+* mod_perform\entities\activity\section_repository has been moved to mod_perform\entity\activity\section_repository
+* mod_perform\entities\activity\subject_instance has been moved to mod_perform\entity\activity\subject_instance
+* mod_perform\entities\activity\subject_instance_manual_participant has been moved to mod_perform\entity\activity\subject_instance_manual_participant
+* mod_perform\entities\activity\subject_instance_manual_participant_repository has been moved to mod_perform\entity\activity\subject_instance_manual_participant_repository
+* mod_perform\entities\activity\subject_instance_repository has been moved to mod_perform\entity\activity\subject_instance_repository
+* mod_perform\entities\activity\subject_static_instance has been moved to mod_perform\entity\activity\subject_static_instance
+* mod_perform\entities\activity\subject_static_instance_repository has been moved to mod_perform\entity\activity\subject_static_instance_repository
+* mod_perform\entities\activity\temp_track_user_assignment_queue has been moved to mod_perform\entity\activity\temp_track_user_assignment_queue
+* mod_perform\entities\activity\track has been moved to mod_perform\entity\activity\track
+* mod_perform\entities\activity\track_assignment has been moved to mod_perform\entity\activity\track_assignment
+* mod_perform\entities\activity\track_assignment_repository has been moved to mod_perform\entity\activity\track_assignment_repository
+* mod_perform\entities\activity\track_repository has been moved to mod_perform\entity\activity\track_repository
+* mod_perform\entities\activity\track_user_assignment has been moved to mod_perform\entity\activity\track_user_assignment
+* mod_perform\entities\activity\track_user_assignment_repository has been moved to mod_perform\entity\activity\track_user_assignment_repository
+* mod_perform\entities\activity\track_user_assignment_via has been moved to mod_perform\entity\activity\track_user_assignment_via
+* Deprecated mod_perform\models\activity\element::get_section_element - elements are designed to be reused more than once.
+* Added graphql input type mod_perform_activities_input for mod_perform_activities graphql query.
+    * New input mod_perform_activities_input has a sort_by field that can be used to change the order of activities.
+* Deprecated mod_perform\data_providers\activity\activity::DEFAULT_SORTING use mod_perform\data_providers\activity\activity::SORT_BY_CREATION_DATE instead.
+* GraphQL mutation update_section_elements has been deprecated.
+  There are individual mutations to handle managing different section element actions.
+  As a result, the following have been deprecated:
+  * GraphQL input mod_perform_update_section_elements_input has been deprecated. Please update calls to use the specific section element mutation for this action.
+  * GraphQL input mod_perform_create_new_element_input has been deprecated.
+  * GraphQL input mod_perform_create_link_element_input has been deprecated.
+  * GraphQL input mod_perform_update_element_input has been deprecated.
+  * GraphQL input mod_perform_delete_section_element_input has been deprecated.
+  * GraphQL input mod_perform_move_section_element_input has been deprecated.
+* mod_perform\models\activity\element_plugin::get_plugin_name has been made static
+* mod_perform\models\activity\element_plugin::__constructor (private constructor) has been removed
+* Abstract method \mod_perform\models\activity\element_plugin::validate_element() now has 'void' as return type. All child classes should be matched with the method signature
+* respondable_element_plugin::post_response_submission() has been deprecated, please use the \mod_perform\hook\post_element_response_submission hook instead.
+* A new pluggable system adds new columns related to the linked review element plugin to the "Performance activity response export" embedded report. To get those new columns the report needs to be either resetted or the new columns be added manually
+* Deprecated mod_perform\entity\activity\activity::sections please use sections_ordered or sections_ordered_with_respondable_element_count
+* GraphQL type mod_perform_element_plugin_config.extra_config_data has been deprecated. please use mod_perform_element.data instead.

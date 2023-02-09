@@ -1,0 +1,30 @@
+{
+  "id": 29271,
+  "assessable": true,
+  "collections": [],
+  "created_time": "2015-08-21T22:03:23+00:00",
+  "delivery": {
+    "duration": 0,
+    "mode": "self-paced"
+  },
+  "description": "<p>Suppose someone you work with or someone you love were to have a seizure. Would you know what was happening? Moreover, would you know what to do? In this six-module course you’ll learn the general steps to take when someone is having a seizure, and the specific first aid steps for tonic-clonic, complex partial, absence, and tonic/atonic seizures. You’ll also learn what to do if a seizure occurs in water and how to help someone who is having a seizure while in a wheelchair.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>A short quiz follows each module, and a final assessment concludes the course.</p>",
+  "image": "\/totara\/contentmarketplace\/contentmarketplaces\/goone\/tests\/behat\/fixtures\/image.jpg",
+  "items": [],
+  "items_count": 12,
+  "language": "en",
+  "portal_collection": false,
+  "pricing": {
+    "currency": "USD",
+    "price": 0,
+    "tax": 0,
+    "tax_included": false
+  },
+  "provider": {
+    "name": "GO1 Content"
+  },
+  "tags": [
+  ],
+  "title": "Seizure First Aid",
+  "type": "course",
+  "updated_time": "2017-11-24T08:02:40+00:00"
+}

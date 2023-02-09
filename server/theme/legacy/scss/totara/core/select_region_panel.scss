@@ -1,0 +1,114 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-selectRegionPanel {
+  padding: $selectRegionPanel-spacing-small 0;
+
+  &__content_hidden {
+    display: none;
+  }
+
+  &__heading {
+    display: flex;
+
+    &_clear {
+      @include totara-style-body-small();
+      display: inline-block;
+      flex-shrink: 0;
+      letter-spacing: normal;
+      text-transform: none;
+      word-wrap: break-word;
+
+      &_link {
+        max-width: 100%;
+        overflow: hidden;
+        padding: $selectRegionPanel-spacing-small;
+        vertical-align: sub;
+      }
+    }
+
+    &_count {
+      display: inline-block;
+    }
+
+    &_text {
+      @include totara-style-heading-label-medium();
+      margin: 0 0 $selectRegionPanel-spacing-small;
+      min-width: 0;
+      padding: 0 $selectRegionPanel-spacing-x-small;
+      word-wrap: break-word;
+    }
+  }
+
+  &__hiddenOnSmall {
+    max-height: 0;
+    overflow: hidden;
+    padding-bottom: 0;
+    transition: max-height 0.1s ease-in;
+
+    &_show {
+      max-height: 1000px;
+      padding-bottom: $selectRegionPanel-spacing-small;
+    }
+  }
+
+  &__selector {
+    padding: $selectRegionPanel-spacing-small 0;
+
+    &_header {
+      @include totara-style-heading-label-small();
+      margin: 0 $selectRegionPanel-spacing-x-small
+        $selectRegionPanel-spacing-x-small;
+    }
+  }
+}
+
+@media (min-width: $totara-style-screen-sm-min) {
+  .tw-selectRegionPanel {
+    padding: $selectRegionPanel-spacing-small;
+
+    &__hiddenOnSmall {
+      display: block;
+      max-height: none;
+      overflow: initial;
+      padding-bottom: $selectRegionPanel-spacing-small;
+    }
+
+    &__heading {
+      &_count {
+        padding: 0 0.2rem;
+      }
+
+      &_text {
+        padding: 0 $selectRegionPanel-spacing-small;
+      }
+    }
+
+    &__selector {
+      &_header {
+        margin: 0 $selectRegionPanel-spacing-small
+          $selectRegionPanel-spacing-x-small;
+      }
+    }
+  }
+}

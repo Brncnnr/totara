@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopoverFrame matches snapshot 1`] = `
+<div
+  class="tui-popoverFrame"
+>
+  <arrow-stub
+    size="normal"
+  />
+   
+  <closebutton-stub
+    class="tui-popoverFrame__close"
+    size="200"
+  />
+   
+  <!---->
+   
+  <div
+    class="tui-popoverFrame__content"
+    role="tooltip"
+  >
+    <div>
+      hello
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`PopoverFrame matches snapshot when non-closeable 1`] = `
+<div
+  class="tui-popoverFrame tui-popoverFrame--sunny"
+>
+  <arrow-stub
+    relativeside="sunny"
+    size="normal"
+  />
+   
+  <!---->
+   
+  <!---->
+   
+  <div
+    class="tui-popoverFrame__content tui-popoverFrame__content--nonClosable"
+    role="tooltip"
+  >
+    <div>
+      hello
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;

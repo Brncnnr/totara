@@ -1,0 +1,11 @@
+mutation mobile_findlearning_attempt_self_enrolment(
+  $input: core_enrol_attempt_self_enrolment_input!
+) {
+  mobile_findlearning_enrolment_result: core_enrol_attempt_self_enrolment(
+    input: $input
+  ) {
+    success
+    msgKey: msg_key
+    __typename
+  }
+}

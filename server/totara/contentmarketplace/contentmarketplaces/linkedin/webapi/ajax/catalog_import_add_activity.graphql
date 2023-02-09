@@ -1,0 +1,13 @@
+mutation contentmarketplace_linkedin_catalog_import_add_activity(
+  $learning_object_id: core_id!
+  $section_id: core_id!
+) {
+  payload: contentmarketplace_linkedin_catalog_import_add_activity(
+    learning_object_id: $learning_object_id
+    section_id: $section_id
+  ) {
+    message
+    success
+    redirect_url
+  }
+}

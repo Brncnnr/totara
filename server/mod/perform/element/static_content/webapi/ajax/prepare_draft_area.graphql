@@ -1,0 +1,9 @@
+mutation performelement_static_content_prepare_draft_area(
+  $section_id: core_id!
+  $element_id: core_id!
+) {
+  draft_id: performelement_static_content_prepare_draft_area(
+    section_id: $section_id
+    element_id: $element_id
+  )
+}

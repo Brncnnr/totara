@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage EngageSidePanel Checks snapshot 1`] = `
+<div
+  class="tui-engageSidePanel"
+  useremail="admin@example.com"
+  userfullname="admin user"
+  userid="42"
+  userprofileimageurl="http://example.com"
+>
+    
+  <tabs-stub
+    class="tui-engageSidePanel__tabs"
+    direction="horizontal"
+    selected="overview"
+    smalltabs="true"
+  >
+    <tab-stub
+      class="tui-engageSidePanel__overviewBox"
+      id="overview"
+      name="overview-totara_engage"
+    />
+     
+    <tab-stub
+      class="tui-engageSidePanel__commentBox"
+      id="comments"
+      name="comments-totara_engage"
+    />
+     
+    <!---->
+  </tabs-stub>
+</div>
+`;

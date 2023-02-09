@@ -1,0 +1,9 @@
+query totara_mobile_resource($resourceid: core_id!) {
+  resource: mod_resource_resource(resourceid: $resourceid) {
+    id
+    mimetype
+    size
+    fileurl
+    __typename
+  }
+}

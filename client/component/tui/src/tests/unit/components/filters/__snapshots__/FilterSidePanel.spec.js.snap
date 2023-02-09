@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterSidePanel matches snapshot 1`] = `
+<div
+  class="tui-card tui-filterSidePanel tui-card--noBorder"
+>
+  <!---->
+   
+  <!---->
+   
+  <div
+    class="tui-filterSidePanel__heading"
+  >
+    <h3
+      class="tui-filterSidePanel__header"
+    >
+      
+      title text
+      
+      <span
+        aria-hidden="true"
+      >
+        ( 2 )
+      </span>
+    </h3>
+     
+    <div
+      class="tui-filterSidePanel__status"
+      role="status"
+    >
+      
+      tempstring
+    
+    </div>
+     
+    <div
+      class="tui-filterSidePanel__instructions"
+    >
+      
+      tempstring
+    
+    </div>
+     
+    <button
+      aria-disabled="false"
+      aria-label="tempstring"
+      class="tui-formBtn tui-filterSidePanel__clearBtn tui-formBtn--small tui-formBtn--transparent"
+      type="button"
+    >
+      <span
+        class="tui-formBtn__text"
+      >
+        
+    tempstring
+  
+      </span>
+       
+      <!---->
+       
+      <span
+        aria-live="assertive"
+      >
+        <!---->
+      </span>
+    </button>
+  </div>
+   
+</div>
+`;

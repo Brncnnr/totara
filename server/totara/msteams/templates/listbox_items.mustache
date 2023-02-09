@@ -1,0 +1,80 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package totara_msteams
+}}
+
+{{!
+    @template totara_msteams/listbox_items
+
+    This template generates the list items of a list box.
+
+    Context variables required for this template:
+    * items: an array of items
+    * items.image.src: the URL of the thumbnail image of an item
+    * items.image.alt: the accessibility text of the thumbnail image
+    * items.title: the title of an item
+    * items.subtitle: the subtitle of an item
+    * items.text: the body text of an item in HTML format
+    * empty: the text to display when nothing is found
+
+    Example content (json):
+    {
+        "items": [
+            {
+                "title": "Course 1",
+                "subtitle": "Courses",
+                "type": "course",
+                "text": "This is a course",
+                "url": "...",
+                "image": {
+                    "src": "...",
+                    "alt": "Course 1"
+                }
+            },
+            {
+                "title": "Program 101",
+                "subtitle": "Programs",
+                "type": "program",
+                "text": "This is a program",
+                "url": "...",
+                "image": {
+                    "src": "...",
+                    "alt": "Program 101"
+                }
+            }
+        ]
+    }
+}}
+
+{{#items}}
+    <li role="option" class="totara_msteams_form__list__item" data-url="{{url}}" data-title="{{title}}">
+        {{#image}}
+            <div class="totara_msteams_form__list__item__thumbnail" role="presentation"><img class="totara_msteams_form__list__item__thumbnail__image" src="{{src}}" data-type="{{type}}" alt=""></div>
+        {{/image}}
+        <div class="totara_msteams_form__list__item__content" role="none">
+            <div class="totara_msteams_form__list__item__title">{{title}}</div>
+            <div class="totara_msteams_form__list__item__subtitle" aria-hidden="true">{{subtitle}}</div>
+            <div class="totara_msteams_form__list__item__text" aria-hidden="true">{{{text}}}</div>
+        </div>
+    </li>
+{{/items}}
+{{#empty}}
+    <li class="totara_msteams_form__list__item--empty">{{.}}</li>
+{{/empty}}

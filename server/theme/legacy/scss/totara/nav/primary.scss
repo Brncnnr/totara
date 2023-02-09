@@ -1,0 +1,250 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.totaraNav_prim {
+  padding: var(--gap-6) 0;
+  background: var(--nav-bg-color);
+
+  // On mobile wrap over flow items with rows
+  > .container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &--list {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    max-width: 100%;
+    height: 100vh;
+    min-height: 35px;
+    margin: auto 0;
+    padding: 0 var(--gap-4);
+    background: inherit;
+
+    // Tab colours on mobile
+    &_item_link {
+      color: var(--nav-tab-text-color);
+      background: var(--nav-tab-bg-color);
+
+      &:focus,
+      &:hover {
+        color: var(--nav-tab-text-color-focus);
+        text-decoration: none;
+        background: var(--nav-tab-bg-color-focus);
+      }
+    }
+
+    // Mobile close button
+    &_close {
+      display: inline-block;
+      padding: var(--gap-2);
+      color: var(--nav-tab-text-color);
+      font-size: var(--font-size-15);
+      line-height: 1;
+      text-align: left;
+      vertical-align: top;
+      background: var(--nav-tab-bg-color);
+      &:focus,
+      &:hover {
+        color: var(--nav-tab-text-color-focus);
+      }
+    }
+
+    // List display on mobile
+    &_hideMobile {
+      transition: 0.3s;
+    }
+
+    // List display on mobile
+    &_showMobile {
+      left: 0;
+      z-index: 3;
+      width: 80%;
+      overflow-y: scroll;
+      background: var(--nav-bg-color);
+      box-shadow: var(--shadow-2);
+      transition: 0.5s;
+    }
+  }
+
+  &--list_item {
+    &_link {
+      display: flex;
+      padding: var(--gap-2);
+
+      ////
+      &:focus,
+      &:hover {
+        background: var(--nav-tab-mobile-bg-color-focus);
+      }
+    }
+
+    // Make spacing smaller on li with icons
+    &_externalLink &_link,
+    &_hasChildren &_link {
+      padding-right: var(--gap-2);
+    }
+
+    &_label {
+      max-width: 100%;
+      font-size: var(--font-size-16);
+      word-wrap: break-word;
+    }
+  }
+
+  // Navigation level indentation
+  .totaraNav--expand_indent {
+    display: flex;
+    min-width: var(--gap-6);
+    height: 100%;
+    margin: auto 0;
+
+    .totaraNav--icon_chevron {
+      top: 1px;
+      margin: auto 0;
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .totaraNav_prim {
+    &--list {
+      &_showMobile {
+        width: 280px;
+      }
+    }
+  }
+}
+
+@media (min-width: $tui-screen-md) {
+  .totaraNav_prim {
+    // On desktop wrap over flow items with columns
+    > .container-fluid {
+      flex-wrap: nowrap;
+    }
+
+    &--list {
+      position: relative;
+      left: 0;
+      display: block;
+      width: auto;
+      height: auto;
+      padding: 0;
+
+      &_close {
+        display: none;
+      }
+
+      &_showMobile {
+        width: auto;
+        box-shadow: none;
+      }
+    }
+
+    &--list_item {
+      display: inline-block;
+      vertical-align: top;
+      background: var(--nav-tab-bg-color);
+
+      &_label {
+        position: relative;
+        &::after {
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          display: block;
+          width: 1%;
+          border-bottom: var(--border-width-normal) solid transparent;
+          transition: 0.2s;
+          content: '';
+        }
+      }
+
+      &_link {
+        padding: var(--gap-2) var(--gap-4);
+        color: var(--nav-tab-text-color);
+        border: none;
+
+        // Hide by default (only shown with _hasChildren class)
+        .totaraNav--expand_indent {
+          display: none;
+        }
+
+        &:focus,
+        &:hover {
+          color: var(--nav-tab-text-color-focus);
+          background: var(--nav-tab-bg-color-focus);
+
+          .totaraNav_prim--list_item_label {
+            &::after {
+              width: 100%;
+              border-color: var(--nav-tab-border-inner-color-focus);
+            }
+          }
+        }
+      }
+
+      &_hasChildren &_link {
+        .totaraNav--expand_indent {
+          display: flex;
+          order: 2;
+          min-width: 1.2em;
+          padding: 0 var(--gap-1);
+          text-align: right;
+        }
+      }
+
+      // Selected (current page) tab
+      &_selected {
+        // Style of selected tab link
+        .totaraNav_prim--list_item {
+          &_link {
+            color: var(--nav-tab-text-color-selected);
+            font-weight: var(--nav-tab-text-weight-selected);
+
+            &:focus,
+            &:hover {
+              color: var(--nav-tab-text-color-selected);
+
+              .totaraNav_prim--list_item_label {
+                &::after {
+                  border-color: var(--nav-tab-border-inner-color-selected);
+                }
+              }
+            }
+          }
+
+          // Add underline border for selected item
+          &_label {
+            position: relative;
+            &::after {
+              width: 100%;
+              border-color: var(--nav-tab-border-inner-color-selected);
+            }
+          }
+        }
+      }
+    }
+  }
+}

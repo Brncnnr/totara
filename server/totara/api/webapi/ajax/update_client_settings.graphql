@@ -1,0 +1,10 @@
+mutation totara_api_update_client_settings(
+  $input: totara_api_client_setting_input!
+) {
+  client_setting: totara_api_update_client_settings(input: $input) {
+    id
+    client_rate_limit
+    default_token_expiry_time
+    response_debug
+  }
+}

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage SurveyCard Checks snapshot 1`] = `
+<div
+  class="tui-engageSurveyCard"
+>
+  <corecard-stub
+    class="tui-engageSurveyCard__cardContent tui-engageSurveyCard__cardContent--height"
+    clickable="true"
+  >
+    <div
+      class="tui-engageSurveyCard__inner"
+    >
+      <div
+        class="tui-engageSurveyCard__header"
+      >
+        <section
+          class="tui-engageSurveyCard__header-image"
+        >
+          <surveyicon-stub
+            imagealt="survey, engage_survey"
+          />
+           
+          <h3
+            class="tui-engageSurveyCard__header-title"
+          >
+            
+            survey, engage_survey
+          
+          </h3>
+        </section>
+         
+        <bookmarkbutton-stub
+          class="tui-engageSurveyCard__header-bookmark"
+          size="300"
+          small="true"
+          transparent="true"
+        />
+      </div>
+       
+      <surveycardbody-stub
+        access="PRIVATE"
+        labelid="survey-1"
+        name="sss"
+        questions="[object Object]"
+        resourceid="42"
+        url=""
+      />
+    </div>
+  </corecard-stub>
+   
+  <!---->
+</div>
+`;

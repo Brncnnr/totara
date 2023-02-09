@@ -1,0 +1,4 @@
+app:course:course_details:badge_title,totara_mobile
+app:course_group:details:badge_title_program,totara_mobile
+app:course_group:details:badge_title_certification,totara_mobile
+app:course_group:courses:unavailable_courses,totara_mobile

@@ -1,0 +1,292 @@
+"""
+Shared values between a normal participant section (for a participant) and a view only section response
+(viewing as a view only participant or as someone who is not a participant)
+"""
+interface participant_section_response {
+  id: core_id!
+  section: mod_perform_section!
+}
+
+"""
+A participant section represents a single participant's involvement in a specific activity section
+"""
+type mod_perform_participant_section implements participant_section_response {
+  id: core_id!
+  """
+  Section of an activity that this participant section relates to
+  """
+  section: mod_perform_section!
+  """
+  The participant instance of the participant involved in this section
+  """
+  participant_instance: mod_perform_participant_instance!
+  """
+  All participant instances the linked user (participant_instance) can answer as
+  """
+  answerable_participant_instances: [mod_perform_participant_instance!]! #
+  section_element_responses: [mod_perform_section_element_response!]!
+  """
+  The participant's progress in this section
+  """
+  progress_status: mod_perform_participant_section_progress_status!
+  """
+  The availability of this section for this participant
+  """
+  availability_status: mod_perform_participant_section_availability_status!
+  """
+  True if the due date has passed and this section is not closed for this participant
+  """
+  is_overdue: Boolean!
+  """
+  True if the participant can answer this section
+  """
+  can_answer: Boolean!
+  """
+  List of relationships who will be able to view this participant's responses in this section
+  """
+  responses_are_visible_to: [totara_core_relationship!]!
+}
+
+"""
+A view only version of a specific section of a subject instance
+"""
+type mod_perform_view_only_section implements participant_section_response {
+  """
+  The participant section ID
+  """
+  id: core_id!
+  """
+  The section being viewed
+  """
+  section: mod_perform_section!
+  """
+  Responses to this section from other participants
+  """
+  section_element_responses: [mod_perform_view_only_section_element_response!]!
+  """
+  List of other sections in this section's activity (includes current section)
+  """
+  siblings: [mod_perform_section]
+}
+
+"""
+Shared values between a normal participant section_element_response (for a participant) and a view only section element response
+(viewing as a view only participant or as someone who is not a participant)
+"""
+interface section_element_response {
+  section_element_id: core_id!
+  """
+  Generic element in use in this section
+  """
+  element: mod_perform_element!
+  """
+  Numeric value used to order this section element relative to other elements in this section
+  """
+  sort_order: Int!
+
+  # Respondable element only fields.
+  """
+  Other participant's responses grouped by relationship types (Manager/Appraiser)
+  """
+  other_responder_groups: [mod_perform_responder_group!]!
+}
+
+"""
+A section element from the view of a participant section response,
+from the view perspective of the logged in user/participant.
+The elements are not necessarily respondable.
+"""
+type mod_perform_section_element_response implements section_element_response {
+  section_element_id: core_id!
+  participant_instance: mod_perform_participant_instance
+  """
+  Generic element in use in this section
+  """
+  element: mod_perform_element!
+  """
+  List of participant instance the viewing user's responses will be visible to
+  """
+  visible_to: [mod_perform_participant_instance!]!
+  """
+  Numeric value used to order this section element relative to other elements in this section
+  """
+  sort_order: Int!
+
+  # Respondable element only fields.
+  """
+  Other participant's responses grouped by relationship types (Manager/Appraiser)
+  """
+  other_responder_groups: [mod_perform_responder_group!]!
+  """
+  Can the main participant respond to this element (it could be the case that only other relationships/groups can)
+  """
+  can_respond: Boolean
+  """
+  JSON encoded answer, format is specific to the element type
+  """
+  response_data(format: core_format): String
+  """
+  The response data formatted ready to be displayed to the user. Each array entry represents a line or sub-response.
+  """
+  response_data_formatted_lines(format: core_format): [String!]!
+  """
+  List of validation errors from this specific section_element
+  """
+  validation_errors: [mod_perform_validation_error!]!
+}
+
+"""
+A section element from the view a view-only participant or someone who is not a participant at all
+"""
+type mod_perform_view_only_section_element_response implements section_element_response {
+  section_element_id: core_id!
+  """
+  Generic element in use in this section
+  """
+  element: mod_perform_element!
+  """
+  Numeric value used to order this section element relative to other elements in this section
+  """
+  sort_order: Int!
+
+  # Respondable element only fields.
+  """
+  Other participant's responses grouped by relationship types (Manager/Appraiser)
+  """
+  other_responder_groups: [mod_perform_responder_group!]!
+}
+
+"""
+A relationship and set of participants that have responded to a particular section element in relation to a participant
+"""
+type mod_perform_responder_group {
+  """
+  The name of the "other responder" group, the relationship name (manager/apraiser)
+  """
+  relationship_name: String!
+  """
+  This can be empty if no-one satisfied the relationship to the subject
+  """
+  responses: [mod_perform_section_element_response!]!
+}
+
+"""
+Update a section's responses for an internal participant
+"""
+input mod_perform_update_section_responses_input {
+  """
+  ID of the participant section to update
+  """
+  participant_section_id: core_id!
+  """
+  True if the section is being saved as a draft (rather than submitted)
+  """
+  is_draft: param_boolean
+  """
+  Data to use to update the participant section response
+  """
+  update: [mod_perform_update_element_response_input!]!
+}
+
+"""
+Update a section's responses for an external participant
+"""
+input mod_perform_update_section_responses_external_participant_input {
+  """
+  ID of the participant section to update
+  """
+  participant_section_id: core_id!
+  """
+  True if the section is being saved as a draft (rather than submitted)
+  """
+  is_draft: param_boolean
+  """
+  Data to use to update the participant section response
+  """
+  update: [mod_perform_update_element_response_input!]!
+  """
+  Secret token used to authenticate the external user instead of a user session
+  """
+  token: String!
+}
+
+"""
+Update the response for a question
+"""
+input mod_perform_update_element_response_input {
+  """
+  ID of the section element to update
+  """
+  section_element_id: core_id!
+  """
+  JSON encoded answer, format is specific to the element type
+  """
+  response_data: String!
+}
+
+extend type Mutation {
+  """
+  Update the responses in a section
+  """
+  mod_perform_update_section_responses(
+    input: mod_perform_update_section_responses_input!
+  ): mod_perform_response_update_section_result
+
+  """
+  Update the responses in a section as an external user
+  """
+  mod_perform_update_section_responses_external_participant(
+    input: mod_perform_update_section_responses_external_participant_input!
+  ): mod_perform_response_update_section_result
+}
+
+"""
+Return type for mod_perform_update_section_responses mutation
+"""
+type mod_perform_response_update_section_result {
+  participant_section: mod_perform_participant_section!
+}
+
+"""
+A list of possible progress status states that a user participant section can be in
+"""
+enum mod_perform_participant_section_progress_status {
+  """
+  The section has been submitted
+  """
+  COMPLETE
+  """
+  The section has been viewed or draft answers have been saved but is not yet been submitted
+  """
+  IN_PROGRESS
+  """
+  The section has never been viewed by the participant
+  """
+  NOT_STARTED
+  """
+  The section has been manually closed without it being completed by the participant
+  """
+  NOT_SUBMITTED
+  """
+  The participant's progress on this activity is not relevant (for example it is view-only so they have no progress to make)
+  """
+  PROGRESS_NOT_APPLICABLE
+}
+
+"""
+A list of possible availability status states that a user participant section can be in
+"""
+enum mod_perform_participant_section_availability_status {
+  """
+  The section is open so can be responded to by the participant
+  """
+  OPEN
+  """
+  The section is closed meaning it can't be responded to by the participant
+  """
+  CLOSED
+  """
+  The section availability is not relevant for this participant, perhaps because the participant has a view-only relationship
+  """
+  AVAILABILITY_NOT_APPLICABLE
+}

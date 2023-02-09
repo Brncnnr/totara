@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectEveryRowToggle Checks snapshot 1`] = `
+<div
+  class="tui-dataTableSelectEveryRowToggle"
+  clearselection="clear selection"
+  selectallpageselected="All 10 rows on this page are selected"
+  selectentireresult="Select entire result "
+  selectentireresultselected="All rows in this result are selected"
+>
+  <div
+    name="clearEntirePrompt"
+  >
+    
+    fff
+    
+    <a
+      href="#"
+    >
+      
+      fff
+    
+    </a>
+  </div>
+</div>
+`;

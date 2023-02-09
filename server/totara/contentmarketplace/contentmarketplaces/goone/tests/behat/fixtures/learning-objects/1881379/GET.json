@@ -1,0 +1,36 @@
+{
+  "id": 1881379,
+  "assessable": false,
+  "collections": [
+    4
+  ],
+  "created_time": "2017-05-10T20:44:16+00:00",
+  "delivery": {
+    "duration": 0,
+    "mode": "self-paced"
+  },
+  "description": "<p>Until recently, epilepsy was thought of as a childhood disorder. Today, it is evident that epilepsy in people aged 75 years and older is more prevalent than in children under 10. Epilepsy is the third most common neurological disorder in the over 75 year age group, following stroke and dementia. Both of the latter  are associated with an increased incidence of epilepsy. As the world population ages, it can be predicted that there will be an increase in the numbers of older people living with epilepsy. Medical sources have estimated that by the year 2025, 50% of new-onset seizures will be in older persons.</p>\n\n<p> </p>\n\n<p>This four-module course takes a thorough look at the realities of epilepsy in old age. Useful to caregivers and elderly people with epilepsy who want to know more about their condition, some of the topics explored include the causes of epilepsy in the elderly, the different types of treatments available, and safety measures for older people with epilepsy.</p>\n\n<p> </p>",
+  "image": "\/totara\/contentmarketplace\/contentmarketplaces\/goone\/tests\/behat\/fixtures\/image.jpg",
+  "items": [],
+  "items_count": 9,
+  "language": "en",
+  "portal_collection": true,
+  "pricing": {
+    "currency": "USD",
+    "price": 0,
+    "tax": 0,
+    "tax_included": false
+  },
+  "provider": {
+    "name": "GO1 Content"
+  },
+  "reviews": {
+    "count": 1,
+    "rating": 5
+  },
+  "tags": [
+  ],
+  "title": "Epilepsy and the Older Person",
+  "type": "course",
+  "updated_time": "2017-05-10T20:44:16+00:00"
+}

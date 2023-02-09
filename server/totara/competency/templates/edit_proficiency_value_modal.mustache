@@ -1,0 +1,30 @@
+{{!
+
+    @template totara_competency/edit_proficiency_value_modal
+
+    This template generates the Edit proficiency value by assignment page
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+
+    Context variables required for this template:
+    * content variables for totara_competency/edit_proficiency_value_modal
+    * values: list of scale values containing id, name, isDefaultProficiency
+!}}
+<div class="tw-assignComp__editProficiencyValueModal" role="radiogroup">
+  {{#values}}
+    <label class="tw-assignComp__editProficiencyValueModal_label">
+      <input type="radio" value="{{id}}" name="editProficiencyValue"/>
+      {{name}}
+      {{#isDefaultProficiency}} <strong>{{#str}}edit_proficiency_default_indicator, totara_competency {{/str}}</strong>{{/isDefaultProficiency}}
+    </label>
+  {{/values}}
+  <hr/>
+  <label class="tw-assignComp__editProficiencyValueModal_label">
+    <input type="radio" value="remove" name="editProficiencyValue"/>
+    {{#str}}edit_proficiency_remove_assignment_specific, totara_competency {{/str}}
+  </label>
+</div>

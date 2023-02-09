@@ -1,0 +1,9 @@
+query performelement_redisplay_source_activities {
+  mod_perform_activities(query_options: { sort_by: "name" }) {
+    id
+    name
+    state_details {
+      display_name
+    }
+  }
+}

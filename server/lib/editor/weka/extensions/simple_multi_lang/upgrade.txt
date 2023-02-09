@@ -1,0 +1,6 @@
+This files describes API changes in /lib/editor/weka/extensions/simple_multi_lang/*.
+The information here is intended only for developers.
+
+=== 17.0 ===
+
+The weka_simple_multi_lang\json_editor\node\lang_block(s) classes were renamed to jsoneditor_simple_multi_lang\json_editor\node\lang_block(s) as the node definitions were moved to a "jsoneditor" plugin.

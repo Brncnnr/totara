@@ -1,0 +1,184 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.block_addblock {
+  border: 0;
+  box-shadow: unset;
+  margin: 0;
+
+  .popover {
+    max-width: 302px;
+    padding: 0;
+    /*rtl:ignore*/
+    right: unset;
+
+    .popover-content {
+      padding: 0;
+    }
+  }
+}
+
+.addBlock {
+  text-align: center;
+
+  &--trigger {
+    @include bs-btn-primary();
+    border-radius: 20px;
+    font-size: $addBlock-trigger-text-size;
+    line-height: 1;
+    outline: 0;
+    padding: 0;
+    text-align: center;
+
+    &:active:hover,
+    &:focus,
+    &:hover {
+      outline: 0;
+    }
+
+    .flex-icon {
+      vertical-align: top;
+      width: auto;
+    }
+  }
+}
+
+// Needed to overwrite defaults
+.block .addBlockPopover {
+  height: 250px;
+  overflow: hidden;
+  padding: $addBlock-spacing-small;
+  width: 250px;
+
+  &--close {
+    @include totara-style-body-medium();
+    cursor: pointer;
+    font-size: $addBlock-popover-close-text-size;
+    height: $addBlock-spacing-xx-large;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    width: $addBlock-spacing-xx-large;
+
+    .flex-icon {
+      padding: $addBlock-spacing-small $addBlock-spacing-small 0 0;
+    }
+
+    // Needed to overwrite defaults
+    /* stylelint-disable declaration-no-important */
+    .ft-state-danger {
+      color: var(--color-text) !important;
+    }
+  }
+
+  &--heading {
+    h2 {
+      @include totara-style-heading-x-small();
+      padding-top: $addBlock-spacing-small;
+    }
+  }
+
+  &--loading {
+    display: none;
+  }
+
+  &--overlay {
+    &::after {
+      background: $addBlock-popover-overlay-bg-color;
+      content: '';
+      height: 100%;
+      left: 1%;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      width: 98%;
+    }
+
+    .addBlockPopover--loading {
+      display: block;
+      position: absolute;
+      color: $addBlock-popover-overlay-text-color;
+      text-align: center;
+      top: 50%;
+      width: 100%;
+      z-index: 2;
+    }
+  }
+
+  &--results {
+    overflow-y: auto;
+    margin: $addBlock-spacing-small 0;
+    max-height: 140px;
+
+    &_list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      &_item {
+        a {
+          display: block;
+          padding: $addBlock-spacing-small;
+
+          &:focus,
+          &:hover {
+            background: $addBlock-popover-item-bg-color-focus;
+            outline: none;
+            text-decoration: none;
+          }
+        }
+
+        &:last-child {
+          padding-bottom: $addBlock-spacing-medium;
+        }
+      }
+    }
+  }
+
+  &--search {
+    position: relative;
+
+    .flex-icon {
+      @include totara-style-textInput-Icon();
+    }
+
+    input[type='text'] {
+      @include totara-style-textInput();
+      @include totara-style-textInput-withIcon();
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: $totara-style-screen-md-min) {
+  .block .addBlockPopover {
+    height: 300px;
+    width: 300px;
+
+    &--results {
+      max-height: 190px;
+    }
+  }
+}

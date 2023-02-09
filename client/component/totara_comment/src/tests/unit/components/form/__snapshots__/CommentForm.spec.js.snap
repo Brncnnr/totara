@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentForm Checks snapshot 1`] = `
+<responsebox-stub
+  class="tui-commentForm"
+  usageidentifier="[object Object]"
+>
+  <form-stub
+    autocomplete="off"
+    class="tui-commentForm__form"
+    inputwidth="limited"
+  >
+    <!---->
+     
+    <div
+      class="tui-commentForm__input"
+    >
+      <weka-stub
+        class="tui-commentForm__editor"
+        compact="true"
+        data-file-item-id="500"
+        data-key="totara_comment_editor_weka_1"
+        fileitemid="500"
+        isloggedin="true"
+        placeholder="entercomment-totara_comment"
+        stickytoolbar="true"
+        usageidentifier="[object Object]"
+        value="[object Object]"
+      />
+    </div>
+     
+    <buttongroup-stub
+      class="tui-commentForm__buttonGroup"
+    >
+      <button-stub
+        aria-label="post-totara_comment"
+        class="tui-commentForm__button"
+        disabled="true"
+        styleclass="[object Object]"
+        text="post-totara_comment"
+        type="button"
+      />
+    </buttongroup-stub>
+  </form-stub>
+</responsebox-stub>
+`;

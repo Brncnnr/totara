@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentActionLink Checks snapshot 1`] = `
+<div
+  class="tui-commentActionLink"
+  text="Some random txt"
+>
+  <!---->
+</div>
+`;

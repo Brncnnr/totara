@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaylistSummary Checks snapshot 1`] = `
+<div
+  class="tui-playlistSummary"
+>
+  <div
+    class="tui-inlineEditing tui-inlineEditing--fullWidth"
+  >
+    <div
+      class="tui-playlistSummary__content"
+    >
+      Hello world
+    </div>
+     
+    <button
+      aria-label="[[adddescription, totara_playlist]]"
+      class="tui-iconBtn tui-inlineEditing__btn tui-iconBtn--small tui-iconBtn--transparent"
+      style="display: none;"
+      title="[[adddescription, totara_playlist]]"
+      type="button"
+    >
+      <span
+        class="tui-iconBtn__wrap"
+      >
+        <span
+          class="tui-iconBtn__label"
+        >
+          <span
+            aria-hidden="true"
+            class="tui-iconBtn__icon"
+          >
+            <span
+              class=""
+            />
+          </span>
+           
+          <!---->
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </span>
+    </button>
+  </div>
+</div>
+`;

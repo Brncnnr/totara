@@ -1,0 +1,6 @@
+shortname,manager,stage_1_level_1,stage_1_level_2
+org_a,manager_a,,approver_d
+org_a_prog_a,,approver_e,approver_f
+org_a_prog_a_sub_a,,,approver_g
+org_a_prog_a_sub_b,,,approver_h
+org_a_prog_b,manager_b,approver_c,

@@ -1,0 +1,19 @@
+query performelement_aggregation_aggregatable_question_elements(
+  $input: aggregatable_question_elements_input!
+) {
+  performelement_aggregation_aggregatable_question_elements(input: $input) {
+    sections {
+      id
+      title: display_title
+      aggregatable_section_elements {
+        id
+        element {
+          title
+          element_plugin {
+            name
+          }
+        }
+      }
+    }
+  }
+}

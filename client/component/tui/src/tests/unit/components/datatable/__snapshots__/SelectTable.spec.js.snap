@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectTable Checks snapshot 1`] = `
+<div class="tui-dataSelectTable">
+  <div role="table" class="tui-dataTable">
+    <div role="row" class="tui-dataTableRowHeader tui-dataTableRowHeader--empty"></div>
+    <!---->
+    <!---->
+    <div class="tui-dataTableRows">
+      <div role="row" class="tui-dataTableRow">
+        <!---->
+        <div role="cell" class="tui-dataTableSelectRowCell">
+          <div class="tui-checkbox"><input id="id" type="checkbox" aria-label="lang string 1:  one" class="tui-checkbox__input" value=""> <label for="id" class="tui-checkbox__label"></label></div>
+        </div>
+      </div>
+      <!---->
+      <div role="row" class="tui-dataTableRow">
+        <!---->
+        <div role="cell" class="tui-dataTableSelectRowCell">
+          <div class="tui-checkbox"><input id="id" type="checkbox" aria-label="lang string 2:  two" class="tui-checkbox__input" value=""> <label for="id" class="tui-checkbox__label"></label></div>
+        </div>
+      </div>
+      <!---->
+      <div role="row" class="tui-dataTableRow">
+        <!---->
+        <div role="cell" class="tui-dataTableSelectRowCell">
+          <div class="tui-checkbox"><input id="id" type="checkbox" aria-label="lang string 3:  three" class="tui-checkbox__input" value=""> <label for="id" class="tui-checkbox__label"></label></div>
+        </div>
+      </div>
+      <!---->
+      <div role="row" class="tui-dataTableRow">
+        <!---->
+        <div role="cell" class="tui-dataTableSelectRowCell">
+          <div class="tui-checkbox"><input id="id" type="checkbox" aria-label="lang string 4:  four" class="tui-checkbox__input" value=""> <label for="id" class="tui-checkbox__label"></label></div>
+        </div>
+      </div>
+      <!---->
+      <!---->
+    </div>
+    <!---->
+  </div>
+</div>
+`;

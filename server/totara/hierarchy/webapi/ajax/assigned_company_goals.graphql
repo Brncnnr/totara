@@ -1,0 +1,30 @@
+query totara_hierarchy_assigned_company_goals(
+  $input: totara_hierarchy_company_goal_assignment_input
+) {
+  totara_hierarchy_assigned_company_goals(input: $input) {
+    items {
+      id
+      user_id
+      goal {
+        id
+        full_name
+        description
+        target_date
+        goal_scope
+        type_name
+      }
+      assignment_types {
+        type {
+          name
+          value
+        }
+        description
+      }
+      scale_value {
+        name
+      }
+    }
+    total
+    next_cursor
+  }
+}

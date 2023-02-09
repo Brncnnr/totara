@@ -1,0 +1,169 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_filterbar
+
+    This template generates a filter bar for seminar events and sessions.
+
+    Context variables required for this template:
+    * method: get or post
+    * formid: string id of the form
+    * togglelabel: label text of the toggle button for mobile view
+    * togglelabel.hidden: label text when the filter bar is hidden
+    * togglelabel.shown: label text when the filter bar is shown
+    * params: array containing key/value pairs as input elements of type hidden
+    * params.name: name attribute
+    * params.value: value attribute
+    * filters: array containing filters
+    * filters.name: key of the query string
+    * filters.class: part of the css class name
+    * filters.label: label text attached to the select menu
+    * filters.webkit_init_value: must be filters.options.value whose selected is true
+    * filters.show_tooltips: true to display the selected text as a tooltip
+    * filters.options: array containing options for the select menu
+    * filters.options.name: label text
+    * filters.options.value: value attribute
+    * filters.options.selected: true if the option is selected
+    * array containing buttons
+    * links.label: label text
+    * links.url: url
+
+    Example content (json):
+    {
+        "method" : "get",
+        "formid" : "id-123456",
+        "togglelabel": {
+            "hidden": "Show filter",
+            "shown": "Hide filter"
+        },
+        "icon": {
+            "template": "core/flex_icon",
+            "context": {
+                "identifier" : "filter",
+                "customdata": {
+                    "classes": "custom-class another-custom-class",
+                    "alt": "Settings"
+                },
+                "classes": "fa-filter"
+            }
+        },
+        "params" : [
+            {
+                "name" : "id",
+                "value" : "3"
+            },
+            {
+                "name" : "f",
+                "value" : "5"
+            }
+        ],
+        "filters" : [
+            {
+                "name" : "roomid",
+                "class" : "room",
+                "label" : "Filter by rooms:",
+                "webkit_init_value" : "4",
+                "show_tooltips": false,
+                "options" : [
+                    {
+                        "name" : "All rooms",
+                        "value" : "0",
+                        "selected" : false
+                    },
+                    {
+                        "name" : "New auditorium",
+                        "value" : "4",
+                        "selected" : true
+                    },
+                    {
+                        "name" : "Training room east",
+                        "value" : "3",
+                        "selected" : false
+                    }
+                ]
+            },
+            {
+                "name" : "eventtime",
+                "class" : "eventtime",
+                "label" : "Event time:",
+                "webkit_init_value" : "1",
+                "show_tooltips": false,
+                "options" : [
+                    {
+                        "name" : "All events",
+                        "value" : "0",
+                        "selected" : false
+                    },
+                    {
+                        "name" : "Past events",
+                        "value" : "3",
+                        "selected" : false
+                    },
+                    {
+                        "name" : "Events in progress",
+                        "value" : "2",
+                        "selected" : false
+                    },
+                    {
+                        "name" : "Upcoming events",
+                        "value" : "1",
+                        "selected" : true
+                    }
+                ]
+            }
+        ],
+        "links" : [
+            {
+                "label" : "Reset",
+                "url" : "?"
+            }
+        ]
+    }
+}}
+
+<form method="{{method}}" class="mod_facetoface__filter mod_facetoface__filter--loading mod_facetoface__filter--closed" id="mod_facetoface__filter_{{formid}}" aria-expanded="true">
+    <div class="mod_facetoface__filter__toggle-button">
+        {{#icon}}{{#context}}{{> &&template }}{{/context}}{{/icon}}
+        <span class="mod_facetoface__filter__toggle-button__loading" role="presentation">{{#flex_icon}}loading, loading, core{{/flex_icon}}</span>
+        {{#togglelabel}}<button class="mod_facetoface__filter__toggle-button__label"><span class="mod_facetoface__filter__toggle-button__label__hidden">{{hidden}}</span><span class="mod_facetoface__filter__toggle-button__label__shown">{{shown}}</span></button>{{/togglelabel}}
+    </div>
+    {{#params}}
+        <input type="hidden" name="{{name}}" value="{{value}}">
+    {{/params}}
+    {{#filters}}
+        {{^disabled}}
+            <div class="mod_facetoface__filter__item mod_facetoface__filter__item__{{class}}">
+                <label for="mod_facetoface__filter_{{formid}}__{{name}}" class="mod_facetoface__filter__item__label mod_facetoface__filter__item__{{class}}__label">{{{label}}}</label>
+                <select id="mod_facetoface__filter_{{formid}}__{{name}}" name="{{name}}" disabled autocomplete="off" class="mod_facetoface__filter__item__select mod_facetoface__filter__item__{{class}}__select" data-webkit-init-value="{{webkit_init_value}}"{{#show_tooltips}} data-show-tooltips="true"{{/show_tooltips}}>
+                    {{#options}}
+                        <option value="{{value}}"{{#selected}} selected{{/selected}}>{{name}}</option>
+                    {{/options}}
+                </select>
+            </div>
+        {{/disabled}}
+    {{/filters}}
+    {{#links}}
+        <a class="mod_facetoface__filter__link" href="{{url}}">{{label}}</a>
+    {{/links}}
+</form>

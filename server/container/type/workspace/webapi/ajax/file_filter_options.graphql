@@ -1,0 +1,12 @@
+query container_workspace_file_filter_options($workspace_id: param_integer) {
+  sorts: container_workspace_file_sorts {
+    __typename
+    value
+    label(format: PLAIN)
+  }
+  extensions: container_workspace_file_extensions(workspace_id: $workspace_id) {
+    __typename
+    value
+    label(format: PLAIN)
+  }
+}

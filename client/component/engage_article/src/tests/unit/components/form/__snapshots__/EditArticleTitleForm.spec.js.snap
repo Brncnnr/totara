@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage EditArticleTitleForm Checks snapshot 1`] = `
+<form-stub inputwidth="limited" autocomplete="off" class="tui-engageEditArticleTitleForm">
+  <inputtext-stub value="ArticleTitle" placeholder="entertitle, engage_article" name="title" maxlength="60" arialabel="articletitle, engage_article" class="tui-engageEditArticleTitleForm__input"></inputtext-stub>
+  <donecancelgroup-stub></donecancelgroup-stub>
+</form-stub>
+`;

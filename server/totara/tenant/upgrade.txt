@@ -1,0 +1,11 @@
+This files describes API changes in /totara/tenant/*,
+information provided here is intended especially for developers.
+
+=== 17.3 ===
+
+* Added new parameter $profilefieldvalues to validate_users_csv_row function in order to track profile field values
+ and ensure uniqueness is observed while uploading users in a tenant
+
+=== 16.0 ===
+
+* Moved server/totara/tenant/classes/entity/tenant.php to server/lib/classes/entity/tenant.php

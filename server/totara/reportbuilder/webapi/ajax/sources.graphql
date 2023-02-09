@@ -1,0 +1,12 @@
+query totara_reportbuilder_sources {
+  totara_reportbuilder_sources {
+    key
+    fullname
+    label
+    summary
+    defaultcolumns {
+      type
+      name
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation totara_notification_delete_notification_preference(
+  $id: param_integer!
+) {
+  totara_notification_delete_notification_preference(id: $id)
+}

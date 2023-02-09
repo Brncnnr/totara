@@ -1,0 +1,119 @@
+"""
+Mutation return type when manually changing participant section availability
+"""
+type mod_perform_manually_change_participant_section_result {
+  participant_section: mod_perform_participant_section!
+}
+
+"""
+Mutation return type when manually changing participant instance availability
+"""
+type mod_perform_manually_change_participant_instance_result {
+  participant_instance: mod_perform_participant_instance!
+}
+
+"""
+Mutation return type when manually changing subject instance availability
+"""
+type mod_perform_manually_change_subject_instance_result {
+  subject_instance: mod_perform_subject_instance!
+}
+
+"""
+Input type to manually set participant section availability.
+"""
+input mod_perform_manually_change_participant_section_input {
+  """
+  ID of the participant section to update
+  """
+  participant_section_id: core_id!
+  """
+  New value for availability for this participant section
+  """
+  availability: mod_perform_participant_section_availability_status!
+}
+
+"""
+Input type to manually set participant instance availability.
+"""
+input mod_perform_manually_change_participant_instance_input {
+  """
+  ID of the participant instance to update
+  """
+  participant_instance_id: core_id!
+  """
+  New value for availability for this participant instance
+  """
+  availability: mod_perform_participant_instance_availability_status!
+}
+
+"""
+Input type to manually set subject instance availability.
+"""
+input mod_perform_manually_change_subject_instance_input {
+  """
+  ID of the subject instance to update
+  """
+  subject_instance_id: core_id!
+  """
+  New value for availability for this subject instance
+  """
+  availability: mod_perform_subject_instance_availability_status!
+}
+
+"""
+Input type to delete participant instance.
+"""
+input mod_perform_manually_delete_participant_input {
+  """
+  ID of the participant instance to delete
+  """
+  participant_instance_id: core_id!
+}
+
+"""
+Input type to delete a subject instance.
+"""
+input mod_perform_manually_delete_subject_input {
+  """
+  ID of the subject instance to delete
+  """
+  subject_instance_id: core_id!
+}
+
+extend type Mutation {
+  """
+  Manually set participant section availability.
+  """
+  mod_perform_manually_change_participant_section(
+    input: mod_perform_manually_change_participant_section_input!
+  ): mod_perform_manually_change_participant_section_result!
+
+  """
+  Manually set participant instance availability.
+  """
+  mod_perform_manually_change_participant_instance(
+    input: mod_perform_manually_change_participant_instance_input!
+  ): mod_perform_manually_change_participant_instance_result!
+
+  """
+  Manually set subject instance availability.
+  """
+  mod_perform_manually_change_subject_instance(
+    input: mod_perform_manually_change_subject_instance_input!
+  ): mod_perform_manually_change_subject_instance_result!
+
+  """
+  Manually delete participant instance
+  """
+  mod_perform_manually_delete_participant_instance(
+    input: mod_perform_manually_delete_participant_input!
+  ): Boolean!
+
+  """
+  Manually delete subject instance
+  """
+  mod_perform_manually_delete_subject_instance(
+    input: mod_perform_manually_delete_subject_input!
+  ): Boolean!
+}

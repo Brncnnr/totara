@@ -1,0 +1,59 @@
+This file describes API changes in Totara Certification,
+information provided here is intended for developers.
+
+=== 15.0 ===
+
+* Introduced new config setting $CFG->program_message_prevent_resend_on_schedule_change. This is only relevant when
+  custom message types based on the legacy prog_eventbased_message class have been carried over from pre-14 versions.
+  When set to true, it switches off the default behaviour of resending program and certification messages on change of
+  message scheduling.
+
+=== 14.0 ===
+
+* Added optional param $ignoreproblemkey to certif_write_completion_history to make it consistent with certif_write_completion
+
+=== 13.0 ===
+
+* Refactored several core program and certification functions. Most program and certification functions are now
+  completely separate - you should use the functions specific to the object you are manipulating.
+* The event \core\event\course_in_progress was added.
+* The following functions were added:
+  * certif_set_state_certified
+  * certif_set_state_windowopen
+  * certif_set_state_expired
+  * certif_set_in_progress
+* The following were deprecated:
+  * certification_event_handler::completed has been deprecated. Instead call certif_set_state_certified directly.
+  * certification_event_handler::certification_updated has been deprecated. Instead call \totara_certification\observer::certification_updated.
+  * inprogress_certification_stage has been deprecated. Instead trigger a \core\event\course_in_progress event.
+  * complete_certification_stage has been deprecated. Instead call certif_set_state_certified directly.
+  * write_certif_completion has been deprecated. Instead, use certif_set_state_certified, certif_set_state_windowopen,
+    certif_set_state_expired or certif_set_in_progress.
+  * set_course_renewalstatus has been deprecated. Renewalstatus is updated as part of certif_create_completion and the
+    certif_set_state_xxx functions.
+  * reset_certifcomponent_completions has been deprecated. This functionality is included in certif_set_state_windowopen.
+* certif_create_completion was changed to create the prog_completion record. You should always allow this
+  function to create the prog_completion record for a user assignment in a certification. Use prog_create_completion to
+  create the prog_completion record only for a normal program.
+
+=== 12.0 ===
+
+* Removed deprecated methods:
+  * certification_event_handler::unassigned()
+  * assign_certification_stage()
+  * delete_removed_users()
+* rb_source_certification_membership::rb_display_edit_completion() has been deprecated, please call totara_certification\rb\display\certif_edit_completion::display() instead.
+
+=== 10.0 ===
+
+* rb_display_certif_status has been moved in to a new style auto-loading class
+  display function (\totara_certification\rb\display\certif_status) to use this class
+  $this->usedcomponents[] = 'totara_certification'; must be set in the constructor for
+  report source.
+* certif_create_completion added third optional parameter $message which will be added to the start of relevant logs
+* certif_create_completion now creates the prog_completion record when the record is missing, rather than giving an error
+* certif_create_completion now deletes "expired" certif_completion_history records when they are used to reassign a user
+* certification_event_handler::unassigned() is deprecated. Call certif_conditionally_delete_completion directly instead.
+* delete_removed_users() is deprecated. This functionality is already performed in existing Totara code.
+* totara_certification_renderer::get_completion_checker_results has been changed - the $data parameter now requires
+  fulllist, aggregatelist and totalcount.

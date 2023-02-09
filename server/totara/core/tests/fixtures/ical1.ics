@@ -1,0 +1,39 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Moodle//NONSGML Facetoface//EN
+METHOD:PUBLISH
+BEGIN:VEVENT
+ORGANIZER;CN=noreply@riana.totaralms.com:MAILTO:noreply@riana.totaralms.com
+DTSTART:20220313T200000Z
+DTEND:20220313T210000Z
+LOCATION:
+TRANSP:OPAQUE
+SEQUENCE:106969
+UID:20220228T210932Z-2595373d-5@riana.totaralms.com
+DTSTAMP:20220228T210932Z
+DESCRIPTION:This calendar event is for the \"Multiple sessions on same date seminar\" 
+	seminar event you have been booked on to.
+SUMMARY:Multiple sessions on same date seminar
+PRIORITY:5
+CLASS:PUBLIC
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;
+ RSVP=FALSE;CN=Learner Three;LANGUAGE=en:MAILTO:learner3@test.com
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=noreply@riana.totaralms.com:MAILTO:noreply@riana.totaralms.com
+DTSTART:20220314T000000Z
+DTEND:20220314T010000Z
+LOCATION:
+TRANSP:OPAQUE
+SEQUENCE:106969
+UID:20220228T210932Z-2595373d-6@riana.totaralms.com
+DTSTAMP:20220228T210932Z
+DESCRIPTION:This calendar event is for the \"Multiple sessions on same date seminar\" 
+	seminar event you have been booked on to.
+SUMMARY:Multiple sessions on same date seminar
+PRIORITY:5
+CLASS:PUBLIC
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;
+ RSVP=FALSE;CN=Learner Three;LANGUAGE=en:MAILTO:learner3@test.com
+END:VEVENT
+END:VCALENDAR

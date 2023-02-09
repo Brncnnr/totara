@@ -1,0 +1,49 @@
+This files describes API changes in /auth/oaut2/*,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+
+* Added override in \auth_plugin_oauth2::loginpage_idp_list() for when show_default_branding is enabled for an issuer,
+  returning template data for buttonimageurl and issuertype instead of iconurl.
+* Added a hardcoded button logo image for the microsoft issuer type, located at pix/login_button/microsoft.svg
+
+=== 14.0 ===
+
+* Users cannot delete their last linked login if their authentication is set to OAuth 2,
+  this prevents accidental account lockouts.
+* There is a new setting 'auth_oauth2/allowautolinkingexisting' which allows admins
+  to disable automatic linking of existing local accounts during issuer logins.
+* Use of global setting $CFG->authpreventaccountcreation was replaced by
+  a new plugin setting 'auth_oauth2/allowaccountcreation'.
+* It is not possible to create a new OAuth 2 account with duplicate emails
+  because $CFG->allowaccountssameemail is now ignored.
+* Security overview warning was improved to show warning only when automatic account
+  linking is enabled.
+* Attempt to use expired email confirmation token emails new token.
+* When user is logged-in-as they can now see the list of linked logins, but they cannot modify them.
+* Plugin was incorrectly defined in namespaced class, it was moved to auth_plugin_oauth2 class.
+* Instead of creating unconfirmed user accounts new confirmed flag was added
+  to auth_oauth2_linked_login database table, all related APIs were changed to use it.
+* Incorrect unique key "userid, issuerid, username" was changed to two separate
+  unique indexes "issuerid, username" for external side and "issuerid, userid" for
+  internal side.
+* Methods \auth_oauth2\linked_login::has_existing_issuer_match() and
+  \auth_oauth2\linked_login::delete_orphaned() were removed without a replacement.
+* External issuer username is not mangled any more before storage into database.
+* Internal username is now a random string with "oauth2_" prefix, this prevents
+  naming conflicts and it is more consistent with Totara Connect.
+* New capability Delete OAuth 2 login links (auth/oauth2:deletelinkedlogins) was added.
+* There is a new Report builder source for listing and managing of all OAuth 2
+  linked logins.
+* OAuth 2 login link is not deleted any more when internal user account is deleted,
+  this prevents recreation of accounts. To recreate an account admin can either
+  undelete previously deleted account, manually delete the login link using
+  the new report or via purging of user data.
+* Login links are deleted automatically via cascading foreign keys when issuer is deleted.
+* All external user fields are sanitised to prevent fatal validation errors.
+* User data purging was implemented incorrectly, it is now deleting the linked login instead.
+* Class server/badges/classes/oauth2/auth.php was erroneously extending auth plugin,
+  all classes are now declared final to prevent similar problems and future regressions.
+* Plugin method complete_login() did not check if auth_oauth2 is enabled.
+* Method auth_oauth2\api::is_enabled() was removed, use standard function is_enabled_auth().
+* Account and link confirmation email strings are expected to use Markdown text format.

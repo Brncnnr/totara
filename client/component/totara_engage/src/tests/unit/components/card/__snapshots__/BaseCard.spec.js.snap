@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage BaseCard Checks snapshot 1`] = `
+<article
+  class="tui-engageBaseCard"
+>
+  <corecard-stub
+    class="tui-engageBaseCard__card"
+    clickable="true"
+  >
+    <div
+      class="tui-engageBaseCard__headerImage"
+    />
+     
+    <div
+      class="tui-engageBaseCard__description"
+    >
+      <div />
+       
+      <div
+        class="tui-engageBaseCard__infoContent"
+      />
+       
+      <div />
+    </div>
+  </corecard-stub>
+   
+  <!---->
+</article>
+`;

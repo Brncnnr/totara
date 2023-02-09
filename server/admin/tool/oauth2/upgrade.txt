@@ -1,0 +1,9 @@
+This files describes API changes in /admin/tool/oauth2
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+
+* Made the following modifications to tool_oauth2\form\issuer:
+  * Added a new form element 'show_default_branding', which is shown if the issuer is of the microsoft type.
+  * The help text displayed for the 'name' form element is now conditional, based upon if the issuer is of the microsoft type.
+  * 'type' is no longer a field to remove, as it is now a column in the oauth2_issuer table.

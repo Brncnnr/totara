@@ -1,0 +1,7 @@
+query container_workspace_discussion_filter_options {
+  sorts: container_workspace_discussion_sorts {
+    __typename
+    label(format: PLAIN)
+    value
+  }
+}

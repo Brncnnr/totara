@@ -1,0 +1,29 @@
+This files describes API changes in /totara/msteams,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+
+* Added 'help tab' in totara/msteams/db/tabs.php" and new help template
+* \totara_msteams\botfw\util\http::OK is deprecated, please use \totara_core\http\response_code::OK instead
+* \totara_msteams\botfw\util\http::BAD_REQUEST is deprecated, please use \totara_core\http\response_code::BAD_REQUEST instead
+* \totara_msteams\botfw\util\http::UNAUTHORIZED is deprecated, please use \totara_core\http\response_code::UNAUTHORIZED instead
+* \totara_msteams\botfw\util\http::FORBIDDEN is deprecated, please use \totara_core\http\response_code::FORBIDDEN instead
+* \totara_msteams\botfw\util\http::NOT_FOUND is deprecated, please use \totara_core\http\response_code::NOT_FOUND instead
+* \totara_msteams\botfw\util\http::INTERNAL_SERVER_ERROR is deprecated, please use \totara_core\http\response_code::INTERNAL_SERVER_ERROR instead
+* \totara_msteams\botfw\util\http::SERVICE_UNAVAILABLE is deprecated, please use \totara_core\http\response_code::SERVICE_UNAVAILABLE instead
+* \totara_msteams\botfw\util\http::$mapping is deprecated, there is no alternative
+* \totara_msteams\botfw\util\http::get_request_headers is deprecated, please use \totara_core\http\util::get_request_headers instead
+* \totara_msteams\botfw\util\http::getallheaders_downlevel is deprecated, please use \totara_core\http\util::getallheaders_polyfill instead
+
+
+=== 14.0 ===
+
+* The spinner template added id parameter to set HTML id
+* spinner::create_loading() added 2nd parameter to set HTML id
+* spinner::create_signingin() added 2nd parameter to set HTML id
+* listbox_items.mustache template requires the type field of each item entry
+* listbox_items.mustache template changed for thumbnail pictures to use <img> instead of <div style="background: ...">
+* catalog_helper::search() updated to return the objecttype of each item entry
+* totara_msteams_renderer::render_my_learning() updated to load user's block settings
+* IE11 support has been removed from Microsoft Teams integration as it is no longer supported
+  https://docs.microsoft.com/en-us/microsoftteams/unsupported-browsers

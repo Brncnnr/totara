@@ -1,0 +1,10 @@
+This files describes API changes in /container/type/course/*.
+The information here is intended only for developers.
+
+=== 15.0 ===
+
+* \container_course\course::is_module_allowed() has been changed to not use \container_course\helper::is_module_addable() internally.
+  The behaviour of the function has been been changed; the function now no longer checks for the capability of the user in session.
+
+* \container_course\course::is_module_addable() has been changed to use container_course\course::is_module_allowed() internally.
+  The behaviour of the function has been changed; the function now checks for the availability of the module within the course.

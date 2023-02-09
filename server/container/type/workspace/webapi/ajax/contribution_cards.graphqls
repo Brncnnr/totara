@@ -1,0 +1,14 @@
+extend type Query {
+  """
+  Workspace specific contributions enquiry that will return resources and playlists
+  that have not yet been shared with the workspace.
+  """
+  container_workspace_contributions(
+    workspace_id: param_integer!
+    area: param_area!
+    filter: totara_engage_filter!
+    footnotes: totara_engage_footnotes
+    cursor: String
+    image_preview_mode: String
+  ): totara_engage_cards!
+}

@@ -1,0 +1,84 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/take_attendance_session_picker
+
+    This template generates the session(s) picker for taking attendance (attendance tracking).
+
+    Classes required for JS:
+    * none
+
+    Context variables required for this template:
+    * name: The selection name, attribute name of element
+    * url: The base url of taking attendance
+    * summary: String of event summary
+    * sessionid: Seminar's id
+    * sessions: The list of seminar's event session
+    * sessions -> value: The session date id of a seminar event
+    * sessions -> disabled: Whether the session date is disabled or enabled
+    * sessions -> selected: Whether user is on this current session date or not
+    * sessions -> option_label: A string description of session time and its status
+
+    Example context (json):
+    {
+        "name": "event-sessions",
+        "url": "http://totara.example.com/mod/facetoface/takeattendance.php",
+        "sessionid": 15,
+        "sessions": [
+            {
+                "value": 1,
+                "disabled" : false,
+                "selected": true,
+                "option_label": "Session 1"
+            }
+        ]
+    }
+}}
+
+<div class="tw-takeAttendanceSessionPicker"
+     data-url="{{url}}"
+     data-sessionid="{{sessionid}}"
+     data-selector="menu{{name}}"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="mod_facetoface/take_attendance_session_picker">
+
+    <label class="f2f-inline-box custom-facetoface-label" for="menu{{name}}">
+        {{#str}}facetoface:takeattendance, mod_facetoface{{/str}}
+    </label>
+
+    <select class="select custom-select menu{{name}} custom-facetoface-selection f2f-inline-box" autocomplete="off"
+            name="{{name}}" id="menu{{name}}">
+
+        {{#sessions}}
+            <option {{#disabled}}disabled{{/disabled}} value="{{value}}"
+                    {{#selected}}selected{{/selected}}>
+                {{option_label}}
+            </option>
+
+        {{/sessions}}
+
+    </select>
+
+    <p class="f2f-takeattendance-event-summary"> {{summary}} </p>
+</div>

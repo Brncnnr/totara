@@ -1,0 +1,8 @@
+{
+  "component": "pathway_manual",
+  "bundleWith": "totara_core",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_competency"
+  ]
+}

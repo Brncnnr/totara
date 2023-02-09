@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="ml/recommender/db" VERSION="20200622" COMMENT="XMLDB file for ML recommender"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="ml_recommender_components" COMMENT="Dictionary of components and areas used in recommender tables">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="component" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="The target item's component"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="The target item's area, to distinguish the item within the component."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="component_idx" UNIQUE="false" FIELDS="component"/>
+        <INDEX NAME="area_idx" UNIQUE="false" FIELDS="area"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="ml_recommender_interaction_types" COMMENT="Dictionary of interactions used in recommender tables">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="interaction" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Interaction type"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="interaction_idx" UNIQUE="true" FIELDS="interaction"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="ml_recommender_interactions" COMMENT="User interactions with Engage resources for recommendation purposes">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The target item's id where user has interact upon"/>
+        <FIELD NAME="component_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Component/area from the dictionary ml_recommender_components"/>
+        <FIELD NAME="interaction_type_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Interaction from the dictionart ml_recommender_interaction_types"/>
+        <FIELD NAME="rating" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="component_fk" TYPE="foreign" FIELDS="component_id" REFTABLE="ml_recommender_components" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="interaction_type_fk" TYPE="foreign" FIELDS="interaction_type_id" REFTABLE="ml_recommender_interaction_types" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="useriditemidcomponentinteractiontime" UNIQUE="true" FIELDS="user_id, item_id, component_id, interaction_type_id, time_created"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="ml_recommender_users" COMMENT="Suggested content for users">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="unique_id" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="component" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="score" TYPE="number" LENGTH="20" NOTNULL="true" SEQUENCE="false" DECIMALS="12" COMMENT="Score/rating of the recommended item"/>
+        <FIELD NAME="seen" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="component_idx" UNIQUE="false" FIELDS="component"/>
+        <INDEX NAME="area_idx" UNIQUE="false" FIELDS="area"/>
+        <INDEX NAME="score_idx" UNIQUE="false" FIELDS="score"/>
+        <INDEX NAME="user_seen_score_idx" UNIQUE="false" FIELDS="user_id, seen, score"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="ml_recommender_items" COMMENT="Related content">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="unique_id" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="target_item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="ID of the item this recommendation is made for"/>
+        <FIELD NAME="target_component" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Area of the item this recommendation is made for"/>
+        <FIELD NAME="target_area" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Area of the item this recommendation is made for"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="ID of the item being recommended"/>
+        <FIELD NAME="component" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Component being recommended"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Area being recommended"/>
+        <FIELD NAME="score" TYPE="number" LENGTH="20" NOTNULL="true" SEQUENCE="false" DECIMALS="12" COMMENT="Score/rating of the recommended item"/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="item_component_idx" UNIQUE="false" FIELDS="item_id, component"/>
+        <INDEX NAME="target_item_component_idx" UNIQUE="false" FIELDS="target_item_id, target_component"/>
+        <INDEX NAME="area_idx" UNIQUE="false" FIELDS="area"/>
+        <INDEX NAME="target_area_idx" UNIQUE="false" FIELDS="target_area"/>
+        <INDEX NAME="score_idx" UNIQUE="false" FIELDS="score"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="ml_recommender_trending" COMMENT="Trending recommendation items">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="unique_id" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Composite unique id comprised of component_itemid"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The target item's id where user has interact upon"/>
+        <FIELD NAME="component" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="The target item's component"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="The target item's area, to distinguish the item within the component"/>
+        <FIELD NAME="counter" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Number of interactions on target item"/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="trendingitem" UNIQUE="false" FIELDS="item_id, component, area"/>
+        <INDEX NAME="resourcetypeall" UNIQUE="false" FIELDS="time_created, counter, item_id, component"/>
+        <INDEX NAME="resourcetype" UNIQUE="false" FIELDS="time_created, component, counter, item_id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

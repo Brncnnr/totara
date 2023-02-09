@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Range checks snapshot 1`] = `
+<div
+  class="tui-range"
+  label="Some range"
+  showminmax="true"
+>
+  <div
+    class="tui-range__labels"
+  >
+    <div
+      class="tui-range__lowLabel"
+    >
+      
+    </div>
+     
+    <div
+      class="tui-range__highLabel"
+    >
+      
+    </div>
+  </div>
+   
+  <input
+    autocomplete="true"
+    autofocus="autofocus"
+    class="tui-range__input tui-range__input--selected"
+    disabled="disabled"
+    id="a"
+    max="10"
+    min="0"
+    name="n"
+    readonly="readonly"
+    required="required"
+    type="range"
+  />
+</div>
+`;

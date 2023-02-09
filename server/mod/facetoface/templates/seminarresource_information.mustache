@@ -1,0 +1,76 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarresource_information
+
+    This template generates the seminar resource page.
+
+    Context variables required for this template:
+    * headeraction: template data of seminarevent_actionbar
+    * banner: template
+    * banner.template: template name
+    * banner.context: template data
+    * heading: heading text
+    * card: template
+    * card.template: template name
+    * card.context: template data
+    * details: resource details html
+    * report: reportbuilder data
+    * report.header: heading text
+    * report.debughtml: debug html
+    * report.description: description
+    * report.searchoptions: saved search options
+    * report.search: search
+    * report.sidebar: sidebar search
+    * report.reporthtml: report html
+    * footeraction: template data of seminarevent_actionbar
+
+    Example content (json):
+    * not yet provided :)
+}}
+
+{{#banner}}{{#context}}{{> &&template }}{{/context}}{{/banner}}
+
+{{#headeraction}}{{> mod_facetoface/seminarevent_actionbar }}{{/headeraction}}
+
+<h2>{{heading}}</h2>
+
+<section class="mod_facetoface__eventinfo">
+    {{#card}}{{#context}}{{> &&template }}{{/context}}{{/card}}
+    {{#details}}<div class="mod_facetoface__eventinfo__content">{{{.}}}</div>{{/details}}
+</section>
+
+{{#report}}
+    <section class="mod_facetoface__eventinfo__content__eventdetail__section">
+        <h3>{{header}}</h3>
+        {{#debughtml}}<div>{{{.}}}</div>{{/debughtml}}
+        {{{description}}}
+        {{{searchoptions}}}
+        {{{search}}}
+        {{{sidebar}}}
+        {{{reporthtml}}}
+    </section>
+{{/report}}
+
+{{#footeraction}}{{> mod_facetoface/seminarevent_actionbar }}{{/footeraction}}

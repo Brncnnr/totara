@@ -1,0 +1,34 @@
+query totara_comment_get_replies(
+  $commentid: param_integer!
+  $page: param_integer
+) {
+  replies: totara_comment_replies(commentid: $commentid, page: $page) {
+    __typename
+    id
+    edited
+    deleted
+    content(format: HTML)
+    commentid
+    timedescription
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+    totalreactions
+    reasondeleted
+    interactor {
+      __typename
+      user_id
+      can_delete
+      can_report
+      can_update
+      can_react
+      can_follow_reply
+      can_view_author
+      reacted
+    }
+  }
+}

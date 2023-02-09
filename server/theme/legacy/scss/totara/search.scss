@@ -1,0 +1,97 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @package   theme_legacy
+
+.search-results .result {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.search-results .result .result-content {
+  margin: 7px 0;
+}
+
+.search-results .result .filename {
+  font-style: italic;
+}
+
+.search-input-wrapper {
+  margin: 0 5px 0 2px;
+  overflow: hidden;
+  float: right;
+  height: 100%;
+  width: 16px;
+  transition: width 0.5s ease, left 0.5s ease;
+}
+
+.search-input-wrapper > div {
+  float: left;
+  margin: 10px 0 9px 0;
+}
+
+.dir-rtl .search-input-wrapper {
+  margin: 0 2px 0 5px;
+  float: left;
+}
+
+.dir-rtl .search-input-wrapper > div {
+  float: right;
+}
+
+.dir-rtl .search-input-wrapper > form {
+  margin: 5px 25px 5px 0;
+}
+
+.search-input-wrapper > form {
+  opacity: 0;
+  margin: 5px 0 5px 25px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.search-input-wrapper > form > input {
+  margin: 0;
+}
+
+.search-input-wrapper form.expanded {
+  opacity: 1;
+}
+
+.search-input-wrapper.expanded {
+  width: 160px;
+}
+
+// When it is displayed in the navbar we want it aligned with .usermenu .
+.dir-rtl .navbar .search-input-wrapper > form {
+  margin: 5px 25px 5px 0;
+}
+
+.navbar {
+  .search-input-wrapper {
+    float: left;
+    > form {
+      margin: 5px 0 5px 25px;
+    }
+  }
+}
+
+.search-areas-actions > div {
+  display: inline-block;
+}

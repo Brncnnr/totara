@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/hierarchy/pathway/criteria_group/db" VERSION="20191007" COMMENT="Database layer definition for a criteria_group pathway"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="pathway_criteria_group" COMMENT="Criteria group pathway definition">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="scale_value_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Scale value achieved when all criteria are satisfied"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="pathcritgrp_fk_scalevalueid" TYPE="foreign" FIELDS="scale_value_id" REFTABLE="comp_scale_values" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="pathway_criteria_group_criterion" COMMENT="Criterion in this group of criteria">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="criteria_group_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Criteria group this criterion is linked to"/>
+        <FIELD NAME="criterion_type" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Type of criterion"/>
+        <FIELD NAME="criterion_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the criteria instance"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="pathcritgrpcrit_fk_crigrpid" TYPE="foreign" FIELDS="criteria_group_id" REFTABLE="pathway_criteria_group" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

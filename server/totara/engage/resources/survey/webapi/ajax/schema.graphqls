@@ -1,0 +1,138 @@
+type engage_survey_survey {
+  id: core_id!
+  timeexpired: String
+  questions: [engage_survey_question!]!
+  resource: totara_engage_resource!
+  topics: [totara_topic_topic!]!
+  questionresults: [engage_survey_question_result!]!
+  shares: Int
+  sharedbycount: Int
+  bookmarked: Boolean!
+  timedescription: String!
+  owned: Boolean!
+  voted: Boolean!
+  reacted: Boolean!
+  updateable: Boolean!
+}
+
+type engage_survey_answer_option {
+  id: core_id!
+  questionid: core_id!
+  value(format: core_format!): String!
+}
+
+type engage_survey_question {
+  id: core_id!
+  value(format: core_format!): String!
+  user: core_user!
+  answertype: Int!
+  options: [engage_survey_answer_option!]!
+}
+
+type engage_survey_question_result {
+  """
+  Question's id
+  """
+  id: Int!
+
+  """
+  Question's label text
+  """
+  value(format: core_format!): String!
+
+  """
+  Question's type
+  """
+  answertype: Int!
+
+  """
+  Number of participants
+  """
+  participants: Int!
+
+  """
+  Collection of the voted option
+  """
+  options: [engage_survey_option_result!]!
+
+  """
+  The number of user(s) that had attemted this question
+  """
+  votes: Int!
+}
+
+type engage_survey_option_result {
+  """
+  Option's id
+  """
+  id: Int!
+
+  """
+  Option's label text
+  """
+  value(format: core_format!): String!
+
+  questionid: Int!
+
+  """
+  The number of user(s) that had voted for this option.
+  """
+  votes: Int!
+}
+
+input engage_survey_question_parameter {
+  """
+  If id is null, then this is about adding new question. Otherwise updating the question with specific id.
+  """
+  id: core_id
+  value: String!
+  answertype: param_integer!
+  options: [String!]!
+}
+
+extend type Query {
+  engage_survey_instance(resourceid: param_integer!): engage_survey_survey!
+
+  """
+  A query for returning the vote result of a surve. Collection of question's result
+  """
+  engage_survey_vote_result(
+    """
+    Id is the resource's id.
+    """
+    resourceid: param_integer!
+  ): [engage_survey_question_result!]!
+}
+
+extend type Mutation {
+  engage_survey_create(
+    timeexpired: Int
+    questions: [engage_survey_question_parameter!]!
+    access: totara_engage_access
+    """
+    An array of the topic's id.
+    """
+    topics: [param_integer!]
+    shares: [totara_engage_recipient_in!]
+  ): engage_survey_survey
+
+  engage_survey_delete(resourceid: param_integer!): Boolean!
+
+  """
+  Mutation for creating new answer record of the survey.
+  """
+  engage_survey_create_answer(
+    resourceid: param_integer!
+    questionid: param_integer!
+    options: [param_integer!]
+  ): Boolean!
+
+  engage_survey_update(
+    resourceid: param_integer!
+    timeexpired: Int
+    questions: [engage_survey_question_parameter!]
+    access: totara_engage_access
+    topics: [param_integer!]
+    shares: [totara_engage_recipient_in!]
+  ): engage_survey_survey!
+}

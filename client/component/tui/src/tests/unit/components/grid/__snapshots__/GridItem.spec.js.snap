@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`presentation/grid/GridItem.vue with a set gridItemTag Checks snapshot 1`] = `
+<li
+  class="tui-grid-item tui-grid-item--list"
+  style="order: 1;"
+/>
+`;
+
+exports[`presentation/grid/GridItem.vue with default gridItemTag Checks snapshot 1`] = `
+<div
+  class="tui-grid-item tui-grid-item--grow tui-grid-item--no-shrink tui-grid-item--overflow tui-grid-item--no-hyphens"
+  style="order: 1;"
+/>
+`;

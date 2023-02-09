@@ -1,0 +1,13 @@
+"""
+Example schema file, defining an enum in the dev schema only
+"""
+enum totara_webapi_example_dev_enum {
+  """
+  The button is pressed
+  """
+  AJAX_IN
+  """
+  The button is not pressed
+  """
+  AJAX_OUT
+}

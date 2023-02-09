@@ -1,0 +1,53 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_core
+}}
+{{!
+
+    @template totara_competency/lists_toggle_level
+
+    This template generates the toggle buttons for flat/multi level results
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-list-toggleLevel: Unique attribute for list level toggle
+    * data-tw-list-toggleLevel-events: Key for propagated events
+    * data-tw-list-toggleLevel-type: Type of toggle change
+
+    Context variables required for this template:
+    * none
+
+!}}
+<div class="tw-list__toggleView tw-list__btnGroup tw-list__btn_disabled"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/lists_toggle_level"
+    data-tw-list-toggleLevel=""
+    data-tw-list-toggleLevel-events="totara_core/lists_toggle_level">
+    <a href="#" class="tw-list__btn tw-list__btn_small" data-tw-list-toggleLevel-type="current">
+        {{#str}}directchildren, totara_core{{/str}}
+    </a>{{!
+  }}<a href="#" class="tw-list__btn tw-list__btn_small" data-tw-list-toggleLevel-type="all">
+        {{#str}}allchildren, totara_core{{/str}}
+    </a>
+</div>

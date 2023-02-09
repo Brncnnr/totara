@@ -1,0 +1,8 @@
+query editor_weka_get_repository_data($context_id: param_integer) {
+  repository_data: editor_weka_repository_data(context_id: $context_id) {
+    __typename
+    repository_id
+    url
+    max_bytes
+  }
+}

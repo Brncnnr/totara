@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage NameListModal Matchs snapshot 1`] = `
+<modal-stub
+  arialabelledby="id-title"
+  dismissable="true"
+  shade="true"
+  size="small"
+>
+  <h2
+    class="tui-engageArticleNameListModal__title"
+    id="id-title"
+  >
+    
+    You like me?
+  
+  </h2>
+   
+  <closebutton-stub
+    class="tui-engageArticleNameListModal__close"
+    size="300"
+  />
+   
+  <div
+    class="tui-engageArticleNameListModal__content"
+  >
+    <loading-stub
+      size="200"
+    />
+     
+    <div
+      class="tui-engageArticleNameListModal__content-loadmore"
+    >
+      <loading-stub
+        size="200"
+      />
+      
+      loading, core
+    
+    </div>
+  </div>
+</modal-stub>
+`;

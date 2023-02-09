@@ -1,0 +1,10 @@
+This files describes API changes for code that uses the question API,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+* Implemented new method do_non_interactive_enrol and supports_non_interactive_enrol in the lib.php to allow self enrol
+  to implement non interactive enrollment
+
+=== 10.0 ===
+
+* log in button when viewing a course as a guest is now a link styled as a button

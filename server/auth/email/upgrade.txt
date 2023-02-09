@@ -1,0 +1,12 @@
+This files describes API changes in /auth/email/*,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+=== 12.0 ===
+
+* The config.html file was migrated to use the admin settings API.
+  The identifier for configuration data stored in config_plugins table was converted from 'auth/email' to 'auth_email'.
+

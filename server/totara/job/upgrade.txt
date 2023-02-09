@@ -1,0 +1,30 @@
+This files describes API changes in Totara Job,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Added new role 'apiuser' to archetypes of 'totara/job:managejobs' capability
+
+=== 16.0 ===
+
+* Added data to the job_assignment created/updated/deleted events for old/new appraiser id and old/new temporary
+  manager id. This is to enable observers to detect changes to a job assignment's appraiser or temporary manager.
+* The argument $canviewemail of \totara_job_display_user_job() has been deprecated. The function now makes use of get_extra_user_fields() to determine which fields are shown, including the email address.
+
+=== 14.0 ===
+
+* totara_job\entities\job_assignment has been moved to totara_job\entity\job_assignment
+
+=== 13.0 ===
+
+* totara/job/dialog/get_deletion_notification.php has been deprecated, please use get_string AMD module instead.
+
+=== 12.0 ===
+
+* totara/job/templates/job_management_listing.mustache Icon helpers are no longer used, icon data is passed via context data.
+* Removed deprecated file user/positions.php
+
+=== 10.0 ===
+
+* Added new property 'totarasync' to the \totara_job\job_assignment class. This is for determining
+whether a job assignment can be updated by HR Import or not. Default is 0.

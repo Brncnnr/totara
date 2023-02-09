@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentAvatar Checks snapshot 1`] = `
+<a
+  href="http://example.com"
+>
+  <coreavatar-stub
+    alt="Axxxsa"
+    size="xxsmall"
+    src="http://example.com"
+  />
+</a>
+`;

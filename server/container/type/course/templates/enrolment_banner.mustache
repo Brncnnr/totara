@@ -1,0 +1,68 @@
+{{!
+   This file is part of Totara Core
+
+   Copyright (C) 2021 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package container_course
+}}
+{{!
+  @template container_course/enrolment_banner
+
+  A template for enrolment banner used in course's view page.
+  The purpose of this template is to render an info notification that
+  enable user to understand that they need to enrol into a course, and how
+  they are available to see the current course without enrolment happened priorly.
+
+  Classes required for JS:
+  * tw-containerCourse-enrolmentBanner__enrolButton: For capturing a click event on the link
+
+  Data attributes required for JS:
+  * none
+
+
+  Context variables required for this template:
+  * message: string, the notification message
+  * enrol_button.display: boolean, whether to display enrol button or not.
+  * enrol_button.url: string, the url that helps navigate to enrol link.
+  * enrol_button.course_id: int, the current course id.
+  *
+}}
+<div
+  class="tw-containerCourse-enrolmentBanner alert alert-info alert-with-icon"
+  data-core-autoinitialise="true"
+  data-core-autoinitialise-amd="container_course/enrolment_banner"
+  role="log"
+>
+  <div class="alert-icon">
+    {{#flex_icon}}core|notification-info, , , ft-size-200{{/flex_icon}}
+  </div>
+
+  <div class="tw-containerCourse-enrolmentBanner__messageBox alert-message">
+    <span>{{message}}</span>
+    {{#enrol_button}}
+      {{#display}}
+        <a
+          href="{{url}}"
+          class="tw-containerCourse-enrolmentBanner__enrolButton"
+          data-course-id="{{course_id}}"
+        >
+          {{#str}}enrol, core_enrol{{/str}}
+        </a>
+      {{/display}}
+    {{/enrol_button}}
+  </div>
+</div>

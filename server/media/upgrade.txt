@@ -1,0 +1,14 @@
+This files describes API changes in /media/ plugins,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+* All Adobe Flash related code was moved.
+
+=== 13.0 ===
+* Deprecated media_swf.
+
+=== 12.0 ===
+* core_media_manager is now final. Do not extend core_media_manager, instead create a media plugin.
+
+=== 10.0 ===
+* core_media_manager setup() is now no longer needed as it is now called when initialising core_media_manager::instance().

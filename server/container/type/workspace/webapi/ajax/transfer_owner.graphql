@@ -1,0 +1,41 @@
+mutation container_workspace_transfer_owner(
+  $workspace_id: param_integer!
+  $user_id: param_integer!
+) {
+  member: container_workspace_change_primary_owner(
+    workspace_id: $workspace_id
+    user_id: $user_id
+  ) {
+    __typename
+    id
+    workspace_id
+    user {
+      __typename
+      id
+      # Full name is need for behat and aria-label.
+      fullname
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          associate_url
+          label
+          value
+          is_custom
+        }
+      }
+    }
+    member_interactor {
+      __typename
+      can_remove
+    }
+    workspace_interactor {
+      __typename
+      own
+    }
+    time_joined(format: DATELONG)
+  }
+}

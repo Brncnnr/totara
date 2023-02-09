@@ -1,0 +1,357 @@
+"""
+Member of the workspace
+"""
+type container_workspace_member {
+  """
+  The  target member's id that this interactor can action against it.
+  This will be a field of table {user_enrolment}.
+  """
+  id: Int!
+  """
+  User enrolled to the workspace
+  """
+  user: core_user!
+  """
+  The workspace id that this user is a member of.
+  """
+  workspace_id: Int!
+  """
+  The interactor of this member user against the workspace.
+  """
+  workspace_interactor: container_workspace_workspace_interactor!
+  """
+  The status of this member record.
+  """
+  status: container_workspace_member_status!
+  """
+  The time stamp that this user joined the workspace.
+  """
+  time_joined(format: core_date_format!): String!
+  """
+  The interactor of an actor (user in session) against this member. Whether the user can perform specific actions
+  toward the member or not. If user_id is not set then the user in session will be used.
+  """
+  member_interactor(user_id: Int): container_workspace_member_interactor!
+  """
+  Audiences via which the member joined.
+  """
+  audiences: [core_cohort!]!
+}
+
+"""
+Member request - to join a workspace.
+"""
+type container_workspace_member_request {
+  """
+  Member request's id. Id within table "ttr_workspace_member_request".
+  """
+  id: Int!
+  """
+  The requester's record.
+  """
+  user: core_user!
+  """
+  The format string of when this request has been created.
+  """
+  time_description: String!
+  """
+  Whether the request has been accepted or not.
+  """
+  is_accepted: Boolean!
+  """
+  Whether the request has been declined or not.
+  The reason why this field is here was because the member_request can be in cancelled status.
+  Hence we cannot just tell that the request has been declined by the status of not accepted.
+  """
+  is_declined: Boolean!
+  """
+  The workspace's id where user is trying to request member of.
+  """
+  workspace_id: Int!
+  """
+  Workspace interactor against the target workspace for this very user who is the creator of member request.
+  """
+  workspace_interactor: container_workspace_workspace_interactor!
+  """
+  The optional request message from user input
+  """
+  request_content: String
+}
+
+"""
+The interactor type of a user against the workspace's member.
+"""
+type container_workspace_member_interactor {
+  """
+  The  target member's id that this interactor can action against it.
+  This will be a field of table {user_enrolment}.
+  """
+  member_id: Int!
+  """
+  Whether this actor can remove the member or not.
+  """
+  can_remove: Boolean!
+  """
+  The actor user who can perform action against the member.
+  """
+  user: core_user!
+}
+
+enum container_workspace_member_status {
+  ACTIVE
+  SUSPENDED
+}
+
+enum container_workspace_member_request_status {
+  PENDING
+  ACCEPTED
+  DECLINED
+  CANCELLED
+}
+
+"""
+Input type for container_workspace_bulk_audience_members_to_add query
+"""
+input container_workspace_bulk_audience_members_to_add_input {
+  workspace_id: param_integer!
+  audience_ids: [param_integer!]!
+}
+
+"""
+Contains result of container_workspace_bulk_audience_members_to_add query
+"""
+type container_workspace_bulk_audience_members_to_add_result {
+  members_to_add: Int!
+}
+
+"""
+Input type for container_workspace_add_bulk_audience_members mutation
+"""
+input container_workspace_add_bulk_audience_members_input {
+  workspace_id: param_integer!
+  audience_ids: [param_integer!]!
+}
+
+"""
+Contains result of container_workspace_add_bulk_audience_members mutation
+"""
+type container_workspace_add_bulk_audience_members_result {
+  workspace: container_workspace_workspace!
+}
+
+"""
+Input type for container_workspace_add_audiences
+"""
+input container_workspace_add_audiences_input {
+  workspace_id: param_integer!
+  audience_ids: [param_integer!]!
+}
+
+"""
+Result type for container_workspace_add_audiences
+"""
+type container_workspace_add_audiences_result {
+  audience_ids: [Int!]!
+}
+
+"""
+Input type for container_workspace_remove_audience
+"""
+input container_workspace_remove_audience_input {
+  workspace_id: param_integer!
+  audience_id: param_integer!
+}
+
+"""
+Result type for container_workspace_remove_audience
+"""
+type container_workspace_remove_audience_result {
+  result: Boolean!
+}
+
+extend type Query {
+  """
+  A query to get all the members of a workspace. Based on workspace's id.
+  """
+  container_workspace_members(
+    workspace_id: param_integer!
+    sort: container_workspace_member_sort!
+    search_term: param_text
+    """
+    Status of the the member. If it is null, then the query will try to fetch
+    all the members that has either of the status.
+    """
+    status: container_workspace_member_status
+    """
+    The current cursor that we are looking at. If it is null, then we are looking at
+    the begining of the collection.
+    """
+    cursor: param_text
+  ): [container_workspace_member!]!
+
+  """
+  Query to fetch the next cursor for list of members.
+  """
+  container_workspace_member_cursor(
+    workspace_id: param_integer!
+    search_term: param_text
+    """
+    This is current cursor that we are looking at, and it is being used
+    to determine what the next cursor should be.
+    """
+    cursor: param_text
+    """
+    Status of the member. If it is null, then the query will try to fetch all
+    the members that has either of the status.
+    """
+    status: container_workspace_member_status
+  ): container_workspace_cursor!
+
+  """
+  A query to fetch all the member requests.
+  """
+  container_workspace_member_requests(
+    workspace_id: param_integer!
+    status: container_workspace_member_request_status!
+    """
+    The cursor that we are going to fetch. If null is provided, then the first
+    20 records will be fetched.
+    """
+    cursor: param_text
+  ): [container_workspace_member_request!]!
+
+  """
+  Query to fetch the next cursor for member requests.
+  """
+  container_workspace_member_request_cursor(
+    workspace_id: param_integer!
+    status: container_workspace_member_request_status!
+    """
+    The current curosr that we are looking at, in order to help calculate the next cursor.
+    """
+    cursor: param_text
+  ): container_workspace_cursor!
+
+  """
+  Query to fetch number of users which would be added via the given audiences to the workspace
+  @deprecated since Totara 16: Feature has been deprecated in favor of add audiences feature.
+  """
+  container_workspace_bulk_audience_members_to_add(
+    input: container_workspace_bulk_audience_members_to_add_input!
+  ): container_workspace_bulk_audience_members_to_add_result!
+    @deprecated(
+      reason: "Bulk audience members to add has been deprecated in favor of add audiences feature"
+    )
+}
+
+extend type Mutation {
+  """
+  A mutation that is being used when a user want to join to specific workspace.
+  """
+  container_workspace_join(
+    workspace_id: param_integer!
+  ): container_workspace_member!
+
+  """
+  A mutation to bulk add user(s) to the workspace.
+  """
+  container_workspace_add_members(
+    workspace_id: param_integer!
+    user_ids: [param_integer!]!
+  ): [container_workspace_member!]!
+
+  """
+  Mutation used for leaving a workspace. However, this will make the member's status become SUSPENDED.
+  """
+  container_workspace_leave(
+    workspace_id: param_integer!
+  ): container_workspace_member!
+
+  """
+  Mutation used for removing a user. This should be used by either admin or the owner of the workspace.
+  """
+  container_workspace_remove_member(
+    """
+    Workspace's id that a user is being removed from.
+    """
+    workspace_id: param_integer!
+
+    """
+    The target user that being removed from.
+    """
+    user_id: param_integer!
+  ): Boolean!
+
+  """
+  Mutation to create a member request to join the workspace.
+  """
+  container_workspace_create_member_request(
+    workspace_id: param_integer!
+    request_content: String
+  ): container_workspace_member_request!
+
+  """
+  A mutation to do either accept/decline the request to join workspace.
+  Note that only user with the right ability is able to do so.
+  """
+  container_workspace_update_member_request(
+    """
+    Member request's id.
+    """
+    id: param_integer!
+    """
+    The status to tell whether the member request is going to be in state:
+    * Accepted
+    * Declined
+    """
+    new_status: container_workspace_member_request_status!
+    """
+    The message is from user input when member request get declined
+    """
+    decline_content: String
+  ): container_workspace_member_request!
+
+  """
+  A mutation to cancel the request on a specific workspace - given by $workspace_id.
+  """
+  container_workspace_cancel_member_request(
+    workspace_id: param_integer!
+  ): container_workspace_member_request!
+
+  """
+  Mutation to change the current primary owner of the workspace to someone else.
+  Then return a member record.
+  """
+  container_workspace_change_primary_owner(
+    workspace_id: param_integer!
+    """
+    New user that we want to change to.
+    """
+    user_id: param_integer!
+  ): container_workspace_member!
+
+  """
+  Add members of given audience(s) to the workspace
+  @deprecated since Totara 16: Feature has been deprecated in favor of add audiences.
+  """
+  container_workspace_add_bulk_audience_members(
+    input: container_workspace_add_bulk_audience_members_input!
+  ): container_workspace_add_bulk_audience_members_result!
+    @deprecated(
+      reason: "Bulk add audience members has been deprecated in favor of add audiences"
+    )
+
+  """
+  Enable the specified audiences to sync members with the workspace
+  """
+  container_workspace_add_audiences(
+    input: container_workspace_add_audiences_input!
+  ): container_workspace_add_audiences_result!
+
+  """
+  Remove the specific audience from the workspace
+  """
+  container_workspace_remove_audience(
+    input: container_workspace_remove_audience_input!
+  ): container_workspace_remove_audience_result!
+}

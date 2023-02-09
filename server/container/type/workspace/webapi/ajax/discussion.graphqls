@@ -1,0 +1,304 @@
+type container_workspace_discussion {
+  """
+  Discussion's id
+  """
+  id: Int!
+  """
+  Workspace's id that this discussion belongs to.
+  """
+  workspace_id: Int!
+  """
+  Content produce from content_format and the graphql format
+  """
+  content(format: core_format!): String!
+  """
+  The raw content of the discussion. However, this content return after being processed with
+  draft files. Meaning that all the files will be moved to draft area.
+  """
+  draft_content(format: core_format!): String!
+  """
+  The draft id used to format the draft files in draft_content.
+  """
+  draft_id: Int!
+  """
+  Time description that follows engage's convention
+  """
+  time_description: String!
+  """
+  A flag to detect whether the discussion had been editted or not.
+  """
+  edited: Boolean!
+  """
+  Owner of this discussion.
+  """
+  owner: core_user!
+  """
+  The interactor against this discussion. If user_id is not set then the user in session
+  will be used to run check against.
+  """
+  discussion_interactor(
+    user_id: param_integer
+  ): container_workspace_discussion_interactor!
+  """
+  The comment cursor, which to tell how many comments to be loaded.
+  If it is null, then there are no records of comments.
+  """
+  comment_cursor: String
+  """
+  The number of comments related to this discussion. Note that this does not include total replies
+  """
+  total_comments: Int!
+  """
+  The number of reactions to this discussion.
+  """
+  total_reactions: Int!
+  """
+  A magic value for content's format. Normally it would be FORMAT_JSON_EDITOR which is 42.
+  """
+  content_format: Int!
+  """
+  The context's id of a discussion.
+  """
+  workspace_context_id: Int!
+}
+
+"""
+Interactor of the user (could be user in session) against the discussion - based on discussion's id.
+"""
+type container_workspace_discussion_interactor {
+  """
+  Discussion's id.
+  """
+  discussion_id: Int!
+  """
+  Workspace's id that the discussion's id belongs to.
+  """
+  workspace_id: Int!
+  """
+  Check for ability to update.
+  """
+  can_update: Boolean!
+  """
+  Check for ability to delete.
+  """
+  can_delete: Boolean!
+  """
+  Check for ability to comment on it.
+  """
+  can_comment: Boolean!
+  """
+  The actor, against the workspace's discussion.
+  """
+  user: core_user!
+  """
+  Whether this current user is able to react to the discussion or not.
+  """
+  can_react: Boolean!
+  """
+  Whether this user had already been reacted to the workspace's discussion or not.
+  """
+  reacted: Boolean!
+  """
+  Whether this user able to report the discussion or not.
+  """
+  can_report: Boolean!
+  """
+  Whether this discussion has already been removed.
+  """
+  removed: Boolean!
+}
+
+"""
+Enum of types of content included in search results
+"""
+enum container_workspace_content_type {
+  discussion
+  comment
+  reply
+}
+
+type container_workspace_discussion_search_result {
+  """
+  Workspace's id that this discussion belongs to.
+  """
+  workspace_id: Int!
+  """
+  Discussion's id
+  """
+  discussion_id: Int!
+  """
+  Result type
+  """
+  instance_type: container_workspace_content_type!
+  """
+  Content instance id
+  """
+  instance_id: Int!
+  """
+  Content produce from content_format and the graphql format
+  """
+  content(format: core_format!): String!
+  """
+  A magic value for content's format. Normally it would be FORMAT_JSON_EDITOR which is 42.
+  """
+  content_format: Int!
+  """
+  Time description that follows engage's convention
+  """
+  time_description: String!
+  """
+  Owner of this discussion.
+  """
+  owner: core_user!
+}
+
+extend type Query {
+  """
+  Query to fetch all the discussions within a workspace
+  """
+  container_workspace_discussions(
+    """
+    The workspace's id where we are looking for discussions.
+    """
+    workspace_id: param_integer!
+    """
+    Sort option for the workspace discussions, however, it will not be applied when we are
+    fetching the pinned discussions
+    """
+    sort: container_workspace_discussion_sort!
+    """
+    The word that is existing within the discussion content.
+    """
+    search_term: param_text
+    """
+    If pinned is not given, then this query will look for all the pinned and not pinned
+    post discussions.
+    """
+    pinned: param_boolean
+    """
+    Fetching the discussions depending on the cursor. If cursor is not being set, then we are
+    going to start from scratch. Which is page 1
+    """
+    cursor: param_text
+  ): [container_workspace_discussion!]!
+
+  """
+  Query to fetch the next cursor for the discussions
+  """
+  container_workspace_discussion_cursor(
+    search_term: param_text
+    workspace_id: param_integer!
+    """
+    Sort option for the workspace discussions, however, it will not be applied when we are
+    fetching the pinned discussions
+    """
+    sort: container_workspace_discussion_sort
+    """
+    This is current cursor that we are looking at, and it is being used
+    to determine what the next cursor should be.
+    """
+    cursor: param_text
+    """
+    If pinned is not given, then this query will look for all the pinned and not pinned
+    post discussions.
+    """
+    pinned: param_boolean
+  ): container_workspace_cursor!
+
+  """
+  A query to fetch a single discussion base on the discussion's id.
+  """
+  container_workspace_discussion(
+    id: param_integer!
+  ): container_workspace_discussion!
+
+  """
+  Fetching the file draft's id for discussion.
+  If id is provided, then the API will move the area files to draft area.
+  """
+  container_workspace_discussion_draft_id(
+    """
+    Discussion's id.
+    """
+    id: param_integer
+  ): Int!
+
+  """
+  Search discussion content (disccussions, comments and replies) containing the search term
+  """
+  container_workspace_search_discussion_content(
+    """
+    The workspace's id where we are looking for discussions.
+    """
+    workspace_id: param_integer!
+    """
+    The word that is existing within the discussion content.
+    """
+    search_term: param_text!
+    """
+    Fetching the content depending on the cursor. If cursor is not being set, then we are
+    going to start from scratch. Which is page 1
+    """
+    cursor: param_text
+  ): [container_workspace_discussion_search_result!]!
+
+  """
+  Query to fetch the next cursor for the discussion content results
+  """
+  container_workspace_discussion_search_content_results_cursor(
+    search_term: param_text
+    workspace_id: param_integer!
+    """
+    This is current cursor that we are looking at, and it is being used
+    to determine what the next cursor should be.
+    """
+    cursor: param_text
+  ): container_workspace_cursor!
+}
+
+extend type Mutation {
+  """
+  Mutation for update the content of discussion.
+  """
+  container_workspace_update_discussion(
+    """
+    The discussion's id that we are going to update
+    """
+    id: param_integer!
+    content_format: param_integer
+    content: String!
+    """
+    The file storage item's id which it is used to save the files.
+    """
+    draft_id: param_integer
+  ): container_workspace_discussion!
+
+  """
+  Mutation for create new discussion.
+  """
+  container_workspace_create_discussion(
+    """
+    Workspace's id where this discussion belongs to.
+    """
+    workspace_id: param_integer!
+    content: String!
+    """
+    If this field is null, it will use the FORMAT_JSON_EDITOR
+    """
+    content_format: param_integer
+    """
+    The file storage item's id which it is used to save the files.
+    """
+    draft_id: param_integer
+  ): container_workspace_discussion!
+
+  """
+  Mutation for deleting the discussion within a workspace.
+  """
+  container_workspace_delete_discussion(
+    """
+    The discussion's id that we are going to delete.
+    """
+    id: param_integer!
+  ): Boolean!
+}

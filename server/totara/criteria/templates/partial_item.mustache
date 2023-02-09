@@ -1,0 +1,64 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Riana Rossouw <riana.rossouw@totaralearning.com>
+     @package totara_criteria
+}}
+{{!
+
+    @template totara_criteria/partial_item
+
+    This is the template for showing a criterion item
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-criterion-item-value: string Item value
+    * data-tw-criterion-item-remove: Trigger for item removal
+
+    Context variables required for this template:
+    * value: string Item value
+    * text: string Display value
+
+    Other context variables for following partials:
+    * none
+
+    Strings:
+    * none
+
+}}
+{{! data-tw-criterionothercompetency-competencies }}
+<li data-tw-{{type}}-item-value="{{value}}">
+    <span>{{text}}</span>
+
+    <button type="button" class="tw-editAchievementPaths__group-actionsButton" aria-label="{{#str}}remove_item, totara_criteria{{/str}}" data-tw-{{type}}-item-remove="">
+        <span>
+            <span aria-hidden="true" class="">
+                {{#flex_icon}}trash{{/flex_icon}}
+            </span>
+        </span>
+    </button>
+
+    {{#error}}
+      <span class="tw-editAchievementPaths__criterionForm-warning">
+        {{#flex_icon}}notification-warning{{/flex_icon}}
+        <span>{{error}}</span>
+      </span>
+    {{/error}}
+</li>

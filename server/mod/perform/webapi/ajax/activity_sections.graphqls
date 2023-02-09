@@ -1,0 +1,364 @@
+"""
+A relationship within a section
+"""
+type mod_perform_section_relationship {
+  id: core_id!
+  """
+  True if the relationship can respond to this section
+  """
+  can_answer: Boolean!
+  """
+  True if the relationship can view this section
+  """
+  can_view: Boolean!
+  """
+  True if this relationship represents the subject
+  """
+  is_subject: Boolean!
+  """
+  Core relationship object that defines this relationship
+  """
+  core_relationship: totara_core_relationship!
+}
+
+"""
+A section
+"""
+type mod_perform_section {
+  id: core_id!
+  """
+  Raw title field assigned to this section
+  """
+  title: String!
+  """
+  Displays the title string if provided, otherwise gives a string placeholder to use instead (Untitled Section)
+  """
+  display_title(format: core_format = PLAIN): String!
+  """
+  The activity this section is part of
+  """
+  activity: mod_perform_activity!
+  """
+  Section order, used for arranging sections relative to others within the activity
+  """
+  sort_order: Int!
+  """
+  List of section elements within this section
+  """
+  section_elements: [mod_perform_section_element!]!
+  """
+  List of respondable section elements within this section
+  """
+  respondable_section_elements: [mod_perform_section_element!]!
+  """
+  List of aggregatable section elements within this section
+  """
+  aggregatable_section_elements: [mod_perform_section_element!]!
+  """
+  List of relationships involved in this section, and the abilities those relationships have within the section
+  """
+  section_relationships: [mod_perform_section_relationship!]!
+  """
+  Summary information about the number and types of elements contained within this section
+  """
+  section_elements_summary: mod_perform_section_elements_summary
+  """
+  Time of creation of the section
+  """
+  created_at(format: core_date_format = DATETIME): core_date!
+  """
+  Time the section metadata was last updated
+  """
+  updated_at(format: core_date_format = DATETIME): core_date
+}
+
+"""
+An element statistics in a section
+"""
+type mod_perform_section_elements_summary {
+  """
+  Number of question elements within the section that must be answered by responding participants
+  """
+  required_question_count: Int!
+  """
+  Number of question elements within the section that are optional for responding participants
+  """
+  optional_question_count: Int!
+  """
+  Number of other (non-respondable) elements within the section
+  """
+  other_element_count: Int!
+}
+
+"""
+An element used in a section
+"""
+type mod_perform_section_element {
+  id: core_id!
+  """
+  Reference to the section this element is in
+  """
+  section: mod_perform_section!
+  """
+  Reference to the element being used
+  """
+  element: mod_perform_element!
+  """
+  Number used to sort this element relative to other elements within this section
+  """
+  sort_order: Int!
+}
+
+"""
+Update settings input type
+"""
+input update_section_settings_input {
+  """
+  ID of the section to update
+  """
+  section_id: core_id!
+  """
+  New title for this section
+  """
+  title: String
+  """
+  Updated list of relationships for this section
+  """
+  relationships: [update_section_relationship_input!]!
+}
+
+"""
+Section relationship object, used to update section relationships.
+"""
+input update_section_relationship_input {
+  """
+  ID of the relationship being updated
+  """
+  core_relationship_id: core_id!
+  """
+  New value for the can_view option
+  """
+  can_view: Boolean = false
+  """
+  New value for the can_answer option
+  """
+  can_answer: Boolean = true
+}
+
+extend type Query {
+  """
+  A section of elements for an admin to configure
+  """
+  mod_perform_section_admin(section_id: core_id!): mod_perform_section
+
+  """
+  A section of elements for a user to respond to
+  """
+  mod_perform_participant_section(
+    participant_instance_id: core_id
+    participant_section_id: core_id
+  ): mod_perform_participant_section
+
+  """
+  All participant sections in a participant instance
+  """
+  mod_perform_participant_sections(
+    participant_instance_id: core_id
+  ): [mod_perform_participant_section]
+
+  """
+  A section of elements for an external user to respond to
+  """
+  mod_perform_participant_section_external_participant(
+    token: String!
+    participant_instance_id: core_id
+    participant_section_id: core_id
+  ): mod_perform_participant_section
+
+  """
+  A view-only version of a section for someone who is not a participant
+  """
+  mod_perform_view_only_section_responses(
+    section_id: core_id
+    subject_instance_id: core_id!
+  ): mod_perform_view_only_section
+}
+
+"""
+Delete an existing section element
+
+Deprecated since Totara 14: Use the individual mutation inputs for deleting a section element.
+"""
+input mod_perform_delete_section_element_input {
+  section_element_id: core_id!
+}
+
+"""
+Move an existing section element within the current section
+
+Deprecated since Totara 14: Use the individual mutation inputs for reordering a section element.
+"""
+input mod_perform_move_section_element_input {
+  section_element_id: core_id!
+  sort_order: param_integer!
+}
+
+"""
+Update a section
+
+Deprecated since Totara 14: Use the individual mutation inputs for managing section elements.
+"""
+input mod_perform_update_section_elements_input {
+  """
+  ID of the section to update
+  """
+  section_id: core_id!
+  """
+  List of elements that did not exist that now need to be created and linked to this section
+  """
+  create_new: [mod_perform_create_new_element_input!]
+  """
+  List of elements that already exist, but now need to be linked to this section
+  """
+  create_link: [mod_perform_create_link_element_input!]
+  """
+  List of elements where some of the element metadata has changed and therefore need to be updated
+  """
+  update: [mod_perform_update_element_input!]
+  """
+  List of elements that are no longer used in this section and should be unlinked and deleted if no longer used
+  """
+  delete: [mod_perform_delete_section_element_input!]
+  """
+  List of elements which should be moved to a new location within the current section
+  """
+  move: [mod_perform_move_section_element_input!]
+}
+
+"""
+Mutation return type including a section
+"""
+type mod_perform_section_result {
+  section: mod_perform_section!
+  """
+  This field returns some information about potentially failed validation checks
+  when trying to update the section, i.e. removing a relationship fails
+  """
+  validation_info: mod_perform_deletion_check
+}
+
+"""
+Mutation return type including a participant section
+"""
+type mod_perform_participant_section_result {
+  participant_section: mod_perform_section!
+}
+
+"""
+Input type for adding a new section to an activity
+"""
+input mod_perform_add_section_input {
+  """
+  ID of the activity where the section is being added
+  """
+  activity_id: core_id!
+  """
+  Sort order to add this section before, if 0 or null given section will be added at the end
+  """
+  add_before: Int
+}
+
+"""
+Mutation return type including the section just added
+"""
+type mod_perform_add_section_result {
+  section: mod_perform_section!
+}
+
+"""
+Input type for moving an element to another section
+"""
+input mod_perform_move_element_to_section_input {
+  """
+  The element to move
+  """
+  element_id: core_id!
+  """
+  ID of the section where the element is being moved from
+  """
+  source_section_id: core_id!
+  """
+  ID of the section where the element is being moved to
+  """
+  target_section_id: core_id!
+}
+
+"""
+Mutation return type when moving an element to another section
+"""
+type mod_perform_move_element_to_section_result {
+  """
+  The updated source section elements, with the moved element removed.
+  """
+  source_section_elements: [mod_perform_section_element!]!
+  """
+  The updated source section elements, with the moved element removed.
+  """
+  target_section_elements: [mod_perform_section_element!]!
+}
+
+"""
+Input type for deleting a section
+"""
+input mod_perform_delete_section_input {
+  """
+  ID of the section to delete
+  """
+  section_id: core_id!
+}
+
+extend type Mutation {
+  """
+  Updates settings (including relationships) of given section
+  """
+  mod_perform_update_section_settings(
+    input: update_section_settings_input!
+  ): mod_perform_section_result!
+
+  """
+  Update the elements in a section
+
+  Deprecated since Totara 14: Use the individual mutations for managing section elements.
+  """
+  mod_perform_update_section_elements(
+    input: mod_perform_update_section_elements_input!
+  ): mod_perform_section_result!
+
+  """
+  Update an activity setting: multisection. Toggles on and off whether the activity has a single section or multiple sections.
+  """
+  mod_perform_toggle_activity_multisection_setting(
+    input: toggle_activity_setting!
+  ): mod_perform_activity!
+
+  """
+  Adds a new section at the end
+  """
+  mod_perform_add_section(
+    input: mod_perform_add_section_input!
+  ): mod_perform_add_section_result!
+
+  """
+  Move an element to a different section
+  Currently, the target section must belong to the same activity as the source section. In future, this
+  criteria could be relaxed.
+  """
+  mod_perform_move_element_to_section(
+    input: mod_perform_move_element_to_section_input!
+  ): mod_perform_move_element_to_section_result!
+
+  """
+  Delete a section
+  """
+  mod_perform_delete_section(input: mod_perform_delete_section_input!): Boolean!
+}

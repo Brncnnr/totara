@@ -1,0 +1,83 @@
+.tui-pathwayLearningPlanAchievement {
+  &__empty {
+    font-size: var(--font-size-16);
+    @include tui-font-hint();
+  }
+
+  &__comment {
+    &-header {
+      margin: 0;
+      @include tui-font-heading-x-small();
+    }
+
+    &-body {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__overview {
+    max-width: 100%;
+  }
+
+  &__summary {
+    &-header {
+      margin: 0;
+      @include tui-font-heading-x-small();
+    }
+
+    &-body {
+      margin-top: var(--gap-4);
+    }
+
+    &-button {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    @include tui-font-heading-x-small();
+    text-align: center;
+  }
+
+  &__noValue {
+    margin-top: var(--gap-4);
+    @include tui-font-hint();
+  }
+
+  &__rater {
+    display: flex;
+
+    &-name {
+      margin: auto 0 auto var(--gap-2);
+    }
+  }
+
+  &__rating {
+    display: flex;
+
+    &-icon {
+      position: relative;
+      top: -1px;
+    }
+
+    &-value {
+      margin-right: var(--gap-1);
+    }
+  }
+
+  &__value {
+    margin-top: var(--gap-4);
+
+    &-title {
+      @include tui-font-heavy();
+    }
+  }
+
+  &__content {
+    padding: var(--gap-4);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+    border-radius: 6px;
+  }
+}
+

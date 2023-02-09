@@ -1,0 +1,145 @@
+"""
+Form
+"""
+type mod_approval_form {
+  """
+  Form id
+  """
+  id: core_id!
+
+  """
+  Plugin name
+  """
+  plugin_name: String!
+
+  """
+  Form title
+  """
+  title(format: core_format = PLAIN): String!
+
+  """
+  Active form.
+  """
+  active: Boolean!
+
+  """
+  Form created timestamp
+  """
+  created(format: core_date_format = DATELONG): core_date!
+
+  """
+  Form last updated timestamp
+  """
+  updated(format: core_date_format = DATELONG): core_date!
+
+  """
+  Latest version of form
+  """
+  latest_version: mod_approval_form_version!
+
+  """
+  Active version of form
+  """
+  active_version: mod_approval_form_version
+}
+
+"""
+Paginated forms.
+"""
+type mod_approval_form_page_result implements core_pageable_result {
+  """
+  List of forms on the page.
+  """
+  items: [mod_approval_form!]!
+
+  """
+  Total number of forms.
+  """
+  total: Int!
+
+  """
+  Cursor to the next form page.
+  """
+  next_cursor: String!
+}
+
+"""
+Output of form
+"""
+type mod_approval_form_result {
+  form: mod_approval_form!
+}
+
+"""
+Form version.
+"""
+type mod_approval_form_version {
+  """
+  Form version id
+  """
+  id: core_id!
+
+  """
+  Version identifier
+  """
+  version: String!
+
+  """
+  JSON form schema at this version
+  """
+  json_schema: String!
+
+  """
+  Form version status (draft, active, archived)
+  """
+  status: Int!
+
+  """
+  Form version created timestamp
+  """
+  created(format: core_date_format = DATELONG): core_date!
+
+  """
+  Form version last updated timestamp
+  """
+  updated(format: core_date_format = DATELONG): core_date!
+}
+
+"""
+Input for filtering what users can be selected.
+"""
+input mod_approval_active_forms_filter_input {
+  """
+  Matches against the fullname of potential users
+  """
+  title: String
+}
+
+"""
+Input for active form.
+"""
+input mod_approval_active_forms_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input
+
+  """
+  Filter results
+  """
+  filters: mod_approval_active_forms_filter_input
+
+  """
+  Sort by input
+  """
+  sort_by: String
+}
+
+extend type Query {
+  """
+  Query to get active forms.
+  """
+  mod_approval_get_active_forms(
+    query_options: mod_approval_active_forms_input!
+  ): mod_approval_form_page_result!
+}

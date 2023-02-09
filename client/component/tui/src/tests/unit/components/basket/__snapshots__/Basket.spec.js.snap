@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basket matches snapshot 1`] = `
+<div
+  class="tui-basket"
+>
+  <div
+    class="tui-basket__status"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      class="tui-basket__selected"
+    >
+      
+      [[selected, totara_core]]:
+      
+      <span
+        class="tui-basket__selectedCount"
+      >
+        3
+      </span>
+    </div>
+     
+  </div>
+   
+  <div
+    class="tui-basket__actions"
+  >
+     
+    <dropdown-stub
+      animation="default"
+      canclose="true"
+      closeonclick="true"
+      contextmode="contained"
+      position="bottom-right"
+      role="menu"
+      separator="true"
+    >
+       
+      <dropdownitem-stub
+        role="menuitem"
+      >
+        
+        Action
+      
+      </dropdownitem-stub>
+      <dropdownitem-stub
+        role="menuitem"
+      >
+        
+        Action
+      
+      </dropdownitem-stub>
+    </dropdown-stub>
+  </div>
+</div>
+`;

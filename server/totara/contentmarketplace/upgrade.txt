@@ -1,0 +1,22 @@
+List of upgrade and API changes in content marketplace,
+information provided here is intended especially for developers.
+
+=== 17.1 ===
+* Updated 'cm_idx' index to 'cm_id_fk' foreign key for table 'totara_contentmarketplace_course_module_source'
+
+=== 15.3 ===
+* Removed redundant LAUNCH option from totara_contentmarketplace_completion_condition type in schema.graphqls
+
+=== 15.0 ===
+* totara_contentmarketplace\task\welcome_notification_task has been deprecated, and should no longer be used.
+* /totara/contentmarketplace/setup.php had been deprecated and should no longer be linked to.
+* The logic in the totara/contentmarketplace/explorer.php entry file has been moved into MVC controller classes,
+  see totara_contentmarketplace\controllers\catalog_import
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* totara_contentmarketplace\local\contentmarketplace\search::get_learning_object: The function signature was changed.
+  $id is now expected to be a string rather than an int. Classes that implement this function in custom content
+  marketplaces must be updated to match.

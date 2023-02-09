@@ -1,0 +1,2 @@
+type_available_for_completion_import,totara_evidence
+type_available_for_completion_import_help,totara_evidence

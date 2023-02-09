@@ -1,0 +1,52 @@
+# Load recommended workspaces for the user
+query ml_recommender_get_recommended_user_workspaces(
+  $cursor: param_text
+  $theme: param_component
+) {
+  cursor: ml_recommender_recommended_user_workspaces_cursor(cursor: $cursor) {
+    __typename
+    total
+    next
+  }
+
+  workspaces: ml_recommender_recommended_user_workspaces(cursor: $cursor) {
+    __typename
+    id
+    name(format: PLAIN)
+    description(format: HTML)
+    description_format
+    time_description
+    image(theme: $theme)
+    total_members
+    interactor {
+      __typename
+      can_delete
+      can_update
+      can_invite
+      can_join
+      joined
+      workspaces_admin
+      own
+      can_request_to_join
+      has_requested_to_join
+      can_view
+      can_view_discussions
+      can_create_discussions
+      can_view_library
+      can_view_members
+      can_view_member_requests
+      can_share_resources
+      can_unshare_resources
+      user {
+        __typename
+        id
+        # These are used within post discussion form.
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    url
+    access
+  }
+}

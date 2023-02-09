@@ -1,0 +1,50 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+
+    @template totara_competency/paging
+
+    This template generates a paging button
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-paging: Paging selector
+    * data-tw-paging-events: Key for propagated events
+    * data-tw-paging-template: Partial template to updaet content of paging
+
+    Context variables required for this template:
+    * next: int, next page number
+
+}}
+
+<div class="tw-paging"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/paging"
+    data-tw-paging-events="totara_core/paging"
+    data-tw-paging-template="totara_core/paging_content"
+    data-tw-paging="">
+    {{#next}}{{> totara_competency/paging_content }}{{/next}}
+</div>

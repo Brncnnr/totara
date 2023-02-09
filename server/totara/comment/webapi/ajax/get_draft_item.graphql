@@ -1,0 +1,12 @@
+query totara_comment_get_draft_item($id: param_integer!) {
+  draftitem: totara_comment_draft_item(id: $id) {
+    __typename
+    id
+    content
+    component
+    area
+    format
+    comment_area
+    file_draft_id
+  }
+}

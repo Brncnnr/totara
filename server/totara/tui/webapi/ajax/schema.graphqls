@@ -1,0 +1,25 @@
+"""
+TUI resource bundle
+"""
+type totara_tui_bundle {
+  id: String!
+  component: String!
+  type: String!
+  name: String!
+  url: String!
+}
+
+extend type Query {
+  """
+  Query to return all of the TUI resource bundles for the provided components
+  """
+  totara_tui_bundles(
+    components: [String!]!
+    theme: param_theme!
+  ): [totara_tui_bundle!]!
+
+  """
+  Query to retrieve all themes that defines css variables.
+  """
+  totara_tui_themes_with_variables(theme: param_component!): [String!]!
+}

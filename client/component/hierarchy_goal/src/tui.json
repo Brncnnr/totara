@@ -1,0 +1,7 @@
+{
+  "component": "hierarchy_goal",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_hierarchy"
+  ]
+}

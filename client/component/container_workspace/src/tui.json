@@ -1,0 +1,11 @@
+{
+  "component": "container_workspace",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_engage",
+    "totara_topic",
+    "editor_weka",
+    "totara_comment",
+    "ml_recommender"
+  ]
+}

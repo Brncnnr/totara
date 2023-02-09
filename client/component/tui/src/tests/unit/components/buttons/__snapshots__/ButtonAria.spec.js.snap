@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonAria matches snapshot 1`] = `
+<div
+  role="button"
+  tabindex="0"
+>
+  foo
+</div>
+`;
+
+exports[`ButtonAria matches snapshot: disabled 1`] = `
+<div
+  aria-disabled="true"
+  disabled="disabled"
+  role="button"
+>
+  foo
+</div>
+`;

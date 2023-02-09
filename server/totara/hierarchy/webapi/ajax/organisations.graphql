@@ -1,0 +1,35 @@
+query totara_hierarchy_organisations(
+  $query: totara_hierarchy_organisation_query
+) {
+  totara_hierarchy_organisations(query: $query) {
+    items {
+      id
+      fullname
+      visible
+      path
+      parent {
+        id
+        fullname
+        path
+        type {
+          id
+          fullname
+        }
+      }
+      children {
+        id
+        fullname
+        type {
+          id
+          fullname
+        }
+      }
+      type {
+        id
+        fullname
+      }
+    }
+    next_cursor
+    total
+  }
+}

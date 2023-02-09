@@ -1,0 +1,46 @@
+type totara_reaction_reaction {
+  component: String!
+  area: String!
+  instanceid: Int!
+  user: core_user!
+  timecreated(format: core_date_format!): core_date!
+}
+
+extend type Query {
+  # Query for getting a list of users who had been like the requested instance of a component
+  totara_reaction_reactions(
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+    page: param_integer
+  ): [totara_reaction_reaction!]!
+
+  # Query for getting information of the instance.
+  totara_reaction_total(
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+  ): Int!
+
+  # Query to check whether the user has liked the content, if userid is not provided, user in session will be used.
+  totara_reaction_liked(
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+  ): Boolean!
+}
+
+extend type Mutation {
+  # Mutation for creating/deleting a record of LIKE for the requested instance of a component.
+  totara_reaction_create(
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+  ): totara_reaction_reaction!
+
+  totara_reaction_delete(
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+  ): Boolean!
+}

@@ -1,0 +1,46 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/user_name_link
+
+    Display the full name of a user with a link to their profile if they have permission to view it
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * can_view: bool, Does the current user have the capability to view the profile?
+    * profile_url: URL, The URL for the users profile
+    * user_fullname: string, The full name of the user
+
+    Example context (json):
+    {
+        "can_view": true,
+        "profile_url": "/user/profile.php?id=2",
+        "user_fullname": "Admin User"
+    }
+}}
+{{^can_view}}{{user_fullname}}{{/can_view}}
+{{#can_view}}<a href="{{{profile_url}}}">{{user_fullname}}</a>{{/can_view}}

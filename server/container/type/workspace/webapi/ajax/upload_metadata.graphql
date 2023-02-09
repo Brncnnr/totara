@@ -1,0 +1,22 @@
+query container_workspace_upload_metadata(
+  $workspace_id: param_integer
+  $draft_id: param_integer
+  $theme: param_component
+) {
+  file_area: container_workspace_file_area(
+    workspace_id: $workspace_id
+    draft_id: $draft_id
+  ) {
+    __typename
+    item_id
+    repository_id
+    url
+    accept_types
+    context_id
+  }
+
+  image_url: container_workspace_workspace_image(
+    workspace_id: $workspace_id
+    theme: $theme
+  )
+}

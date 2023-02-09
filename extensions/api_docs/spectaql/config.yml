@@ -1,0 +1,25 @@
+spectaql:
+  themeDir: ./themes/totara
+  errorOnInterpolationReferenceNotFound: false
+
+introspection:
+  removeTrailingPeriodFromDescriptions: false
+
+info:
+  title: API documentation
+  x-hideWelcome: true
+  x-introItems:
+    - title: Endpoint
+      file: ./guides/endpoint.md
+    - title: Authentication
+      file: ./guides/authentication.md
+    - title: Request format
+      file: ./guides/request_format.md
+    - title: API schema
+      file: ./guides/schema.md
+
+servers:
+  - url: https://YOUR-SITE-URL/api/graphql.php
+    description: Production
+    production: true
+

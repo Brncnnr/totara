@@ -1,0 +1,11 @@
+This files describes API changes in /totara/question,
+information provided here is intended especially for developers.
+
+=== 13 ===
+
+* question_evidencefromplan and evidencefromplan_export now uses the totara_evidence_item table instead of dp_plan_evidence.
+
+=== 10 ===
+
+Renderer changes:
+* totara_question\renderer:add_review_item mark-up has been changed to improve section headers (TL-10414).

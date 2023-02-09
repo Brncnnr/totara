@@ -1,0 +1,62 @@
+This files describes API changes in /client/component/editor_weka,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Added 'fake' blinking cursor to the prosemirror gapcursor block in Weka.vue
+  * SCSS changes
+* Added loading animation while Weka.vue is loading, ported from Editor.vue
+  * Template changes
+* Removed deprecated fields in Weka.vue:
+  * Props "instanceId", "component", and "area"
+  * Data attribute "toolbarEnabled"
+  * Methods getCurrentFiles, getRepositoryData
+* Added caret support to Weka Toolbar.vue and ToolbarButtonIcon.vue
+  * Template changes
+* Updated ImageBlock.vue to support predefined sizes
+  * Template and SCSS changes
+* Deprecated passing "usage-identifier" prop to Weka.vue without also passing "variant"
+  * Currently passing usage-identifier without variant causes variant to be derived
+    from usage-identifer by concatenating the component and area.
+    This behavior will be changed in the future and variant will still default
+    to "standard" even if usage-identifier is passed.
+  * There is a lint rule to detect this.
+* Updated focus styles in ToolbarButton.vue
+  * CSS changes
+
+=== 16.0 ===
+
+* Updated Weka.vue to have focus styling
+  * Template and SCSS changes
+* Added open_in_new_window setting in EditLinkModal, Link and link_block
+  * Template changes
+* Disallowed closing EditLinkModal and EditImageAltTextModal via backdrop click
+  * Template changes
+
+=== 14.0 ===
+
+* Suggestion.showList() fourth parameter had been deprecated and no longer used, please update all calls.
+* Function Suggestion.resetComponent() had been deprecated and no longer used, please update all calls.
+* Suggestion.apply() fourth parameter had been deprecated and no longer used, please update all calls.
+* Updates in Weka.vue:
+  * Deprecated optional prop "instanceId"
+  * Deprecated optional prop "component"
+  * Deprecated optional prop "area"
+  * Added new optional prop "compact"
+  * Added new optional prop "usageIdentifier"
+  * Added new optional prop "variantName"
+  * Data attribute "toolbarEnabled" had been deprecated in favour of prop "compact"
+  * The function getCurrentFiles had been deprecated and no longer used.
+    The behaviour of this function had also been changed. Please updated all calls.
+  * The function getRepositoryData had been deprecated and no longer used.
+    The behaviour of this function had also been changed. Please update all calls.
+
+* Added new optional prop "instanceId" for component User.vue
+* Added new optional prop "contextId" for component Weka.vue
+* Updated AudioBlock.vue to move NodeBar.vue inside tui AudioBlock.vue slot
+  * Template changes
+* Added new addAltButton for component ImageBlock.vue
+* Added caption button in VideoBlock.vue
+  * Template and CSS changes
+* Added transcript button in AudioBlock.vue
+  * Template and CSS changes

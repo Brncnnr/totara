@@ -1,0 +1,30 @@
+query totara_reaction_get_likes(
+  $component: param_component!
+  $area: param_area!
+  $instanceid: param_integer!
+  $page: param_integer
+) {
+  count: totara_reaction_total(
+    component: $component
+    area: $area
+    instanceid: $instanceid
+  )
+
+  reactions: totara_reaction_reactions(
+    component: $component
+    area: $area
+    instanceid: $instanceid
+    page: $page
+  ) {
+    __typename
+    instanceid
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+      profileimageurlsmall
+    }
+  }
+}

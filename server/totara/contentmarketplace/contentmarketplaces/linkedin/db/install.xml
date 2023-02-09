@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/contentmarketplace/contentmarketplaces/linkedin/db" VERSION="20211105" COMMENT="XMLDB file for Linkedin Learning integration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="marketplace_linkedin_learning_object" COMMENT="Stores the learning assets from linkedin learning locally">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="urn" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="description_include_html" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="short_description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="locale_language" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="locale_country" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="last_updated_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="published_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="retired_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The epoch time indicates when the learning asset was retired. If this field presents then the learning object's availability is retired."/>
+        <FIELD NAME="level" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="primary_image_url" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="time_to_complete" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The time in second unit, to complete the learning object."/>
+        <FIELD NAME="web_launch_url" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="sso_launch_url" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="asset_type" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="availability" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="urn_index" UNIQUE="true" FIELDS="urn"/>
+        <INDEX NAME="last_updated_at_index" UNIQUE="false" FIELDS="last_updated_at"/>
+        <INDEX NAME="published_at" UNIQUE="false" FIELDS="published_at"/>
+        <INDEX NAME="title_index" UNIQUE="false" FIELDS="title"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="marketplace_linkedin_classification" COMMENT="Stores the classfications from linkedin learning locally">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="urn" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="locale_country" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="locale_language" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Classification types"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="urn_index" UNIQUE="true" FIELDS="urn"/>
+        <INDEX NAME="name_index" UNIQUE="false" FIELDS="name"/>
+        <INDEX NAME="type_index" UNIQUE="false" FIELDS="type"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="marketplace_linkedin_learning_object_classify" COMMENT="Stores the relationship between the marketplace linkedin learning object and the classification">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="learning_object_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The local learning object foreign key"/>
+        <FIELD NAME="classification_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The local classification foreign key"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="learning_object_id_fk" TYPE="foreign" FIELDS="learning_object_id" REFTABLE="marketplace_linkedin_learning_object" REFFIELDS="id"/>
+        <KEY NAME="classification_id_fk" TYPE="foreign" FIELDS="classification_id" REFTABLE="marketplace_linkedin_classification" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="learning_object_classification_idx" UNIQUE="true" FIELDS="learning_object_id, classification_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="marketplace_linkedin_classification_relationship" COMMENT="Stores the relationship between the classifications only">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="parent_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The parent classification's id"/>
+        <FIELD NAME="child_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The child classification's id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="parent_classification_fk" TYPE="foreign" FIELDS="parent_id" REFTABLE="marketplace_linkedin_classification" REFFIELDS="id"/>
+        <KEY NAME="child_classification_fk" TYPE="foreign" FIELDS="child_id" REFTABLE="marketplace_linkedin_classification" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="classification_map_idx" UNIQUE="true" FIELDS="parent_id, child_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="marketplace_linkedin_user_progress" COMMENT="A table to keep track of user completion progress on linkedin learning content.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The user's id of whom is complete the learning item"/>
+        <FIELD NAME="learning_object_urn" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="The learning object urn that can be used to identify the learning object record"/>
+        <FIELD NAME="progress" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="The progress of user for the learning object. This is a percentage that the maximum number is 100."/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The time that the first completion progress was sent by LinkedIn for this user and course"/>
+        <FIELD NAME="time_updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The time that the most recent completion progress was sent by LinkedIn for this user and course"/>
+        <FIELD NAME="time_completed" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The time that a completion progress of 100% was sent by LinkedIn for this user and course"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="user_id_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user_id_urn_idx" UNIQUE="true" FIELDS="user_id, learning_object_urn"/>
+        <INDEX NAME="learning_object_urn_idx" UNIQUE="false" FIELDS="learning_object_urn"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

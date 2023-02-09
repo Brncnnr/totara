@@ -1,0 +1,6 @@
+mutation totara_job_sort_assignments(
+  $userid: core_id!
+  $assignmentids: [core_id!]!
+) {
+  totara_job_sort_assignments(userid: $userid, assignmentids: $assignmentids)
+}

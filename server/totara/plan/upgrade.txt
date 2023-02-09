@@ -1,0 +1,117 @@
+This files describes API changes in Learning plans,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+
+* Deprecated rb_source_db_course join course_completion_history, please check the course_completion_previous_completion column to see how to fetch this information.
+
+=== 14.0 ===
+
+* totara_plan\entities\plan_evidence_relation has been moved to totara_plan\entity\plan_evidence_relation
+
+=== 13.0 ===
+
+* Replaced /totara/plan/components/competency/find.js YUI module with AMD module
+* Replaced /totara/plan/components/program/find.js YUI module with AMD module
+* Replaced /totara/plan/components/course/find.js YUI module with AMD module
+* dp_can_view_users_plans() has a new parameter $viewerid to allow access checks for any user. It defaults to the current user.
+* dp_get_plans() added third argument $checkcanview
+* Removed evidence from record of learning into its own separate totara plugin totara_evidence located at totara/evidence.
+  * Changed the following entry files:
+    * totara/plan/record/index.php now shows a message if there are no record of learning tabs available instead of redirecting to the homepage.
+    * totara/plan/record/evidence/index.php now only shows evidence uploaded using the completion history import tool.
+    * totara/plan/record/evidence/view.php now uses the totara_evidence\output\view_item output class for displaying evidence item data.
+    * totara/plan/components/evidence/view.php now uses the totara_evidence\output\view_item output class for displaying evidence item data.
+    * totara/plan/components/competency/view.php now only shows linked evidence if the evidence feature is enabled under advanced features.
+    * totara/plan/components/course/view.php now only shows linked evidence if the evidence feature is enabled under advanced features.
+    * totara/plan/components/objective/view.php now only shows linked evidence if the evidence feature is enabled under advanced features.
+    * totara/plan/components/program/view.php now only shows linked evidence if the evidence feature is enabled under advanced features.
+  * Changed the following classes:
+    * totara_dialog_linked_evidence_content_evidence now uses the totara_evidence_item table.
+    * dp_evidence_relation now uses the totara_evidence_item table.
+  * Changed the following functions:
+    * totara_plan_upgrade_clean_deleted_evidence_files() now uses the totara_evidence_type_info_data table.
+    * dp_get_rol_tabs_visible() instead of always showing the evidence tab, now it only shows if uploaded completion
+        history evidence exists for the user and if evidence is enabled under advanced features.
+  * Deprecated the following classes:
+    * totara_plan\event\evidence_created, please use totara_evidence\event\evidence_item_created instead.
+    * totara_plan\event\evidence_deleted, please use totara_evidence\event\evidence_item_deleted instead.
+    * totara_plan\event\evidence_updated, please use totara_evidence\event\evidence_item_updated instead.
+    * totara_plan\event\evidence_type_created, please use totara_evidence\event\evidence_type_created instead.
+    * totara_plan\event\evidence_type_deleted, please use totara_evidence\event\evidence_type_deleted instead.
+    * totara_plan\event\evidence_type_updated, please use totara_evidence\event\evidence_type_updated instead.
+    * totara_plan\rb\display\plan_competency_proficiency_and_approval_menu, please use format_string() instead.
+    * totara_plan\rb\display\plan_evidence_action_links, please use totara_evidence\rb\display\evidence_item_actions instead.
+    * totara_plan\rb\display\plan_evidence_in_use, please use totara_reportbuilder\rb\display\yes_or_no instead.
+    * totara_plan\rb\display\plan_evidence_name_link, please use totara_evidence\rb\display\evidence_item_name instead.
+    * totara_plan\rb\display\plan_evidence_view_link, please use totara_evidence\rb\display\evidence_item_name instead.
+    * edit_evidencetype_form, please use totara_evidence\forms\edit_type instead.
+    * plan_evidence_edit_form, please use totara_evidence\forms\edit_evidence instead.
+  * Deprecated the following functions:
+    * totara_plan_observer::user_deleted(), please use totara_evidence\totara_evidence_observer::user_deleted() instead.
+    * dp_evidence_type_is_used(), please use totara_evidence\models\evidence_type::in_use() instead.
+    * evidence_delete(), please use totara_evidence\models\evidence_item::delete() instead.
+    * totara_plan_get_custom_fields(), please use totara_evidence\entities\evidence_item->data instead.
+    * display_evidence_detail(), please use totara_evidence\output\view_item::create() instead.
+    * dp_evidence_relation::display_linked_evidence_detail(), please use totara_evidence\output\view_item::create() instead.
+    * can_create_or_edit_evidence(), please use totara_evidence\models\helpers\evidence_item_capability_helper instead.
+  * Deprecated the following entry files:
+    * totara/plan/record/evidence/edit.php, please use totara/evidence/edit.php instead.
+    * totara/plan/evidencetypes/edit.php, please use totara/evidence/type/edit.php instead.
+    * totara/plan/evidencetypes/index.php, please use totara/evidence/type/index.php instead.
+    * totara/plan/evidencetypes/view.php, please use totara/evidence/type/view.php instead.
+  * Removed the following classes:
+    * totara_plan\customfield_area\evidence, please use totara_evidence\customfield_area\evidence instead.
+    * totara_plan\userdata\evidence, please use totara_evidence\userdata\evidence_items instead.
+    * rb_source_dp_evidence, please use rb_source_totara_evidence_item instead.
+    * rb_plan_evidence_embedded, please use rb_totara_evidence_rol_embedded instead.
+  * Removed 'Evidence types' and 'Evidence custom fields' admin menu pages
+
+=== 12.0 ===
+
+Removed deprecated methods:
+  * development_plan::get_manager()
+  * development_plan::send_alert()
+  * dp_base_component::display_back_to_index_link()
+* evidence_display_attachment() has been deprecated and should not longer be used. Please
+  consider using display_evidence_detail() instead.
+* Deprecated the following report builder display functions and replaced with display classes
+  * rb_source_dp_certification::rb_display_link_program_icon(), please call totara_program\rb\display\program_icon_link::display() instead.
+  * rb_source_dp_certification::rb_display_historylink(), please call totara_plan\rb\display\plan_history_link::display() instead.
+  * rb_source_dp_certification::rb_display_progress(), please call totara_certification\rb\display\certif_progress::display() instead.
+  * rb_source_dp_certification_history::rb_display_link_program_icon(), please call totara_program\rb\display\program_icon_link::display() instead.
+  * rb_source_dp_competency::rb_display_status_history_link(), please call totara_plan\rb\display\plan_history_link::display() instead.
+  * rb_source_dp_competency::rb_display_proficiency_and_approval().
+  * rb_source_dp_competency::rb_display_competencyeditstatus(), please call totara_plan\rb\display\plan_competency_edit_status::display() instead.
+  * rb_source_dp_competency::rb_display_proficiency_and_approval_menu(), please call totara_plan\rb\display\plan_competency_proficiency_and_approval_menu::display() instead.
+  * rb_source_dp_course::rb_display_course_completion_progress(), please call totara_plan\rb\display\plan_course_completion_progress::display() instead.
+  * rb_source_dp_course::rb_display_course_completion_progress_and_approval(), please call totara_plan\rb\display\plan_course_completion_progress_and_approval::display() instead.
+  * rb_source_dp_course::rb_display_course_completion_progresspercentage(), please call totara_plan\rb\display\plan_course_completion_progress_percentage::display() instead.
+  * rb_source_dp_course::rb_display_course_completion_previous_completion(), please call totara_plan\rb\display\plan_course_completion_previous_completion::display() instead.
+  * rb_source_dp_evidence::rb_display_viewevidencelink(), please call totara_plan\rb\display\plan_evidence_view_link::display() instead.
+  * rb_source_dp_evidence::rb_display_evidenceview(), please call totara_plan\rb\display\plan_evidence_name_link::display() instead.
+  * rb_source_dp_evidence::rb_display_evidencelink(), please call totara_plan\rb\display\plan_evidence_view_link::display() instead.
+  * rb_source_dp_evidence::rb_display_actionlinks(), please call totara_plan\rb\display\plan_evidence_action_links::display() instead.
+  * rb_source_dp_evidence::rb_display_evidenceinuse(), please call totara_plan\rb\display\plan_evidence_in_use::display() instead.
+  * rb_source_dp_evidence::rb_display_description().
+  * rb_source_dp_objective::rb_display_objectivelink(), please call totara_plan\rb\display\plan_objective_name_link::display() instead.
+  * rb_source_dp_objective::rb_display_proficiency_and_approval(), please call totara_plan\rb\display\plan_objective_status::display() instead.
+  * rb_source_dp_program::rb_display_program_completion_progress().
+  * rb_source_dp_program::rb_display_prog_date().
+  * rb_source_dp_program::rb_display_mandatory_status(), please call totara_program\rb\display\program_mandatory_status::display() instead.
+  * rb_source_dp_program::rb_display_recurring_status(), please call totara_program\rb\display\program_recurring_status::display() instead.
+  * rb_source_dp_program::rb_display_link_program_icon(), please call totara_program\rb\display\program_icon_link::display() instead.
+  * rb_source_dp_program::rb_display_program_previous_completion(), please call totara_program\rb\display\program_previous_completions::display() instead.
+  * rb_source_dp_program_recurring::rb_display_link_program_icon(), please call totara_program\rb\display\program_icon_link::display() instead.
+  * rb_source_dp_program_recurring::rb_display_program_completion_status(), please call totara_program\rb\display\program_completion_status::display() instead.
+  * rb_source_dp_program_recurring::rb_display_completion_date(), please call totara_program\rb\display\program_completion_date::display() instead.
+
+=== 10.0 ===
+
+Added isexport param to rb_source_dp_certification::rb_display_link_program_icon.
+Added isexport param to rb_source_dp_certification_history::rb_display_link_program_icon.
+Added isexport param to rb_source_dp_program::rb_display_link_program_icon.
+Added isexport param to rb_source_dp_program_recurring::rb_display_link_program_icon.
+totara_plan_renderer::totara_print_approval_form() now outputs h3's instead of h2's
+rb_source_dp_program::rb_display_program_previous_completion() outputs additional information
+rb_source_dp_certification::rb_display_historylink() outputs additional information

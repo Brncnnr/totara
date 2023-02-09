@@ -1,0 +1,27 @@
+query mod_perform_paginated_activities(
+  $query_options_input: mod_perform_activity_page_input!
+) {
+  mod_perform_paginated_activities(query_options: $query_options_input) {
+    items {
+      id
+      name
+      type {
+        display_name
+      }
+      created_at(format: DATE)
+      updated_at
+      can_view_participation_reporting
+      can_potentially_activate
+      can_activate
+      can_manage
+      can_clone
+      state_details {
+        display_name
+        name
+      }
+    }
+
+    total
+    next_cursor
+  }
+}

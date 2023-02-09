@@ -1,0 +1,15 @@
+query totara_engage_share_totals(
+  $itemid: param_integer!
+  $component: param_component!
+) {
+  shares: totara_engage_share_totals(itemid: $itemid, component: $component) {
+    __typename
+    totalrecipients
+    recipients {
+      __typename
+      label
+      area
+      total
+    }
+  }
+}

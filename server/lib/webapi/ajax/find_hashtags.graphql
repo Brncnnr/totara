@@ -1,0 +1,17 @@
+query core_find_hashtags(
+  $pattern: param_text!
+  $contextid: param_integer
+  $component: param_component
+  $area: param_area
+) {
+  hashtags: core_hashtags_by_pattern(
+    pattern: $pattern
+    contextid: $contextid
+    component: $component
+    area: $area
+  ) {
+    __typename
+    id
+    tag
+  }
+}

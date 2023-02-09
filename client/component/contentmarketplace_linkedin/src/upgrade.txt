@@ -1,0 +1,9 @@
+This file describes API changes in /client/component/contentmarketplace_linkedin,
+information provided here is intended especially for developers.
+
+=== 15.3 ===
+* The EnableBeta.vue component is removed
+
+=== 15.0 ===
+* The EnableBeta.vue component is deprecated and should not be used
+  It is only necessary for the LinkedIn Learning integration beta, and will be removed in Totara 16.0

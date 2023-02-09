@@ -1,0 +1,8 @@
+This files describes API changes in Totara Mobile.
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+Extended the user profile resolvers to allow for mobile specific overrides, this adds a totara_mobile_user type which should be used instead of the base user type in mobile queries.
+
+=== 15.0 ===
+Updated the totara_mobile_course query to take an optional guest password argument and conditionally allow for guest access

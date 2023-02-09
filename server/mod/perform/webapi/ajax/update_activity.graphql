@@ -1,0 +1,58 @@
+mutation mod_perform_update_activity(
+  $activity_id: core_id!
+  $name: String!
+  $description: String
+  $type_id: core_id
+  $anonymous_responses: param_boolean
+  $visibility_condition: param_integer
+  $relationships: [mod_perform_activity_manual_relationship_selection_input!]
+  $with_relationships: Boolean!
+) {
+  mod_perform_update_activity(
+    activity_id: $activity_id
+    name: $name
+    description: $description
+    type_id: $type_id
+    anonymous_responses: $anonymous_responses
+    visibility_condition: $visibility_condition
+    relationships: $relationships
+  ) {
+    activity {
+      id
+      name
+      edit_name: name(format: RAW)
+      description
+      edit_description: description(format: RAW)
+      type {
+        id
+        display_name
+      }
+      anonymous_responses
+      settings {
+        visibility_condition {
+          name
+          value
+        }
+        close_on_completion
+        close_on_due_date
+        multisection
+        override_global_participation_settings
+        sync_participant_instance_creation
+        sync_participant_instance_closure
+      }
+      manual_relationships @include(if: $with_relationships) {
+        manual_relationship {
+          id
+          idnumber
+          name
+        }
+        selector_relationship {
+          id
+          idnumber
+          name
+        }
+      }
+      context_id
+    }
+  }
+}

@@ -1,0 +1,15 @@
+query totara_job_assignments($userid: core_id!) {
+  totara_job_assignments(userid: $userid) {
+    id
+    fullname
+    idnumber
+    managerja {
+      user {
+        fullname
+      }
+    }
+    appraiser {
+      fullname
+    }
+  }
+}

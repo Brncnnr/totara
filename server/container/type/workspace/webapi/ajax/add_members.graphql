@@ -1,0 +1,36 @@
+mutation container_workspace_add_members(
+  $workspace_id: param_integer!
+  $user_ids: [param_integer!]!
+) {
+  members: container_workspace_add_members(
+    workspace_id: $workspace_id
+    user_ids: $user_ids
+  ) {
+    __typename
+    id
+    workspace_id
+    user {
+      __typename
+      id
+      fullname
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          associate_url
+          label
+          value
+          is_custom
+        }
+      }
+    }
+    member_interactor {
+      __typename
+      can_remove
+    }
+    time_joined(format: DATELONG)
+  }
+}

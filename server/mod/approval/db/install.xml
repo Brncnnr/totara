@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/approval/db" VERSION="20200320" COMMENT="XMLDB file for Approval Workflows"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="approval_form" COMMENT="Table to store form sub-plugin instances for use with with workflows">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="plugin_name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Name of plugin that defines this form"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+        <INDEX NAME="plugin_name_ix" UNIQUE="false" FIELDS="plugin_name"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_form_version" COMMENT="Table to track versions of form definitions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="form_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="version" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Version identifier"/>
+        <FIELD NAME="json_schema" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="JSON form schema at this version"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Form version status (draft, active, archived)"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="form_fk" TYPE="foreign" FIELDS="form_id" REFTABLE="approval_form" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="status" UNIQUE="false" FIELDS="status"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_type" COMMENT="Workflow types">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Workflow type description"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+        <INDEX NAME="name_ix" UNIQUE="true" FIELDS="name"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow" COMMENT="Table to store workflow metadata">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_type_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Workflow description"/>
+        <FIELD NAME="id_number" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="form_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="template_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+        <FIELD NAME="to_be_deleted" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="A flag meaning scheduled for deletion."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="course_fk" TYPE="foreign-unique" FIELDS="course_id" REFTABLE="course" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_type_fk" TYPE="foreign" FIELDS="workflow_type_id" REFTABLE="approval_workflow_type" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="form_fk" TYPE="foreign" FIELDS="form_id" REFTABLE="approval_form" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="template_ix" UNIQUE="false" FIELDS="template_id"/>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+        <INDEX NAME="id_number_ix" UNIQUE="true" FIELDS="id_number"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_version" COMMENT="Table to store workflow configuration">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="workflow_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="form_version_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Workflow version status (draft, active, archived)"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_fk" TYPE="foreign" FIELDS="workflow_id" REFTABLE="approval_workflow" REFFIELDS="id"/>
+        <KEY NAME="form_version_fk" TYPE="foreign" FIELDS="form_version_id" REFTABLE="approval_form_version" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="status_ix" UNIQUE="false" FIELDS="status"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_stage" COMMENT="Table to store workflow stage configuration">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="workflow_version_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="type_code" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Code representing the workflow stage type"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Maintains the order of stages"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_version_fk" TYPE="foreign" FIELDS="workflow_version_id" REFTABLE="approval_workflow_version" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="name_ix" UNIQUE="false" FIELDS="name"/>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_stage_formview" COMMENT="Table to store workflow stage form configuration">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="field_key" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="required" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="disabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="default_value" TYPE="char" LENGTH="1024" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_stage_fk" TYPE="foreign" FIELDS="workflow_stage_id" REFTABLE="approval_workflow_stage" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_stage_approval_level" COMMENT="Table to store workflow stage approval level configuration">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="workflow_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Maintains the order of stages"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_stage_fk" TYPE="foreign" FIELDS="workflow_stage_id" REFTABLE="approval_workflow_stage" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_stage_interaction" COMMENT="Table to store workflow stage interaction configuration">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="workflow_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="action_code" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Action configured (approved, rejected, withdrawn) by this interaction"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_stage_fk" TYPE="foreign" FIELDS="workflow_stage_id" REFTABLE="approval_workflow_stage" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="action_code_ix" UNIQUE="false" FIELDS="action_code"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_stage_interaction_transition" COMMENT="Table to store interaction transition configurations">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="workflow_stage_interaction_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="condition_key" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Form field_key to check for condition"/>
+        <FIELD NAME="condition_data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON-encoded parameters for evaluating condition"/>
+        <FIELD NAME="transition" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Stage id to transition to, or classname of transition transition to use to resolve new state"/>
+        <FIELD NAME="priority" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Decides which order conditional transitions are evaluated in; highest priority wins."/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_stage_interaction_fk" TYPE="foreign" FIELDS="workflow_stage_interaction_id" REFTABLE="approval_workflow_stage_interaction" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="condition_key_ix" UNIQUE="false" FIELDS="condition_key"/>
+        <INDEX NAME="transition_ix" UNIQUE="false" FIELDS="transition"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_workflow_stage_interaction_action" COMMENT="Table to store interaction action configurations">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="workflow_stage_interaction_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="condition_key" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Form field_key to check for condition"/>
+        <FIELD NAME="condition_data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON-encoded parameters for evaluating condition"/>
+        <FIELD NAME="effect" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Action effect classname"/>
+        <FIELD NAME="effect_data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON-encoded parameters for executing effect"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="workflow_stage_interaction_fk" TYPE="foreign" FIELDS="workflow_stage_interaction_id" REFTABLE="approval_workflow_stage_interaction" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="condition_key_ix" UNIQUE="false" FIELDS="condition_key"/>
+        <INDEX NAME="effect_ix" UNIQUE="false" FIELDS="effect"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval" COMMENT="mod_approval; Table to store workflow assignments and assignment overrides">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false" COMMENT="Module name"/>
+        <FIELD NAME="id_number" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Internal string value used to identify an assignment - Used for testing"/>
+        <FIELD NAME="is_default" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Flag to indicate that this is the default assignment for this workflow"/>
+        <FIELD NAME="assignment_type" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Workflow assignment type (organization, position, audience)"/>
+        <FIELD NAME="assignment_identifier" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="ID of assignee record"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Workflow assignment status (draft, active, archived)"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+        <FIELD NAME="to_be_deleted" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="A flag meaning scheduled for deletion."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="course_fk" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="assignment_type_id_ix" UNIQUE="false" FIELDS="assignment_type, assignment_identifier"/>
+        <INDEX NAME="is_default_ix" UNIQUE="false" FIELDS="is_default"/>
+        <INDEX NAME="status_ix" UNIQUE="false" FIELDS="status"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_approver" COMMENT="Table to store workflow assignment/override approvers">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_approval_level_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="type" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Workflow approver type (relationship, individual)"/>
+        <FIELD NAME="identifier" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="ID of assignee"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+        <FIELD NAME="ancestor_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="ID of ancestor approver if inherited"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="approval_fx" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_stage_approval_level_ix" TYPE="foreign" FIELDS="workflow_stage_approval_level_id" REFTABLE="approval_workflow_stage_approval_level" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="type_id_ix" UNIQUE="false" FIELDS="type, identifier"/>
+        <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active"/>
+        <INDEX NAME="ancestor_id_ix" UNIQUE="false" FIELDS="ancestor_id"/>
+        <INDEX NAME="unique_approver_ix" UNIQUE="true" FIELDS="approval_id, workflow_stage_approval_level_id, type, identifier"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_application" COMMENT="Table to store workflow application metadata">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="id_number" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="job_assignment_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="workflow_version_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="form_version_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="creator_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="owner_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="current_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="is_draft" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Indicates if the current state is draft or not"/>
+        <FIELD NAME="current_approval_level_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+        <FIELD NAME="submitted" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp that the application was submitted (started), or null"/>
+        <FIELD NAME="submitter_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="User who submitted (started) the application, or null"/>
+        <FIELD NAME="completed" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Application completed timestamp, or null"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_version_fk" TYPE="foreign" FIELDS="workflow_version_id" REFTABLE="approval_workflow_version" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="form_version_fk" TYPE="foreign" FIELDS="form_version_id" REFTABLE="approval_form_version" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="approval_fk" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="creator_fk" TYPE="foreign" FIELDS="creator_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="owner_fk" TYPE="foreign" FIELDS="owner_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="submitter_fk" TYPE="foreign" FIELDS="submitter_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="job_assignment_ix" UNIQUE="false" FIELDS="job_assignment_id"/>
+        <INDEX NAME="current_stage_ix" UNIQUE="false" FIELDS="current_stage_id"/>
+        <INDEX NAME="is_draft_ix" UNIQUE="false" FIELDS="is_draft"/>
+        <INDEX NAME="current_approval_level_ix" UNIQUE="false" FIELDS="current_approval_level_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_application_any" COMMENT="Table to index assignments where user has view_in_dashboard_application_any capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="approval_fk" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="approval_user_ix" UNIQUE="false" FIELDS="approval_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_draft_application_any" COMMENT="Table to index assignments where user has view_draft_in_dashboard_application_any capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="approval_fk" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="approval_user_ix" UNIQUE="false" FIELDS="approval_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_pending_application_any" COMMENT="Table to index assignments where user has view_in_dashboard_pending_application_any capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_approval_level_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="approval_fk" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="workflow_stage_approval_level_fk" TYPE="foreign" FIELDS="workflow_stage_approval_level_id" REFTABLE="approval_workflow_stage_approval_level" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="approval_approval_level_user_ix" UNIQUE="false" FIELDS="approval_id, workflow_stage_approval_level_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_application_user" COMMENT="Table to index users where user has view_in_dashboard_application_user capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="applicant_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="applicant_fk" TYPE="foreign" FIELDS="applicant_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="applicant_user_ix" UNIQUE="false" FIELDS="applicant_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_draft_application_user" COMMENT="Table to index users where user has view_draft_in_dashboard_application_user capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="applicant_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="applicant_fk" TYPE="foreign" FIELDS="applicant_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="applicant_user_ix" UNIQUE="false" FIELDS="applicant_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_pending_application_user" COMMENT="Table to index users where user has view_in_dashboard_pending_application_user capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="applicant_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_approval_level_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="applicant_fk" TYPE="foreign" FIELDS="applicant_id" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="workflow_stage_approval_level_fk" TYPE="foreign" FIELDS="workflow_stage_approval_level_id" REFTABLE="approval_workflow_stage_approval_level" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="applicant_approval_level_user_ix" UNIQUE="false" FIELDS="applicant_id, workflow_stage_approval_level_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_application_applicant" COMMENT="Table to index users where user has view_in_dashboard_application_applicant capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="approval_fk" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="approval_user_ix" UNIQUE="false" FIELDS="approval_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_dashboard_draft_application_applicant" COMMENT="Table to index users where user has view_draft_in_dashboard_application_applicant capability">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="approval_fk" TYPE="foreign" FIELDS="approval_id" REFTABLE="approval" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="approval_user_ix" UNIQUE="false" FIELDS="approval_id, user_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_application_submission" COMMENT="Table to store application form submissions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="application_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Last update timestamp"/>
+        <FIELD NAME="submitted" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Last submitted timestamp, or null"/>
+        <FIELD NAME="superseded" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether this submission has been superseded"/>
+        <FIELD NAME="form_data" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="JSON blob of submitted form data"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="application_fk" TYPE="foreign" FIELDS="application_id" REFTABLE="approval_application" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_stage_fk" TYPE="foreign" FIELDS="workflow_stage_id" REFTABLE="approval_workflow_stage" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="superseded_ix" UNIQUE="false" FIELDS="superseded"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_application_action" COMMENT="Table to store application actions, such as approved and denied">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="application_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_approval_level_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Action taken (approved, rejected, withdrawn)"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+        <FIELD NAME="superseded" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether this action has been superseded"/>
+        <FIELD NAME="form_data" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="JSON blob of form data at time of approval"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="application_fk" TYPE="foreign" FIELDS="application_id" REFTABLE="approval_application" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_stage_fk" TYPE="foreign" FIELDS="workflow_stage_id" REFTABLE="approval_workflow_stage" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="code_ix" UNIQUE="false" FIELDS="code"/>
+        <INDEX NAME="superseded_ix" UNIQUE="false" FIELDS="superseded"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_application_activity" COMMENT="Table to store application event logs">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="application_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="workflow_stage_approval_level_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="activity_type" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Type of event (from activity::get_type)"/>
+        <FIELD NAME="activity_info" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="JSON blob of information about the event"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="application_fk" TYPE="foreign" FIELDS="application_id" REFTABLE="approval_application" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_stage_fk" TYPE="foreign" FIELDS="workflow_stage_id" REFTABLE="approval_workflow_stage" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="workflow_stage_approval_level_fk" TYPE="foreign" FIELDS="workflow_stage_approval_level_id" REFTABLE="approval_workflow_stage_approval_level" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="activity_type_ix" UNIQUE="false" FIELDS="activity_type"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="approval_role_capability_map" COMMENT="Capability to role map">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="instanceid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="contextlevel" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="capabilityid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="role" TYPE="foreign" FIELDS="roleid" REFTABLE="role" REFFIELDS="id"/>
+        <KEY NAME="capability" TYPE="foreign" FIELDS="capabilityid" REFTABLE="capabilities" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="context" UNIQUE="false" FIELDS="instanceid, contextlevel"/>
+        <INDEX NAME="instance-level-roleid-capabilityid" UNIQUE="true" FIELDS="instanceid, contextlevel, roleid, capabilityid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

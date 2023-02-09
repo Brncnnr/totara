@@ -1,0 +1,23 @@
+query totara_competency_scale_achievements(
+  $assignment_id: core_id!
+  $user_id: core_id!
+) {
+  totara_competency_scale_achievements(
+    assignment_id: $assignment_id
+    user_id: $user_id
+  ) {
+    scale_value {
+      name
+      numericscore
+      proficient
+    }
+    items {
+      achieved: has_scale_value
+      date_achieved(format: DATE)
+      pathway {
+        instance_id
+        pathway_type
+      }
+    }
+  }
+}

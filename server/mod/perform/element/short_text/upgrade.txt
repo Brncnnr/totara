@@ -1,0 +1,6 @@
+This files describes API changes in /mod/perform/element/short_text/*,
+information provided here is intended especially for developers.
+
+=== 13.2 ===
+
+* Renamed element from "Short text" to "Text: Short response"

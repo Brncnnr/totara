@@ -1,0 +1,72 @@
+"""
+Popup notification message
+"""
+type message_popup_message {
+  """
+  Message ID
+  """
+  id: core_id!
+  """
+  Message subject line
+  """
+  subject: String!
+  """
+  Message full message text
+  """
+  fullmessage(format: core_format): String
+  """
+  Message full message html
+  """
+  fullmessagehtml(format: core_format): String
+  """
+  Format of the full message text
+  """
+  fullmessageformat: core_format
+  """
+  Context URL if provided, link to message subject
+  """
+  contexturl: String
+  """
+  Message sent timestamp
+  """
+  timecreated(format: core_date_format = TIMESTAMP): core_date!
+  """
+  Is message read?
+  """
+  isread: Boolean!
+}
+
+extend type Query {
+  """
+  Get popup messages for current user
+  """
+  message_popup_messages: [message_popup_message]
+
+  """
+  Get a count of unread popup messages for current user
+  """
+  message_popup_unread_count: Int!
+}
+
+"""
+Input schema for marking popup messages as read mutation
+"""
+input message_popup_mark_messages_read_input {
+  message_ids: [core_id!]!
+}
+
+"""
+Output schema for marking popup messages as read mutation
+"""
+type message_popup_mark_messages_read_result {
+  read_message_ids: [core_id!]!
+}
+
+extend type Mutation {
+  """
+  Mark a popup message as read (or unread)
+  """
+  message_popup_mark_messages_read(
+    input: message_popup_mark_messages_read_input
+  ): message_popup_mark_messages_read_result!
+}

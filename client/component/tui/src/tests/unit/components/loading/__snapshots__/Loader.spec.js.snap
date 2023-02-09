@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader Checks snapshot 1`] = `
+<div
+  class="tui-loader tui-loader--active"
+>
+  <div
+    class="tui-loader__empty"
+  />
+    
+  <div
+    class="tui-loader__overlay"
+    role="alert"
+  >
+    <div
+      class="tui-loader__overlay-positioner"
+    >
+      <div
+        class="tui-loader__display"
+      >
+        <loading-stub
+          aria-hidden="true"
+          size="200"
+        />
+        
+        loading
+      
+      </div>
+    </div>
+  </div>
+</div>
+`;

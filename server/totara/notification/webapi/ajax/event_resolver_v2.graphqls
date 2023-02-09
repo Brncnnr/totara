@@ -1,0 +1,88 @@
+type totara_notification_event_resolver_v2 {
+  """
+  The component name where this notifiable event belongs to.
+  """
+  component: String!
+  """
+  The human readerable name of the component
+  """
+  plugin_name: String!
+  """
+  The class name of notifiable event.
+  """
+  class_name: String!
+  """
+  The human readable notifiable event name.
+  """
+  name: String!
+  """
+  Allowed user interaction with the resolver
+  """
+  interactor(
+    """
+    Extended context input must be provided.
+    """
+    extended_context: totara_notification_extended_context_input!
+  ): totara_notification_interactor!
+  """
+  Collection of schedule types valid for this type of notifiable event.
+  """
+  valid_schedules: [totara_notification_schedule_type!]!
+  """
+  The recipients for notifiable event name.
+  """
+  recipients: [totara_notification_recipient!]!
+  """
+  Return the enabled status of the notifiable event.
+  """
+  status(
+    extended_context: totara_notification_extended_context_input
+  ): totara_notification_notifiable_event_status!
+  """
+  Returning all the notification preferences that are associated with this very notifiable event.
+  """
+  notification_preferences(
+    """
+    Extended context input must be provided.
+    """
+    extended_context: totara_notification_extended_context_input!
+  ): [totara_notification_notification_preference_v2!]!
+  #Note this is where all the configuration fields within the system should be added.
+  """
+  The default delivery channels for this resolver.
+  """
+  default_delivery_channels: [totara_notification_delivery_channel!]!
+  """
+  The tui component containing additional resolver-specific form elements required to configure the notification.
+  """
+  additional_criteria_component: String
+  """
+  Warnings about using this resolver, such as when the notification will not be sent due to some confiuration
+  in the current context.
+  """
+  warnings: [String!]!
+}
+
+extend type Query {
+  totara_notification_event_resolvers_v2(
+    extended_context: totara_notification_extended_context_input!
+  ): [totara_notification_event_resolver_v2!]!
+}
+
+extend type Mutation {
+  totara_notification_toggle_notifiable_event_v2(
+    """
+    Notifiable event resolver class name
+    """
+    resolver_class_name: param_text!
+    """
+    Context to update enabled in.
+    Note: Only the system context is accepted currently.
+    """
+    extended_context: totara_notification_extended_context_input
+    """
+    Enabled status to set
+    """
+    is_enabled: param_boolean
+  ): totara_notification_event_resolver_v2!
+}

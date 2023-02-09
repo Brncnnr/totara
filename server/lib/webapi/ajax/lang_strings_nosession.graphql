@@ -1,0 +1,8 @@
+query core_lang_strings_nosession($lang: param_lang!, $ids: [String!]!) {
+  lang_strings: core_lang_strings(lang: $lang, ids: $ids) {
+    lang
+    identifier
+    component
+    string
+  }
+}

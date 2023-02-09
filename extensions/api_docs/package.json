@@ -1,0 +1,13 @@
+{
+  "name": "totara-api-docs",
+  "private": true,
+  "scripts": {
+    "build": "node build"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "microfiber": "1.3.1",
+    "spectaql": "1.5.3",
+    "yargs": "16.2.0"
+  }
+}

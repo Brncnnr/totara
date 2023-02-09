@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage EditArticleContentForm Checks snapshot 1`] = `
+<form-stub inputwidth="limited" autocomplete="off" class="tui-engageEditArticleContentForm">
+  <loader-stub fullpage="true" loading="true"></loader-stub>
+  <!---->
+  <weka-stub placeholder="" usageidentifier="[object Object]" variant="full" value="[object Object]" stickytoolbar="true" isloggedin="true" extraextensions="mention,hashtag" class="tui-engageEditArticleContentForm__editor"></weka-stub>
+  <donecancelgroup-stub disabled="true" class="tui-engageEditArticleContentForm__buttons"></donecancelgroup-stub>
+</form-stub>
+`;

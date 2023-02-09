@@ -1,0 +1,16 @@
+extend type Query {
+  """
+  Query to return a specific certification the user can access, given its ID.
+  """
+  totara_certification_certification(
+    certificationid: core_id!
+  ): totara_certification_certification!
+  """
+  Query to return all certifications the user can access.
+  """
+  totara_certification_certifications: [totara_certification_certification!]!
+  """
+  Query to return all certifications assigned to the current user.
+  """
+  totara_certification_my_certifications: [totara_certification_certification!]!
+}

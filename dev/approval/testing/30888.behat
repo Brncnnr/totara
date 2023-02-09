@@ -1,0 +1,41 @@
+Feature: Two levels in one stage
+  Scenario: x
+    And the following "users" exist:
+      | username   | firstname | lastname |  email            |
+      | applicant  | One       | Uno      | user1@example.com |
+      | approver   | Two       | Duex     | user2@example.com |
+    And the following "cohorts" exist:
+      | name | idnumber |
+      | aud1 | AUD001   |
+    And the following "workflow types" exist in "mod_approval" plugin:
+      | name               |
+      | Test workflow type |
+    And the following "forms" exist in "mod_approval" plugin:
+      | title     |
+      | Test form |
+    And the following "form versions" exist in "mod_approval" plugin:
+      | form      | version | json_schema |
+      | Test form | 1       | test1       |
+    And the following "workflows" exist in "mod_approval" plugin:
+      | name          | description               | id_number | form      | workflow_type      |
+      | Test workflow | test workflow description | WKF001    | Test form | Test workflow type |
+    And the following "workflow versions" exist in "mod_approval" plugin:
+      | workflow | form_version |
+      | WKF001   | 1            |
+    And the following "workflow stages" exist in "mod_approval" plugin:
+      | workflow | name       |
+      | WKF001   | Test stage |
+    And the following "approval levels" exist in "mod_approval" plugin:
+      | workflow_stage | name         |
+      | Test stage     | Test level 1 |
+      | Test stage     | Test level 2 |
+    And the following "form views" exist in "mod_approval" plugin:
+      | workflow_stage | respondent | field_key | required |
+      | Test stage     | user       | food      | true     |
+    And the following "assignments" exist in "mod_approval" plugin:
+      | name            | id_number  | workflow | type   | identifier | default |
+      | Test assignment | ASS001     | WKF001   | cohort | AUD001     | true    |
+    And the following "approvers" exist in "mod_approval" plugin:
+      | assignment | approval_level | type | identifier |
+      | ASS001     | Test level 1   | user | approver   |
+      | ASS001     | Test level 2   | user | approver   |

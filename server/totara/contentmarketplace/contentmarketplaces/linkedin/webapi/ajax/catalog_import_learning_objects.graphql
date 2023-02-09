@@ -1,0 +1,27 @@
+query contentmarketplace_linkedin_catalog_import_learning_objects(
+  $input: contentmarketplace_linkedin_catalog_import_learning_objects_input!
+) {
+  result: contentmarketplace_linkedin_catalog_import_learning_objects(
+    input: $input
+  ) {
+    items {
+      id
+      name
+      image_url
+      asset_type
+      display_level
+      time_to_complete
+      subjects {
+        id
+        name
+      }
+      courses {
+        id
+        fullname
+      }
+    }
+    next_cursor
+    total
+    selected_filters
+  }
+}

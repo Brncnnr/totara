@@ -1,0 +1,88 @@
+.tui-linkedReviewViewCurrentLearning {
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+
+  &__date {
+    @include tui-font-body-small();
+  }
+
+  &__card {
+    position: relative;
+    flex-direction: column;
+    padding: var(--gap-2);
+    background-color: var(--color-neutral-1);
+
+    @media (min-width: $tui-screen-sm) {
+      flex-direction: row;
+    }
+  }
+
+  &__image {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 9.6rem;
+    height: 8.4rem;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+  }
+
+  &__content {
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    clear: both;
+    padding: var(--gap-4) 0;
+
+    @media (min-width: $tui-screen-sm) {
+      padding: 0 var(--gap-4);
+    }
+
+    &-heading {
+      @include tui-font-heading-x-small();
+      margin: 0;
+    }
+
+    &-description {
+      @include tui-font-body();
+      flex-grow: 1;
+    }
+
+    &-type {
+      @include tui-font-body-small();
+      margin-top: var(--gap-2);
+      color: var(--color-neutral-6);
+    }
+  }
+
+  &__chart {
+    position: absolute;
+    top: var(--gap-2);
+    right: 0;
+    flex-basis: 6.6rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 6.6rem;
+    height: 6.6rem;
+    margin-right: var(--gap-2);
+
+    /* Use normal flex positioning for larger screens*/
+    @media (min-width: $tui-screen-sm) {
+      position: relative;
+      top: 0;
+    }
+
+    &-text {
+      @include tui-font-heading-label();
+
+      @media (min-width: $tui-screen-sm) {
+        margin-top: var(--gap-5);
+      }
+    }
+  }
+}
+

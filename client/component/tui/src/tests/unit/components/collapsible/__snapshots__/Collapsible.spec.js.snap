@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collapsible matches snapshot 1`] = `
+<div
+  class="tui-collapsible"
+>
+  <div
+    class="tui-collapsible__header"
+  >
+    <h3
+      class="tui-collapsible__header-heading"
+    >
+      <div
+        aria-controls="idundefinedregion"
+        aria-expanded="true"
+        class="tui-collapsible__header-button"
+        role="button"
+        tabindex="0"
+      >
+        <collapseicon-stub
+          aria-hidden="true"
+          class="tui-collapsible__header-icon"
+          size="100"
+        />
+         
+        <span
+          class="tui-collapsible__header-text"
+          id="idundefinedlabel"
+        >
+          
+          hello
+          
+        </span>
+      </div>
+    </h3>
+     
+    <!---->
+  </div>
+   
+  <div
+    aria-labelledby="idundefinedlabel"
+    class="tui-collapsible__content"
+    id="idundefinedregion"
+    role="region"
+  >
+    <div
+      class="test-action"
+    >
+      hello
+    </div>
+  </div>
+</div>
+`;

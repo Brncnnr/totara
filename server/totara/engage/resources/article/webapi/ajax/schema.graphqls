@@ -1,0 +1,78 @@
+type engage_article_article {
+  id: core_id!
+  resource: totara_engage_resource!
+  content(format: core_format!): String!
+  format: Int!
+  topics: [totara_topic_topic!]!
+  updateable: Boolean!
+  sharedbycount: Int!
+  owned: Boolean!
+  timedescription: String!
+  timeview: totara_engage_timeview
+  bookmarked: Boolean!
+  image: String
+  """
+  A status check of a user in session against the article
+  """
+  reacted: Boolean!
+}
+
+type engage_article_draft_item {
+  resourceid: core_id!
+  format: Int!
+  content: String
+  """
+  File draft's id
+  """
+  file_item_id: Int!
+}
+
+extend type Query {
+  engage_article_get_article(id: param_integer!): engage_article_article!
+
+  """
+  Getting the draft content of an article, based on its resourceid.
+  """
+  engage_article_draft_item(
+    resourceid: param_integer!
+  ): engage_article_draft_item!
+}
+
+extend type Mutation {
+  engage_article_create(
+    name: String!
+    content: String!
+    format: param_integer
+    access: totara_engage_access
+    timeview: totara_engage_timeview
+    """
+    An array of the topic's id.
+    """
+    topics: [param_integer!]
+    shares: [totara_engage_recipient_in!]
+    """
+    This is needed to save the files for the article.
+    """
+    draft_id: param_integer
+  ): engage_article_article!
+
+  engage_article_update(
+    resourceid: param_integer!
+    name: String
+    content: String
+    format: param_integer
+    access: totara_engage_access
+    """
+    An array of the topic's id
+    """
+    topics: [param_integer!]
+    timeview: totara_engage_timeview
+    shares: [totara_engage_recipient_in!]
+    """
+    This is needed to save the files for the article.
+    """
+    draft_id: param_integer
+  ): engage_article_article
+
+  engage_article_delete(resourceid: param_integer!): Boolean!
+}

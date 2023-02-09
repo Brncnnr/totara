@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationBanner Checks snapshot 1`] = `
+<div
+  class="tui-notificationBanner tui-notificationBanner--error"
+>
+  <div
+    class="tui-notificationBanner__icon"
+  >
+    <svgicongenerated-stub
+      alt="tempstring: "
+      size="200"
+      state="none"
+      title="tempstring"
+    />
+  </div>
+   
+  <div
+    class="tui-notificationBanner__message"
+  >
+    message
+  </div>
+   
+  <div
+    aria-hidden="true"
+    class="tui-notificationBanner__dismiss"
+  >
+    <closebutton-stub
+      class="tui-notificationBanner__dismiss_button"
+      size="300"
+    />
+  </div>
+</div>
+`;

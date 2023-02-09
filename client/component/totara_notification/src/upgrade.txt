@@ -1,0 +1,21 @@
+This file describes API changes in /client/component/totara_notification,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+* Split NotificationPage.vue into two components so that the notification UI can be used in different page layouts.
+  * NotificationPage.vue now just handles the page layout and Notifications.vue contains the logic previously
+  * contained in NotificationPage.vue. Ensure any customisations previously made to NotificationPage.vue is correctly
+  * split between these two components.
+  * Template and JS changes
+* Updated UserPreferencesTable to pass the correct interactor data
+  * Template changes
+* Updated NotificationTable adding auditing links
+  * Template changes
+
+=== 16.0 ===
+* Updated NotificiationPreferenceForm to use a toggle for overide (as opposed ot a checkbox)
+  * Template and SCSS changes
+* Updated NotificationTable
+  * Template and SCSS changes
+* Removed style dependencies in NotificationTable, UserPreferencesTable and DeliveryPreferenceForm
+  * Template and SCSS changes

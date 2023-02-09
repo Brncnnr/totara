@@ -1,0 +1,20 @@
+query pathway_learning_plan_competency_plans(
+  $user_id: core_id!
+  $assignment_id: core_id!
+) {
+  pathway_learning_plan_competency_plans(
+    user_id: $user_id
+    assignment_id: $assignment_id
+  ) {
+    learning_plans {
+      id
+      can_view
+      name
+      description
+    }
+    scale_value {
+      name
+    }
+    date: date_assigned(format: DATE)
+  }
+}

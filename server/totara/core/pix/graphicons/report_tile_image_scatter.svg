@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="230px" height="120px" viewBox="0 0 230 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>report_tile_image_scatter</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="230" height="120"></rect>
+    </defs>
+    <g id="report_tile_image_scatter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="img-scatter">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#F0F0F0" xlink:href="#path-1"></use>
+            <g id="report" mask="url(#mask-2)">
+                <g transform="translate(117.278497, 79.750523) rotate(-5.000000) translate(-117.278497, -79.750523) translate(16.278497, 26.250523)">
+                    <rect id="Rectangle-Copy-36" fill="#CCCCCC" fill-rule="evenodd" x="189.984779" y="0.348622971" width="12" height="106"></rect>
+                    <rect id="Rectangle-Copy-38" fill="#FFFFFF" fill-rule="evenodd" x="-5.05906428e-12" y="3.41060513e-13" width="198" height="106"></rect>
+                    <rect id="Rectangle-Copy-51" fill="#969696" fill-rule="evenodd" x="7.34862297" y="23.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-52" fill="#969696" fill-rule="evenodd" x="7.34862297" y="43.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-53" fill="#969696" fill-rule="evenodd" x="7.34862297" y="63.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-54" fill="#969696" fill-rule="evenodd" x="7.34862297" y="83.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-48" fill="#969696" fill-rule="evenodd" x="6.82568851" y="7.9923894" width="72" height="8"></rect>
+                    <path d="M10.4357787,30.0190265 L18.4357787,30.0190265 L18.4357787,38.0190265 L10.4357787,38.0190265 L10.4357787,30.0190265 Z M12.4357787,32.0190265 L12.4357787,36.0190265 L16.4357787,36.0190265 L16.4357787,32.0190265 L12.4357787,32.0190265 Z" id="Rectangle-Copy-55" fill="#969696" fill-rule="nonzero"></path>
+                    <path d="M10.4357787,50.0190265 L18.4357787,50.0190265 L18.4357787,58.0190265 L10.4357787,58.0190265 L10.4357787,50.0190265 Z M12.4357787,52.0190265 L12.4357787,56.0190265 L16.4357787,56.0190265 L16.4357787,52.0190265 L12.4357787,52.0190265 Z" id="Rectangle-Copy-56" fill="#969696" fill-rule="nonzero"></path>
+                    <path d="M10.4357787,70.0190265 L18.4357787,70.0190265 L18.4357787,78.0190265 L10.4357787,78.0190265 L10.4357787,70.0190265 Z M12.4357787,72.0190265 L12.4357787,76.0190265 L16.4357787,76.0190265 L16.4357787,72.0190265 L12.4357787,72.0190265 Z" id="Rectangle-Copy-57" fill="#969696" fill-rule="nonzero"></path>
+                </g>
+            </g>
+            <g id="scatter" mask="url(#mask-2)">
+                <g transform="translate(104.000000, 25.000000)">
+                    <path d="M8.40167954,5 L8.40167954,83.3354978 L97,83.3354978 L97,87 L5,87 L5,5 L8.40167954,5 Z" id="Combined-Shape" fill="#677C9B" opacity="0.5" transform="translate(51.000000, 46.000000) rotate(-6.000000) translate(-51.000000, -46.000000) "></path>
+                    <circle id="Oval" fill="#CCCCCC" cx="63.5" cy="44.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-22" fill="#CCCCCC" cx="78.5" cy="64.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-23" fill="#CCCCCC" cx="50.5" cy="67.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-27" fill="#CCCCCC" cx="54.5" cy="18.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-26" fill="#CCCCCC" cx="25.5" cy="49.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-25" fill="#CCCCCC" cx="29.5" cy="24.5" r="6.5"></circle>
+                    <circle id="Oval" fill="#3869B1" cx="61.5" cy="46.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-22" fill="#3F9852" cx="76.5" cy="67.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-23" fill="#DA7E31" cx="48.5" cy="69.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-27" fill="#CC2428" cx="51.5" cy="20.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-26" fill="#3F9852" cx="22.5" cy="51.5" r="6.5"></circle>
+                    <circle id="Oval-Copy-25" fill="#3869B1" cx="26.5" cy="27.5" r="6.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

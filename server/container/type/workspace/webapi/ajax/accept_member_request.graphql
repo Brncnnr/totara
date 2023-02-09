@@ -1,0 +1,23 @@
+mutation container_workspace_accept_member_request(
+  # Member request's id.
+  $id: param_integer!
+) {
+  member_request: container_workspace_update_member_request(
+    id: $id
+    new_status: ACCEPTED
+  ) {
+    __typename
+    id
+    is_accepted
+    is_declined
+    time_description
+    workspace_id
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+  }
+}

@@ -1,0 +1,1073 @@
+"""
+Represents the state an activity is in (e.g. draft, active)
+"""
+type mod_perform_activity_state {
+  code: Int!
+  name: mod_perform_activity_state_enums!
+  display_name: String!
+}
+
+"""
+Represents the activity settings.
+"""
+type mod_perform_activity_settings {
+  close_on_completion: Boolean!
+  close_on_due_date: Boolean!
+  multisection: Boolean!
+  visibility_condition: mod_perform_visibility_condition_option!
+  override_global_participation_settings: Boolean!
+  sync_participant_instance_creation: Boolean!
+  sync_participant_instance_closure: Boolean!
+}
+
+"""
+Represents the response visibility condition option
+"""
+type mod_perform_visibility_condition_option {
+  name: String!
+  value: Int!
+  participant_description: String
+  view_only_participant_description: String!
+}
+
+"""
+The overall performance activity, not a user-specific instance
+"""
+type mod_perform_activity {
+  id: core_id
+  name(format: core_format = PLAIN): String!
+  type: mod_perform_activity_type!
+  description(format: core_format = PLAIN): String
+  created_at(format: core_date_format = TIMESTAMP): core_date
+  updated_at(format: core_date_format = TIMESTAMP): core_date
+  """
+  Whether the current user can view the participation tracking for the activity
+  """
+  can_view_participation_reporting: Boolean!
+  """
+  Whether this activity could be activated due to capability checks and current status, without checking further conditions
+  """
+  can_potentially_activate: Boolean!
+  """
+  Whether the current user can activate this activity, only if it satisfies all conditions
+  """
+  can_activate: Boolean!
+  """
+  Whether the current user can manage this activity
+  """
+  can_manage: Boolean!
+  """
+  Whether the current user can clone this activity
+  """
+  can_clone: Boolean!
+  """
+  The default track for the activity
+  """
+  default_track: mod_perform_track
+  sections: [mod_perform_section!]!
+  """
+  Provides details (name, code and human-readable string) about the current state of the activity
+  """
+  state_details: mod_perform_activity_state!
+  settings: mod_perform_activity_settings!
+  visibility_condition_options: [mod_perform_visibility_condition_option!]
+  """
+  If true all responses will be anonymized
+  """
+  anonymous_responses: Boolean!
+  manual_relationships: [mod_perform_manual_relationship!]!
+  """
+  Context ID of the course container used by this activity
+  """
+  context_id: core_id!
+}
+
+"""
+An element plugin configuration
+"""
+type mod_perform_element_plugin_config {
+  """
+  is_respondable config setting
+  """
+  is_respondable: Boolean!
+
+  """
+  has title required when creating or updating element
+  """
+  has_title: Boolean!
+
+  """
+  has reporting id required when creating or updating element
+  """
+  has_reporting_id: Boolean!
+
+  """
+  title text when creating or updating element
+  """
+  title_text: String!
+
+  """
+  title help text when creating or updating element
+  """
+  title_help_text: String
+
+  """
+  is title required when creating or updating element
+  """
+  is_title_required: Boolean!
+
+  """
+  is response required enabled when creating or updating element
+  """
+  is_response_required_enabled: Boolean!
+
+  """
+  any extra static data the plugin needs to supply (json encoded)
+  @deprecated since Totara 14 - please use data instead
+  """
+  extra_config_data: String!
+}
+
+"""
+An element plugin which can be used to create an element
+"""
+type mod_perform_element_plugin {
+  plugin_name: String!
+  name: String!
+
+  """
+  element configuration
+  """
+  plugin_config: mod_perform_element_plugin_config!
+
+  """
+  Name of vue component used to display the element configuration form to the activity admin
+  """
+  admin_form_component: String!
+    @deprecated(reason: "Use `admin_edit_component` instead.")
+
+  """
+  Name of vue component used to display the element configuration form to the activity admin
+  """
+  admin_edit_component: String!
+
+  """
+  Name of the vue component used to display the preview of a completed element to the activity admin
+  """
+  admin_display_component: String!
+    @deprecated(reason: "Use `admin_view_component` instead.")
+
+  """
+  Name of the vue component used to display the preview of a completed element to the activity admin
+  """
+  admin_view_component: String!
+
+  """
+  Name of the vue component used to display a read-only view of an element when an activity is active
+  """
+  admin_read_only_display_component: String!
+    @deprecated(reason: "Use `admin_summary_component` instead.")
+
+  """
+  Name of the vue component used to display a summary view of an element when an activity is active
+  """
+  admin_summary_component: String!
+
+  """
+  Name of the vue component used to display the form element to the participant when they are completing the activity
+  """
+  participant_form_component: String!
+
+  """
+  Name of the vue component used to display a participant's response to this element
+  """
+  participant_response_component: String
+
+  """
+  Name of the vue component used to display a response in print preview
+  """
+  participant_print_component: String
+
+  """
+  Value indicating which group of elements this element is under (1 for question elements, 2 for other non-respondable elements)
+  """
+  group: String!
+
+  """
+  Child element configuration.
+  """
+  child_element_config: mod_perform_child_element_config!
+
+  element_usage: mod_perform_element_usage!
+}
+
+"""
+Child element configuration.
+"""
+type mod_perform_child_element_config {
+  """
+  If the element supports child elements.
+  """
+  supports_child_elements: Boolean!
+
+  """
+  If the element supports repeating child elements.
+  """
+  supports_repeating_child_elements: Boolean!
+
+  """
+  Repeating item identifier.
+  """
+  repeating_item_identifier: String
+
+  """
+  Child element responses identifier.
+  """
+  child_element_responses_identifier: String
+}
+
+"""
+Element usage, states where an element can be used.
+"""
+type mod_perform_element_usage {
+  """
+  If the element can be used as a child element.
+  """
+  can_be_child_element: Boolean!
+
+  """
+  If the element can be used as a top level element.
+  """
+  can_be_top_level_element: Boolean!
+}
+
+"""
+An element identifier
+"""
+type mod_perform_element_identifier {
+  id: core_id!
+  """
+  String identifier used to associate separate elements together for reporting purposes
+  """
+  identifier(format: core_format = PLAIN): String!
+}
+
+"""
+A single activity element
+"""
+type mod_perform_element {
+  id: core_id!
+  element_plugin: mod_perform_element_plugin!
+  """
+  Element title (typically a question for respondable elements)
+  """
+  title(format: core_format = PLAIN): String!
+  """
+  String identifier used to associate separate elements together for reporting purposes
+  """
+  identifier: String
+  """
+  Encoded data storing configuration information used by the element
+  """
+  data(format: core_format = PLAIN): String
+
+  children: [mod_perform_element!]!
+
+  parent_element: mod_perform_element
+
+  sort_order: Int
+
+  """
+  Whether a participant is required to respond to this element in order to submit a section
+  """
+  is_required: Boolean
+  """
+  Whether this element can be responded to by a participant
+  """
+  is_respondable: Boolean!
+
+  """
+  Whether this element displayes respones or not
+  """
+  displays_responses: Boolean!
+}
+
+"""
+A validation error
+"""
+type mod_perform_validation_error {
+  """
+  An error code representing this particular class of error
+  """
+  error_code: String!
+  """
+  Human readable string describing the error
+  """
+  error_message: String!
+}
+
+"""
+Details about when an activity is due.
+"""
+type mod_perform_due_date {
+  """
+  Date the activity is expected to be completed by. Used for triggering notifications and displaying overdue notices.
+  """
+  due_date(format: core_date_format = DATE): core_date!
+  """
+  If true the due date has passed and the overall subject instance is not yet closed
+  """
+  is_overdue: Boolean!
+  """
+  Numeric count from now to the due date.
+  """
+  units_to_due_date: Int!
+  """
+  The duration label to use together with units_to_due_date, e.g. 'days'.
+  """
+  units_to_due_date_type: String!
+}
+
+"""
+Details about perform activity that a user is involved with (either the subject or an answering participant)
+"""
+type mod_perform_subject_instance {
+  id: core_id!
+  activity: mod_perform_activity!
+  """
+  Status representing the overall progress of the subject instance (e.g. not started, in progress, complete)
+  """
+  progress_status: mod_perform_subject_instance_progress_status!
+  """
+  Status representing the availability of the subject instance (e.g. open or closed)
+  """
+  availability_status: mod_perform_subject_instance_availability_status!
+  created_at(format: core_date_format = DATE): core_date!
+  """
+  Participant data on the subject of this instance
+  """
+  subject_user: mod_perform_participant!
+  """
+  List of participant instances involved in this subject instance
+  """
+  participant_instances: [mod_perform_participant_instance!]!
+  """
+  Optional job assignment indicating which of the subject's jobs this instance is about
+  """
+  job_assignment: totara_job_assignment
+  """
+  A numeric incrementing counter of the subject instance's associated with this particular user assignment. May be more than one when repeating is enabled.
+  """
+  instance_count: Int
+  """
+  Static user metadata stored at the time of subject instance creation, used to provide a permanent record of the subject's details that this activity was about
+  """
+  static_instances: [totara_job_assignment!]!
+  """
+  Date the activity is expected to be completed by. If this is null, then there is no due date and it is not overdue
+  """
+  due_on: mod_perform_due_date
+  """
+  @deprecated since Totara 15: Use the due_on attribute instead.
+  """
+  due_date(format: core_date_format = DATETIME): core_date
+    @deprecated(reason: "Use the due_on attribute instead.")
+  """
+  @deprecated since Totara 15: Use the due_on attribute instead.
+  """
+  is_overdue: Boolean! @deprecated(reason: "Use the due_on attribute instead.")
+}
+
+"""
+Represents an activity belonging to the current viewing user from the legacy 'Appraisals' and 'Feedback 360' functionality
+"""
+type mod_perform_historic_activity {
+  """
+  Name of the activity
+  """
+  activity_name: String
+  """
+  URL linking to the legacy activity (for appraisals) or to the My Feedback page (for feedback 360s)
+  """
+  activity_link: String
+  """
+  Human readable string describing the type of activity (Appraisal or 360 Feedback)
+  """
+  type: String
+  """
+  Status of the activity for the viewing user (e.g. Active, Completed, etc)
+  """
+  status: String
+}
+
+"""
+Represents an activity belonging to another user (not the viewing user) from the legacy 'Appraisals' and 'Feedback 360' functionality
+"""
+type mod_perform_other_historic_activity {
+  """
+  Name of the activity
+  """
+  activity_name: String
+  """
+  URL linking to the legacy activity (for appraisals) or to the My Feedback page (for feedback 360s)
+  """
+  activity_link: String
+  """
+  Human readable string describing the type of activity (Appraisal or 360 Feedback)
+  """
+  type: String
+  """
+  Name of the subject of the legacy activity
+  """
+  subject_user: String
+  """
+  String giving the relationship between the viewing user and the subject of the activity
+  """
+  relationship_to: String
+  """
+  Status of the activity for the viewing user (e.g. Active, Completed, etc)
+  """
+  status: String
+}
+
+"""
+Details about a participant_instance
+"""
+type mod_perform_participant_instance {
+  id: core_id!
+  """
+  ID from either 'user' table (internal) or 'perform_participant_external' table (external)
+  """
+  participant_id: core_id
+  """
+  True if the user requesting the participant instance record is also the participant (they are viewing their own instance)
+  """
+  is_for_current_user: Boolean!
+  """
+  List of sections this participant is involved in. This includes sections where they are a respondant as well as view-only sections.
+  """
+  participant_sections: [mod_perform_participant_section!]!
+  """
+  Detailed information about the participant of this instance
+  """
+  participant: mod_perform_participant
+  """
+  Status representing this participant's progress in the subject instance (e.g. not started, in progress, complete)
+  """
+  progress_status: mod_perform_participant_instance_progress_status!
+  """
+  Status representing this participant's availability for the subject instance (e.g. open or closed)
+  """
+  availability_status: mod_perform_participant_instance_availability_status!
+  """
+  If true the due date has passed and this specific participant instance is not yet closed
+  """
+  is_overdue: Boolean!
+  """
+  Represents how this participant is related to the subject (e.g. manager, appraiser, etc.)
+  """
+  core_relationship: totara_core_relationship
+  """
+  Identifies the subject instance this participant instance relates to.
+  """
+  subject_instance: mod_perform_subject_instance
+  """
+  Time of creation of the participant instance record
+  """
+  created_at(format: core_date_format = DATE): core_date!
+}
+
+"""
+Available sources of a participant user.
+"""
+enum mod_perform_participant_source_enum {
+  """
+  System user with an account (record in the user table)
+  """
+  INTERNAL
+  """
+  Represents a participant who doesn't have a system account, instead they are identified by a record in the perform_participant_external table
+  """
+  EXTERNAL
+}
+
+"""
+Participant user.
+"""
+type mod_perform_participant {
+  """
+  Identifies if the user is a system user (INTERNAL) or external to the system (EXTERNAL).
+  """
+  source: mod_perform_participant_source_enum!
+  id: core_id!
+  """
+  User's fullname
+  """
+  fullname(format: core_format = PLAIN): String
+  """
+  User's email address
+  """
+  email: String
+  """
+  Alternative text of the user's profile image
+  """
+  profileimagealt: String
+  """
+  URL of the user's profile image
+  """
+  profileimageurlsmall: String
+  """
+  Metadata for the 'display user information' component
+  """
+  card_display: core_user_card_display
+}
+
+"""
+Details about perform activity that a user is involved with associated activity
+sections.
+"""
+type mod_perform_subject_sections {
+  subject: mod_perform_subject_instance!
+  sections: [mod_perform_section_participants!]!
+}
+"""
+Paginated details about perform activity that a user is involved with associated activity
+sections.
+"""
+type mod_perform_subject_sections_page implements core_pageable_result {
+  """
+  List of subjects sections
+  """
+  items: [mod_perform_subject_sections!]!
+  """
+  Total number of subject sections
+  """
+  total: Int!
+  """
+  Cursor to request the next set of results for this query
+  """
+  next_cursor: String!
+  """
+  The total number of completed instances
+  """
+  completed_count: Int!
+  """
+  The number of overdue activities
+  """
+  overdue_count: Int!
+}
+
+"""
+Details about an activity section and their participants
+"""
+type mod_perform_section_participants {
+  can_participate: Boolean!
+  section: mod_perform_section!
+  participant_sections: [mod_perform_participant_section!]!
+}
+
+"""
+Information for can not delete check
+"""
+type mod_perform_deletion_check {
+  can_delete: Boolean!
+  title(format: core_format = PLAIN): String!
+  reason: mod_perform_can_not_delete_reason!
+  warnings: [mod_perform_deletion_warning!]!
+}
+
+"""
+The reason for can not delete an activity, section or section element
+"""
+type mod_perform_can_not_delete_reason {
+  description(format: core_format = PLAIN): String
+  data: [String!]
+}
+
+"""
+Warning information about deleting an activity, section or section element
+"""
+type mod_perform_deletion_warning {
+  description(format: core_format = PLAIN): String
+  items: [mod_perform_deletion_warning_item!]!
+}
+
+"""
+One item that relates to a deletion warning, with optional url.
+"""
+type mod_perform_deletion_warning_item {
+  item(format: core_format = PLAIN): String!
+  url: String
+}
+
+"""
+A list of possible states that a performance activity can be in
+"""
+enum mod_perform_activity_state_enums {
+  DRAFT
+  ACTIVE
+}
+
+"""
+A list of possible progress states that a subject instance can be in
+"""
+enum mod_perform_subject_instance_progress_status {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETE
+  NOT_SUBMITTED
+  PROGRESS_NOT_APPLICABLE
+}
+"""
+A list of possible availability states that a subject instance can be in
+"""
+enum mod_perform_subject_instance_availability_status {
+  OPEN
+  CLOSED
+  AVAILABILITY_NOT_APPLICABLE
+}
+
+"""
+A list of possible progress states that a participant instance can be in
+"""
+enum mod_perform_participant_instance_progress_status {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETE
+  NOT_SUBMITTED
+  PROGRESS_NOT_APPLICABLE
+}
+
+"""
+A list of possible availability states that a participant instance can be in
+"""
+enum mod_perform_participant_instance_availability_status {
+  OPEN
+  CLOSED
+  AVAILABILITY_NOT_APPLICABLE
+}
+
+"""
+Input type for deleting an activity
+"""
+input mod_perform_delete_activity_input {
+  activity_id: core_id!
+}
+
+"""
+Input type for closing subject instances in an activity
+"""
+input mod_perform_close_activity_subject_instances_input {
+  activity_id: core_id!
+}
+
+"""
+Input for activity settings toggle.
+"""
+input toggle_activity_setting {
+  activity_id: core_id!
+  setting: Boolean!
+}
+
+"""
+Input for workflow settings.
+"""
+input workflow_settings {
+  activity_id: core_id!
+  close_on_completion: Boolean!
+  close_on_due_date: Boolean!
+}
+
+"""
+Activity subject instance filters
+"""
+input mod_perform_subject_instance_filters {
+  about_role: core_id
+  activity_type: [core_id!]
+  exclude_complete: param_boolean
+  overdue: param_boolean
+  participant_progress: [mod_perform_participant_instance_progress_status!]
+  search_term: param_text
+  """
+  @deprecated since Totara 15: Use the about_role filter instead.
+  """
+  about: [mod_perform_subject_instance_about_filter!]
+}
+
+input mod_perform_subject_instance_options {
+  sort_by: String
+}
+
+"""
+Input type for override global settings
+"""
+input mod_perform_override_global_participation_settings_input {
+  activity_id: core_id!
+  override_global_participation_settings: param_boolean
+  sync_participant_instance_creation: param_boolean
+  sync_participant_instance_closure: param_boolean
+}
+
+"""
+Options for filtering the subject instance list.
+SELF for activities about viewing user, OTHERS for activities about other users that I am participating in.
+
+@deprecated since Totara 15: Use the about_role filter instead.
+"""
+enum mod_perform_subject_instance_about_filter {
+  SELF
+  OTHERS
+}
+
+"""
+Paginated list of activities.
+"""
+type mod_perform_activity_page implements core_pageable_result {
+  """
+  List of manageable activities.
+  """
+  items: [mod_perform_activity!]!
+
+  """
+  Total number of activities.
+  """
+  total: Int!
+
+  """
+  Cursor to request the next set of results for this query
+  """
+  next_cursor: String!
+}
+
+"""
+Input type for pagination and filtering the activity list page.
+"""
+input mod_perform_activity_page_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input!
+  """
+  Filters input
+  """
+  filters: mod_perform_activity_filters_input
+  """
+  Sort by input
+  """
+  sort_by: String
+}
+
+"""
+Input type for activities list.
+"""
+input mod_perform_activities_input {
+  sort_by: String
+}
+
+"""
+Filters input for paginated activity list.
+"""
+input mod_perform_activity_filters_input {
+  """
+  Activity ID to filter by.
+  """
+  type: core_id
+  """
+  Activity status state name to filter by.
+  """
+  status: mod_perform_activity_state_enums
+  """
+  Activity name to filter by.
+  """
+  name: String
+}
+
+extend type Query {
+  """
+  A list of all performance activities that the current user can administer
+  """
+  mod_perform_activities(
+    query_options: mod_perform_activities_input
+  ): [mod_perform_activity!]!
+
+  """
+  A paginated list of performance activities that the current user can administer
+  """
+  mod_perform_paginated_activities(
+    query_options: mod_perform_activity_page_input!
+  ): mod_perform_activity_page!
+
+  """
+  A list of all performance activities that the current user can manage participants on
+  """
+  mod_perform_participant_manageable_activities: [mod_perform_activity!]!
+
+  """
+  This query returns a single performance activity
+  """
+  mod_perform_activity(activity_id: core_id!): mod_perform_activity
+
+  """
+  The number of users that will be assigned to an activity upon activation
+  """
+  mod_perform_activity_users_to_assign_count(activity_id: core_id!): Int
+
+  """
+  A list of all element types that can be used to create elements
+  """
+  mod_perform_element_plugins: [mod_perform_element_plugin!]!
+
+  """
+  A list of reportable activities
+  """
+  mod_perform_reportable_activities: [mod_perform_activity!]!
+
+  """
+  A list of reportable element_identifiers
+  """
+  mod_perform_reportable_element_identifiers: [mod_perform_element_identifier!]!
+
+  """
+  A particular participant instance
+  """
+  mod_perform_participant_instance(
+    participant_instance_id: core_id!
+  ): mod_perform_participant_instance
+
+  """
+  A list of all performance activities the current user is participating in.
+  This can be filtered to show only the ones the user is the subject in and
+  the ones the user is not the subject in but participating.
+  """
+  mod_perform_my_subject_instances(
+    filters: mod_perform_subject_instance_filters
+    options: mod_perform_subject_instance_options
+    pagination: core_pagination_input
+  ): mod_perform_subject_sections_page!
+
+  """
+  A specific performance activity (perform_subject_instance) a user is participating in
+  """
+  mod_perform_subject_instance_for_participant(
+    subject_instance_id: core_id!
+  ): mod_perform_subject_instance
+
+  """
+  A specific performance activity (perform_subject_instance) a user is participating in
+  only accessible for external users with a valid token
+  """
+  mod_perform_subject_instance_for_external_participant(
+    subject_instance_id: core_id!
+    token: String
+  ): mod_perform_subject_instance
+
+  """
+  Get a single element
+  """
+  mod_perform_element(element_id: core_id): mod_perform_element
+
+  """
+  A list of all legacy appraisal/feedback360 activities the current user is participating in that are about them.
+  """
+  mod_perform_historic_activities: [mod_perform_historic_activity!]!
+
+  """
+  A list of all legacy appraisal/feedback360 activities the current user is participating in that are about another user.
+  """
+  mod_perform_other_historic_activities: [mod_perform_other_historic_activity!]!
+
+  """
+  This returns section list which is referencing elements in a specific activity
+  """
+  mod_perform_activity_deletion_validation(
+    input: mod_perform_activity_deletion_validation_input!
+  ): mod_perform_deletion_check
+
+  """
+  This returns section list which is referencing elements in a specific section
+  """
+  mod_perform_section_deletion_validation(
+    input: mod_perform_section_deletion_validation_input!
+  ): mod_perform_deletion_check
+
+  """
+  This returns section list which is referencing a specific section element
+  """
+  mod_perform_element_deletion_validation(
+    input: mod_perform_section_element_deletion_validation_input!
+  ): mod_perform_deletion_check
+}
+
+"""
+Create a new element and add it to a section
+
+Deprecated since Totara 14: Use the individual mutation inputs for creating element in section.
+"""
+input mod_perform_create_new_element_input {
+  plugin_name: param_text!
+  title: String!
+  is_required: param_boolean
+  identifier: param_text!
+  data: String
+  sort_order: param_integer!
+  parent: param_integer
+}
+
+"""
+Link to an existing element
+
+Deprecated since Totara 14: Use the individual mutation inputs for creating element in section.
+"""
+input mod_perform_create_link_element_input {
+  element_id: core_id!
+  sort_order: param_integer!
+}
+
+"""
+Update an existing element
+
+Deprecated since Totara 14: Use the individual mutation inputs for updating element in section.
+"""
+input mod_perform_update_element_input {
+  element_id: core_id!
+  title: String!
+  identifier: param_text
+  is_required: param_boolean
+  data: String! # We cannot use param_text here as it would do some cleaning
+}
+
+"""
+Input type for activating an activity
+"""
+input mod_perform_activate_activity_input {
+  activity_id: core_id!
+}
+
+"""
+Input type for cloning an activity
+"""
+input mod_perform_clone_activity_input {
+  activity_id: core_id!
+}
+
+"""
+Input type for activity deleting validation
+"""
+input mod_perform_activity_deletion_validation_input {
+  activity_id: core_id!
+}
+
+"""
+Input type for section deleting validation
+"""
+input mod_perform_section_deletion_validation_input {
+  section_id: core_id!
+}
+
+"""
+Input type for section element deleting validation
+"""
+input mod_perform_section_element_deletion_validation_input {
+  section_element_id: core_id!
+}
+
+"""
+Mutation return type including a clone activity
+"""
+type mod_perform_clone_activity_result {
+  activity: mod_perform_activity!
+}
+
+"""
+Mutation return type including an activity
+"""
+type mod_perform_activate_activity_result {
+  activity: mod_perform_activity!
+}
+
+"""
+Mutation return type including an activity
+"""
+type mod_perform_activity_result {
+  activity: mod_perform_activity!
+}
+
+extend type Mutation {
+  """
+  Create an activity
+  """
+  mod_perform_create_activity(
+    name: String!
+    description: String
+    type: core_id!
+  ): mod_perform_activity_result!
+
+  """
+  Update an activity
+  """
+  mod_perform_update_activity(
+    activity_id: core_id!
+    name: String!
+    description: String
+    type_id: core_id
+    anonymous_responses: param_boolean
+    visibility_condition: param_integer
+    """
+    Deprecated since Totara 16
+    Use the mod_perform_update_manual_relationship_selectors mutation instead
+    """
+    relationships: [mod_perform_activity_manual_relationship_selection_input!]
+  ): mod_perform_activity_result!
+
+  """
+  Activate an activity
+  """
+  mod_perform_activate_activity(
+    input: mod_perform_activate_activity_input!
+  ): mod_perform_activate_activity_result!
+
+  """
+  Clone an activity
+  """
+  mod_perform_clone_activity(
+    input: mod_perform_clone_activity_input!
+  ): mod_perform_clone_activity_result!
+
+  """
+  Delete an activity
+  """
+  mod_perform_delete_activity(
+    input: mod_perform_delete_activity_input!
+  ): Boolean!
+
+  """
+  Update an activity setting: close on completion.
+  """
+  mod_perform_toggle_activity_close_on_completion_setting(
+    input: toggle_activity_setting!
+  ): mod_perform_activity!
+    @deprecated(
+      reason: "Use mod_perform_update_activity_workflow_settings instead"
+    )
+
+  """
+  Close existing subject instances in an activity
+  """
+  mod_perform_close_activity_subject_instances(
+    input: mod_perform_close_activity_subject_instances_input!
+  ): Boolean!
+
+  """
+  Update an activities workflow settings
+  """
+  mod_perform_update_activity_workflow_settings(
+    input: workflow_settings
+  ): mod_perform_activity
+
+  """
+  Set perform_sync_participant_instance_creation and perform_sync_participant_instance_closure per activity
+  """
+  mod_perform_override_global_participation_settings(
+    input: mod_perform_override_global_participation_settings_input!
+  ): Boolean!
+}

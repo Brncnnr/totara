@@ -1,0 +1,12 @@
+query mod_approval_application_form_schema(
+  $input: mod_approval_application_input!
+  $full_schema: Boolean
+) {
+  mod_approval_application_form_schema(
+    input: $input
+    full_schema: $full_schema
+  ) {
+    form_schema
+    form_data
+  }
+}

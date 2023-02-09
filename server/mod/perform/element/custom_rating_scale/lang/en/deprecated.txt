@@ -1,0 +1,3 @@
+question_title,performelement_custom_rating_scale
+required,performelement_custom_rating_scale
+no_response_submitted,performelement_custom_rating_scale

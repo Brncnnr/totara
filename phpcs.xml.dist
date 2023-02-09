@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <description>Totara Code Sniffer configuration. If you want to modify your local code sniffer configuration copy this file to phpcs.xml and make your changes there.</description>
+
+    <!--
+        Run against the Totara ruleset
+        Install from: https://github.com/totara/code-sniffer
+        Make sure phpcs -i shows that the "Totara" standard is available
+    -->
+    <rule ref="Totara"/>
+
+    <!-- If the PHPCompatibility rules are checked we use this to determine the versions -->
+    <config name="testVersion" value="7.2-"/>
+
+    <!-- We do not want to check the composer and npm folders -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+
+</ruleset>

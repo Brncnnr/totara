@@ -1,0 +1,146 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_core
+}}
+{{!
+
+    @template totara_competency/lists_rows
+
+    This template generates the rows for a list
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-list-actionTrigger: string, states type of action on click
+    * data-tw-list-expandTrigger: Trigger for expanding row
+    * data-tw-list-extraData: Any additional data to be passed with events
+    * data-tw-list-hierarchyTrigger: Trigger for selecting child list
+    * data-tw-list-row: Holds the row ID
+    * data-tw-list-rowSelect: Target for selecting row
+    * data-tw-list-selectAll: Trigger for selecting all
+
+    Context variables required for this template:
+    * hierarchyEnabled: Bool, has hierarchy structure
+    * noResultsText: String, text for no results
+    * rows: list of row data
+    * rows -> actions: context data for action buttons
+    * rows -> actions -> disabled: bool, current actions is disabled
+    * rows -> actions -> event_key: string, unique key for event
+    * rows -> actions -> hidden: bool, current actions is hidden
+    * rows -> columns: list of column data for row
+    * rows -> columns -> active: bool, state of row selection
+    * rows -> columns -> disabled: bool, is row disabled?
+    * rows -> columns -> expand_trigger: bool, Is the trigger for expanding row
+    * rows -> columns -> extra_data: string, Any additional data to be passed with events
+    * rows -> columns -> id: int, unique ID for row
+    * rows -> columns -> label: string, column heading
+    * rows -> columns -> value: string, column text
+    * rows -> columns -> width: string, predefined size
+    * rows -> expandable: bool, can be expanded
+    * rows -> has_children: bool, has child nodes
+    * rows -> row_header: bool, is row a header row
+}}
+
+{{! Empty list output }}
+{{^rows.0}}
+<div class="tw-list__empty">
+    {{#noResultsText}}{{noResultsText}}{{/noResultsText}}
+    {{^noResultsText}}{{#str}}noitems, totara_core{{/str}}{{/noResultsText}}
+</div>
+{{/rows.0}}
+
+{{! List heading }}
+{{#rows.0}}{{#row_header}}
+<div class="tw-list__row tw-list__row_header">
+    {{#select_enabled}}
+    <div class="tw-list__cell tw-list__cell_select">
+        <label class="tw-list__cell_select_label" title="{{#str}}selectallpageitems, totara_core{{/str}}">
+            <input type="checkbox" aria-label="{{#str}}selectallpageitems, totara_core{{/str}}" name="tw-list__selectAll"
+            class="tw-list__cell_select_checkbox" data-tw-list-selectAll="">{{!
+          }}<span class="tw-list__cell_label">{{#str}}selectallpageitems, totara_core{{/str}}</span>
+        </label>
+    </div>
+    {{/select_enabled}}
+
+    {{#columns}}
+    <div class="tw-list__cell{{#width}} tw-list__cell--{{width}}{{/width}}">
+        {{value}}
+    </div>
+    {{/columns}}
+
+    {{#has_actions}}
+    <div class="tw-list__cell tw-list__cell_action tw-list__cell--sm"></div>
+    {{/has_actions}}
+
+    {{#hierarchyEnabled}}
+    <div class="tw-list__cell tw-list__cell_hierarchy"></div>
+    {{/hierarchyEnabled}}
+</div>
+{{/row_header}}{{/rows.0}}
+
+{{! List rows) }}
+{{#rows}}
+<div class="tw-list__row {{#active}}tw-list__row_active{{/active}} {{#disabled}}tw-list__row_disabled{{/disabled}}" {{#select_enabled}}aria-selected="{{#active}}true{{/active}}{{^active}}false{{/active}}"{{/select_enabled}}
+data-tw-list-row="{{id}}" data-tw-list-extraData="{{extra_data}}">
+    {{#select_enabled}}
+    <div class="tw-list__cell tw-list__cell_select">
+        <label class="tw-list__cell_select_label {{#disabled}}tw-list__cell_select_label_disabled{{/disabled}}">
+            <input type="checkbox" class="tw-list__cell_select_checkbox" aria-label="{{#str}}select, core{{/str}} {{#columns}}{{value}} {{/columns}}" name="tw-list__select_{{id}}"
+            data-tw-list-rowSelect="" {{#active}}checked="checked"{{/active}} {{#disabled}}disabled="disabled"{{/disabled}}>
+        </label>
+    </div>
+    {{/select_enabled}}
+    {{#columns}}
+    <div class="tw-list__cell{{#width}} tw-list__cell--{{width}}{{/width}}">
+        {{#expandable}}{{#expand_trigger}}{{!
+      }}<a href="#" role="button" class="tw-list__row_trigger" data-tw-list-expandTrigger="">{{!
+      }}{{/expand_trigger}}{{/expandable}}
+        {{#label}}<span class="tw-list__cell_label">{{label}}</span>{{/label}}
+        {{#column_template}}{{> &&column_template }}{{/column_template}}
+        {{^column_template}}{{value}}{{/column_template}}
+        {{#expandable}}{{#expand_trigger}}{{!
+      }}</a>{{!
+      }}{{/expand_trigger}}{{/expandable}}
+    </div>
+    {{/columns}}
+
+    {{#has_actions}}
+        <div class="tw-list__cell tw-list__cell_action tw-list__cell--sm">
+            {{#actions.0}}{{#actions}}{{!
+          }}<a href="#" role="button" class="tw-list__cell_action_btn {{#disabled}}tw-list__cell_action_btn_disabled{{/disabled}}
+            {{#hidden}}tw-list__cell_action_btn_hidden{{/hidden}}" data-tw-list-actionTrigger="{{event_key}}">
+                {{{icon}}}
+            </a>{{!
+          }}{{/actions}}{{/actions.0}}
+        </div>
+    {{/has_actions}}
+
+    {{#hierarchyEnabled}}
+    <div class="tw-list__cell tw-list__cell_hierarchy">
+        {{#has_children}}
+        <a href="#" role="button" class="tw-list__cell_hierarchy_btn" data-tw-list-hierarchyTrigger="">
+            {{#flex_icon}}subitems, viewchildren, totara_core{{/flex_icon}}
+        </a>
+        {{/has_children}}
+    </div>
+    {{/hierarchyEnabled}}
+</div>
+{{/rows}}

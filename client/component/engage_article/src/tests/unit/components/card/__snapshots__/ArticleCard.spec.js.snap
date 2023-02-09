@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ArticleCard Checks snapshot 1`] = `
+<basecard-stub
+  class="tui-engageArticleCard"
+  data-card-unique="1"
+  href=""
+>
+  <imageheader-stub
+    class="tui-engageArticleCard__imageheader"
+  >
+    <div
+      class="tui-engageArticleCard__image"
+      style="background-image: url(https://example.com/image.jpg});"
+    >
+      <span
+        class="sr-only"
+      >
+        Example image
+      </span>
+    </div>
+     
+    <div
+      class="tui-engageArticleCard__icons"
+    >
+      <buttonicon-stub
+        arialabel="[addtoplaylist, engage_article - undefined]"
+        styleclass="[object Object]"
+        type="button"
+      >
+        <addtolisticon-stub
+          size="200"
+        />
+      </buttonicon-stub>
+      <buttonicon-stub
+        arialabel="[share, totara_engage - undefined]"
+        styleclass="[object Object]"
+        type="button"
+      >
+        <shareicon-stub
+          size="200"
+        />
+      </buttonicon-stub>
+      <buttonicon-stub
+        arialabel="[more, totara_engage - undefined]"
+        styleclass="[object Object]"
+        type="button"
+      >
+        <moreicon-stub
+          size="200"
+        />
+      </buttonicon-stub>
+    </div>
+  </imageheader-stub>
+   
+  <cardheader-stub
+    class="tui-engageArticleCard__header"
+  >
+    <div
+      class="tui-engageArticleCard__bar"
+    >
+      <bookmarkbutton-stub
+        class="tui-engageArticleCard__bookmark"
+        size="300"
+        small="true"
+        transparent="true"
+      />
+    </div>
+     
+    <a
+      class="tui-engageArticleCard__link"
+      href=""
+    >
+      <h3
+        class="tui-engageArticleCard__title"
+        id="article-1"
+      >
+        
+        Hello world resource
+      
+      </h3>
+    </a>
+     
+    <!---->
+  </cardheader-stub>
+   
+  <div
+    class="tui-engageArticleCard__footer"
+  >
+    <staticon-stub
+      statnumber="15"
+      title="[numberoflikes, totara_engage - 15]"
+    >
+      <svgicongenerated-stub
+        size="200"
+        title="[numberoflikes, totara_engage - 15]"
+      />
+    </staticon-stub>
+    <staticon-stub
+      statnumber="1"
+      title="[numberofcomments, totara_engage - 1]"
+    >
+      <svgicongenerated-stub
+        size="200"
+        title="[numberofcomments, totara_engage - 1]"
+      />
+    </staticon-stub>
+    <staticon-stub
+      statnumber="10"
+      title="[numberofshares, totara_engage - 10]"
+    >
+      <svgicongenerated-stub
+        size="200"
+        title="[numberofshares, totara_engage - 10]"
+      />
+    </staticon-stub>
+    <staticon-stub
+      statnumber="5"
+      title="[numberwithinplaylist, engage_article - 5]"
+    >
+      <svgicongenerated-stub
+        size="200"
+        title="[numberwithinplaylist, engage_article - 5]"
+      />
+    </staticon-stub>
+     
+    <accessicon-stub
+      access="PUBLIC"
+      coloring="true"
+      customclass="tui-engageArticleCard__visibilityIcon"
+      size="300"
+    />
+  </div>
+</basecard-stub>
+`;

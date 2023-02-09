@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/perform/db" VERSION="20220303" COMMENT="XMLDB file for perform module"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="perform_type" COMMENT="Perform activity types">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="is_system" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="1=read only, 0=user defined"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="perform" COMMENT="Each record is one performance activity">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="type_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="perform status"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="perform activity description"/>
+        <FIELD NAME="anonymous_responses" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1=responses are anonymous, 0=responses are not anonymous"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="type_id" TYPE="foreign" FIELDS="type_id" REFTABLE="perform_type" REFFIELDS="id" ONDELETE="restrict"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_setting" COMMENT="Each record holds the settings for one performance activity">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activity_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="value" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="activity_id" TYPE="foreign" FIELDS="activity_id" REFTABLE="perform" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="activity_setting_name" UNIQUE="true" FIELDS="activity_id, name"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_section" COMMENT="Performance activities are split into one or more sections">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activity_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="activity_id" TYPE="foreign" FIELDS="activity_id" REFTABLE="perform" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="sort_order" UNIQUE="false" FIELDS="sort_order"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_section_relationship" COMMENT="Defines a relationship used in a specific section">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="section_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="core_relationship_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="can_view" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="can_answer" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="section_id" TYPE="foreign" FIELDS="section_id" REFTABLE="perform_section" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="core_relationship_id" TYPE="foreign" FIELDS="core_relationship_id" REFTABLE="totara_core_relationship" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="can_view" UNIQUE="false" FIELDS="can_view"/>
+        <INDEX NAME="can_answer" UNIQUE="false" FIELDS="can_answer"/>
+        <INDEX NAME="section_core_relationship" UNIQUE="true" FIELDS="section_id, core_relationship_id" COMMENT="Each available relationship can only be used once per section"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_element" COMMENT="An element used within a section of a performance activity">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="context_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The context which owns this element, either a perform activity or a category/tenant"/>
+        <FIELD NAME="parent" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Parent of the element."/>
+        <FIELD NAME="plugin_name" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false" COMMENT="Name of plugin that manages element of this type"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="1024" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="identifier_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Optional identifier used for reporting purposes"/>
+        <FIELD NAME="is_required" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="1=required, 0=optional, null=irrelevant"/>
+        <FIELD NAME="data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="configuration data, format specific to element plugin"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="identifier_id" TYPE="foreign" FIELDS="identifier_id" REFTABLE="perform_element_identifier" REFFIELDS="id"/>
+        <KEY NAME="parent" TYPE="foreign" FIELDS="parent" REFTABLE="perform_element" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="parent_sort_order" UNIQUE="false" FIELDS="parent, sort_order"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_element_identifier" COMMENT="Table containing identifier strings that can be used to tag elements">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="identifier" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="String name of this identifier"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="identifier" UNIQUE="true" FIELDS="identifier" COMMENT="String name of this identifier"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_section_element" COMMENT="Table to connect a specific question to a specific performance activity section">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="section_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="element_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="section_id" TYPE="foreign" FIELDS="section_id" REFTABLE="perform_section" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="element_id" TYPE="foreign" FIELDS="element_id" REFTABLE="perform_element" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="section_sort_order" UNIQUE="true" FIELDS="section_id, sort_order"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_track" COMMENT="Each performance activity can have multiple tracks, each with their own independent assignments and config">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activity_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="subject_instance_generation" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The method used when generating subject instances"/>
+        <FIELD NAME="schedule_is_open" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="schedule_is_fixed" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="schedule_fixed_from" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="schedule_fixed_to" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="schedule_fixed_timezone" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="schedule_dynamic_from" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="schedule_dynamic_to" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="schedule_dynamic_source" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="schedule_use_anniversary" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="schedule_needs_sync" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Flag whether schedule changes should be synchronised on the next schedule sync task run."/>
+        <FIELD NAME="due_date_is_enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="due_date_is_fixed" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="due_date_fixed" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="due_date_fixed_timezone" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="due_date_offset" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="repeating_is_enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="repeating_trigger" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="repeating_type" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="Deprecated since Totara 16, use repeating_trigger instead"/>
+        <FIELD NAME="repeating_offset" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="repeating_is_limited" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="repeating_limit" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="activity_id" TYPE="foreign" FIELDS="activity_id" REFTABLE="perform" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="status" UNIQUE="false" FIELDS="status"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_track_assignment" COMMENT="Mapping of tracks to user group assignments">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="track_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="type" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_group_type" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_group_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="created_by" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="expand" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Flag whether the assignment should be expanded on the next expand task run"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="track_id" TYPE="foreign" FIELDS="track_id" REFTABLE="perform_track" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user_group_type" UNIQUE="false" FIELDS="user_group_type"/>
+        <INDEX NAME="user_group_id" UNIQUE="false" FIELDS="user_group_id"/>
+        <INDEX NAME="user_group_type_user_group_id" UNIQUE="false" FIELDS="user_group_type, user_group_id" COMMENT="These two fields will commonly be queried together"/>
+        <INDEX NAME="track_id_type_group_type_group_id" UNIQUE="true" FIELDS="track_id, type, user_group_type, user_group_id" COMMENT="For a given track and type, each unique group instance should only be assigned once."/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_track_user_assignment" COMMENT="Individual track assignments for real users">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="track_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="subject_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Assigned user id"/>
+        <FIELD NAME="period_start_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="period_end_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="deleted" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="Flag for soft-delete"/>
+        <FIELD NAME="job_assignment_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Related job assignment id"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="track_id" TYPE="foreign" FIELDS="track_id" REFTABLE="perform_track" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="subject_user_id" TYPE="foreign" FIELDS="subject_user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="track_id_subject_user_id" UNIQUE="false" FIELDS="track_id, subject_user_id" COMMENT="Used for look up in the expand task"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_track_user_assignment_via" COMMENT="This table links the assignment with the user assignment table">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="track_assignment_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="track_user_assignment_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="track_assignment_id" TYPE="foreign" FIELDS="track_assignment_id" REFTABLE="perform_track_assignment" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="track_user_assignment_id" TYPE="foreign" FIELDS="track_user_assignment_id" REFTABLE="perform_track_user_assignment" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="unique_ids" UNIQUE="true" FIELDS="track_assignment_id, track_user_assignment_id" COMMENT="Each user assignment can be linked to one assignment only once"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_subject_instance" COMMENT="Represents a single activity for one subject user">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="track_user_assignment_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="subject_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="progress" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Progress status of the subject instance. 0 - not_started, 10 - in_progress, 20 - complete"/>
+        <FIELD NAME="availability" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Availability status of the subject instance. 0 - open, 10 - closed"/>
+        <FIELD NAME="job_assignment_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Related job assignment id (copied from track user assignment)"/>
+        <FIELD NAME="due_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="0=unused, 1=default when new subject instance is active, 2=pending/waiting for manual selection"/>
+        <FIELD NAME="completed_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Recording the time when progress status went to complete."/>
+        <FIELD NAME="closed_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Recording the time when availability became closed."/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="task_id" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false" COMMENT="This field is used to support bulk creation of instance via scheduled task"/>
+        <FIELD NAME="needs_sync" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Flag indicating that relationship synchronisation is needed"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="track_user_assignment_id" TYPE="foreign" FIELDS="track_user_assignment_id" REFTABLE="perform_track_user_assignment" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="subject_user_id" TYPE="foreign" FIELDS="subject_user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="due_date" UNIQUE="false" FIELDS="due_date"/>
+        <INDEX NAME="task_id" UNIQUE="false" FIELDS="task_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_subject_static_instance" COMMENT="Represents a single job assignment at the time of subject creation">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="subject_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="job_assignment_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Job assignment id at time of creation"/>
+        <FIELD NAME="manager_job_assignment_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Manager job assignment id at time of creation"/>
+        <FIELD NAME="position_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Position id at time of creation"/>
+        <FIELD NAME="organisation_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Organisation id at time of creation"/>
+        <FIELD NAME="appraiser_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Appraiser id at time of creation"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="subject_instance_fk" TYPE="foreign" FIELDS="subject_instance_id" REFTABLE="perform_subject_instance" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="job_assignment_fk" TYPE="foreign" FIELDS="job_assignment_id" REFTABLE="job_assignment" REFFIELDS="id"/>
+        <KEY NAME="manager_job_assignment_fk" TYPE="foreign" FIELDS="manager_job_assignment_id" REFTABLE="job_assignment" REFFIELDS="id"/>
+        <KEY NAME="position_fk" TYPE="foreign" FIELDS="position_id" REFTABLE="pos" REFFIELDS="id"/>
+        <KEY NAME="organisation_fk" TYPE="foreign" FIELDS="organisation_id" REFTABLE="org" REFFIELDS="id"/>
+        <KEY NAME="appraiser_fk" TYPE="foreign" FIELDS="appraiser_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="perform_participant_instance" COMMENT="Each participant instance represents a form to be completed by a a single participant">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="core_relationship_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="participant_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Identifies the actual user who is participating; links to either 'user' or 'perform_participant_external' table depending on participant_source"/>
+        <FIELD NAME="participant_source" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="Whether this is an internal participant. 0=internal, 1=external"/>
+        <FIELD NAME="subject_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="progress" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Status of the participant instance. 0 - not_started, 10 - in_progress, 20 - complete"/>
+        <FIELD NAME="availability" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Availability status of the participant instance. 0 - open, 10 - closed"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="task_id" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false" COMMENT="This field is used to support bulk creation of instance via scheduled task"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="core_relationship_id" TYPE="foreign" FIELDS="core_relationship_id" REFTABLE="totara_core_relationship" REFFIELDS="id"/>
+        <KEY NAME="subject_instance_id" TYPE="foreign" FIELDS="subject_instance_id" REFTABLE="perform_subject_instance" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="participant_id" UNIQUE="false" FIELDS="participant_id"/>
+        <INDEX NAME="task_id" UNIQUE="false" FIELDS="task_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_participant_section" COMMENT="Represents progress on a section for a single participant">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="section_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="participant_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="progress" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Progress status of the participant section. 0 - not_started, 10 - in_progress, 20 - complete"/>
+        <FIELD NAME="availability" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Availability status of the participant section. 0 - open, 10 - closed"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="section_id" TYPE="foreign" FIELDS="section_id" REFTABLE="perform_section" REFFIELDS="id" ONDELETE="restrict"/>
+        <KEY NAME="participant_instance_id" TYPE="foreign" FIELDS="participant_instance_id" REFTABLE="perform_participant_instance" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="section_participant_instance" UNIQUE="true" FIELDS="section_id, participant_instance_id" COMMENT="Each participant instance can only have one record per section"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_element_response" COMMENT="Contains a single response to a single performance activity element">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="section_element_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="participant_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="response_data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="response data, format specific to element type"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="section_element_id" TYPE="foreign" FIELDS="section_element_id" REFTABLE="perform_section_element" REFFIELDS="id"/>
+        <KEY NAME="participant_instance_id" TYPE="foreign" FIELDS="participant_instance_id" REFTABLE="perform_participant_instance" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="element_participant_instance" UNIQUE="true" FIELDS="section_element_id, participant_instance_id" COMMENT="Each participant instance should only respond to an element once"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_notification" COMMENT="Represents a single notification setting">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activity_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="class_key" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="triggers" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="last_run_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="activity_fk" TYPE="foreign" FIELDS="activity_id" REFTABLE="perform" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="notification_ix" UNIQUE="true" FIELDS="activity_id, class_key"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_notification_recipient" COMMENT="Represents a notification setting recipient">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="notification_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="core_relationship_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="notification_fk" TYPE="foreign" FIELDS="notification_id" REFTABLE="perform_notification" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="core_relationship_fk" TYPE="foreign" FIELDS="core_relationship_id" REFTABLE="totara_core_relationship" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="notification_recipient_ix" UNIQUE="true" FIELDS="notification_id, core_relationship_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_manual_relation_selection" COMMENT="Indicates the roles who need to manually choose participant roles">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activity_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="manual_relationship_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="manual participant role to be selected"/>
+        <FIELD NAME="selector_relationship_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="role that will be allowed to pick the actual particpant"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="activity_id" TYPE="foreign" FIELDS="activity_id" REFTABLE="perform" REFFIELDS="id"/>
+        <KEY NAME="manual_relationship_id" TYPE="foreign" FIELDS="manual_relationship_id" REFTABLE="totara_core_relationship" REFFIELDS="id"/>
+        <KEY NAME="selector_relationship_id" TYPE="foreign" FIELDS="selector_relationship_id" REFTABLE="totara_core_relationship" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="participant_role_selector" UNIQUE="true" FIELDS="activity_id, manual_relationship_id, selector_relationship_id" COMMENT="Ensure one selector per participant role"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_manual_relation_selection_progress" COMMENT="Indicates how the choosing of manually participant roles has progressed">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="subject_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="manual_relation_selection_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="Whether manual participant selection is completed for this subject/participant/selector; 0 = no, 1 = yes"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="subject_instance_id" TYPE="foreign" FIELDS="subject_instance_id" REFTABLE="perform_subject_instance" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="manual_relation_selection_id" TYPE="foreign" FIELDS="manual_relation_selection_id" REFTABLE="perform_manual_relation_selection" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="subject_participant_role_selector" UNIQUE="true" FIELDS="subject_instance_id, manual_relation_selection_id" COMMENT="Ensure one participant/selector per subject instance"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_manual_relation_selector" COMMENT="Represents the actual users who will select the participants for this instance">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="manual_relation_select_progress_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="notified_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="manual_relation_select_progress_id" TYPE="foreign" FIELDS="manual_relation_select_progress_id" REFTABLE="perform_manual_relation_selection_progress" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_id" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="perform_subject_instance_manual_participant" COMMENT="Manually selected participants for each subject instance">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="subject_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="core_relationship_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="This filled for internal users; null for external users"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="This filled for external users; null for internal users"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="This filled for external users; null for internal users"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created_by" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="subject_instance_id" TYPE="foreign" FIELDS="subject_instance_id" REFTABLE="perform_subject_instance" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="core_relationship_id" TYPE="foreign" FIELDS="core_relationship_id" REFTABLE="totara_core_relationship" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_id" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="created_by" TYPE="foreign" FIELDS="created_by" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="perform_participant_external" COMMENT="Details of an external participant ie a non system user">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="token" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="token" UNIQUE="true" FIELDS="token"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_section_element_reference" COMMENT="Stores references between elements and section elements">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="source_section_element_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="section element id"/>
+        <FIELD NAME="referencing_element_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="the referencing element id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="referencing_element_id" TYPE="foreign" FIELDS="referencing_element_id" REFTABLE="perform_element" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="source_referencing_pair" UNIQUE="true" FIELDS="source_section_element_id, referencing_element_id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

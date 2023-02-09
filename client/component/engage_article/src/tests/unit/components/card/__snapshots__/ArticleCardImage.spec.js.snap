@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ArticleCardImage Checks snapshot 1`] = `
+<div
+  class="tui-engageArticleImage"
+>
+  <img
+    alt="[image_alt, engage_article - Hello world ]"
+    class="tui-engageArticleImage__img"
+    src="http://example.com/image.png"
+  />
+</div>
+`;

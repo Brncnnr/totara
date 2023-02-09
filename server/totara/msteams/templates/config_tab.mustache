@@ -1,0 +1,80 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package totara_msteams
+}}
+
+{{!
+    @template totara_msteams/config_tab
+
+    This template generates a configurable tab page.
+
+    Context variables required for this template:
+    * nav: the template data of logout link
+    * name: the template data of totara_msteams/input used by the tab name field
+    * search: the template data of totara_msteams/input used by the search field
+    * list: the template data of totara_msteams/listbox used by the list box
+
+    Example content (json):
+    {
+        "nav": {
+            "logouthref": "'https://localhost/login/logout.php?sesskey=sesskey&redirecturl=https://localhost/server/totara/msteams/tabs/catalog.php",
+            "logouttitle": "Login as user"
+            "logouttext": "Sign out"
+        }
+        "name": {
+            "id": "msteams-123",
+            "name": "name",
+            "label": "Enter name",
+            "errortext": "Name is required",
+            "placeholder": "",
+            "required": true,
+            "autofocus": false
+        },
+        "search": {
+            "id": "msteams-234",
+            "name": "search",
+            "label": "Search catalogue",
+            "placeholder": "Search",
+            "required": false,
+            "autofocus": true
+        },
+        "list": {
+            "idlist": "msteams-345",
+            "idlabel": "msteams-456",
+            "label": "Select item",
+            "spinner": {
+                "fullscreen": false,
+                "label": "Loading..."
+            }
+        }
+    }
+}}
+
+<div class="totara_msteams__config totara_msteams_form">
+    {{#nav}}
+      <div class="totara_msteams__config_logout">
+          <span class="totara_msteams__config_logout__title">{{logouttitle}}</span>
+          <a class="totara_msteams__config_logout__link" href="{{logouthref}}">{{logouttext}}</a>
+      </div>
+    {{/nav}}
+    {{#search}}{{> totara_msteams/input }}{{/search}}
+    {{#list}}{{> totara_msteams/listbox }}{{/list}}
+    {{#name}}{{> totara_msteams/input }}{{/name}}
+</div>

@@ -1,0 +1,23 @@
+query totara_playlist_playlist_links {
+  own_playlists: totara_playlist_playlists(
+    # Default to unlimited
+    cursor: "eyJsaW1pdCI6MCwicGFnZSI6MX0="
+    source: OWN
+  ) {
+    __typename
+    id
+    name(format: PLAIN)
+    url(library_view: true)
+  }
+
+  saved_playlists: totara_playlist_playlists(
+    # Default to unlimited
+    cursor: "eyJsaW1pdCI6MCwicGFnZSI6MX0="
+    source: BOOKMARKED
+  ) {
+    __typename
+    id
+    name(format: PLAIN)
+    url(library_view: true)
+  }
+}

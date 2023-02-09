@@ -1,0 +1,22 @@
+query totara_evidence_user_evidence_items(
+  $input: totara_evidence_user_evidence_items_input!
+) {
+  evidence: totara_evidence_user_evidence_items(input: $input) {
+    items {
+      id
+      name
+      type {
+        id
+        name
+      }
+      created_at(format: DATELONG)
+      fields {
+        label
+        type
+        content
+      }
+    }
+    total
+    next_cursor
+  }
+}

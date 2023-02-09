@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<libraries>
+  <library>
+    <location>tui/styles/bootstrap3</location>
+    <name>Bootstrap</name>
+    <license>MIT</license>
+    <version>3.4.1</version>
+    <repository>https://github.com/twbs/bootstrap/tree/v3.4.1</repository>
+  </library>
+  <library>
+    <location>amd/src/bootstrap.js</location>
+    <name>Bootstrap</name>
+    <license>MIT</license>
+    <version>3.4.1</version>
+    <repository>https://github.com/twbs/bootstrap/tree/v3.4.1</repository>
+  </library>
+  <library>
+    <location>server/theme/legacy/scss/blocks/totara_featured_links/slick</location>
+    <name>Slick</name>
+    <license>MIT</license>
+    <version>1.8.0</version>
+    <repository>https://github.com/kenwheeler/slick</repository>
+  </library>
+  <library>
+    <location>tui/styles/fa</location>
+    <name>Font Awesome CSS</name>
+    <license>MIT</license>
+    <version>4.7.0</version>
+  </library>
+  <library>
+    <location>scss/totara/form/date_polyfill.scss</location>
+    <name>jQuery Timepicker Addon</name>
+    <license>MIT</license>
+    <version>1.6.1</version>
+    <repository>https://github.com/trentrichardson/jQuery-Timepicker-Addon</repository>
+  </library>
+</libraries>

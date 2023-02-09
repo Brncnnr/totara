@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage InlineEditing Checks snapshot 1`] = `
+<div
+  class="tui-inlineEditing tui-inlineEditing--updateAble"
+>
+   
+  <buttonicon-stub
+    arialabel="edit, core"
+    class="tui-inlineEditing__btn"
+    styleclass="[object Object]"
+    type="button"
+  >
+    <editicon-stub
+      size="200"
+    />
+  </buttonicon-stub>
+</div>
+`;

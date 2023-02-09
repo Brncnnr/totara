@@ -1,0 +1,170 @@
+"""
+Position item object.
+
+The position structure defines the job roles that a company has defined.
+"""
+type totara_hierarchy_position implements totara_hierarchy_item {
+  """
+  Internal database id of the position.
+  """
+  id: core_id!
+  """
+  Full name of the position.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the position across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the position. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the position.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    Please note: RAW format is only available to users with the capability 'totara/hierarchy:updateorganisation' in the
+    system context, as its purpose is for editing.
+    """
+    format: core_format = HTML
+  ): String
+  """
+  The internal database id of the position framework this position belongs to.
+  """
+  frameworkid: core_id
+  """
+  The position framework this position belongs to.
+  """
+  framework: totara_hierarchy_position_framework
+  """
+  An ordered list of parent database ids for this position, indicating the hierarchy of parent items. Includes the
+  current item and separated by forward slashes, e.g. item with id=6 might be: /1/4/6
+  This is a computed value.
+  """
+  path: String!
+  """
+  Flag determining whether the position is visible to users or not.
+  """
+  visible: Boolean!
+  """
+  The id of this position's immediate parent in the framework hierarchy. Set to 0 if this is a top-level position.
+  """
+  parentid: core_id
+  """
+  The parent position in the hierarchy. Null if a top-level item.
+  """
+  parent: totara_hierarchy_position
+  """
+  Collection of positions that are immediately below this one in the framework hierarchy. Empty if this position
+  has no children.
+  """
+  children: [totara_hierarchy_position!]!
+  """
+  The id of the position type, or 0 if this is a generic position.
+  """
+  typeid: core_id
+  """
+  Position type object.
+  """
+  type: totara_hierarchy_position_type
+}
+
+"""
+Position framework object. A position framework is a collection of positions arranged in a tree.
+"""
+type totara_hierarchy_position_framework implements totara_hierarchy_framework {
+  """
+  Internal database id of the position framework.
+  """
+  id: core_id!
+  """
+  Full name of the position framework.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the position framework across multiple systems.
+  """
+  idnumber: String
+  """
+  Short name of the position framework, only used if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the position framework.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+  """
+  Positions that belong to this position framework.
+  """
+  positions: [totara_hierarchy_position!]!
+}
+
+"""
+Position type object. A position type is a user-defined classification which can be assigned to positions
+leading to certain custom fields being available on that position.
+"""
+type totara_hierarchy_position_type implements totara_hierarchy_type {
+  """
+  Internal database id of the position type.
+  """
+  id: core_id!
+  """
+  Position type full name.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the position type across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the position type. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the position type.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+}

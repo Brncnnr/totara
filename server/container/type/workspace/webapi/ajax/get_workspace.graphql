@@ -1,0 +1,61 @@
+query container_workspace_get_workspace(
+  $id: param_integer!
+  $theme: param_component
+) {
+  workspace: container_workspace_workspace(id: $id) {
+    __typename
+    id
+    name(format: PLAIN)
+    description(format: HTML)
+    description_format
+    time_description
+    image(theme: $theme)
+    total_members
+    total_audiences
+    total_member_requests
+    total_discussions
+    context_id
+    owner {
+      __typename
+      fullname
+      suspended
+    }
+    interactor {
+      __typename
+      can_delete
+      can_update
+      can_add_members
+      can_invite
+      can_join
+      can_leave
+      cannot_leave_reason
+      joined
+      workspaces_admin
+      own
+      can_request_to_join
+      has_requested_to_join
+      can_view
+      can_view_discussions
+      can_create_discussions
+      can_view_library
+      can_view_members
+      can_view_member_requests
+      can_share_resources
+      can_unshare_resources
+      can_transfer_ownership
+      can_add_audiences
+      muted
+      has_seen
+      user {
+        __typename
+        id
+        # These are used within post discussion form.
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    url
+    access
+  }
+}

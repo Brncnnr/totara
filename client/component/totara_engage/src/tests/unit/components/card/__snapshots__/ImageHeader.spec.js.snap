@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ImageHeader Checks snapshot 1`] = `
+<div
+  class="tui-engageImageHeader"
+>
+  <!---->
+   
+</div>
+`;

@@ -1,0 +1,11 @@
+mutation totara_playlist_update_card_order(
+  $id: param_integer!
+  $instanceid: param_integer!
+  $order: param_integer!
+) {
+  cards: totara_playlist_update_order(
+    id: $id
+    instanceid: $instanceid
+    order: $order
+  )
+}

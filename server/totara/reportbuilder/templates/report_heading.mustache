@@ -1,0 +1,74 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Carl Anderson <carl.anderson@totaralearning.com>
+   @package totara_reportbuilder
+}}
+{{!
+    @template totara_reportbuilder/report_heading
+
+    This template generates a report heading
+
+    Classes require for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: true
+    * data-core-autoinitialise-amd: totara_reportbuilder/report
+    * data-report-id: id for the report to update
+
+   Context variables required for this template
+    * canedit: Whether the current user is allowed to edit the title
+    * resultcount: HTML to display the result count
+    * reportid: id for the report
+    * heading: report heading for display
+    * fullname: raw report fullname to be sent to the server
+
+    Example context (json):
+      {
+        "canedit": true,
+        "resultcount": "<p>4 records</p>",
+        "reportid": 1,
+        "heading": "Display Fullname",
+        "fullname": "Display Fullname"
+      }
+ }}
+
+<div data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_reportbuilder/report"
+     data-report-id="{{reportid}}">
+{{#can_edit}}
+    <h2 data-core-autoinitialise="true"
+        data-core-autoinitialise-amd="totara_core/inline-edit"
+        data-inline-edit-allow-empty="false">
+        <span data-inline-edit>
+            {{heading}}
+        </span>
+        <input style="display: none" data-inline-edit-input type="text" value="{{fullname}}">
+        <a href="#" data-inline-edit-control>
+            {{#flex_icon}}edit,editreportttitle,totara_reportbuilder{{/flex_icon}}
+        </a>
+    </h2>
+{{/can_edit}}
+{{^can_edit}}
+    {{! Opt for a much simpler approach if we can't edit the title}}
+    <h2>{{heading}}</h2>
+{{/can_edit}}
+
+        {{{resultcount}}}
+</div>

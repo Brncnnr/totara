@@ -1,0 +1,8 @@
+This files describes API changes for course formats,
+information provided here is intended especially for developers.
+Overview of this plugin type at http://docs.moodle.org/dev/Course_formats
+
+=== 15.0 ===
+
+* Added an optional parameter $execute_hook to format_singleactivity::get_supported_activities()
+  to allow/prevent unsupported activities to be shown.

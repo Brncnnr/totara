@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="230px" height="120px" viewBox="0 0 230 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>report_tile_image_area</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="230" height="120"></rect>
+    </defs>
+    <g id="report_tile_image_area" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="img-area">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#F0F0F0" xlink:href="#path-1"></use>
+            <g id="report" mask="url(#mask-2)">
+                <g transform="translate(117.191341, 78.754329) rotate(-5.000000) translate(-117.191341, -78.754329) translate(16.191341, 24.254329)">
+                    <rect id="Rectangle-Copy-36" fill="#CCCCCC" fill-rule="evenodd" x="189.984779" y="2.34862297" width="12" height="106"></rect>
+                    <rect id="Rectangle-Copy-38" fill="#FFFFFF" fill-rule="evenodd" x="-5.91171556e-12" y="2" width="198" height="106"></rect>
+                    <rect id="Rectangle-Copy-51" fill="#969696" fill-rule="evenodd" x="7.34862297" y="25.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-52" fill="#969696" fill-rule="evenodd" x="7.34862297" y="45.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-53" fill="#969696" fill-rule="evenodd" x="7.34862297" y="65.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-54" fill="#969696" fill-rule="evenodd" x="7.34862297" y="85.0152212" width="72" height="2"></rect>
+                    <rect id="Rectangle-Copy-48" fill="#969696" fill-rule="evenodd" x="6.82568851" y="9.9923894" width="72" height="8"></rect>
+                    <path d="M10.4357787,32.0190265 L18.4357787,32.0190265 L18.4357787,40.0190265 L10.4357787,40.0190265 L10.4357787,32.0190265 Z M12.4357787,34.0190265 L12.4357787,38.0190265 L16.4357787,38.0190265 L16.4357787,34.0190265 L12.4357787,34.0190265 Z" id="Rectangle-Copy-55" fill="#969696" fill-rule="nonzero"></path>
+                    <path d="M10.4357787,52.0190265 L18.4357787,52.0190265 L18.4357787,60.0190265 L10.4357787,60.0190265 L10.4357787,52.0190265 Z M12.4357787,54.0190265 L12.4357787,58.0190265 L16.4357787,58.0190265 L16.4357787,54.0190265 L12.4357787,54.0190265 Z" id="Rectangle-Copy-56" fill="#969696" fill-rule="nonzero"></path>
+                    <path d="M10.4357787,72.0190265 L18.4357787,72.0190265 L18.4357787,80.0190265 L10.4357787,80.0190265 L10.4357787,72.0190265 Z M12.4357787,74.0190265 L12.4357787,78.0190265 L16.4357787,78.0190265 L16.4357787,74.0190265 L12.4357787,74.0190265 Z" id="Rectangle-Copy-57" fill="#969696" fill-rule="nonzero"></path>
+                    <polygon id="Line-2" fill="#FFFFFF" fill-rule="nonzero" points="197.71582 1.93615815 0.0981204331 0.704098699 0.0918859941 1.70407926 197.709586 2.93613871"></polygon>
+                </g>
+            </g>
+            <path d="M112.40168,30 L112.40168,108.335498 L201,108.335498 L201,112 L109,112 L109,30 L112.40168,30 Z" id="Combined-Shape" fill="#677C9B" opacity="0.5" mask="url(#mask-2)" transform="translate(155.000000, 71.000000) rotate(-6.000000) translate(-155.000000, -71.000000) "></path>
+            <g id="area" mask="url(#mask-2)" fill-rule="nonzero">
+                <g transform="translate(158.125405, 81.537365) rotate(-6.000000) translate(-158.125405, -81.537365) translate(114.625405, 56.537365)">
+                    <path d="M86.3791874,49.4497309 L0.379187379,49.4497309 L0.379187379,23.8497309 C8.0971361,8.91639756 15.6772643,1.44973089 23.119572,1.44973089 C34.2830335,1.44973089 38.3389895,4.61252159 51.2349566,25.4497309 C59.832268,39.3412038 71.5470116,42.5412038 86.3791874,35.0497309 L86.3791874,49.4497309 Z" id="Combined-Shape-Copy" fill="#3869B1"></path>
+                    <path d="M28.8665994,0.237447627 C28.9473447,0.233721406 29.0300921,0.231858296 29.1148415,0.231858296 C40.1766971,0.231858296 44.1957373,3.40876859 56.9743298,24.3390012 C60.5351158,30.1712614 64.2061183,34.3768971 67.9873374,36.9559083 C61.5582018,35.6709478 56.0311993,31.2920526 51.4063299,23.8192225 C40.9002469,6.84357046 36.2613064,1.59848418 28.8665994,0.237447627 Z" id="Combined-Shape" fill="#CCCCCC"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

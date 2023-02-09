@@ -1,0 +1,16 @@
+mutation totara_reportedcontent_create_review(
+  $component: param_component!
+  $area: param_area
+  $item_id: param_integer!
+  $url: param_url!
+) {
+  review: totara_reportedcontent_create_review(
+    component: $component
+    area: $area
+    item_id: $item_id
+    url: $url
+  ) {
+    id
+    success
+  }
+}

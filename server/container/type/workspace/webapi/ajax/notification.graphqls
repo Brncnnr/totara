@@ -1,0 +1,26 @@
+type container_workspace_notification {
+  message: String!
+  type: String!
+}
+
+enum container_workspace_notification_status {
+  ON
+  OFF
+}
+
+extend type Query {
+  """
+  A query to fetch all the site notifications that are related to the workspaces.
+  """
+  container_workspace_notifications: [container_workspace_notification]!
+}
+
+extend type Mutation {
+  """
+  A mutation to turn on/off notifications within a specific workspace.
+  """
+  container_workspace_switch_notification(
+    workspace_id: param_integer!
+    status: container_workspace_notification_status!
+  ): Boolean!
+}

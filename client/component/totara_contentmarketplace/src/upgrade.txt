@@ -1,0 +1,6 @@
+This file describes API changes in /client/component/totara_contentmarketplace,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+* Extended PageLayoutTwoColumn.vue to include an optional prop
+    * Template and CSS changes

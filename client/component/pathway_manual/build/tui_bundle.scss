@@ -1,0 +1,185 @@
+.tui-bulkManualRatingFrameworkGroup {
+  &:not(:last-child) {
+    margin-bottom: var(--gap-7);
+  }
+
+  &__headerWithHelp {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.tui-bulkManualRatingLastRatingBlock {
+  @media (min-width: $tui-screen-xs) {
+    &__blocks {
+      & > span {
+        display: block;
+      }
+    }
+
+    &__neverRated {
+      display: none;
+    }
+  }
+}
+
+.tui-bulkManualRatingRateUserCompetencies {
+  & > * + * {
+    margin-top: var(--gap-5);
+  }
+
+  &__frameworks {
+    & > * + * {
+      margin-top: var(--gap-5);
+    }
+  }
+
+  &__noCompetencies {
+    @include tui-font-hint;
+  }
+
+  &__submitButtons {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.tui-bulkManualRatingRateUsersList {
+  display: block;
+
+  &__avatar {
+    margin-right: var(--gap-1);
+  }
+
+  &__flexRow {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__search {
+    @media (min-width: $tui-screen-sm) {
+      width: 50%;
+    }
+    margin-top: var(--gap-4);
+    margin-bottom: var(--gap-4);
+  }
+
+  &__noUsers {
+    @include tui-font-hint;
+  }
+}
+
+.tui-bulkManualRatingCell {
+  &__newRating {
+    @media (min-width: $tui-screen-sm) {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    margin-right: var(--gap-2);
+
+    &-hasComment {
+      margin-left: var(--gap-2);
+    }
+
+    &-noValue {
+      @include tui-font-hint;
+    }
+
+    &-valueName {
+      @include tui-font-heading-label;
+    }
+  }
+}
+
+.tui-bulkManualRatingPopover {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__comment,
+  &__textarea,
+  &__divider {
+    width: 100%;
+  }
+
+  &__divider {
+    border-top: 1px solid var(--color-neutral-5);
+  }
+}
+
+.tui-bulkManualRatingRoleSelector {
+  display: flex;
+  align-items: center;
+
+  &__ratingAs {
+    @include tui-font-heading-x-small;
+  }
+
+  &__selectRole {
+    margin-left: var(--gap-2);
+  }
+}
+
+.tui-bulkManualUserCompetenciesFilters {
+  &__singleCompetencyMessage {
+    &-text {
+      margin-right: var(--gap-2);
+      @include tui-font-hint;
+    }
+
+    @media (max-width: $tui-screen-sm) {
+      display: flex;
+      align-content: space-between;
+
+      &-text {
+        margin-right: var(--gap-4);
+      }
+
+      &-button {
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+.tui-pathwayManualAchievement {
+  & > * + * {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-pathwayManualAchievementRater {
+  margin-top: var(--gap-2);
+  padding: var(--gap-4);
+  border: var(--border-width-thin) solid var(--color-neutral-5);
+  border-radius: 6px;
+
+  &__overview {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+
+    &-role {
+      @include tui-font-heavy();
+    }
+  }
+}
+
+.tui-rateCompetencies {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-rateUserCompetencies {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+}
+

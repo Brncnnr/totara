@@ -1,0 +1,381 @@
+"""
+A single course object. Courses are containers for a collection of activities that make up a unit of learning.
+"""
+type core_course {
+  """
+  ID of the course
+  """
+  id: core_id!
+  """
+  Course idnumber
+  """
+  idnumber: String
+  """
+  Course fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Course shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Course summary
+  """
+  summary(format: core_format = HTML): String
+  """
+  The format of the courses summary
+  """
+  summaryformat: core_format
+  """
+  The date/time the course was created
+  """
+  timecreated(format: core_date_format = TIMESTAMP): core_date
+  """
+  The date/time the course was last modified
+  """
+  timemodified(format: core_date_format = TIMESTAMP): core_date
+  """
+  Category this course is in, or null for the frontpage course.
+  """
+  category: core_category
+  """
+  ID of this course's category, or zero for the frontpage course.
+  """
+  categoryid: core_id
+  """
+  Course start date
+  """
+  startdate(format: core_date_format = TIMESTAMP): core_date
+  """
+  Course end date
+  """
+  enddate(format: core_date_format = TIMESTAMP): core_date
+  """
+  Force theme used in course, or null if not overridden in course.
+  """
+  theme: String
+  """
+  Force language used in course, or null if language not overridden in course.
+  """
+  lang: String
+  """
+  Course format.
+  """
+  format: String
+  """
+  Course type values are integers matching TOTARA_COURSE_TYPE_* constants defined in course/lib.php.
+  """
+  coursetype: Int
+  """
+  Name of course icon used to represent the course, or 'default' if no icon has been set.
+  """
+  icon: String
+  """
+  A URL for the course image
+  """
+  image: String
+  """
+  Course sections/topics/weeks
+  """
+  sections: [core_course_section!]!
+  """
+  The number of modules in the course accessible to the user.
+  """
+  modcount: Int
+  """
+  The showgrades (show gradebook to learners) flag for the course
+  """
+  showgrades: Boolean!
+  """
+  The enablecompletion (enable completion tracking) flag for the course
+  """
+  completionenabled: Boolean!
+  """
+  The completion information relating to the course and current user
+  """
+  completion: core_course_completion
+  """
+  The completion criteria for the course, and associated completion info for the current user
+  """
+  criteria: [core_course_criteria]!
+  """
+  The aggregation method for the overall course criteria
+  """
+  criteriaaggregation: String
+  """
+  Course view url.
+  """
+  url: String!
+
+  """
+  The course's format metadata information.
+  """
+  course_format: core_course_format!
+}
+
+"""
+A single category. Categories are a hierarchical structure which contain learning items such as courses.
+"""
+type core_category {
+  """
+  Category ID.
+  """
+  id: core_id!
+  """
+  Category name.
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Category idnumber
+  """
+  idnumber: String
+  """
+  Category description
+  """
+  description(format: core_format = HTML): String
+  """
+  The format of the categories description
+  """
+  descriptionformat: core_format
+  """
+  Parent category this category is inside, or null for top level categories.
+  """
+  parent: core_category
+  """
+  Sub-categories that are inside this category.
+  """
+  children: [core_category!]!
+  """
+  Depth of this category in the tree. One means top-level category, add one for each level below that.
+  """
+  depth: Int
+  """
+  Courses that are inside this category.
+  """
+  courses: [core_course!]!
+  """
+  Number of courses in this category (not including courses in sub-categories).
+  """
+  coursecount: Int!
+  timemodified(format: core_date_format = TIMESTAMP): core_date
+  # Note: that I can't use param_theme here as 'param scalars are intended for data input only'
+  """
+  Force theme used in category, or null if not overridden in category.
+  """
+  theme: String
+}
+
+"""
+A single course section. Courses contain named sections to organise a set of activities.
+"""
+type core_course_section {
+  """
+  Course section id
+  """
+  id: core_id!
+  """
+  Title of the course section
+  """
+  title(format: core_format = PLAIN): String
+  """
+  The course modules in the section
+  """
+  modules: [core_course_module]
+  """
+  Whether the course section is available to the viewing user
+  """
+  available: Boolean!
+  """
+  The reason why the course section is not available to the viewing user. It will be empty if the course section is available.
+  """
+  availablereason(format: core_format = HTML): [String]
+  """
+  The summary of the course section
+  """
+  summary(format: core_format = HTML): String
+  summaryformat: core_format
+}
+
+"""
+A single course activity module. Activities are individual pieces of learning within a course.
+"""
+type core_course_module {
+  """
+  The id of the course module
+  """
+  id: core_id!
+  """
+  The idnumber of the course module
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  The id in the instance, e.g. the id of the scorm in the scorm table
+  """
+  instanceid: core_id!
+  """
+  The type of the module (assignment, quiz, etc)
+  """
+  modtype(format: core_format = PLAIN): String!
+  """
+  The name of the course module
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  The view url of the course module
+  """
+  viewurl(format: core_format = PLAIN): String
+  """
+  The completion settings of the course module
+  """
+  completion: String
+  """
+  Whether completion is enabled or not for the course module
+  """
+  completionenabled: Boolean!
+  """
+  The completion status of the current user in the course module
+  """
+  completionstatus: String
+  """
+  The rpl completion status of the current user in the course module
+  """
+  rpl: Boolean
+  """
+  The percentage completion progress of the current user in the course module
+  """
+  progress: Int
+  """
+  Whether the course module is available for the current user
+  """
+  available: Boolean!
+  """
+  The reason for the course module not being available to the current user
+  """
+  availablereason(format: core_format = HTML): [String]!
+  """
+  Whether the course module displays the description or not
+  """
+  showdescription: Boolean
+  """
+  The description of the course module
+  """
+  description(format: core_format = HTML): String
+  """
+  The format of the description field.
+  """
+  descriptionformat: core_format
+  """
+  The user's grade in the course as an absolute value
+  """
+  gradefinal: Float
+  """
+  The maximum achievable grade for the course
+  """
+  grademax: Float
+  """
+  The user's grade in the course as a percentage of grademax
+  """
+  gradepercentage: Float
+}
+
+"""
+A single course criteria object. Criteria define the rules that determine whether a user has completed a course or activity.
+"""
+type core_course_criteria {
+  """
+  The id of the course module
+  """
+  id: core_id!
+  """
+  The type of the criteria
+  """
+  type: String
+  """
+  The aggregation used for this criteria type grouping
+  """
+  typeaggregation(format: core_format = HTML): String
+  """
+  The name or descriptor of the criteria
+  """
+  criteria(format: core_format = PLAIN): String
+  """
+  What needs to be done to complete the criteria
+  """
+  requirement(format: core_format = HTML): String
+  """
+  How far the user is through the requirement
+  """
+  status(format: core_format = HTML): String
+  """
+  Whether the current user has completed the criteria
+  """
+  complete: Boolean
+  """
+  The date the current user completed the criteria
+  """
+  completiondate(format: core_date_format = TIMESTAMP): core_date
+}
+
+"""
+A single course completion object. A completion object tracks the status of a specific user in a specific course.
+"""
+type core_course_completion {
+  """
+  The id of the completion record, however this can be null if not started or not enrolled.
+  """
+  id: Int
+  # Note: this id can't use core_id like the others because the default 0 would be replaced with NULL
+  """
+  A string representing the current learner's completion state in a course
+  """
+  status: String
+  """
+  A string used as a get_string key for a longer completion status description
+  """
+  statuskey(format: core_format = PLAIN): String
+  """
+  A percentage describing how far the user has progressed through this course
+  """
+  progress: Float
+  """
+  The time the user completed this course
+  """
+  timecompleted(format: core_date_format = TIMESTAMP): core_date
+  """
+  The user's grade in the course as an absolute value
+  """
+  gradefinal: Float
+  """
+  The maximum achievable grade for the course
+  """
+  grademax: Float
+  """
+  The user's grade in the course as a percentage of grademax
+  """
+  gradepercentage: Float
+}
+
+"""
+GraphQL type for the course's format.
+"""
+type core_course_format {
+  """
+  The type name of course format, which can be any of the course's format plugin names.
+  For example it can be any of the following:
+  + topics
+  + singleactivity
+  + demo
+  + none
+  """
+  format: String!
+
+  """
+  A human-readable label for the course format.
+  """
+  name: String!
+
+  """
+  Flag to identify whether the course format supports the course view page or not.
+  """
+  has_course_view_page: Boolean!
+}

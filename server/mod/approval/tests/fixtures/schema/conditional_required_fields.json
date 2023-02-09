@@ -1,0 +1,60 @@
+{
+	"title": "Conditional Required fields",
+	"shortname": "conditional_required_fields",
+	"revision": "1.0",
+	"version": "2021082500",
+	"language": "en-NZ",
+	"fields": [
+		{
+			"key": "condition_accepted",
+			"line": "A",
+			"label": "Do you accept the condition",
+			"type": "select_one",
+			"attrs": {
+				"choices": [
+					{ "key": null, "label": "Select one" },
+					{ "key": "Yes", "label": "Yes" },
+					{ "key": "No", "label": "No" }
+				]
+			}
+		},
+		{
+			"key": "daily_cost",
+			"line": "C",
+			"label": "How much does it cost per day?",
+			"type": "number",
+			"default": "0.00",
+			"attrs": {
+				"min": 0
+			}
+		},
+        {
+            "key": "field_with_two_rules",
+            "line": "E",
+            "label": "Field with two conditionally required rules?",
+            "type": "text",
+            "rules": [
+                {
+                    "test": {
+                        "key": "daily_cost",
+                        "condition": ">",
+                        "value": 50
+                    },
+                    "set": {
+                        "required": true
+                    }
+                },
+                {
+                    "test": {
+                        "key": "condition_accepted",
+                        "condition": "=",
+                        "value": "Yes"
+                    },
+                    "set": {
+                        "required": true
+                    }
+                }
+            ]
+      }
+	]
+}

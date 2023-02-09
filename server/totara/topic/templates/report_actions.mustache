@@ -1,0 +1,83 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package totara_topic
+}}
+{{!
+    @template totara_topic/report_actions
+
+    This template generate the email message of topic deletion.
+
+    Classes requried for JS:
+    * tw-reportActions__deleteIcon
+    * tw-reportActions__deleteForm
+
+    Context variables required for this template:
+    * message: The deletion confirming message
+    * deleteurl: The url for deleting this topic
+    * hasusage: Boolean to check whether this topic has a usage or not
+    * updateurl: The url for redirect to the form that update usage.
+    * sesskey: The sesskey data for deleting topic
+    * delete_url_title: Screen reader text for link icon delete topic
+    * update_url_title: Screen reader text for link icon update topic
+
+    Example context (json):
+        There is no example for this template
+}}
+<div class="tw-reportActions"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_topic/report_actions"
+     data-has-usage="{{hasusage}}"
+     data-confirm-message="{{message}}"
+     data-yes-string="{{#str}}yescontinue, totara_topic{{/str}}"
+     data-no-string="{{#str}}cancel, moodle{{/str}}"
+     data-modal-title="{{#str}}deleteconfirm, totara_topic{{/str}}"
+>
+    {{#updateurl}}
+        <a href="{{updateurl}}"
+           class="action-icon tw-reportActions__updateIcon"
+           title="{{#str}}edit, moodle{{/str}}"
+        >
+            {{#flex_icon}}edit{{/flex_icon}}
+            {{#update_url_title}}
+              <span class="sr-only">{{update_url_title}}</span>
+            {{/update_url_title}}
+        </a>
+    {{/updateurl}}
+
+    {{#deleteurl}}
+        <a href="#"
+           class="action-icon tw-reportActions__deleteIcon"
+           title="{{#str}}delete, moodle{{/str}}"
+        >
+            {{#flex_icon}}trash{{/flex_icon}}
+            {{#delete_url_title}}
+              <span class="sr-only">{{delete_url_title}}</span>
+            {{/delete_url_title}}
+        </a>
+
+        <form class="tw-reportActions__deleteForm hidden" method="POST" action="{{deleteurl}}">
+          {{!
+            Form to handle POST to delete a topic. Not a greate solution,
+            but at least with this we can pass sesskey via POST
+          }}
+          <input type="hidden" name="sesskey" value="{{sesskey}}"/>
+        </form>
+    {{/deleteurl}}
+</div>

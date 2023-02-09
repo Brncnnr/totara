@@ -1,0 +1,78 @@
+This files describes API changes in /totara/competency/*,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Added field 'comment' to GraphQL type 'totara_competency_activity_log_row' and to query 'totara_competency_activity_log'
+
+* Moved these server/totara/competency/classes/entity files to server/totara/hierarchy/classes/entity
+  - scale_assignment.php
+  - scale_value.php
+  - scale.php
+  - competency.php
+  - competency_repository.php
+  - competency_type.php
+  - competency_framework
+  - competency_framework_repository
+  - assignment_availability
+
+* Moved and renamed totara_competency\entity\competency_scale_assignment to totara_hierarchy\entity\scale_assignment
+
+* Moved these server/totara/competency/classes/entity files to server/lib/classes/entity:
+  - course_repository.php
+  - course_categories.php
+  - course.php
+
+=== 16.0 ===
+
+--- Update to graphQL ---
+* Updated field 'comment' scalar type 'param_text' to 'String' for input 'pathway_manual_rating_input'
+
+=== 15.0 ===
+
+* \totara_competency\entity\course has been copied to \core\entity\course, and \totara_competency\entity\course now extends it.
+
+=== 14.0 ===
+
+* totara_competency\entities\filters\competency_assignment_status has been moved to totara_competency\entity\filters\competency_assignment_status
+* totara_competency\entities\filters\competency_assignment_type has been moved to totara_competency\entity\filters\competency_assignment_type
+* totara_competency\entities\filters\competency_user_assignment_status has been moved to totara_competency\entity\filters\competency_user_assignment_status
+* totara_competency\entities\filters\competency_user_assignment_type has been moved to totara_competency\entity\filters\competency_user_assignment_type
+* totara_competency\entities\filters\path has been moved to totara_competency\entity\filters\path
+* totara_competency\entities\helpers\hierarchy_crumbtrail_helper has been moved to totara_competency\entity\helpers\hierarchy_crumbtrail_helper
+* totara_competency\entities\achievement_via has been moved to totara_competency\entity\achievement_via
+* totara_competency\entities\assignment has been moved to totara_competency\entity\assignment
+* totara_competency\entities\assignment_availability has been moved to totara_competency\entity\assignment_availability
+* totara_competency\entities\assignment_repository has been moved to totara_competency\entity\assignment_repository
+* totara_competency\entities\competency has been moved to totara_competency\entity\competency
+* totara_competency\entities\competency_achievement has been moved to totara_competency\entity\competency_achievement
+* totara_competency\entities\competency_achievement_repository has been moved to totara_competency\entity\competency_achievement_repository
+* totara_competency\entities\competency_assignment_user has been moved to totara_competency\entity\competency_assignment_user
+* totara_competency\entities\competency_assignment_user_log has been moved to totara_competency\entity\competency_assignment_user_log
+* totara_competency\entities\competency_assignment_user_repository has been moved to totara_competency\entity\competency_assignment_user_repository
+* totara_competency\entities\competency_framework has been moved to totara_competency\entity\competency_framework
+* totara_competency\entities\competency_framework_repository has been moved to totara_competency\entity\competency_framework_repository
+* totara_competency\entities\competency_repository has been moved to totara_competency\entity\competency_repository
+* totara_competency\entities\competency_scale_assignment has been moved to totara_competency\entity\competency_scale_assignment
+* totara_competency\entities\competency_type has been moved to totara_competency\entity\competency_type
+* totara_competency\entities\configuration_change has been moved to totara_competency\entity\configuration_change
+* totara_competency\entities\configuration_history has been moved to totara_competency\entity\configuration_history
+* totara_competency\entities\course has been moved to totara_competency\entity\course
+* totara_competency\entities\course_categories has been moved to totara_competency\entity\course_categories
+* totara_competency\entities\course_repository has been moved to totara_competency\entity\course_repository
+* totara_competency\entities\pathway has been moved to totara_competency\entity\pathway
+* totara_competency\entities\pathway_achievement has been moved to totara_competency\entity\pathway_achievement
+* totara_competency\entities\scale has been moved to totara_competency\entity\scale
+* totara_competency\entities\scale_aggregation has been moved to totara_competency\entity\scale_aggregation
+* totara_competency\entities\scale_assignment has been moved to totara_competency\entity\scale_assignment
+* totara_competency\entities\scale_value has been moved to totara_competency\entity\scale_value
+* pathway_criteria_group\entities\criteria_group has been moved to pathway_criteria_group\entity\criteria_group
+* pathway_criteria_group\entities\criteria_group_criterion has been moved to pathway_criteria_group\entity\criteria_group_criterion
+* pathway_learning_plan\entities\plan_competency_value has been moved to pathway_learning_plan\entity\plan_competency_value
+* pathway_manual\entities\pathway_manual has been moved to pathway_manual\entity\pathway_manual
+* pathway_manual\entities\rating has been moved to pathway_manual\entity\rating
+* pathway_manual\entities\role has been moved to pathway_manual\entity\role
+* Added new method is_enabled() to \totara_competency\pathway so pathway plugins can define if they can be added to competencies.
+* Changed the return type of the field "numericscore" in the "totara_competency_scale_value" GraphQL type schema to Float.
+* Changed the presentation of the "No achievement paths added" warning in achievement_paths.mustache
+* \totara_competency\data_providers\assignments::fetch_assignments() has been deprecated, please call fetch() directly instead.

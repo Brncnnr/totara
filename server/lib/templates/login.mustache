@@ -1,0 +1,217 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core/login
+
+    Moodle template for the login page.
+
+    Example context (json):
+    {
+        "autofocusform": false,
+        "canloginasguest": true,
+        "canloginbyemail": true,
+        "cansignup": true,
+        "error": "Invalid login, please try again",
+        "errorformatted": "Test error formatted",
+        "forgotpasswordurl": "http://example.com/login/forgot_password.php",
+        "hasidentityproviders": true,
+        "hasinstructions": true,
+        "instructions": "For full access to this site, you first need to create an account.",
+        "loginurl": "http://example.com/stable_master/login/index.php",
+        "rememberusername": true,
+        "rememberusernamechecked": true,
+        "rememberusernamelabel": "Remember username",
+        "skiplinktext": "Skip log in block",
+        "signupurl": "http://localhost/stable_master/login/signup.php",
+        "cookieshelpiconformatted": "",
+        "username": "",
+        "logintoken": "asoifvaldshk",
+        "identityproviders": [
+          {
+            "url": "http://login.google.url/",
+            "iconurl": "https://accounts.google.com/favicon.ico",
+            "name": "Google"
+          },
+          {
+            "url": "http://login.microsoft.url/",
+            "buttonimageurl": "/auth/oauth2/pix/login_button/microsoft.svg",
+            "name": "Microsoft",
+            "issuertype": "microsoft"
+          }
+        ]
+    }
+}}
+{{#hero_image}}
+    <div id="login_hero-image" >
+        <img src="{{hero_image}}" alt="{{hero_alt}}"/>
+    </div>
+{{/hero_image}}
+{{#hasinstructions}}
+<div class="loginbox clearfix twocolumns">
+{{/hasinstructions}}
+{{^hasinstructions}}
+<div class="loginbox clearfix onecolumn">
+{{/hasinstructions}}
+
+    <a class="skip-block" href="#login-skipped">{{skiplinktext}}</a>
+    <div class="loginpanel">
+        <h2>{{#str}} login {{/str}}</h2>
+        <hr />
+
+        <div class="subcontent loginsub">
+            {{#error}}
+                <div id="loginerrormessage" class="loginerrors" role="alert">
+                    {{error}}
+                </div>
+            {{/error}}
+            <form action="{{loginurl}}" method="post" id="login" data-core-autoinitialise="true" data-core-autoinitialise-amd="core/form_duplicate_prevent">
+                <div class="loginform">
+                    <div class="form-label">
+                        <label for="username">
+                            {{^canloginbyemail}}
+                                {{#str}} username {{/str}}
+                            {{/canloginbyemail}}
+                            {{#canloginbyemail}}
+                                {{#str}} usernameemail {{/str}}
+                            {{/canloginbyemail}}
+                        </label>
+                    </div>
+                    <div class="form-input">
+                        <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            size="15"
+                            value="{{username}}"
+                            {{#error}}aria-describedby="loginerrormessage"{{/error}}
+                        >
+                    </div>
+                    <div class="clearer"><!-- --></div>
+                    <div class="form-label">
+                        <label for="password">{{#str}} password {{/str}}</label>
+                    </div>
+                    <div class="form-input">
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            size="15"
+                            value=""
+                            autocomplete="off"
+                            {{#error}}aria-describedby="loginerrormessage"{{/error}}
+                        >
+                    </div>
+                    <input type="hidden" name="logintoken" value="{{logintoken}}" />
+                </div>
+
+                <div class="clearer"><!-- --></div>
+                {{#rememberusername}}
+                    <div class="rememberusername">
+                        <input type="checkbox" name="rememberusernamechecked" id="rememberusernamechecked" value="1" {{#rememberusernamechecked}}checked="checked"{{/rememberusernamechecked}} />
+                        <label for="rememberusernamechecked">{{rememberusernamelabel}}</label>
+                    </div>
+                {{/rememberusername}}
+                <div class="clearer"><!-- --></div>
+                <input id="anchor" type="hidden" name="anchor" value="" />
+                <script>document.getElementById('anchor').value = location.hash;</script>
+                <input type="submit" id="loginbtn" value={{#quote}}{{#str}} login {{/str}}{{/quote}} />
+            </form>
+
+            <div class="forgetpass">
+                <a href="{{forgotpasswordurl}}">{{#str}} forgotten {{/str}}</a>
+            </div>
+
+        </div>
+
+        {{#canloginasguest}}
+            <div class="subcontent guestsub">
+                <div class="desc">{{#str}} someallowguest {{/str}}</div>
+                <form action="{{loginurl}}" method="post" id="guestlogin" data-core-autoinitialise="true" data-core-autoinitialise-amd="core/form_duplicate_prevent">
+                    <div class="guestform">
+                        <input type="hidden" name="username" value="guest" />
+                        <input type="hidden" name="password" value="guest" />
+                        <input type="hidden" name="logintoken" value="{{logintoken}}" />
+                        <input type="submit" value={{#quote}}{{#str}} loginguest {{/str}}{{/quote}} />
+                    </div>
+                </form>
+            </div>
+        {{/canloginasguest}}
+
+        <div class="desc">
+            {{{cookieshelpiconformatted}}}
+            {{#str}} cookiesenabled {{/str}}
+        </div>
+    </div>
+    <span id="login-skipped" class="skip-block-to"></span>
+
+    <div class="signuppanel">
+    {{#hasinstructions}}
+        <h2>{{#str}} firsttime {{/str}}</h2>
+        <hr />
+        <div class="subcontent">
+            {{{instructions}}}
+            {{#cansignup}}
+                <div class="signupform">
+                    <form action="{{signupurl}}" method="get" id="signup" data-core-autoinitialise="true" data-core-autoinitialise-amd="core/form_duplicate_prevent">
+                        <div>
+                            <input type="submit" value={{#quote}}{{#str}} startsignup {{/str}}{{/quote}} />
+                        </div>
+                    </form>
+                </div>
+            {{/cansignup}}
+        </div>
+    {{/hasinstructions}}
+
+    {{#hasidentityproviders}}
+        <div class="subcontent potentialidps">
+            <h6>{{#str}} potentialidps, auth {{/str}}</h6>
+            <div class="potentialidplist">
+                {{#identityproviders}}
+                    <div class="potentialidp">
+                        {{#buttonimageurl}}
+                            <a href="{{{url}}}" class="tw-oauth2-login-button-{{issuertype}}">
+                                <img src="{{buttonimageurl}}" alt="{{name}}"/>
+                            </a>
+                        {{/buttonimageurl}}
+                        {{^buttonimageurl}}
+                        <a href="{{{url}}}" class="btn btn-default">
+                            {{#iconurl}}
+                                <img src="{{iconurl}}" alt="" width="24" height="24"/>
+                            {{/iconurl}}
+                            {{#icon}}
+                                {{#context}}{{>&&template}}{{/context}}
+                            {{/icon}}
+                            {{name}}
+                        </a>
+                        {{/buttonimageurl}}
+                    </div>
+                {{/identityproviders}}
+            </div>
+        </div>
+    {{/hasidentityproviders}}
+    </div>
+</div>
+
+{{#js}}
+    {{#autofocusform}}
+        if (document.getElementById('username').value !== "") {
+            document.getElementById('password').focus();
+        } else {
+            document.getElementById('username').focus();
+        }
+    {{/autofocusform}}
+{{/js}}

@@ -1,0 +1,41 @@
+This files describes API changes in /lib/editor/weka/*.
+The information here is intended only for developers.
+
+=== 17.0 ===
+
+* All area-specific variants (identifiable by containing a "-") have been deprecated and replaced with a small set of core variants.
+  Third-party plugin code should not be using area-specific variants, so no actions are anticipated here.
+
+=== 14.0 ===
+
+--- Update to API ---
+* weka_texteditor::get_draft_files() had been deprecated, please use file_storage::get_area_files instead.
+* editor_weka\extension\extension::get_extension_name had been changed to a static function, please update all calls.
+* editor_weka\config\factory had been deprecated, please use editor_weka\variant instead.
+* editor_weka\config\config_item had been deprecated, please use editor_weka\variant instead.
+* editor_weka/editorconfig cache item had been deprecated. Please update all calls.
+* editor_weka\config\config_item::__construct() first and second parameters are no longer used. Please update all calls.
+* editor_weka\config\config_item::show_toolbar() had been deprecated, and there is no alternative. Please update all calls.
+* editor_weka\config\config_item::get_options_for_extension has been deprecated, and there is no alternative. Please update all calls.
+* editor_weka\config\factory::get_configuration() is now no longer return null, but throw exception instead.
+* editor_weka\extension\extension::$component had been deprecated and no longer used.
+* editor_weka\extension\extension::$area had been deprecated and no longer used.
+* editor_weka\extension\extension::$contextid had been deprecated and no longer used.
+* editor_weka\extension\extension::__construct() first, second and third parameters are no longer used. Please update all calls.
+* weka_texteditor::get_config() is no longer return null, but throw exception instead.
+* weka_texteditor::show_toolbar() first and second parameters are no longer used. Please update all calls.
+* weka_texteditor::get_files() has been deprecated, please use file_storage::get_area_files() instead.
+
+--- Update to GraphQL ---
+* Field "repository_data" of type "editor_weka_editor" had been deprecated, please use query editor_weka_repository_data instead.
+* Field "draft_files" of type "editor_weka_editor" had been deprecated and no longer used.
+* Field "showtoolbar" of type "editor_weka_editor" had been deprecated, and no longer used. Please update all calls.
+* Argument "component" to resolve field "extensions" of type "editor_weka_editor" had been deprecated in favour of "usage_identifier"
+* Argument "area" to resolve field "extensions" of type "editor_weka_editor" had been deprecated in favour of "usage_identifier"
+* Argument "component" to resolve query "editor_weka_editor" had been deprecated in favour of "usage_identifier"
+* Argument "area" to resolve query "editor_weka_editor" had been deprecated in favour of "usage_identifier"
+* Argument "instanceId" to resolve query "editor_weka_editor" had been deprecated in favour of "usage_identifier"
+* Argument "component" to resolve field "showtoolbar" of type "editor_weka_editor" had been deprecated. Please update all calls.
+* Argument "area" to resolve field "showtoolbar" of type "editor_weka_editor" had been deprecated. Please update all calls.
+* Added new optional parameter "instance_id" to query "editor_weka_users_by_pattern"
+* Added new optional parameter "context_id" to query "editor_weka_editor"

@@ -1,0 +1,70 @@
+query engage_survey_get_survey($resourceid: param_integer!) {
+  survey: engage_survey_instance(resourceid: $resourceid) {
+    __typename
+    id
+    timeexpired
+    resource {
+      __typename
+      id
+      name(format: PLAIN)
+      access
+      user {
+        __typename
+        id
+        card_display {
+          __typename
+          profile_picture_alt
+          profile_picture_url
+          profile_url
+          display_fields {
+            __typename
+            associate_url
+            value
+            label
+            is_custom
+          }
+        }
+      }
+    }
+    questions {
+      __typename
+      id
+      value(format: PLAIN)
+      answertype
+      options {
+        __typename
+        id
+        questionid
+        value(format: PLAIN)
+      }
+    }
+    topics {
+      __typename
+      id
+      value(format: PLAIN)
+      catalog
+    }
+
+    questionresults {
+      __typename
+      id
+      answertype
+      votes
+      participants
+      value(format: PLAIN)
+
+      options {
+        __typename
+        value(format: PLAIN)
+        votes
+      }
+    }
+    timedescription
+    bookmarked
+    owned
+    voted
+    sharedbycount
+    reacted
+    updateable
+  }
+}

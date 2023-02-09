@@ -1,0 +1,19 @@
+This files describes API changes for code that uses the notification API,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Added a new field "status" to client providers to set them enabled/disabled.
+* Added a new field "internal" to client providers to mark them for internal usage.
+* Added a new field "component" to client providers to store which internal component is used with client provider.
+* Updated return value of statement_handler::authenticate from nullable to non-nullable
+
+=== 16.0 ===
+
+--- Update to graphQL ---
+* Changed name field  format to 'PLAIN' for 'totara_oauth2_client_provider' type
+
+=== 15.3 ===
+
+* Changed field 'client_provider_id' type to int and length to 10 on 'totara_oauth2_access_token' table.
+* Changed foreign key 'client_probider_id_fk' to 'client_provider_id_fk' and added 'cascade' property to it.

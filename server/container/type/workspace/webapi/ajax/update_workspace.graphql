@@ -1,0 +1,71 @@
+mutation container_workspace_update_workspace(
+  $id: param_integer!
+  $name: String
+  $description: String
+  $description_format: param_integer
+  $draft_id: param_integer
+  $private: param_boolean
+  $hidden: param_boolean
+  $theme: param_component
+) {
+  workspace: container_workspace_update(
+    id: $id
+    name: $name
+    description: $description
+    description_format: $description_format
+    draft_id: $draft_id
+    private: $private
+    hidden: $hidden
+  ) {
+    __typename
+    id
+    name(format: PLAIN)
+    description(format: HTML)
+    description_format
+    time_description
+    image(theme: $theme)
+    total_members
+    total_member_requests
+    total_discussions
+    context_id
+    owner {
+      __typename
+      fullname
+    }
+    interactor {
+      __typename
+      can_delete
+      can_update
+      can_invite
+      can_join
+      can_leave
+      joined
+      workspaces_admin
+      own
+      can_request_to_join
+      has_requested_to_join
+      can_view
+      can_view_discussions
+      can_create_discussions
+      can_view_library
+      can_view_members
+      can_view_member_requests
+      can_share_resources
+      can_unshare_resources
+      can_transfer_ownership
+      can_add_audiences
+      muted
+      has_seen
+      user {
+        __typename
+        id
+        # These are used within post discussion form.
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    url
+    access
+  }
+}

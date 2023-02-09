@@ -1,0 +1,53 @@
+This files describes API changes for code that uses the question API,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* customfield_define_base::define_form() the second argument is no longer used. Functionality has not changed.
+* customfield_define_base::define_form() the third argument is no longer used. Functionality has not changed.
+* customfield_define_base::define_form_common() the second argument is no longer used. Functionality has not changed.
+* customfield_define_base::define_form_common() the third argument is no longer used. Functionality has not changed.
+
+=== 14.0 ===
+
+* customfield_textarea::display_item_data() is now required to use format_text() for display value
+* customfield_text::display_item_data() has been added to use format_string() for display value
+* customfield_define_location::prepare_location_data() is no longer calling format_text() on the address value on input
+* customfield_define_location::prepare_db_location_data_for_form() is no longer calling format_text() on the address value for form display
+* customfield_define_location::render() is now required to use format_text() on the address value for display
+* rb\display\customfield_location::display() is now required to use format_text() on the address value for use in reports
+
+=== 13.0 ===
+
+* Removed deprecated function customfield_get_fields()
+* Moved functions move(), get_conditions_swapfields(), get_field_to_move(), reorder_fields(), get_fields_sql_where(), get_next_sortorder()
+  from hierarchy_type into a trait called unique_type, allowing plugins other than hierarchy to have unique sets of custom fields
+  per plugin defined 'type'
+* type_base - added get_page_url() function to type_base which stores the URL of the custom fields area, allowing a custom area URL to be used
+* customfield_tabs_link() - added $action parameter that allows conditionally showing headings based on the current page action
+* add_totara_customfield_base() - removed dp_plan_evidence table
+
+=== 12.0 ===
+
+* Removed deprecated function customfield_record()
+
+=== 11.0 ===
+
+* customfield_get_fields function has been deprecated, this function was used only in one place and duplicated the functionality of customfield_get_data.
+* customfield_base::_constructor added $suffix parameter that allows for custom suffixes to avoid name collisions
+  If you have implemented any classes based on customfield_base which override the default __constructor function
+  then you should add the '$suffix = null' parameter and pass it to the parent::__constructor()
+  to ensure that the custom field type is not affected by the uniqueness problem addressed in TL-16499. See totara/customfield/field/checkbox/field.class.php for an example.
+* customfield_definition added $suffix parameter that allows for custom suffixes to avoid name collisions
+* customfield_load_data added $suffix parameter that allows loading data for fields with custom suffixes
+* customfield_save_data added $suffix parameter so the field can match up
+
+=== 10.0 ===
+
+* changed HTML when viewing multiselect feild
+* changed HTML when editing multiselect feild
+* removed js-delete CSS
+* converted M.totara_customfield_multiselect to an AMD module (totara_customfield/field_multiselect-lazy)
+* moved CSS to less format
+* customfield_record function has been deprecated, this function was unused and non-functional.
+* added $addsuffix parameter to customfield_get_field_instance function.

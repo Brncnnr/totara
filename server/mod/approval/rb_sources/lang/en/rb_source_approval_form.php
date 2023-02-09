@@ -1,0 +1,20 @@
+<?php
+$string['actions'] = 'Actions';
+$string['active'] = 'Active';
+$string['created'] = 'Created date';
+$string['form_version'] = 'Form version';
+$string['in_use'] = 'In use';
+$string['plugin_name'] = 'Plugin name';
+$string['plugin_schema_version'] = 'Plugin form schema version';
+$string['report_name'] = 'Approval Forms';
+$string['sourcelabel'] = 'Approval Workflow';
+$string['sourcesummary'] = 'List of Approval Forms.';
+$string['sourcetitle'] = 'Approval Forms';
+$string['title'] = 'Title';
+$string['type_form'] = 'Approval Form columns';
+$string['type_form_version'] = 'Form Version columns';
+$string['updated'] = 'Updated date';
+$string['version'] = 'Current version';
+$string['version_id'] = 'Current version ID';
+$string['version_status'] = 'Status';
+$string['version_updated'] = 'Form Version updated';

@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressTracker should check snapshot 1`] = `
+<div
+  class="tui-progressTracker"
+>
+  <ol
+    class="tui-progressTrackerItems"
+  >
+    <li
+      aria-current="true"
+      class="tui-progressTrackerItem tui-progressTrackerItem--medium tui-progressTrackerItem--complete"
+    >
+      <div
+        class="tui-progressTrackerItem__content"
+      >
+        <!---->
+         
+        <div
+          aria-hidden="true"
+          class="tui-progressTrackerCircle tui-progressTrackerCircle__outer tui-progressTrackerCircle--complete"
+        >
+          <div
+            class="tui-progressTrackerCircle__middle"
+          >
+            <div
+              class="tui-progressTrackerCircle__inner"
+            />
+          </div>
+        </div>
+         
+        <div
+          class="tui-progressTrackerItem__label tui-progressTrackerItem__label-current"
+        >
+          <button
+            class="tui-formBtn tui-formBtn--transparent"
+            type="button"
+          >
+            <span
+              class="tui-formBtn__text"
+            >
+              
+    Basic knowledge
+  
+            </span>
+             
+            <!---->
+             
+            <span
+              aria-live="assertive"
+            >
+              <!---->
+            </span>
+          </button>
+        </div>
+         
+        <p
+          class="tui-progressTrackerItem__status"
+        >
+          
+      tempstring: tempstring
+    
+        </p>
+      </div>
+       
+      <div
+        class="tui-popover__wrap"
+      >
+        <!---->
+         
+        <div
+          class="tui-popoverPositioner tui-popoverPositioner--transition-default"
+          style="transform: translate3d(0px, 0px, 0); display: none;"
+        >
+          <div
+            class="tui-popoverFrame tui-popoverFrame--top tui-popoverFrame--size-sm"
+          >
+            <div
+              class="tui-arrow tui-arrow--bottom tui-arrow--normal"
+              style="left: 0px;"
+            />
+             
+            <closebutton-stub
+              class="tui-popoverFrame__close"
+            />
+             
+            <!---->
+             
+            <div
+              class="tui-popoverFrame__content"
+              role="tooltip"
+            >
+              <div>
+                Basic knowledge description
+              </div>
+               
+            </div>
+             
+            <!---->
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      class="tui-progressTrackerItem tui-progressTrackerItem--medium tui-progressTrackerItem--pending"
+    >
+      <div
+        class="tui-progressTrackerItem__content"
+      >
+        <p
+          class="tui-progressTrackerItem__target"
+        >
+          
+      tempstring
+    
+        </p>
+         
+        <div
+          aria-hidden="true"
+          class="tui-progressTrackerCircle tui-progressTrackerCircle__outer tui-progressTrackerCircle--pending tui-progressTrackerCircle--target"
+        >
+          <div
+            class="tui-progressTrackerCircle__middle"
+          >
+            <div
+              class="tui-progressTrackerCircle__inner"
+            />
+          </div>
+        </div>
+         
+        <div
+          class="tui-progressTrackerItem__label"
+        >
+          <button
+            class="tui-formBtn tui-formBtn--transparent"
+            type="button"
+          >
+            <span
+              class="tui-formBtn__text"
+            >
+              
+    Competent with supervision
+  
+            </span>
+             
+            <!---->
+             
+            <span
+              aria-live="assertive"
+            >
+              <!---->
+            </span>
+          </button>
+        </div>
+         
+        <p
+          class="tui-progressTrackerItem__status"
+        >
+          
+      tempstring: tempstring
+    
+        </p>
+      </div>
+       
+      <div
+        class="tui-popover__wrap"
+      >
+        <!---->
+         
+        <div
+          class="tui-popoverPositioner tui-popoverPositioner--transition-default"
+          style="transform: translate3d(0px, 0px, 0); display: none;"
+        >
+          <div
+            class="tui-popoverFrame tui-popoverFrame--top tui-popoverFrame--size-sm"
+          >
+            <div
+              class="tui-arrow tui-arrow--bottom tui-arrow--normal"
+              style="left: 0px;"
+            />
+             
+            <closebutton-stub
+              class="tui-popoverFrame__close"
+            />
+             
+            <!---->
+             
+            <div
+              class="tui-popoverFrame__content"
+              role="tooltip"
+            >
+              <div>
+                Competent with supervision description
+              </div>
+               
+            </div>
+             
+            <!---->
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
+</div>
+`;

@@ -1,0 +1,111 @@
+type container_workspace_file_area {
+  repository_id: Int!
+  item_id: Int!
+  url: String!
+  accept_types: [String!]!
+  context_id: Int!
+}
+
+enum container_workspace_file_type {
+  VIDEO
+  IMAGE
+  AUDIO
+  """
+  Other file type such as pdf, doc
+  """
+  OTHERS
+}
+type container_workspace_file {
+  """
+  File id.
+  """
+  id: Int!
+  """
+  File fullname.
+  """
+  file_name(format: core_format!): String!
+  """
+  File size
+  """
+  file_size(format: core_format!): String!
+  """
+  File extionsion.
+  """
+  extension(format: core_format!): String!
+  """
+  The user who uploaded the file. However, this will not be correctly right if for cases like admin who edit the
+  content with newly uploaded files.
+  """
+  author: core_user!
+  """
+  The date of uploaded file.
+  """
+  date(format: core_date_format!): String!
+  """
+  The url to let any user download it.
+  """
+  download_url: String!
+  """
+  The url to navigate to place that this file is being used.
+  """
+  context_url: String!
+  """
+  If it is null then the file does not have any alt text added or the file can be none-image file.
+  """
+  file_url: String!
+  alt_text: String
+  mimetype: String!
+  file_type: container_workspace_file_type!
+}
+
+extend type Query {
+  container_workspace_file_area(
+    workspace_id: param_integer
+
+    """
+    If it is being passed, then the query will move everything to this draft_id. Otherwise, new draft_id will be created.
+    """
+    draft_id: param_integer
+  ): container_workspace_file_area!
+
+  container_workspace_workspace_image(
+    workspace_id: param_integer
+    theme: param_component
+  ): String!
+
+  """
+  Query to load the files from workspace
+  """
+  container_workspace_files(
+    """
+    This is current cursor that we are looking at, and it is being used
+    to determine what the next cursor should be.
+    """
+    cursor: param_text
+    workspace_id: param_integer!
+    sort: container_workspace_file_sort!
+    """
+    If extension is not set, meaning that we are fetch for files in every extensions.
+    """
+    extension: param_alphanum
+  ): [container_workspace_file!]!
+
+  """
+  Query to fetch the next cursor for the files
+  """
+  container_workspace_file_cursor(
+    """
+    The workspace's id which we are fetching files from.
+    """
+    workspace_id: param_integer!
+    """
+    This is current cursor that we are looking at, and it is being used
+    to determine what the next cursor should be.
+    """
+    cursor: param_text
+    """
+    Search file based on the extension.
+    """
+    extension: param_alphanum
+  ): container_workspace_cursor!
+}

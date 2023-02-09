@@ -1,0 +1,823 @@
+{
+  "OBJECT": {
+    "Mutation": {
+      "fields": {
+        "placeholder_mutation": {
+          "documentation": { "undocumented": true }
+        },
+        "core_completion_activity_self_complete": {
+          "documentation": { "undocumented": true }
+        },
+        "core_completion_activity_view": {
+          "documentation": { "undocumented": true }
+        },
+        "core_completion_course_self_complete": {
+          "documentation": { "undocumented": true }
+        },
+        "message_popup_mark_messages_read": {
+          "documentation": { "undocumented": true }
+        }
+      }
+    },
+    "Query": {
+      "fields": {
+        "placeholder_query": {
+          "documentation": { "undocumented": true }
+        },
+        "message_popup_messages": {
+          "documentation": { "undocumented": true }
+        },
+        "message_popup_unread_count": {
+          "documentation": { "undocumented": true }
+        }
+      }
+    },
+    "core_course": {
+      "documentation": { "undocumented": true }
+    },
+    "core_category": {
+      "documentation": { "undocumented": true }
+    },
+    "core_user": {
+      "fields": {
+        "idnumber": {
+          "documentation": {
+            "example": "RW1234"
+          }
+        },
+        "username": {
+          "documentation": {
+            "example": "rebecca.woodhouse"
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Rebecca Woodhouse"
+          }
+        },
+        "firstname": {
+          "documentation": {
+            "example": "Rebecca"
+          }
+        },
+        "lastname": {
+          "documentation": {
+            "example": "Woodhouse"
+          }
+        },
+        "middlename": {
+          "documentation": {
+            "example": "Jane"
+          }
+        },
+        "alternatename": {
+          "documentation": {
+            "example": "Becky"
+          }
+        },
+        "email": {
+          "documentation": {
+            "example": "rebecca.woodhouse@example.com"
+          }
+        },
+        "address": {
+          "documentation": {
+            "example": "1 Civic Square, London, England"
+          }
+        },
+        "phone1": {
+          "documentation": {
+            "example": "+64 4 555 1234"
+          }
+        },
+        "phone2": {
+          "documentation": {
+            "example": "+64 21 555 1234"
+          }
+        },
+        "department": {
+          "documentation": {
+            "example": "Marketing"
+          }
+        },
+        "institution": {
+          "documentation": {
+            "example": "Acme Inc."
+          }
+        },
+        "city": {
+          "documentation": {
+            "example": "London"
+          }
+        },
+        "country": {
+          "documentation": {
+            "example": "United Kingdom"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "I have an interest in agile project management and software development."
+          }
+        },
+        "descriptionformat": {
+          "documentation": {
+            "example": "PLAIN"
+          }
+        },
+        "profileimageurl": {
+          "documentation": {
+            "example": "https://YOUR-SITE-URL/theme/image.php/ventura/core/1661990216/u/f1"
+          }
+        },
+        "profileimageurlsmall": {
+          "documentation": {
+            "example": "https://YOUR-SITE-URL/theme/image.php/ventura/core/1661990216/u/f2"
+          }
+        },
+        "profileimagealt": {
+          "documentation": {
+            "example": "Picture of Rebecca Woodhouse"
+          }
+        },
+        "lang": {
+          "documentation": {
+            "example": "en"
+          }
+        },
+        "theme": {
+          "documentation": {
+            "example": "ventura"
+          }
+        },
+        "suspended": {
+          "documentation": {
+            "example": true
+          }
+        },
+        "timezone": {
+          "documentation": {
+            "example": "Europe/London"
+          }
+        },
+        "url": {
+          "documentation": {
+            "example": "https://www.example.com/~rwoodhouse/"
+          }
+        },
+        "skype": {
+          "documentation": {
+            "example": "rebecca.woodhouse"
+          }
+        },
+        "custom_fields": {
+          "documentation": {
+            "example": [
+              {
+                "shortname": "worklocation",
+                "data": "Remote",
+                "data_type": "TEXT"
+              },
+              {
+                "shortname": "employeeid",
+                "data": "456789",
+                "data_type": "TEXT"
+              }
+            ]
+          }
+        },
+        "job_assignments": {
+          "documentation": {
+            "example": [
+              {
+                "idnumber": "my_id1243",
+                "fullname": "Sales Manager",
+                "shortname": "SM1",
+                "description": "This is a description",
+                "userid": 1234567,
+                "positionid": 543421
+              }
+            ]
+          }
+        }
+      }
+    },
+    "core_user_card_display": {
+      "documentation": { "undocumented": true }
+    },
+    "core_user_card_display_field": {
+      "documentation": { "undocumented": true }
+    },
+    "core_user_custom_field": {
+      "fields": {
+        "shortname": {
+          "documentation": {
+            "example": "employeeid"
+          }
+        },
+        "data": {
+          "documentation": {
+            "example": "EM12345"
+          }
+        },
+        "data_format": {
+          "documentation": {
+            "example": 1
+          }
+        },
+        "data_type": {
+          "documentation": {
+            "example": "TEXT"
+          }
+        }
+      }
+    },
+    "core_user_user_result": {
+      "fields": {
+        "user": {
+          "documentation": {
+            "example": {
+              "id": 4,
+              "username": "jsmith",
+              "email": "jsmith@example.com",
+              "firstname": "John",
+              "lastname": "Smith",
+              "custom_fields": [
+                {
+                  "shortname": "employeeid",
+                  "data": "EM12345",
+                  "data_type": "TEXT"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "totara_core_date_time_setting": {
+      "documentation": { "undocumented": true }
+    },
+    "totara_core_relationship": {
+      "documentation": { "undocumented": true }
+    },
+    "totara_core_tui_tree_node": {
+      "documentation": { "undocumented": true }
+    },
+    "core_user_users_result": {
+      "fields": {
+        "items": {
+          "documentation": {
+            "example": [
+              {
+                "username": "test",
+                "firstname": "Test",
+                "lastname": "User",
+                "email": "testuser@example.com"
+              },
+              {
+                "username": "another",
+                "firstname": "Another",
+                "lastname": "User",
+                "email": "anotheruser@example.com"
+              }
+            ]
+          }
+        },
+        "total": {
+          "documentation": {
+            "example": 47
+          }
+        },
+        "next_cursor": {
+          "documentation": {
+            "example": "eyJsaW1pdCI6MSwiY29sdW1ucyI6eyJpZCI6M319"
+          }
+        }
+      }
+    }
+  },
+  "SCALAR": {
+    "Boolean": {
+      "documentation": { "example":  true}
+    },
+    "core_date": {
+      "documentation": {
+        "example": "2022-04-17"
+      }
+    },
+    "core_id": {
+      "documentation": {
+        "example": 4
+      }
+    },
+    "param_alpha": {
+      "documentation": { "example": "Abc" }
+    },
+    "param_alphaext": {
+      "documentation": { "example": "Ab_cd-e" }
+    },
+    "param_alphanum": {
+      "documentation": { "example": "Abc123" }
+    },
+    "param_alphanumext": {
+      "documentation": { "example": "Abc_123-0" }
+    },
+    "param_area": {
+      "documentation": { "example": "post" }
+    },
+    "param_boolean": {
+      "documentation": { "example": true }
+    },
+    "param_component": {
+      "documentation": { "example": "mod_forum" }
+    },
+    "param_email": {
+      "documentation": { "example": "test@example.com" }
+    },
+    "param_integer": {
+      "documentation": { "example": 123 }
+    },
+    "param_lang": {
+      "documentation": { "example": "en_us" }
+    },
+    "param_plugin": {
+      "documentation": { "example": "forum" }
+    },
+    "param_safedir": {
+      "documentation": { "example": "classes" }
+    },
+    "param_safepath": {
+      "documentation": { "example": "/path/to/a_directory" }
+    },
+    "param_stringid": {
+      "documentation": { "example": "edit" }
+    },
+    "param_text": {
+      "documentation": { "example": "This is a string" }
+    },
+    "param_theme": {
+      "documentation": { "example": "ventura" }
+    },
+    "param_username": {
+      "documentation": { "example": "testuser" }
+    },
+    "param_url": {
+      "documentation": { "example": "https://www.example.com/path/to/file.php?param1=value1#anchor" }
+    },
+    "param_file": {
+      "documentation": { "example": "file.txt" }
+    },
+    "param_path": {
+      "documentation": { "example": "./path/to/file.txt" }
+    },
+    "param_coreid": {
+      "documentation": { "example": "123" }
+    }
+  },
+  "INPUT_OBJECT": {
+    "core_pagination_input": {
+      "inputFields": {
+        "cursor": {
+          "documentation": { "example":  "eyJsaW1pdCI6MSwiY29sdW1ucyI6eyJpZCI6M319" }
+        },
+        "limit": {
+          "documentation": { "example":  20 }
+        },
+        "page": {
+          "documentation": { "example":  3 }
+        }
+      }
+    },
+    "core_sort_input": {
+      "inputFields": {
+        "column": {
+          "documentation": {
+            "example":  "timemodified"
+          }
+        },
+        "direction": {
+          "documentation": {
+            "example": "ASC"
+          }
+        }
+      }
+    },
+    "core_user_users_query": {
+      "inputFields": {
+        "pagination": {
+          "documentation": {
+            "example": {
+              "cursor": "eyJsaW1pdCI6MSwiY29sdW1ucyI6eyJpZCI6M319",
+              "limit": 20
+            }
+          }
+        },
+        "sort": {
+          "documentation": {
+            "example": [
+              {
+                "column": "timemodified",
+                "direction": "ASC"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "core_user_user_reference": {
+      "inputFields": {
+        "id": {
+          "documentation": { "example": 5 }
+        },
+        "idnumber": {
+          "documentation": { "example": "EM12345" }
+        },
+        "email": {
+          "documentation": { "example": "target.user@example.com" }
+        },
+        "username": {
+          "documentation": { "example": "target.user" }
+        }
+      }
+    },
+    "core_user_create_user_input": {
+      "inputFields": {
+        "username": {
+          "documentation": {
+            "example": "rebecca.woodhouse"
+          }
+        },
+        "firstname": {
+          "documentation": {
+            "example": "Rebecca"
+          }
+        },
+        "lastname": {
+          "documentation": {
+            "example": "Woodhouse"
+          }
+        },
+        "email": {
+          "documentation": {
+            "example": "rebecca.woodhouse@example.com"
+          }
+        },
+        "password": {
+          "documentation": {
+            "example": "supersecret"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "RW1234"
+          }
+        },
+        "firstnamephonetic": {
+          "documentation": {
+            "example": "reh BEH kuh"
+          }
+        },
+        "lastnamephonetic": {
+          "documentation": {
+            "example": "WUUD hows"
+          }
+        },
+        "middlename": {
+          "documentation": {
+            "example": "Jane"
+          }
+        },
+        "alternatename": {
+          "documentation": {
+            "example": "Becky"
+          }
+        },
+        "city": {
+          "documentation": {
+            "example": "London"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "I have an interest in agile project management and software development."
+          }
+        },
+        "descriptionformat": {
+          "documentation": {
+            "example": "PLAIN"
+          }
+        },
+        "url": {
+          "documentation": {
+            "example": "https://www.example.com/~rwoodhouse/"
+          }
+        },
+        "skype": {
+          "documentation": {
+            "example": "rebecca.woodhouse"
+          }
+        },
+        "institution": {
+          "documentation": {
+            "example": "Acme Inc."
+          }
+        },
+        "department": {
+          "documentation": {
+            "example": "Marketing"
+          }
+        },
+        "phone1": {
+          "documentation": {
+            "example": "+64 4 555 1234"
+          }
+        },
+        "phone2": {
+          "documentation": {
+            "example": "+64 21 555 1234"
+          }
+        },
+        "address": {
+          "documentation": {
+            "example": "1 Civic Square, London, England"
+          }
+        },
+        "country": {
+          "documentation": {
+            "example": "GB"
+          }
+        },
+        "timezone": {
+          "documentation": {
+            "example": "Europe/London"
+          }
+        },
+        "lang": {
+          "documentation": {
+            "example": "en"
+          }
+        },
+        "theme": {
+          "documentation": {
+            "example": "ventura"
+          }
+        },
+        "auth": {
+          "documentation": {
+            "example": "manual"
+          }
+        },
+        "calendartype": {
+          "documentation": {
+            "example": "gregorian"
+          }
+        },
+        "emailstop": {
+          "documentation": {
+            "example": true
+          }
+        },
+        "suspended": {
+          "documentation": {
+            "example": true
+          }
+        },
+        "tenant": {
+          "documentation": {
+            "example": {
+              "idnumber": "tenant1"
+            }
+          }
+        },
+        "custom_fields": {
+          "documentation": {
+            "example": [
+              {
+                "shortname": "worklocation",
+                "data": "Remote",
+                "data_type": "TEXT"
+              },
+              {
+                "shortname": "employeeid",
+                "data": "456789",
+                "data_type": "TEXT"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "core_user_update_user_input": {
+      "inputFields": {
+        "username": {
+          "documentation": {
+            "example": "rebecca.woodhouse"
+          }
+        },
+        "firstname": {
+          "documentation": {
+            "example": "Rebecca"
+          }
+        },
+        "lastname": {
+          "documentation": {
+            "example": "Woodhouse"
+          }
+        },
+        "email": {
+          "documentation": {
+            "example": "rebecca.woodhouse@example.com"
+          }
+        },
+        "password": {
+          "documentation": {
+            "example": "supersecret"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "RW1234"
+          }
+        },
+        "firstnamephonetic": {
+          "documentation": {
+            "example": "reh BEH kuh"
+          }
+        },
+        "lastnamephonetic": {
+          "documentation": {
+            "example": "WUUD hows"
+          }
+        },
+        "middlename": {
+          "documentation": {
+            "example": "Jane"
+          }
+        },
+        "alternatename": {
+          "documentation": {
+            "example": "Becky"
+          }
+        },
+        "city": {
+          "documentation": {
+            "example": "London"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "I have an interest in agile project management and software development."
+          }
+        },
+        "descriptionformat": {
+          "documentation": {
+            "example": "PLAIN"
+          }
+        },
+        "url": {
+          "documentation": {
+            "example": "https://www.example.com/~rwoodhouse/"
+          }
+        },
+        "skype": {
+          "documentation": {
+            "example": "rebecca.woodhouse"
+          }
+        },
+        "institution": {
+          "documentation": {
+            "example": "Acme Inc."
+          }
+        },
+        "department": {
+          "documentation": {
+            "example": "Marketing"
+          }
+        },
+        "phone1": {
+          "documentation": {
+            "example": "+64 4 555 1234"
+          }
+        },
+        "phone2": {
+          "documentation": {
+            "example": "+64 21 555 1234"
+          }
+        },
+        "address": {
+          "documentation": {
+            "example": "1 Civic Square, London, England"
+          }
+        },
+        "country": {
+          "documentation": {
+            "example": "GB"
+          }
+        },
+        "timezone": {
+          "documentation": {
+            "example": "Europe/London"
+          }
+        },
+        "lang": {
+          "documentation": {
+            "example": "en"
+          }
+        },
+        "theme": {
+          "documentation": {
+            "example": "ventura"
+          }
+        },
+        "auth": {
+          "documentation": {
+            "example": "manual"
+          }
+        },
+        "calendartype": {
+          "documentation": {
+            "example": "gregorian"
+          }
+        },
+        "emailstop": {
+          "documentation": {
+            "example": true
+          }
+        },
+        "suspended": {
+          "documentation": {
+            "example": true
+          }
+        },
+        "tenant": {
+          "documentation": {
+            "example": {
+              "idnumber": "tenant1"
+            }
+          }
+        },
+        "custom_fields": {
+          "documentation": {
+            "example": [
+              {
+                "shortname": "worklocation",
+                "data": "Remote",
+                "data_type": "TEXT"
+              },
+              {
+                "shortname": "employeeid",
+                "data": "456789",
+                "data_type": "TEXT"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "core_user_custom_field_input": {
+      "inputFields": {
+        "shortname": {
+          "documentation": {
+            "example": "employeeid"
+          }
+        },
+        "data": {
+          "documentation": {
+            "example": "EM12345"
+          }
+        },
+        "data_format": {
+          "documentation": {
+            "example": 1
+          }
+        }
+      }
+    },
+    "totara_tenant_tenant_reference": {
+      "inputFields": {
+        "id": {
+          "documentation": {
+            "example": 5
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "tenant1"
+          }
+        }
+      }
+    }
+  },
+  "INTERFACE": {
+    "core_pageable_result": {
+      "fields": {
+        "total": {
+          "documentation": { "example": 84 }
+        },
+        "next_cursor": {
+          "documentation": { "example": "eyJsaW1pdCI6MSwiY29sdW1ucyI6eyJpZCI6M319" }
+        }
+      }
+    }
+  }
+}

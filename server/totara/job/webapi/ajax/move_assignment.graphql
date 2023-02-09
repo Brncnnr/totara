@@ -1,0 +1,11 @@
+mutation totara_job_move_assignment(
+  $userid: core_id!
+  $assignmentid: core_id!
+  $newposition: param_integer!
+) {
+  totara_job_move_assignment(
+    userid: $userid
+    assignmentid: $assignmentid
+    newposition: $newposition
+  )
+}

@@ -1,0 +1,70 @@
+extend type Query {
+  """
+  Return all learning items assigned to the current user
+  """
+  mobile_currentlearning_my_items: [mobile_currentlearning_item]!
+}
+
+"""
+Current learning item for mobile app.
+"""
+type mobile_currentlearning_item {
+  """
+  ID of the learning item
+  NOTE: This can not use the core_id type because we are adding the type to ensure uniqueness.
+  """
+  id: String!
+  """
+  Type of the learning item
+  (course, program, certification)
+  """
+  itemtype: String!
+  """
+  Component of the learning item
+  (core_course, totara_program, totara_certification)
+  """
+  itemcomponent: String!
+  """
+  Learning item shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Learning item fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Learning item description
+  """
+  description(format: core_format = MOBILE): String
+  """
+  The format of the learning item description
+  """
+  description_format: core_format
+  """
+  Learning item progress, a percentage of how far
+  through the item the user viewing it is.
+  """
+  progress: Float
+  """
+  Learning item URL, a link to view the learning item
+  """
+  url_view: String!
+  """
+  Learning item duedate, the date the learning item
+  is due for the viewing user.
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  Learning item duedate status, as computed by server. One of
+  "info", "warning", "danger", or "overdue".
+  """
+  duedate_state(format: core_format = PLAIN): String
+  """
+  Flag indicating whether item is suitable for native mobile display
+  """
+  mobile_coursecompat: Boolean
+  """
+  A URL for the course image, but only if it isn't a default image
+  """
+  mobile_image: String
+}

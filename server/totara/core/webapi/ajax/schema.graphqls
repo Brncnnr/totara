@@ -1,0 +1,204 @@
+"""
+Generic learning item data
+"""
+type totara_core_learning_item {
+  """
+  ID of the learning item
+  NOTE: there is potential overlap of course/prog/cert ids
+        this field can not be assumed to be unique
+  """
+  id: core_id!
+  """
+  Type of the learning item
+  (course, program, certification)
+  """
+  itemtype: String!
+  """
+  Component of the learning item
+  (core_course, totara_program, totara_certification)
+  """
+  itemcomponent: String!
+  """
+  Learning item shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Learning item fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Learning item description
+  """
+  description(format: core_format = HTML): String
+  """
+  The format of the learning item description
+  """
+  description_format: core_format
+  """
+  Learning item progress, a percentage of how far
+  through the item the user viewing it is.
+  """
+  progress: Float
+  """
+  Learning item URL, a link to view the learning item
+  """
+  url_view: String!
+  """
+  Learning item duedate, the date the learning item
+  is due for the viewing user.
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  Learning item duedate status, as computed by server. One of
+  "info", "warning", "danger", or "overdue".
+  """
+  duedate_state: String
+  """
+  Learning item image URL
+  """
+  image_src: String
+  """
+  Unique identifier, a composite of id and type
+  """
+  unique_id: String!
+  """
+  Progress summary text
+  """
+  progress_summary: String
+}
+
+"""
+Represents a way that a user is related to other users.
+"""
+type totara_core_relationship {
+  """
+  Relationship ID.
+  """
+  id: core_id!
+  """
+  Unique human understandable way of identifying the relationship.
+  """
+  idnumber(format: core_format = PLAIN): String!
+  """
+  Type of relationship, ex: standard = 0, manual = 1
+  """
+  type: Int!
+  """
+  Order that the relationship should appear in lists.
+  """
+  sort_order: Int!
+  """
+  Name of the relationship.
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  The plural version of the name of the relationship.
+  """
+  name_plural(format: core_format = PLAIN): String!
+  """
+  When this relationship was created.
+  """
+  created_at(format: core_date_format = TIMESTAMP): core_date!
+}
+
+type totara_core_date_time_setting {
+  iso: String!
+  timezone: String
+}
+
+"""
+Represents a date setting with optional time and timezone parts.
+"""
+input param_date_time_setting {
+  iso: String!
+  timezone: String
+}
+
+"""
+Result wrapper for the totara_core_settings_navigation_tree query
+"""
+type totara_core_settings_navigation_tree {
+  trees: [totara_core_tui_tree_node!]!
+  open_ids: [String!]!
+}
+
+enum totara_core_user_learning_item_type {
+  COURSE
+  PROGRAM
+  CERTIFICATION
+}
+
+enum totara_core_user_learning_item_progress {
+  COMPLETED
+  IN_PROGRESS
+  NOT_STARTED
+  NOT_TRACKED
+}
+
+input totara_core_user_learning_items_filters {
+  ids: [ID!]
+  search: String
+  type: totara_core_user_learning_item_type
+  progress: totara_core_user_learning_item_progress
+}
+
+type totara_core_learning_type_filter_option {
+  """
+  Learning type (one of 'course', 'program', 'certification')
+  """
+  type: String!
+}
+
+input totara_core_user_learning_items_input {
+  user_id: core_id
+  filters: totara_core_user_learning_items_filters
+  result_size: Int
+  cursor: String
+}
+
+type totara_core_user_learning_items_result implements core_pageable_result {
+  items: [totara_core_learning_item!]!
+  total: Int!
+  next_cursor: String!
+}
+
+extend type Query {
+  """
+  Return all learning items assigned to the current user.
+  Only returns the current learning, not completed ones.
+  """
+  totara_core_my_current_learning: [totara_core_learning_item]!
+
+  """
+  Return a tree with links to settings pages
+  """
+  totara_core_settings_navigation_tree(
+    context_id: core_id!
+    page_url: param_url!
+  ): totara_core_settings_navigation_tree!
+
+  """
+  Return all learning items of a user.
+  """
+  totara_core_user_learning_items(
+    input: totara_core_user_learning_items_input!
+  ): totara_core_user_learning_items_result!
+
+  """
+  Return all selected learning items of a user.
+  """
+  totara_core_user_learning_items_selected(
+    input: totara_core_user_learning_items_input!
+  ): totara_core_user_learning_items_result!
+}
+
+extend type Mutation {
+  totara_core_delete_draft_file(
+    draftid: param_integer!
+    filename: String!
+  ): totara_core_delete_draft_file_result!
+}
+
+type totara_core_delete_draft_file_result {
+  success: Boolean!
+}

@@ -1,0 +1,26 @@
+query totara_mobile_user_own_profile {
+  profile: totara_mobile_user_own_profile {
+    id
+    idnumber
+    username
+    firstname
+    surname: lastname
+    middlename
+    alternatename
+    email
+    profileimage: profileimageurl
+    city
+    country
+    timezone
+    description(format: MOBILE)
+    descriptionformat
+    webpage: url
+    skypeid: skype
+    institution
+    department
+    phone: phone1
+    mobile: phone2
+    address
+    __typename
+  }
+}

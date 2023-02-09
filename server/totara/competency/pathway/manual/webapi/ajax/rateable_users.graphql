@@ -1,0 +1,26 @@
+query pathway_manual_rateable_users(
+  $role: String!
+  $filters: pathway_manual_rateable_users_filters
+) {
+  pathway_manual_rateable_users(role: $role, filters: $filters) {
+    user {
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+    competency_count
+    latest_rating {
+      rater {
+        id
+        fullname
+      }
+      scale_value {
+        id
+        name
+      }
+      date: timestamp(format: DATE)
+      date_iso8601: timestamp(format: ISO8601)
+    }
+  }
+}

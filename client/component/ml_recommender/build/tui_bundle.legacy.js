@@ -1,0 +1,1 @@
+!function(){"use strict";"undefined"!=typeof tui&&tui._bundle.isLoaded("ml_recommender")?console.warn('[tui bundle] The bundle "ml_recommender" is already loaded, skipping initialisation.'):tui._bundle.register("ml_recommender")}();

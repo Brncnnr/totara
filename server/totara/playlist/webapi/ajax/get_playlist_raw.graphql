@@ -1,0 +1,9 @@
+query totara_playlist_get_playlist_raw($id: param_integer!) {
+  playlist: totara_playlist_instance(id: $id) {
+    __typename
+    id
+    summary(format: RAW)
+    summaryformat
+    name(format: PLAIN)
+  }
+}

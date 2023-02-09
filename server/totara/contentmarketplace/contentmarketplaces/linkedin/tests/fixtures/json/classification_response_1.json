@@ -1,0 +1,73 @@
+{
+  "paging": {
+    "start": 0,
+    "count": 100,
+    "links": [],
+    "total": 3
+  },
+  "elements": [
+    {
+      "name": {
+        "locale": {
+          "country": "US",
+          "language": "en"
+        },
+        "value": "Creative"
+      },
+      "owner": {
+        "urn": "urn:li:organization:1337",
+        "name": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "LinkedIn"
+        }
+      },
+      "urn": "urn:li:lyndaCategory:7163",
+      "type": "LIBRARY"
+    },
+    {
+      "name": {
+        "locale": {
+          "country": "US",
+          "language": "en"
+        },
+        "value": "Technology"
+      },
+      "owner": {
+        "urn": "urn:li:organization:1337",
+        "name": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "LinkedIn"
+        }
+      },
+      "urn": "urn:li:lyndaCategory:7164",
+      "type": "LIBRARY"
+    },
+    {
+      "name": {
+        "locale": {
+          "country": "US",
+          "language": "en"
+        },
+        "value": "Business"
+      },
+      "owner": {
+        "urn": "urn:li:organization:1337",
+        "name": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "LinkedIn"
+        }
+      },
+      "urn": "urn:li:lyndaCategory:7162",
+      "type": "LIBRARY"
+    }
+  ]
+}

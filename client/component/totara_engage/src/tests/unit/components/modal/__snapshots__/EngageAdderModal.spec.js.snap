@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdderModal should check snapshot 1`] = `
+<div
+  aria-labelledby="id-adder"
+  class="tui-modal tui-modal--animated tui-modal--shade tui-modal--size-large"
+  griddirection="undefined"
+  role="dialog"
+  tabindex="-1"
+  units="0"
+>
+  <!---->
+   
+  <div
+    class="tui-modal__pad"
+  >
+    <div
+      class="tui-modal__inner"
+    >
+      <!---->
+       
+      <div
+        class="tui-modalContent"
+      >
+        <div
+          class="tui-modalContent__header"
+        >
+          <div
+            class="tui-modalContent__header-title"
+            id="id-adder"
+          >
+            
+      Test
+      
+          </div>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="tui-modalContent__content"
+        >
+          <div
+            class="tui-adder"
+          >
+            <!---->
+             
+            <div
+              class="tui-adder__tabs"
+            >
+              <div
+                aria-orientation="horizontal"
+                class="tui-tabs tui-tabs--horizontal tui-tabs--fill"
+              >
+                <ul
+                  class="tui-tabs__tabs"
+                  role="tablist"
+                >
+                  <li
+                    class="tui-tabs__tab tui-tabs__tab--active tui-tabs__tab--small"
+                    role="presentation"
+                  >
+                    <a
+                      aria-controls="tabpanel-id-0"
+                      aria-selected="true"
+                      class="tui-tabs__link"
+                      href="#"
+                      id="tab-id-0"
+                      role="tab"
+                    >
+                      <span
+                        class="tui-tabs__tabLabel"
+                      >
+                        tempString
+                      </span>
+                    </a>
+                  </li>
+                  <li
+                    class="tui-tabs__tab tui-tabs__tab--small"
+                    role="presentation"
+                  >
+                    <a
+                      class="tui-tabs__link"
+                      href="#"
+                      id="tab-id-1"
+                      role="tab"
+                      tabindex="-1"
+                    >
+                      <span
+                        class="tui-tabs__tabLabel"
+                      >
+                        tempString
+                      </span>
+                    </a>
+                  </li>
+                   
+                  <!---->
+                </ul>
+                 
+                <div
+                  class="tui-tabs__panels"
+                >
+                  <div
+                    aria-labelledby="tab-id-0"
+                    class="tui-tabContent tui-adder__tabPanel"
+                    id="tabpanel-id-0"
+                    role="tabpanel"
+                  >
+                    <div
+                      class="tui-adder__filters"
+                    >
+                      <contributionfilter-stub
+                        area="filterArea"
+                        component="filterComponent"
+                        hasbottombar="true"
+                        showsearch="true"
+                        showsection="true"
+                        showtopic="true"
+                        value="[object Object]"
+                      />
+                    </div>
+                     
+                    <div
+                      class="tui-loader tui-adder__list-loading"
+                    >
+                      <!---->
+                       
+                      <div
+                        class="tui-adder__preList"
+                      />
+                       
+                      <div
+                        class="tui-adder__list"
+                      >
+                        <div
+                          class="tui-dataSelectTable tui-engageAdderBrowseTable"
+                        >
+                          <div>
+                            
+  tempString
+
+                          </div>
+                        </div>
+                         
+                        <!---->
+                      </div>
+                       
+                      <!---->
+                    </div>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <div
+              class="tui-adder__footer"
+            >
+              <div
+                aria-atomic="true"
+                aria-live="polite"
+                class="tui-adder__summary"
+                id="id-items-added"
+              >
+                
+              tempString
+            
+              </div>
+               
+              <div
+                class="tui-adder__actions"
+              >
+                <div
+                  class="tui-formBtnGroup"
+                >
+                  <button
+                    aria-describedby="id-items-added"
+                    class="tui-formBtn tui-formBtn--prim"
+                    disabled="disabled"
+                    type="button"
+                  >
+                    <span
+                      class="tui-formBtn__text"
+                    >
+                      
+    tempString
+  
+                    </span>
+                     
+                    <!---->
+                     
+                    <span
+                      aria-live="assertive"
+                    >
+                      <!---->
+                    </span>
+                  </button>
+                   
+                  <button
+                    class="tui-formBtn"
+                    type="button"
+                  >
+                    <span
+                      class="tui-formBtn__text"
+                    >
+                      
+    tempString
+  
+                    </span>
+                     
+                    <!---->
+                     
+                    <span
+                      aria-live="assertive"
+                    >
+                      <!---->
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>
+`;

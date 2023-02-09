@@ -1,0 +1,12 @@
+This files describes API changes in /mod/perform/element/long_text/*,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+* Renamed element from "Long text" to "Text: Long response"
+* This element now uses the Weka WYSIWYG editor (including file support) rather than a simple textbox.
+  JSON response data and files are now handled by long_text class rather than just plain text.
+* answer_length_exceeded_error is now deprecated as there is now no limit on the response length
+* long_text::post_response_submission() has been deprecated and should no longer be used. It has been replaced
+  with the \mod_perform\hook\post_element_response_submission hook, which is watched by long_text::process_weka_response()
+* Mutation prepare_draft_area has been deprecated and should no longer be used. It has been replaces with Query get_draft_id.

@@ -1,0 +1,175 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2018 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2018 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+//
+// @author    Mark Metcalfe <mark.metcalfe@totaralearning.com>
+// @package   theme_legacy
+
+.tw-evidence {
+  &__content_container {
+    background: var(--color-neutral-1);
+    border: 1px solid var(--color-neutral-5);
+    padding: var(--gap-4);
+  }
+
+  &__fields_view {
+    &_row {
+      word-wrap: break-word;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__header {
+    &_backLink {
+      display: inline-block;
+      padding-bottom: var(--gap-2);
+    }
+
+    &_titleBtns {
+      margin-bottom: var(--gap-4);
+
+      &_title {
+        @include tui-font-heading-page-title;
+        &_small {
+          font-size: var(--font-size-24);
+          margin-bottom: auto;
+          margin-top: auto;
+        }
+      }
+
+      &_buttons {
+        margin-top: var(--gap-2);
+
+        &_link {
+          @include bs-btn();
+          @include bs-btn-default();
+        }
+      }
+    }
+
+    .tabtree {
+      margin: var(--gap-4) 0;
+    }
+  }
+
+  &__hidden {
+    display: none;
+  }
+
+  &__item {
+    &_metadata {
+      margin-bottom: var(--gap-4);
+      margin-top: var(--gap-8);
+
+      &_title {
+        margin-bottom: var(--gap-4);
+        margin-top: var(--gap-8);
+      }
+
+      &_row {
+        &.tw-evidence__item_metadata_tf_element {
+          margin-bottom: var(--gap-2);
+        }
+      }
+    }
+  }
+
+  &__no_data_message {
+    font-style: italic;
+  }
+
+  &__select_type {
+    &_info {
+      margin-top: var(--gap-2);
+
+      &_buttons > &_button {
+        @include bs-btn();
+        @include bs-btn-default();
+
+        &_primary {
+          @include bs-btn-primary();
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      &_metadata {
+        padding-bottom: var(--gap-2);
+
+        &_description {
+          padding-bottom: var(--gap-2);
+        }
+
+        &_name {
+          margin-top: 0;
+        }
+      }
+    }
+
+    &_selector {
+      background: var(--color-neutral-2);
+      border: 1px solid var(--color-neutral-5);
+      padding-top: var(--gap-4);
+      padding-bottom: var(--gap-2);
+      padding-left: var(--gap-4);
+
+      &_element {
+        .form-autocomplete-selection {
+          display: none;
+        }
+      }
+
+      &_label {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tw-evidence {
+    &__header {
+      &_titleBtns {
+        display: flex;
+
+        &_buttons {
+          margin-top: 0;
+          margin-left: auto;
+        }
+      }
+    }
+
+    &__select_type {
+      &_selector {
+        display: inline-block;
+
+        &_element {
+          display: inline-block;
+          margin-left: var(--gap-2);
+        }
+      }
+    }
+  }
+}

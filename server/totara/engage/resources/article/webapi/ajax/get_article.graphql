@@ -1,0 +1,47 @@
+query engage_article_get_article($id: param_integer!) {
+  article: engage_article_get_article(id: $id) {
+    __typename
+    id
+    resource {
+      __typename
+      id
+      name(format: PLAIN)
+      access
+      time
+      context_id
+      user {
+        __typename
+        id
+        card_display {
+          __typename
+          profile_picture_alt
+          profile_picture_url
+          profile_url
+          display_fields {
+            __typename
+            value
+            label
+            associate_url
+            is_custom
+          }
+        }
+      }
+    }
+    content(format: HTML)
+    format
+    image
+    updateable
+    owned
+    topics {
+      __typename
+      id
+      value(format: PLAIN)
+      catalog
+    }
+    timedescription
+    timeview
+    sharedbycount
+    bookmarked
+    reacted
+  }
+}

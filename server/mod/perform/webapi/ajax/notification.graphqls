@@ -1,0 +1,148 @@
+"""
+Represents a notification, possibly an abstract / uncreated one (id may be null)
+"""
+type mod_perform_notification {
+  id: core_id
+  """
+  Human readable name for this notification
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Unqualified class name for the class that defines this notification type
+  """
+  class_key: String!
+  """
+  True if this notification is active
+  """
+  active: Boolean!
+  """
+  Defines the behaviour of the trigger for this notification (e.g. BEFORE, AFTER)
+  """
+  trigger_type: mod_perform_notification_trigger_type
+  """
+  Human readable string representing what the trigger is relative to
+  """
+  trigger_label(format: core_format = PLAIN): String
+  """
+  List of recipients for the notification. Note recipients are defined by relationships, not specific actual users
+  """
+  recipients: [mod_perform_notification_recipient!]
+  """
+  List of time periods (in seconds) that control when the notification is triggered (in combination with trigger_type)
+  """
+  triggers: [Int!]
+}
+
+"""
+Represents a notification recipient
+"""
+type mod_perform_notification_recipient {
+  """
+  ID of the relationship this recipient holds
+  """
+  relationship_id: core_id
+  """
+  Human readable string describing the recipient (e.g. 'Subject', 'Manager')
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  True if the recipient is set to receive the notification
+  """
+  active: Boolean!
+  """
+  The relationship this recipient holds
+  """
+  relationship: totara_core_relationship
+}
+
+enum mod_perform_notification_trigger_type {
+  """
+  Used to trigger notifications some time before a specific trigger
+  """
+  BEFORE
+  """
+  Used to trigger notifications some time after a specific trigger
+  """
+  AFTER
+}
+
+extend type Query {
+  """
+  A list of all notifications in an activity
+  """
+  mod_perform_notifications(activity_id: core_id!): [mod_perform_notification!]!
+}
+
+"""
+Deprecated since Totara 13.2
+Use mod_perform_toggle_notification_result instead
+"""
+type mod_perform_create_notification_result {
+  notification: mod_perform_notification!
+}
+
+"""
+Deprecated since Totara 13.2
+Use mod_perform_toggle_notification_input instead
+"""
+input mod_perform_create_notification_input {
+  activity_id: core_id!
+  class_key: param_text!
+  active: param_boolean
+}
+
+"""
+Input type for toggling a notification
+"""
+input mod_perform_toggle_notification_input {
+  notification_id: core_id!
+  active: param_boolean!
+}
+
+"""
+Input type for toggling a notification recipient
+"""
+input mod_perform_toggle_notification_recipient_input {
+  notification_id: core_id!
+  relationship_id: core_id!
+  active: param_boolean!
+}
+
+"""
+Input type for updating notification trigger's value
+"""
+input mod_perform_update_notification_triggers_input {
+  notification_id: core_id!
+  values: [param_integer!]!
+}
+
+extend type Mutation {
+  """
+  Deprecated since Totara 13.2
+  Use mod_perform_toggle_notification instead
+  """
+  mod_perform_create_notification(
+    input: mod_perform_create_notification_input!
+  ): mod_perform_create_notification_result!
+
+  """
+  Activate or deactivate a notification
+  """
+  mod_perform_toggle_notification(
+    input: mod_perform_toggle_notification_input!
+  ): mod_perform_create_notification_result!
+
+  """
+  Activate or deactivate a notification recipient
+  """
+  mod_perform_toggle_notification_recipient(
+    input: mod_perform_toggle_notification_recipient_input!
+  ): mod_perform_create_notification_result!
+
+  """
+  Set trigger values
+  """
+  mod_perform_update_notification_triggers(
+    input: mod_perform_update_notification_triggers_input!
+  ): mod_perform_create_notification_result!
+}

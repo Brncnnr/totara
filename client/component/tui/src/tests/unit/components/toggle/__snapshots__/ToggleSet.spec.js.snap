@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleSet Checks snapshot 1`] = `
+<div
+  aria-label="toggle set"
+  class="tui-toggleSet"
+  role="radiogroup"
+/>
+`;

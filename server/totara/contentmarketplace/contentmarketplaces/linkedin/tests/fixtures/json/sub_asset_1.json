@@ -1,0 +1,29 @@
+{
+  "asset": {
+    "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4472)",
+    "title": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "Introduction"
+    },
+    "type": "CHAPTER",
+    "contents": [
+      {
+        "asset": {
+          "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24961)",
+          "title": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Welcome"
+          },
+          "type": "VIDEO",
+          "contents": []
+        }
+      }
+    ]
+  }
+}

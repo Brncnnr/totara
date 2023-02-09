@@ -1,0 +1,7 @@
+{
+  "component": "contentmarketplaceactivity_linkedin",
+  "vendor": "totara",
+  "dependencies": [
+    "mod_contentmarketplace"
+  ]
+}

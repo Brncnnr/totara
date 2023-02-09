@@ -1,0 +1,9 @@
+mutation mod_perform_manually_change_participant_section(
+  $input: mod_perform_manually_change_participant_section_input!
+) {
+  mod_perform_manually_change_participant_section(input: $input) {
+    participant_section {
+      id
+    }
+  }
+}

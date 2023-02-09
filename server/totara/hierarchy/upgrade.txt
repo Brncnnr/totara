@@ -1,0 +1,164 @@
+This files describes API changes in Totara Hierarchies,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* server/totara/hierarchy/prefix/goal/classes/performelement_linked_review/response_report class has been deprecated, please use
+  server/totara/hierarchy/prefix/goal/classes/performelement_linked_review/personal_goal_response_report and
+  server/totara/hierarchy/prefix/goal/classes/performelement_linked_review/company_goal_response_report instead.
+* Capability 'totara/hierarchy:managegoalassignments' title has been renamed from 'Assign company goal' to 'Manage goal assignments'.
+  This is an admin capability which let a user manage any goal assignment in the system.
+* New capability to manage manager's assigned goals ('totara/hierarchy:managemanagerassignedgoal') has been added.
+* Added new role 'apiuser' to archetypes of 'totara/hierarchy:assignuserposition' capability
+* The 'targetdate' column of the goal and goal_personal tables have been made non-nullable and now default to 0. The upgrade process updates any existing null values to 0 as well.
+
+
+* Copied these server/totara/competency/classes/entity files to server/totara/hierarchy/classes/entity; the original files are deprecated:
+  - scale_assignment.php
+  - scale_value.php
+  - scale.php
+  - competency.php
+  - competency_repository.php
+  - competency_type.php
+  - competency_framework
+  - competency_framework_repository
+  - assignment_availability
+
+* Copied these server/totara/competency/classes/entity files to server/totara/hierarchy/classes/entity; the original files are deprecated:
+  - scale_assignment.php
+  - scale_value.php
+  - scale.php
+  - competency.php
+  - competency_repository.php
+  - competency_type.php
+  - competency_framework
+  - competency_framework_repository
+  - assignment_availability
+
+* Added a new column 'copy_op_id' to the 'comp' table. This is used in the new bulk competency pathway copy feature.
+
+=== 15.0 ===
+
+* Defaults added for 'evidencecount' and 'proficiencyexpected' in comp table.
+* Added a new table 'goal_item_target_date_history' for recording changes to target dates, both for personal and company goals.
+* Added an upgrade step for population with initial values for the 'goal_item_target_date_history' table.
+
+=== 14.0 ===
+
+* totara_hierarchy\entities\hierarchy_framework has been moved to totara_hierarchy\entity\hierarchy_framework
+* totara_hierarchy\entities\hierarchy_framework_repository has been moved to totara_hierarchy\entity\hierarchy_framework_repository
+* totara_hierarchy\entities\hierarchy_item has been moved to totara_hierarchy\entity\hierarchy_item
+* totara_hierarchy\entities\hierarchy_item_repository has been moved to totara_hierarchy\entity\hierarchy_item_repository
+* totara_hierarchy\entities\hierarchy_type has been moved to totara_hierarchy\entity\hierarchy_type
+* hierarchy_organisation\entities\organisation has been moved to hierarchy_organisation\entity\organisation
+* hierarchy_organisation\entities\organisation_filters has been moved to hierarchy_organisation\entity\organisation_filters
+* hierarchy_organisation\entities\organisation_framework has been moved to hierarchy_organisation\entity\organisation_framework
+* hierarchy_organisation\entities\organisation_framework_repository has been moved to hierarchy_organisation\entity\organisation_framework_repository
+* hierarchy_organisation\entities\organisation_repository has been moved to hierarchy_organisation\entity\organisation_repository
+* hierarchy_position\entities\position has been moved to hierarchy_position\entity\position
+* hierarchy_position\entities\position_filters has been moved to hierarchy_position\entity\position_filters
+* hierarchy_position\entities\position_framework has been moved to hierarchy_position\entity\position_framework
+* hierarchy_position\entities\position_framework_repository has been moved to hierarchy_position\entity\position_framework_repository
+* hierarchy_position\entities\position_repository has been moved to hierarchy_position\entity\position_repository
+
+=== 13.0 ===
+
+* hierarchy_competency\userdata\competency_evidence class has been deprecated, please use totara_competency\userdata\achievement instead.
+* hierarchy_competency\userdata\competency_progress class has been deprecated, please use totara_competency\userdata\achievement instead.
+* Deprecated the use of the following tables:
+  * comp_record. Information on the user's latest achievement in a specific competency is now stored in totara_competency_achievement.
+    Query with status = 0 to find current achievement value.
+  * comp_record_history. Information on a user's previous achievements in a specific competency is also stored in totara_competency_achievement.
+    Query with status <> 0 to find previous achievements.
+  * comp_criteria_record. Information on a user's completion of courses (evidence) linked to a competency is now stored in totara_criteria_item_record.
+* Added minproficiencyid field to the comp_scale table. This should be relied on over the proficient field in the
+  comp_scale_values table when determining if a value should be considered proficient.
+* totara_competency_scale_proficient_not_in_order has been deprecated. There should always be a minimum proficient id according to the scale.
+* totara_competency_scale_proficient_not_in_order has been deprecated. Please use the minproficiencyid value on the scale to ensure proficiency cannot be out of order.
+* competency::get_proficiencies has been deprecated. Use competency::get_user_completed_competencies to check what competencies a user has completed.
+* Removed deprecated methods:
+  * build_nojs_treeview()
+  * build_nojs_breadcrumbs()
+  * build_nojs_frameworkpicker()
+  * build_nojs_jobassignmentpicker()
+* Function goal::create_user_assignments has been deprecated. Use update_user_assignments instead.
+* The following functions related to displaying delete confirmations messages have been deprecated:
+  * hierarchy::get_item_stats() and overrides
+  * hierarchy::get_delete_message()
+  * hierarchy::output_delete_message() and overrides
+  Please use hierarchy::delete_item_confirmation_modal(), hierarchy::delete_bulk_confirmation_modal()
+  or hierarchy::get_all_related_data() instead of hierarchy::get_item_stats().
+* The following mustache templates have been deprecated:
+  * totara/hierarchy/templates/competency_view_evidence.mustache
+  * totara/hierarchy/templates/competency_view_related.mustache
+* totara_hierarchy_renderer::competency_view_evidence has been deprecated in Perform only.
+  The display and management of courses linked to a competency is now handled by the totara/competency/classes/controllers/competency_controller
+  controller and totara/competency/classes/linked_courses class.
+  Information is passed to totara/competency/templates/competency_edit_linkedcourses.mustache.
+* totara_hierarchy_renderer::competency_view_related has been deprecated. The functionality is no longer supported.
+* hierarchy_can_add_competency_evidence has been moved to from totara/hierarchy/prefix/competency/evidence/lib.php to totara/hierarchy/lib.php.
+* competencyuseresourcelevelevidence global setting has been deprecated.
+
+
+=== 12.0 ===
+
+* Removed deprecated methods:
+  * totara_hierarchy_renderer::print_competency_view_evidence()
+  * totara_hierarchy_renderer::print_goal_view_assignments()
+  * totara_hierarchy_renderer::print_assigned_goals()
+  * pos_can_edit_position_assignment()
+  * pos_get_current_position_data()
+  * pos_get_most_primary_position_assignment()
+  * get_position_assignments()
+* Removed deprecated class position_assignment
+* Removed deprecated files:
+  * prefix/position/assign/manager.php
+  * prefix/position/assign/tempmanager.php
+* Deprecated the following report builder display functions and replaced with display classes
+  * rb_source_goal_custom::rb_display_user_type_name(), please call totara_hierarchy\rb\display\goal_type_name::display() instead.
+  * rb_source_goal_custom::rb_display_personal_company(), please call totara_hierarchy\rb\display\goal_personal_company::display() instead.
+  * rb_source_goal_details::rb_display_status_history_link(), please call totara_hierarchy\rb\display\goal_status_history_link::display() instead.
+  * rb_source_goal_status_history::rb_display_scope(), please call totara_hierarchy\rb\display\goal_scope::display() instead.
+  * rb_source_goal_status_history::rb_display_fullname_link_user(), please call totara_reportbuilder\rb\display\user_link::display() instead.
+  * rb_source_goal_summary::rb_display_namesummarylink(), please call totara_hierarchy\rb\display\goal_name_summary_link::display() instead.
+  * rb_source_org::rb_display_orgnamelink(), please call totara_hierarchy\rb\display\org_name_link::display() instead.
+  * rb_source_pos::rb_display_posnamelink(), please call totara_hierarchy\rb\display\pos_name_link::display() instead.
+  * rb_source_goal_status_history::rb_display_scope(), please call totara_hierarchy\rb\display\goal_status_history_link::display() instead.
+* Added field totarasync to the comp table
+* The method hierarchy::download_ods has had its scope changed from public to protected. To continue using the previous behaviour,
+  use hierarchy::download_ods_legacy, which is public.
+* The method hierarchy::download_xls has had its scope changed from public to protected. To continue using the previous behaviour,
+use hierarchy::download_xls_legacy, which is public.
+* The method hierarchy::download_csv has had its scope changed from public to protected. To continue using the previous behaviour,
+  use hierarchy::download_csv_legacy, which is public.
+* The scheduled task update_competency_task did not scale so it had to be refactored. The refactoring breaks backwards compatibility
+  for the method competency_cron_aggregate_evidence(). This method was replaced by a new method called aggregate_competency_evidence_items() which behaviour
+  is different to the previous one. Previously there was one big query and loop which went through all competency/user combinations.
+  Now all evidence items for a particular user and framework/depth combination are loaded and then passed to this method for aggregation.
+  Additionally the method competency_cron_evidence_items() was replaced with a private method run_evidence_type_aggregation_methods(). The old method was deprecated
+  in favour of the new one.
+
+=== 10 ===
+
+The following files have been deprecated and should no longer be linked to:
+* totara/hierarchy/prefix/competency/assign/save.php
+* totara/hierarchy/prefix/competency/course/evidence.php
+* totara/hierarchy/prefix/competency/evidenceitem/course.php
+* totara/hierarchy/prefix/competency/item/view.php
+* totara/hierarchy/prefix/competency/template/delete.php
+* totara/hierarchy/prefix/competency/template/edit.php
+* totara/hierarchy/prefix/competency/template/edit_form.php
+* totara/hierarchy/prefix/competency/template/find_competency.php
+* totara/hierarchy/prefix/competency/template/index.php
+* totara/hierarchy/prefix/competency/template/remove_assignment.php
+* totara/hierarchy/prefix/competency/template/save_competency.php
+* totara/hierarchy/prefix/competency/template/view.php
+* totara/hierarchy/prefix/organisation/assigncompetencytemplate/assign.php
+* totara/hierarchy/prefix/organisation/assigncompetencytemplate/find.php
+* totara/hierarchy/prefix/position/assigncompetencytemplate/assign.php
+
+* totara/hierarchy/prefix/competency/template/lib.php has been deprecated and should no longer be included anywhere.
+* totara_hierarchy_renderer::mygoals_company_table() has changed adding a label for goal status
+* totara_hierarchy_renderer::mygoals_personal_table() has changed adding a label for goal status
+
+* Added an optional timeproficient column to mdl_comp_record and mdl_comp_record_history which can be used to record when a user becomes proficient in a competency

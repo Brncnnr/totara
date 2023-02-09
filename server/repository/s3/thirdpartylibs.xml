@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<libraries>
+  <library>
+    <location>S3.php</location>
+    <name>S3</name>
+    <license>BSD</license>
+    <version>0.5.1</version>
+    <licenseversion></licenseversion>
+    <repository>https://github.com/tpyo/amazon-s3-php-class</repository>
+  </library>
+</libraries>

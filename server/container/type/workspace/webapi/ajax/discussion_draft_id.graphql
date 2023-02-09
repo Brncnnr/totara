@@ -1,0 +1,3 @@
+query container_workspace_discussion_draft_id($id: param_integer) {
+  draft_id: container_workspace_discussion_draft_id(id: $id)
+}

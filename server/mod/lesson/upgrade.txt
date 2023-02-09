@@ -1,0 +1,19 @@
+This files describes API changes in the lesson code.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* External function mod_lesson_external::get_user_attempt() now returns the full page object inside each answerpages.
+
+=== 12.0 ===
+
+* lesson::callback_on_view() has an additional optional parameter $redirect default to true.
+  It can be set to false to avoid redirection and return the page to redirect.
+* mod_lesson_renderer::page_action_links() has been modified
+* Converted uses of the label CSS class to mod_lesson__label so that it does not clash with Bootstrap
+
+=== 10.0 ===
+
+* Removed the unused file reformat.php
+* removedoublecr() and importmodifiedaikenstyle() have now been removed.

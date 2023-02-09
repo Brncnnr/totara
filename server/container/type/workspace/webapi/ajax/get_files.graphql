@@ -1,0 +1,41 @@
+query container_workspace_get_files(
+  $workspace_id: param_integer!
+  $cursor: param_text
+  $sort: container_workspace_file_sort!
+  $extension: param_alphanum
+) {
+  cursor: container_workspace_file_cursor(
+    workspace_id: $workspace_id
+    cursor: $cursor
+    extension: $extension
+  ) {
+    __typename
+    total
+    next
+  }
+
+  files: container_workspace_files(
+    workspace_id: $workspace_id
+    cursor: $cursor
+    sort: $sort
+    extension: $extension
+  ) {
+    __typename
+    id
+    file_name(format: PLAIN)
+    file_size(format: PLAIN)
+    extension(format: PLAIN)
+    date(format: DATELONG)
+    author {
+      __typename
+      id
+      fullname
+    }
+    alt_text
+    download_url
+    context_url
+    file_url
+    mimetype
+    file_type
+  }
+}

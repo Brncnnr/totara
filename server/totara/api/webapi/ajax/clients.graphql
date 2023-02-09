@@ -1,0 +1,26 @@
+query totara_api_clients($input: totara_api_clients_input!) {
+  clients: totara_api_clients(input: $input) {
+    items {
+      __typename
+      id
+      name(format: PLAIN)
+      service_account {
+        user {
+          id
+          fullname
+        }
+        is_valid
+        status
+      }
+      description(format: HTML)
+      oauth2_client_providers {
+        id
+        client_id
+        client_secret
+      }
+      status
+    }
+    total
+    next_cursor
+  }
+}

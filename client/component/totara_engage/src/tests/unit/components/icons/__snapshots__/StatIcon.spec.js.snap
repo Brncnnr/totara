@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage StatIcon Checks snapshot 1`] = `
+<div
+  class="tui-engageStatIcon"
+>
+  <span
+    aria-label="15 likes"
+    class="tui-engageStatIcon__iconContainer"
+    role="img"
+  >
+    <span
+      class="tui-engageStatIcon__icon"
+    />
+  </span>
+   
+  <span
+    aria-hidden="true"
+    class="tui-engageStatIcon__statNumber"
+  >
+    
+    15
+  
+  </span>
+</div>
+`;

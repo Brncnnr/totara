@@ -1,0 +1,45 @@
+/**
+ * Filters
+ */
+.mediaplugin {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.mediaplugin,
+.mediaplugin video {
+    max-width: 100%;
+    height: auto;
+}
+
+.mediaplugin > iframe {
+    max-width: 100%;
+}
+
+.mediaplugin > div {
+    margin: auto;
+}
+
+.mediaplugin_grow_limit {
+    /* overridden in Totara default theme */
+    max-width: 700px;
+}
+
+/* Responsive aspect ratio - https://css-tricks.com/aspect-ratio-boxes/ */
+.mediaplugin__iframe_responsive {
+    position: relative;
+    width: 100%;
+    height: 0;
+}
+
+.mediaplugin__iframe_responsive > iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

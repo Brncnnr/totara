@@ -1,0 +1,36 @@
+{
+  "id": 1868492,
+  "assessable": false,
+  "collections": [],
+  "created_time": "2017-05-05T10:37:28+00:00",
+  "delivery": {
+    "duration": 45,
+    "mode": "self-paced"
+  },
+  "description": "<p>Accidents can happen at any time and regardless of how many precautions are taken. When an accident happens, how you respond could be the difference between life and death. In this four-module course, you will learn about what to do in an emergency, including initial responses to injury situations, first aid guidelines, and best practices.</p>\n\n<p>The course also covers the AHA’s 2010 Guidelines for Cardiopulmonary Resuscitation (CPR) and Emergency Cardiovascular Care (ECC), including both full and hands-only CPR. Note that this course does not qualify students for first aid certification; it is meant to be used as a review between certifications.</p>\n\n<p>Estimated duration: 45 minutes</p>",
+  "image": "\/totara\/contentmarketplace\/contentmarketplaces\/goone\/tests\/behat\/fixtures\/image.jpg",
+  "items": [],
+  "items_count": 23,
+  "language": "en",
+  "portal_collection": false,
+  "pricing": {
+    "currency": "USD",
+    "price": 0,
+    "tax": 0,
+    "tax_included": false
+  },
+  "provider": {
+    "name": "GO1 Content"
+  },
+  "reviews": {
+    "count": 3,
+    "rating": 5
+  },
+  "tags": [
+    "Australia",
+    "Compliance"
+  ],
+  "title": "Basic First Aid",
+  "type": "course",
+  "updated_time": "2017-06-09T04:04:21+00:00"
+}

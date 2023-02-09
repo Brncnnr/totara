@@ -1,0 +1,99 @@
+# Mutation to create a new custom notification preference at specific context.
+mutation totara_notification_create_custom_notification_preference_v2(
+  $context_id: param_integer!
+  $extended_context_component: param_component
+  $extended_context_area: param_area
+  $extended_context_item_id: param_integer
+  $resolver_class_name: param_text!
+  $title: String!
+  $additional_criteria: String
+  $body: String!
+  $body_format: param_integer!
+  $subject: String!
+  $schedule_type: param_text!
+  $schedule_offset: param_integer!
+  $subject_format: param_integer!
+  $recipients: [param_text!]!
+  $enabled: param_boolean!
+  $forced_delivery_channels: [param_text!]!
+) {
+  notification_preference: totara_notification_create_notification_preference_v2(
+    input: {
+      extended_context: {
+        context_id: $context_id
+        component: $extended_context_component
+        area: $extended_context_area
+        item_id: $extended_context_item_id
+      }
+      resolver_class_name: $resolver_class_name
+      title: $title
+      additional_criteria: $additional_criteria
+      body: $body
+      body_format: $body_format
+      subject: $subject
+      schedule_type: $schedule_type
+      schedule_offset: $schedule_offset
+      subject_format: $subject_format
+      recipients: $recipients
+      enabled: $enabled
+      forced_delivery_channels: $forced_delivery_channels
+    }
+  ) {
+    __typename
+    title
+    id
+    ancestor_id
+    body(format: RAW)
+    body_content: body(format: HTML)
+    body_format
+    subject(format: RAW)
+    subject_content: subject(format: HTML)
+    subject_format
+    overridden_body
+    overridden_subject
+    overridden_recipient
+    title
+    overridden_additional_criteria
+    additional_criteria
+    resolver_plugin_name
+    resolver_class_name
+    resolver_name
+    resolver_component
+    is_custom
+    parent_id
+    schedule_offset(unit: DAY)
+    schedule_type
+    schedule_label
+    overridden_schedule
+    overridden_enabled
+    overridden_forced_delivery_channels
+    forced_delivery_channels
+    recipients {
+      class_name
+      name
+    }
+    enabled
+    extended_context {
+      component
+      context_id
+      area
+      item_id
+    }
+    parent_value {
+      __typename
+      subject(format: RAW)
+      body(format: RAW)
+      body_format
+      title
+      additional_criteria
+      schedule_offset(unit: DAY)
+      schedule_type
+      subject_format
+      forced_delivery_channels
+      recipients {
+        class_name
+        name
+      }
+    }
+  }
+}

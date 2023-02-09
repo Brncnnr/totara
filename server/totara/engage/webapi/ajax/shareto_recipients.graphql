@@ -1,0 +1,42 @@
+query totara_engage_shareto_recipients(
+  $itemid: param_integer!
+  $component: param_component!
+  $search: String
+  $access: totara_engage_access!
+  $theme: param_component
+) {
+  recipients: totara_engage_shareto_recipients(
+    itemid: $itemid
+    component: $component
+    search: $search
+    access: $access
+    theme: $theme
+  ) {
+    component
+    area
+    instanceid
+    alreadyshared
+    summary
+    minimum_access
+    user {
+      id
+      card_display {
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          value
+          label
+          associate_url
+          is_custom
+        }
+      }
+    }
+    other {
+      category
+      fullname
+      imageurl
+      imagealt
+    }
+  }
+}

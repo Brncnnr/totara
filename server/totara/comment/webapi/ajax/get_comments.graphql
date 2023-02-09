@@ -1,0 +1,52 @@
+query totara_comment_get_comments(
+  $component: param_component!
+  $area: param_area!
+  $instanceid: param_integer!
+  $cursor: param_text
+) {
+  cursor: totara_comment_comment_cursor(
+    component: $component
+    area: $area
+    instance_id: $instanceid
+    cursor: $cursor
+  ) {
+    __typename
+    total
+    next
+  }
+
+  comments: totara_comment_comments(
+    component: $component
+    area: $area
+    instanceid: $instanceid
+    cursor: $cursor
+  ) {
+    __typename
+    id
+    content(format: HTML)
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+    timedescription
+    totalreplies
+    totalreactions
+    edited
+    deleted
+    reasondeleted
+    interactor {
+      __typename
+      user_id
+      can_delete
+      can_report
+      can_update
+      can_reply
+      can_react
+      reacted
+      can_view_author
+    }
+  }
+}

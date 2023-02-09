@@ -1,0 +1,184 @@
+.tui-linkedInImportCategoryPopover {
+  line-height: 1;
+
+  &__edit {
+    margin-top: var(--gap-1);
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+  }
+}
+
+.tui-linkedInImportPrimaryFilter {
+  display: flex;
+  align-items: center;
+
+  & > * + * {
+    margin-left: var(--gap-4);
+  }
+
+  &__label {
+    flex-shrink: 0;
+  }
+}
+
+.tui-linkedInImportLearningItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--gap-2);
+
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+
+  &__imgContainer {
+    position: relative;
+  }
+
+  &__img {
+    height: 120px;
+    background: var(--color-neutral-3);
+    background-position: center;
+    background-size: cover;
+
+    .tui-linkedInImportLearningItem--unselected & {
+      opacity: 0.3;
+    }
+  }
+
+  &__logoContainer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: var(--gap-2);
+    background-color: var(--color-neutral-1);
+  }
+
+  &__logo {
+    width: 70px;
+    height: 20px;
+  }
+
+  &__content {
+    @include tui-font-body-small();
+
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__title {
+    @include tui-font-heading-small();
+    margin: var(--gap-1) 0 0;
+
+    .tui-linkedInImportLearningItem--unselected & {
+      color: var(--color-neutral-6);
+    }
+  }
+
+  &__subject {
+    color: var(--color-text-hint);
+  }
+
+  &__bar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: var(--font-size-16);
+    color: var(--color-text-hint);
+    -webkit-hyphens: none;
+        -ms-hyphens: none;
+            hyphens: none;
+
+    & > * + * {
+      margin-top: var(--gap-3);
+    }
+
+    &-side {
+      display: flex;
+      margin-left: auto;
+    }
+
+    &-courses {
+      display: flex;
+
+      & > * + * {
+        margin-left: var(--gap-1);
+      }
+    }
+
+    &-coursesList {
+      max-height: 160px;
+      margin: var(--gap-1) 0 0;
+      overflow: auto;
+      list-style: none;
+    }
+
+    &-overview {
+      @include tui-separator-pipe();
+    }
+  }
+}
+
+@media (min-width: $tui-screen-xs) {
+  .tui-linkedInImportLearningItem {
+    flex-direction: row;
+    margin-top: 0;
+
+    & > * + * {
+      margin-top: 0;
+    }
+
+    &__img {
+      flex-shrink: 0;
+      width: 180px;
+      height: 99px;
+
+      .tui-linkedInImportLearningItem--small & {
+        width: 106px;
+        height: 60px;
+      }
+    }
+
+    &__content {
+      flex-grow: 1;
+      padding-left: var(--gap-4);
+
+      .tui-linkedInImportLearningItem--small & {
+        & > * + * {
+          margin-top: var(--gap-2);
+        }
+      }
+    }
+
+    &__title {
+      .tui-linkedInImportLearningItem--small & {
+        @include tui-font-heading-x-small();
+        margin-top: var(--gap-1);
+      }
+    }
+  }
+}
+
+@media (min-width: $tui-screen-md) {
+  .tui-linkedInImportLearningItem {
+    &__bar {
+      flex-direction: row;
+
+      & > * + * {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.tui-linkedInImportLearningItemCategory {
+  display: flex;
+
+  &__current {
+    @include tui-font-heavy();
+    margin-left: var(--gap-1);
+    color: var(--color-text);
+  }
+}
+

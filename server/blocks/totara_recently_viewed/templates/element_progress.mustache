@@ -1,0 +1,55 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Cody Finegan <cody.finegan@totaralearning.com>
+   @package block_totara_recently_viewed
+}}
+{{!
+    @template block_totara_recently_viewed/element_progress
+
+    Progress bar element.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * progress_small: Boolean, if true show the number outside (to the right) of the bar
+    * progress: Raw % of the progress bar
+
+    Example context (json):
+    {
+        "progress_small": false,
+        "progress": "50%"
+    }
+}}
+<div class="block-trv-progress">
+    <div class="block-trv-progress-background"></div>
+    <div class="block-trv-progress-bar-wrapper">
+        <div class="block-trv-progress-bar" style="width: {{ progress }}">
+            {{^progress_small}}
+                <div class="block-trv-progress-text-inner">{{ progress }}</div>
+            {{/progress_small}}
+        </div>
+        {{#progress_small}}
+            <div class="block-trv-progress-text-outer">{{ progress }}</div>
+        {{/progress_small}}
+    </div>
+</div>

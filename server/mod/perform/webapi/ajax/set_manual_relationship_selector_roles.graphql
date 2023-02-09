@@ -1,0 +1,7 @@
+mutation mod_perform_set_manual_relationship_selector_roles(
+  $input: mod_perform_manual_relationship_selector_roles!
+) {
+  mod_perform_set_manual_relationship_selector_roles(input: $input) {
+    success
+  }
+}

@@ -1,0 +1,15 @@
+query editor_weka_get_draft_file(
+  $item_id: param_integer!
+  $filename: param_text!
+) {
+  file: editor_weka_draft_file(item_id: $item_id, filename: $filename) {
+    __typename
+    filename
+    file_size
+    item_id
+    mime_type
+    url(force_download: false)
+    download_url: url(force_download: true)
+    media_type
+  }
+}

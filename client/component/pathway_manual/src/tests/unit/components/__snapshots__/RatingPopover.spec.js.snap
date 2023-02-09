@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingPopover Checks snapshot 1`] = `
+<popover-stub
+  closeable="true"
+  contextmode="contained"
+  position="bottom-right"
+  triggers="click"
+>
+  <h2
+    class="sr-only"
+  >
+    $str('add_rating', 'pathway_manual')
+  </h2>
+   
+  <div
+    class="tui-bulkManualRatingPopover"
+  >
+    <div
+      class="tui-bulkManualRatingPopover__scaleValues"
+    >
+      <label
+        id="id-scale-value-heading"
+      >
+        
+        $str('select_scale_value', 'pathway_manual')
+      
+      </label>
+       
+      <radiogroup-stub
+        arialabelledby="id-scale-value-heading"
+        name="id"
+        value="1"
+      >
+        <radio-stub
+          id="id"
+          label="Competent"
+          name="id-scale-radio"
+          value="123"
+        >
+          
+            Competent
+          
+        </radio-stub>
+         
+        <span
+          class="tui-bulkManualRatingPopover__divider"
+        />
+         
+        <radio-stub
+          id="id"
+          name="id-scale-radio"
+          value="-1"
+        >
+          
+            $str('rating_set_to_none', 'pathway_manual')
+          
+        </radio-stub>
+      </radiogroup-stub>
+    </div>
+     
+    <div
+      class="tui-bulkManualRatingPopover__comment"
+    >
+      <label
+        id="id-comment-heading"
+      >
+        
+        $str('add_comment', 'pathway_manual')
+      
+      </label>
+       
+      <textarea-stub
+        arialabelledby="id-comment-heading"
+        class="tui-bulkManualRatingPopover__textarea"
+        value="Test comment"
+      />
+    </div>
+  </div>
+</popover-stub>
+`;

@@ -1,0 +1,58 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2022 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Simon Chester <simon.chester@totaralearning.com>*/
+/* @module    tui*/
+
+/* Pick a width % value between small_frac and large_frac equivalent to where*/
+/* our available width lies between small_anchor and large_anchor, clamped to*/
+/* stay in that range.*/
+/* This is overly complicated due to limitations of CSS / calc, but is equivalent to*/
+/* width = available_width * lerp(small_frac, large_frac, clamp01(inverse_lerp(small_anchor, large_anchor, available_width)))*/
+/* @private INTERNAL FUNCTION, DO NOT USE*/
+@function tui-lerp-responsive-width-internal-do-not-use(
+  $small_anchor,
+  $small_frac,
+  $large_anchor,
+  $large_frac
+) {
+  $factor: (($large_anchor * $large_frac / $small_frac) - $small_anchor) /
+    ($large_anchor - $small_anchor);
+  $factor_fixed: $small_anchor - ($small_anchor * $factor);
+  $width: calc((#{$factor * 100%} + #{$factor_fixed}) * #{$small_frac});
+  $width: calc(
+    min(max(#{$width}, #{$small_anchor * $small_frac}), #{100% * $small_frac})
+  );
+  $width: calc(
+    max(min(#{$width}, #{$large_anchor * $large_frac}), #{100% * $large_frac})
+  );
+  @return $width;
+}
+
+$tui-media-named-sizes: (
+  'large': (
+    'fixed': 100%,
+    'responsive': 100%,
+  ),
+  'medium': (
+    'fixed': 66%,
+    'responsive':
+      tui-lerp-responsive-width-internal-do-not-use(300px, 0.8, 700px, 0.66),
+  ),
+  'small': (
+    'fixed': 33%,
+    'responsive':
+      tui-lerp-responsive-width-internal-do-not-use(300px, 0.5, 700px, 0.33),
+  ),
+);
+

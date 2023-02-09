@@ -1,0 +1,20 @@
+type criteria_coursecompletion_achievement_item {
+  course: totara_core_learning_item
+}
+
+type criteria_coursecompletion_achievements {
+  aggregation_method: Int!
+  required_items: Int!
+  items: [criteria_coursecompletion_achievement_item!]!
+  is_valid: Boolean!
+}
+
+extend type Query {
+  """
+  Get all achievements of a specific coursecompletion criteria instance
+  """
+  criteria_coursecompletion_achievements(
+    instance_id: core_id!
+    user_id: core_id!
+  ): criteria_coursecompletion_achievements!
+}

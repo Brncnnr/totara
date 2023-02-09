@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table Checks snapshot 1`] = `
+<div
+  class="tui-dataTable"
+  role="table"
+>
+  <headerrow-stub
+    empty="true"
+  >
+    <!---->
+     
+    <propsprovider-stub
+      provide="function () { [native code] }"
+    />
+  </headerrow-stub>
+   
+  <!---->
+   
+  <!---->
+   
+  <rowgroup-stub>
+    <row-stub>
+      <!---->
+       
+      <propsprovider-stub
+        provide="function () { [native code] }"
+      />
+    </row-stub>
+     
+    <!---->
+    <row-stub>
+      <!---->
+       
+      <propsprovider-stub
+        provide="function () { [native code] }"
+      />
+    </row-stub>
+     
+    <!---->
+    <row-stub>
+      <!---->
+       
+      <propsprovider-stub
+        provide="function () { [native code] }"
+      />
+    </row-stub>
+     
+    <!---->
+    <row-stub>
+      <!---->
+       
+      <propsprovider-stub
+        provide="function () { [native code] }"
+      />
+    </row-stub>
+     
+    <!---->
+     
+    <!---->
+  </rowgroup-stub>
+   
+  <!---->
+</div>
+`;
+
+exports[`Table Checks snapshot with no row data supplied 1`] = `
+<div>
+  
+  No items to display
+
+</div>
+`;

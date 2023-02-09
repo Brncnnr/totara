@@ -1,0 +1,74 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2021 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @module tui
+
+:root {
+  // Gap to the left & right of dot separator
+  --separator-dot-gap: 0.53em;
+  // Width / height of dot
+  --separator-dot-size: 0.2em;
+  // Gap to the left & right of pipe separator
+  --separator-pipe-gap: 0.53em;
+  // Width of pipe
+  --separator-pipe-size: 1px;
+}
+
+@mixin tui-separator-dot {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * + * {
+    position: relative;
+    display: flex;
+    margin-left: var(--separator-dot-gap);
+    /* prettier-ignore */
+    padding-left: calc(var(--separator-dot-gap) + calc(var(--separator-dot-size) - 1px));
+
+    &:before {
+      position: absolute;
+      top: calc(var(--separator-dot-size) / 2);
+      bottom: 0;
+      left: 0;
+      height: var(--separator-dot-size);
+      margin: auto 0;
+      border-left: var(--separator-dot-size) solid;
+      border-radius: 50%;
+      content: '';
+    }
+  }
+}
+
+@mixin tui-separator-pipe {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * + * {
+    position: relative;
+    display: flex;
+    margin-left: var(--separator-pipe-gap);
+    padding-left: var(--separator-pipe-gap);
+
+    &:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      height: 1em;
+      margin: auto 0;
+      border-left: var(--separator-pipe-size) solid;
+      content: '';
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionLink matches snapshot 1`] = `
+<a
+  aria-label="Text that overrides the link text"
+  class="tui-actionLink tui-actionLink--prim tui-actionLink--small"
+  href="https://www.google.com/"
+>
+  
+  Text
+
+</a>
+`;
+
+exports[`ActionLink matches snapshot 2`] = `
+<a
+  aria-label="Text that overrides the link text"
+  class="tui-actionLink tui-actionLink--prim tui-actionLink--small"
+>
+  
+  Text
+
+</a>
+`;

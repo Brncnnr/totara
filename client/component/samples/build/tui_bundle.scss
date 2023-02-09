@@ -1,0 +1,813 @@
+.tui-samplesCode {
+  &__box {
+    margin: var(--gap-4) 0;
+    padding: var(--gap-4);
+    background-color: var(--color-neutral-3);
+    border: 1px solid var(--color-neutral-5);
+  }
+}
+
+.tui-samplesExample {
+  margin-top: var(--gap-4);
+
+  &__box {
+    padding: var(--gap-4);
+  }
+}
+
+.tui-samplesCtl {
+  &__box {
+    margin: var(--gap-4) 0;
+    padding: var(--gap-4);
+    background-color: var(--color-neutral-3);
+    border: 1px solid var(--color-neutral-5);
+  }
+
+  &__optional {
+    margin: var(--gap-4) 0;
+    padding-bottom: var(--gap-1);
+    border-bottom: 1px solid var(--color-neutral-5);
+  }
+}
+
+.tui-sample-weka {
+  &__json {
+    white-space: pre;
+  }
+}
+
+.tui-mod_approval-sampleCollapsibleCard {
+  &__actions {
+    @include tui-stack-horizontal(var(--gap-4));
+    display: flex;
+    align-items: center;
+  }
+}
+
+.tui-mod_approval-sampleTransitionCard {
+  &__header {
+    margin: var(--gap-2) 0;
+  }
+}
+
+.tui-samples-miniProfileCard {
+  display: flex;
+  flex-direction: column;
+
+  &__card {
+    margin-bottom: var(--gap-3);
+  }
+}
+
+.tui-sampleOverflow {
+  &__items {
+    display: flex;
+  }
+
+  &__item {
+    flex-shrink: 0;
+  }
+}
+
+.tui-samplePopover {
+  &__buttonRow {
+    display: flex;
+    > * + * {
+      margin-left: var(--gap-4);
+    }
+  }
+}
+
+.tui-testProgressBar {
+  width: 400px;
+  padding: 1rem;
+  background-color: #767676;
+}
+
+.tui-responsive-example .tui-grid {
+  background-color: var(--color-secondary);
+  * {
+    background-color: var(--color-state);
+  }
+}
+
+.tui-tagListWrapper {
+  width: 700px;
+}
+.tui-customTag {
+  padding: 0.4rem;
+  border: 1px solid var(--btn-text-color);
+  border-radius: 6px;
+}
+
+.tui-sample-virtualScroll {
+  &__container {
+    height: 600px;
+    overflow: auto;
+  }
+
+  &__row {
+    margin-bottom: var(--gap-4);
+    padding: var(--gap-4);
+    background-color: #ddd;
+  }
+
+  /* add margin between grid rows (except last)*/
+  &__grid-row:not(:last-child) {
+    margin-bottom: var(--grid-gutter);
+  }
+
+  &__grid-card {
+    height: 20rem;
+    padding: var(--gap-4);
+    background-color: #ddd;
+  }
+
+  &__loader-wrapper {
+    padding: 1em;
+  }
+}
+
+.tui-samplesIndividualsAdder {
+  &__selected {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+}
+
+.tui-testActionLink {
+  h4 {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-testButton {
+  h4 {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-samples-buttonAriaSimple {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--gap-1) var(--gap-2);
+  color: var(--color-neutral-1);
+  background: var(--color-neutral-6);
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+
+  &:hover,
+  &:active {
+    background: var(--color-neutral-7);
+  }
+
+  &:focus {
+    @include tui-focus();
+  }
+
+  &[aria-disabled='true'] {
+    background: var(--color-neutral-5);
+    cursor: default;
+  }
+}
+
+.tui-testButton {
+  h4 {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-testArrow {
+  &--box {
+    position: relative;
+    width: 50%;
+    height: 100px;
+    background: var(--color-neutral-1);
+    border: 1px solid var(--color-neutral-5);
+  }
+}
+
+.tui-sampleDragDrop {
+  &--scrollAll &__droppables {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+
+  &__table-toggle {
+    margin-top: var(--gap-2);
+  }
+
+  &__dragLists {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__dragList {
+    width: 200px;
+    margin-right: 50px;
+    padding: var(--gap-2);
+    background: var(--color-neutral-4);
+    transition: background-color 0.15s;
+
+    &--valid {
+      background: #d2edf9;
+    }
+
+    > [data-tui-draggable-placeholder] {
+      margin-bottom: var(--gap-2);
+    }
+  }
+
+  &__draggableItem {
+    margin-bottom: var(--gap-2);
+    padding: var(--gap-4);
+    background: white;
+    border: 1px solid black;
+    transition: box-shadow 0.15s;
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    &--dragging {
+      box-shadow: var(--shadow-3);
+    }
+  }
+
+  &__dragGrid {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+
+    &-item {
+      position: relative;
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 180px;
+      margin: var(--gap-2);
+      padding: var(--gap-4);
+      background: white;
+      border: 1px solid black;
+      transition: box-shadow 0.15s;
+      -webkit-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+
+      &-moveIcon {
+        position: absolute;
+        top: var(--gap-2);
+        left: var(--gap-2);
+        display: none;
+      }
+
+      &:hover &-moveIcon,
+      &--dragging &-moveIcon {
+        display: block;
+      }
+    }
+
+    &-item-transition-move {
+      transition: transform 0.25s;
+    }
+  }
+}
+
+.tui-testDropdown__wrapper {
+  display: flex;
+
+  & > * + * {
+    margin-left: var(--gap-1);
+  }
+}
+
+.tui-sampleEditor {
+  &__editor {
+    height: 100%;
+  }
+
+  &__source {
+    white-space: pre;
+  }
+}
+
+.tui-testInputGroup {
+  &__button {
+    min-width: 6rem;
+  }
+}
+
+.tui-testRange {
+  &__code {
+    display: inline-block;
+    margin: 0 2px -1px;
+    padding: 0 3px;
+    text-decoration: inherit;
+    vertical-align: baseline;
+    background-color: #f4f5f7;
+    background-clip: padding-box;
+    border: 1px solid #dfe1e6;
+    border-radius: 3px;
+  }
+  &__description {
+    ul {
+      margin: 10px 0 0;
+    }
+    li {
+      margin-left: 20px;
+    }
+  }
+  &__selectedValue {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.tui-grid-example .tui-grid-item {
+  position: relative; /* parental control of popover trigger position */
+  background-color: var(--color-neutral-4);
+
+  > div > .tui-iconBtn {
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    z-index: 1;
+  }
+
+  textarea {
+    overflow: hidden;
+  }
+
+  .tui-popoverFrame {
+    width: 500px;
+    max-width: 500px;
+  }
+}
+
+.tui-sampleSkeletonContent {
+  &__wrap {
+    display: flex;
+
+    & > * + * {
+      margin-left: var(--gap-4);
+    }
+  }
+
+  &__img {
+    width: 180px;
+    height: 99px;
+    background: var(--color-neutral-3);
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+
+  &__title {
+    margin-top: 0;
+  }
+}
+
+.tui-sampleNotificationBannerCard {
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-4);
+
+  & > * + * {
+    margin-left: var(--gap-2);
+  }
+}
+
+.tui-samples__ProgressTracker__wrapper {
+  display: flex;
+  gap: 50px;
+
+  &--vertical {
+    flex-direction: row;
+
+    .tui-samples__ProgressTracker__content {
+      width: calc(50% - 50px);
+    }
+  }
+  &--horizontal {
+    flex-direction: column;
+  }
+}
+.tui-samples__ProgressTracker__icon--done {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-top: 2px;
+}
+
+.tui-sidePanelExample {
+  height: 100%;
+
+  .tui-sidePanel__content {
+    padding: var(--gap-8);
+  }
+}
+
+.tui-sidePanelNavExample {
+  @include tui-font-body();
+}
+
+.tui-sample__tree {
+  max-width: 300px;
+
+  &-side {
+    display: flex;
+  }
+}
+
+.tui-colourSamplesBox {
+  width: 30px;
+  height: 30px;
+}
+
+.tui-colourSamplesBox--primary {
+  background: var(--color-primary);
+}
+
+.tui-colourSamplesBox--secondary {
+  background: var(--color-secondary);
+}
+
+.tui-colourSamplesBox--tertiary {
+  background: var(--color-tertiary);
+}
+
+.tui-colourSamplesBox--state {
+  background: var(--color-state);
+}
+
+.tui-colourSamplesBox--stateHover {
+  background: var(--color-state-hover);
+}
+
+.tui-colourSamplesBox--stateFocus {
+  background: var(--color-state-focus);
+}
+
+.tui-colourSamplesBox--stateActive {
+  background: var(--color-state-active);
+}
+
+.tui-colourSamplesBox--stateHighlight {
+  background: var(--color-state-highlight-neutral);
+}
+
+.tui-colourSamplesBox--stateDisabled {
+  background: var(--color-state-disabled);
+}
+
+.tui-colourSamplesBox--promptInfo {
+  background: var(--color-prompt-info);
+}
+
+.tui-colourSamplesBox--promptInfoBg {
+  background: var(--color-prompt-info-bg);
+}
+
+.tui-colourSamplesBox--promptAlert {
+  background: var(--color-prompt-alert);
+}
+
+.tui-colourSamplesBox--promptAlertBg {
+  background: var(--color-prompt-alert-bg);
+}
+
+.tui-colourSamplesBox--promptWarning {
+  background: var(--color-prompt-warning);
+}
+
+.tui-colourSamplesBox--promptWarningBg {
+  background: var(--color-prompt-warning-bg);
+}
+
+.tui-colourSamplesBox--promptSuccess {
+  background: var(--color-prompt-success);
+}
+
+.tui-colourSamplesBox--promptSuccessBg {
+  background: var(--color-prompt-success-bg);
+}
+
+.tui-colourSamplesBox--neutralOne {
+  background: var(--color-neutral-1);
+}
+
+.tui-colourSamplesBox--neutralTwo {
+  background: var(--color-neutral-2);
+}
+
+.tui-colourSamplesBox--neutralThree {
+  background: var(--color-neutral-3);
+}
+
+.tui-colourSamplesBox--neutralFour {
+  background: var(--color-neutral-4);
+}
+
+.tui-colourSamplesBox--neutralFive {
+  background: var(--color-neutral-5);
+}
+
+.tui-colourSamplesBox--neutralSix {
+  background: var(--color-neutral-6);
+}
+
+.tui-colourSamplesBox--neutralSeven {
+  background: var(--color-neutral-7);
+}
+
+.tui-colourSamplesBox--chartOne {
+  background: var(--color-chart-background-1);
+}
+
+.tui-colourSamplesBox--chartOneLight {
+  background: var(--color-chart-transparent-1);
+}
+
+.tui-colourSamplesBox--chartTwo {
+  background: var(--color-chart-background-2);
+}
+
+.tui-colourSamplesBox--chartTwoLight {
+  background: var(--color-chart-transparent-2);
+}
+
+.tui-colourSamplesBox--chartThree {
+  background: var(--color-chart-background-3);
+}
+
+.tui-colourSamplesBox--chartThreeLight {
+  background: var(--color-chart-transparent-3);
+}
+
+.tui-colourSamplesBox--chartFour {
+  background: var(--color-chart-background-4);
+}
+
+.tui-colourSamplesBox--chartFourLight {
+  background: var(--color-chart-transparent-4);
+}
+
+.tui-colourSamplesBox--chartFive {
+  background: var(--color-chart-background-5);
+}
+
+.tui-colourSamplesBox--chartFiveLight {
+  background: var(--color-chart-transparent-5);
+}
+
+.tui-colourSamplesBox--chartSix {
+  background: var(--color-chart-background-6);
+}
+
+.tui-colourSamplesBox--chartSixLight {
+  background: var(--color-chart-transparent-6);
+}
+
+.tui-colourSamplesBox--chartSeven {
+  background: var(--color-chart-background-7);
+}
+
+.tui-colourSamplesBox--chartSevenLight {
+  background: var(--color-chart-transparent-7);
+}
+
+.tui-gapSamplesBox {
+  height: 30px;
+  background: var(--color-state);
+
+  &--one {
+    width: var(--gap-1);
+  }
+
+  &--two {
+    width: var(--gap-2);
+  }
+
+  &--three {
+    width: var(--gap-3);
+  }
+
+  &--four {
+    width: var(--gap-4);
+  }
+
+  &--five {
+    width: var(--gap-5);
+  }
+
+  &--six {
+    width: var(--gap-6);
+  }
+
+  &--seven {
+    width: var(--gap-7);
+  }
+
+  &--eight {
+    width: var(--gap-8);
+  }
+
+  &--nine {
+    width: var(--gap-9);
+  }
+
+  &--ten {
+    width: var(--gap-10);
+  }
+
+  &--eleven {
+    width: var(--gap-11);
+  }
+
+  &--twelve {
+    width: var(--gap-12);
+  }
+}
+
+.tui-typographySamples__heading-large {
+  @include tui-font-heading-large();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__heading-medium {
+  @include tui-font-heading-medium();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__heading-small {
+  @include tui-font-heading-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__heading-smallRegular {
+  @include tui-font-heading-small-regular();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__heading-xSmall {
+  @include tui-font-heading-x-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__heading-label {
+  @include tui-font-heading-label();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__heading-labelSmall {
+  @include tui-font-heading-label-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body {
+  @include tui-font-body();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-small {
+  @include tui-font-body-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-xSmall {
+  @include tui-font-body-x-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-xxSmall {
+  @include tui-font-body-xx-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-disabled {
+  @include tui-font-body-disabled();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-placeholder {
+  @include tui-font-body-placeholder();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-heavy {
+  @include tui-font-heavy();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__body-hint {
+  @include tui-font-hint();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__link {
+  @include tui-font-link();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__link-large {
+  @include tui-font-link-large();
+  margin: var(--gap-1) 0;
+}
+
+.tui-typographySamples__link-small {
+  @include tui-font-link-small();
+  margin: var(--gap-1) 0;
+}
+
+.tui-exampleChartJs {
+  display: flex;
+  flex-direction: column;
+
+  & > * + * {
+    margin-top: 7rem;
+  }
+
+  &__chart {
+    align-self: center;
+    width: 515px;
+  }
+}
+
+.tui-exampleChartJs {
+  display: flex;
+  flex-direction: column;
+
+  & > * + * {
+    margin-top: 7rem;
+  }
+
+  &__chart {
+    align-self: center;
+    width: 515px;
+  }
+}
+
+.tui-samples {
+  .formHeader {
+    margin-top: var(--gap-6);
+  }
+
+  &__filter {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    > * + * {
+      margin-top: 1.6rem;
+    }
+  }
+
+  &__results {
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &__result {
+    display: block;
+    padding: var(--gap-1) var(--gap-2);
+    color: var(--color-state);
+
+    &:hover,
+    &:focus {
+      color: var(--color-state-focus);
+      text-decoration: none;
+      background-color: var(--color-state-highlight-neutral);
+    }
+
+    &--selected,
+    &--selected:hover,
+    &--selected:focus {
+      color: var(--color-state);
+      background-color: var(--color-neutral-3);
+      border-radius: 3px;
+    }
+  }
+
+  &__resultGroupHeader {
+    margin-top: var(--gap-1);
+    color: var(--color-neutral-6);
+    font-weight: bold;
+    font-size: var(--font-size-11);
+    text-transform: uppercase;
+  }
+
+  &--highlight {
+    color: pink;
+    background: pink;
+  }
+}
+

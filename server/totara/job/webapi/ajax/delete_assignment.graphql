@@ -1,0 +1,6 @@
+mutation totara_job_delete_assignment(
+  $userid: core_id!
+  $assignmentid: core_id!
+) {
+  totara_job_delete_assignment(userid: $userid, assignmentid: $assignmentid)
+}

@@ -1,0 +1,27 @@
+"""
+Represents an error that occurs when processing competencies.
+"""
+type totara_competency_error {
+  """
+  Error message.
+  """
+  message(format: core_format = PLAIN): String!
+  """
+  Optional error code if any.
+  """
+  code: String
+}
+
+"""
+Represents competency processing result.
+"""
+interface totara_competency_result {
+  """
+  True if the copy was successful
+  """
+  success: Boolean!
+  """
+  Validation errors if any.
+  """
+  error: totara_competency_error
+}

@@ -1,0 +1,12 @@
+{
+  "start": 0,
+  "count": 2,
+  "total": 8497,
+  "links": [
+    {
+      "type": "application/json",
+      "rel": "dark_joke",
+      "href": "/v2/learningAssets?assetFilteringCriteria.assetTypes[0]=COURSE&assetFilteringCriteria.licensedOnly=false&assetFilteringCriteria.locales[0].language=en&count=2&q=criteria&start=2"
+    }
+  ]
+}

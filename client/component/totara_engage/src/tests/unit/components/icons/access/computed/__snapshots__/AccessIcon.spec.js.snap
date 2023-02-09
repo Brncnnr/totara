@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage AccessIcon Checks snapshot for access private 1`] = `
+<privateicon-stub
+  coloring="true"
+/>
+`;
+
+exports[`Engage AccessIcon Checks snapshot for access public 1`] = `
+<publicicon-stub
+  coloring="true"
+/>
+`;
+
+exports[`Engage AccessIcon Checks snapshot for access restricted 1`] = `
+<restrictedicon-stub
+  coloring="true"
+/>
+`;

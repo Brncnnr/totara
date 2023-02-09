@@ -1,0 +1,9 @@
+query totara_hierarchy_goal_assignment_types(
+  $input: totara_hierarchy_goal_assignment_types_input
+) {
+  totara_hierarchy_goal_assignment_types(input: $input) {
+    name
+    value
+    label
+  }
+}

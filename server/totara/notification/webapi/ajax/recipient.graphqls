@@ -1,0 +1,10 @@
+type totara_notification_recipient {
+  """
+  The class name of recipient
+  """
+  class_name: String
+  """
+  The human readerable name of the recipient
+  """
+  name: String
+}

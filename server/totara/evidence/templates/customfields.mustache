@@ -1,0 +1,71 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/customfields
+
+    Container for rendering static view-only custom field data
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * fields: array, list of custom fields with values
+    * fields -> label: string, name of the custom field
+    * fields -> value: HTML, the custom field content
+
+    Example context (json):
+    {
+        "fields": [
+            {
+                "label": "Degree(s)",
+                "value": ""
+            },
+            {
+                "label": "Additional Notes",
+                "value": "Evidence #1 Dummy Data #1"
+            },
+            {
+                "label": "Time of Achievement",
+                "value": "Not set"
+            },
+            {
+                "label": "Qualification Name",
+                "value": "Evidence #1 Dummy Data #4"
+            },
+            {
+                "label": "Confirmation of Consent",
+                "value": "Yes"
+            }
+        ]
+    }
+}}
+<div class="tw-evidence__fields_view totara_form">
+    {{#fields}}
+    <div class="tw-evidence__fields_view_row tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{label}}</label></div>
+        <div class="tf_element_input">{{{value}}}</div>
+    </div>
+    {{/fields}}
+</div>

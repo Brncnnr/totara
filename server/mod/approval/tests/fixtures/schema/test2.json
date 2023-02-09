@@ -1,0 +1,225 @@
+{
+  "title": "Printable Test Form",
+  "shortname": "PTF",
+  "revision": "1.01",
+  "version": "2021071500",
+  "language": "en-NZ",
+  "fields": [
+    {
+      "key": "agency_code",
+      "line": "A",
+      "label": "Agency code",
+      "type": "text"
+    },
+    {
+      "key": "gender",
+      "line": "B",
+      "label": "Gender",
+      "type": "select_one",
+      "default": null,
+      "attrs": {
+        "choices": [
+          {
+            "key": null,
+            "label": "Select one"
+          },
+          {
+            "key": "M",
+            "label": "Male"
+          },
+          {
+            "key": "F",
+            "label": "Female"
+          },
+          {
+            "key": "?",
+            "label": "N/A"
+          }
+        ]
+      }
+    }
+  ],
+  "sections": [
+    {
+      "key": "A",
+      "line": "Section A",
+      "label": "Food & drinks",
+      "fields": [
+        {
+          "key": "food",
+          "label": "What food do you want",
+          "type": "text"
+        },
+        {
+          "key": "drink",
+          "label": "What beverage do you want",
+          "type": "text",
+          "default": "Latte"
+        }
+      ]
+    },
+    {
+      "key": "B",
+      "line": "Section B",
+      "label": "Optional questions",
+      "fields": [
+        {
+          "key": "genre",
+          "label": "What movie genre do you like",
+          "type": "text"
+        },
+        {
+          "key": "tomato",
+          "label": "Tomayto, Tomahto",
+          "type": "select_one",
+          "attrs": {
+            "choices": [
+              {
+                "key": null,
+                "label": "Select one"
+              },
+              {
+                "key": "tomayto",
+                "label": "Tomayto"
+              },
+              {
+                "key": "tomahto",
+                "label": "Tomahto"
+              }
+            ]
+          }
+        },
+        {
+          "key": "shirt",
+          "label": "Which is your shirt size",
+          "type": "select_one",
+          "attrs": {
+            "choices": [
+              {
+                "key": null,
+                "label": "Select one"
+              },
+              {
+                "key": "S",
+                "label": "S"
+              },
+              {
+                "key": "M",
+                "label": "M"
+              },
+              {
+                "key": "L",
+                "label": "L"
+              },
+              {
+                "key": "?",
+                "label": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "print_layout": {
+    "options": {
+      "paper_size": {
+        "width": 200,
+        "height": 100
+      },
+      "scale": 1,
+      "section": {
+        "no_break": true,
+        "line_number": true
+      },
+      "field": {
+        "max_label_height": 10,
+        "max_content_height": 10,
+        "line_number": true
+      }
+    },
+    "sections": [
+      {
+        "rows": [
+          [
+            {
+              "type": "title",
+              "text": "A Very Simple Request",
+              "units": 12
+            }
+          ],
+          [
+            {
+              "type": "field",
+              "units": 3,
+              "field": "agency_code"
+            },
+            {
+              "type": "field",
+              "units": 1,
+              "field": "gender"
+            }
+          ]
+        ]
+      },
+      {
+        "section": "A",
+        "rows": [
+          [
+            {
+              "type": "section_label",
+              "section": "A"
+            }
+          ],
+          [
+            {
+              "type": "field",
+              "units": 1,
+              "field": "food"
+            },
+            {
+              "type": "field",
+              "units": 1,
+              "field": "drink"
+            }
+          ]
+        ]
+      },
+      {
+        "section": "B",
+        "rows": [
+          [
+            {
+              "type": "section_label",
+              "section": "B"
+            }
+          ],
+          [
+            {
+              "type": "field",
+              "units": 2,
+              "field": "genre"
+            },
+            {
+              "type": "field",
+              "units": 1,
+              "field": "shirt"
+            }
+          ],
+          [
+            {
+              "type": "label",
+              "text": "Simple Form generated for Behat"
+            }
+          ]
+        ]
+      },
+      {
+        "rows": [
+          [{ "type": "section_label", "text": "Section D - Approvals" }],
+          [{ "type": "approvals" }]
+        ]
+      }
+    ]
+  }
+}

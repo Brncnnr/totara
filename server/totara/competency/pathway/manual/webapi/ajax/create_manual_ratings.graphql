@@ -1,0 +1,11 @@
+mutation pathway_manual_create_manual_ratings(
+  $user_id: core_id!
+  $role: param_text!
+  $ratings: [pathway_manual_rating_input!]!
+) {
+  pathway_manual_create_manual_ratings(
+    user_id: $user_id
+    role: $role
+    ratings: $ratings
+  )
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family:sans-serif">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+            }
+            th {
+                text-align: left;
+            }
+        </style>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <title> Totara ML Server </title>
+    </head>
+    <body>
+        <h1>{{ home_data.msg }}</h1>
+        <h3>{{ home_data.timestamp }}</h3>
+
+        <table style="width:80%; margin-bottom: 10px;">
+            <tr>
+                <th>Setting</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Totara URL</td>
+                <td>{{ home_data.config.totara_url }}</td>
+            </tr>
+        </table>
+
+        <table style="width:80%">
+            <tr>
+                <th>
+                    Endpoints
+                </th>
+                <th>
+                    URL
+                </th>
+                <th>
+                    Method
+                </th>
+                <th>
+                    Data fields
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Request health checks
+                </td>
+                <td>
+                    {{ home_data.endpoints.url_health_check }}
+                </td>
+                <td>
+                    Get
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    Request similar content
+                </td>
+                <td>
+                    {{ home_data.endpoints.url_similar_items }}
+                </td>
+                <td>
+                    Get
+                </td>
+                <td>
+                    <b>totara_item_id</b>: content id<br/>
+                    <b>tenant</b>: tenant id<br/>
+                    <b>n_items</b>: number of items to return that are similar to the given one
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Request user recommendations
+                </td>
+                <td>
+                    {{ home_data.endpoints.url_user_items }}
+                </td>
+                <td>
+                    Get
+                </td>
+                <td>
+                    <b>totara_user_id</b>: user id<br/>
+                    <b>item_type</b>; one of "container_course", "container_workspace", "engage_article", "engage_microlearning", and "totara_playlist"<br/>
+                    <b>tenant</b>: tenant id<br/>
+                    <b>n_items</b>: number of user recommendations to return
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

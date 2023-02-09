@@ -1,0 +1,87 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Riana Rossouw <riana.rossouw@totaralearning.com>
+     @package pathway_criteria_group
+}}
+{{!
+
+    @template pathway_criteria_group/partial_criterion_detail
+
+    This template shows detail of a criterion
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+
+    Context variables required for this template:
+
+    Other context variables for following partials:
+
+}}
+
+
+<div class="tw-editScaleValuePathGroupCriterion__item tw-editScaleValuePathGroupCriterion--deleted tw-editAchievementPaths--hidden"
+data-tw-editScaleValuePaths-criterion-deleted="">
+    {{title}}
+</div>
+
+{{#expandable}}
+<div class="tw-editScaleValuePathGroupCriterion__item" data-tw-editScaleValuePaths-criterion-active="">
+    <div class="criterion_title"
+    data-tw-editScaleValuePaths-criterion-action="toggle-detail"
+    {{#expanded}}data-tw-editScaleValuePaths-criterion-detail-expanded="1"{{/expanded}}>
+
+        <button type="button" aria-expanded="false" class="tw-editAchievementPaths__transparentBtn">
+            <span>
+                <span aria-hidden="true" {{^expanded}}class="tw-editAchievementPaths--hidden"{{/expanded}} data-tw-editScaleValuePaths-criterion-detail-icon="expanded">
+                    {{#flex_icon}}expanded{{/flex_icon}}
+                </span>
+                <span aria-hidden="true" {{#expanded}}class="tw-editAchievementPaths--hidden"{{/expanded}} data-tw-editScaleValuePaths-criterion-detail-icon="collapsed">
+                    {{#flex_icon}}collapsed{{/flex_icon}}
+                </span>
+                <span id="criterion_title--{{key}}">{{title}}</span>
+
+                <span {{^error}}class="tw-editAchievementPaths--hidden"{{/error}}>
+                    {{#flex_icon}}notification-warning{{/flex_icon}}
+                </span>
+
+            </span>
+        </button>
+    </div>
+
+    <div data-tw-editScaleValuePaths-criterion-detail="{{key}}" {{^expanded}}class="tw-editAchievementPaths--hidden"{{/expanded}}>
+        {{#criterion_templatename}}{{> &&criterion_templatename}}{{/criterion_templatename}}
+    </div>
+</div>
+{{/expandable}}
+
+{{^expandable}}
+<div class="tw-editScaleValuePathGroupCriterion__item" data-tw-editScaleValuePaths-criterion-active>
+    <div class="{{#deleted}}tw-editScaleValuePathGroupCriterion--deleted{{/deleted}}">
+        {{title}}
+    </div>
+
+    {{#criterion_templatename}}
+    <div data-tw-editScaleValuePaths-criterion-detail="{{key}}" class="tw-editAchievementPaths--hidden">
+        {{> &&criterion_templatename}}
+    </div>
+    {{/criterion_templatename}}
+</div>
+{{/expandable}}

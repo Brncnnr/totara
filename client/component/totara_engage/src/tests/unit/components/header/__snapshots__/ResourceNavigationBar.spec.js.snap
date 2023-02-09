@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ResourceNavigationBar Checks snapshot 1`] = `
+<div class="tui-resourceNavigationBar"><a href="http://example.com/back-button" title="Back Button Label" class="tui-resourceNavigationBar__backLink">
+    <backarrow-stub size="200" class="tui-resourceNavigationBar__backIcon"></backarrow-stub> <span> Back Button Label </span>
+  </a>
+  <div class="tui-resourceNavigationBar__nextPrevious"><a href="http://example.com/previous" title="resourcenavprevious, totara_engage" class="tui-resourceNavigationBar__previousLink">
+      <backarrow-stub size="100"></backarrow-stub>
+    </a> <span></span> <a href="http://example.com/next" title="resourcenavnext, totara_engage" class="tui-resourceNavigationBar__nextLink">
+      <forwardarrow-stub size="100"></forwardarrow-stub>
+    </a></div>
+</div>
+`;

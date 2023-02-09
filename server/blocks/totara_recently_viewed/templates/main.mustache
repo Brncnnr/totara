@@ -1,0 +1,83 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Cody Finegan <cody.finegan@totaralearning.com>
+   @package block_totara_recently_viewed
+}}
+{{!
+    @template block_totara_recently_viewed/main
+
+    Main template for the block.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * classes: Additional classes to attach to the block
+    * cards: Collection of card elements to render
+    * cards -> is_engage_article: Boolen, true if the componet is an engage_article
+    * cards -> is_engage_survey: Boolen, true if the componet is an engage_survey
+    * cards -> is_totara_playlist: Boolen, true if the componet is an totara_playlist
+
+    Example context (json):
+    {
+        "classes": "some-class-name",
+        "layout": "horizontal",
+        "cards": [
+            {
+                "is_engage_article": true,
+                "component": "engage_article",
+                ...
+            },
+        ]
+    }
+}}
+<div class="block-totara-recently-viewed {{classes}}">
+    {{#has_cards}}
+    <ul class="block-trv-layout-{{layout}}">
+        {{#cards}}
+            <li class="block-trv-card-li block-trv-{{component}} block-trv-li-{{layout}} {{classes}}">
+                {{#is_engage_article}}
+                    {{>block_totara_recently_viewed/card_engage_article}}
+                {{/is_engage_article}}
+                {{#is_engage_survey}}
+                    {{>block_totara_recently_viewed/card_engage_survey}}
+                {{/is_engage_survey}}
+                {{#is_totara_playlist}}
+                    {{>block_totara_recently_viewed/card_totara_playlist}}
+                {{/is_totara_playlist}}
+                {{#is_container_workspace}}
+                    {{>block_totara_recently_viewed/card_container_workspace}}
+                {{/is_container_workspace}}
+                {{#is_container_course}}
+                    {{>block_totara_recently_viewed/card_container_course}}
+                {{/is_container_course}}
+                {{#is_totara_program}}
+                    {{>block_totara_recently_viewed/card_totara_program}}
+                {{/is_totara_program}}
+            </li>
+        {{/cards}}
+    </ul>
+    {{/has_cards}}
+    {{^has_cards}}
+        <p>{{#str}} no_content, block_totara_recently_viewed {{/str}}</p>
+    {{/has_cards}}
+</div>

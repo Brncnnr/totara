@@ -1,0 +1,23 @@
+This files describes API changes in the mod_scorm code,
+information provided here is intended especially for developers.
+
+=== 14 ===
+
+* Force new attempt setting no longer a boolean - now accepts 3 values:
+  No
+  When previous attempt completed, passed or failed - (Same as previous behaviour)
+  Always - (new option)
+  See MDL-32585 for more details.
+
+== 12.17 ==
+
+* mod_scorm/rb_source_scorm::rb_filter_scorm_attempt_list() function has been deprecated, please use the number type filter instead.
+
+== 12 ==
+
+* New capabilities 'mod/scorm:view' and 'mod/scorm:launch' were added.
+
+=== 10 ===
+
+* Group and groupings support has now been enabled.
+

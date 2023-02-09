@@ -1,0 +1,84 @@
+.tui-wekaMultiLangBlock {
+  white-space: normal;
+
+  &__container {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--gap-2);
+    background: var(--color-neutral-3);
+    border: 1px solid var(--color-neutral-5);
+  }
+
+  &__languageWrapper {
+    display: flex;
+  }
+
+  &__language {
+    display: flex;
+    flex: 1;
+    padding-right: var(--gap-2);
+    font-size: var(--font-size-12);
+  }
+
+  &__texts {
+    white-space: break-spaces;
+  }
+
+  &__remove {
+    margin-left: var(--gap-2);
+  }
+}
+
+.tui-wekaMultiLangBlockCollection {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  white-space: normal;
+
+  &__content {
+    .tui-wekaMultiLangBlock {
+      &:first-child {
+        .tui-wekaMultiLangBlock__wrapper {
+          border-top-left-radius: var(--border-radius-normal);
+          border-top-right-radius: var(--border-radius-normal);
+        }
+      }
+
+      &:not(:first-child) {
+        .tui-wekaMultiLangBlock__wrapper {
+          border-top: 0;
+        }
+      }
+
+      &:last-child {
+        .tui-wekaMultiLangBlock__wrapper {
+          border-bottom-right-radius: var(--border-radius-normal);
+          border-bottom-left-radius: var(--border-radius-normal);
+        }
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+
+    &--spacing {
+      padding-right: var(--gap-5);
+    }
+  }
+}
+
+.tui-wekaSimpleMultiLangForm {
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+

@@ -1,0 +1,71 @@
+.tui-totara_useraction-appliesToSelector {
+  &__list {
+    margin-top: var(--gap-3);
+    @include tui-stack-vertical(var(--gap-2));
+  }
+
+  &__audience {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--gap-2);
+    padding-left: var(--gap-3);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+    border-radius: var(--border-radius-normal);
+  }
+}
+
+.tui-totara_useraction-ruleExtraDetail {
+  &__header {
+    @include tui-font-heading-label-small();
+    padding: var(--gap-2) 0;
+    border-bottom: var(--border-width-thin) solid var(--color-neutral-5);
+  }
+
+  &__description {
+    margin: var(--gap-4) 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+.tui-totara_useraction-editScheduledAction {
+  @include tui-font-body();
+
+  padding-bottom: var(--gap-8);
+
+  &__requiredStar {
+    color: var(--color-prompt-alert);
+  }
+
+  &__sectionHeading {
+    margin-top: var(--gap-12);
+  }
+
+  &__actions {
+    margin-top: var(--gap-8);
+  }
+}
+
+.tui-totara_useraction-scheduledActions {
+  @include tui-font-body();
+
+  &__content {
+    @include tui-stack-vertical(var(--gap-4));
+  }
+
+  &__row {
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+      &--isStacked {
+        justify-content: flex-start;
+      }
+    }
+
+    &-expandedWrapper {
+      padding: var(--gap-4);
+      border: var(--border-width-thin) solid var(--color-neutral-5);
+    }
+  }
+}
+

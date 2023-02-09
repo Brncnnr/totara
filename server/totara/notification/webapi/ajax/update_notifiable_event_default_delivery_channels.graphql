@@ -1,0 +1,17 @@
+mutation totara_notification_update_notifiable_event_default_delivery_channels(
+  $resolver_class_name: param_text!
+  $default_delivery_channels: [String!]!
+) {
+  default_delivery_channels: totara_notification_update_default_delivery_channels(
+    resolver_class_name: $resolver_class_name
+    default_delivery_channels: $default_delivery_channels
+  ) {
+    __typename
+    component
+    label
+    is_enabled
+    is_sub_delivery_channel
+    parent_component
+    display_order
+  }
+}

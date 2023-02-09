@@ -1,0 +1,46 @@
+.tui-redisplayAdminEdit {
+  &__loader {
+    @include tui-char-length-classes();
+  }
+}
+
+.tui-redisplayAdminView {
+  &__cardArea {
+    margin: var(--gap-4) 0 0 var(--gap-8);
+  }
+
+  &__card {
+    flex-direction: column;
+    padding: var(--gap-4);
+
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+
+    &-title {
+      margin: 0;
+      @include tui-font-heading-label();
+    }
+  }
+}
+
+.tui-redisplayParticipantForm {
+  &__cardArea {
+    margin: var(--gap-4) 0 0 var(--gap-8);
+  }
+
+  &__card {
+    flex-direction: column;
+    padding: var(--gap-4);
+
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+
+    &-title {
+      margin: 0;
+      @include tui-font-heading-label();
+    }
+  }
+}
+

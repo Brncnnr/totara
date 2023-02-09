@@ -1,0 +1,121 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_dashboard_action
+
+    This template generates an actions table cell.
+
+    Context variables required for this template:
+    * noactions: set true to indicate there are no actions
+    * nonactionable: text to display if noactions is true
+    * hasbuttons: set true if the button and/or any menu items exist
+    * button: (optional)
+    * button.link: url
+    * button.text: text of the button
+    * hasmenus: set true if one or more menu items
+    * menuicon: flex_icon or pix_icon template data
+    * menutext: text of the menu button
+    * menus: (optional)
+    * menus.separator: this is a separator
+    * menus.link: url
+    * menus.text: text of the menu item
+    * hasicons: set true if one or more icons
+    * icons: (optional)
+    * icons.link: url
+    * icons.icon: flex_icon or pix_icon template data
+    * haslinks: set true if one or more links
+    * links: (optional)
+    * links.link: url
+    * links.text: text of the link
+
+    Example content (json):
+    {
+        "noactions": false,
+        "nonactionable": "No actions",
+        "viewevent": {
+            "link": "...",
+            "text": "Go to event"
+        },
+        "hasicons": true,
+        "icons": [
+            {
+                "link": "...",
+                "icon": {
+                    "template": "core/flex_icon",
+                    "context": {
+                        "identifier" : "settings",
+                        "customdata": {
+                            "classes": "custom-class another-custom-class",
+                            "alt": "Edit event"
+                        }
+                    }
+                },
+            }
+        ],
+        "haslinks": true,
+        "links": [
+            {
+                "link": "...",
+                "text": "Attendees"
+            }
+        ]
+    }
+}}
+
+<div class="mod_facetoface__sessionlist__action{{#noactions}}--none{{/noactions}}" data-core-autoinitialise-amd="mod_facetoface/seminarevent_dashboard_action" data-core-autoinitialise="true">
+    {{#noactions}}{{nonactionable}}{{/noactions}}
+    {{#hasbuttons}}
+        <div role="group" class="mod_facetoface__sessionlist__action__buttons">
+            {{#button}}
+                <a href="{{link}}" role="button" class="mod_facetoface__sessionlist__action__eventinfo btn btn-default btn-sm">{{text}}</a>
+            {{/button}}
+            {{#hasmenus}}
+                <button type="button" id="{{menuid}}" {{#menuicon}}title="{{menutext}}"{{/menuicon}} class="mod_facetoface__sessionlist__action__dropdown btn btn-default btn-sm dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="{{menutext}}">
+                    {{#menuicon}}{{#context}}{{> &&template }}{{/context}}{{/menuicon}}
+                    {{^menuicon}}{{menutext}}{{/menuicon}}
+                </button>
+                <ul role="menu" class="mod_facetoface__sessionlist__action__dropdown__menu dropdown-menu" aria-labelledby="{{menuid}}" data-f2f-dropdown-id="{{menuid}}">
+                    {{#menus}}
+                        {{#separator}}<li role="separator" class="divider"></li>{{/separator}}
+                        {{^separator}}<li role="none"><a role="menuitem" href="{{link}}" class="dropdown-item">{{#icon}}{{#context}}{{> &&template }}{{/context}}{{/icon}}{{text}}</a></li>{{/separator}}
+                    {{/menus}}
+                </ul>
+            {{/hasmenus}}
+        </div>
+    {{/hasbuttons}}
+    {{#hasicons}}
+        <nav class="mod_facetoface__sessionlist__action__icons">
+            {{#icons}}
+                <a href="{{link}}">{{#icon}}{{#context}}{{> &&template }}{{/context}}{{/icon}}</a>
+            {{/icons}}
+        </nav>
+    {{/hasicons}}
+    {{#haslinks}}
+        <nav class="mod_facetoface__sessionlist__action__links">
+            {{#links}}
+                <a href="{{link}}" class="mod_facetoface__sessionlist__action__link">{{text}}</a>
+            {{/links}}
+        </nav>
+    {{/haslinks}}
+</div>

@@ -1,0 +1,853 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2022 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author Simon Chester <simon.chester@totaralearning.com>*/
+/* @module editor_weka*/
+
+.tui-editor_weka-unknownBlock {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--paragraph-gap);
+  padding: var(--gap-2);
+  color: color(--color-neutral-6);
+  font-size: var(--font-size-32);
+  background-color: var(--color-neutral-4);
+  border-radius: var(--border-radius-small);
+
+  &:after {
+    content: '?';
+  }
+}
+
+.tui-editor_weka-unknownInline {
+  padding: 0 var(--gap-2);
+  color: color(--color-neutral-7);
+  background-color: var(--color-neutral-4);
+  border-radius: var(--border-radius-small);
+
+  &:after {
+    content: '?';
+  }
+}
+
+.tui-editor_weka-svgFill {
+  &--neutral-5 {
+    fill: var(--color-neutral-5);
+  }
+
+  &--neutral-6 {
+    fill: var(--color-neutral-6);
+  }
+}
+
+.tui-editor_weka-svgStroke {
+  &--neutral-6 {
+    stroke: var(--color-neutral-6);
+  }
+}
+
+.tui-weka {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-neutral-1);
+  border: var(--border-width-thin) solid var(--form-input-border-color);
+
+  &.tui-focusWithin {
+    background: var(--form-input-bg-color-focus);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-input-border-color-focus);
+    outline: none;
+    box-shadow: var(--form-input-shadow-focus);
+  }
+
+  &__placeholder {
+    /* Styling for the place holder.*/
+    &:before {
+      color: var(--color-neutral-6);
+      content: attr(data-placeholder);
+    }
+  }
+
+  &__editorHost {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: auto;
+
+    > .tui-weka-editor {
+      flex-grow: 1;
+    }
+  }
+
+  .ProseMirror-focused {
+    .tui-weka {
+      &__placeholder {
+        &:before {
+          content: '';
+        }
+      }
+    }
+  }
+
+  .ProseMirror {
+    padding: var(--gap-4);
+    @include tui-weka-whitespace();
+    word-wrap: break-word;
+    font-variant-ligatures: none;
+    font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
+
+    &:focus {
+      outline: none;
+    }
+
+    hr {
+      margin: 0 0 var(--gap-2) 0;
+    }
+
+    pre {
+      white-space: pre-wrap;
+    }
+
+    ol,
+    ul {
+      margin: 0;
+      padding-left: var(--gap-4);
+    }
+
+    ul ul {
+      list-style-type: circle;
+    }
+    ul ul ul {
+      list-style-type: square;
+    }
+
+    li {
+      position: relative;
+    }
+  }
+
+  .ProseMirror-hideselection *::selection,
+  .ProseMirror-hideselection *::-moz-selection {
+    background: transparent;
+  }
+
+  .ProseMirror-hideselection {
+    caret-color: transparent;
+  }
+
+  .ProseMirror-selectednode {
+    outline: var(--border-width-normal) solid var(--color-secondary);
+  }
+
+  /* Make sure li selections wrap around markers */
+
+  li.ProseMirror-selectednode {
+    outline: none;
+  }
+
+  li.ProseMirror-selectednode:after {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -32px;
+    border: var(--border-width-normal) solid var(--color-secondary);
+    content: '';
+    pointer-events: none;
+  }
+
+  .ProseMirror-gapcursor {
+    position: relative;
+    margin-bottom: var(--paragraph-gap);
+  }
+
+  .ProseMirror-gapcursor:before {
+    /* insert an nbsp to make gapcursor expand to full line height*/
+    content: '\00a0';
+  }
+
+  /* Add a 'fake' blinking cursor to the gapcursor element*/
+  .ProseMirror-gapcursor:after {
+    position: absolute;
+    top: -2px;
+    display: block;
+    height: 20px;
+    border-left: 1px solid black;
+    animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+    content: '';
+  }
+
+  @keyframes ProseMirror-cursor-blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+.ie .tui-weka__editorHost > .tui-weka-editor {
+  /* IE11: Work around issues with empty space below ImageBlock*/
+  /* https://github.com/philipwalton/flexbugs/issues/75*/
+  /* Not enabled in other browsers as it causes issues with spacing at the end*/
+  /* of the editor with layouts. Ironically, it does not in IE.*/
+  min-height: 1px;
+}
+
+.tui-editor_weka-actionDropdown {
+  &__dropdownItemContent {
+    display: flex;
+    align-items: center;
+  }
+
+  &__dropdownItemIcon {
+    display: flex;
+    flex-shrink: 0;
+    margin-right: var(--gap-2);
+  }
+}
+
+.tui-wekaEditImageAltTextModal {
+  &__content {
+    .tui-modalContent__title {
+      padding-bottom: var(--gap-2);
+    }
+  }
+
+  &__input {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    &-helpText {
+      margin: 0;
+      margin-top: var(--gap-1);
+      color: var(--color-neutral-6);
+      font-size: var(--font-size-13);
+    }
+  }
+
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-8);
+  }
+}
+
+.tui-wekaEmojiSelector {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__emoji {
+    font-size: var(--font-size-22);
+  }
+}
+
+.tui-editor_weka-layoutIcon24Base {
+  &__stroke {
+    stroke: var(--color-neutral-6);
+  }
+
+  &__semiFill {
+    fill: var(--color-neutral-5);
+  }
+}
+
+.tui-editor_weka-nodeMenu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--weka-node-menu-padding);
+  background-color: var(--color-neutral-1);
+  border-radius: 4px;
+  box-shadow: var(--shadow-2);
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+
+  @include tui-font-body-small();
+}
+
+.tui-editor_weka-nodeMenuButton {
+  display: inline-flex;
+  align-items: center;
+  height: var(--weka-node-menu-button-height);
+  padding: var(--gap-1) var(--gap-2);
+  color: var(--color-neutral-7);
+  background: var(--color-neutral-1);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color var(--transition-button-duration)
+    var(--transition-button-function);
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+
+  &:hover,
+  &:active {
+    background: var(--color-neutral-4);
+  }
+
+  &[aria-disabled='true'] {
+    background: var(--color-neutral-1);
+    cursor: default;
+    opacity: 0.8;
+  }
+
+  &--iconOnly {
+    width: var(--weka-node-menu-button-height);
+  }
+
+  &__icon {
+    display: flex;
+    margin-right: var(--gap-2);
+  }
+
+  &__caret {
+    margin-left: var(--gap-2);
+  }
+}
+
+.tui-editor_weka-nodeMenuGroup {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &:not(:last-child)::after {
+    width: 1px;
+    height: 16px;
+    margin: 0 4px;
+    background-color: var(--color-neutral-5);
+    content: '';
+  }
+}
+
+.tui-wekaAttachment {
+  @media (min-width: 491px) {
+    flex-basis: 20%;
+    min-width: 235px;
+  }
+
+  @media (max-width: 490px) {
+    width: 100%;
+  }
+}
+
+.tui-wekaAttachments {
+  margin: 0 0 var(--paragraph-gap);
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    white-space: normal;
+
+    > .tui-wekaAttachment {
+      /* Doing the margin for the single attachment.*/
+      margin-top: var(--gap-1);
+      margin-right: var(--gap-1);
+      margin-bottom: var(--gap-1);
+
+      @media (min-width: 720px) {
+        margin-right: var(--gap-4);
+      }
+    }
+  }
+}
+
+.tui-wekaAudioBlock {
+  margin: var(--gap-8) 0;
+  white-space: normal;
+
+  &.ProseMirror-selectednode {
+    outline: none;
+  }
+
+  &.ProseMirror-selectednode > &__inner {
+    outline: var(--border-width-normal) solid var(--color-secondary);
+  }
+
+  &__positioner {
+    position: relative;
+  }
+
+  &__inner {
+    display: inline-block;
+
+    .tui-audioBlock {
+      margin: 0;
+      white-space: normal;
+
+      audio:focus {
+        /* Removing self outlininga*/
+        outline: none;
+      }
+    }
+
+    &-addtranscriptButton {
+      position: absolute;
+      top: var(--gap-2);
+      right: var(--gap-2);
+      z-index: 1;
+    }
+  }
+}
+
+.tui-editor_weka-figureCaption {
+  margin-bottom: var(--gap-4);
+  padding: var(--gap-1);
+  color: var(--color-neutral-7);
+  background: var(--color-state-highlight);
+  border-radius: 2px;
+}
+
+.tui-wekaHashtag {
+  display: inline-block;
+  white-space: normal;
+
+  &__text {
+    color: var(--color-state);
+
+    &:hover {
+      /* Hover state, for now we keep the same color.*/
+      color: var(--color-state);
+    }
+  }
+
+  .tui-dropdown__menu {
+    width: auto;
+  }
+}
+
+.tui-wekaImageBlock {
+  $block: #{&};
+  $outline-size: 2px;
+  $outline-gap: 1px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 var(--paragraph-gap) 0;
+  white-space: normal;
+
+  @each $name, $size in $tui-media-named-sizes {
+    &--displaySize-#{$name} &__inner {
+      /* IE11 does not support the responsive sizes, so specify a fixed fallback*/
+      width: map-get($size, 'fixed');
+      width: map-get($size, 'responsive');
+    }
+  }
+
+  &.ProseMirror-selectednode {
+    outline: none;
+  }
+
+  &.ProseMirror-selectednode &__imageWrap {
+    /* Set the outline for the picture only.*/
+    outline: $outline-size solid var(--color-secondary);
+    outline-offset: $outline-gap;
+  }
+
+  &__inner {
+    display: flex;
+    /* IE11: Work around issues with empty space below ImageBlock*/
+    /* https://github.com/philipwalton/flexbugs/issues/75*/
+    min-height: 1px;
+  }
+
+  &--toolbarPosition-normal &__inner {
+    position: relative;
+  }
+
+  &--displaySize &__imageWrap {
+    width: 100%;
+  }
+
+  .ProseMirror-hideselection &__image {
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+
+  &__toolbar {
+    position: absolute;
+    display: none;
+
+    &--normal {
+      top: var(--gap-2);
+      right: 0;
+      left: 0;
+      justify-content: center;
+    }
+
+    &--floating {
+      display: flex;
+      margin: var(--gap-2) 0 0 var(--gap-2);
+    }
+  }
+
+  &.ProseMirror-selectednode &__toolbar {
+    display: flex;
+  }
+}
+
+.tui-editor_weka-layoutBlock {
+  margin-bottom: var(--paragraph-gap);
+  white-space: normal;
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    @include tui-weka-whitespace();
+  }
+
+  &__toolbarWrap {
+    position: absolute;
+    z-index: var(--zindex-floating-ui);
+  }
+
+  &__toolbar {
+    margin: calc(var(--gap-2) * -1) var(--gap-2);
+  }
+}
+
+.tui-editor_weka-layoutColumn {
+  /* Switch to single column layout below 50rem*/
+  /* https://every-layout.dev/layouts/switcher/*/
+  flex-basis: calc((50rem - 100%) * 999);
+  flex-grow: 1;
+  min-width: 0;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  padding: var(--gap-2);
+  border: 1px dashed var(--color-neutral-5);
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+
+  &--sidebar {
+    flex-grow: 0.4;
+  }
+}
+
+.tui-wekaLinkBlock {
+  max-width: 28.6rem;
+  margin-bottom: var(--paragraph-gap);
+  white-space: normal;
+
+  .tui-dropdown__menu {
+    width: auto;
+  }
+
+  &__btn:not(:focus) {
+    @include sr-only();
+  }
+
+  &__btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.tui-wekaLinkMedia {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--paragraph-gap);
+  white-space: normal;
+
+  &--intrinsic-width {
+    align-items: flex-start;
+  }
+
+  &.ProseMirror-selectednode {
+    outline: none;
+  }
+  &.ProseMirror-selectednode > &__inner {
+    outline: var(--border-width-normal) solid var(--color-secondary);
+  }
+
+  &__inner {
+    max-width: 700px;
+
+    & > .tui-wekaNodeBar {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--gap-6);
+    color: var(--color-neutral-6);
+  }
+}
+
+.tui-wekaMention {
+  display: inline-block;
+  white-space: normal;
+}
+
+.tui-wekaVideoBlock {
+  margin: var(--gap-8) 0;
+  white-space: normal;
+
+  &.ProseMirror-selectednode {
+    outline: none;
+  }
+
+  &.ProseMirror-selectednode > &__inner {
+    outline: var(--border-width-normal) solid var(--color-secondary);
+  }
+
+  &__positioner {
+    position: relative;
+  }
+
+  &__inner {
+    max-width: 100%;
+
+    .tui-videoBlock {
+      margin: 0;
+      white-space: normal;
+    }
+
+    &-addCaptionButton {
+      position: absolute;
+      right: var(--gap-2);
+      bottom: var(--gap-7);
+      z-index: 1;
+    }
+  }
+}
+
+.tui-wekaHashtagSuggestions {
+  position: absolute;
+  z-index: var(--zindex-popover);
+}
+
+.tui-wekaUserSuggestions {
+  position: absolute;
+  z-index: var(--zindex-popover);
+  width: 32.6rem;
+}
+
+.tui-wekaNodeBar {
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+}
+
+.tui-weka:hover .tui-wekaNodeBar,
+.ProseMirror-focused .tui-wekaNodeBar {
+  visibility: visible;
+}
+
+.tui-wekaToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 var(--gap-2);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-neutral-4);
+
+  &--sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -0.5px; /* work around a Chrome bug that adds a 1px gap */
+    z-index: var(--zindex-sticky);
+  }
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 var(--gap-2);
+
+    > * + * {
+      margin-left: 1px;
+    }
+  }
+
+  &__currentBlock.tui-formBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 8em;
+    padding: 0 var(--gap-2);
+
+    &:disabled {
+      color: var(--color-state-disabled);
+    }
+  }
+
+  &__dropdownItemContent {
+    display: flex;
+    align-items: center;
+  }
+
+  &__dropdownItemIcon {
+    margin-right: var(--gap-2);
+  }
+
+  &__dropdownButtonWrap {
+    display: flex;
+    flex-direction: column;
+    padding: var(--gap-3) var(--gap-4);
+  }
+
+  &__dropdownSeparator {
+    margin: var(--gap-2) var(--gap-4);
+    border-bottom: 1px solid var(--color-neutral-5);
+  }
+}
+
+.tui-wekaToolbarButton {
+  min-width: 0;
+  height: var(--gap-8);
+  min-height: var(--gap-6);
+  padding: 0 var(--gap-2);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  line-height: 1;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transition: none;
+
+  &:focus,
+  &:hover,
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-text);
+    background: var(--color-neutral-4);
+    border: none;
+    box-shadow: none;
+  }
+
+  &:focus {
+    @include tui-focus();
+  }
+
+  &:disabled {
+    color: var(--color-state-disabled);
+    background: transparent;
+    opacity: 1;
+
+    &:active,
+    &:focus,
+    &:active:focus,
+    &:active:hover,
+    &:hover {
+      color: var(--color-state-disabled);
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  &--selected {
+    color: var(--color-neutral-1);
+    background: var(--color-state-active);
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:active:hover,
+    &:active:focus {
+      color: var(--color-neutral-1);
+      background: var(--color-state-active);
+    }
+  }
+}
+
+.tui-wekaToolbarButtonIcon {
+  /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+  @extend .tui-wekaToolbarButton;
+
+  &--selected {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-wekaToolbarButton--selected;
+  }
+}
+
+.tui-captionUploadModal {
+  &__title {
+    display: flex;
+  }
+
+  &__upload {
+    margin-top: var(--gap-2);
+  }
+
+  &__errorHandler {
+    margin-top: 0;
+  }
+
+  &__file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--gap-2);
+    background: var(--color-neutral-3);
+  }
+
+  &__helpText {
+    margin: 0;
+    margin-top: var(--gap-2);
+    color: var(--color-neutral-6);
+    font-size: var(--font-size-13);
+  }
+
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-8);
+  }
+}
+
+.tui-wekaWithLearn {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    @include tui-font-heading-small();
+    margin-bottom: var(--gap-8);
+  }
+
+  &__form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  &__row {
+    flex: 1;
+  }
+
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-2);
+  }
+
+  &__code {
+    display: flex;
+    padding-left: var(--gap-2);
+  }
+}
+

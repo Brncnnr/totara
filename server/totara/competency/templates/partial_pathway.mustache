@@ -1,0 +1,84 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Riana Rossouw <riana.rossouw@totaralearning.com>
+     @package totara_competency
+}}
+{{!
+
+    @template totara_competency/partial_pathway
+
+    This template shows pathway
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+
+    Context variables required for this template:
+
+    Other context variables for following partials:
+
+}}
+
+{{#showor}}
+<div data-pw-or="{{key}}">
+    {{> totara_competency/divider_or}}
+</div>
+{{/showor}}
+
+{{#scalevalue}}{{> totara_competency/scalevalue_partial_pathway}}{{/scalevalue}}
+
+{{^scalevalue}}
+<div class="tw-editAchievementPaths__group-item"
+     data-tw-editAchievementPaths-pathway-key="{{key}}"
+     data-tw-editAchievementPaths-pathway-type="{{type}}"
+     data-tw-editAchievementPaths-pathway-sortOrder="{{sortorder}}"
+     {{#id}}data-tw-editAchievementPaths-pathway-id="{{.}}"{{/id}}
+     data-tw-editAchievementPaths-draggable=""
+     data-tw-editAchievementPaths-order-key="scalevalues"
+     draggable="false">
+
+    {{> &&pathway_templatename}}
+
+    <div class="tw-editAchievementPaths__group-actions" data-tw-editAchievementPaths-on-ordering="hide">
+        <button type="button" class="tw-editAchievementPaths__group-actionsButton {{#deleted}}tw-editAchievementPaths--hidden{{/deleted}}"
+        aria-label="{{#str}}achievement_pathway_remove, totara_competency{{/str}}" data-tw-editAchievementPaths-pathway-action="remove">
+            <span>
+                <span aria-hidden="true" class="">
+                    {{#flex_icon}}trash{{/flex_icon}}
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="tw-editAchievementPaths__group-actionsButton {{^canundo}}tw-editAchievementPaths--hidden{{/canundo}}"
+        aria-label="{{#str}}achievement_pathway_remove_undo, totara_competency{{/str}}" data-tw-editAchievementPaths-pathway-action="undo">
+            <span>
+                <span aria-hidden="true" class="">
+                    {{#flex_icon}}undo{{/flex_icon}}
+                </span>
+            </span>
+        </button>
+    </div>
+
+    <div class="tw-editAchievementPaths__group-actions tw-editAchievementPaths--hidden" data-tw-editAchievementPaths-on-ordering="show">
+        {{#flex_icon}}arrows{{/flex_icon}}
+    </div>
+</div>
+{{/scalevalue}}
+

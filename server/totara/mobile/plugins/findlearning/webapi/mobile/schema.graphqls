@@ -1,0 +1,141 @@
+extend type Query {
+  """
+  Return a page of catalog items the current user can view.
+  """
+  mobile_findlearning_view_catalog(
+    limit_from: Int
+  ): mobile_findlearning_catalog_page!
+
+  """
+  Return a page of filtered catalog items the current user can view.
+  """
+  mobile_findlearning_filter_catalog(
+    limit_from: Int
+    filter_data: mobile_findlearning_filter_input!
+  ): mobile_findlearning_catalog_page!
+
+  """
+  Check whether the user can access the course as a guest
+  """
+  mobile_findlearning_validate_guest_password(
+    input: mobile_findlearning_guest_password_input!
+  ): mobile_findlearning_guest_access_result!
+}
+
+"""
+filter parameters to retrieve a filtered page of data
+"""
+input mobile_findlearning_filter_input {
+  """
+  The value for the full text search filter.
+  """
+  catalog_fts: String
+}
+
+"""
+A generic input schema for attempting an enrolment onto a course
+"""
+input mobile_findlearning_guest_password_input {
+  """
+  The id of the enrolement instance.
+  """
+  instanceid: core_id!
+  """
+  The id of the course
+  """
+  courseid: core_id!
+  """
+  An optional password
+  """
+  password: String
+}
+
+"""
+A container object with catalog items and surrounding info
+"""
+type mobile_findlearning_catalog_page {
+  """
+  The total amount of unchecked records i.e. could be 500 even if you can only see 100
+  """
+  max_count: Int
+  """
+  A pointer to pass through when requesting more records, i.e. start from record 45 and get the next 10
+  """
+  limit_from: Int
+  """
+  Whether or not this page contains the last of the viewable records
+  """
+  final_records: Boolean
+  """
+  The catalog items
+  """
+  items: [mobile_findlearning_catalog_item]!
+}
+
+"""
+A page of catalog items for mobile app.
+"""
+type mobile_findlearning_catalog_item {
+  """
+  Unique ID of the catalog item
+  """
+  id: core_id!
+  """
+  The unique ID of of the itemtype i.e. the program id or course id
+  """
+  itemid: core_id!
+  """
+  The type of learning item this catalog item is course, program, certification, playlist, engage_article
+  """
+  item_type: String
+  """
+  The name or fullname of the catalog item
+  """
+  title(format: core_format = PLAIN): String
+  """
+  Whether the image is enabled for the mobile catalog - currently hardcoded true
+  """
+  image_enabled: Boolean!
+  """
+  The URL of the catalog items image
+  """
+  image_url: String
+  """
+  The URL to view the item, i.e. course/view.php
+  """
+  view_url: String
+  """
+  The rich text summary for the catalog items description - note that this is not the summary, it is a field designated in the catalog settings.
+  """
+  summary(format: core_format = MOBILE): String
+  """
+  The format of the catalog items summary as a string
+  """
+  summary_format: core_format
+  """
+  The alt text associated with the catalog items image
+  """
+  image_alt: String
+  """
+  Whether the description is enabled for the mobile catalog - currently hardcoded true
+  """
+  description_enabled: Boolean!
+  """
+  The catalog items description - note that this is not the summary, it is a field designated in the catalog settings.
+  """
+  description(format: core_format = PLAIN): String
+}
+
+"""
+The return type for the enrol attempt mutation.
+"""
+type mobile_findlearning_guest_access_result {
+  """
+  Return whether the enrolment attempt was successful
+  """
+  success: Boolean!
+  """
+  An optional string key to fetch for more information on unsuccessful attempts
+  """
+  message: String
+}

@@ -1,0 +1,26 @@
+query totara_competency_activity_log(
+  $competency_id: core_id!
+  $user_id: core_id!
+  $filters: totara_competency_activity_log_filters
+) {
+  totara_competency_activity_log(
+    competency_id: $competency_id
+    user_id: $user_id
+    filters: $filters
+  ) {
+    date: timestamp(format: DATELONG)
+    datetime: timestamp(format: DATETIMELONG)
+    description
+    comment
+    proficient_status
+    assignment {
+      id
+      type
+      user_group_type
+      progress_name
+      reason_assigned
+    }
+    assignment_action
+    type
+  }
+}

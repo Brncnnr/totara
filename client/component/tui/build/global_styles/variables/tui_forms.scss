@@ -1,0 +1,126 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2020 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+/* This contains the common variable set for form elements,*/
+/* allowing form elements to be consistently styled.*/
+
+/* loosely based on a modular scale of (2 * (1.5 ^ n))*/
+$tui-char-length-scale: 2, 3, 4, 5, 10, 15, 20, 25, 30, 50, 75, 100;
+
+/* Selectors for form inputs (and similar elements) that should have sizes applied to them.*/
+/* If modifying this list in a theme, do it via append() rather than replacing*/
+/* the entire list.*/
+$tui-form-layout-sized-inputs: (
+  'input[type].tui-formInput',
+  '.tui-formField',
+  '.tui-formTextarea',
+  '.tui-inputColor',
+  '.tui-range',
+  '.tui-select'
+);
+
+/* Selectors for inputs that are *replaced elements*.*/
+/* The behavior of width: auto differs for replaced elements, so these are set*/
+/* to width: 100% to get the "grow to container" behavior.*/
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element*/
+/* However, this causes an issue in certain contexts - namely if the container*/
+/* has a margin. This list exists to enable workarounds using flex at the site*/
+/* of use.*/
+/* If modifying this list in a theme, do it via append() rather than replacing*/
+/* the entire list.*/
+$tui-input-replaced-selectors: (
+  'input[type].tui-formInput',
+  '.tui-formTextarea',
+  '.tui-range',
+  '.tui-select'
+);
+
+/* Don't apply the default input size if the element is within one of these*/
+/* selectors.*/
+/* (if it's not within a form, it won't be applied either)*/
+$tui-input-no-default-size-parent-selectors: (
+  /* minor convenience: split input sets should not have the width set, to save*/
+    /* developers from having to pass char-length="full" all the time*/
+    '.tui-inputSet--split'
+);
+
+/* Calculate character-based sizing for inputs.*/
+@function tui-char-length($num) {
+  @return calc(#{$num} * var(--form-input-font-size));
+}
+
+/* Generate sizing class for size*/
+@mixin tui-char-length-class($name, $width) {
+  &--charLength-#{$name} {
+    max-width: #{$width};
+  }
+}
+
+/* Default input sizing*/
+@mixin tui-char-length-class-form-default() {
+  /* Set a custom size for inputs in a limited form*/
+  .tui-form--inputWidth-limited &:not(.tui-input--customSize) {
+    max-width: var(--form-input-limited-width);
+  }
+  @each $sel in $tui-input-no-default-size-parent-selectors {
+    .tui-form--inputWidth-limited #{$sel} &:not(.tui-input--customSize) {
+      max-width: none;
+    }
+  }
+}
+
+/* Generate sizing classes for predefined sizes*/
+@mixin tui-char-length-classes() {
+  @each $size in $tui-char-length-scale {
+    @include tui-char-length-class($size, tui-char-length($size));
+  }
+  @include tui-char-length-class-form-default();
+}
+
+:root {
+  /* Height of single line form elements (including padding & border)*/
+  --form-input-height: 3rem;
+  /* Height of large single line form elements (including padding & border)*/
+  --form-input-height-large: 4rem;
+  /* Inner font size of form elements*/
+  --form-input-font-size: var(--font-size-15);
+  /* Inner font size of form elements*/
+  --form-input-font-size-sm: var(--font-size-13);
+  /* Border size of input elements*/
+  --form-input-border-size: 1px;
+  /* Vertical padding of single line form elements,*/
+  /* the calculation splits the remaining available space to meet the target height.*/
+  /* Must be on a single line otherwise it breaks (for some reason!) so must be ignored by prettier.*/
+  /* prettier-ignore */
+  --form-input-v-padding: calc((var(--form-input-height) - var(--form-input-font-size) - (var(--form-input-border-size) * 2)) / 2);
+  --form-input-invalid-shadow-size: 1px;
+
+  /* Width for "limited" width setting*/
+  --form-input-limited-width: tui-char-length(20);
+
+  /* Simple Notepad style lines, for printing unanswered form inputs.*/
+  --form-notepad-line-height: 3rem;
+  --form-notepad-line-border: solid 1px;
+
+  /* Spacing between elements in an InputSet*/
+  --input-set-spacing: var(--gap-2);
+
+  --char-length-scale: $tui-char-length-scale;
+
+  /* Offset for radio label*/
+  --radio-label-offset: calc(var(--form-radio-size) * 1.35);
+}
+

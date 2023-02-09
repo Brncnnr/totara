@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/core/tests/fixtures" VERSION="20190612" COMMENT="XMLDB file for testing of complex foreign keys"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+        <TABLE NAME="test_one" COMMENT="Main ONE table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="twoid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="towid" TYPE="foreign" FIELDS="twoid" REFTABLE="test_two" REFFIELDS="id" ONDELETE="restrict" DEFERREDINSTALL="true"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="test_two" COMMENT="Dependent one to one TWO table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="oneid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="oneid" TYPE="foreign-unique" FIELDS="oneid" REFTABLE="test_one" REFFIELDS="id" ONDELETE="cascade" DEFERREDINSTALL="true"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>

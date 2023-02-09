@@ -1,0 +1,11 @@
+mutation mod_approval_archive_override_assignment(
+  $input: mod_approval_archive_override_assignment_input!
+) {
+  mod_approval_archive_override_assignment(input: $input) {
+    success
+    assignment {
+      status
+      status_label
+    }
+  }
+}

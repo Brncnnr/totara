@@ -1,0 +1,478 @@
+"""
+A track assignment represents a set of items of a particular type that represent users assigned to an activity track
+"""
+type mod_perform_track_assignment {
+  """
+  ID of the track the group is assigned to
+  """
+  track_id: core_id!
+  """
+  Type of assignment group. Options are 1 (audience), 2 (organisation), 3 (position) or 4 (individual)
+  """
+  type: Int!
+  """
+  Data about the specific group
+  """
+  group: mod_perform_user_grouping!
+}
+
+"""
+An object defining the information required to determine a real offset from a specific event trigger.
+"""
+type mod_perform_dynamic_date_offset {
+  """
+  Number indicating how far from the trigger event the calculated date will be
+  """
+  count: Int!
+  """
+  Unit of time used to convert the count into an actual period of time in seconds
+  """
+  unit: mod_perform_track_dynamic_unit_enums!
+  """
+  Direction to apply the count/unit time period to calculate a date relative to a trigger event
+  """
+  direction: mod_perform_track_dynamic_direction_enums
+}
+
+"""
+Represents a pointer to a specific dynamic date source, where a date source is comprised of a dynamic
+date resolver class and a option key.
+"""
+type mod_perform_dynamic_date_source {
+  """
+  Fully qualified class name of the date resolver for this source
+  """
+  resolver_class_name: String!
+  """
+  Option key passed to the resolver to calculate the relevant result
+  """
+  option_key: String
+  """
+  Display name of the option itself, used in cases when the resolver or option_key become unavailable and we still
+  want to display a selected but deleted option.
+  """
+  display_name: String!
+  """
+  True when this source is currently available in code
+  """
+  is_available: Boolean!
+  """
+  Optional Vue component path to be added into the relative scheduling settings
+  Used to allow the source to collect additional data from the user (such as
+  selecting a specific activity to schedule relative to).
+  """
+  custom_setting_component: String
+  """
+  Custom data passed to the source to assist with resolving the date
+  """
+  custom_data: String
+  """
+  Return what the resolver is based on (user, job, etc)
+  """
+  resolver_base: String!
+}
+
+"""
+A list of possible units which can be used for relative dynamic date schedules
+"""
+enum mod_perform_track_dynamic_unit_enums {
+  DAY
+  WEEK
+}
+
+"""
+A list of possible directions which can be used for relative dynamic date schedules
+"""
+enum mod_perform_track_dynamic_direction_enums {
+  AFTER
+  BEFORE
+}
+
+"""
+A list of possible job behaviours for subject instance generation which a track can be set to
+"""
+enum mod_perform_track_subject_instance_generation_enums {
+  """
+  When selected one subject instance will be created for each matching user.
+  The subject instance will refer to the user as a whole rather than any particular job.
+  """
+  ONE_PER_SUBJECT
+  """
+  When selected one subject instance will be created for each job assignment of each matching user.
+  The subject instance will refer to the specific job assignment as being the topic of the activity.
+  """
+  ONE_PER_JOB
+}
+
+"""
+A list of possible repeating types which can be used for repeating schedules
+Deprecated since Totara 16; replaced by repeating_trigger_interval_enums/track_repeating_trigger_type_enums
+combination
+"""
+enum mod_perform_track_repeating_type_enums {
+  """
+  Creation of future instances will occur some time after the creation of the previous instance
+  """
+  AFTER_CREATION
+  """
+  Creation of future instances will occur some time after the creation of the previous instance but only once it is complete
+  """
+  AFTER_CREATION_WHEN_COMPLETE
+  """
+  Creation of future instances will occur some time relative to the completion of the previous instance
+  """
+  AFTER_COMPLETION
+  """
+  Temporary option; returned when mapping back from the CLOSURE or COMPLETION_CLOSURE values
+  in mod_perform_track_repeating_trigger_type_enums
+  """
+  UNSET
+}
+
+"""
+Interval type before repeating trigger fires
+"""
+enum mod_perform_track_repeating_trigger_interval_enums {
+  """
+  Future subject instance created after a minimum interval has passed since the creation of the previous instance
+  """
+  MINIMUM_TIME_SINCE_CREATION
+  """
+  Future subject instance created at an interval relative to the setting of a value in the previous instance
+  """
+  TIME_SINCE
+}
+
+"""
+A list of possible repeating triggers which can be used for repeating schedules
+"""
+enum mod_perform_track_repeating_trigger_type_enums {
+  """
+  Future instance triggered after the creation of a previous instance
+  """
+  CREATION
+  """
+  Future subject instance created at a time relative to the completion of a previous instance
+  """
+  COMPLETION
+  """
+  Future subject instance created at a time relative to the closure of a previous instance
+  """
+  CLOSURE
+  """
+  Future subject instance created at a time relative to the completion OR closure of a previous instance
+  """
+  COMPLETION_CLOSURE
+}
+
+"""
+A specific track
+
+Tracks are containers within activities that store assignment groups and scheduling information.
+Currently activities always have exactly 1 track but in future we may support multiple tracks within the same activity.
+"""
+type mod_perform_track {
+  id: core_id!
+  """
+  Optional track description. Not currently used in interface.
+  """
+  description(format: core_format = HTML): String!
+  """
+  Status of the track, e.g. ACTIVE, PAUSED
+  """
+  status: Int!
+  subject_instance_generation: mod_perform_track_subject_instance_generation_enums!
+  """
+  True if the schedule is open ended (start date only), false for limited scheduling (start and end date)
+  """
+  schedule_is_open: Boolean!
+  """
+  True if schedule is using fixed dates (admin specifies an actual date), false for relative scheduling (dates calculated relative to events)
+  """
+  schedule_is_fixed: Boolean!
+  """
+  Start of scheduling period for fixed dates
+  """
+  schedule_fixed_from: totara_core_date_time_setting
+  """
+  End of scheduling period for limited scheduling with fixed dates
+  """
+  schedule_fixed_to: totara_core_date_time_setting
+  """
+  Offset from trigger for start of scheduling period with relative dates
+  """
+  schedule_dynamic_from: mod_perform_dynamic_date_offset
+  """
+  Offset from trigger for end of scheduling period for limited scheduling with relative dates
+  """
+  schedule_dynamic_to: mod_perform_dynamic_date_offset
+  """
+  Source of trigger for relative scheduling
+  """
+  schedule_dynamic_source: mod_perform_dynamic_date_source
+  """
+  If true, if user's calculated start date is in the past on assignment, use the next anniversary of the reference date instead of the actual reference date
+  """
+  schedule_use_anniversary: Boolean!
+  """
+  True if due date options should be enabled for this track
+  """
+  due_date_is_enabled: Boolean!
+  """
+  True if scheduling is using fixed dates
+  """
+  due_date_is_fixed: Boolean
+  """
+  Value for fixed due date
+  """
+  due_date_fixed: totara_core_date_time_setting
+  """
+  Offset from trigger (currently only option is 'time since creation of instance') for relative due date
+  """
+  due_date_offset: mod_perform_dynamic_date_offset
+  """
+  True if repeating should be enabled for this track
+  """
+  repeating_is_enabled: Boolean!
+  """
+  Trigger for repeat instance creation
+  """
+  repeating_trigger_interval: mod_perform_track_repeating_trigger_interval_enums
+  """
+  Trigger for repeat instance creation
+  """
+  repeating_trigger_type: mod_perform_track_repeating_trigger_type_enums
+  """
+  Trigger for repeat instance creation
+  @deprecated since Totara 16 - use repeating_trigger_type/repeating_trigger_interval combination instead.
+  This value will be UNSET if mapping back from the CLOSURE or COMPLETION_CLOSURE values in
+  mod_perform_track_repeating_trigger_type_enums
+
+  Note: cannot use @deprecated + reason tag after this field because the Behat tests fail!
+  """
+  repeating_type: mod_perform_track_repeating_type_enums
+  """
+  Offset from trigger for repeat instance creation
+  """
+  repeating_offset: mod_perform_dynamic_date_offset
+  """
+  If true number of repeating instances that will be created will be limited to a specific number. Otherwise no limit is used
+  """
+  repeating_is_limited: Boolean
+  """
+  Number of subject instances that will be created for this user assignment, if repeating_is_limited is enabled
+  """
+  repeating_limit: Int
+  """
+  List of assignments attached to this track
+  """
+  assignments: [mod_perform_track_assignment!]!
+  """
+  Whether viewing user has permission to assign positions
+  """
+  can_assign_positions: Boolean!
+  """
+  Whether viewing user has permission to assign organisations
+  """
+  can_assign_organisations: Boolean!
+}
+
+extend type Query {
+  """
+  Get all tracks for a specific activity
+  """
+  mod_perform_tracks(activity_id: param_integer!): [mod_perform_track!]!
+
+  """
+  Get a specific track by its ID
+  """
+  mod_perform_track(track_id: param_integer!): mod_perform_track!
+
+  """
+  Get the default track for a specific activity.
+  NOTE: this is a temporary query. It will be removed and replaced by mod_perform_track when
+  multiple tracks per activity gets implemented in the front end.
+  """
+  mod_perform_default_track(activity_id: param_integer!): mod_perform_track!
+
+  """
+  Get all available options for dynamic schedule date resolver options.
+  """
+  mod_perform_available_dynamic_date_sources: [mod_perform_dynamic_date_source!]!
+
+  """
+  Get the default date and timezone to use in case a date time setting has not been configured in a track schedule.
+  """
+  mod_perform_default_fixed_date_setting: totara_core_date_time_setting!
+}
+
+"""
+Input parameters for setting the assignments to use on a track
+"""
+input mod_perform_track_assignments_input {
+  """
+  ID of the track to add groups to
+  """
+  track_id: core_id!
+  """
+  Type of group to add
+  """
+  type: Int!
+  """
+  List of groups to add
+  """
+  groups: [mod_perform_user_grouping_input!]!
+}
+
+"""
+Input parameters for setting the scheduling offset from an event for relative assignment scheduling
+"""
+input mod_perform_dynamic_date_offset_input {
+  """
+  Number indicating how far from the trigger event the calculated date will be
+  """
+  count: param_integer!
+  """
+  Unit of time used to convert the count into an actual period of time in seconds
+  """
+  unit: mod_perform_track_dynamic_unit_enums!
+  """
+  Direction to apply the count/unit time period to calculate a date relative to a trigger event
+  """
+  direction: mod_perform_track_dynamic_direction_enums
+}
+
+"""
+Input parameters for specifying a dynamic date source when setting scheduling on a track
+"""
+input mod_perform_dynamic_date_source_input {
+  """
+  Fully qualified classname of resolver that will calculate scheduling
+  """
+  resolver_class_name: param_text!
+  """
+  Key used to identify instance being used as source
+  """
+  option_key: param_text
+  """
+  Additional data to pass to resolver to assist with calculation
+  """
+  custom_data: param_text
+}
+
+"""
+Input parameters required for open-ended track schedule period using fixed dates
+"""
+input mod_perform_track_schedule_input {
+  track_id: core_id!
+  subject_instance_generation: mod_perform_track_subject_instance_generation_enums!
+  """
+  True if the schedule is open ended (start date only), false for limited scheduling (start and end date)
+  """
+  schedule_is_open: param_boolean!
+  """
+  True if schedule is using fixed dates (admin specifies an actual date), false for relative scheduling (dates calculated relative to events)
+  """
+  schedule_is_fixed: param_boolean!
+  """
+  Start of scheduling period for fixed dates
+  """
+  schedule_fixed_from: param_date_time_setting
+  """
+  End of scheduling period for limited scheduling with fixed dates
+  """
+  schedule_fixed_to: param_date_time_setting
+  """
+  Offset from trigger for start of scheduling period with relative dates
+  """
+  schedule_dynamic_from: mod_perform_dynamic_date_offset_input
+  """
+  Offset from trigger for end of scheduling period for limited scheduling with relative dates
+  """
+  schedule_dynamic_to: mod_perform_dynamic_date_offset_input
+  """
+  Source of trigger for relative scheduling
+  """
+  schedule_dynamic_source: mod_perform_dynamic_date_source_input
+  """
+  If true, if user's calculated start date is in the past on assignment, use the next anniversary of the reference date instead of the actual reference date
+  """
+  schedule_use_anniversary: param_boolean
+  """
+  True if due date options should be enabled for this track
+  """
+  due_date_is_enabled: param_boolean!
+  """
+  True if scheduling is using fixed dates
+  """
+  due_date_is_fixed: param_boolean
+  """
+  Value for fixed due date
+  """
+  due_date_fixed: param_date_time_setting
+  """
+  Offset from trigger (currently only option is 'time since creation of instance') for relative due date
+  """
+  due_date_offset: mod_perform_dynamic_date_offset_input
+  """
+  True if repeating should be enabled for this track
+  """
+  repeating_is_enabled: param_boolean!
+  """
+  Trigger for repeat instance creation
+  """
+  repeating_trigger_interval: mod_perform_track_repeating_trigger_interval_enums
+  """
+  Trigger for repeat instance creation
+  """
+  repeating_trigger_type: mod_perform_track_repeating_trigger_type_enums
+  """
+  Trigger for repeat instance creation
+  @deprecated since Totara 16 - use repeating_trigger_type/repeating_trigger_interval combination instead.
+  This value will be UNSET if mapping back from the CLOSURE or COMPLETION_CLOSURE values in
+  mod_perform_track_repeating_trigger_type_enums
+  """
+  repeating_type: mod_perform_track_repeating_type_enums
+  """
+  Offset from trigger for repeat instance creation
+  """
+  repeating_offset: mod_perform_dynamic_date_offset_input
+  """
+  If true number of repeating instances that will be created will be limited to a specific number. Otherwise no limit is used
+  """
+  repeating_is_limited: param_boolean
+  """
+  Number of subject instances that will be created for this user assignment, if repeating_is_limited is enabled
+  """
+  repeating_limit: param_integer
+}
+
+"""
+Return type for mod_perform_update_track_schedule
+"""
+type mod_perform_update_track_schedule_result {
+  track: mod_perform_track!
+}
+
+extend type Mutation {
+  """
+  Add track assignments to a given track
+  """
+  mod_perform_add_track_assignments(
+    assignments: mod_perform_track_assignments_input!
+  ): mod_perform_track!
+
+  """
+  Remove track assignments
+  """
+  mod_perform_remove_track_assignments(
+    assignments: mod_perform_track_assignments_input!
+  ): mod_perform_track!
+
+  """
+  Set the assignment schedule for a track
+  """
+  mod_perform_update_track_schedule(
+    track_schedule: mod_perform_track_schedule_input!
+  ): mod_perform_update_track_schedule_result!
+}

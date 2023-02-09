@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/contentmarketplace/db" VERSION="20120122" COMMENT="XMLDB file for module content marketplace"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="contentmarketplace" COMMENT="Content marketplace module records are stored here">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="intro"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="learning_object_marketplace_component" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="The name of the sub plugin of totara_contentmarketplace, which also included the plugin type as well."/>
+        <FIELD NAME="learning_object_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The learning's object id that reference to the learning object table of the sub plugin associated in field marketplace type"/>
+        <FIELD NAME="completion_condition" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="Which condition to use when marking the content marketplace complete"/>
+        <FIELD NAME="time_modified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course_idx" UNIQUE="false" FIELDS="course"/>
+        <INDEX NAME="name_idx" UNIQUE="false" FIELDS="name"/>
+        <INDEX NAME="learning_object_idx" UNIQUE="false" FIELDS="learning_object_id"/>
+        <INDEX NAME="learning_object_marketplace_component_idx" UNIQUE="false" FIELDS="learning_object_marketplace_component"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

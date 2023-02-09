@@ -1,0 +1,18 @@
+This file describes API changes in /client/component/performelement_static_content,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Updated Weka usage to use new core variant in StaticContentAdminEdit
+  * Template changes
+
+=== 14.0 ===
+* Udpates in StaticContentAdminEdit.vue:
+  * Template changes
+    * Replaced props "component", "area" and "instance-id" with "usage-identifier" for component editor_weka Weka.vue
+    * Added prop "variant" to component editor_weka Weka.vue
+* Replaced several components to centralise common functionality improving consistency and reducing duplication
+    * StaticContentElementAdminDisplay.vue replaced with StaticContentAdminView.vue
+    * StaticContentElementAdminForm.vue replaced with StaticContentAdminEdit.vue
+    * StaticContentElementAdminReadOnlyDisplay.vue replaced with StaticContentAdminSummary.vue
+    * StaticContentElementParticipantForm.vue with StaticContentParticipantForm.vue

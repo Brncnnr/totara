@@ -1,0 +1,66 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_detail_section
+
+    This template generates part of event detail section on the event page.
+
+    Context variables required for this template:
+    * class: part of css class (optional)
+    * title: the title of this section (optional)
+    * id: the id of this section (optional)
+    * details:
+    * details.label: label
+    * details.description: description in HTML
+    * details.globalclass: do not use this; it is only intended for backward compatibility
+
+    Example content (json):
+    {
+        "class" : "eventinfo",
+        "title" : "Event",
+        "intro" : "Blah blah",
+        "id" : "f2f-eventinfo",
+        "details" : [
+            {
+                "label" : "Maximum bookings",
+                "description" : "10"
+            },
+            {
+                "label" : "Event booking",
+                "description" : "Booked"
+            }
+        ]
+    }
+}}
+
+<section class="mod_facetoface__eventinfo__content__eventdetail__section{{#class}} mod_facetoface__eventinfo__content__{{.}}{{/class}}{{#nodivider}} nodivider{{/nodivider}}" {{#id}} id="{{.}}"{{/id}}>
+    {{#title}}<h4>{{.}}</h4>{{/title}}
+    {{#intro}}<div class="mod_facetoface__eventinfo__content__eventdetail__section__intro">{{{.}}}</div>{{/intro}}
+    <dl>
+    {{#details}}
+        <dt>{{label}}</dt>
+        <dd{{#globalclass}} class="{{.}}"{{/globalclass}}>{{{description}}}</dd>
+    {{/details}}
+    </dl>
+</section>

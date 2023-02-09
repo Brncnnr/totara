@@ -1,0 +1,19 @@
+mutation totara_notification_validate_notification_preference_input(
+  $body: String!
+  $title: String!
+  $subject: String!
+  $schedule_type: String!
+  $schedule_offset: Int!
+) {
+  result: totara_notification_validate_notification_preference_input(
+    title: $title
+    subject: $subject
+    body: $body
+    schedule_type: $schedule_type
+    schedule_offset: $schedule_offset
+  ) {
+    __typename
+    field_name
+    error_message
+  }
+}

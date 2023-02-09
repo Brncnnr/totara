@@ -1,0 +1,27 @@
+query totara_notification_notifiable_event_user_preferences(
+  $user_id: param_integer!
+  $extended_context: totara_notification_extended_context_input!
+) {
+  notifiable_event_user_preferences: totara_notification_notifiable_event_user_preferences(
+    user_id: $user_id
+    extended_context: $extended_context
+  ) {
+    user_id
+    component
+    plugin_name
+    resolver_class_name
+    name
+    enabled
+    user_preference_id
+    overridden_delivery_channels
+    delivery_channels {
+      __typename
+      component
+      label
+      is_enabled
+      is_sub_delivery_channel
+      parent_component
+      display_order
+    }
+  }
+}

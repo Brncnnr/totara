@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Arrow matches snapshot 1`] = `
+<div
+  class="tui-arrow tui-arrow--top tui-arrow--normal"
+/>
+`;

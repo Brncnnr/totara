@@ -1,0 +1,16 @@
+This files describes API changes in the theme_msteams code,
+information provided here is intended especially for developers.
+
+== 15.0 ==
+
+* Updated navigation.mustache template to display log out links
+* Updated CSS to be compatible with older browsers.
+
+== 14.0 ==
+
+* Upgraded Microsoft Teams SDK to v1.8.0.
+* core_renderer::load_script_internal() is deprecated; never call this function in the first place.
+* core_renderer::load_css_internal is deprecated; never call this function in the first place.
+* The 'Open in new window' link sets rel="noopener" to prevent the MS Teams SDK from communicating with a parent window.
+  https://developer.mozilla.org/en-US/docs/Web/API/Window/opener
+  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Security_and_privacy

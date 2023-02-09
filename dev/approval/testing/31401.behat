@@ -1,0 +1,339 @@
+Feature: Many applicants
+  Scenario: x
+    And the following "users" exist:
+      | username   | firstname | lastname      | email                |
+      | approver   | Approver  | Zero          | approver@example.com |
+      | user1      | Applicant | One           | user1@example.com    |
+      | user2      | Applicant | Two           | user2@example.com    |
+      | user3      | Applicant | Three         | user3@example.com    |
+      | user4      | Applicant | Four          | user4@example.com    |
+      | user5      | Applicant | Five          | user5@example.com    |
+      | user6      | Applicant | Six           | user6@example.com    |
+      | user7      | Applicant | Seven         | user7@example.com    |
+      | user8      | Applicant | Eight         | user8@example.com    |
+      | user9      | Applicant | Nine          | user9@example.com    |
+      | user10     | Applicant | Ten           | user10@example.com   |
+      | user11     | Applicant | Eleven        | user11@example.com   |
+      | user12     | Applicant | Twelve        | user12@example.com   |
+      | user13     | Applicant | Thirteen      | user13@example.com   |
+      | user14     | Applicant | Fourteen      | user14@example.com   |
+      | user15     | Applicant | Fifteen       | user15@example.com   |
+      | user16     | Applicant | Sixteen       | user16@example.com   |
+      | user17     | Applicant | Seventeen     | user17@example.com   |
+      | user18     | Applicant | Eighteen      | user18@example.com   |
+      | user19     | Applicant | Nineteen      | user19@example.com   |
+      | user20     | Applicant | Twenty        | user20@example.com   |
+      | user21     | Applicant | Twenty-One    | user21@example.com   |
+      | user22     | Applicant | Twenty-Two    | user22@example.com   |
+      | user23     | Applicant | Twenty-Three  | user23@example.com   |
+      | user24     | Applicant | Twenty-Four   | user24@example.com   |
+      | user25     | Applicant | Twenty-Five   | user25@example.com   |
+      | user26     | Applicant | Twenty-Six    | user26@example.com   |
+      | user27     | Applicant | Twenty-Seven  | user27@example.com   |
+      | user28     | Applicant | Twenty-Eight  | user28@example.com   |
+      | user29     | Applicant | Twenty-Nine   | user29@example.com   |
+      | user30     | Applicant | Thirty        | user30@example.com   |
+      | user31     | Applicant | Thirty-One    | user31@example.com   |
+      | user32     | Applicant | Thirty-Two    | user32@example.com   |
+      | user33     | Applicant | Thirty-Three  | user33@example.com   |
+      | user34     | Applicant | Thirty-Four   | user34@example.com   |
+      | user35     | Applicant | Thirty-Five   | user35@example.com   |
+      | user36     | Applicant | Thirty-Six    | user36@example.com   |
+      | user37     | Applicant | Thirty-Seven  | user37@example.com   |
+      | user38     | Applicant | Thirty-Eight  | user38@example.com   |
+      | user39     | Applicant | Thirty-Nine   | user39@example.com   |
+      | user40     | Applicant | Forty         | user40@example.com   |
+      | user41     | Applicant | Forty-One     | user41@example.com   |
+      | user42     | Applicant | Forty-Two     | user42@example.com   |
+      | user43     | Applicant | Forty-Three   | user43@example.com   |
+      | user44     | Applicant | Forty-Four    | user44@example.com   |
+      | user45     | Applicant | Forty-Five    | user45@example.com   |
+      | user46     | Applicant | Forty-Six     | user46@example.com   |
+      | user47     | Applicant | Forty-Seven   | user47@example.com   |
+      | user48     | Applicant | Forty-Eight   | user48@example.com   |
+      | user49     | Applicant | Forty-Nine    | user49@example.com   |
+      | user50     | Applicant | Fifty         | user50@example.com   |
+      | user51     | Applicant | Fifty-One     | user51@example.com   |
+      | user52     | Applicant | Fifty-Two     | user52@example.com   |
+      | user53     | Applicant | Fifty-Three   | user53@example.com   |
+      | user54     | Applicant | Fifty-Four    | user54@example.com   |
+      | user55     | Applicant | Fifty-Five    | user55@example.com   |
+      | user56     | Applicant | Fifty-Six     | user56@example.com   |
+      | user57     | Applicant | Fifty-Seven   | user57@example.com   |
+      | user58     | Applicant | Fifty-Eight   | user58@example.com   |
+      | user59     | Applicant | Fifty-Nine    | user59@example.com   |
+      | user60     | Applicant | Sixty         | user60@example.com   |
+      | user61     | Applicant | Sixty-One     | user61@example.com   |
+      | user62     | Applicant | Sixty-Two     | user62@example.com   |
+      | user63     | Applicant | Sixty-Three   | user63@example.com   |
+      | user64     | Applicant | Sixty-Four    | user64@example.com   |
+      | user65     | Applicant | Sixty-Five    | user65@example.com   |
+      | user66     | Applicant | Sixty-Six     | user66@example.com   |
+      | user67     | Applicant | Sixty-Seven   | user67@example.com   |
+      | user68     | Applicant | Sixty-Eight   | user68@example.com   |
+      | user69     | Applicant | Sixty-Nine    | user69@example.com   |
+      | user70     | Applicant | Seventy       | user70@example.com   |
+      | user71     | Applicant | Seventy-One   | user71@example.com   |
+      | user72     | Applicant | Seventy-Two   | user72@example.com   |
+      | user73     | Applicant | Seventy-Three | user73@example.com   |
+      | user74     | Applicant | Seventy-Four  | user74@example.com   |
+      | user75     | Applicant | Seventy-Five  | user75@example.com   |
+      | user76     | Applicant | Seventy-Six   | user76@example.com   |
+      | user77     | Applicant | Seventy-Seven | user77@example.com   |
+      | user78     | Applicant | Seventy-Eight | user78@example.com   |
+      | user79     | Applicant | Seventy-Nine  | user79@example.com   |
+      | user80     | Applicant | Eighty        | user80@example.com   |
+      | user81     | Applicant | Eighty-One    | user81@example.com   |
+      | user82     | Applicant | Eighty-Two    | user82@example.com   |
+      | user83     | Applicant | Eighty-Three  | user83@example.com   |
+      | user84     | Applicant | Eighty-Four   | user84@example.com   |
+      | user85     | Applicant | Eighty-Five   | user85@example.com   |
+      | user86     | Applicant | Eighty-Six    | user86@example.com   |
+      | user87     | Applicant | Eighty-Seven  | user87@example.com   |
+      | user88     | Applicant | Eighty-Eight  | user88@example.com   |
+      | user89     | Applicant | Eighty-Nine   | user89@example.com   |
+      | user90     | Applicant | Ninety        | user90@example.com   |
+      | user91     | Applicant | Ninety-One    | user91@example.com   |
+      | user92     | Applicant | Ninety-Two    | user92@example.com   |
+      | user93     | Applicant | Ninety-Three  | user93@example.com   |
+      | user94     | Applicant | Ninety-Four   | user94@example.com   |
+      | user95     | Applicant | Ninety-Five   | user95@example.com   |
+      | user96     | Applicant | Ninety-Six    | user96@example.com   |
+      | user97     | Applicant | Ninety-Seven  | user97@example.com   |
+      | user98     | Applicant | Ninety-Eight  | user98@example.com   |
+      | user99     | Applicant | Ninety-Nine   | user99@example.com   |
+    And the following "cohorts" exist:
+      | name | idnumber |
+      | aud1 | AUD001   |
+    And the following "cohort members" exist:
+      | user   | cohort |
+      | user1  | AUD001 |
+      | user2  | AUD001 |
+      | user3  | AUD001 |
+      | user4  | AUD001 |
+      | user5  | AUD001 |
+      | user6  | AUD001 |
+      | user7  | AUD001 |
+      | user8  | AUD001 |
+      | user9  | AUD001 |
+      | user10 | AUD001 |
+      | user11 | AUD001 |
+      | user12 | AUD001 |
+      | user13 | AUD001 |
+      | user14 | AUD001 |
+      | user15 | AUD001 |
+      | user16 | AUD001 |
+      | user17 | AUD001 |
+      | user18 | AUD001 |
+      | user19 | AUD001 |
+      | user20 | AUD001 |
+      | user21 | AUD001 |
+      | user22 | AUD001 |
+      | user23 | AUD001 |
+      | user24 | AUD001 |
+      | user25 | AUD001 |
+      | user26 | AUD001 |
+      | user27 | AUD001 |
+      | user28 | AUD001 |
+      | user29 | AUD001 |
+      | user30 | AUD001 |
+      | user31 | AUD001 |
+      | user32 | AUD001 |
+      | user33 | AUD001 |
+      | user34 | AUD001 |
+      | user35 | AUD001 |
+      | user36 | AUD001 |
+      | user37 | AUD001 |
+      | user38 | AUD001 |
+      | user39 | AUD001 |
+      | user40 | AUD001 |
+      | user41 | AUD001 |
+      | user42 | AUD001 |
+      | user43 | AUD001 |
+      | user44 | AUD001 |
+      | user45 | AUD001 |
+      | user46 | AUD001 |
+      | user47 | AUD001 |
+      | user48 | AUD001 |
+      | user49 | AUD001 |
+      | user50 | AUD001 |
+      | user51 | AUD001 |
+      | user52 | AUD001 |
+      | user53 | AUD001 |
+      | user54 | AUD001 |
+      | user55 | AUD001 |
+      | user56 | AUD001 |
+      | user57 | AUD001 |
+      | user58 | AUD001 |
+      | user59 | AUD001 |
+      | user60 | AUD001 |
+      | user61 | AUD001 |
+      | user62 | AUD001 |
+      | user63 | AUD001 |
+      | user64 | AUD001 |
+      | user65 | AUD001 |
+      | user66 | AUD001 |
+      | user67 | AUD001 |
+      | user68 | AUD001 |
+      | user69 | AUD001 |
+      | user70 | AUD001 |
+      | user71 | AUD001 |
+      | user72 | AUD001 |
+      | user73 | AUD001 |
+      | user74 | AUD001 |
+      | user75 | AUD001 |
+      | user76 | AUD001 |
+      | user77 | AUD001 |
+      | user78 | AUD001 |
+      | user79 | AUD001 |
+      | user80 | AUD001 |
+      | user81 | AUD001 |
+      | user82 | AUD001 |
+      | user83 | AUD001 |
+      | user84 | AUD001 |
+      | user85 | AUD001 |
+      | user86 | AUD001 |
+      | user87 | AUD001 |
+      | user88 | AUD001 |
+      | user89 | AUD001 |
+      | user90 | AUD001 |
+      | user91 | AUD001 |
+      | user92 | AUD001 |
+      | user93 | AUD001 |
+      | user94 | AUD001 |
+      | user95 | AUD001 |
+      | user96 | AUD001 |
+      | user97 | AUD001 |
+      | user98 | AUD001 |
+      | user99 | AUD001 |
+    And the following job assignments exist:
+      | user   | manager  |
+      | user1  | approver |
+      | user2  | approver |
+      | user3  | approver |
+      | user4  | approver |
+      | user5  | approver |
+      | user6  | approver |
+      | user7  | approver |
+      | user8  | approver |
+      | user9  | approver |
+      | user10 | approver |
+      | user11 | approver |
+      | user12 | approver |
+      | user13 | approver |
+      | user14 | approver |
+      | user15 | approver |
+      | user16 | approver |
+      | user17 | approver |
+      | user18 | approver |
+      | user19 | approver |
+      | user20 | approver |
+      | user21 | approver |
+      | user22 | approver |
+      | user23 | approver |
+      | user24 | approver |
+      | user25 | approver |
+      | user26 | approver |
+      | user27 | approver |
+      | user28 | approver |
+      | user29 | approver |
+      | user30 | approver |
+      | user31 | approver |
+      | user32 | approver |
+      | user33 | approver |
+      | user34 | approver |
+      | user35 | approver |
+      | user36 | approver |
+      | user37 | approver |
+      | user38 | approver |
+      | user39 | approver |
+      | user40 | approver |
+      | user41 | approver |
+      | user42 | approver |
+      | user43 | approver |
+      | user44 | approver |
+      | user45 | approver |
+      | user46 | approver |
+      | user47 | approver |
+      | user48 | approver |
+      | user49 | approver |
+      | user50 | approver |
+      | user51 | approver |
+      | user52 | approver |
+      | user53 | approver |
+      | user54 | approver |
+      | user55 | approver |
+      | user56 | approver |
+      | user57 | approver |
+      | user58 | approver |
+      | user59 | approver |
+      | user60 | approver |
+      | user61 | approver |
+      | user62 | approver |
+      | user63 | approver |
+      | user64 | approver |
+      | user65 | approver |
+      | user66 | approver |
+      | user67 | approver |
+      | user68 | approver |
+      | user69 | approver |
+      | user70 | approver |
+      | user71 | approver |
+      | user72 | approver |
+      | user73 | approver |
+      | user74 | approver |
+      | user75 | approver |
+      | user76 | approver |
+      | user77 | approver |
+      | user78 | approver |
+      | user79 | approver |
+      | user80 | approver |
+      | user81 | approver |
+      | user82 | approver |
+      | user83 | approver |
+      | user84 | approver |
+      | user85 | approver |
+      | user86 | approver |
+      | user87 | approver |
+      | user88 | approver |
+      | user89 | approver |
+      | user90 | approver |
+      | user91 | approver |
+      | user92 | approver |
+      | user93 | approver |
+      | user94 | approver |
+      | user95 | approver |
+      | user96 | approver |
+      | user97 | approver |
+      | user98 | approver |
+      | user99 | approver |
+    And the following "workflow types" exist in "mod_approval" plugin:
+      | name               |
+      | Test workflow type |
+    And the following "forms" exist in "mod_approval" plugin:
+      | title     |
+      | Test form |
+    And the following "form versions" exist in "mod_approval" plugin:
+      | form      | version | json_schema |
+      | Test form | 1       | test1       |
+    And the following "workflows" exist in "mod_approval" plugin:
+      | name          | description               | id_number | form      | workflow_type      |
+      | Test workflow | test workflow description | WKF001    | Test form | Test workflow type |
+    And the following "workflow versions" exist in "mod_approval" plugin:
+      | workflow | form_version |
+      | WKF001   | 1            |
+    And the following "workflow stages" exist in "mod_approval" plugin:
+      | workflow | name       |
+      | WKF001   | Test stage |
+    And the following "approval levels" exist in "mod_approval" plugin:
+      | workflow_stage | name         |
+      | Test stage     | Test level 1 |
+    And the following "form views" exist in "mod_approval" plugin:
+      | workflow_stage | respondent | field_key | required |
+      | Test stage     | user       | food      | true     |
+    And the following "assignments" exist in "mod_approval" plugin:
+      | name            | id_number  | workflow | type   | identifier | default |
+      | Test assignment | ASS001     | WKF001   | cohort | AUD001     | true    |
+    And the following "approvers" exist in "mod_approval" plugin:
+      | assignment | approval_level | type | identifier |
+      | ASS001     | Test level 1   | user | approver   |

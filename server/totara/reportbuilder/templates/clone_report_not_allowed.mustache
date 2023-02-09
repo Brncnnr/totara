@@ -1,0 +1,52 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+   @package totara_reportbuilder
+}}
+{{!
+
+    @template totara_reportbuilder/clone_report_not_allowed
+
+    This template generates a warning message showing why a report can not be cloned.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * back_url: URL to navigate back to
+    * warning -> message: Text to show in the warning message
+
+    Example context (json):
+    {
+        "back_url": "http://www.example.com/totara/reportbuilder/manageembeddedreports.php",
+        "warning": {
+            "message": "This report can not be cloned."
+        }
+    }
+
+}}
+
+<a href="{{ back_url }}">{{#str}}back_to_manage_embedded_reports,totara_reportbuilder{{/str}}</a>
+
+<h2>{{#str}}clonereport,totara_reportbuilder{{/str}}</h2>
+
+{{#warning}}{{> core/notification_warning }}{{/warning}}

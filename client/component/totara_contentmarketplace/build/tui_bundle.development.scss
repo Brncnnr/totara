@@ -1,0 +1,110 @@
+.tui-contentMarketplaceImportBasket {
+  &__category {
+    width: tui-char-length(15);
+  }
+}
+
+.tui-contentMarketplaceImportCountAndFilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  @include tui-font-heading-x-small();
+  @include tui-wordbreak--hard();
+
+  & > * + * {
+    margin-left: var(--gap-1);
+  }
+}
+
+.tui-contentMarketplaceImportSortFilter {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+
+  & > * + * {
+    margin-left: var(--gap-2);
+  }
+
+  &__label {
+    flex-shrink: 0;
+    @include tui-font-body();
+  }
+}
+
+.tui-contentMarketplacePageLayoutTwoColumn {
+  @include tui-font-body();
+  margin-top: var(--gap-2);
+
+  @include tui-stack-vertical(var(--gap-8));
+
+  &__heading {
+    @include tui-stack-vertical(var(--gap-2));
+  }
+
+  &__subHeading {
+    margin-top: var(--gap-4);
+  }
+
+  &--flush {
+    margin-top: var(--gap-12);
+  }
+}
+
+.tui-contentMarketplaceImportReviewPaging {
+  display: flex;
+  justify-content: center;
+}
+
+.tui-contentMarketplaceImportSelectionTable {
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+}
+
+.tui-contentMarketplaceImportTable {
+  &__link {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.tui-contentMarketplaceImport {
+  &__body {
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__filters {
+    margin-right: var(--gap-6);
+
+    &-content {
+      & > * + * {
+        margin-top: var(--gap-6);
+      }
+    }
+
+    &-toggle {
+      margin: 0 auto;
+    }
+
+    &-toggleExpanded {
+      margin-bottom: var(--gap-5);
+    }
+  }
+
+  &__summary {
+    &-gridItem {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+

@@ -1,0 +1,19 @@
+"""
+Language string for localisation.
+"""
+type core_lang_string {
+  lang: String!
+  identifier: String!
+  component: String!
+  string: String!
+}
+
+extend type Query {
+  core_lang_strings(
+    lang: param_lang!
+    """
+    ids argument is in the form "$identifier, $component" the same as in the 'str' mustache helper
+    """
+    ids: [String!]!
+  ): [core_lang_string!]!
+}

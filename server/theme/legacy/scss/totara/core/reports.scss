@@ -1,0 +1,266 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @package   theme_legacy
+
+.totara_core__myreports__container {
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+
+  &.tw-list-toggle-loaded {
+    opacity: 1;
+  }
+}
+
+.totara_core__myreports__list {
+  clear: both;
+  padding: 1rem 0;
+
+  &__item {
+    &__content {
+      position: relative;
+
+      // Hover animation
+      transition-property: box-shadow;
+      transition-duration: 200ms;
+      transition-timing-function: ease-in-out;
+
+      display: block;
+      color: var(--color-neutral-7);
+
+      &:hover,
+      &:active,
+      &:focus {
+        box-shadow: var(--shadow-2);
+        text-decoration: none;
+        color: var(--color-neutral-7);
+        position: relative; // this lifts the shadow above the image
+      }
+    }
+  }
+}
+
+// ------------------------------
+//  GRID VIEW
+// ------------------------------
+
+.totara_core__myreports__list--grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  & .totara_core__myreports__list {
+    &__item {
+      width: 100%;
+      min-width: 140px;
+
+      @media (min-width: $myReports-screen-xsm-min) {
+        & {
+          width: 50%;
+        }
+      }
+
+      @media (min-width: $totara-style-screen-md-min) {
+        & {
+          width: 33%;
+        }
+      }
+
+      @media (min-width: $totara-style-screen-lg-min) {
+        & {
+          width: 25%;
+        }
+      }
+
+      @media (min-width: $totara-style-screen-xl-min) {
+        & {
+          width: 20%;
+        }
+      }
+
+      &__content {
+        border: 1px solid $myReports-grid-border-color;
+        margin: $myReports-grid-spacing;
+
+        &__image {
+          background-color: $myReports-image-bg-color;
+
+          img.icon {
+            display: block;
+
+            width: 100%;
+            height: 120px;
+
+            margin: 0 auto;
+          }
+        }
+
+        &__title {
+          @include totara_style-heading_x_small();
+          height: 4.6rem;
+          margin: $myReports-spacing-small;
+          overflow: hidden;
+          font-weight: 600;
+        }
+
+        &__description {
+          margin: 0 $myReports-spacing-small;
+          font-size: $myReports-grid-text-size;
+          height: 8.4rem;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------
+//  TABLE VIEW
+// ------------------------------
+
+.totara_core__myreports__list--table {
+  & .totara_core__myreports__list {
+    &__item {
+      &:first-child {
+          border-top: 1px solid var(--color-neutral-5);
+      }
+      border-bottom: 1px solid var(--color-neutral-5);
+
+      &__content {
+        display: flex;
+        height: 50px;
+
+        @media screen and (min-width: $myReports-screen-xsm-min) {
+          height: 70px;
+        }
+
+        &__image {
+          max-height: 100%;
+
+          width: auto;
+          height: 100%;
+
+          flex: 0 0 auto;
+
+          img.icon {
+            width: auto;
+            height: 100%;
+            max-height: 100%;
+            background-color: $myReports-image-bg-color;
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        &__title {
+          /* Shorthand flex doesn't work in IE11 with flex-basis being set to 0 */
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          margin: $myReports-table-title-text-size;
+          overflow: hidden;
+
+          font-size: $myReports-grid-text-size;
+
+          @media screen and (min-width: $myReports-screen-xsm-min) {
+              @include totara_style-heading_x_small();
+              font-weight: 600;                    
+          }
+        }
+
+        &__description {
+          /* Shorthand flex doesn't work in IE11 with flex-basis being set to 0 */
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          margin: $myReports-spacing-small auto;
+          overflow: hidden;
+          font-size: $myReports-table-text-size;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------
+//  TITLE BUTTONS
+// ------------------------------
+.totara_core__myreports__title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $myReports-spacing-med;
+  padding-bottom: $myReports-spacing-med;
+  border-bottom: 1px solid var(--color-border);
+
+  &__btn {
+    @include bs-btn();
+    @include bs-btn-default();
+    margin: auto 0;
+
+    &:active,
+    &:focus,
+    &:hover {
+      outline: 0;
+      text-decoration: none;
+    }
+  }
+}
+
+// ------------------------------
+//  LIST ITEM TOGGLE
+// ------------------------------
+
+.totara_core__myreports__itemstyletoggle {
+  display: flex;
+  float: right;
+  margin-bottom: var(--gap-1);
+  border-radius: var(--btn-radius);
+  background-color: var(--color-neutral-4);
+  border: 1px solid var(--color-neutral-5);
+
+  &__btn {
+    font-size: var(--font-size-13);
+    padding: var(--gap-1);
+    transition: background-color 0.2s ease;
+    margin: 1px;
+    border-width: 1px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: var(--color-state-hover);
+      outline: 0;
+      text-decoration: none;
+    }
+
+    &_active {
+      color: var(--color-neutral-7);
+      border: 1px solid var(--color-neutral-5);
+      border-radius: var(--btn-radius);
+      background-color: var(--color-neutral-1);
+      cursor: default;
+
+      &:active,
+      &:focus,
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+}

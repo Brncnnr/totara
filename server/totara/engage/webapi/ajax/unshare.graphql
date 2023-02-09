@@ -1,0 +1,11 @@
+mutation totara_engage_unshare(
+  $item_id: param_integer!
+  $component: param_component!
+  $recipient_id: param_integer!
+) {
+  result: totara_engage_unshare(
+    item_id: $item_id
+    component: $component
+    recipient_id: $recipient_id
+  )
+}

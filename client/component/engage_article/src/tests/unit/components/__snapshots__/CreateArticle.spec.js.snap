@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage CreateArticle Checks snapshot 1`] = `
+<div
+  class="tui-engageCreateArticle"
+  component="engage_article"
+  itemid="1"
+>
+  <articleform-stub
+    articlename=""
+  />
+   
+  <accessform-stub
+    component="engage_article"
+    donebuttontext="done, totara_engage"
+    enabletimeview="true"
+    itemid="0"
+    selectedaccess="PRIVATE"
+    selectedoptions="[object Object]"
+    showback="true"
+    style="display: none;"
+  />
+</div>
+`;

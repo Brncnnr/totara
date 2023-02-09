@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/hierarchy/pathway/criteria_group/db" VERSION="20200217" COMMENT="Database layer definition for a criteria_manual pathway"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="pathway_manual" COMMENT="Criteria manual pathway definition">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="aggregation_method" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Aggregation method"/>
+        <FIELD NAME="aggregation_params" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Additional parameters required by the aggregation method"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="pathway_manual_role" COMMENT="Roles for a given manual pathway definition">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="path_manual_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="role" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Machine readable name of role"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="patman_fk_patmanid" TYPE="foreign" FIELDS="path_manual_id" REFTABLE="pathway_manual" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="pathway_manual_rating" COMMENT="Values given for a user on a manual pathway">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="competency_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of user that is the subject of this rating"/>
+        <FIELD NAME="scale_value_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="date_assigned" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="assigned_by" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Id of user who set this rating"/>
+        <FIELD NAME="assigned_by_role" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Machine readable name of role"/>
+        <FIELD NAME="comment" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Comment left when a rating is given"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="patmanrat_fk_compid" TYPE="foreign" FIELDS="competency_id" REFTABLE="comp" REFFIELDS="id"/>
+        <KEY NAME="patmanrat_fk_userid" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="patmanrat_fk_scavalid" TYPE="foreign" FIELDS="scale_value_id" REFTABLE="comp_scale_values" REFFIELDS="id"/>
+        <KEY NAME="patmanrat_fk_assiby" TYPE="foreign" FIELDS="assigned_by" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

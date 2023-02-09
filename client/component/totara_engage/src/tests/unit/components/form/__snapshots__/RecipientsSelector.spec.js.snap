@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage RecipientsSelector matches snapshot 1`] = `
+<div class="tui-engageSharedRecipientsSelector" selectedrecipients=""><label for="abc123" class="tui-formLabel tui-engageSharedRecipientsSelector__label">
+    <!---->
+
+    resharetorecipients, totara_engage
+    <!---->
+  </label>
+  <div class="tui-popover__wrap tui-engageSharedRecipientsSelector__icon"><button aria-expanded="false" aria-label="show_help_for_x, totara_core" type="button" title="show_help_for_x, totara_core" class="tui-iconBtn tui-infoIconButton tui-iconBtn--prim tui-iconBtn--small tui-iconBtn--transparent"><span class="tui-iconBtn__wrap"><span class="tui-iconBtn__label"><span aria-hidden="true" class="tui-iconBtn__icon"><span class=""></span></span>
+      <!----></span>
+      <!---->
+      <!----></span>
+    </button>
+    <div class="tui-popoverPositioner tui-popoverPositioner--transition-default" style="transform: translate3d(0px, 0px, 0); display: none;">
+      <div class="tui-popoverFrame tui-popoverFrame--bottom">
+        <div class="tui-arrow tui-arrow--top tui-arrow--normal" style="left: 0px;"></div>
+        <!---->
+        <!---->
+        <div role="tooltip" class="tui-popoverFrame__content tui-popoverFrame__content--nonClosable">
+          sharehelpinfo, totara_engage
+        </div>
+        <!---->
+      </div>
+    </div>
+  </div>
+  <div class="tui-dropdown tui-dropdown--flexibleWidth" id="abc123">
+    <div id="abc123" class="tui-dropdown__trigger">
+      <div class="tui-tagList">
+        <div class="tui-tagList__tags">
+          <div aria-live="polite" role="status" aria-atomic="false" aria-label="tags_selected, totara_core" aria-relevant="additions" class="tui-tagList__tagItems">
+            <div class="tui-tagList__input"><input aria-label="filter_x_taglist, totara_core" placeholder="enter_people_or_workspaces, totara_engage" type="text" class="tui-formInput tui-formInput--transparent"></div>
+          </div> <span class="tui-tagList__suffix" style="display: none;">n_more, totara_core</span>
+        </div> <button aria-expanded="false" aria-haspopup="menu" aria-label="tag_list, totara_core" type="button" title="tag_list, totara_core" class="tui-iconBtn tui-tagList__expandArrow tui-iconBtn--transparent"><span class="tui-iconBtn__wrap"><span class="tui-iconBtn__label"><span aria-hidden="true" class="tui-iconBtn__icon"><span class=""></span></span>
+          <!----></span>
+          <!---->
+          <!----></span>
+        </button>
+      </div>
+    </div>
+    <!---->
+  </div>
+</div>
+`;

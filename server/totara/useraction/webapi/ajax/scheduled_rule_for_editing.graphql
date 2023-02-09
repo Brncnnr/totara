@@ -1,0 +1,30 @@
+query totara_useraction_scheduled_rule_for_editing($id: core_id!) {
+  rule: totara_useraction_scheduled_rule(id: $id) {
+    __typename
+    id
+    name(format: RAW)
+    description(format: RAW)
+    status
+    action {
+      identifier
+    }
+    filters {
+      user_status
+      duration {
+        source
+        unit
+        value
+      }
+      applies_to {
+        __typename
+        label
+        ... on totara_useraction_filters_applies_to_audiences {
+          audiences {
+            id
+            name(format: PLAIN)
+          }
+        }
+      }
+    }
+  }
+}

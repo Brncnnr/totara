@@ -1,0 +1,36 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @module tuickage   tui
+
+:root {
+  //
+  // Tabs
+  //
+  --tabs-bg-color: var(--color-neutral-3);
+  --tabs-bg-color-selected: var(--color-neutral-1);
+  --tabs-bg-color-disabled: var(--color-neutral-3);
+  --tabs-bg-color-focus: var(--color-neutral-3);
+  --tabs-selected-bar-color: var(--color-primary);
+
+  --tabs-text-color: var(--color-state);
+  --tabs-text-color-active: var(--color-state-active);
+  --tabs-text-color-disabled: var(--color-state-disabled);
+  --tabs-text-color-focus: var(--color-state-focus);
+  --tabs-text-color-selected: var(--color-neutral-7);
+
+  --tabs-border-color: var(--color-neutral-5);
+  --tabs-border-color-selected: var(--color-neutral-1);
+  --tabs-border-color-disabled: var(--color-neutral-4);
+}

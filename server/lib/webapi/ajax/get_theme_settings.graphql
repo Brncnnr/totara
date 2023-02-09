@@ -1,0 +1,40 @@
+query core_get_theme_settings(
+  $theme: param_component!
+  $tenant_id: core_id
+  $draft_id: Int
+) {
+  core_get_theme_settings(
+    theme: $theme
+    tenant_id: $tenant_id
+    draft_id: $draft_id
+  ) {
+    categories {
+      name
+      properties {
+        name
+        type
+        value
+      }
+    }
+    flavours {
+      engage
+      learn
+      perform
+    }
+    files {
+      ui_key
+      type {
+        category
+        valid_extensions
+      }
+      default_url
+      current_url
+      file_area {
+        repository_id
+        draft_id
+        url
+      }
+    }
+    context_id
+  }
+}

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Paging matches snapshot 1`] = `
+<div
+  class="tui-paging tui-paging--narrow"
+>
+  <div
+    class="tui-paging__perPage"
+  >
+    <label-stub
+      class="tui-paging__perPage-label"
+      forid="id-items-perpage"
+      label="totara_core]"
+    />
+     
+    <select-stub
+      class="tui-paging__perPage-select"
+      id="id-items-perpage"
+      options="[object Object],[object Object],[object Object],[object Object]"
+      value="10"
+    />
+  </div>
+   
+  <div
+    class="tui-paging__selector"
+  >
+    <buttonicon-stub
+      arialabel="totara_core]"
+      class="tui-paging__selector-number tui-paging__selector-number--previous"
+      styleclass="[object Object]"
+      type="button"
+    >
+      <backicon-stub
+        size="200"
+      />
+    </buttonicon-stub>
+     
+    <button-stub
+      aria-label="core]"
+      class="tui-paging__selector-number tui-paging__selector-number--change"
+      styleclass="[object Object]"
+      text="1"
+      type="button"
+    />
+     
+    <span
+      aria-current="page"
+      class="tui-paging__selector-number tui-paging__selector-number--spacer"
+    >
+      
+        ...
+      
+    </span>
+     
+    <span
+      aria-current="page"
+      class="tui-paging__selector-number tui-paging__selector-number--current"
+    >
+      
+          5
+        
+    </span>
+     
+    <span
+      class="tui-paging__selector-number tui-paging__selector-number--spacer"
+    >
+      
+        ...
+      
+    </span>
+     
+    <button-stub
+      aria-label="core]"
+      class="tui-paging__selector-number tui-paging__selector-number--change"
+      styleclass="[object Object]"
+      text="100"
+      type="button"
+    />
+     
+    <buttonicon-stub
+      arialabel="totara_core]"
+      class="tui-paging__selector-number tui-paging__selector-number--next"
+      styleclass="[object Object]"
+      type="button"
+    >
+      <forwardicon-stub
+        size="200"
+      />
+    </buttonicon-stub>
+  </div>
+   
+  <div
+    class="tui-paging__direct"
+  >
+    <label-stub
+      class="tui-paging__direct-label"
+      forid="id-target-page"
+      label="core]"
+    />
+     
+    <inputtext-stub
+      autocomplete="off"
+      charlength="5"
+      class="tui-paging__direct-page"
+      id="id-target-page"
+      input-type="numeric"
+      value="5"
+    />
+     
+    <button-stub
+      aria-label="totara_core]"
+      class="tui-paging__direct-button"
+      styleclass="[object Object]"
+      text="core]"
+      type="button"
+    />
+  </div>
+</div>
+`;

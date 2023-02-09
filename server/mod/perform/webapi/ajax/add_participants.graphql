@@ -1,0 +1,13 @@
+mutation mod_perform_add_participants(
+  $input: mod_perform_add_participants_input!
+) {
+  mod_perform_add_participants(input: $input) {
+    participant_instances {
+      id
+      participant_id
+      core_relationship {
+        id
+      }
+    }
+  }
+}

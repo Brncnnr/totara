@@ -1,0 +1,26 @@
+query container_workspace_search_users(
+  $workspace_id: param_integer!
+  $pattern: param_text
+) {
+  users: container_workspace_search_users(
+    workspace_id: $workspace_id
+    pattern: $pattern
+  ) {
+    __typename
+    id
+    fullname
+    card_display {
+      __typename
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+      display_fields {
+        __typename
+        is_custom
+        associate_url
+        value
+        label
+      }
+    }
+  }
+}

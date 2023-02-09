@@ -1,0 +1,32 @@
+query editor_weka_find_users_by_pattern(
+  $pattern: param_text!
+  $contextid: param_integer
+  $component: param_component
+  $area: param_area
+  $instance_id: param_integer
+) {
+  users: editor_weka_users_by_pattern(
+    pattern: $pattern
+    contextid: $contextid
+    component: $component
+    area: $area
+    instance_id: $instance_id
+  ) {
+    __typename
+    id
+    fullname
+    card_display {
+      __typename
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+      display_fields {
+        __typename
+        value
+        is_custom
+        label
+        associate_url
+      }
+    }
+  }
+}

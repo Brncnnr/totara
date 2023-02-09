@@ -1,0 +1,22 @@
+query totara_api_search_users($input: totara_api_search_users_input!) {
+  result: totara_api_search_users(input: $input) {
+    users {
+      __typename
+      id
+      fullname
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          is_custom
+          associate_url
+          value
+          label
+        }
+      }
+    }
+  }
+}

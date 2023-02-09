@@ -1,0 +1,52 @@
+query mod_perform_section_admin($section_id: core_id!) {
+  mod_perform_section_admin(section_id: $section_id) {
+    display_title
+    section_relationships {
+      core_relationship {
+        id
+        idnumber
+        name
+      }
+    }
+    section_elements {
+      id
+      element {
+        ...mod_perform_section_admin_element_data
+        children {
+          ...mod_perform_section_admin_element_data
+        }
+      }
+      sort_order
+    }
+  }
+}
+
+fragment mod_perform_section_admin_element_data on mod_perform_element {
+  __typename
+  id
+  title
+  raw_title: title(format: RAW)
+  identifier
+  data
+  raw_data: data(format: RAW)
+  is_required
+  element_plugin {
+    plugin_name
+    name
+    plugin_config {
+      is_respondable
+      has_title
+      has_reporting_id
+      title_text
+      title_help_text
+      is_title_required
+      is_response_required_enabled
+    }
+    admin_edit_component
+    admin_view_component
+    admin_summary_component
+    participant_form_component
+    participant_print_component
+    group
+  }
+}

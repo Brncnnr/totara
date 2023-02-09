@@ -1,0 +1,16 @@
+This files describes API changes in /enrol/enrol_totara_facetoface,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+* enrol_totara_facetoface_plugin::can_self_enrol() function had been updated, "Face-to-face-related condition checks" is moved to enrol_totara_facetoface_plugin::render_facetoface_sessions
+* enrol_totara_facetoface_plugin::render_facetoface_sessions function had been updated, enrol_totara_facetoface_plugin::render_seminars_with_interests() is added to render
+  the seminars with the "Declare interest" enabled without the sessions.
+
+=== 13.0 ===
+
+=== 12.0 ===
+
+* Removed deprecated methods:
+  * enrol_totara_facetoface_statushandler()
+  * enrol_totara_facetoface_deletedhandler()

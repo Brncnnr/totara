@@ -1,0 +1,6 @@
+This files describes API changes in /mod/perform/element/numeric_rating_scale/*,
+information provided here is intended especially for developers.
+
+=== 13.2 ===
+
+* Renamed element from "Numeric rating scale" to "Rating scale: Numeric"

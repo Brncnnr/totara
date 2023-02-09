@@ -1,0 +1,78 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Cody Finegan <cody.finegan@totaralearning.com>
+   @package block_totara_recently_viewed
+}}
+{{!
+    @template block_totara_recently_viewed/card_totara_program
+
+    An individual card representing one of the recently viewed elements.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * url: URL to the item
+    * title: Title to show at the top of the card
+    * image: URL to the card image
+    * extra: Additional data used by the template
+    * extra -> show_progress: Show/hide the progress bar
+    * extra -> progress: % of the progress bar
+
+    Example context (json):
+    {
+        "url": "https://example.com/item"
+        "title": "Program Title",
+        "image": "https://example.com/image.png",
+        "extra": {
+            "show_progress": true,
+            "progress": "50%"
+        }
+    }
+}}
+<div class="block-trv-card-wrapper">
+    <div class="block-trv-card-border">
+        <div class="block-trv-card">
+            <div class="block-trv-image-wrapper">
+                <div class="block-trv-image" style="background-image: url({{image}})"></div>
+            </div>
+            <div class="block-trv-content">
+                <h3 class="block-trv-title"><a href="{{url}}">{{ title }}</a></h3>
+                {{#extra}}
+                    {{#show_progress}}
+                        <div class="block-trv-reactions">
+                            {{>block_totara_recently_viewed/element_progress}}
+                        </div>
+                    {{/show_progress}}
+                    <div class="block-trv-footer-text">
+                        {{#is_certification}}
+                            {{#str}} certification, block_totara_recently_viewed {{/str}}
+                        {{/is_certification}}
+                        {{^is_certification}}
+                            {{#str}} program, block_totara_recently_viewed {{/str}}
+                        {{/is_certification}}
+                    </div>
+                {{/extra}}
+            </div>
+        </div>
+    </div>
+</div>

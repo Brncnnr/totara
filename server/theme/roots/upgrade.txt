@@ -1,0 +1,33 @@
+This file describes API changes for 'theme_roots'.
+
+=== 17.3 ===
+
+* Removed float positioning from .path-course-view .completionprogress
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* Added a new 'columnpage' layout with 'top' and 'bottom' only regions
+* "secure" page layout now uses layout/secure.php
+* Styling changes applied to login page theme/roots/less/totara/login.less
+* Updated tool_usertours/tourstep template
+* Upgraded Bootstrap to 3.4.1
+* Added reset tour container to theme/roots/layout/partials/footer.php
+
+=== 12.0 ===
+
+* New design guide library (TUI) added to standardise styles used throughout site
+* Replaced body font size with a TUI variable in bootstrap3/scaffolding.less
+* Added two new full width block regions 'top' and 'bottom'
+* Deprecated layout/partials/header.php
+* Redesigned navigation implemented, deprecated navigation hasn't been removed
+* z-index for Totara dialogs has been updated to match Bootstrap 3 levels
+
+=== 10.0 ===
+
+* Ensured body and link text colour contrast ratio is at least 3:1 (WCAG 2.0 A compliant)
+
+=== 9.2 ===
+
+* New text truncation utility .text-truncate added in less/bootswatch/bootswatch.less

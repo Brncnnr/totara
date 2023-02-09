@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LastRatingBlock Checks snapshot - for date that is today: dateToday 1`] = `
+<span>
+  <span
+    class="tui-bulkManualRatingLastRatingBlock__blocks"
+  >
+    <span>
+      Not competent
+    </span>
+     
+    <span>
+      
+      $str('today', 'core')
+    
+    </span>
+     
+    <span>
+      $str('user_fullname_wrapper', 'pathway_manual', "Different User")
+    </span>
+  </span>
+</span>
+`;
+
+exports[`LastRatingBlock Checks snapshot - for different user: differentUser 1`] = `
+<span>
+  <span
+    class="tui-bulkManualRatingLastRatingBlock__blocks"
+  >
+    <span>
+      Not competent
+    </span>
+     
+    <span>
+      
+      30 January 2020
+    
+    </span>
+     
+    <span>
+      $str('user_fullname_wrapper', 'pathway_manual', "Different User")
+    </span>
+  </span>
+</span>
+`;
+
+exports[`LastRatingBlock Checks snapshot - for empty scale value: emptyScaleValue 1`] = `
+<span>
+  <span
+    class="tui-bulkManualRatingLastRatingBlock__blocks"
+  >
+    <span>
+      
+        $str('rating_set_to_none', 'pathway_manual')
+      
+    </span>
+     
+    <span>
+      
+      $str('today', 'core')
+    
+    </span>
+     
+    <span>
+      $str('user_fullname_wrapper', 'pathway_manual', "Different User")
+    </span>
+  </span>
+</span>
+`;
+
+exports[`LastRatingBlock Checks snapshot - for same user: sameUser 1`] = `
+<span>
+  <span
+    class="tui-bulkManualRatingLastRatingBlock__blocks"
+  >
+    <span>
+      Not competent
+    </span>
+     
+    <span>
+      
+      30 January 2020
+    
+    </span>
+     
+    <!---->
+  </span>
+</span>
+`;

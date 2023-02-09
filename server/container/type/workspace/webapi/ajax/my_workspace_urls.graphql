@@ -1,0 +1,16 @@
+query container_workspace_my_workspace_urls {
+  workspaces: container_workspace_workspaces(
+    # Making the query to fetch all.
+    source: MEMBER_AND_OWNED
+    sort: RECENT
+  ) {
+    __typename
+    name(format: PLAIN)
+    url
+    id
+    interactor {
+      __typename
+      has_seen
+    }
+  }
+}

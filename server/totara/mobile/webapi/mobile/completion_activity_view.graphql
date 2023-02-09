@@ -1,0 +1,6 @@
+mutation totara_mobile_completion_activity_view(
+  $cmid: core_id!
+  $activity: String!
+) {
+  core_completion_activity_view(cmid: $cmid, activity: $activity)
+}

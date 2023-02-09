@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentBox Checks snapshot 1`] = `
+<div
+  class="tui-commentBox"
+>
+  <commentthread-stub
+    area="comment"
+    class="tui-commentBox__comments"
+    component="totara_comment"
+    editor="[object Object]"
+    instanceid="15"
+    showlikebutton="true"
+    size="small"
+  />
+   
+  <commentform-stub
+    class="tui-commentBox__commentForm"
+    editor="[object Object]"
+    size="small"
+    submitbuttontext="post-totara_comment"
+  />
+</div>
+`;
+
+exports[`CommentBox Checks snapshot without thumbs up 1`] = `
+<div
+  class="tui-commentBox"
+>
+  <commentthread-stub
+    area="comment"
+    class="tui-commentBox__comments"
+    component="totara_comment"
+    editor="[object Object]"
+    instanceid="15"
+    size="small"
+  />
+   
+  <commentform-stub
+    class="tui-commentBox__commentForm"
+    editor="[object Object]"
+    size="small"
+    submitbuttontext="post-totara_comment"
+  />
+</div>
+`;

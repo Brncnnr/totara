@@ -1,0 +1,50 @@
+This files describes API changes in /client/component/engage_article,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Updated Weka usages to use new core variants in ArticleForm, EditArticleContentForm, and ArticleSidePanel
+  * Template changes
+* Updated ArticleContent.vue and ArticleView.vue to include new 'edit' button to enable editing of the article form as opposed to using inline editing
+  * Template, SCSS and JS changes
+* Moved the ArticleSeparator component up a level to ArticleView and wrapped it in a div for alignment with new 'edit' button
+  * Template changes
+* Updated ArticleContent.vue to allow disabling of edit mode using the 'Escape' key
+  * Template and JS changes
+
+=== 16.0 ===
+* Updated ArticleCard.vue & PlaylistCard.vue to keep the title position consistent when the bookmark button is available
+  * Template & SCSS changes
+* Updates in Related.vue to pass image alt text to the RelatedCard components
+  * JS changes
+* Updates in ArticleCard.vue and RelatedCard.vue to use background image based (css cropping) card header images
+  * Template, SCSS and JS changes
+* Updates in ArticleSidePanel.vue
+  * Template changes
+
+=== 15.0 ===
+* Updated ArticleTitle.vue and ArticleView.vue to not be hard against the viewport edge on mobile, and make main headings smaller
+  * SCSS changes
+* Updates in ArticleSidePanel.vue
+  * Template changes
+* Updates in Related.vue
+  * Templated and JS changes
+  * Deprecated getRecommendations as it is now an apollo query
+
+=== 13.3 ===
+* Updates in ArticleForm.vue:
+  * Template changes
+    * Replaced props "component" and "area" with "usage-identifier" for component editor_weka Weka.vue
+    * Added prop "variant" to component editor_weka Weka.vue
+
+* Updates in EditArticleContentForm.vue:
+  * Template changes
+    * Added prop "variant" to component editor_weka Weka.vue
+    * Replaced props "component", "area" and "instance-id" with "usage-identifier" for component editor_weka Weka.vue
+
+* Updated ArticleSidePanel.vue to add prop "editor-variant-name" and "editor-context-id" to component totara_comment SidePanelCommentBox.vue
+  * Template changes
+
+=== 13.2 ===
+* Updated ArticleCard.vue to use a link here instead of in totara_engage BaseCard
+    * Template & SCSS changes

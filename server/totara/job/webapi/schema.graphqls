@@ -1,0 +1,379 @@
+"""
+Job assignment type object, containing information about an individual job assignment.
+"""
+type totara_job_job_assignment {
+  """
+  Internal database id of the job assignment.
+  """
+  id: core_id!
+  """
+  User id of the user the job assignment is associated with.
+  """
+  userid: core_id!
+  """
+  User record of the user the job assignment is associated with.
+  """
+  user: core_user!
+  """
+  The full name of the job assignment. Used when job assignment is displayed and for selecting job assignments in dialogs.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  The short name of the job assignment. Only used as additional information.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Used when syncing job assignment data from external sources.
+  Must be unique for each user (but two users could have the same job assignment idnumber).
+  If the reference value is not unique, this can be combined with the job_assignment id and user_id in queries to behave
+  like a unique compound reference value in order to refer to a single job_assignment.
+  """
+  idnumber: String!
+  """
+  Rich-text description of the job assignment.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+  """
+  Date that the user started in this job assignment. This date can be used in dynamic audience rules.
+
+  This date is not used by the system to determine if the job assignment is active.
+  """
+  startdate(
+    """
+    Output date format this field should be formatted using.
+    """
+    format: core_date_format = TIMESTAMP
+  ): core_date
+  """
+  Date that the user ends in this job assignment. This date can be used in dynamic audience rules.
+
+  This date is not used by the system to determine if the job assignment is active.
+  """
+  enddate(
+    """
+    Output date format this field should be formatted using.
+    """
+    format: core_date_format = TIMESTAMP
+  ): core_date
+  """
+  Internal database id of the position for this assignment.
+  """
+  positionid: core_id
+  """
+  Position (job role) object for this job assignment.
+  """
+  position: totara_hierarchy_position
+  """
+  Internal database id of the organisation for this job assignment.
+  """
+  organisationid: core_id
+  """
+  Organisation object for this job assignment.
+  """
+  organisation: totara_hierarchy_organisation
+  """
+  Internal database id of the manager job assignment.
+  """
+  managerjaid: core_id
+  """
+  Job assignment object that defines the management relationship.
+  """
+  managerja: totara_job_job_assignment
+  """
+  Internal database id of the temporary manager job assignment.
+  Temporary manager has the same rights as a normal manager, until the expiry date is reached.
+  """
+  tempmanagerjaid: core_id
+  """
+  Job assignment object that defines the temporary management relationship.
+  """
+  tempmanagerja: totara_job_job_assignment
+  """
+  Date the temporary manager assignment will expire.
+  """
+  tempmanagerexpirydate(
+    """
+    Output date format this field should be formatted using.
+    """
+    format: core_date_format = TIMESTAMP
+  ): core_date
+  """
+  Internal database id of the user assigned as the appraiser for this job assignment.
+  """
+  appraiserid: core_id
+  """
+  Appraiser user object for this job assignment.
+  """
+  appraiser: core_user
+  """
+  Number of staff assigned to the user via this job assignment.
+  E.g. the number of other job assignments which list this assignment as 'managerja'.
+  """
+  staffcount: Int!
+  """
+  Number of staff assigned to the user to temporarily manage via this job assignment.
+  E.g. the number of other job assignments which list this assignment as 'tempmanagerja'.
+  """
+  tempstaffcount: Int!
+}
+
+"""
+Mutation result type returned after deletion of a job assignment.
+"""
+type totara_job_delete_job_assignment_result {
+  """
+  Database id of the job assignment.
+  """
+  job_assignment_id: core_id!
+}
+
+"""
+Input for identifying a job assignment.
+
+The job assignment must be identified by providing one of the following:
+
+* The job assignment's internal database id
+* The job assignment's idnumber
+
+A job assignment reference must uniquely identify a single job assignment record to be valid.
+"""
+input totara_job_job_assignment_reference {
+  """
+  Identify a job assignment by internal database id.
+  """
+  id: core_id
+  """
+  Identify a job assignment by its idnumber.
+
+  Idnumber is a unique reference used to represent a job assignment across multiple systems.
+  If the reference value is not unique, this can be combined with the job_assignment id and user_id in queries to behave
+  like a unique compound reference value in order to refer to a single job_assignment.
+  """
+  idnumber: String
+  """
+  The user who has received the job_assignment.
+  """
+  user: core_user_user_reference
+}
+
+"""
+Mutation result type returned after creating a job assignment. Returns information about the job assignment that was created.
+"""
+type totara_job_create_job_assignment_result {
+  """
+  The newly created job assignment.
+  """
+  job_assignment: totara_job_job_assignment!
+}
+
+"""
+Input data for creating a job assignment.
+"""
+input totara_job_create_job_assignment_input {
+  """
+  A unique reference used to represent the job assignment across multiple systems.
+  If the reference value is not unique, this can be combined with the job_assignment id and user_id in queries to behave
+  like a unique compound reference value in order to refer to a single job_assignment.
+  """
+  idnumber: String!
+  """
+  The full name of the job assignment.
+  """
+  fullname: String
+  """
+  The short name of the job assignment.
+  """
+  shortname: String
+  """
+  The user to create the job assignment for.
+  """
+  user: core_user_user_reference!
+  """
+  Date that the user started in this job assignment.
+  """
+  start_date: core_date
+  """
+  Date that the user ends in this job assignment.
+  """
+  end_date: core_date
+  """
+  Position (job role) that applies to this job assignment.
+  """
+  position: totara_hierarchy_position_reference
+  """
+  Organisation in which the user holds this job assignment.
+  """
+  organisation: totara_hierarchy_organisation_reference
+  """
+  Job assignment that defines the management relationship.
+  """
+  manager: totara_job_job_assignment_reference
+  """
+  Appraiser for this assignment.
+  """
+  appraiser: core_user_user_reference
+  """
+  Job assignment that defines the temporary management relationship.
+  """
+  temp_manager: totara_job_job_assignment_reference
+  """
+  Date the temporary manager assignment will expire.
+  """
+  temp_manager_expiry_date: core_date
+}
+
+"""
+The input data for updating the job assignment.
+"""
+input totara_job_update_job_assignment_input {
+  """
+  Unique reference used to represent the job assignment across multiple systems.
+  If the reference value is not unique, this can be combined with the job_assignment id and user_id in queries to behave
+  like a unique compound reference value in order to refer to a single job_assignment.
+  """
+  idnumber: String
+  """
+  The full name of the job assignment.
+  """
+  fullname: String
+  """
+  The short name of the job assignment.
+  """
+  shortname: String
+  """
+  Date that the user started in this job assignment.
+  """
+  start_date: core_date
+  """
+  Date that the user ends in this job assignment.
+  """
+  end_date: core_date
+  """
+  Position (job role) for the user.
+  """
+  position: totara_hierarchy_position_reference
+  """
+  Organisation in which the user works.
+  """
+  organisation: totara_hierarchy_organisation_reference
+  """
+  Job assignment that defines the management relationship.
+  """
+  manager: totara_job_job_assignment_reference
+  """
+  Appraiser for this assignment.
+  """
+  appraiser: core_user_user_reference
+  """
+  Job assignment that defines the temporary management relationship.
+  """
+  temp_manager: totara_job_job_assignment_reference
+  """
+  Date the temporary manager assignment will expire.
+  """
+  temp_manager_expiry_date: core_date
+}
+
+"""
+Mutation result type returned after updating a job assignment. Returns the job assignment that was updated.
+"""
+type totara_job_update_job_assignment_result {
+  """
+  The updated job assignment.
+  """
+  job_assignment: totara_job_job_assignment!
+}
+
+"""
+Information on paginating and sorting the results.
+"""
+input totara_job_job_assignments_query {
+  """
+  Pagination information such as which page to return and the number of results requested.
+  """
+  pagination: core_pagination_input
+  """
+  The sort order of the query.
+  Allowed entity fields for the sort column are 'id', 'userid', 'shortname', 'startdate', 'endate', 'position',
+  'organisation', 'managerjaid', 'tempmanagerjaid', 'tempmanagerexpirydate', 'appraiserid', 'staffcount', 'tempstaffcount'.
+  """
+  sort: [core_sort_input!]
+}
+
+"""
+Result returned from the totara_job_job_assignments query. Contains a page of results along with pagination information.
+"""
+type totara_job_job_assignments_result implements core_pageable_result {
+  """
+  Array of one page of job_assignments returned by the query.
+  """
+  items: [totara_job_job_assignment]
+  """
+  Total number of job_assignments from this query (across all pages).
+  """
+  total: Int!
+  """
+  Cursor to request the next set of results for this query.
+  """
+  next_cursor: String!
+}
+
+extend type Mutation {
+  """
+  Creates a new job assignment.
+  """
+  totara_job_create_job_assignment(
+    """
+    Input object specifying data for creating the new job assignment.
+    """
+    input: totara_job_create_job_assignment_input!
+  ): totara_job_create_job_assignment_result!
+
+  """
+  Updates a specific target job assignment with new properties.
+  """
+  totara_job_update_job_assignment(
+    """
+    The job assignment that should be updated.
+    """
+    target_job: totara_job_job_assignment_reference!
+    """
+    Input object specifying data for updating the job assignment.
+    """
+    input: totara_job_update_job_assignment_input!
+  ): totara_job_update_job_assignment_result!
+
+  """
+  Mutation to delete a job assignment.
+  """
+  totara_job_delete_job_assignment(
+    """
+    Input provided for identifying the job assignment.
+    """
+    target_job: totara_job_job_assignment_reference!
+  ): totara_job_delete_job_assignment_result!
+}
+
+extend type Query {
+  """
+  Return a paginated list of job_assignments in the system. Multitenancy restrictions apply.
+  """
+  totara_job_job_assignments(
+    query: totara_job_job_assignments_query
+  ): totara_job_job_assignments_result!
+}

@@ -1,0 +1,8 @@
+This files describes API changes in /container/*,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Moved server/container/classes/entity/module.php to server/lib/classes/entity/course_module.php
+* Moved server/container/classes/entity/section.php to server/lib/classes/entity/course_section.php
+* Moved server/container/tests/section_repository_test.php to server/lib/tests/course_section_repository_test.php

@@ -1,0 +1,18 @@
+This files describes API changes in /calendar/* ,
+information provided here is intended especially for developers.
+
+=== 14 ===
+
+* core_calendar_renderer::event changed do not display events from courses that are not visible to the user.
+
+=== 13 ===
+
+* facetoface_print_calendar_session() now shows only the session matching the event date if possible
+* calendar_events_check_visibility has been deprecated in favour of using totara_visibility_where() whenever loading events.
+* core_calendar_renderer::facetoface_print_calendar_session() has been updated to check a user's booking status.
+* core_calendar_renderer::event() attached 'mod_facetoface__calendar-event' CSS class to the seminar calendar event
+
+=== 10 ===
+
+* function calendar_get_default_courses() has been deprecated. Use the new method calendar_information::get_default_courses() instead.
+* calendar_preferences_button() is now depreciated.  Calendar preferences have been moved to the user preferences page.

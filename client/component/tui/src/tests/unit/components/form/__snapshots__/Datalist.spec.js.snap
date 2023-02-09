@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputText Checks snapshot 1`] = `
+<datalist
+  id="example"
+>
+  <option
+    value="aaa"
+  />
+  <option
+    value="bbb"
+  />
+</datalist>
+`;

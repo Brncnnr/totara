@@ -1,0 +1,33 @@
+type totara_competency_copy_pathway_result implements totara_competency_result {
+  """
+  True if the copy was successful
+  """
+  success: Boolean!
+  """
+  Validation errors if any.
+  """
+  error: totara_competency_error
+  """
+  total copy count
+  """
+  copied_count: Int!
+  """
+  need review count
+  """
+  need_review_count: Int
+}
+
+input totara_competency_copy_pathway_input {
+  source_competency_id: core_id!
+  target_competency_ids: [core_id!]!
+  allowed_competency_frameworks: [core_id!]!
+}
+
+extend type Mutation {
+  """
+  Copies pathway(s) from a reference competency to others.
+  """
+  totara_competency_copy_pathway(
+    input: totara_competency_copy_pathway_input!
+  ): totara_competency_copy_pathway_result!
+}

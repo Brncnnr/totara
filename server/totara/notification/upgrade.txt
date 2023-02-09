@@ -1,0 +1,60 @@
+This files describes API changes for code that uses the notification API,
+information provided here is intended especially for developers.
+
+
+=== 17.0 ===
+* Deprecated totara_notification\factory\capability_factory::get_capabilities - this is now replaced by totara_notification\factory\capability_factory::get_manage_capabilities
+  to distinguish between getting capabilities for managing notifications and capabilities for auditing notifications
+* Added the "totara_notification_log_days_to_keep" admin setting
+* Added a new function get_notification_log_display_string_key_and_params to the notifiable_event_resolver class - If overriden this allows a resolver to define
+  the string key, component, and params to be used as the event name in the notification log reports.
+* Added a new function format_event_log_display_string() to the notifiable_event_resolver class - This function uses the string key, component, and params from the previous
+  function to fetch the display string, and adds any final formatting.
+* Added "recipients" to notification_preferences
+* notification_queue_manager::dispatch updated to loop through recipients
+* Deprecated totara_notification_builder::set_recipient - this is now replaced by totara_notification_builder::set_recipients
+  to allow multiple recipients to be set on notification preferences.
+* Deprecated totara\notification\classes\model\notification_preference_value::get_recipient - this is now replaced
+  by totara\notification\classes\model\notification_preference_value::get_recipients
+* Deprecated totara\notification\classes\model\notification_preference::get_recipient - this is now replaced
+  by totara\notification\classes\model\notification_preference::get_recipients
+* Added totara\notification\classes\notification\built_in_notification::get_recipient_class_names
+* Added optional params user_id and only_auditing to totara_notification\factory\notifiable_event_resolver_factory::context_has_resolvers_with_capabilities
+* Allowed nullable return type on following methods and overridden methods.
+    - totara\notification\classes\placeholder\abstraction\single_emptiable_placeholder::do_get
+    - totara\notification\classes\placeholder\abstraction\single_emptiable_placeholder::get
+    - totara\notification\classes\placeholder\abstraction\single_placeholder.php::get
+
+--- Update to graphQL ---
+* Deprecated mutation totara_notification_create_notification_preference use totara_notification_create_notification_preference_v2 instead
+* Deprecated mutation totara_notification_create_custom_notification_preference use totara_notification_create_custom_notification_preference_v2 instead
+* Deprecated mutation totara_notification_override_notification_preference use totara_notification_override_notification_preference_v2 instead
+* Deprecated mutation totara_notification_update_notification_preference use totara_notification_update_notification_preference_v2 instead
+* Deprecated query totara_notification_event_resolvers use totara_notification_event_resolvers_v2 instead
+* Deprecated query totara_notification_notification_preference use totara_notification_notification_preference_v2 instead
+* Deprecated query totara_notification_notification_preferences
+* Deprecated type totara_notification_event_resolver use totara_notification_event_resolver_v2 instead
+* Deprecated type totara_notification_notification_preference use type totara_notification_notification_preference_v2 instead
+
+=== 16.0 ===
+
+* The title of the notification grouping as displayed in the administration UI can now be overridden by adding a
+  language string with the key 'pluginname_totara_notification' to a component's language file. When this doesn't
+  exist, the fallback is still the language string with the key 'pluginname'. Both of these can be overridden for
+  specific notifications by implementing totara_notification\resolver\notifiable_event_resolver::get_plugin_name().
+
+--- Update to graphQL ---
+* Updated field 'title' scalar type 'param_text' to 'String' for mutation 'totara_notification_update_notification_preference' and 'totara_notification_create_notification_preference'
+
+=== 14.4 ===
+
+* Deprecated totara_notification\local\helper::is_resolver_enabled - this function isn't needed and isn't returning
+  the correct value when no preference record is found.
+* Deprecated totara_notification\local\helper::is_resolver_enabled_for_all_parent_contexts - use
+  is_resolver_disabled_by_any_context instead, and pass in the parent context of your target context if you want
+  to know explicitly whether an ancestor is causing the target to be disabled.
+
+=== 14.1 ===
+
+* Deprecated the function single_emptiable_placeholder::get_representation_string_for_empty - all empty placeholder
+  values are now automatically replaced with the 'no_available_data_for_key' string when they are used.

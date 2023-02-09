@@ -1,0 +1,200 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2018 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_roots
+
+// Colours
+@basketlist-color_neutral_1: @totara_style-color_neutral_1;
+@basketlist-color_neutral_3: @totara_style-color_neutral_3;
+@basketlist-color_neutral_7: @totara_style-color_neutral_7;
+// Size
+@basketlist-spacing_x_small: @totara_style-spacing_x_small;
+@basketlist-spacing_small: @totara_style-spacing_small;
+@basketlist-spacing_medium: @totara_style-spacing_medium;
+@basketlist-spacing_large: @totara_style-spacing_large;
+@basketlist-spacing_x_large: @totara_style-spacing_x_large;
+// Breakpoint
+@basketlist-screen_sm_min: @totara_style-screen_sm_min;
+@basketlist-screen_md_min: @totara_style-screen_md_min;
+@basketlist-screen_xl_min: @totara_style-screen_xl_min;
+
+.tw-basketlist {
+    .clearfix;
+    position: relative;
+    z-index: 1;
+
+    &__body {
+        position: relative;
+
+        &_filters {
+            .make-xs-column(12, 0);
+            .make-sm-column(4, 0);
+            .make-md-column(3, 0);
+        }
+
+        .tw-actionList {
+            .make-xs-column(12, 0);
+            .make-sm-column(8, 0);
+            .make-md-column(9, 0);
+            padding-top: 0.1rem;
+            position: relative;
+        }
+    }
+
+    &__btn {
+        .totara_style-btn;
+    }
+
+    &__btnGroup {
+        .totara_style-btnGroup;
+        margin-right: @basketlist-spacing_small;
+
+        .tw-basketlist__btn {
+            .totara_style-btn;
+        }
+    }
+
+    &__hide {
+        height: 0;
+        margin: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+    &__primaryFilterSearch {
+        flex-basis: 100%;
+        margin-top: @basketlist-spacing_medium;
+        order: 2;
+        position: relative;
+
+        .tw-selectSearchText {
+            padding: 0;
+        }
+    }
+
+    &__primaryFilterTree {
+        max-width: 100%;
+    }
+
+    &__top {
+        clear: both;
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 1;
+
+        &_bar {
+            display: flex;
+            flex-basis: 100%;
+            flex-wrap: wrap;
+            margin-top: @basketlist-spacing_medium;
+            max-width: 100%;
+            z-index: 3;
+
+            .tw-basketlist__primaryFilterTree {
+                order: 1;
+            }
+
+            .tw-selectionBasket {
+                order: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: @basketlist-screen_sm_min) {
+    .tw-basketlist {
+        &__body {
+            &_filters {
+                border: 1px solid @basketlist-color_neutral_3;
+                margin-top: @basketlist-spacing_small;
+            }
+
+            .tw-actionList {
+                padding-left: @basketlist-spacing_medium;
+            }
+        }
+
+        &__primaryFilterSearch {
+            flex-basis: 30%;
+            margin: @basketlist-spacing_x_small 0 @basketlist-spacing_small;
+        }
+
+        &__primaryFilterTree {
+            flex-basis: 60%;
+            margin: auto 0;
+
+            .tw-selectTree__label {
+                padding-left: 0;
+            }
+        }
+
+        &__top {
+            &_bar {
+                margin-bottom: @basketlist-spacing_x_small;
+                margin-top: 0;
+
+                .tw-selectionBasket {
+                    order: 1;
+                }
+
+                .tw-selectionBasket--wide {
+                    order: 0;
+                }
+            }
+        }
+    }
+
+    .tw-basketlist--modal.tw-basketlist {
+        .tw-actionList {
+            .make-xs-column(12, 0);
+            .make-sm-column(12, 0);
+            .make-md-column(12, 0);
+        }
+
+        &__primaryFilterSearch {
+            flex-basis: 100%;
+        }
+    }
+}
+
+@media (min-width: @basketlist-screen_md_min) {
+    .tw-basketlist {
+        &__primaryFilterTree {
+            flex-basis: 50%;
+            max-width: 50%;
+        }
+    }
+}
+
+@media (min-width: @basketlist-screen_xl_min) {
+    .tw-basketlist {
+        &__body {
+            &_filters {
+                width: percentage((2 / 12));
+            }
+
+            .tw-actionList {
+                padding-left: @basketlist-spacing_large;
+                width: percentage((10 / 12));
+            }
+        }
+    }
+}

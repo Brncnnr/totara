@@ -1,0 +1,34 @@
+Feature: Two organisations, two positions, two audiences and two workflows with no levels
+  Scenario: x
+    Given I am on a totara site
+    And the following "organisation frameworks" exist in "totara_hierarchy" plugin:
+      | fullname | idnumber |
+      | orgfw    | orgfw    |
+    And the following "organisations" exist in "totara_hierarchy" plugin:
+      | org_framework | idnumber | fullname | shortname |
+      | orgfw         | org1     | org1     | org1      |
+      | orgfw         | org2     | org2     | org2      |
+    And the following "position" frameworks exist:
+      | fullname | idnumber |
+      | posfw    | posfw    |
+    And the following "position" hierarchy exists:
+      | framework | idnumber | fullname |
+      | posfw     | pos1     | pos1     |
+      | posfw     | pos2     | pos2     |
+    And the following "cohorts" exist:
+      | name | idnumber |
+      | aud1 | AUD001   |
+      | aud2 | AUD002   |
+    And the following "workflow types" exist in "mod_approval" plugin:
+      | name               |
+      | Test workflow type |
+    And the following "forms" exist in "mod_approval" plugin:
+      | title     |
+      | Test form |
+    And the following "form versions" exist in "mod_approval" plugin:
+      | form      | version | json_schema |
+      | Test form | 1       | test1       |
+    And the following "workflows" exist in "mod_approval" plugin:
+      | name              | description               | id_number | form      | workflow_type      |
+      | Test workflow one | test workflow description | WKF001    | Test form | Test workflow type |
+      | Test workflow two | test workflow description | WKF002    | Test form | Test workflow type |

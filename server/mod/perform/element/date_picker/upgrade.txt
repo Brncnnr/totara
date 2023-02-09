@@ -1,0 +1,5 @@
+This files describes API changes in /mod/perform/element/date_picker/*,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+* Database upgrade step to maintain the original date picker year range of 1900 to 2050 for date picker elements in active activities

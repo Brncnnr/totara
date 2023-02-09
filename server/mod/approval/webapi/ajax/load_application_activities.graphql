@@ -1,0 +1,23 @@
+query mod_approval_load_application_activities(
+  $input: mod_approval_application_input!
+) {
+  mod_approval_load_application_activities(input: $input) {
+    activities {
+      id
+      description
+      user {
+        id
+        fullname
+        card_display {
+          profile_url
+        }
+      }
+      timestamp(format: DATETIME)
+      stage {
+        id
+        name
+        ordinal_number
+      }
+    }
+  }
+}

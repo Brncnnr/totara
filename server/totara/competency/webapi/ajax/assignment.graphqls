@@ -1,0 +1,378 @@
+"""
+Competency assignment - a relationship between a specific competency and a group of users who are assigned to it.
+
+NOTE: The query is responsible for ensuring the user can see the assignment.
+"""
+type totara_competency_assignment {
+  id: core_id!
+  """
+  Assignment type (one of 'admin', 'self', 'system' or 'other')
+  """
+  type: String!
+  """
+  Human readable label for the type. NOTE: These do not map directly to the assignment type, some types return more specific strings based on group type
+  """
+  type_name: String!
+  """
+  ID of the competency being assigned
+  """
+  competency_id: core_id!
+  """
+  Type of group being assigned (one of 'user', 'position', 'organisation' or 'cohort')
+  """
+  user_group_type: String!
+  """
+  ID of group instance being assigned
+  """
+  user_group_id: core_id!
+  """
+  True if the assignment is optional (rather than mandatory)
+  """
+  optional: Boolean
+  """
+  Assignment status code matching one of the totara_competency\entity\assignment STATUS_ constants (e.g. 0 => 'draft', 1 => 'active', 2 => 'archived')
+  """
+  status: Int!
+  """
+  ID of user who created this assignment
+  """
+  created_by: Int
+  """
+  Time of assignment record creation
+  """
+  created_at(format: core_date_format = TIMESTAMP): core_date!
+  """
+  Time of last modification to the assignment record
+  """
+  updated_at(format: core_date_format = TIMESTAMP): core_date!
+  """
+  Time the assignment was archived - not set if not yet archived
+  """
+  archived_at(format: core_date_format = TIMESTAMP): core_date
+  """
+  The competency object this assignment relates to
+  """
+  competency: totara_competency_competency!
+  """
+  The user group object this assignment relates to
+  """
+  user_group: totara_competency_user_group!
+  """
+  Human readable name which includes the actual group name for position, organisation and cohorts.
+  For self, other and system assignments it will return a fixed string
+  """
+  progress_name(format: core_format = PLAIN): String
+  """
+  Gets human readable reason for assignment, we show:
+  - the fullname of the assigner and role
+  - a fixed string for self and other
+  - the actual name of the user group + type for position, organisation and audience
+  """
+  reason_assigned(format: core_format = PLAIN): String
+  """
+  User object for the user doing the assigning
+  """
+  assigner: core_user
+  """
+  True if current user is permitted to archive this assignment
+  """
+  can_archive: Boolean
+  """
+  The scale for the associated competency, with proficient flags on the values adjusted
+  if there is an assignment specific min proficient value override.
+  """
+  assignment_specific_scale: totara_competency_scale
+  """
+  Whether the user is currently assigned
+  """
+  is_assigned(user_id: core_id!): Boolean!
+  """
+  If the user is not assigned then this returns the date the user got unassigned last
+  """
+  unassigned_at(
+    format: core_date_format = TIMESTAMP
+    user_id: core_id!
+  ): core_date
+}
+
+"""
+Result holder for an archived user assignment.
+"""
+type totara_competency_archive_user_assignment_result {
+  archived_assignment: totara_competency_assignment!
+}
+
+"""
+Details about a specific competency user group
+"""
+type totara_competency_user_group {
+  id: ID!
+  """
+  Human readable name for the group
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Type of group being assigned (one of 'user', 'position', 'organisation' or 'cohort')
+  """
+  type: String!
+  """
+  True if the group has been deleted
+  """
+  is_deleted: Boolean!
+}
+
+"""
+Competency object for a competency that can be self assigned by the viewing user
+"""
+type totara_competency_self_assignable_competency implements totara_competency_competency_interface {
+  id: core_id!
+  """
+  Competency fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Competency idnumber
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  Competency shortname
+  """
+  shortname(format: core_format = PLAIN): String
+  """
+  Display name is a unified display name that can be used across different types of hierarchy item. Equivalent to fullname
+  """
+  display_name(format: core_format = PLAIN): String
+  """
+  Human readable rich-text description of this competency
+  """
+  description(format: core_format = HTML): String
+  """
+  Time of competency creation
+  """
+  timecreated(format: core_date_format = TIMESTAMP): core_date
+  """
+  Time when this competency record was last modified
+  """
+  timemodified(format: core_date_format = TIMESTAMP): core_date
+  """
+  ID of framework that this competency belongs to
+  """
+  frameworkid: core_id
+  """
+  Framework that this competency belongs to
+  """
+  framework: totara_competency_competency_framework
+  """
+  Slash separated list of ancestors of this competency including the competency's own ID. E.g. '/1/2/6/18'
+  """
+  path: String!
+  """
+  True if the competency is set to be visible
+  """
+  visible: Boolean!
+  """
+  ID of this competency's parent
+  """
+  parentid: core_id
+  """
+  Competency that this competency is a child of, or null for top level competency
+  """
+  parent: totara_competency_competency
+  """
+  List of competencies that are direct children of this competency
+  """
+  children: [totara_competency_competency]!
+  """
+  ID of this competency's type
+  """
+  typeid: core_id
+  """
+  Type object for this competency's type
+  """
+  type: totara_competency_competency_type
+  """
+  List of assignments related to this competency (groups of users assigned to it)
+  """
+  assignments: [totara_competency_assignment]
+  """
+  List of user assignments related to this competency (actual users assigned to it)
+  """
+  user_assignments: [totara_competency_assignment]
+  aggregation_method: Int
+}
+
+"""
+Result type returned when requesting a list of self assignable competencies
+"""
+type totara_competency_self_assigned_competencies_result implements core_pageable_result {
+  """
+  A list of self assignable competency objects
+  """
+  items: [totara_competency_self_assignable_competency]
+  """
+  Total number of competencies available
+  """
+  total: Int!
+  """
+  Cursor to request the next set of results for this query
+  """
+  next_cursor: String!
+}
+
+"""
+Unique human readable reason as to why a competency was assigned.
+- the fullname of the assigner and role
+- a fixed string for self and other
+- the actual name of the user group + type for position, organisation and audience
+"""
+type totara_competency_assignment_reason {
+  """
+  Human readable reason
+  """
+  reason: String!
+  """
+  List of assignments using this reason
+  """
+  assignments: [totara_competency_assignment!]!
+  """
+  A unique key that refers to this unique assignment reason.
+  """
+  key: String!
+}
+
+"""
+Filter input type used when filtering the list of competencies that can be self assigned
+"""
+input totara_competency_self_assigned_competencies_filter {
+  """
+  Text to match (via LIKE) against fullname, shortname, idnumber and description
+  """
+  text: param_text
+  """
+  Filter by one or more assignment types by providing an array of strings matching one or more of the totara_competency\entity\assignment TYPE_ constants (e.g. 'admin', 'self', 'system', 'other' or 'legacy')
+  """
+  assignment_type: [param_alphaext]
+  """
+  Filter by a specific competency framework ID
+  """
+  framework: param_integer
+  """
+  Filter by assignment status. Code matching one of the totara_competency\entity\assignment STATUS_ constants (e.g. 0 => 'draft', 1 => 'active', 2 => 'archived')
+  """
+  assignment_status: param_integer
+  """
+  Filter by parent competency ID
+  """
+  parent: param_integer
+  """
+  Filter to children of a specific competency e.g. given a competency ID will find all competencies below it by using its path
+  """
+  path: param_integer
+  """
+  Filter by one or more competency type ID
+  """
+  type: [param_integer]
+  """
+  Filter down to a specific set of competency IDs
+  """
+  ids: [param_integer]
+}
+
+"""
+Input for the user assignments query.
+"""
+input totara_competency_user_assignments_input {
+  user_id: core_id
+  filters: totara_competency_profile_assignment_filters
+  result_size: Int
+  cursor: String
+}
+
+"""
+Result for the user assignments query.
+"""
+type totara_competency_user_assignments_result implements core_pageable_result {
+  items: [totara_competency_profile_assignment_progress!]
+  """
+  Optional set of filters to restrict the items returned
+  """
+  filters: [totara_competency_profile_assignment_filter_option!]
+  total: Int!
+  next_cursor: String!
+}
+
+extend type Query {
+  """
+  Query to return a specific competency assignment by its ID
+  """
+  totara_competency_assignment(
+    assignment_id: core_id!
+  ): totara_competency_assignment!
+
+  """
+  Query to return a paginated set of user assignable competencies, optionally filtered by some specific criteria
+  """
+  totara_competency_user_assignable_competencies(
+    """
+    ID of the user who the results are for. Permission checks will be applied to the viewing user's right to view this user
+    """
+    user_id: core_id!
+    """
+    Set of filters to apply to the results
+    """
+    filters: totara_competency_self_assigned_competencies_filter
+    """
+    Field to user to order the results, e.g. 'name'
+    """
+    order_by: String
+    """
+    Direction the results should be ordered in, e.g. 'asc', 'desc'
+    """
+    order_dir: totara_competency_order_dir
+    """
+    Cursor obtained from a previous set of results, if provided will return the next page of results. If not provided returns the first page of results
+    """
+    cursor: String
+  ): totara_competency_self_assigned_competencies_result!
+
+  """
+  Query to return a paginated set of competencies that have been assigned to a user.
+  """
+  totara_competency_user_assignments(
+    input: totara_competency_user_assignments_input!
+  ): totara_competency_user_assignments_result!
+}
+
+input totara_competency_assignment_min_proficiency_override_input {
+  assignment_ids: [core_id!]!
+  scale_value_id: core_id
+}
+
+type totara_competency_assignment_min_proficiency_override_result {
+  assignments: [totara_competency_assignment!]!
+}
+
+extend type Mutation {
+  """
+  Creates new assignments for the user
+  """
+  totara_competency_create_user_assignments(
+    user_id: core_id!
+    competency_ids: [core_id!]!
+  ): [totara_competency_assignment!]!
+
+  """
+  Archives user competency assignments.
+  """
+  totara_competency_archive_user_assignment(
+    assignment_id: core_id!
+  ): totara_competency_archive_user_assignment_result
+
+  """
+  Update or unset the minimum proficiency value override for one or many competency assignments.
+  A null scale_value_id unsets the override.
+  """
+  totara_competency_update_min_proficiency_override_for_assignments(
+    input: totara_competency_assignment_min_proficiency_override_input
+  ): totara_competency_assignment_min_proficiency_override_result
+}

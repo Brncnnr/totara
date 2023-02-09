@@ -1,0 +1,31 @@
+query totara_certification_certification($certificationid: core_id!) {
+  totara_certification_certification(certificationid: $certificationid) {
+    id
+    idnumber
+    fullname
+    shortname
+    summary
+    summaryformat
+    endnote
+    duedate(format: TIMESTAMP)
+    duedate_state(format: PLAIN)
+    coursesets {
+      id
+      label(format: RAW)
+    }
+    completion {
+      id
+      status
+      statuskey
+      renewalstatus
+      renewalstatuskey
+      timecompleted
+      progress
+    }
+    availablefrom
+    availableuntil
+    category {
+      name
+    }
+  }
+}

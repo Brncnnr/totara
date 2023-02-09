@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage EngageTopicsSelector Checks snapshot 1`] = `
+<div
+  class="tui-engageTopicsSelector"
+>
+  <label-stub
+    class="tui-engageTopicsSelector__label"
+    forid="id-topic"
+    label="assigntopics, totara_engage"
+  />
+   
+  <infoiconbutton-stub
+    class="tui-engageTopicsSelector__icon"
+    ishelpfor="assigntopics, totara_engage"
+  >
+    <p>
+      
+      assigntopicshelpinfoworkspaces, totara_engage
+    
+    </p>
+     
+    <p>
+      
+      assigntopicshelpinfoworkspaces2, totara_engage
+    
+    </p>
+  </infoiconbutton-stub>
+   
+  <topicsselector-stub
+    id="id-topic"
+    inputplaceholder="enter_topics, totara_engage"
+    selectedtopics=""
+  />
+</div>
+`;

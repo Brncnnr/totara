@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collapsibleGroupToggle matches snapshot 1`] = `
+<div
+  class="tui-collapsibleGroupToggle tui-collapsibleGroupToggle--alignEnd"
+  label="hello"
+>
+  <button-stub
+    ariaexpanded="false"
+    class="tui-collapsibleGroupToggle__button"
+    styleclass="[object Object]"
+    text="fff"
+    type="button"
+  />
+</div>
+`;

@@ -1,0 +1,8 @@
+{
+  "component": "totara_comment",
+  "vendor": "totara",
+  "dependencies": [
+    "editor_weka",
+    "totara_reportedcontent"
+  ]
+}

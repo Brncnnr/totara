@@ -1,0 +1,319 @@
+"""
+A client is used to access the API, it controls authentication and stores settings relating to API usage.
+"""
+type totara_api_client {
+  id: core_id!
+  """
+  Clients can be at the system level or within a tenant. If provided this identifies the tenant, otherwise it is a system client.
+  """
+  tenant_id: core_id
+  """
+  Name used to identify the client.
+  """
+  name(format: core_string_format = HTML): String!
+  """
+  User defined description of the purpose/use for this client.
+  """
+  description(format: core_text_format = HTML): String
+  """
+  Internal OAuth2 client providers for this client.
+  """
+  oauth2_client_providers: [totara_oauth2_client_provider!]!
+  """
+  The enabled status of the client.
+  """
+  status: Boolean
+  """
+  The service account for the API user linked to this API client.
+  """
+  service_account: totara_api_client_service_account
+}
+
+"""
+Client settings are used to configure api client, it stores settings relating to API client.
+"""
+type totara_api_client_settings {
+  id: core_id!
+  client_id: core_id!
+  """
+  It used to set complexity for an API client
+  """
+  client_rate_limit: Int!
+  """
+  It used to set default token expiry time for an API client
+  """
+  default_token_expiry_time: Int!
+  """
+  Used to set the type of response debug for an API client
+  """
+  response_debug: totara_api_client_response_debug
+}
+
+type totara_api_global_client_settings {
+  """
+  It used to set global rate limit for an API client
+  """
+  site_rate_limit: Int
+  """
+  It used to set global client rate limit for an API client
+  """
+  client_rate_limit: Int
+  """
+  It used to set global query depth for an API client
+  """
+  max_query_depth: Int
+  """
+  It used to set global complex cost for an API client
+  """
+  max_complexity_cost: Int
+  """
+  It used to set global token expiry time for an API client
+  """
+  default_token_expiry_time: Int
+  """
+  Used to set the type of response debug for an API client
+  """
+  response_debug: totara_api_client_response_debug
+}
+
+"""
+Constant representing debug response type.
+"""
+enum totara_api_client_response_debug {
+  NONE
+  NORMAL
+  DEVELOPER
+}
+
+"""
+Input provided when requesting clients - specifies pagination or other request specific information.
+"""
+input totara_api_clients_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input
+  """
+  If not provided, it will return system tenants. Tenant users can only view clients in their own tenant.
+  """
+  tenant_id: core_id
+}
+
+"""
+Input provided when creating a new client.
+"""
+input totara_api_client_input {
+  """
+  Name used to identify the client.
+  """
+  name: String!
+  """
+  The API service account user for the client.
+  """
+  user_id: core_id!
+  """
+  User defined description of the purpose/use for this client.
+  """
+  description: String
+  """
+  If not provided, client will be created as a system tenant. Tenant users can only create clients in their own tenant.
+  """
+  tenant_id: core_id
+  """
+  The enabled status of the client. Default value is enabled
+  """
+  status: Boolean
+}
+
+"""
+Input provided when updating an existing API client setting.
+"""
+input totara_api_client_setting_input {
+  client_id: core_id!
+  """
+  It used to set complexity for an API client
+  """
+  client_rate_limit: Int
+  """
+  It used to set default token expiry time for an API client
+  """
+  default_token_expiry_time: Int
+  """
+  Set the type of response debug for an API client
+  """
+  response_debug: totara_api_client_response_debug
+}
+
+"""
+Paginated return result when requesting a list of clients.
+"""
+type totara_api_clients_result implements core_pageable_result {
+  """
+  List of api clients.
+  """
+  items: [totara_api_client!]!
+  """
+  Total number of api clients from this query.
+  """
+  total: Int!
+  """
+  Cursor to request the next set of results for this query.
+  """
+  next_cursor: String!
+}
+
+"""
+Return client settings result including global level and client level.
+"""
+type totara_api_client_settings_result {
+  """
+  Client level client settings
+  """
+  client_settings: totara_api_client_settings!
+  """
+  Global level client settings
+  """
+  global_settings: totara_api_global_client_settings!
+}
+
+"""
+Client result.
+"""
+type totara_api_client_result {
+  client: totara_api_client!
+}
+
+"""
+Input provided when searching for a user
+"""
+input totara_api_search_users_input {
+  """
+  Tenant id.
+  """
+  tenant_id: core_id
+  """
+  User search text.
+  """
+  pattern: param_text
+}
+
+"""
+Returned user search result.
+"""
+type totara_api_search_users_result {
+  users: [core_user]!
+}
+"""
+Service account information for the API user.
+"""
+type totara_api_client_service_account {
+  """
+  User type containing data about the service account user.
+  """
+  user: core_user
+  """
+  True if the real-time validation checks indicate the user is suitable to be a service account for this client, false otherwise.
+  """
+  is_valid: Boolean!
+  """
+  Status about the user and service account if invalid.
+  """
+  status: totara_api_client_service_account_status!
+}
+
+"""
+Constant representing cause of an validation issue.
+"""
+enum totara_api_client_service_account_status {
+  VALID
+  NO_USER
+  DELETED
+  SUSPENDED
+  GUEST
+  ADMIN
+  WRONG_TENANT
+  TENANT_SUSPENDED
+}
+
+"""
+Input provided when updating an existing API client.
+"""
+input totara_api_update_client_input {
+  id: core_id!
+  """
+  Name used to identify the client.
+  """
+  name: String
+  """
+  User defined description of the purpose/use for this client.
+  """
+  description: String
+  """
+  The enabled status of the client.
+  """
+  status: Boolean
+  """
+  The API service account user for the client.
+  """
+  user_id: core_id
+}
+
+extend type Mutation {
+  """
+  Create a new API client.
+  """
+  totara_api_create_client(input: totara_api_client_input!): totara_api_client!
+
+  """
+  Update an existing api client. It is not possible to update the tenant_id of an existing client.
+  """
+  totara_api_update_client(
+    input: totara_api_update_client_input!
+  ): totara_api_client!
+
+  """
+  Delete an API client by id.
+  """
+  totara_api_delete_client(id: core_id!): Boolean!
+
+  """
+  Update status for an API client.
+  """
+  totara_api_set_client_status(
+    id: core_id!
+    status: Boolean!
+  ): totara_api_client!
+
+  """
+  Update API client settings.
+  """
+  totara_api_update_client_settings(
+    input: totara_api_client_setting_input!
+  ): totara_api_client_settings!
+}
+
+extend type Query {
+  """
+  Query to fetch a paginated set of API clients.
+  """
+  totara_api_clients(input: totara_api_clients_input): totara_api_clients_result
+
+  """
+  Query to fetch API client settings by client_setting_id.
+  """
+  totara_api_client_settings(
+    client_id: core_id!
+  ): totara_api_client_settings_result!
+
+  """
+  Query to fetch API client instance.
+  """
+  totara_api_client(id: core_id!): totara_api_client_result!
+
+  """
+  Query to search for users.
+  """
+  totara_api_search_users(
+    input: totara_api_search_users_input!
+  ): totara_api_search_users_result!
+}

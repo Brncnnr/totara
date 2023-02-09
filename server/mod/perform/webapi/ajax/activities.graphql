@@ -1,0 +1,19 @@
+query mod_perform_activities {
+  mod_perform_activities {
+    id
+    name
+    type {
+      display_name
+    }
+    updated_at
+    can_view_participation_reporting
+    can_potentially_activate
+    can_activate
+    can_manage
+    can_clone
+    state_details {
+      display_name
+      name
+    }
+  }
+}

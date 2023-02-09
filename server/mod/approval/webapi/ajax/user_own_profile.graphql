@@ -1,0 +1,20 @@
+query mod_approval_user_own_profile {
+  profile: core_user_own_profile {
+    __typename
+    id
+    fullname
+    card_display {
+      __typename
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+      display_fields {
+        __typename
+        associate_url
+        label
+        value
+        is_custom
+      }
+    }
+  }
+}

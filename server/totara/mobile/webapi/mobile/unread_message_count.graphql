@@ -1,0 +1,3 @@
+query totara_mobile_unread_message_count {
+  message_popup_unread_count
+}

@@ -1,0 +1,29 @@
+This files describes API changes in the webapi plugin,
+information provided here is intended especially for developers.
+
+=== 17.1 ===
+
+* Added a mandatory server parameter to handle_request_pre_hook and handle_request_post_hook.
+
+=== 17.0 ===
+
+* Parameter for \totara_webapi\request::__construct changed from string to totara_webapi\endpoint_type\base. A debugging notice
+  will be emitted for type string and the creation of a type instance will be attempted.
+* Parameter for \totara_webapi\graphql::get_schema changed from string to totara_webapi\endpoint_type\base. A debugging notice
+  will be emitted for type string and the creation of a type instance will be attempted.
+* Return type for \core\webapi\execution_context::get_type has changed from string to totara_webapi\endpoint_type\base.
+* Added a middleware hook totara_webapi\hook\api_hook that allows defining middleware based on endpoint_type, component or resolver
+* Removed server/totara/webapi/index.php and webapi node from admin setting under development menu
+* Added second parameter 'execution_context' to method 'totara_webapi\server::add_performance_data_to_result'
+
+=== 15.0 ===
+
+* Introduced processor class, which is the base implementation of GraphQL StandardServer.
+* graphql::get_schema has a new optional parameter 'type'
+* server::prepare_schema has been deprecated.
+* server::prepare_operations has been deprecated.
+* server::create_operation has been deprecated.
+
+=== 13 ===
+
+* Introduced a new config flag $CFG->cache_graphql_schema to control caching of the schema. By default caching is on and can be turned off using the flag

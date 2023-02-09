@@ -1,0 +1,9 @@
+query mod_approval_override_for_assignment_type(
+  $input: mod_approval_override_for_assignment_type_input!
+) {
+  mod_approval_override_for_assignment_type(input: $input) {
+    id
+    name
+    contextid
+  }
+}

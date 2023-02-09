@@ -1,0 +1,54 @@
+"""
+Create an element within a section.
+"""
+input mod_perform_create_element_in_section_input {
+  element: mod_perform_create_element_input!
+  after_section_element_id: core_id
+  section_id: core_id!
+}
+
+"""
+Input for updating element in a section.
+"""
+input mod_perform_update_element_in_section_input {
+  element_details: mod_perform_element_details_input!
+  section_element_id: core_id!
+}
+
+"""
+Reorder an existing section element within the current section
+"""
+input mod_perform_reorder_section_element_input {
+  section_element_id: core_id!
+  move_to_after_section_element_id: core_id
+}
+
+extend type Mutation {
+  """
+  Create a perform element and link to section.
+  """
+  mod_perform_create_element_in_section(
+    input: mod_perform_create_element_in_section_input!
+  ): mod_perform_section_result!
+
+  """
+  Updates an element linked to a section and returns the section.
+  """
+  mod_perform_update_element_in_section(
+    input: mod_perform_update_element_in_section_input!
+  ): mod_perform_section_result!
+
+  """
+  Delete a section element.
+  """
+  mod_perform_delete_section_element(
+    input: mod_perform_delete_section_element_input!
+  ): mod_perform_section_result!
+
+  """
+  Reorder a section element within a section.
+  """
+  mod_perform_reorder_section_element(
+    input: mod_perform_reorder_section_element_input!
+  ): mod_perform_section_result!
+}

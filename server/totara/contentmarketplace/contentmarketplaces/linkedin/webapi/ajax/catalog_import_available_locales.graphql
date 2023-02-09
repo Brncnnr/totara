@@ -1,0 +1,7 @@
+query contentmarketplace_linkedin_catalog_import_available_locales {
+  # Note: this persist query will not include country.
+  locales: contentmarketplace_linkedin_available_locales {
+    id: language
+    label: language_label
+  }
+}

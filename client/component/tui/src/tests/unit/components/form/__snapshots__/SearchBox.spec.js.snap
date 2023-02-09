@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox matches snapshot 1`] = `
+<div
+  class="tui-searchBox"
+>
+  <label
+    class="tui-formLabel tui-formLabel--hidden"
+    for="tempid"
+  >
+    <!---->
+    
+
+  label
+  
+    <!---->
+  </label>
+   
+  <div
+    class="tui-searchBox__inputWrapper"
+  >
+    <input
+      aria-label="label"
+      class="tui-formInput tui-searchBox__search tui-formInput--postIcon tui-formInput--charLength-full tui-input--customSize"
+      id="tempid"
+      placeholder="tempstring"
+      type="search"
+    />
+     
+    <!---->
+  </div>
+   
+  <button
+    aria-label="label"
+    class="tui-iconBtn tui-searchBox__button tui-iconBtn--small"
+    title="label"
+    type="button"
+  >
+    <span
+      class="tui-iconBtn__wrap"
+    >
+      <span
+        class="tui-iconBtn__label"
+      >
+        <span
+          aria-hidden="true"
+          class="tui-iconBtn__icon"
+        >
+          <searchicon-stub
+            size="200"
+          />
+        </span>
+         
+        <!---->
+      </span>
+       
+      <!---->
+       
+      <!---->
+    </span>
+  </button>
+</div>
+`;

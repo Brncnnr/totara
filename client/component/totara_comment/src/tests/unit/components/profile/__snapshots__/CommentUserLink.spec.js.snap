@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentUserLink Checks snapshot 1`] = `
+<a
+  class="tui-commentUserLink tui-commentUserLink--smallLink"
+  href="http://example.com"
+>
+  
+  Admin user
+
+</a>
+`;

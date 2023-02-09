@@ -1,0 +1,9 @@
+query totara_engage_navigation_panel_sections {
+  sections: totara_engage_navigation_panel_sections {
+    __typename
+    component
+    tuicomponent
+    showcontribute
+    can_share
+  }
+}

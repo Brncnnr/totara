@@ -1,0 +1,10 @@
+query totara_playlist_get_interactor($playlist_id: core_id!) {
+  interactor: totara_playlist_interactor(playlist_id: $playlist_id) {
+    user_id
+    can_bookmark
+    can_comment
+    can_rate
+    can_react
+    can_share
+  }
+}

@@ -1,0 +1,46 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/page
+
+    Parent template for the evidence plugin
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-evidence-page-container
+
+    Context variables required for this template:
+    * header: HTML, the page header
+    * content: HTML, the page content
+
+    Example context (json):
+    {
+        "header": "<div class=\"tw-evidence__header\"><a href=\"index.php\" class=\"tw-evidence__header_backLink\">\u00ab Back to all evidence types<\/a><h2 class=\"tw-evidence__header_title\">Add an evidence type<\/h2><div class=\"tabtree\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a>General<\/a><\/li><li class=\"disabled\"><a>Custom Fields<\/a><\/li><\/ul><\/div>\n<\/div>",
+        "content": "<table class=\"generaltable tw-evidence__table\" id=\"table-evidence-types\" data-table-actions=\"\"> <thead> <tr> <th>Type name<\/th> <th>Type ID number<\/th> <th>Actions<\/th> <\/tr><\/thead> <tbody> <tr data-row-id=\"1\"> <td>Inspection Diploma<\/td><td>INSP105<\/td><td> <a href=\"edit.php?id=20\" id=\"action_link5c32695ab291f1\" class=\"action-icon\"><span aria-hidden=\"true\" data-flex-icon=\"core|t\/edit\" class=\"flex-icon ft-fw ft fa-cog\" title=\"Edit\"><\/span><span class=\"sr-only\">Edit<\/span><\/a><a href=\"#\" id=\"action_link5c32695ab291f2\" class=\"action-icon\" data-action-delete=\"20\"><span aria-hidden=\"true\" data-flex-icon=\"core|t\/delete\" class=\"flex-icon ft-fw ft fa-times ft-state-danger\" title=\"Delete\"><\/span><span class=\"sr-only\">Delete<\/span><\/a> <\/td><\/tr><tr data-row-id=\"2\"> <td>Security Licence<\/td><td>SECU206<\/td><td> <a href=\"edit.php?id=21\" id=\"action_link5c32695ab291f3\" class=\"action-icon\"><span aria-hidden=\"true\" data-flex-icon=\"core|t\/edit\" class=\"flex-icon ft-fw ft fa-cog\" title=\"Edit\"><\/span><span class=\"sr-only\">Edit<\/span><\/a><a href=\"#\" id=\"action_link5c32695ab291f4\" class=\"action-icon\" data-action-delete=\"21\"><span aria-hidden=\"true\" data-flex-icon=\"core|t\/delete\" class=\"flex-icon ft-fw ft fa-times ft-state-danger\" title=\"Delete\"><\/span><span class=\"sr-only\">Delete<\/span><\/a> <\/td><\/tr><tr data-row-id=\"3\"> <td>Security Permit<\/td><td>SECU301<\/td><td> <a href=\"edit.php?id=16\" id=\"action_link5c32695ab291f5\" class=\"action-icon\"><span aria-hidden=\"true\" data-flex-icon=\"core|t\/edit\" class=\"flex-icon ft-fw ft fa-cog\" title=\"Edit\"><\/span><span class=\"sr-only\">Edit<\/span><\/a><a href=\"#\" id=\"action_link5c32695ab291f6\" class=\"action-icon\" data-action-delete=\"16\"><span aria-hidden=\"true\" data-flex-icon=\"core|t\/delete\" class=\"flex-icon ft-fw ft fa-times ft-state-danger\" title=\"Delete\"><\/span><span class=\"sr-only\">Delete<\/span><\/a> <\/td><\/tr><tr class=\"no_data_message hidden\"> <td colspan=\"3\"><\/td><\/tr><\/tbody><\/table>"
+    }
+}}
+<div class="tw-evidence" data-evidence-page-container>
+    {{{header}}}
+    {{{content}}}
+</div>

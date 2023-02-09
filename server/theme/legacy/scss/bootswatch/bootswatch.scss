@@ -1,0 +1,245 @@
+//
+// This file is part of Totara LMS
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <ht    tp://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @package   theme_legacy
+//
+//
+// For more on Bootswatches see https://bootswatch.com
+//
+
+//
+// Badges.
+//
+// Extends the Bootstrap 3 badges classes so that state
+// can be applied by class (rather than only inherited).
+.badge-primary {
+  background-color: var(--color-primary);
+}
+
+.badge-success {
+  background-color: $brand-success;
+}
+
+.badge-info {
+  background-color: $brand-info;
+}
+
+.badge-warning {
+  background-color: $brand-warning;
+}
+
+.badge-danger {
+  background-color: $brand-danger;
+}
+
+// Standard horizontal DL.
+.dl-horizontal dt,
+.dl-horizontal dd {
+  margin-bottom: $padding-small-vertical;
+  white-space: normal;
+}
+
+//
+// Labels.
+//
+// Links inside labels should inherit the label text colour.
+// This is used for action (font) icons.
+.label a {
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+}
+
+// This useful utility class naming borrowed from
+// Bootstrap 4 to ease upgrade path.
+.text-truncate {
+  @include text-overflow();
+}
+
+// Nav tabs.
+// There are some odd occasions where a set of nav tabs
+// are displayed directly after another.
+.nav-tabs + .nav-tabs {
+  margin-top: $line-height-computed;
+}
+
+//
+// Navbar.
+//
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-site {
+  margin-bottom: 0;
+}
+
+.navbar {
+  border: none;
+}
+
+.breadcrumb {
+  background: transparent;
+}
+
+//
+// Nav.
+//
+.nav {
+  > li {
+    > a {
+      font-weight: 400;
+    }
+  }
+}
+
+//
+// Nav-tabs.
+//
+.nav-tabs {
+  text-transform: uppercase;
+  font-size: ceil($font-size-base * 0.8);
+  > li {
+    // Actual tabs (as links)
+    > a {
+      margin-right: 0;
+      border-radius: 0;
+      border-color: var(--tabs-border-color);
+      border-right-color: transparent;
+      background-color: var(--color-neutral-3);
+      &:hover {
+        border-color: var(--tabs-border-color) transparent var(--tabs-border-color)
+          var(--tabs-border-color);
+      }
+    }
+
+    &:last-child > a {
+      border-right-color: var(--tabs-border-color);
+    }
+
+    &.active {
+      + li > a {
+        box-shadow: inset 3px 0 rgba(0, 0, 0, 0.03);
+        border-left-width: 0;
+      }
+    }
+
+    // Active state, and its :hover to override normal :hover
+    &.active > a {
+      background-color: var(--color-neutral-1);
+      border-right-color: var(--tabs-border-color);
+      border-left-color: var(--tabs-border-color);
+      &,
+      &:hover,
+      &:focus {
+        background-color: var(--color-neutral-1);
+        border-top-color: var(--color-primary);
+        box-shadow: 0 -2px var(--color-primary), -3px 0 rgba(0, 0, 0, 0.03);
+      }
+    }
+    &.active:first-child > a {
+      &,
+      &:hover,
+      &:focus {
+        box-shadow: 0 -2px var(--color-primary), -3px 0 rgba(0, 0, 0, 0.03);
+      }
+    }
+    &.disabled {
+      > a {
+        &,
+        &:hover,
+        &:focus {
+          color: var(--color-neutral-5);
+          background-color: var(--color-neutral-1);
+          border-top-color: var(--color-neutral-4);
+        }
+      }
+      & + .disabled,
+      &:first-child {
+        > a {
+          border-left-color: var(--color-neutral-4);
+        }
+      }
+      &:last-child {
+        > a {
+          border-right-color: var(--color-neutral-4);
+        }
+      }
+    }
+  }
+}
+
+//
+// Type.
+//
+ul ul {
+  list-style-type: disc;
+}
+
+blockquote {
+  border-left-width: 1px;
+  color: $gray-light;
+  cite {
+    color: var(--color-text);
+    &::before {
+      content: '\2013\00a0\00a0';
+    }
+  }
+}
+
+//
+// Code.
+//
+pre {
+  border-width: 0;
+  padding: 0;
+}
+
+// Apply the default Bootstrap <pre> styles to block code
+// and make some adjustments as we have overridden $pre-bg
+// to white.
+pre code {
+  display: block;
+  padding: (($line-height-computed - 1) / 2);
+  margin: 0;
+  font-size: ($font-size-base - 1); // 14px to 13px
+  line-height: $line-height-base;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: var(--color-neutral-3);
+  border: 1px solid $pre-border-color;
+  border-radius: $border-radius-base;
+}
+
+//
+// Badges.
+//
+.badge-primary {
+  background-color: var(--color-secondary);
+}
+
+abbr[title],
+abbr[data-original-title] {
+  border-bottom: 1px dotted $abbr-border-color;
+}

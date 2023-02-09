@@ -1,0 +1,18 @@
+mutation totara_api_update_client($input: totara_api_update_client_input!) {
+  result: totara_api_update_client(input: $input) {
+    __typename
+    id
+    name
+    description
+    status
+    service_account {
+      __typename
+      is_valid
+      status
+      user {
+        id
+        fullname
+      }
+    }
+  }
+}

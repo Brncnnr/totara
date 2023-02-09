@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ArticleForm Checks snapshot 1`] = `
+<form-stub
+  autocomplete="off"
+  class="tui-engageArticleForm"
+  inputwidth="full"
+  vertical="true"
+>
+  <formrow-stub
+    class="tui-engageArticleForm__title"
+    hidden="true"
+    isstacked="true"
+    label="articletitle, engage_article"
+    required="true"
+  />
+   
+  <div
+    class="tui-engageArticleForm__description"
+  >
+    <formrow-stub
+      class="tui-engageArticleForm__description-formRow"
+      hidden="true"
+      label="content, engage_article"
+      required="true"
+    />
+     
+    <div
+      class="tui-engageArticleForm__description-tip"
+    >
+      <p>
+        contributetip, totara_engage
+      </p>
+       
+      <infoiconbutton-stub
+        ishelpfor="hashtags, totara_engage"
+      >
+        
+        contributetip_help, totara_engage
+      
+      </infoiconbutton-stub>
+    </div>
+  </div>
+   
+  <buttongroup-stub
+    class="tui-engageArticleForm__buttons"
+  >
+    <button-stub
+      aria-label="createarticleshort, engage_article"
+      disabled="true"
+      styleclass="[object Object]"
+      text="next, core"
+      type="button"
+    />
+     
+    <cancelbutton-stub />
+  </buttongroup-stub>
+   
+  <unsavedchangeswarning-stub
+    value="[object Object]"
+  />
+</form-stub>
+`;

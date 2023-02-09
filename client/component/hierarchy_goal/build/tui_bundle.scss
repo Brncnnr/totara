@@ -1,0 +1,120 @@
+.tui-goalLinkedReviewChangeStatus {
+  max-width: 1200px;
+  padding: var(--gap-4) 0;
+  border-top: var(--border-width-thin) solid var(--color-neutral-7);
+  border-bottom: var(--border-width-normal) solid var(--color-neutral-7);
+
+  &--print {
+    border-top: none;
+  }
+
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__form {
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    @include tui-font-heading-x-small;
+
+    &-help {
+      padding-left: var(--gap-1);
+    }
+
+    &-required {
+      @include tui-font-heading-label();
+      color: var(--color-prompt-alert);
+    }
+  }
+}
+
+.tui-linkedReviewChangeStatus {
+  &__summary {
+    &-dateAccessibleTitle {
+      @include sr-only();
+    }
+
+    &-status {
+      @include tui-font-heavy();
+    }
+  }
+
+  &__statusWrapper {
+    display: flex;
+
+    > :first-child {
+      margin-right: var(--gap-4);
+    }
+  }
+}
+
+.tui-linkedReviewViewGoal {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__contentType {
+    @include tui-font-body-small();
+  }
+
+  &__title {
+    @include tui-font-heading-x-small();
+    margin-top: var(--gap-2);
+    margin-bottom: 0;
+  }
+
+  &__overview {
+    & > * + * {
+      margin-top: var(--gap-1);
+    }
+  }
+
+  &__timestamp {
+    @include tui-font-body-small();
+  }
+
+  &__bar {
+    display: flex;
+    padding: var(--gap-4);
+    background: var(--color-neutral-1);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+
+    &-statusValue {
+      padding-left: var(--gap-2);
+      @include tui-font-heavy();
+
+      .tui-linkedReviewViewGoal--print & {
+        display: block;
+        padding: 0;
+      }
+    }
+
+    &-label {
+      margin: 0;
+      @include tui-font-body();
+    }
+
+    &-value {
+      padding-left: var(--gap-2);
+      @include tui-font-heavy();
+    }
+
+    &-wrap {
+      padding-left: var(--gap-2);
+      border-color: var(--color-neutral-6);
+      border-style: solid;
+      border-width: 0 0 0 var(--border-width-thick);
+
+      .dir-rtl & {
+        padding-right: var(--gap-2);
+        border-width: 0 var(--border-width-thick) 0 0;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,10 @@
+query totara_engage_modals($exclude: [param_component]) {
+  modals: totara_engage_modals(exclude: $exclude) {
+    __typename
+    label
+    component
+    expandable
+    id
+    can_share
+  }
+}

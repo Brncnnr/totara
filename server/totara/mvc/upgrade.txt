@@ -1,0 +1,6 @@
+List of upgrade and API changes in Totara MVC,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Changed visibility modifier for \totara_mvc\controller::run_action to protected.

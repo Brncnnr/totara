@@ -1,0 +1,89 @@
+mutation totara_notification_update_notification_preference(
+  $id: param_integer!
+  $body: String
+  $subject: String
+  $body_format: param_integer
+  $title: String
+  $additional_criteria: String
+  $schedule_type: param_text
+  $schedule_offset: param_integer
+  $subject_format: param_integer
+  $recipient: param_text
+  $enabled: param_boolean
+  # Note: if null is provided, it will either fallback to whatever the configuration from the parent.
+  #       Or set to none channels are forced, and use user's preferences (if the notification preference is a custom at context).
+  $forced_delivery_channels: [param_text!]
+) {
+  notification_preference: totara_notification_update_notification_preference(
+    id: $id
+    body: $body
+    subject: $subject
+    body_format: $body_format
+    title: $title
+    additional_criteria: $additional_criteria
+    schedule_type: $schedule_type
+    schedule_offset: $schedule_offset
+    subject_format: $subject_format
+    recipient: $recipient
+    enabled: $enabled
+    forced_delivery_channels: $forced_delivery_channels
+  ) {
+    __typename
+    title
+    id
+    ancestor_id
+    body(format: RAW)
+    body_content: body(format: HTML)
+    body_format
+    subject(format: RAW)
+    subject_content: subject(format: HTML)
+    subject_format
+    overridden_body
+    overridden_subject
+    overridden_recipient
+    title
+    overridden_additional_criteria
+    additional_criteria
+    resolver_plugin_name
+    resolver_class_name
+    resolver_name
+    resolver_component
+    is_custom
+    parent_id
+    schedule_offset(unit: DAY)
+    schedule_type
+    schedule_label
+    overridden_schedule
+    enabled
+    overridden_enabled
+    overridden_forced_delivery_channels
+    forced_delivery_channels
+    recipient {
+      class_name
+      name
+    }
+    extended_context {
+      component
+      context_id
+      area
+      item_id
+    }
+    parent_value {
+      __typename
+      subject(format: RAW)
+      body(format: RAW)
+      body_format
+      title
+      additional_criteria
+      schedule_offset(unit: DAY)
+      schedule_type
+      subject_format
+      enabled
+      forced_delivery_channels
+      recipient {
+        class_name
+        name
+      }
+    }
+  }
+}

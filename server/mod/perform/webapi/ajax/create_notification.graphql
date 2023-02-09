@@ -1,0 +1,19 @@
+mutation mod_perform_create_notification(
+  $input: mod_perform_create_notification_input!
+) {
+  mod_perform_create_notification(input: $input) {
+    notification {
+      id
+      name
+      class_key
+      active
+      recipients {
+        relationship_id
+        name
+        active
+      }
+      trigger_label
+      triggers
+    }
+  }
+}

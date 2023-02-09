@@ -1,0 +1,9 @@
+mutation mod_approval_application_action(
+  $input: mod_approval_application_action_input!
+) {
+  mod_approval_application_action(input: $input) {
+    application {
+      id
+    }
+  }
+}

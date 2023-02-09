@@ -1,0 +1,35 @@
+{{!
+
+    @template totara_competency/edit_proficiency_value
+
+    This template generates the Edit proficiency value by assignment page
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+
+    Context variables required for this template:
+    * content variables for totara_competency/basket_list
+    * title: page title
+!}}
+
+<div class="tw-assignComp"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_competency/edit_proficiency_value">
+
+  <div class="tw-assignComp__backLink">
+    <a href="{{index_url}}">
+      {{#str}}assignment_back_to_assignments, totara_competency{{/str}}
+    </a>
+  </div>
+
+  <h2 class="tw-assignComp__title">{{title}}</h2>
+  <spam class="tw-assignComp__titleHelpIcon">
+    {{#help_icon}}{{>core/help_icon}}{{/help_icon}}
+  </spam>
+
+  {{> totara_competency/basket_list}}
+</div>

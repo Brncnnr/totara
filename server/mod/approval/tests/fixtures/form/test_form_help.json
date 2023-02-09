@@ -1,0 +1,16 @@
+{
+  "title": "Test Form",
+  "shortname": "test",
+  "revision": "1.0",
+  "version": "2021030200",
+  "language": "en-US",
+  "fields": [
+    {
+      "key": "agency_code",
+      "line": "A",
+      "label": "Agency code",
+      "type": "text",
+      "help_html": "key:pluginname"
+    }
+  ]
+}

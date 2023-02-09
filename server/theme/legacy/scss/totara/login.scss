@@ -1,0 +1,266 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @copyright 2015 Bas Brands <www.sonsbeekmedia.nl>
+// @author    Bas Brands
+// @author    David Scotson
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @author    Brian Barnes <brian.barnes@totaralearning.com>
+// @package   theme_legacy
+
+.path-login {
+  #login_hero-image {
+    margin: 0 (-$grid-gutter-width / 2);
+    width: calc(100% + #{$grid-gutter-width});
+    height: auto;
+    flex-shrink: 0;
+    flex-grow: 0;
+    max-height: 310px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  #page {
+    background-color: var(--color-neutral-2);
+    display: flex;
+    flex: 1 0 auto;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  // Push verticle alignment down the DOM
+  #page-content, 
+  #page-content > .row,
+  #region-main,
+  #region-main > [role="main"] {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  #region-main > [role="main"] {
+    justify-content: center;
+
+    #login_hero-image + .loginbox {
+      flex-grow: 1;
+    }
+  }
+
+  #page-content {
+    padding-top: 0;
+  }
+
+  #page-footer {
+    border-top: none;
+  }
+
+  .totaraNav {
+    margin-bottom: 0;
+  }
+
+  hr {
+    border: 1px solid var(--color-primary);
+    width: 50px;
+    margin: var(--gap-2)
+        calc(100% - 50px)
+        var(--gap-4)
+        0;
+
+    display: block;
+  }
+
+  #notice {
+    width: 40%;
+    margin: 64px auto var(--gap-10);
+  }
+
+  .continuebutton {
+    flex-grow: 1;
+    text-align: left;
+    clear: both;
+    width: 100%;
+
+    @media (min-width: $tui-screen-md) {
+      width: 40%;
+      margin: 0 auto;
+    }
+
+    .form-submit {
+      margin-left: 0;
+    }
+  }
+}
+
+.loginbox {
+  margin: var(--gap-4) 0;
+
+  &.onecolumn {
+    @include make-sm-column(6);
+    @include make-sm-column-push(3);
+    @include make-md-column(4);
+    @include make-md-column-push(4);
+  }
+
+  &.twocolumns .loginpanel {
+    padding: 0 8.88%;
+    
+    @media screen and (max-width: calc(#{$tui-screen-sm} - 1px)) {
+      padding-bottom: var(--gap-4);
+      border-bottom: var(--border-width-thin) solid var(--color-neutral-5);
+    }
+
+    @media screen and (min-width: $tui-screen-sm) {
+      width: 50%;
+      float: left;
+      border-right: var(--border-width-thin) solid var(--color-neutral-5);
+    }
+  }
+
+  &.twocolumns .signuppanel {
+    @media screen and (min-width: $tui-screen-sm) {
+      width: 50%;
+      float: left;
+    }
+
+    padding: 0 8.88%;
+  }
+
+  .loginform {
+    .form-label {
+      text-align: left;
+
+      label {
+        margin-bottom: var(--gap-2);
+      }
+    }
+
+    .form-input {
+      width: 100%;
+      margin-bottom: var(--gap-4);
+
+      input[type='text'],
+      input[type='password'] {
+        @include bs-form-control();
+        width: 100%;
+        max-width: none;
+        border-radius: 0;
+      }
+    }
+  }
+
+  input[type='checkbox'] {
+    margin-left: 0;
+  }
+
+  input[type='submit'] {
+    margin: var(--gap-8) 0 0;
+  }
+
+  .loginerrors {
+    @include form-error();
+    margin-bottom: var(--gap-2);
+  }
+
+  .desc {
+    line-height: $totara-style-font-line-height-large;
+    color: var(--color-text);
+    clear: both;
+    margin-top: var(--gap-8);
+  }
+
+  .subcontent {
+    padding: 0;
+    margin: 0;
+  }
+
+  #loginbtn {
+    @include bs-btn-primary();
+    font-weight: bold;
+    margin: var(--gap-4) 0 var(--gap-4);
+  }
+
+  .potentialidplist {
+    float: left;
+  }
+
+  .potentialidp {
+    padding: 5px;
+    display: inline-block;
+  }
+}
+
+// Reset change password page backgrounds
+#page-login-change_password.path-login #page {
+  background-color: inherit;
+}
+
+.core__forgotpassword {
+  @include make-sm-column(6);
+  @include make-sm-column-push(3);
+  @include make-md-column(4);
+  @include make-md-column-push(4);
+
+  .mform {
+    legend {
+      display: none;
+    }
+
+    fieldset + fieldset {
+      border-top: var(--border-width-thin) solid var(--color-neutral-5);
+    }
+
+    .fcontainer {
+      margin: var(--gap-4) 0;
+
+      div.fitemtitle,
+      div.felement {
+        width: 100%;
+        margin-left: 0;
+
+        input[type="text"] {
+          width: 100%;
+          max-width: inherit;
+        }
+      }
+
+      .fitemtitle {
+        margin-bottom: var(--gap-2);
+      }
+    }
+
+    .fitem_actionbuttons {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: $tui-screen-md) {
+  .path-login {
+    .boxwidthnormal,
+    #notice {
+      width: 100%;
+      padding-bottom: var(--gap-4);
+    }
+  }
+}

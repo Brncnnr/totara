@@ -1,0 +1,6 @@
+This files describes API changes in /report/loglive,
+information provided here is intended especially for developers.
+
+=== 13 ===
+
+* Replaced YUI loglive module with AMD module

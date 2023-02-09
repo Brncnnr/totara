@@ -1,0 +1,17 @@
+query totara_competency_user($user_id: core_id!) {
+  totara_competency_user(user_id: $user_id) {
+    id
+    fullname
+    card_display {
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+      display_fields {
+        associate_url
+        value
+        label
+        is_custom
+      }
+    }
+  }
+}

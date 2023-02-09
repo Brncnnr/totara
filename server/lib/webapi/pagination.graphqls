@@ -1,0 +1,36 @@
+"""
+Represents a result that is broken up into 'pages' returning a subset of the data, an overall total record count plus
+the next cursor containing the information needed to load the next page.
+"""
+interface core_pageable_result {
+  """
+  Total number of records returned by the request (not the number returned in this result/page, but the overall count).
+  """
+  total: Int!
+  """
+  Opaque string containing information to allow the system to identify the next set of results that should be returned
+  after this one. This value can be passed into a query that uses core_pagination_input to fetch the next page.
+  """
+  next_cursor: String!
+}
+
+"""
+Contains pagination information needed to load the next page of a query.
+Note this input type supports both cursor-based and offset-based (page-based) pagination. The method to use will depend on
+the implementation by the query.
+"""
+input core_pagination_input {
+  """
+  Next cursor. Opaque string obtained from the next_cursor property of core_pageable_result. Used by the query to
+  identify which records to return.
+  """
+  cursor: String
+  """
+  Number of items to return.
+  """
+  limit: param_integer
+  """
+  Page number (only used by offset-based cursors).
+  """
+  page: param_integer
+}

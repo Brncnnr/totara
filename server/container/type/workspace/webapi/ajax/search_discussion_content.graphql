@@ -1,0 +1,37 @@
+query container_workspace_search_discussion_content(
+  $workspace_id: param_integer!
+  $search_term: param_text!
+  $cursor: param_text
+) {
+  cursor: container_workspace_discussion_search_content_results_cursor(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+  ) {
+    __typename
+    total
+    next
+  }
+
+  results: container_workspace_search_discussion_content(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+  ) {
+    __typename
+    workspace_id
+    discussion_id
+    instance_id
+    instance_type
+    content(format: HTML)
+    time_description
+    owner {
+      __typename
+      id
+      fullname
+      email
+      profileimagealt
+      profileimageurl
+    }
+  }
+}

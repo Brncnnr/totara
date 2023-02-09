@@ -1,0 +1,6 @@
+contentavailability,totara_program
+contentavailability_help,totara_program
+programcontent,totara_program
+notification_manager_recipient,totara_program
+notification_subject_recipient,totara_program
+assignindividual,totara_program

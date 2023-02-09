@@ -1,0 +1,7 @@
+"""
+Order direction options
+"""
+enum totara_hierarchy_order_dir {
+  ASC
+  DESC
+}

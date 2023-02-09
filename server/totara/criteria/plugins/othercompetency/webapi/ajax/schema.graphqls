@@ -1,0 +1,25 @@
+type criteria_othercompetency_achievement_item {
+  competency: totara_competency_competency!
+  assigned: Boolean
+  self_assignable: Boolean!
+  value: totara_competency_scale_value
+}
+
+type criteria_othercompetency_achievements {
+  current_user: Boolean!
+  aggregation_method: Int!
+  required_items: Int!
+  items: [criteria_othercompetency_achievement_item!]
+  is_valid: Boolean!
+}
+
+extend type Query {
+  """
+  Get all achievements of a specific othercompetency criteria instance
+  """
+  criteria_othercompetency_achievements(
+    instance_id: core_id!
+    user_id: core_id!
+    assignment_id: core_id!
+  ): criteria_othercompetency_achievements
+}

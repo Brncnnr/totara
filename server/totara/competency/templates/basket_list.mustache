@@ -1,0 +1,88 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_core
+}}
+{{!
+
+    @template totara_core/basket_list
+
+    This template generates a basket list
+
+    Classes required for JS:
+    * None
+
+    Data attributes required for JS:
+    * data-tw-basket-list: Used for initialising basket list
+    * data-tw-basket-list-primaryFilterSearch: Adds event listeners if found in dom
+    * data-tw-basket-list-primaryFilterTree: Adds event listeners if found in dom
+    * data-tw-loader-target: Target for adding loading overlay
+
+    Context variables required for this template:
+    * modal_display: bool, is this a modal view
+    * crumbtrail_template_name: path to crumbtrail template, if it has one
+    * has_crumbtrail: Bool, has crumbtrail
+    * primary_filter_search: context for primary filter search
+    * primary_filter_search_partial: bool, construct with template instead of context
+    * primary_filter_tree: context for primary filter tree
+    * selection_basket: context for selection basket
+    * filter_region_panel: markup for displaying region panel
+    * has_level_toggle: bool, include level switch buttons
+    * order_by: markeup for order by tree
+!}}
+
+<div class="tw-basketlist {{#modal_display}}tw-basketlist--modal{{/modal_display}}" data-tw-basket-list="">
+    <div class="tw-basketlist__top">
+        <div class="tw-basketlist__top_bar">
+
+            {{! Include primary filter tree }}
+            {{#primary_filter_tree}}
+            <div class="tw-basketlist__primaryFilterTree" data-tw-basket-list-primaryFilterTree="">
+                {{#partial}}{{> totara_core/select_tree }}{{/partial}}
+                {{^partial}}{{{primary_filter_tree}}}{{/partial}}
+            </div>
+            {{/primary_filter_tree}}
+
+            {{! Include basket }}
+            {{#selection_basket}}{{> totara_competency/selection_basket }}{{/selection_basket}}
+        </div>
+
+        {{! Include crumbtrail (Required with hierarchy) }}
+        {{#has_crumbtrail}}{{> &&crumbtrail_template_name}}{{/has_crumbtrail}}
+    </div>
+
+    {{! Include primary filter search }}
+    {{#primary_filter_search}}
+    <div class="tw-basketlist__primaryFilterSearch" data-tw-basket-list-primaryFilterSearch="">
+        {{#partial}}{{> totara_core/select_search_text }}{{/partial}}
+        {{^partial}}{{{primary_filter_search}}}{{/partial}}
+    </div>
+    {{/primary_filter_search}}
+
+    <div class="tw-basketlist__body tw-loader__overlay" data-tw-loader-target="">
+        {{! Include filter region panel }}
+        {{#filter_region_panel}}
+        <aside class="tw-basketlist__body_filters" data-tw-filterRegionPanel="">
+            {{> totara_competency/select_region_panel_toggle }}
+            {{{filter_region_panel}}}
+        </aside>
+        {{/filter_region_panel}}
+        {{> totara_competency/action_list }}
+    </div>
+</div>

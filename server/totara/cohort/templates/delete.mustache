@@ -1,0 +1,117 @@
+{{!
+    This file is part of Totara LMS
+
+    Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Alastair Munro <alastair.munro@totaralearning.com>
+    @package totara_cohort
+}}
+{{!
+    @template totara_cohort/delete
+
+    Audience deletion confirmation dialog.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * cohortid
+    * sesskey
+    * headingtext
+    * items
+
+    Example context (json):
+    {
+        "cohortid" : "2",
+        "sesskey" : "xf34dGD34",
+        "headingtext" : "Delete 'Audience 2'",
+        "items": [
+            {
+                "area": "Courses",
+                "changes": "Suspend enrolment",
+                "scopecount": "5"
+            },
+            {
+                "area": "Roles",
+                "changes": "Unassign",
+                "scopecount": "2"
+            }
+        ],
+    }
+
+}}
+<div id="notice" class="box generalbox modal-dialog modal-in-page show">
+<div id="modal-content" class="box modal-content">
+    <div id="modal-header" class="box modal-header">
+        <h2>{{headingtext}}</h2>
+    </div>
+    <div id="modal-body" class="box modal-body">
+        <p>{{#str}}deletecohortexplaination, totara_cohort{{/str}}</p>
+        <div id="cohort_delete_detail">
+            <table id="cohort_delete_changes" class="generaltable" summary="{{#str}}areasaffectedbyaudiencedeletion, totara_cohort{{/str}}">
+            <thead>
+            <tr>
+                <th class="header c0" scope="col">{{#str}}affectedarea, totara_cohort{{/str}}</th>
+                <th class="header c1" scope="col">{{#str}}changestomembers, totara_cohort{{/str}}</th>
+                <th class="header c2" scope="col">{{#str}}scope, totara_cohort{{/str}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#items}}
+                <tr>
+                    <td>{{area}}</td>
+                    <td>{{changes}}</td>
+                    <td>{{scopecount}}</td>
+                </tr>
+            {{/items}}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="cohort_delete_footnote">
+        {{#str}}audiencedeletionnote, totara_cohort{{/str}}
+    </div>
+    <div id="modal-footer" class="box modal-footer">
+        <div class="buttons">
+            <div id="delete-button" class="singlebutton">
+                <form action="{{config.wwwroot}}/cohort/delete.php" method="post">
+                    <div>
+                        <input class="form-submit btn-primary" type="submit" value="{{#str}} delete {{/str}}">
+                        <input type="hidden" name="id" value="{{cohortid}}">
+                        <input type="hidden" name="sesskey" value="{{sesskey}}">
+                        <input type="hidden" name="confirm" value="1">
+                        <input type="hidden" name="showall" value="{{showall}}">
+                        <input type="hidden" name="contextid" value="{{contextid}}">
+                    </div>
+                </form>
+            </div>
+            <div id="cancel-button" class="singlebutton">
+                <form action="{{config.wwwroot}}/cohort/index.php" method="post">
+                    <div>
+                        <input type="submit" value="{{#str}} cancel {{/str}}">
+                        <input type="hidden" name="id" value="{{cohortid}}">
+                        <input type="hidden" name="showall" value="{{showall}}">
+                        <input type="hidden" name="contextid" value="{{contextid}}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

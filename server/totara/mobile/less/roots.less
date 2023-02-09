@@ -1,0 +1,88 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2018 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2018 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Chris Snyder <chris.snyder@totaralearning.com>
+// @package   theme_roots
+
+.path-totara-mobile div.singlebutton {
+  text-align: center;
+}
+
+#page-footer .mobile-app-banner {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: rgba(0,0,0,0.25) -1px 0px 6px 0px;
+  background-color: white;
+  padding: @totara_style-spacing_large @totara_style-spacing_x_large @totara_style-spacing_large @totara_style-spacing_medium;
+  color: black;
+
+  div {
+    box-sizing: border-box;
+  }
+
+  &-message {
+    display: inline-block;
+    float: left;
+    width: auto;
+    font-weight: bold;
+    line-height: 1.2em;
+    text-align: left;
+
+    .flex-icon {
+      font-size: 3em;
+    }
+  }
+
+  a.btn {
+    float: right;
+    margin-left: 7px;
+  }
+
+  a.btn-default {
+    color: @btn-default-color;
+    border: 1px solid @btn-default-border;
+  }
+
+  @media (max-width: @screen-xs-max) {
+    padding: @totara_style-spacing_large @totara_style-spacing_medium;
+
+    &-message {
+      float: none;
+
+      .flex-icon {
+        display: inline-block;
+        float: left;
+        margin-top: -5px;
+      }
+    }
+
+    a.btn {
+      display: block;
+      float: none;
+      width: 100%;
+      margin: @totara_style-spacing_medium 0 0;
+      clear: both;
+    }
+  }
+}

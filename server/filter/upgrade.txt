@@ -1,0 +1,9 @@
+This file describes API changes in core filter API and plugins,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* The emailprotect filter has been deprecated and will be removed in Totara 14.0
+* The tidy filter has been deprecated and will be removed in Totara 14.0

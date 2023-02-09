@@ -1,0 +1,6 @@
+type totara_plan_learning_plan {
+  id: core_id!
+  can_view: Boolean!
+  name(format: core_format = PLAIN): String
+  description(format: core_format = HTML): String
+}

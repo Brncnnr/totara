@@ -1,0 +1,30 @@
+query totara_mobile_me {
+  me: totara_mobile_me {
+    user {
+      id
+      firstname
+      lastname
+      fullname
+      lang
+      email
+      __typename
+    }
+    system {
+      wwwroot
+      apiurl
+      release
+      request_policy_agreement
+      request_user_consent
+      request_user_fields
+      password_change_required
+      view_own_profile
+      mobile_subplugins {
+        pluginname: name
+        version
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

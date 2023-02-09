@@ -1,0 +1,188 @@
+This file describes API changes in /client/component/tui,
+information provided here is intended especially for developers.
+
+=== 17.1 ===
+
+* Updated value of descId prop for HelpIcon in FormRow.vue
+  * Template changes
+
+=== 17.0 ===
+
+* Updated Modal.vue to fix an issue with keyboard navigation
+  * Removed isCurrentModal computed property
+* Adjust layout in the Adder.vue component
+  * Template and SCSS changes
+* Add grow mode to Tabs.vue
+  * Template and SCSS changes
+* Fixed issue with modal button box shadows being cropped by updating the outer margin with inner padding
+  * SCSS changes
+* Updated Input.vue disabled styles
+  * SCSS changes
+* Refactored Range.vue css
+  * Moved hard-coded values into new css variables, and moved the existing variables and mixins into global_styles/variables/tui_range.scss
+* Added styling for selected dropdown items in DropdownItem.vue
+  * Template changes
+* Updated FilterBar.vue to have an optional reset button set with 'showReset' prop and ''@reset' listener
+  * Template and SCSS changes
+* Added new uncontainedPopover prop to ProgressTrackerNav.vue and ProgressTrackerNavItem.vue that is used to toggle the context mode of the popover in ProgressTrackerNavItem
+  * Template, JS changes
+* Added new view-only state to ProgressTrackerNavItem.vue and ProgressTrackerNavCircleWorkflow.vue
+  * Template, JS & SCSS changes
+* Updated ImageBlock.vue, ResponsiveImage.vue in support of predefined image sizes
+  * Template and SCSS changes
+* Updated FormRow to take a full-width prop and to render the help icon when only the help-message slot is passed.
+  * Template and SCSS changes
+* Extended Cell.vue component to support a custom loader slot
+  * Template changes
+* Extended Paging.vue component to support a loading skeleton controlled by additional props
+  * Template changes
+* Extended Cell.vue component to support a custom loader slot
+  * Template changes
+* Updated focus styling in DropdownItem.vue and DropdownButton.vue
+  * CSS changes
+* Added accessibility fixes for interactivity in ProgressTrackerNavItem.vue
+  * Template changes
+
+=== 16.0 ===
+* Upgraded Date-fns to 2.24.0
+* Upgraded prosemirror packages
+  * prosemirror-commands to 1.1.12
+  * prosemirror-gapcursor to 1.2.0
+  * prosemirror-history to 1.2.0
+  * prosemirror-keymap to 1.1.5
+  * prosemirror-model to 1.15.0
+  * prosemirror-transform to 1.3.3
+  * prosemirror-view to 1.21.0
+* Updated Collapsible to add new visual style options
+  * Template and SCSS changes
+* Updated ProgressTrackerNav to include optional icon slot
+  * Template changes
+* Updated ProgressTrackerNavCircleWorkflow to include optional icon slot and new invalid state
+  * Template and SCSS changes
+* Updated FormRow to take a full-width prop and to render the help icon when only the help-message slot is passed
+  * Template and SCSS changes
+* Updated Cell.vue to support different skeleton content loader heights based off a prop
+  * Template changes
+* Updated Adder.vue component to support a hasLoadingPreview prop to support display skeleton content while loading
+  * Template and SCSS changes
+* Updated Collapsible to add new visual style options
+  * Template and SCSS changes
+* Updated Table to take a headerHasLoaded prop to render the Table header while the Table body loads
+  * Template changes
+* Updated PopoverFrame.vue to support large popover sizes
+  * Template and SCSS changes
+* Updated InfoIconButton.vue to support a prop for set popover sizes
+  * Template changes
+* Extended Table.vue & SelectTable.vue to support a new prop 'stackedHeaderRowGap' for adding additional margin at top of table when stacked
+  * Template
+* Extended HeaderRow.vue to support a new prop 'stackedGap' for adding additional margin when stacked
+  * Template and SCSS changes
+* Added "contextMode" prop to LabelledButtonTrigger with default set to "uncontained"
+  * Template changes
+* Updated ConfirmationModal.vue to propagate close-complete event
+  * Template changes
+* Updated ToggleSwitch.vue to match the design spec when disabled
+  * SCSS changes
+* Added new shaded prop to ActionCard.vue
+  * Template & SCSS changes
+* Added "noPaddingTop" prop to RadioGroup.vue
+  * Template and SCSS changes
+* Added "labelPartials" prop to RadioWithInput.vue for providing substrings to accessibility labels
+* Extended Adder.vue, AudienceAdder.vue, HierarchialAdder.vue, and IndividualAdder.vue to support a notices slot
+  * Template and CSS changes
+* Added option for alignment of Popover.vue trigger
+  * Template and SCSS changes
+* Increased the top and bottom margin of the "Load more" button in the Adder.vue component
+  * SCSS changes
+* Fixed issue with safari cropping text on Button.vue and ToggleSwitch.vue components
+  * SCSS changes
+* Updated Taglist to show a loading state when items are updating
+  * Template and SCSS changes
+
+=== 15.0 ===
+* Deprecated ProgressTracker.vue and its child components, replaced by ProgressTrackerNav.vue and its child components
+* Updated CSS Variables for ProgressTrackerNav within tui_spacing.scss
+* Updated Collapsible to match latest design
+  * Template and SCSS changes
+* Updated styles of the basket component basket/Basket.vue
+  * Template and SCSS changes
+* Updated styles of filter side panel component filters/FilterSidePanel.vue
+  * Template and SCSS changes
+* Changed table and select table to stack based on its own width (using the new stackAt prop) rather than media queries.
+  The following components have had their media queries removed and replaced with a isStacked prop:
+  Cell.vue, ExpandCell.vue, ExpandedRow.vue, ExpandedRow.vue, HeaderCell.vue, HeaderRow.vue, Row.vue, RowGroup.vue, SelectRowCell.vue
+* Extended data table component templates to conditionally display a skeleton content loader
+* Removed text align rules from HasChildrenCell.vue
+  * SCSS changes
+* Exposed more of the table properties to the select table component datatable/SelectTable.vue
+  * Template changes
+* Updated MultiSelectFilter.vue to optionally support hiding/showing filter options after a certain number
+  * Template and SCSS changes
+* Amended Lozenge.vue to correctly align with other elements
+  * SCSS changes
+* Updated notification banner to provide a slot for custom content
+  * Template and SCSS changes
+* Updated ActionCard.vue to accept two additional props, has-shadow property now has to be manually provided and is no longer enabled by default
+  * Template changes
+* Updated SidePanel.vue to show the close handle when in sticky mode and on mobile
+  * SCSS changes
+* Improved Button.vue loading state handling
+  * Template and SCSS changes
+* Updated Repeater.vue to allow repeating headers
+  * Template and SCSS changes
+* Improved select all label usage in SelectVisibleRowsCell.vue to be clickable when displayed
+  * Template and SCSS changes
+* Converted AttachmentNode to a thin wrapper over the new FileCard component
+  * Template changes
+* Updated components SettingsFormBrand.vue and EditorTextarea.vue to allow locking the format of the editor
+  * Template changes
+* Updated file/FileCard.vue to correctly support different file extensions
+  * Template and SCSS changes
+
+=== 14.0 ===
+
+* Updated Grid.vue limiting width to stay in container
+  * SCSS changes
+* Fixed ExpandCell display logic
+  * Template changes
+* Updated Table and children component indent options
+  * Template and SCSS changes
+* Allowed Collapsible contents to be indented
+  * Template and SCSS changes
+* Allowed multiple rows of Table to be expanded at once
+  * Template changes
+* Allowed CollapsibleGroupToggle.vue to set transparency and alignment, removed chevron
+* Updated Table component to allow indent and stealth version of Expanded Rows
+  * Template and SCSS changes
+* Added closeable prop to Popover.vue component
+* Added closeable prop to PopoverFrame.vue component
+* Added closeablePopover prop to LabelledButtonTrigger.vue component
+* Updated SidePanel.vue component to address overlapping issues
+  * SCSS changes
+* Updated Range.vue component to not emit a change event on focus
+* Converted Loader.vue emptySlot computed property to a isEmptySlot method so it correctly updates for subsequent requests
+* Updated Form.vue to prevent native submit behavior unless native-submit prop or action/method attributes are passed
+  * Template changes
+* Update Tui Theme Settings Custom and Colour Uniforms to include new fields and make rows solution more generic
+  * Langstring, template, SCSS and script block changes
+* Adjusted PopoverFrame.vue to include border in positioning
+* Added size prop to Popover.vue to provide a minimum display width
+* Removed overridden focus styles from SearchBox.vue submit button, now uses default IconButton.vue focus styles
+* Updated Input.vue, Button.vue and ButtonIcon.vue to handle prop "autofocus" in JS
+  * Template changes
+* Updated AttachmentNode.vue, AudioBlock.vue, Hashtag.vue, ImageBlock.vue, and VideoBlock.vue to deprecate the attributes computed property
+  * Template changes
+* Updated Input.vue, Button.vue and ButtonIcon.vue to handle prop "autofocus" in JS
+  * Template changes
+* Updated Button.vue and ButtonIcon.vue to support a loading indicator prop
+  * Template & CSS changes
+* Updated Adder.vue component to support a loading indicator prop for add button and amend button position styles
+* Updated AudioBlock.vue to display transcript button and expose a slot
+  * Template changes
+* Added ariaDisabled prop to ButtonIcon.vue to cater for accessibility
+* Updated TagList.vue to display placeholder and color change on icon.
+  * LangString, template & SCSS changes
+* Included an optional inputPlaceholder prop to customise placeholder text in TagList.vue
+* Renamed existing Success icon to SuccessSolid and added a new Success icon
+* Removed Modal.vue overlay and combined it with modal root element
+  * Template && CSS changes

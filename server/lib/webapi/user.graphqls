@@ -1,0 +1,363 @@
+"""
+User type object, containing information about an individual user.
+"""
+type core_user {
+  """
+  Internal database id of the user.
+  """
+  id: core_id!
+  """
+  The id number of the user.
+  """
+  idnumber: String
+  """
+  Username for the user. This field is used in combination with the password for logging in with some authentication types.
+  """
+  username(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Full name of the user. This field combines other name fields as specified by the site display settings.
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  First name of the user.
+  """
+  firstname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Last name of the user.
+  """
+  lastname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Middle name of the user.
+  """
+  middlename(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Alternate name of the user.
+  """
+  alternatename(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Phonetic spelling of the user's first name.
+  """
+  firstnamephonetic: String
+  """
+  Phonetic spelling of the user's last name.
+  """
+  lastnamephonetic: String
+  """
+  Email address of the user.
+  """
+  email: String
+  """
+  The user's address.
+  """
+  address(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Primary phone number of the user.
+  """
+  phone1(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Secondary phone number of the user.
+  """
+  phone2(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Department the user belongs to.
+  """
+  department(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Institution (organisation) the user belongs to.
+  """
+  institution(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  City where the user is located.
+  """
+  city(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Country of the user, displayed as a string, for example 'New Zealand'.
+  """
+  country: String
+  """
+  Description field for the user's profile.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    Note: if the system setting 'profilesforenrolledusersonly' is enabled, the profile description of a user who is not
+    yet enrolled in any course will be hidden. Description could also be hidden until a user has at least one role assignment.
+    (This is to prevent misuse of user profile information by spammers.)
+    """
+    format: core_format = HTML
+  ): String
+  """
+  Format of the description field, as stored in the database.
+  """
+  descriptionformat: core_format
+  """
+  URL pointing to the main version of the user's profile image.
+  """
+  profileimageurl: String
+  """
+  URL pointing to a small version of the user's profile image.
+  """
+  profileimageurlsmall: String
+  """
+  Alternate text description of the profile image, for accessibility purposes.
+  """
+  profileimagealt(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Language of the user, for example 'en_us'.
+  """
+  lang: String
+  """
+  Theme setting for the user or an empty string if the user is using the site default theme.
+  """
+  theme: String
+  """
+  Whether this user is marked as suspended. Suspended users are unable to log in.
+  """
+  suspended: Boolean
+  """
+  Timezone of the user, as a string, for example 'Pacific/Auckland'.
+
+  Note that if the admin setting 'forcetimezone' is configured, its value will be used here instead.
+  """
+  timezone: String
+  """
+  Comma-separated string of interests the user has or null if no interests are assigned.
+  """
+  interests: String
+  """
+  Timestamp of when this user first accessed the site (or null if never).
+  """
+  firstaccess(
+    """
+    Date format that firstaccess should be returned in.
+    """
+    format: core_date_format = TIMESTAMP
+  ): core_date
+  """
+  Timestamp of when this user last accessed the site (or null if never).
+  """
+  lastaccess(
+    """
+    Date format that lastaccess should be returned in.
+    """
+    format: core_date_format = TIMESTAMP
+  ): core_date
+  """
+  URL for the user's profile.
+  """
+  url(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Skype username for the user's profile.
+  """
+  skype(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  User profile summary card settings for this user.
+  """
+  card_display: core_user_card_display!
+  """
+  Custom fields are additional fields that can be defined by a Site Administrator to allow additional specific
+  data to be connected to users. Hidden and restricted custom fields require 'moodle/user:viewalldetails' capability.
+  """
+  custom_fields: [core_user_custom_field!]
+  """
+  This user's job assignments.
+  """
+  job_assignments: [totara_job_job_assignment!]!
+}
+
+"""
+Type containing read-only custom field data. Each object of this type represents the
+value of the field. The format of this string will depend on the custom field type it is representing but will
+contain the field's stored value.
+"""
+type core_user_custom_field {
+  """
+  Shortname of the custom field the data relates to.
+  """
+  shortname: String!
+  """
+  The custom field data value for this user. Returns the value stored in the database for this user and
+  field, without any processing (such as inserting field default when value is empty, or converting of
+  timestamps to human-readable strings).
+  """
+  data: String!
+  """
+  Format of the stored value of the data field. Provided at the time the data is stored, see the
+  `core_user_custom_field_input` input type for more information. Currently only used by the
+  text area custom field type when rendering in the UI.
+
+  Options are:
+  * 1: HTML
+  * 2: Plain text
+  * 4: Markdown
+  * 5: JSON
+  """
+  data_format: Int
+  """
+  Indicating data type of user profile custom field.
+  """
+  data_type: String!
+}
+
+"""
+Type to store the information related on how to display field of users.
+"""
+type core_user_card_display_field {
+  """
+  The value of the field that we are trying to display to the viewer.
+  """
+  value(format: core_format = PLAIN): String
+  """
+  Associate url field, if it is null then there is no associate url field with the value field.
+  If there is then the value should be displayed as a link.
+  """
+  associate_url: String
+  """
+  Label string for the field.
+  """
+  label: String
+  """
+  Whether it is a custom field or not.
+  """
+  is_custom: Boolean!
+}
+
+"""
+Metadata type for configuring the display user information component.
+"""
+type core_user_card_display {
+  """
+  Local url to point to the user's avatar, if this is null, then the viewer will definitely not able to view
+  the profile picture.
+  """
+  profile_picture_url: String
+  profile_picture_alt: String
+  """
+  Profile url can be null if the viewer cannot view the target user's profile.
+  """
+  profile_url: String
+  display_fields: [core_user_card_display_field!]!
+}
+
+"""
+Input for identifying a user.
+
+The user must be specified by providing one of the following:
+
+* The user's internal database id
+* The user's idnumber
+* The user's username
+* The user's email address
+
+A user reference must uniquely identify a single user to be valid. Deleted users are excluded, as are users not
+accessible due to multitenancy restrictions.
+"""
+input core_user_user_reference {
+  """
+  Internal database id of the user.
+  """
+  id: core_id
+  """
+  Username of the user.
+  """
+  username: String
+  """
+  The id number of the user.
+  """
+  idnumber: String
+  """
+  Email address of the user.
+  """
+  email: String
+}
+
+"""
+Input for identifying a tenant.
+
+The tenant must be specified by providing one of the following:
+
+* The tenant's internal database id
+* The tenant's idnumber
+
+A tenant reference must uniquely identify a single tenant to be valid.
+"""
+input totara_tenant_tenant_reference {
+  """
+  Identify a tenant by the internal database id of the tenant.
+  """
+  id: core_id
+  """
+  Identify a tenant by the idnumber of the tenant. This is a unique reference used to represent the tenant across multiple systems.
+  """
+  idnumber: String
+}

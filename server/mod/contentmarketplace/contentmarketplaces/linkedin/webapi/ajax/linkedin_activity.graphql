@@ -1,0 +1,47 @@
+query contentmarketplaceactivity_linkedin_linkedin_activity($cm_id: core_id!) {
+  instance: contentmarketplaceactivity_linkedin_linkedin_activity(
+    cm_id: $cm_id
+  ) {
+    module {
+      id
+      course_module {
+        id
+        completion
+        completionenabled
+        completionstatus
+        rpl
+        progress
+      }
+      course {
+        id
+        fullname
+        image
+        url
+        course_format {
+          has_course_view_page
+        }
+      }
+      name
+      intro(format: HTML)
+      completion_condition
+      interactor {
+        has_view_capability
+        can_enrol
+        can_launch
+        is_site_guest
+        is_enrolled
+        non_interactive_enrol_instance_enabled
+        supports_non_interactive_enrol
+      }
+    }
+    learning_object {
+      id
+      asset_type
+      display_level
+      time_to_complete
+      last_updated_at
+      web_launch_url
+      sso_launch_url
+    }
+  }
+}

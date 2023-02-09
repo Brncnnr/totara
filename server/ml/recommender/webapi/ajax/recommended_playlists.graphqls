@@ -1,0 +1,35 @@
+extend type Query {
+  """
+  Query to fetch all playlists that related to the provided playlist ID
+  """
+  ml_recommender_recommended_playlists(
+    """
+    The ID of the playlist to find recommended playlists for
+    """
+    playlist_id: param_integer!
+    """
+    Fetch some results based on the provided cursor
+    """
+    cursor: param_text
+    """
+    Source page that's making the request for the article.
+    Used to generate the correct URL for return links.
+    """
+    source: String
+  ): [totara_engage_card!]
+
+  """
+  Query to fetch the next cursor for the recommended playlists
+  """
+  ml_recommender_recommended_playlists_cursor(
+    """
+    The ID of the playlist to find recommended playlists for
+    """
+    playlist_id: param_integer!
+    """
+    This is current cursor that we are looking at, and it is used
+    to determine what the next cursor should be.
+    """
+    cursor: param_text
+  ): ml_recommender_cursor
+}

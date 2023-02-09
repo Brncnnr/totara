@@ -1,0 +1,7 @@
+query mod_perform_tracks($activity_id: param_integer!) {
+  mod_perform_tracks(activity_id: $activity_id) {
+    id
+    description
+    status
+  }
+}

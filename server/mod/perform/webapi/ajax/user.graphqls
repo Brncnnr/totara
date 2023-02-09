@@ -1,0 +1,73 @@
+"""
+Data about a specific group assigned to an activity track
+"""
+type mod_perform_user_grouping {
+  id: core_id!
+  """
+  Type of assignment group. Options are 1 (audience), 2 (organisation), 3 (position) or 4 (individual)
+  """
+  type: Int!
+  """
+  Human readable label describing the group type
+  """
+  type_label: String!
+  """
+  Name of this specific group
+  """
+  name: String
+  """
+  Number of members in this specific group
+  """
+  size: Int!
+  """
+  Additional/optional group type specific json encoded data.
+  """
+  extra: String
+}
+
+"""
+Input for adding or removing groups to tracks
+"""
+input mod_perform_user_grouping_input {
+  """
+  ID identifying the group instance
+  """
+  id: core_id!
+  """
+  Integer identifying which group type is being added or removed
+  """
+  type: Int!
+}
+
+"""
+Input for filtering what users can be selected.
+"""
+input mod_perform_selectable_users_filters {
+  """
+  Matches against the fullname of potential users
+  """
+  fullname: String
+  """
+  List of user ids to exclude from the results
+  """
+  exclude_users: [core_id!]
+}
+
+extend type Query {
+  """
+  Get the users that are visible and selectable by the current user.
+  Please be aware that the number of users returned by this query is limited
+  to make sure it performs well. It is not designed to list all users
+  nor does it support pagination at the moment.
+  """
+  mod_perform_selectable_users(
+    """
+    ID of the subject instance the users are being added to
+    """
+    subject_instance_id: core_id!
+    """
+    Filters that can be applied to limit the results returned
+    """
+    filters: mod_perform_selectable_users_filters
+  ): [core_user]!
+}

@@ -1,0 +1,35 @@
+query mod_approval_others_applications(
+  $query_options: mod_approval_others_applications_input!
+) {
+  mod_approval_others_applications(query_options: $query_options) {
+    items {
+      id
+      id_number
+      title
+      workflow_type
+      overall_progress
+      overall_progress_label
+      your_progress
+      your_progress_label
+      submitted(format: DATELONG)
+      user {
+        email
+        fullname
+        id
+        profileimageurlsmall
+      }
+      interactor {
+        can_edit
+        can_clone
+        can_delete
+      }
+      page_urls {
+        edit
+        preview
+        view
+      }
+    }
+    total
+    next_cursor
+  }
+}

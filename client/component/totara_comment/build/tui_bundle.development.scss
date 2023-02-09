@@ -1,0 +1,450 @@
+.tui-commentAction {
+  display: flex;
+  justify-content: flex-start;
+
+  &__replyBox {
+    display: flex;
+
+    &-text {
+      &--small {
+        @include tui-font-body-small();
+      }
+    }
+  }
+
+  &__likeButton + &__replyBox {
+    margin-left: var(--gap-4);
+  }
+}
+
+.tui-commentActionLink {
+  &__link {
+    &--small {
+      @include tui-font-link-small();
+    }
+
+    &--disabled {
+      color: var(--color-neutral-5);
+      cursor: not-allowed;
+
+      &:hover,
+      &:focus {
+        color: var(--color-neutral-5);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.tui-commentBox {
+  height: 100%;
+
+  /* The parent that using this box should be able to override its padding.*/
+  padding: 0;
+
+  &--withBorder {
+    background-color: var(--color-neutral-3);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+
+    &.tui-commentBox--noForm {
+      /* When the form is not available for the comment box, it will leave us a trailing border. Therefore, this*/
+      /* modifier is in place in order to prevent that traing border.*/
+      border-bottom: none;
+    }
+  }
+
+  &__comments {
+    flex-grow: 1;
+  }
+
+  &__commentForm {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-top: var(--gap-4);
+
+    &--withBorder {
+      padding: var(--gap-4);
+      padding-top: 0;
+    }
+  }
+}
+
+.tui-commentThread {
+  &__actionLink {
+    &--withBorder {
+      margin-top: var(--gap-4);
+      margin-left: var(--gap-4);
+    }
+  }
+
+  &__comment {
+    &--large {
+      padding: 0 var(--gap-4);
+      padding-bottom: var(--gap-4);
+    }
+
+    &--withBorderBottom {
+      border-bottom: var(--border-width-thin) solid var(--color-neutral-5);
+    }
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--gap-4);
+    color: var(--color-neutral-6);
+  }
+}
+
+.tui-commentReplyBox {
+  display: flex;
+  flex-direction: column;
+
+  &__replyLinkBox {
+    display: flex;
+    margin-top: var(--gap-2);
+    padding-top: var(--gap-2);
+
+    &--withSeparator {
+      border-top: var(--border-width-thin) solid var(--color-neutral-4);
+    }
+
+    &--withoutSeparator {
+      /* Hide the line, but keep the position as same.*/
+      border-top: var(--border-width-thin) solid transparent;
+    }
+
+    &-link {
+      @include tui-font-link-small();
+
+      &--disabled {
+        color: var(--color-neutral-5);
+        cursor: not-allowed;
+        &:hover,
+        &:focus {
+          color: var(--color-neutral-5);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  &__reply {
+    padding-top: var(--gap-4);
+    border-top: var(--border-width-thin) solid var(--color-neutral-5);
+
+    &--large {
+      /* Override the margin-top for the reply card.*/
+      &.tui-commentReply {
+        margin-top: var(--gap-6);
+      }
+    }
+  }
+
+  &__replyForm {
+    width: 100%;
+  }
+}
+
+.tui-sidePanelCommentBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  /* Overriding the comment box to make it fit with the sidepanel.*/
+  &__header {
+    margin: 0;
+    margin-bottom: var(--gap-4);
+    padding: 0;
+    padding-bottom: var(--gap-2);
+    font-size: var(--font-size-14);
+    border-bottom: var(--border-width-normal) solid var(--color-neutral-5);
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .tui-commentBox {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      /* Overriding the comment thread to make it fit with the sidepanel*/
+      &__comments {
+        position: relative;
+        padding-right: var(--gap-2);
+        overflow: auto;
+
+        /* This is not support by IE or Edge.*/
+        scroll-behavior: smooth;
+
+        .tui-commentThread {
+          &__comment {
+            &:not(:first-child) {
+              padding-top: var(--gap-4);
+              border-top: var(--border-width-thin) solid var(--color-neutral-5);
+            }
+          }
+        }
+      }
+
+      &__commentForm {
+        padding-top: var(--gap-4);
+        border-top: var(--border-width-normal) solid var(--color-neutral-5);
+      }
+    }
+  }
+}
+
+.tui-commentCard {
+  display: flex;
+  flex-direction: column;
+
+  &__comment {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__profilePicture {
+    margin-right: var(--gap-2);
+  }
+
+  &__body {
+    flex: 1 1 auto;
+  }
+
+  &__header {
+    margin-bottom: var(--gap-2);
+  }
+
+  &__content {
+    margin-bottom: var(--gap-2);
+    padding-right: var(--gap-2);
+    @include tui-wordbreak--hyphens;
+  }
+}
+
+.tui-commentReplyHeader {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__content {
+    flex-basis: 94%;
+
+    &--inline {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  &__link {
+    margin-bottom: var(--gap-2);
+
+    &--inline {
+      margin: 0;
+    }
+  }
+
+  &__timeDescription {
+    margin: 0;
+    @include tui-font-body-x-small();
+
+    &--inline {
+      margin-left: var(--gap-4);
+    }
+
+    span:not(:first-child) {
+      margin-left: var(--gap-4);
+    }
+  }
+}
+
+.tui-commentReplyCard {
+  display: flex;
+  align-items: flex-start;
+
+  &__profilePicture {
+    margin-right: var(--gap-2);
+  }
+
+  &__body {
+    flex: 1 1 auto;
+  }
+
+  &__header {
+    margin-bottom: var(--gap-2);
+  }
+
+  &__content {
+    margin-bottom: var(--gap-2);
+    padding-right: var(--gap-2);
+    @include tui-wordbreak--hyphens;
+  }
+}
+
+.tui-comment {
+  margin-top: var(--gap-4);
+
+  &__replyBox {
+    padding-left: var(--gap-8);
+  }
+}
+
+.tui-commentReplyContent {
+  margin: 0;
+
+  &__content {
+    max-width: 100%;
+
+    .tui-rendered {
+      p {
+        @include tui-font-body();
+        /* Reset margin of paragraph in tui-rendered content.*/
+        margin: 0;
+      }
+    }
+
+    &--deleted {
+      /* Deleted comment should not have any .tui-rendered element*/
+      @include tui-font-body-small();
+      font-style: italic;
+    }
+
+    &--reply {
+      @include tui-font-body-small();
+
+      .tui-rendered {
+        p {
+          @include tui-font-body-small();
+        }
+      }
+    }
+  }
+}
+
+.tui-commentForm {
+  &__form {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  &__editor {
+    flex: 1;
+    max-width: 100%;
+
+    .tui-weka__editorHost {
+      max-height: 200px;
+    }
+  }
+
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-editCommentReplyForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+
+  &__editor {
+    max-width: 100%;
+  }
+}
+
+.tui-commentReplyForm {
+  margin-top: var(--gap-4);
+  padding-right: var(--gap-2);
+
+  &__form {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  &__editor {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+.tui-commentResponseBox {
+  display: flex;
+  align-content: flex-start;
+
+  &__profilePicture {
+    margin-right: var(--gap-2);
+  }
+
+  &__formBox {
+    flex: 1 1 auto;
+    width: 100%;
+    @include tui-wordbreak--hyphens;
+  }
+}
+
+.tui-commentSubmitCancelButtonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--gap-4);
+}
+
+.tui-confirmDeleteCommentReplyModal {
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__textBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &-text {
+      @include tui-font-body();
+      margin: 0;
+      margin-left: var(--gap-4);
+    }
+  }
+
+  &__content {
+    .tui-modalContent {
+      &__title {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.tui-commentUserLink {
+  &--smallLink {
+    @include tui-font-link-small();
+    @include tui-font-heavy();
+  }
+
+  &--largeLink {
+    @include tui-font-link();
+    @include tui-font-heavy();
+  }
+
+  &--smallText {
+    @include tui-font-body-small();
+    @include tui-font-heavy();
+  }
+
+  &--largeText {
+    @include tui-font-body();
+    @include tui-font-heavy();
+  }
+}
+
+.tui-commentReply {
+  margin-top: var(--gap-4);
+}
+

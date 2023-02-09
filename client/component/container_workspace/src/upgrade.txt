@@ -1,0 +1,96 @@
+This files describes API changes in /client/component/container_workspace,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Fixed loading display issue and table headers on mobile for WorkspaceAudiencesTab.vue
+  * Template and SCSS changes
+* Updated WorkspaceTransferOwnerForm.vue and WorkspaceTransferOwnerModal.vue to show if the Workplace owner is suspended
+  * Template changes
+* Added hasError to card/DiscussionCard, content/tabs/WorkspaceDiscussionTab, form/EditPostDiscussionForm, form/PostDiscussionForm, form/WorkspaceDiscussionForm
+  * Template changes
+* Updated Weka usages to use new core variants in DiscussionWithCommentCard, WorkspaceDiscussionForm, WorkspaceForm, and WorkspaceDiscussionPage
+  * Template changes
+
+=== 16.0 ===
+
+* Updated spacing and responsive behaviour in WorkspacePrimaryAction.vue and EmptySpacesHeader.vue
+  * SCSS changes
+* Updated mobile styling and empty state UI in RecommendedSpaces.vue, EmptySpacesPage.vue and SpaceCardsGrid.vue
+  * Template, SCSS and script block changes
+* Reduced the size of the smallest breakpoint in grid.js
+* Updated OriginalSpaceCard.vue, WorkspaceContributeCard.vue and SpaceCardsGrid.vue to reference renamed css variable (---engage-card-height)
+  * SCSS changes
+* Updated spacing on the WorkspacePage.vue, adding margin to the page right.
+  * SCSS changes
+* Amended the WorkspaceMenu.vue separator so it is correctly indented
+  * SCSS changes
+* Amended styles of the workspace discussions tab components WorkspaceDiscussionForm.vue, DiscussionFilter.vue & DiscussionCard.vue
+  The sort by filter is now on the same line as the search filter and the post button alignment has been amended.
+  * Template & SCSS changes
+* Amended the workspace members tab component WorkspaceMembersTab.vue adding the sort-by filter label
+  * Template & SCSS changes
+* Added MiniProfileCard component and Separator in MemberRequestCard.vue
+  * Template changes
+* Removed userProfileImageUrl and userProfileImageAlt prop from MemberRequestCard.vue
+* Added new required prop "userCardDisplay" for component MemberRequestCard.vue
+* Removed padding-top from WorkspaceMembersTab.vue to avoid wide gap
+  * SCSS changes
+* Amended styles of MemberRequestList and MemberRequestCard for WorkspaceMemberRequestList.vue
+  * SCSS changes
+* Updates in WorkspacePrimaryAction.vue
+  * Template changes
+* Updates in DiscussionCard.vue
+  * Template changes
+* Updates in WorkspaceMemberCard.vue
+  * Template changes
+* Updates in Share.vue
+  * Template changes
+* Replaced the use of WorkspaceUserAdder.vue with client/component/tui/src/components/adder/IndividualAdder.vue
+  * WorkspaceUserAdder is now deprecated
+* Updated audience add and remove UI in WorkspacePage.vue, WorkspacePrimaryAction.vue, and OriginalSpaceCard.vue
+  * Template changes
+* Added audience display in WorkspaceMembersTab.vue, WorkspaceMemberCard.vue
+  * Template changes
+* Refactored props of OriginalSpaceCard, usage in SpaceCardsGrid.vue
+  * Template changes
+* Removed 'Bulk add audience(s)' option in Workspaces, WorkspacePrimaryAction.vue
+  * Template changes
+* Removed WorkspaceAddAudienceModal.vue
+* Refactored MemberRequestCard.vue
+  * Template and SCSS changes
+* Updated Share.vue loading state
+  * Template and JS changes
+
+=== 15.0 ===
+
+* Updated WorkspaceDiscussionTab, deprecated loadMore in favour of loadMoreItems
+* Updated PostDiscussionForm.vue, WorkspacePageHeader.vue and WorkspacePage.vue to not be hard against the viewport edge on mobile, and make main headings smaller
+  * SCSS changes
+* Updated WorkspacePrimaryAction.vue, to not change the main action button to full width until the xs breakpoint
+  * SCSS changes
+
+=== 14.0 ===
+
+* Updates in WorkspaceMenu.vue:
+  * Deprecated method "canCreate()" in favour of computed property "canCreateWorkspace"
+* Updated DiscussionWithCommentCard.vue to add prop "editor" for totara_comment CommentBox.vue
+  * Template changes
+* Updated WorkspaceDiscussionForm.vue to replace props "component", "area" and "instance-id" with "usage-identifier" for editor_weka Weka.vue
+  * Template changes
+* Updated WorkspaceDiscussionForm.vue to add prop "variant" to component editor_weka Weka.vue
+  * Template changes
+* Updated WorkspaceForm.vue to replace props "component", "area" and "instance-id" with "usage-identifier" for editor_weka Weka.vue
+  * Templace changes
+* Updated WorkspaceForm.vue to add prop "variant" to component editor_weka Weka.vue
+  * Template changes
+* Updated WorkspaceDiscussionPage.vue to add prop "editor" to component editor_weka Weka.vue
+  * Template changes
+* Added new optional prop "workspaceContextId" for component WorkspaceDiscussionForm.vue
+* Added new required prop "workspaceContextId" for component PostDiscussionForm.vue
+* Added new required prop "workspaceContextId" for component WorkspaceDiscussionTab.vue
+* Added new required prop "workspaceAccess" for WorkspacePrimaryAction.vue
+* Added new optional prop "contextId" for component WorkspaceForm.vue
+* Updated PostDiscussionForm.vue to hide the Avatar on small screens
+    * SCSS changes
+* Removed MemberSearchBox.vue, is implemented directly in WorkspaceFilter.vue now

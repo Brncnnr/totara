@@ -1,0 +1,43 @@
+mutation mod_perform_move_element_to_section(
+  $input: mod_perform_move_element_to_section_input!
+) {
+  mod_perform_move_element_to_section(input: $input) {
+    source_section_elements {
+      id
+      element {
+        ...mod_perform_move_element_to_section_element_data
+        children {
+          ...mod_perform_move_element_to_section_element_data
+        }
+      }
+      sort_order
+    }
+  }
+}
+
+fragment mod_perform_move_element_to_section_element_data on mod_perform_element {
+  __typename
+  id
+  title
+  raw_title: title(format: RAW)
+  identifier
+  data
+  raw_data: data(format: RAW)
+  is_required
+  is_respondable
+  element_plugin {
+    plugin_name
+    name
+    admin_edit_component
+    admin_view_component
+    plugin_config {
+      is_respondable
+      has_title
+      has_reporting_id
+      title_text
+      title_help_text
+      is_title_required
+      is_response_required_enabled
+    }
+  }
+}

@@ -1,0 +1,61 @@
+type totara_oauth2_client_provider {
+  id: core_id!
+  client_id: String!
+  client_secret: String!
+  name(format: core_format!): String!
+  description(format: core_format!): String
+  scope: String
+  detail_scope: String
+}
+
+input totara_oauth2_client_providers_filter {
+  id: core_id
+}
+
+input totara_oauth2_client_providers_input {
+  filters: totara_oauth2_client_providers_filter
+}
+
+"""
+Emum of scope types that are supported by totara oauth2
+"""
+enum totara_oauth2_scope_type {
+  XAPI_WRITE
+}
+
+"""
+Input of client provider creation
+"""
+input totara_oauth2_provider_input {
+  name: String!
+  format: param_integer
+  description: String
+  scope_type: totara_oauth2_scope_type!
+}
+
+type totara_oauth2_client_provider_result {
+  items: [totara_oauth2_client_provider!]!
+}
+
+extend type Query {
+  """
+  Query to fetch oauth2 client providers based on filters.
+  """
+  totara_oauth2_client_providers(
+    input: totara_oauth2_client_providers_input!
+  ): totara_oauth2_client_provider_result!
+}
+
+extend type Mutation {
+  """
+  This mutation is creating a provider based on user input
+  """
+  totara_oauth2_create_provider(
+    input: totara_oauth2_provider_input!
+  ): totara_oauth2_client_provider!
+
+  """
+  This mutation is deleting a provider
+  """
+  totara_oauth2_delete_provider(id: core_id!): Boolean!
+}

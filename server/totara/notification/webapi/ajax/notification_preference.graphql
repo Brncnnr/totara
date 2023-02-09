@@ -1,0 +1,74 @@
+query totara_notification_notification_preference($id: param_integer!) {
+  notification_preference: totara_notification_notification_preference(
+    id: $id
+  ) {
+    __typename
+    title
+    id
+    ancestor_id
+    body(format: RAW)
+    body_content: body(format: HTML)
+    body_format
+    subject(format: RAW)
+    subject_content: subject(format: HTML)
+    subject_format
+    overridden_body
+    overridden_subject
+    overridden_recipient
+    title
+    overridden_additional_criteria
+    additional_criteria
+    resolver {
+      additional_criteria_component
+    }
+    resolver_plugin_name
+    resolver_class_name
+    resolver_name
+    resolver_component
+    is_custom
+    parent_id
+    schedule_offset(unit: DAY)
+    schedule_type
+    schedule_label
+    overridden_schedule
+    overridden_forced_delivery_channels
+    forced_delivery_channels
+    enabled
+    overridden_enabled
+    recipient {
+      class_name
+      name
+    }
+    recipients {
+      class_name
+      name
+    }
+    extended_context {
+      component
+      context_id
+      area
+      item_id
+    }
+    parent_value {
+      __typename
+      subject(format: RAW)
+      body(format: RAW)
+      body_format
+      title
+      additional_criteria
+      schedule_offset(unit: DAY)
+      schedule_type
+      subject_format
+      enabled
+      forced_delivery_channels
+      recipient {
+        class_name
+        name
+      }
+      recipients {
+        class_name
+        name
+      }
+    }
+  }
+}

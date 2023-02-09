@@ -1,0 +1,25 @@
+mutation container_workspace_decline_member_request(
+  # Member request's id
+  $id: param_integer!
+  $decline_content: String
+) {
+  member_request: container_workspace_update_member_request(
+    id: $id
+    new_status: DECLINED
+    decline_content: $decline_content
+  ) {
+    __typename
+    id
+    is_accepted
+    is_declined
+    time_description
+    workspace_id
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+  }
+}

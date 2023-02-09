@@ -1,0 +1,5 @@
+{
+  "component": "tui_xstate",
+  "vendor": "totara",
+  "entry": "./js/internal/entry.js"
+}

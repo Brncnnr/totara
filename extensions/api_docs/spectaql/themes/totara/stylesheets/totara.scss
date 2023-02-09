@@ -1,0 +1,150 @@
+@mixin header-large {
+  all: revert;
+  margin: 4rem 0;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+@mixin header-medium {
+  all: revert;
+  margin: 2.4rem 0;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+@mixin header-small {
+  all: revert;
+  margin: 2.4rem 0;
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+@mixin header-subtle {
+  color: $text-color-subtle;
+  border-top: 1px solid #c7c7c7;
+  padding-top: 2.4rem;
+}
+
+@mixin break-word {
+  word-break: break-word;
+  hyphens: none;
+}
+
+#spectaql {
+  code {
+    @include break-word;
+  }
+
+  a {
+    @include break-word;
+
+    word-break: break-word;
+    hyphens: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  #sidebar {
+    top: 0;
+    left: 0;
+
+    a:hover,
+    a:focus{
+      text-decoration: none;
+    }
+  }
+
+  #page {
+    &.drawer-open {
+      #sidebar {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .doc-heading {
+    @include header-large;
+    margin-top: 0;
+  }
+
+  .introduction-item-title {
+    @include header-medium;
+  }
+
+  .doc-copy h3 {
+    @include header-small;
+  }
+
+  #introduction,
+  .definition,
+  .operation {
+    margin-bottom: 0;
+  }
+
+  .group-heading {
+    @include header-large;
+  }
+
+  .group-heading[id$='-Queries'],
+  .group-heading[id$='-Mutations'],
+  .group-heading[id$='-Types'] {
+    @include header-small;
+    @include header-subtle;
+  }
+
+  .definition-group-name,
+  .operation-group-name {
+    @include header-small;
+    @include header-subtle;
+
+    a {
+      color: $text-color-subtle;
+    }
+  }
+
+  .definition {
+    .definition-heading {
+      @include header-medium;
+      @include break-word;
+    }
+  }
+
+  .operation {
+    .operation-heading {
+      @include header-medium;
+      @include break-word;
+    }
+  }
+
+  .doc-row {
+    .doc-copy,
+    .doc-examples {
+      @media (min-width: $size-content-break) {
+        width: 100%;
+      }
+    }
+
+    .doc-copy {
+      @media (min-width: $size-content-break) {
+        padding-right: 0;
+      }
+    }
+
+    .doc-examples {
+      @media (min-width: $size-content-break) {
+        padding-left: 0;
+      }
+    }
+  }
+}

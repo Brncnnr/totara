@@ -1,0 +1,76 @@
+This files describes API changes in /container/type/workspace/*.
+The information here is intended only for developers.
+
+=== 16.0 ===
+* Added optional request_content parameter to mutation 'container_workspace_create_member_request'
+* Added optional decline_content parameter to mutation 'container_workspace_update_member_request'
+* Added optional field request_content and decline_content to table 'workspace_member_request'
+* Added optional "request_content" field in the "container_workspace_member_request" type
+* Added new parameter "$request_content" into function container_workspace\member\member_request::create.
+* Added new parameter "$decline_content" into function container_workspace\member\member_request::decline.
+* The non members user adder (client/component/container_workspace/src/components/adder/WorkspaceUserAdder.vue)
+  has been deprecated in favour of the new core individuals adder. As such these classes are deprecated
+  and no longer in use:
+  - graphql query: container_workspace_non_member_users; use container_workspace_non_member instead
+  - graphql query: container_workspace_user_table_fields; no replacement
+  - graphql query: container_workspace_non_member_users_cursor; no replacement
+  - graphql type: container_workspace_user_table_field; no replacement
+  - graphql resolver class: container_workspace\webapi\resolver\query\non_member_users_cursor
+  - graphql resolver class: container_workspace\webapi\resolver\query\non_member_users
+  - graphql resolver class: container_workspace\webapi\resolver\query\user_table_fields
+  - phpunit test: container_workspace_webapi_non_member_users_testcase
+  - phpunit test: container_workspace_webapi_user_table_fields_testcase
+  - phpunit test: container_workspace_non_member_loader_testcase
+  - phpunit test: container_workspace_multi_tenancy_non_member_loader_testcase
+  - phpunit test: container_workspace_multi_tenancy_user_non_member_loader_testcase
+  - class: container_workspace\query\member\non_member_query; use container_workspace\data_providers\non_members instead
+  - class: container_workspace\loader\member\non_member_loader; use container_workspace\data_providers\non_members instead
+  - lang string: filter_users,
+  - lang string: people_selected
+* The notification added_to_workspace_notification has been deprecated in favour of the new Centralised Notification container_workspace\totara_notification\resolver\user_added. As such the the following are deprecated and no longer in use:
+  - class: container_workspace\output\added_to_workspace_notification
+  - class: container_workspace\task\notify_added_to_workspace_bulk_task
+  - class: container_workspace\task\notify_added_to_workspace_task
+  - lang string: member_added_message
+  - lang string: member_added_title
+* The bulk add audience members feature has been deprecated. There's a new Add Audience feature that has replaced this.
+  To add an audience to a workspace use the container_workspace\enrol\manager::enrol_audiences() method.
+  As such, the following has been deprecated and no longer in use:
+  - The add_bulk_audience_members GraphQL mutation
+  - The bulk_audience_members_to_add GraphQL query
+  - The container_workspace\task\bulk_add_workspace_members_adhoc_task class.
+  - The container_workspace\member\member_handler::add_workspace_members_from_cohorts() method.
+  - The container_workspace\member\member::added_to_workspace_in_bulk() method.
+  - The container_workspace\loader\member\audience_loader class.
+  - The container_workspace\event\audience_added class.
+  - The container_workspace\enrol\manager::manual_enrol_user_bulk() method.
+* container_workspace\member\member::get_role_for_members() is now publicly accessible
+* container_workspace\interactor\workspace\interactor::is_primary_owner() is deprecated, use is_owner instead.
+
+--- Update to graphQL ---
+* Updated field 'name' scalar type 'param_text' to 'String' for mutation 'container_workspace_create' and 'container_workspace_update'
+
+=== 14.0 ===
+
+--- Update to general functionality ---
+* Workspace container categories are now created upon installation, instead of created on-demand
+* Added optional parameter "$theme_config" to the totara_engage\share\recipient\library::get_data function
+* Added optional parameter "$theme_config" to the workspace::get_image function
+
+--- Update to GraphQL ---
+* Added field "context_id" to type "container_workspace_workspace"
+* Added field "context_id" to type "container_workspace_workspace_category_interactor"
+* Changed area variable type from param_text to param_area in graphql schema.
+* Added context_id parameter to the file_area query
+* Added "image_preview_mode" parameter to "container_workspace_contributions" query
+* Added optional "theme" parameter to the "image" field in the "container_workspace_workspace" type
+* Added optional "theme" parameter to "container_workspace_workspace_image" query
+
+--- Update to database schema ---
+* Introduced new field "to_be_deleted" in table "workspace", the field indicates the workspace will be deleted later via cron.
+
+--- Update to API ---
+* Function container_workspace\member\member::get_member_id had been deprecated, please use container_workspace\member\member::get_id instead.
+* Added new parameter "$debug_info" into function container_workspace\exception\discussion_exception::on_create
+* Added new parameter "$debug_info" into function container_workspace\exception\discussion_exception::on_update
+* Removed unused class container_workspace\webapi\resolver\query\count_members

@@ -1,0 +1,63 @@
+"""
+Mutation return type for mod_scorm_save_offline_attempts
+"""
+type mod_scorm_save_offline_attempts_result {
+  """
+  Offline attempts accepted
+  """
+  attempts_accepted: [Boolean!]!
+  """
+  The maximum number of times a user can attempt the scorm.
+  """
+  maxattempt: Int
+  """
+  The current user's number of attempts at the scorm.
+  """
+  attempts_current: Int
+  """
+  Activity completion tracking
+  """
+  completion: String!
+  """
+  Require view for completion
+  """
+  completionview: Boolean!
+  """
+  Require a particular status for completion
+  """
+  completionstatusrequired: Int
+  """
+  Require a minimum score for completion
+  """
+  completionscorerequired: Int
+  """
+  Require all scos to return 'completed' status
+  """
+  completionstatusallscos: Boolean!
+  """
+  The completion status of the current user in the course module
+  """
+  completionstatus: String
+  """
+  The user's grade in the course as an absolute value
+  """
+  gradefinal: Float
+  """
+  The maximum achievable grade for the course
+  """
+  grademax: Float
+  """
+  The user's grade in the course as a percentage of grademax
+  """
+  gradepercentage: Float
+}
+
+extend type Mutation {
+  """
+  Save offline SCORM attempts
+  """
+  mod_scorm_save_offline_attempts(
+    scormid: core_id!
+    attempts: [mod_scorm_attempt!]!
+  ): mod_scorm_save_offline_attempts_result!
+}

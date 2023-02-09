@@ -1,0 +1,13 @@
+"""
+Represents the specific type of schedule.
+"""
+enum totara_notification_schedule_type {
+  ON_EVENT
+  BEFORE_EVENT
+  AFTER_EVENT
+}
+
+enum totara_notification_schedule_offset_unit {
+  SECOND
+  DAY
+}

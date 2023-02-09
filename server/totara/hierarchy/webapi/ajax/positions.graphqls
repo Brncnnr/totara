@@ -1,0 +1,55 @@
+"""
+Position result
+
+Result type for a collection of positions.
+"""
+type totara_hierarchy_position_result implements core_pageable_result {
+  items: [totara_hierarchy_position!]!
+  total: Int!
+  next_cursor: String!
+}
+
+"""
+Position filter
+
+Properties to filter out positions.
+"""
+input totara_hierarchy_position_filter {
+  framework_id: param_integer
+  parent_id: param_integer
+  ids: [param_integer!]
+  name: param_text
+  type_id: param_integer
+}
+
+"""
+Input type for position query conditions.
+
+Properties to control the order and amount of the requested positions.
+"""
+input totara_hierarchy_position_query {
+  filters: totara_hierarchy_position_filter
+  order_by: String
+  order_dir: totara_hierarchy_order_dir
+  result_size: param_integer
+  cursor: String
+}
+
+extend type Query {
+  """
+  Query to retrieve position frameworks.
+  """
+  totara_hierarchy_position_frameworks: [totara_hierarchy_position_framework!]!
+
+  """
+  Query to retrieve position types.
+  """
+  totara_hierarchy_position_types: [totara_hierarchy_position_type!]!
+
+  """
+  Query to retrieve positions.
+  """
+  totara_hierarchy_positions(
+    query: totara_hierarchy_position_query
+  ): totara_hierarchy_position_result!
+}

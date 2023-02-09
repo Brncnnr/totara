@@ -1,0 +1,206 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @module tuickage   tui
+
+:root {
+  --font-body-line-height: 1.33;
+}
+
+//
+// Body text
+//
+
+@mixin tui-font-body {
+  color: var(--color-text);
+  font-weight: normal;
+  font-size: var(--font-size-15);
+  line-height: var(--font-body-line-height);
+}
+
+@mixin tui-font-body-small {
+  font-weight: normal;
+  font-size: var(--font-size-13);
+  line-height: 1.15;
+}
+
+@mixin tui-font-body-x-small {
+  font-weight: normal;
+  font-size: var(--font-size-12);
+  line-height: 1.25;
+}
+
+@mixin tui-font-body-xx-small {
+  font-weight: normal;
+  font-size: var(--font-size-11);
+  line-height: 1.1;
+}
+
+@mixin tui-font-body-disabled {
+  color: var(--color-text-disabled);
+}
+
+@mixin tui-font-body-placeholder {
+  color: var(--color-text-hint);
+}
+
+@mixin tui-font-heavy {
+  font-weight: bold;
+}
+
+@mixin tui-font-hint {
+  color: var(--color-text-hint);
+  font-style: italic;
+}
+
+@mixin tui-font-monospace {
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+}
+
+//
+// Link text
+//
+
+@mixin tui-font-link {
+  color: var(--color-state);
+  font-size: var(--font-size-15);
+  line-height: 1.33;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-state-hover);
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-state-active);
+  }
+}
+
+@mixin tui-font-link-large {
+  color: var(--color-state);
+  font-size: var(--font-size-16);
+  line-height: 1.33;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-state-hover);
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-state-active);
+  }
+}
+
+@mixin tui-font-link-small {
+  color: var(--color-state);
+  font-size: var(--font-size-13);
+  line-height: 1.33;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-state-hover);
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-state-active);
+  }
+}
+
+//
+// Heading text
+//
+
+@mixin tui-font-heading-large {
+  font-weight: bold;
+  font-size: var(--font-size-50);
+  line-height: 1;
+}
+
+@mixin tui-font-heading-medium {
+  font-weight: 500;
+  font-size: var(--font-size-30);
+  line-height: 1;
+}
+
+@mixin tui-font-heading-small {
+  font-weight: bold;
+  font-size: var(--font-size-20);
+  line-height: 1.25;
+}
+
+@mixin tui-font-heading-small-regular {
+  font-weight: normal;
+  font-size: var(--font-size-20);
+  line-height: 1.25;
+}
+
+@mixin tui-font-heading-x-small {
+  font-weight: bold;
+  font-size: var(--font-size-16);
+  line-height: 1.25;
+}
+
+@mixin tui-font-heading-label {
+  font-weight: bold;
+  font-size: var(--font-size-15);
+  line-height: 1.2;
+}
+
+@mixin tui-font-heading-label-small {
+  font-weight: bold;
+  font-size: var(--font-size-13);
+  line-height: 1.15;
+}
+
+@mixin tui-font-heading-page-title {
+  margin: 0;
+  @include tui-font-heading-medium;
+}
+
+//
+// Text wrapping
+//
+
+// break when the word starts on a new line and breaks where it would have
+// overflown, auto inserting hyphens. useful for user-generated content whose
+// containers are generally flexible. machine-insertion of hyphens may not be
+// an end user preference, but it can be more readable than without.
+@mixin tui-wordbreak--hyphens {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  .ie & {
+    -ms-hyphens: auto;
+  }
+}
+
+// break all words at the end of lines, don't hyphenate. useful for predictable
+// parts of the UI whose containers are less flexible.
+@mixin tui-wordbreak--hard {
+  word-break: break-word;
+  hyphens: none;
+  .ie & {
+    -ms-word-break: break-all;
+    -ms-hyphens: none;
+  }
+}

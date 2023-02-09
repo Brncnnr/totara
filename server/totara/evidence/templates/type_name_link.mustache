@@ -1,0 +1,56 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/type_name_link
+
+    Display the name of a type with a link that either shows a popup modal or the view page
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-evidence-type-details
+    * data-evidence-user-id
+
+    Context variables required for this template:
+    * can_manage: bool, Does the current user have the capability to manage evidence types?
+    * view_url: URL, The URL for the view type page
+    * type_name: string, The name of the type
+    * type_id: int, The ID of the type
+    * user_id: int, The ID of the current user
+
+    Example context (json):
+    {
+        "can_manage": true,
+        "type_id": 1,
+        "type_name": "Type Name",
+        "user_id": 2,
+        "view_url": "#"
+    }
+}}
+{{#can_manage}}<a href="{{{view_url}}}">{{type_name}}</a>{{/can_manage}}
+{{^can_manage}}
+<a href="#"
+   data-core-autoinitialise="true"
+   data-core-autoinitialise-amd="totara_evidence/evidence_type_details"
+   data-evidence-type-details="{{type_id}}" data-evidence-user-id="{{user_id}}">{{type_name}}</a>
+{{/can_manage}}

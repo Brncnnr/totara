@@ -1,0 +1,14 @@
+query core_course_course($courseid: core_id!) {
+  core_course(courseid: $courseid) {
+    id
+    idnumber
+    fullname
+    shortname
+    summary(format: HTML)
+    summaryformat
+    category {
+      id
+      name
+    }
+  }
+}

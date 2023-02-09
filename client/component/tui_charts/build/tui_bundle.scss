@@ -1,0 +1,16 @@
+:root {
+  /* Chart default font size*/
+  --font-size-chart-default: 14; /* It has to be without units*/
+  --font-size-chart-doughnut-label: 16; /* It has to be without units*/
+  --font-size-chart-doughnut-percentage-label: 30; /* It has to be without units*/
+}
+
+.tui-chartJs__header {
+  @include tui-font-heading-small();
+  padding-bottom: var(--gap-7);
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+

@@ -1,0 +1,205 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.totaraNav_prim--side {
+  display: flex;
+  flex-shrink: 0;
+  height: 100%;
+  margin: auto 0 auto auto;
+  padding: 0 0 0 var(--gap-2);
+  color: var(--nav-side-text-color);
+
+  &__separator {
+    display: none;
+  }
+
+  .langmenu {
+    padding: 0;
+
+    .select {
+      margin: 0 var(--gap-2) 0 0;
+    }
+  }
+
+  .popover-region {
+    position: initial;
+    margin: auto var(--gap-1);
+
+    .ie11 & {
+      //TL-20522: IE11 doesn't support the initial value, so we have to explicitly set it to the (usual) default
+      position: static;
+    }
+
+    .flex-icon {
+      vertical-align: inherit;
+    }
+
+    .nav-link {
+      position: relative;
+      width: auto;
+      padding: var(--gap-2);
+      line-height: 1.5;
+    }
+
+    .popover-region-container {
+      top: auto;
+      left: 0;
+      width: 100%;
+      color: var(--nav-side-popover-text-color);
+    }
+
+    .popover-region-toggle::before,
+    .popover-region-toggle::after {
+      display: none;
+    }
+  }
+
+  .usermenu {
+    height: 100%;
+    margin: auto 0;
+    padding: 0;
+
+    .caret {
+      margin: auto 0;
+    }
+
+    .moodle-actionmenu ul {
+      .toggle-display .userbutton .avatars {
+        position: relative;
+        margin: auto var(--gap-1);
+        padding: 0 var(--gap-1);
+      }
+    }
+
+    .moodle-actionmenu li {
+      vertical-align: top;
+    }
+
+    .toggle-display {
+      padding: var(--gap-1);
+      color: var(--nav-side-text-color);
+      text-decoration: none;
+    }
+
+    .userbutton {
+      display: flex;
+    }
+
+    .userloggedinas .usermenu {
+      padding: 0;
+    }
+
+    .userpicture {
+      width: auto;
+      height: 2rem;
+    }
+
+    .usertext {
+      display: none;
+      vertical-align: unset;
+    }
+
+    .moodle-actionmenu .menu li a.menu-action {
+      color: var(--nav-side-popover-text-color);
+
+      &:hover {
+        color: var(--nav-side-popover-text-color);
+      }
+    }
+  }
+}
+
+.userloggedinas {
+  .totaraNav_prim--side {
+    .avatar.current {
+      position: absolute;
+      top: 1rem;
+      left: 1.8rem;
+      margin: 0;
+
+      .userpicture {
+        width: auto;
+        height: 1.5rem;
+      }
+    }
+
+    .usermenu {
+      padding: 0;
+    }
+  }
+}
+
+.jsenabled .totaraNav_prim--side .usermenu {
+  .toggle-display.textmenu {
+    display: flex;
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .totaraNav_prim--side {
+    .popover-region {
+      .popover-region-container {
+        left: auto;
+        width: 380px;
+      }
+
+      .popover-region-toggle::before {
+        bottom: -3px;
+        display: block;
+      }
+
+      .popover-region-toggle::after {
+        bottom: -4px;
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: $tui-screen-md) {
+  .totaraNav_prim--side {
+    position: relative;
+
+    &__separator {
+      position: relative;
+      display: block;
+      flex: 0 0 0;
+      padding: 0 0 0 var(--gap-2);
+
+      &::before {
+        position: absolute;
+        top: 25%;
+        left: 0;
+        height: 50%;
+        border-left: 1px solid var(--nav-side-seperator-color);
+        content: '';
+      }
+    }
+
+    .usermenu {
+      .usertext {
+        display: inline-block;
+      }
+    }
+  }
+}

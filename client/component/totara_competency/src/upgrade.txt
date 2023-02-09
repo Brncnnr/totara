@@ -1,0 +1,26 @@
+This file describes API changes in /client/component/totara_competency,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+* Moved the group headings from the competency summary page components into their own component
+    * Template, SCSS changes & lang string changes
+* Added an additional action button to the AchievementConfiguration.vue component for copying achievement paths
+    * Template, SCSS changes & lang string changes
+* Changed aria-role in ProgressTrackerNavCircleAchievement.vue usage from '' to 'none'
+    * Template changes
+
+=== 15.0 ===
+* Switched usage of ProgressTracker to ProgressTrackerNav in Progress.vue
+    * Template, langstring and status logic changes
+
+=== 14.0 ===
+* Extended the page templates CompetencyDetail.vue and CompetencyProfile.vue to have a conditional NotificationBanner warning.
+* Change the presentation of the no pathway warning in AchievementConfiguration.vue
+    * Template & SCSS changes
+* Change the presentation of pathway warnings in AchievementConfigurationCriteria.vue
+    * Template & SCSS changes
+* Add a warning notification banner if there are achievement pathway warnings in CompetencySummary.vue
+    * Template, SCSS changes & lang string changes
+* Deprecated competency_list/CurrentList.vue and competency_list/ArchivedList.vue, their roles are now combined into competency_list/ListBody.vue
+* Deprecated scales prop and foundScale computed property in MyRatingCell.vue, the scale prop should be used instead
+* Deprecated totara_competency_profile_assignment_progress.proficient graphql field

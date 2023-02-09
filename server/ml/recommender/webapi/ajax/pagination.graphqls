@@ -1,0 +1,7 @@
+type ml_recommender_cursor {
+  total: Int!
+  """
+  Next cursor, if this is null, then we are at the end of the page.
+  """
+  next: String
+}

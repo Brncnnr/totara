@@ -1,0 +1,71 @@
+type mod_contentmarketplace_content_marketplace_interactor {
+  """
+  Whether the user is a admin or not.
+  """
+  has_view_capability: Boolean!
+
+  """
+  Whether the user can enroll or not.
+  """
+  can_enrol: Boolean!
+
+  """
+  Whether the user can launch the activity or not.
+  """
+  can_launch: Boolean!
+
+  """
+  Whether the user is a site guest or not
+  """
+  is_site_guest: Boolean!
+
+  """
+  Whether user is enrolled to the course or not.
+  """
+  is_enrolled: Boolean!
+
+  """
+  Whether user can direct enrol via click button
+  """
+  non_interactive_enrol_instance_enabled: Boolean!
+  supports_non_interactive_enrol: Boolean!
+}
+
+type mod_contentmarketplace_content_marketplace {
+  """
+  The instance's id.
+  """
+  id: core_id!
+  """
+  course_module
+  """
+  course_module: core_course_module!
+  course: core_course!
+  name(format: core_format = PLAIN): String!
+  intro(format: core_format = HTML): String
+  """
+  NULL means that this content marketplace activity does not have a completion condition.
+  """
+  completion_condition: totara_contentmarketplace_completion_condition
+  interactor: mod_contentmarketplace_content_marketplace_interactor!
+}
+
+"""
+An interface that help to put the content marketplace activity data
+into a sort of partialy defined schema.
+"""
+interface mod_contentmarketplace_content_marketplace_activity {
+  module: mod_contentmarketplace_content_marketplace!
+  learning_object: totara_contentmarketplace_learning_object!
+}
+
+extend type Mutation {
+  mod_contentmarketplace_set_self_completion(
+    cm_id: core_id!
+    status: param_boolean!
+  ): Boolean!
+
+  mod_contentmarketplace_request_non_interactive_enrol(
+    cm_id: core_id!
+  ): Boolean!
+}

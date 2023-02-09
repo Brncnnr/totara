@@ -1,0 +1,11 @@
+enum totara_playlist_playlist_source {
+  OWN
+  BOOKMARKED
+}
+
+enum totara_playlist_playlist_sort {
+  """
+  Sort by rating
+  """
+  RATING
+}

@@ -1,0 +1,58 @@
+# Only loading the none-pinned discussion posts.
+query container_workspace_get_discussions(
+  $workspace_id: param_integer!
+  $search_term: param_text
+  $cursor: param_text
+  $sort: container_workspace_discussion_sort!
+) {
+  cursor: container_workspace_discussion_cursor(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+    sort: $sort
+    pinned: false
+  ) {
+    __typename
+    total
+    next
+  }
+
+  discussions: container_workspace_discussions(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+    sort: $sort
+    pinned: false
+  ) {
+    __typename
+    id
+    workspace_id
+    content(format: HTML)
+    time_description
+    owner {
+      __typename
+      id
+      fullname
+      email
+      profileimagealt
+      profileimageurl
+    }
+    total_comments
+    total_reactions
+    workspace_context_id
+    discussion_interactor {
+      __typename
+      discussion_id
+      workspace_id
+      can_comment
+      can_delete
+      can_update
+      can_report
+      removed
+      can_react
+      reacted
+    }
+    edited
+    comment_cursor
+  }
+}

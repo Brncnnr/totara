@@ -1,0 +1,10 @@
+query totara_hierarchy_position_frameworks {
+  totara_hierarchy_position_frameworks {
+    __typename
+    id
+    fullname
+    shortname
+    idnumber
+    description
+  }
+}

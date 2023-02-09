@@ -1,0 +1,10 @@
+query mod_perform_sections($activity_id: core_id!) {
+  mod_perform_activity(activity_id: $activity_id) {
+    sections {
+      id
+      title
+      display_title
+      sort_order
+    }
+  }
+}

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRowActionButtons Checks snapshot 1`] = `
+<div
+  class="tui-formRow tui-formRow--emptyDesc"
+  id="example"
+>
+  <div
+    class="tui-formRow__inner"
+  >
+    <div
+      class="tui-formRow__desc"
+    >
+      <!---->
+      <!---->
+    </div>
+     
+    <div
+      class="tui-formRow__action tui-formRow__action--isStacked"
+    >
+      <div
+        class="tui-formBtnGroup"
+      >
+        <buttonsubmit-stub />
+         
+        <buttoncancel-stub />
+      </div>
+    </div>
+  </div>
+</div>
+`;

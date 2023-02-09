@@ -1,0 +1,24 @@
+mutation mod_perform_add_section($input: mod_perform_add_section_input!) {
+  mod_perform_add_section(input: $input) {
+    section {
+      id
+      title
+      display_title
+      sort_order
+      section_relationships {
+        id
+        can_view
+        can_answer
+        core_relationship {
+          id
+          name
+        }
+      }
+      section_elements_summary {
+        required_question_count
+        optional_question_count
+        other_element_count
+      }
+    }
+  }
+}

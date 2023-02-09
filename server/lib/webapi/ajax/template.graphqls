@@ -1,0 +1,7 @@
+extend type Query {
+  core_template(
+    name: param_alphanumext!
+    component: param_component!
+    theme: param_theme!
+  ): String!
+}

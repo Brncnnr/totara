@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>16x16 copy</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="custom-icons" transform="translate(-58.000000, -683.000000)">
+            <g id="file-excel" transform="translate(29.000000, 637.000000)">
+                <g id="16x16-copy" transform="translate(29.000000, 46.000000)">
+                    <g id="Group-3" transform="translate(2.000000, 1.000000)">
+                        <path d="M2,0 L7,0 L7,1 L2,1 C1.448,1 1,1.44666667 1,2 L1,12 C1,12.552 1.448,13 2,13 L10,13 C10.552,13 11,12.552 11,12 L11,5 L12,5 L12,12 C12,13.104 11.104,14 10,14 L2,14 C0.894666667,14 0,13.104 0,12 L0,2 C0,0.894666667 0.894666667,0 2,0" id="Fill-1"></path>
+                        <line x1="2.5" y1="4.5" x2="8.5" y2="10.5" id="Line" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></line>
+                        <line x1="2.5" y1="4.5" x2="8.5" y2="10.5" id="Line-Copy" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(5.500000, 7.500000) scale(-1, 1) translate(-5.500000, -7.500000) "></line>
+                        <path d="M7,3.5 L7,0 L12,5 L8.5,5 C7.672,5 7,4.328 7,3.5" id="Fill-4"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

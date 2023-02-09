@@ -1,0 +1,11 @@
+mutation totara_oauth2_create_provider($input: totara_oauth2_provider_input!) {
+  provider: totara_oauth2_create_provider(input: $input) {
+    id
+    client_id
+    client_secret
+    name(format: PLAIN)
+    description(format: HTML)
+    scope
+    detail_scope
+  }
+}

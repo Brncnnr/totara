@@ -1,0 +1,19 @@
+.tui-competencyRatingAdminView {
+  &__description {
+    margin-top: var(--gap-2);
+    margin-left: var(--gap-4);
+  }
+}
+
+.tui-competencyRatingParticipantForm {
+  &__description {
+    margin-top: var(--gap-1);
+    margin-left: var(--gap-4);
+  }
+
+  &__descriptionPrint {
+    margin-top: var(--gap-4);
+    margin-left: var(--gap-6);
+  }
+}
+

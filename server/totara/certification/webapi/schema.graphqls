@@ -1,0 +1,103 @@
+"""
+Certification type
+"""
+type totara_certification_certification {
+  """
+  ID of the prog record for the certification
+  """
+  id: core_id!
+  """
+  ID of the certif record for the certification
+  """
+  certifid: core_id!
+  """
+  Certification fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Certification shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Certification idnumber
+  """
+  idnumber: String
+  """
+  Certification summary
+  """
+  summary(format: core_format = HTML): String
+  """
+  The format of the certification summary
+  """
+  summaryformat: core_format
+  """
+  Certification endnnote to be displayed on completion
+  """
+  endnote(format: core_format = HTML): String
+  """
+  The date the current user is due in the certification
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  The state of the duedate
+  """
+  duedate_state(format: core_format = PLAIN): String
+  """
+  The date/time the certification is available from
+  """
+  availablefrom(format: core_date_format = TIMESTAMP): core_date
+  """
+  The date/time the certification is available until
+  """
+  availableuntil(format: core_date_format = TIMESTAMP): core_date
+  """
+  The category this certification is in
+  """
+  category: core_category
+  """
+  Certification content coursesets
+  """
+  coursesets: [totara_program_program_courseset!]!
+  """
+  Current users completion information within the certification
+  """
+  completion: totara_certification_completion
+  """
+  The time (e.g. "1 Month") that the certification is active for.
+  """
+  activeperiod: String
+}
+
+type totara_certification_completion {
+  """
+  The id of the completion record for the current user within the certification
+  """
+  id: core_id!
+  """
+  The integer status of the current user within the certification
+  possible values: 0, 1
+  """
+  status: Int
+  """
+  The string status of the current user within the certification
+  possible values: assigned, inprogress, complete, expired
+  """
+  statuskey: String
+  """
+  The integer status of the current users renewal state within the certiication
+  """
+  renewalstatus: Int
+  """
+  The string status of the current users renewal state within the certifications
+  possible values: notdue, due, expired
+  """
+  renewalstatuskey: String
+  """
+  The time the user completed the program
+  """
+  timecompleted(format: core_date_format = TIMESTAMP): core_date
+  """
+  The progress (as a percentage) that the user has made in the program
+  """
+  progress: Float
+}

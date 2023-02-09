@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage Contribute Checks snapshot 1`] = `
+<div
+  class="tui-engageContribute"
+>
+  <buttonicon-stub
+    arialabel="contribute, totara_engage"
+    styleclass="[object Object]"
+    text="contribute, totara_engage"
+    type="button"
+  >
+    <!---->
+  </buttonicon-stub>
+   
+  <modalpresenter-stub>
+    <contributemodal-stub />
+  </modalpresenter-stub>
+</div>
+`;

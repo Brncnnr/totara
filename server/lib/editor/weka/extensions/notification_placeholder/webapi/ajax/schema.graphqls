@@ -1,0 +1,16 @@
+type weka_notification_placeholder_placeholder {
+  key: String!
+  label: String!
+}
+
+extend type Query {
+  """
+  A query to help getting all the available placeholders provided by the notifiable event class
+  and filtered by pattern text.
+  """
+  weka_notification_placeholder_placeholders(
+    context_id: param_integer!
+    pattern: param_text
+    resolver_class_name: param_text!
+  ): [weka_notification_placeholder_placeholder!]!
+}

@@ -1,0 +1,184 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2018 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_ventura
+
+.tw-basketlist {
+  @include clearfix();
+  position: relative;
+  z-index: 1;
+
+  &__body {
+    position: relative;
+
+    &_filters {
+      @include make-xs-column(12, 0);
+      @include make-sm-column(4, 0);
+      @include make-md-column(3, 0);
+    }
+
+    .tw-actionList {
+      @include make-xs-column(12, 0);
+      @include make-sm-column(8, 0);
+      @include make-md-column(9, 0);
+      padding-top: 0.1rem;
+      position: relative;
+    }
+  }
+
+  &__btn {
+    @include bs-btn-default();
+  }
+
+  &__btnGroup {
+    margin: auto var(--gap-2) auto 0;
+
+    .tw-basketlist__btn {
+      @include bs-btn-default();
+    }
+  }
+
+  &__hide {
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  &__primaryFilterSearch {
+    flex-basis: 100%;
+    margin-top: var(--gap-4);
+    order: 2;
+    position: relative;
+
+    .tw-selectSearchText {
+      padding: 0;
+    }
+  }
+
+  &__primaryFilterTree {
+    max-width: 100%;
+  }
+
+  &__top {
+    clear: both;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1;
+
+    &_bar {
+      display: flex;
+      flex-basis: 100%;
+      flex-wrap: wrap;
+      margin-top: var(--gap-4);
+      max-width: 100%;
+      z-index: 3;
+
+      .tw-basketlist__primaryFilterTree {
+        order: 1;
+      }
+
+      .tw-selectionBasket {
+        order: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tw-basketlist {
+    &__body {
+      &_filters {
+        border: 1px solid var(--color-neutral-4);
+        margin-top: var(--gap-2);
+      }
+
+      .tw-actionList {
+        padding-left: var(--gap-4);
+      }
+    }
+
+    &__primaryFilterSearch {
+      flex-basis: 30%;
+      margin: var(--gap-1) 0 var(--gap-2);
+    }
+
+    &__primaryFilterTree {
+      flex-basis: 60%;
+      margin: auto 0;
+
+      .tw-selectTree__label {
+        padding-left: 0;
+      }
+    }
+
+    &__top {
+      &_bar {
+        margin-bottom: var(--gap-1);
+        margin-top: 0;
+
+        .tw-selectionBasket {
+          order: 1;
+        }
+
+        .tw-selectionBasket--wide {
+          order: 0;
+        }
+      }
+    }
+  }
+
+  .tw-basketlist--modal.tw-basketlist {
+    .tw-actionList {
+      @include make-xs-column(12, 0);
+      @include make-sm-column(12, 0);
+      @include make-md-column(12, 0);
+    }
+
+    &__primaryFilterSearch {
+      flex-basis: 100%;
+    }
+  }
+}
+
+@media (min-width: $tui-screen-md) {
+  .tw-basketlist {
+    &__primaryFilterTree {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+  }
+}
+
+@media (min-width: $tui-screen-xl) {
+  .tw-basketlist {
+    &__body {
+      &_filters {
+        width: percentage((2 / 12));
+      }
+
+      .tw-actionList {
+        padding-left: var(--gap-6);
+        width: percentage((10 / 12));
+      }
+    }
+  }
+}

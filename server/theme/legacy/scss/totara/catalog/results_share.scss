@@ -1,0 +1,163 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+// Breakpoint
+$catalogResultsShare-screen_xsm_min: 500px !default;
+
+.tw-catalogResultsShare {
+  margin: auto 0 auto auto;
+  position: relative;
+
+  &__btn {
+    border: 1px solid;
+    @include bs-btn-default();
+    font-size: var(--font-size-13);
+    padding: var(--gap-2);
+    white-space: nowrap;
+
+    .flex-icon {
+      position: relative;
+      top: -1px;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      outline: 0;
+      text-decoration: none;
+    }
+  }
+
+  &__arrow {
+    bottom: 4.6rem;
+    display: none;
+    z-index: 3;
+    position: relative;
+
+    &::before,
+    &::after {
+      border: solid transparent;
+      bottom: 100%;
+      content: '';
+      height: 0;
+      left: 50%;
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      width: 0;
+    }
+
+    &::before {
+      border-top-color: var(--catalog-share-border-color);
+      border-width: calc(var(--gap-4) + 0.1rem);
+      margin-left: calc((var(--gap-4) + 0.1rem) * -1);
+    }
+
+    &::after {
+      border-top-color: var(--catalog-share-bg-color);
+      border-width: var(--gap-4);
+      margin-left: calc(var(--gap-4) * -1);
+    }
+  }
+
+  &__expanded {
+    background: var(--catalog-share-bg-color);
+    bottom: 4.5rem;
+    border: 1px solid var(--catalog-share-border-color);
+    box-shadow: var(--shadow-2);
+    display: none;
+    padding: var(--gap-4);
+    position: absolute;
+    width: 300px;
+    z-index: 2;
+
+    &_title {
+      @include totara-style-heading-x-small();
+      margin-top: 0;
+    }
+
+    &_btn {
+      border: 1px solid;
+      @include bs-btn();
+      @include bs-btn-primary();
+      display: inline-block;
+      font-weight: bold;
+      padding: var(--gap-2) var(--gap-4);
+      text-align: center;
+      width: 100%;
+
+      &:active,
+      &:focus,
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &_close {
+      float: right;
+      padding: var(--gap-2);
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &_desc {
+      @include totara-style-body-small();
+    }
+
+    &_input {
+      margin: var(--gap-1) 0;
+      width: 100%;
+    }
+  }
+
+  .tw-catalog__activePopover &__arrow,
+  .tw-catalog__activePopover &__expanded {
+    display: block;
+  }
+}
+
+@media (min-width: $catalogResultsShare-screen_xsm_min) {
+  .tw-catalogResultsShare {
+    /*rtl:ignore*/
+    margin-right: var(--gap-1);
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tw-catalogResultsShare {
+    margin: auto 0;
+  }
+}
+
+.tw-catalogResultsShare__expanded {
+  left: auto;
+  right: 0;
+}
+
+@media (min-width: $screen_sm_min) {
+  .tw-catalogResultsShare__expanded {
+      left: 0;
+      right: auto;
+  }
+}

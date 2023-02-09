@@ -1,0 +1,42 @@
+mutation core_update_theme_settings(
+  $theme: param_component!
+  $tenant_id: core_id
+  $categories: [core_theme_category_input!]!
+  $files: [core_theme_file_input!]!
+) {
+  core_update_theme_settings(
+    theme: $theme
+    tenant_id: $tenant_id
+    categories: $categories
+    files: $files
+  ) {
+    categories {
+      name
+      properties {
+        name
+        type
+        value
+      }
+    }
+    flavours {
+      engage
+      learn
+      perform
+    }
+    files {
+      ui_key
+      type {
+        category
+        valid_extensions
+      }
+      default_url
+      current_url
+      file_area {
+        repository_id
+        draft_id
+        url
+      }
+    }
+    context_id
+  }
+}

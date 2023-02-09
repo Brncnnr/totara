@@ -1,0 +1,8 @@
+{
+  "component": "totara_engage",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_topic", 
+    "totara_reaction"
+  ]
+}

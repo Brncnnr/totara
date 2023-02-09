@@ -1,0 +1,6 @@
+This files describes API changes in /admin/tool/customlang/*,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+
+* Updated functions \tool_customlang_utils::save_filter() and \tool_customlang_utils::load_filter() to use json_encode/json_decode over seralize/unserialize.

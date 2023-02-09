@@ -1,0 +1,5 @@
+# Ignore build files, at release time this gets commented out and build files get commit for the tagged release.
+# /component/*/build
+
+# Webpack aliases file used to help PHPStorm: npm run generate-config
+/tooling/generated/webpack_aliases.js

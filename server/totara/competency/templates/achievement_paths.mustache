@@ -1,0 +1,136 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2018 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Riana Rossouw <riana.rossouw@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+
+    @template totara_competency/achievement_paths
+
+    This template generates the output for editing achievement paths
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-editAchievementPaths-pendingBulkCopyId: int, pending copy pathway operation id for this competency (0 => no pending operation)
+    * data-tw-editAchievementPaths-competency: int, Competency ID
+    * data-tw-editAchievementPaths-singleUse: int, Single use
+    * data-tw-editAchievementPaths-back-url: URL to go to when cancelling
+    * data-tw-editAchievementPaths-add-pathway: Add pathway select
+    * data-tw-editAchievementPaths-on-ordering: Change node on ordering (drag&drop) activation
+    * data-tw-editAchievementPaths-path-template: Template to call on adding pathway
+    * data-tw-editAchievementPaths-aggregation: Aggregation node target
+    * data-tw-editAchievementPaths-aggregation-change: Aggregation select node
+    * data-tw-editAchievementPaths-aggregation-actions: Aggragration action buttons target
+    * data-tw-editAchievementPaths-aggregation-action: Individual aggragration action button
+    * data-tw-editAchievementPaths-empty: No pathways display node
+    * data-tw-editAchievementPaths-action: Page action button
+
+    Context variables required for this template:
+    * pending_bulk_copy_id
+    * competency_id
+    * backurl
+    * pathway_types
+    * pathway_types -> templatename
+    * aggregation_types
+    * aggregation_types -> selected
+    * aggregation_types -> title
+
+}}
+
+<div class="tw-editAchievementPaths"
+    data-tw-editAchievementPaths-pendingBulkCopyId="{{pending_bulk_copy_id}}"
+    data-tw-editAchievementPaths-competency="{{competency_id}}"
+    data-tw-editAchievementPaths-criteria-singleUse="{{singleuse}}"
+    data-tw-editAchievementPaths-back-url="{{backurl}}"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/achievement_paths"
+    data-tw-loader-target="">
+
+    <div class="tw-editAchievementPaths__heading">
+        <h3 class="tw-editAchievementPaths__heading-title">
+            {{#str}}achievement_paths, totara_competency{{/str}}
+        </h3>
+
+        <div class="tw-editAchievementPaths__heading-addPath">
+            <select aria-label="{{#str}}achievement_add_pathway, totara_competency{{/str}}" data-tw-editAchievementPaths-add-pathway="" data-tw-editAchievementPaths-on-ordering="disable">
+                <option value="0" selected="selected">
+                    {{#str}}achievement_add_pathway, totara_competency{{/str}}
+                </option>
+                {{#pathway_types}}
+                <option value="{{type}}" data-tw-editachievementpaths-path-type="{{type}}" data-tw-editAchievementPaths-path-template="{{templatename}}"
+                data-tw-editAchievementPaths-path-singleUse="{{singleuse}}">
+                    {{name}}
+                </option>
+                {{/pathway_types}}
+            </select>
+            <span id="add-pathway-sr-only" class="sr-only" aria-live="assertive" role="alert" data-aria-live-extra-text="{{#str}}achievement_add_pathway_sr_only, totara_competency{{/str}}"></span>
+        </div>
+    </div>
+
+    <div class="tw-editAchievementPaths__aggregation tw-editAchievementPaths--hidden" data-tw-editAchievementPaths-aggregation="1">
+        <label class="tw-editAchievementPaths__aggregation-label" for="tw-editAchievementPaths-uid-1">
+            {{#str}}overall_rating_calc, totara_competency{{/str}}
+        </label>
+
+        <select id="tw-editAchievementPaths-uid-1" data-tw-editAchievementPaths-aggregation-change="" data-tw-editAchievementPaths-on-ordering="disable">
+            {{#aggregation_types}}
+            <option value="{{type}}"
+                {{#editfunction}}data-tw-editAchievementPaths-aggregation-function="{{.}}"{{/editfunction}}
+                {{#selected}}selected="selected"{{/selected}}>
+                {{title}}
+            </option>
+            {{/aggregation_types}}
+        </select>
+
+        <div class="tw-editAchievementPaths__aggregation-actions tw-editAchievementPaths__btnGroup tw-editAchievementPaths--hidden"
+        data-tw-editAchievementPaths-aggregation-actions="">
+            <button aria-label="{{#str}}achievement_priority_edit, totara_competency{{/str}}" class="tw-editAchievementPaths__btn tw-editAchievementPaths__btn-active" data-tw-editAchievementPaths-aggregation-action="edit">
+                {{#flex_icon}}edit{{/flex_icon}}
+            </button><button aria-label="{{#str}}achievement_priority_move, totara_competency{{/str}}" class="tw-editAchievementPaths__btn" data-tw-editAchievementPaths-aggregation-action="move">
+                {{#flex_icon}}arrows{{/flex_icon}}
+            </button>
+        </div>
+    </div>
+
+    <div class="tw-editAchievementPaths__empty {{#has_pathways}}tw-editAchievementPaths--hidden{{/has_pathways}}" data-tw-editAchievementPaths-empty="1">
+        {{#flex_icon}}notification-warning{{/flex_icon}} {{#str}}no_paths, totara_competency{{/str}}
+    </div>
+
+    <div class="tw-editAchievementPaths__groups" data-tw-editAchievementPaths-groups="">
+        {{> totara_competency/achievement_paths_group}}
+    </div>
+
+    <div class="tw-editAchievementPaths__buttons">
+        <input type="submit"
+            class="tw-editAchievementPaths__buttons-submit"
+            name="cc_apply_changes_button"
+            value="{{#str}}apply_changes, totara_competency{{/str}}"
+            disabled="disabled"
+            data-tw-editAchievementPaths-action="apply">
+        <input type="submit"
+            class="tw-editAchievementPaths__buttons-cancel"
+            name="cc_cancel_changes_button"
+            value="{{#str}}cancel, totara_competency{{/str}}"
+            data-tw-editAchievementPaths-action="cancel">
+    </div>
+</div>

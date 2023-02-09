@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputNumber Checks snapshot has not changed 1`] = `
+<input-stub
+  ariadescribedby="#ariaDescription"
+  arialabel="aria label"
+  arialabelledby="#ariaLabel"
+  autocomplete="on"
+  autofocus="true"
+  disabled="true"
+  id="inputid"
+  max="100"
+  min="0"
+  name="phoneinput"
+  pattern="[A-Za-z]"
+  placeholder="phone number here"
+  readonly="true"
+  required="true"
+  step="20"
+  styleclass="[object Object]"
+  type="number"
+  value="foo"
+/>
+`;

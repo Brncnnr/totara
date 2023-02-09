@@ -1,0 +1,3 @@
+mutation totara_oauth2_delete_provider($id: core_id!) {
+  result: totara_oauth2_delete_provider(id: $id)
+}

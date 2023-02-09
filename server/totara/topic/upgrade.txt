@@ -1,0 +1,9 @@
+This files describes API changes in /totara/topic/* - plugins,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+* Added new context variable "sesskey" in template report_actions.mustache
+* Added new context variable "delete_url_title" in template report_actions.mustache
+* Added new context variable "update_url_title" in template report_actions.mustache
+* Added new required class for Javascript "tw-reportActions__deleteForm" in template report_actions.mustache

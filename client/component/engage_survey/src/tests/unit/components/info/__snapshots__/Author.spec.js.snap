@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage Author Checks snapshot 1`] = `
+<div
+  class="tui-engageSurveyAuthor"
+>
+  <img
+    alt="Hello"
+    class="tui-avatar tui-avatar--xxsmall"
+    src="http://example.com"
+  />
+   
+  <a
+    class="tui-engageSurveyAuthor__userLink"
+    href="/user/profile.php?[object Object]"
+  >
+    
+    Full name
+  
+  </a>
+</div>
+`;

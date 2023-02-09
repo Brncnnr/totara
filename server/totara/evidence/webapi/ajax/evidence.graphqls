@@ -1,0 +1,103 @@
+"""
+Filters input for the user evidence item adder query.
+"""
+input totara_evidence_user_evidence_item_filters {
+  search: String
+  type_id: core_id
+  ids: [core_id]
+}
+
+"""
+Input for the user evidence items query.
+"""
+input totara_evidence_user_evidence_items_input {
+  filters: totara_evidence_user_evidence_item_filters
+  user_id: core_id
+  result_size: Int
+  cursor: String
+}
+
+"""
+Result for the user evidence items query.
+"""
+type totara_evidence_user_evidence_items_result implements core_pageable_result {
+  items: [totara_evidence_evidence_item!]!
+  total: Int!
+  next_cursor: String!
+}
+
+"""
+Input for the user evidence types query.
+"""
+input totara_evidence_user_evidence_types_input {
+  user_id: core_id
+}
+
+"""
+Result for the user evidence types query.
+"""
+type totara_evidence_user_evidence_types_result {
+  items: [totara_evidence_evidence_type!]!
+}
+
+type totara_evidence_evidence_item_field {
+  label(format: core_format = PLAIN): String!
+  type: String!
+  content: String!
+}
+
+"""
+Represents the evidence item
+"""
+type totara_evidence_evidence_item {
+  """
+  The id of the evidence item
+  """
+  id: core_id!
+  """
+  The name of the evidence item
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  The evidence type that the evidence item associated with
+  """
+  type: totara_evidence_evidence_type!
+  """
+  The date the evidence item was created
+  """
+  created_at(format: core_date_format = DATELONG): core_date!
+  """
+  The custom field data of the evidence item
+  """
+  fields: [totara_evidence_evidence_item_field!]!
+}
+
+"""
+Represents the evidence type
+"""
+type totara_evidence_evidence_type {
+  """
+  The id of the evidence type
+  """
+  id: core_id!
+  """
+  The name of the evidence type
+  """
+  name(format: core_format = PLAIN): String!
+}
+
+extend type Query {
+  """
+  Query to return a paginated set of evidence that belongs to a user
+  """
+  totara_evidence_user_evidence_items(
+    input: totara_evidence_user_evidence_items_input
+  ): totara_evidence_user_evidence_items_result!
+
+  """
+  Loads all evidence types in use by the user
+  """
+  totara_evidence_user_evidence_types(
+    input: totara_evidence_user_evidence_types_input!
+  ): totara_evidence_user_evidence_types_result!
+}

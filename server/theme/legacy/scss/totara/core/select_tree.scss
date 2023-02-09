@@ -1,0 +1,240 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-selectTree {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  padding-right: $selectTree-spacing-small;
+  position: relative;
+
+  &__label {
+    align-items: center;
+    display: flex;
+    margin-right: $selectTree-spacing-small;
+    min-width: 0;
+    overflow: hidden;
+    padding-left: $selectTree-spacing-x-small;
+    vertical-align: top;
+  }
+
+  &__expandable {
+    height: 100%;
+    margin: auto 0;
+    position: relative;
+    max-width: 100%;
+  }
+
+  &__current {
+    border: 1px solid transparent;
+    color: $selectTree-current-text-color;
+    cursor: pointer;
+    display: flex;
+    font-weight: bold;
+    padding: $selectTree-spacing-small;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.6s ease;
+    user-select: none;
+
+    &_label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &_icon {
+      height: 100%;
+      margin: auto auto auto $selectTree-spacing-x-small;
+    }
+
+    &:active,
+    &:focus,
+    &:hover,
+    &.tw-selectTree__active {
+      border-color: $selectTree-current-border-active;
+      color: $selectTree-current-text-color;
+      outline: 0;
+      text-decoration: none;
+    }
+
+    &:focus {
+      border-color: $selectTree-options-border-color-focus;
+    }
+
+    &_showBox {
+      border-color: var(--color-neutral-5);
+    }
+  }
+
+  &__option {
+    background: $selectTree-options-bg-color;
+    border: 1px solid $selectTree-options-border-color;
+    box-shadow: var(--shadow-2);
+    font-size: $selectTree-options-text-size;
+    max-height: 350px;
+    max-width: 300px;
+    min-width: 100px;
+    overflow-y: scroll;
+    position: absolute;
+    z-index: 2;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+
+    &_row {
+      display: flex;
+
+      &_link {
+        flex-grow: 1;
+        min-width: 0;
+        overflow: hidden;
+        padding: $selectTree-spacing-x-small $selectTree-spacing-small
+          $selectTree-spacing-x-small 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-left: $selectTree-spacing-x-small;
+
+        &:focus {
+          outline: 0;
+        }
+
+        &:hover {
+          background-color: $selectTree-options-bg-color-hover;
+          text-decoration: none;
+        }
+      }
+
+      &_icon {
+        flex-shrink: 0;
+        margin-right: $selectTree-spacing-x-small;
+        padding: $selectTree-spacing-x-small 0;
+
+        &:active,
+        &:focus,
+        &:hover {
+          outline: 0;
+          text-decoration: none;
+        }
+        @include prepend-current(a) {
+          &:hover {
+            background-color: $selectTree-options-bg-color-hover;
+          }
+        }
+
+        &_expand,
+        &_expanded,
+        &_none {
+          display: block;
+          width: 2rem;
+        }
+      }
+
+      &.tw-selectTree__active {
+        background: $selectTree-options-bg-color-active;
+      }
+
+      &.tw-selectTree__active > &_link {
+        color: $selectTree-options-text-color-active;
+        cursor: default;
+        font-weight: bold;
+        padding-left: $selectTree-spacing-x-small;
+
+        &:active,
+        &:focus,
+        &:hover {
+          text-decoration: none;
+          background-color: inherit;
+        }
+      }
+    }
+
+    &_flat .tw-selectTree__active .tw-selectTree__list_row_link {
+      padding: $selectTree-spacing-small;
+    }
+
+    &_flat &_row {
+      &_link {
+        padding: $selectTree-spacing-small;
+      }
+
+      &_icon {
+        display: none;
+      }
+    }
+  }
+
+  &__hidden {
+    display: none;
+  }
+}
+
+.tw-selectTree__keyboard {
+  .tw-selectTree__list {
+    &_row_icon:focus {
+      .tw-selectTree__list_row_icon_expand,
+      .tw-selectTree__list_row_icon_expanded {
+        outline: 1px dashed $selectTree-options-border-color-focus;
+      }
+    }
+    &_row_link:focus {
+      outline: 1px dashed $selectTree-options-border-color-focus;
+    }
+  }
+}
+
+.tw-selectTree__list {
+  .tw-selectTree__list_row_icon {
+    margin-left: 1rem;
+  }
+  .tw-selectTree__list {
+    .tw-selectTree__list_row_icon {
+      margin-left: 3rem;
+    }
+    .tw-selectTree__list {
+      .tw-selectTree__list_row_icon {
+        margin-left: 5rem;
+      }
+      .tw-selectTree__list {
+        .tw-selectTree__list_row_icon {
+          margin-left: 7rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $totara-style-screen-sm-min) {
+  .tw-selectTree {
+    &__label {
+      padding-left: $selectTree-spacing-small;
+      white-space: nowrap;
+    }
+
+    &__reposition {
+      right: 0;
+    }
+  }
+}

@@ -1,0 +1,154 @@
+"""
+Manual relationship and it's associated calculated relationship for an activity.
+"""
+type mod_perform_manual_relationship {
+  """
+  Activity where manual selection of participants is taking place
+  """
+  activity: mod_perform_activity!
+  """
+  Represents the relationship that requires selection of participants (for example Peer)
+  """
+  manual_relationship: totara_core_relationship!
+  """
+  Represents the relationship that is being asked to select the participants for this particular relationship in this activity
+  """
+  selector_relationship: totara_core_relationship!
+}
+
+"""
+Individual subject instance that can have the participants specified by the user for a particular activity.
+"""
+type mod_perform_manual_participant_selection_instance {
+  """
+  The subject instance where manual participant selection is occurring
+  """
+  subject_instance: mod_perform_subject_instance!
+  """
+  List of relationships that require manual participant selection for this specific subject instance
+  """
+  manual_relationships: [totara_core_relationship!]!
+}
+
+extend type Query {
+  """
+  Returns all relationships between users that can be used for performance activities.
+  """
+  mod_perform_relationships(activity_id: core_id!): [totara_core_relationship!]!
+
+  """
+  Returns all responding relationships involved in a subject instance.
+  """
+  mod_perform_responding_relationships_involved_in_subject_instance(
+    subject_instance_id: core_id!
+  ): [totara_core_relationship!]!
+
+  """
+  Get the relationship options for manual relationships to be set at an activity level by an admin.
+  """
+  mod_perform_manual_relationship_selector_options(
+    activity_id: core_id!
+  ): [totara_core_relationship!]!
+
+  """
+  Get the activity instances and their manual relationships that the current user can set the participants for.
+  """
+  mod_perform_manual_participant_selection_instances: [mod_perform_manual_participant_selection_instance]!
+}
+
+"""
+Input for selecting which relationship should nominate the participating users.
+"""
+input mod_perform_activity_manual_relationship_selection_input {
+  """
+  Relationship which requires selection of participants
+  """
+  manual_relationship_id: core_id!
+  """
+  Relationship which will be doing the selecting for the relationship
+  """
+  selector_relationship_id: core_id!
+}
+
+"""
+Input for selecting users linked to the manual relationship.
+"""
+input mod_perform_set_manual_participants_input {
+  """
+  Relationship which requires selection of participants
+  """
+  manual_relationship_id: core_id!
+  """
+  List of users who have been identified to participate
+  """
+  users: [mod_perform_manual_participant_user_input!]
+}
+
+"""
+Input for a user (either internal or external)
+Internal means system user with a record in the user table.
+External means a non-system user with a record in the perform_participant_external table
+"""
+input mod_perform_manual_participant_user_input {
+  """
+  ID of an internal user. Do not provide for external users.
+  """
+  user_id: core_id
+  """
+  Name of an external user. Do not provide for internal users, give user_id instead.
+  """
+  name: String
+  """
+  Email address of an external user. Do not provide for internal users, give user_id instead.
+  """
+  email: String
+}
+
+"""
+Input for setting user roles to select manual relationships.
+"""
+input mod_perform_manual_relationship_selector_roles {
+  """
+  Parent activity id.
+  """
+  activity_id: core_id!
+  """
+  Selector roles.
+  """
+  roles: [mod_perform_activity_manual_relationship_selection_input!]
+}
+
+"""
+Generic return type for manual relationship mutations.
+Can be replaced in mutations.
+"""
+type mod_perform_update_relationship_result {
+  activity: mod_perform_activity!
+}
+
+"""
+Set participant users return type.
+"""
+type mod_perform_set_manual_participants_result {
+  """
+  True if the manual participants were successfully set
+  """
+  success: Boolean!
+}
+
+extend type Mutation {
+  """
+  Set the participant users for the manual relationships of a subject instance.
+  """
+  mod_perform_set_manual_participants(
+    subject_instance_id: core_id!
+    participants: [mod_perform_set_manual_participants_input!]!
+  ): mod_perform_set_manual_participants_result!
+
+  """
+  Set the allowed roles who can select manual relationships.
+  """
+  mod_perform_set_manual_relationship_selector_roles(
+    input: mod_perform_manual_relationship_selector_roles!
+  ): mod_perform_set_manual_participants_result!
+}

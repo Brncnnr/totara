@@ -1,0 +1,12 @@
+type core_link {
+  title(format: core_format!): String
+  description(format: core_format!): String
+  url: String
+  image: String
+  videoheight: Int
+  videowidth: Int
+}
+
+extend type Query {
+  core_get_linkmetadata(url: param_url!): core_link
+}

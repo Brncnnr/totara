@@ -1,0 +1,319 @@
+type totara_notification_notification_preference {
+  """
+  Id cannot be null here, because Apollo is specifically using this field along side
+  with the field __typename to cache the record.
+  The field 'id' here will prefer to the table's id. If you want to know whether the record
+  is existing at the specific context that is provided, then please use the field 'context_identifier'
+  """
+  id: Int!
+  title: String!
+  """
+  Whether the field 'additional_criteria' is overridden
+  """
+  overridden_additional_criteria: Boolean!
+  """
+  The additional resolver-specific criteria, json encoded, configured for the notification.
+  """
+  additional_criteria: String
+  subject(format: core_format = RAW): String!
+  subject_format: Int!
+  body(format: core_format = RAW): String!
+  body_format: Int!
+  """
+  Whether the field 'body' is overridden
+  """
+  overridden_body: Boolean!
+  """
+  Whether the field 'subject' is overridden
+  """
+  overridden_subject: Boolean!
+  """
+  Whether the field 'recipient' is overridden
+  """
+  overridden_recipient: Boolean!
+  """
+  The event resolver.
+  """
+  resolver: totara_notification_event_resolver!
+  """
+  Human readable event resolver's name.
+  """
+  resolver_name: String!
+  """
+  The class name of notifiable event resolver which this notification is created for.
+  """
+  resolver_class_name: String!
+  """
+  The ancestor of this very notification's preference.
+  If the value of this field is null, meaning that the notification is sitting
+  at the top level of the system.
+  """
+  ancestor_id: Int
+  """
+  The comment that this notification is sitting in. Mainly it will be
+  computed from the notifiable event that the notification is for.
+  """
+  resolver_component: String!
+  """
+  The plugin name that the resolver uses. Can be different from the component.
+  """
+  resolver_plugin_name: String!
+  """
+  Whether this notification preference is a custom notification or not.
+  """
+  is_custom: Boolean!
+  """
+  Whether this notification preference has a parent or not.
+  NULL if this notification preference does not have a parent within
+  the system. Otherwise its own parent's id, or its ancestor's id.
+  """
+  parent_id: Int
+  """
+  An attribute that holds the content value fields of its own parent.
+  """
+  parent_value: totara_notification_notification_preference_value
+  """
+  Number of days before/after/on the event the schedule should be adjusted for.
+  Always a positive number, meaning is derived from the schedule_type field.
+  """
+  schedule_offset(unit: totara_notification_schedule_offset_unit!): Int!
+  """
+  The type of schedule that's in play.
+  """
+  schedule_type: totara_notification_schedule_type!
+  """
+  Whether the fields 'schedule_offset' or 'schedule_type' are overridden.
+  These fields work in a pair so either both are overridden or neither are.
+  """
+  overridden_schedule: Boolean!
+  """
+  Human readable label of the active schedule_type.
+  """
+  schedule_label: String
+  """
+  The recipient details of the notification.
+  """
+  recipient: totara_notification_recipient!
+    @deprecated(reason: "Use `recipients` instead")
+  """
+  The extended context of the notification.
+  """
+  extended_context: totara_notification_extended_context!
+  """
+  The enabled status of the notification.
+  """
+  enabled: Boolean
+  """
+  Whether the field 'enabled' is overridden
+  """
+  overridden_enabled: Boolean!
+  """
+  The list of delivery channels that are forced for this notification preference.
+  For now we are using identifier of the channel.
+  """
+  forced_delivery_channels: [String!]!
+  """
+  Whether the field forced_delivery_channels are overridden or not.
+  """
+  overridden_forced_delivery_channels: Boolean!
+  """
+  The recipients details of the notification.
+  """
+  recipients: [totara_notification_recipient!]!
+}
+
+"""
+A type to hold the result of data validation.
+"""
+type totara_notification_notification_preference_validation_result {
+  field_name: String!
+  error_message: String!
+}
+
+"""
+A type to hold extended context.
+"""
+type totara_notification_extended_context {
+  """
+  The context ID of the notification.
+  """
+  context_id: Int!
+  """
+  In a non-natural context, the component to which the context relates
+  """
+  component: String!
+  """
+  The area of component
+  """
+  area: String!
+  """
+  The item id of the instance within area of component.
+  """
+  item_id: Int!
+}
+
+"""
+An input type to pass down the extended context which can be reused in queries or mutations.
+"""
+input totara_notification_extended_context_input {
+  """
+  The context ID of the notification. Which it SHOULD always required.
+  However, if it is left empty, system is falling back to the context system.
+  """
+  context_id: param_integer
+  """
+  In a non-natural context, the component to which the context relates
+  """
+  component: param_component
+  """
+  The area of component
+  """
+  area: param_area
+  """
+  The item id of the instance within area of component.
+  """
+  item_id: param_integer
+}
+
+"""
+A compact type to only store the content field's values.
+For simplicity, no ID's will be included.
+
+The purpose of this type is to allow notification_preference to have its
+parent's content value fields in one place for quick reference.
+"""
+type totara_notification_notification_preference_value {
+  body(format: core_format = RAW): String!
+  body_format: Int!
+  subject(format: core_format = RAW): String!
+  subject_format: Int!
+  title: String!
+  additional_criteria: String
+  schedule_offset(unit: totara_notification_schedule_offset_unit!): Int!
+  schedule_type: totara_notification_schedule_type!
+  recipient: totara_notification_recipient!
+    @deprecated(reason: "Use `recipients` instead")
+  enabled: Boolean
+  forced_delivery_channels: [String!]!
+  recipients: [totara_notification_recipient!]!
+}
+
+extend type Mutation {
+  totara_notification_create_notification_preference(
+    """
+    The event resolver's name that this notification preference is
+    set for MUST be provided.
+    """
+    resolver_class_name: param_text!
+    """
+    Extended context MUST be provided, in order to create the notification preference
+    within that context. Note that the context's id for this extended_context can be fallback
+    to the context system if none is provided.
+    """
+    extended_context: totara_notification_extended_context_input!
+    """
+    If ancestor_id is provided, then we would know that this notification preference
+    is overriding one of the notification preference at under context.
+    """
+    ancestor_id: param_integer
+    title: String
+    additional_criteria: String
+    body: String
+    body_format: param_integer
+    subject: String
+    schedule_offset: param_integer
+    schedule_type: param_text
+    subject_format: param_integer
+    enabled: param_boolean
+    """
+    The class_name of recipient for the custom notification. Able to be set to null, ONLY if this very notification preference can fallback to the parent, or the system built in notification that has a default value.
+    """
+    recipient: param_text
+    """
+    An array of delivery channel's identifier names. It is optional to be provided.
+    """
+    forced_delivery_channels: [param_text!]
+  ): totara_notification_notification_preference!
+
+  """
+  Mutation to update the notification preference, by the 'id' field.
+  """
+  totara_notification_update_notification_preference(
+    id: param_integer!
+    """
+    Note that these fields bellow are able to set to null.
+    Only if this very notification preference can fallback to the parent, or
+    the system built in notification that has default values.
+    """
+    body: String
+    body_format: param_integer
+    title: String
+    additional_criteria: String
+    subject: String
+    schedule_offset: param_integer
+    schedule_type: param_text
+    subject_format: param_integer
+    recipient: param_text
+    enabled: param_boolean
+    forced_delivery_channels: [param_text!]
+  ): totara_notification_notification_preference!
+
+  """
+  This mutation is about validating the input data from
+  the client side when user is trying to create a new custom notification.
+  Even though it is under mutation, but it will not cause any state change in the system.
+  """
+  totara_notification_validate_notification_preference_input(
+    """
+    We use String because we want to validate all sort of data, before any
+    param_{what_ever} stripped out the value.
+
+    This apply for the other fields of this mutation.
+    """
+    title: String!
+    body: String!
+    subject: String!
+    schedule_type: String!
+    schedule_offset: Int!
+    enabled: Boolean
+  ): [totara_notification_notification_preference_validation_result]!
+
+  """
+  Mutation to delete the notification preference, by the 'id' field.
+  """
+  totara_notification_delete_notification_preference(
+    id: param_integer!
+  ): Boolean!
+}
+
+extend type Query {
+  """
+  A query to get the notification preference by id
+  """
+  totara_notification_notification_preference(
+    id: param_integer!
+  ): totara_notification_notification_preference!
+
+  """
+  A query to fetch all the notification preferences under specific context which
+  can be listening to the notifiable event (if provided).
+  """
+  totara_notification_notification_preferences(
+    """
+    Extended context MUST be provided, in order to create the notification preference
+    within that context. Note that the context's id for this extended_context can be fallback
+    to the context system if none is provided.
+    """
+    extended_context: totara_notification_extended_context_input!
+    """
+    If this parameter is provided, we are fetching only the notification preferences that are listening to
+    this event only.
+    """
+    resolver_class_name: param_text
+    """
+    Whether we want the list of notification preferences at the specific context only,
+    or the list that is a mix of overridden and non-overridden (higher context).
+    """
+    at_context_only: param_boolean!
+  ): [totara_notification_notification_preference!]!
+}

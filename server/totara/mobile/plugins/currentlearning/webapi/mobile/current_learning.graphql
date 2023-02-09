@@ -1,0 +1,18 @@
+query totara_mobile_current_learning {
+  currentLearning: mobile_currentlearning_items {
+    id
+    itemtype
+    itemcomponent
+    shortname
+    fullname
+    summary: description(format: MOBILE)
+    summaryFormat: description_format
+    progress
+    urlView: url_view
+    duedate(format: ISO8601)
+    duedateState: duedate_state
+    native: mobile_coursecompat
+    imageSrc: mobile_image
+    __typename
+  }
+}

@@ -1,0 +1,5 @@
+mutation mod_approval_application_delete(
+  $input: mod_approval_application_input!
+) {
+  mod_approval_application_delete(input: $input)
+}

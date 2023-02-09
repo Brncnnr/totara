@@ -1,0 +1,9 @@
+mutation totara_engage_share_with_recipient(
+  $items: [totara_engage_share_item!]!
+  $recipient: totara_engage_recipient_in!
+) {
+  shared: totara_engage_share_with_recipient(
+    items: $items
+    recipient: $recipient
+  )
+}

@@ -1,0 +1,16 @@
+This file describes API changes in core theme libraries and APIs,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+* Deprecated function \core\theme\settings::clean_properties to allow raw input and output for theme settings
+
+=== 14.0 ===
+
+* Added optional second parameter (bool $include_default_file_categories) to function core\theme\settings::get_categories
+  to specify if default file categories should be included in the output.
+* Deprecated optional second parameter "$theme" in theme_file::__constructor.
+* Added optional parameter to core\theme\file\theme_file::get_context to indicate if we need to check if tenant settings
+  are enabled before resolving context.
+* Added optional second parameter to core\theme\file\theme_file::get_default_context to indicate if we need to check if
+  tenant settings are enabled before resolving context.
+* Added caching for core\theme\settings categories to improve performance.

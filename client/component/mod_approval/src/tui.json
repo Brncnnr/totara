@@ -1,0 +1,11 @@
+{
+  "component": "mod_approval",
+  "vendor": "totara",
+  "dependencies": [
+    "tui_xstate",
+    "totara_engage",
+    "totara_comment",
+    "totara_notification",
+    "editor_weka"
+  ]
+}

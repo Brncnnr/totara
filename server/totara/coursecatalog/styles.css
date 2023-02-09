@@ -1,0 +1,15 @@
+#catalogcourses,
+#catalogprograms,
+#catalogcertifications {
+    min-width: 80%;
+}
+
+#catalogcourses .toolbar-right-table .singlebutton {
+    display: inline-block;
+}
+
+#catalogcourses .rb-expand-cell .mform,
+#catalogprograms .rb-expand-cell .mform,
+#catalogcertifications .rb-expand-cell .mform {
+    overflow: hidden;
+}

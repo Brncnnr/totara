@@ -1,0 +1,19 @@
+query totara_competency_scales($id: [core_id!], $competency_id: [core_id!]) {
+  totara_competency_scales(id: $id, competency_id: $competency_id) {
+    id
+    name
+    description
+    defaultid
+
+    values {
+      id
+      name
+      idnumber
+      description
+      scaleid
+      numericscore
+      sortorder
+      proficient
+    }
+  }
+}

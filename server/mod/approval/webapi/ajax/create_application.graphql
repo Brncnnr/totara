@@ -1,0 +1,7 @@
+mutation mod_approval_create_application(
+  $input: mod_approval_create_application_input!
+) {
+  mod_approval_create_application(input: $input) {
+    application_id
+  }
+}

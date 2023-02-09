@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage AccessForm Checks snapshot for private access 1`] = `
+<form-stub
+  articlename="private access"
+  autocomplete="off"
+  class="tui-engageAccessForm"
+  inputwidth="full"
+  vertical="true"
+>
+  <div
+    class="tui-engageAccessForm__options tui-engageAccessForm__access--withoutTagLists"
+  >
+    <formrow-stub
+      isstacked="true"
+      label="whocansee, totara_engage"
+    />
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <!---->
+   
+  <div
+    class="tui-engageAccessForm__buttons"
+  >
+    <buttongroup-stub>
+      <button-stub
+        class="tui-engageAccessForm__back"
+        style="display: none;"
+        styleclass="[object Object]"
+        text="back, core"
+        type="button"
+      />
+    </buttongroup-stub>
+     
+    <buttongroup-stub>
+      <loadingbutton-stub
+        arialabel=""
+        primary="true"
+        text="done, totara_engage"
+        type="button"
+      />
+       
+      <cancelbutton-stub />
+    </buttongroup-stub>
+  </div>
+</form-stub>
+`;
+
+exports[`Engage AccessForm Checks snapshot for public access 1`] = `
+<form-stub
+  articlename="public access"
+  autocomplete="off"
+  class="tui-engageAccessForm"
+  inputwidth="full"
+  vertical="true"
+>
+  <div
+    class="tui-engageAccessForm__options tui-engageAccessForm__access--withTagLists"
+  >
+    <formrow-stub
+      isstacked="true"
+      label="whocansee, totara_engage"
+    />
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <div
+    class="tui-engageAccessForm__tagLists"
+  >
+    <topicsselector-stub
+      class="tui-engageAccessForm__tagList"
+      selectedtopics=""
+    />
+     
+    <!---->
+  </div>
+   
+  <div
+    class="tui-engageAccessForm__buttons"
+  >
+    <buttongroup-stub>
+      <button-stub
+        class="tui-engageAccessForm__back"
+        style="display: none;"
+        styleclass="[object Object]"
+        text="back, core"
+        type="button"
+      />
+    </buttongroup-stub>
+     
+    <buttongroup-stub>
+      <loadingbutton-stub
+        arialabel=""
+        disabled="true"
+        primary="true"
+        text="done, totara_engage"
+        type="button"
+      />
+       
+      <cancelbutton-stub />
+    </buttongroup-stub>
+  </div>
+</form-stub>
+`;
+
+exports[`Engage AccessForm Checks snapshot for restricted access 1`] = `
+<form-stub
+  articlename="restricted access"
+  autocomplete="off"
+  class="tui-engageAccessForm"
+  inputwidth="full"
+  vertical="true"
+>
+  <div
+    class="tui-engageAccessForm__options tui-engageAccessForm__access--withTagLists"
+  >
+    <formrow-stub
+      isstacked="true"
+      label="whocansee, totara_engage"
+    />
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <div
+    class="tui-engageAccessForm__tagLists"
+  >
+    <!---->
+     
+    <!---->
+  </div>
+   
+  <div
+    class="tui-engageAccessForm__buttons"
+  >
+    <buttongroup-stub>
+      <button-stub
+        class="tui-engageAccessForm__back"
+        style="display: none;"
+        styleclass="[object Object]"
+        text="back, core"
+        type="button"
+      />
+    </buttongroup-stub>
+     
+    <buttongroup-stub>
+      <loadingbutton-stub
+        arialabel=""
+        disabled="true"
+        primary="true"
+        text="done, totara_engage"
+        type="button"
+      />
+       
+      <cancelbutton-stub />
+    </buttongroup-stub>
+  </div>
+</form-stub>
+`;

@@ -1,0 +1,147 @@
+This file describes API changes in /client/component/mod_perform,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+* Replaced the SidePanelNav component in ActivityContent.vue with ProgressTrackerNav
+    * Template changes
+* Added states, description and availability_string data to the sections in ActivityContent.vue and added a heading to the side panel
+    * Template, JS and SCSS changes
+* Updated LayoutOneColumnSidePanelActivities to align with design for new ProgressTrackerNav on multisection activities
+    * Template, JS and SCSS changes
+* Replaced the reporting element response action components with the standardised component RowActions.vue
+    * The following components are now deprecated
+        * ElementActions.vue, ExportRowAction.vue, SubjectInstanceActions.vue, SubjectUserActions.vue
+* Updated ExportActionCard.vue to support additional download formats selectable from a dropdown
+    * Template, JS and SCSS changes
+* Moved mod_perform/src/js/redirect.js to tui/src/js/dom/form.js, any existing reference will need their paths updated
+  In components replace 'mod_perform/redirect' with 'tui/dom/form
+    * JS changes
+* Updated Activities.vue moving the print button from the expanded table view into the table content
+    * Template and JS changes
+* Moved the expandable row content from Activities.vue into a modal and move the logic into it's own component SectionsModal.vue
+    * Template, JS and SCSS changes
+* Updated the UI of the Activities.vue datatable and moved it content into its own component ActivitiesTableItem.vue 
+    * Template, JS and SCSS changes
+
+=== 16.0 ===
+* Extended the performance activity manage participant view Actions.vue to allow deletion of subject and participant instances
+    * Template, JS changes
+* Updated ActivityActions.vue to display warnings returned by GraphQL query mod_perform_activity_deletion_validation
+  for the deletion confirmation modal.
+* Updated the manage activity assignments tab, splitting the assignments based on type (Audience, Org, Pos)
+    * Template, JS & SCSS changes
+* Extended the manage activity assignments tab to support individuals and refactored AssignmentsTab.vue to reduce duplicated code between different group types
+    * Template, JS changes
+* Updated ActivitiesPriorityCard
+    * SCSS changes
+    * Deprecated function truncateString
+* Updated UserActivities.vue & Activities.vue to retain the current filter states in the URL
+    * Template, JS changes
+* The manual participant selector role section (originally in the GeneralInfoTab.vue) has been put in its own component
+  (ParticipantSelection.vue) and moved to the assignments tab (AssignmentsTab.vue).
+* Moved the performance activity schedule settings & it's supporting methods from AssignmentsTab.vue to a new component called InstanceCreationTab.vue
+    * Template & JS changes
+* Amended content spacing on the manage performance activities tabs
+    * Template & SCSS changes
+* Added success notification toasts for all toggle mutations on NotificationsTab.vue
+    * JS changes
+* Moved the actions buttons in Actions.vue into a dropdown
+    * Template changes
+* Added information notification on ActivitySection.vue when trying to view section elements without responding participants
+    * Template & JS changes
+* Removed AssignmentScheduleAdditionalSettings.vue replacing it with AssignmentScheduleJobAssignment.vue which provides a new UI
+  for Job assignment-based instances. This new component has been included in Schedule.vue
+    * Template, JS & SCSS changes
+* Reworked AssignmentScheduleDueDate.vue to update the UI and to be more self contained. The component now controls it's own enable/disable state
+  and error validations which were previously in Schedule.vue and AssignmentScheduleToggles.vue
+* Updated AssignmentScheduleFrequencySettings.vue with a new UI to support different trigger types when setting the frequency schedule
+    * Template, JS & SCSS changes
+* Updated the UI of ManualParticipantsSelectionBanner.vue and change the spacing in UserActivities.vue
+    * Template & SCSS changes
+* Deprecated these in constants.js; replaced by the SCHEDULE_REPEATING_TRIGGER constants
+    * SCHEDULE_REPEATING_TYPE_AFTER_CREATION
+    * SCHEDULE_REPEATING_TYPE_AFTER_CREATION_WHEN_COMPLETE
+    * SCHEDULE_REPEATING_TYPE_AFTER_COMPLETION
+* Reworked Schedule.vue:
+    * The returned repeating_type value from the graphql is no longer used; instead the code works with the new repeating_trigger_type
+      and repeating_trigger_interval values.
+
+=== 15.0 ===
+* Heavily reworked the structure of Activities.vue page
+    * Table heading language strings have been modified
+    * The datatable structure and content has been changed.
+    * Existing filters have been modified and additional ones have been added
+    * Show more pagination has been replaced with the paging component
+    * SCSS changes to existing classes
+    * Users roles have been separated out into their own tabs and activities with multiple roles are now treated independently based on the tab they appear in.
+
+=== 14.0 ===
+* Updated the template structure of ActivityContentPrint.vue to add new icons, add new pieces of information, and improve element spacing and font sizes
+    * Template, SCSS & lang string changes
+* Updated Activities.vue page for filtering and pagination.
+    * Template
+* HtmlResponseDisplay.vue now supports rendering Weka HTML responses
+* Updated Activities.vue page for filtering and pagination.
+    * Template
+* HtmlResponseDisplay.vue now supports rendering Weka HTML responses
+* Added new property validation-mode to PerformAdminCustomElementEdit.vue.
+* Added DeletionValidationModal to following pages
+    * ActivityActions.vue
+    * ActivitySection.vue
+    * SectionContent.vue
+* For participant view, the sub-plugin elements now handle switching components for different states instead of this
+  being controlled by ActivityContent.vue & ActivityContentPrint.vue
+* Added a new component ElementParticipantResponseHeader.vue for display participant element titles removing previously duplicated implementations
+* Removed ElementParticipantForm.vue, this is now controlled by the sub-plugins and has been replaced with ElementParticipantFormContent.vue
+* HtmlResponseDisplay.vue data prop is now an Array instead of a string
+* ResponseDisplay.vue responseLines prop has been renamed to 'data' for consistency
+* QuestionElementPreviewModal.vue has switched to using the admin preview components instead of the participant form components
+* The SectionContent.vue filters available elements that can be added at the top level by the element plugin's element_usage.can_be_top_level_element property.
+
+=== 13.2 ===
+* Reworked several components to centralise common functionality improving consistency and reducing duplication
+    * Added a new wrapper component for all custom elements
+        * PerformAdminCustomElement.vue
+    * Added a new wrapper component for edit forms of custom elements
+        * PerformAdminCustomElementEdit.vue
+    * Removed the following
+        * ElementAdminDisplay.vue
+        * ElementAdminForm.vue
+        * admin_form/ActionButtons.vue
+        * admin_form/AdminFormMixin.js
+    * Replaced the following
+        * ElementAdminReadOnlyDisplay.vue with PerformAdminCustomElementSummary.vue
+    * Updated the template structure of ActivityContent.vue and ActivityContentPrint.vue to drive view only responses off new generic
+      view only response components (ResponseDisplay.vue and HtmlResponseDisplay.vue), removed unused css classes. Also refactored
+      the existing layout approach and standardised the page margins with other Tui pages.
+        * Template & SCSS changes
+    * Updated the template structure of ActivityContentPrint.vue to add new icons, add new pieces of information, and improve element spacing and font sizes
+        * Template, SCSS changes & lang string changes
+* Deprecated the method createNotificationIfNotExists() from NotificationsTab.vue as notifications now always exist.
+  See server/mod/perform/upgrade.txt for more detail.
+* Updated manageActivity.vue page to be using a core layout
+    * Template & SCSS changes
+* Updated UserActivitiesSelectParticipants.vue page to be using a core layout
+    * Template & SCSS changes
+* Updated template structure of GeneralInfoTab.vue component to be more consistent with theme
+    * Template, SCSS & lang string changes
+* Updated template structure of WorkflowSettings.vue component to address alignment issues
+    * Template, SCSS changes
+* Updated SCSS of NotificationsTab.vue to address alignment issues
+    * SCSS changes
+* Update template structure of ActivityContentPrint.vue including updating class names to be more consistent with conventions
+    * Template, SCSS changes
+* Updated Sections.vue to remove css referenced in another component; ".tui-performUserActivityList__expandedRow-dateSummary" referenced in Activities.vue
+    * SCSS changes
+* Updated Activities.vue to fix print button position and size
+    * Template and SCSS changes
+* Moved editing of activity content elements (formerly on a sheet modal) to a separate page
+    * Removed components/manage_activity/content/EditSectionContentModal.vue
+    * Added pages/SectionContent.vue
+* Updated Activities.vue page to be using a core layout, and added support for filtering and pagination.
+    * Template & SCSS changes
+* Updated Activities.vue page to support filtering and pagination of activities.
+* Moved the activity_types apollo query from CreateActivityForm.vue into Activities.vue
+* Updated CreateActivityForm.vue to use Uniform form library
+    * Template changes
+* HtmlResponseDisplay.vue now supports rendering Weka HTML responses

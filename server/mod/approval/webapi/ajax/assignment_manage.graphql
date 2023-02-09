@@ -1,0 +1,81 @@
+mutation mod_approval_assignment_manage(
+  $input: mod_approval_assignment_manage_input!
+) {
+  mod_approval_assignment_manage(input: $input) {
+    assignment {
+      __typename
+      id
+      name
+      contextid
+    }
+    assignment_approval_levels {
+      approval_level {
+        id
+        name
+        ordinal_number
+      }
+      inherited_from_assignment_approval_level {
+        assignment {
+          name
+        }
+        approvers {
+          type
+          id
+          approver_entity {
+            ... on core_user {
+              __typename
+              id
+              name: fullname
+              fullname
+              email
+              card_display {
+                profile_picture_alt
+                profile_picture_url
+                profile_url
+                display_fields {
+                  associate_url
+                  label
+                  value
+                  is_custom
+                }
+              }
+            }
+            ... on totara_core_relationship {
+              __typename
+              id
+              name
+            }
+          }
+        }
+      }
+      approvers {
+        type
+        approver_entity {
+          ... on core_user {
+            __typename
+            id
+            name: fullname
+            fullname
+            email
+            card_display {
+              profile_picture_alt
+              profile_picture_url
+              profile_url
+              display_fields {
+                associate_url
+                label
+                value
+                is_custom
+              }
+            }
+          }
+          ... on totara_core_relationship {
+            __typename
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

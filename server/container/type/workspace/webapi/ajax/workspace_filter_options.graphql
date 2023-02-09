@@ -1,0 +1,19 @@
+query container_workspace_workspace_filter_options {
+  sources: container_workspace_workspace_sources {
+    __typename
+    value
+    label(format: PLAIN)
+  }
+
+  sorts: container_workspace_workspace_sorts {
+    __typename
+    value
+    label(format: PLAIN)
+  }
+
+  accesses: container_workspace_workspace_accesses {
+    __typename
+    value
+    label(format: PLAIN)
+  }
+}

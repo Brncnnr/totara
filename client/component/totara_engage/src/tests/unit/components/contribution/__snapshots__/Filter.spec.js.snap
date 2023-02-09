@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage contribution Filter Checks snapshot 1`] = `
+<section
+  class="tui-contributionFilter tui-contributionFilter--hasSortBy"
+>
+  <filterbar-stub
+    title="filterbartitle, totara_engage"
+    value="[object Object]"
+  />
+   
+  <div
+    class="tui-contributionFilter__sort"
+  >
+    <selectfilter-stub
+      label="sortby, core"
+      options="[object Object]"
+      showlabel="true"
+      value=""
+    />
+  </div>
+</section>
+`;

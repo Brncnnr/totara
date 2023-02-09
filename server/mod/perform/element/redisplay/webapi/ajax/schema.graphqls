@@ -1,0 +1,53 @@
+"""
+Result for subject instance's previous responses.
+"""
+type performelement_redisplay_subject_instance_previous_responses_result {
+  title: String!
+  your_response: mod_perform_section_element_response
+  other_responder_groups: [mod_perform_responder_group!]!
+  is_anonymous: Boolean!
+}
+
+"""
+Result for source activity question elements.
+"""
+type performelement_redisplay_source_activity_question_elements_result {
+  sections: [mod_perform_section!]!
+}
+
+"""
+Input type for source activity question elements.
+"""
+input source_activity_question_elements_input {
+  activity_id: param_integer!
+}
+
+input subject_instance_previous_responses_input {
+  token: String
+  participant_section_id: param_integer
+  subject_instance_id: param_integer!
+  section_element_id: param_integer!
+}
+
+extend type Query {
+  """
+  Source activity respondable question elements
+  """
+  performelement_redisplay_source_activity_question_elements(
+    input: source_activity_question_elements_input!
+  ): performelement_redisplay_source_activity_question_elements_result!
+
+  """
+  Gets previous subject instance's responses based on the current subject instance.
+  """
+  performelement_redisplay_subject_instance_previous_responses(
+    input: subject_instance_previous_responses_input!
+  ): performelement_redisplay_subject_instance_previous_responses_result!
+
+  """
+  Gets previous subject instance's responses based on the current subject instance for an external participant.
+  """
+  performelement_redisplay_subject_instance_previous_responses_external_participant(
+    input: subject_instance_previous_responses_input!
+  ): performelement_redisplay_subject_instance_previous_responses_result!
+}

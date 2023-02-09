@@ -1,0 +1,9 @@
+mutation mod_approval_workflow_reorder_levels(
+  $input: mod_approval_workflow_reorder_levels_input!
+) {
+  mod_approval_workflow_reorder_levels(input: $input) {
+    stage {
+      id
+    }
+  }
+}

@@ -1,0 +1,3 @@
+mutation mod_approval_workflow_delete($input: mod_approval_workflow_input!) {
+  mod_approval_workflow_delete(input: $input)
+}

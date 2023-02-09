@@ -1,0 +1,196 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @copyright 2015 Bas Brands <www.sonsbeekmedia.nl>
+// @author    Bas Brands
+// @author    David Scotson
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+// The import order of SCSS files is different to our previous approach with LESS
+// SASS(SCSS) is an imperative language whilst LESS is a declarative language.
+// This impacts where variables should be defined.
+// Previously with LESS, variables could be used before their declaration & if defined
+// multiple times the last definition was used throughout.
+// With SCSS, global variables should be imported before their use and any variable overwrite
+// files should be imported directly after the original inclusion
+
+// Variables
+// Any global variables (used across multiple files) should be declared here
+@import 'theme_legacy/totara/scss_variables';
+
+// CSS variables:
+@import 'theme_legacy/totara/css_variables';
+
+// Bootstrap 3
+@import 'theme_legacy/bootstrap3/_bootstrap';
+// Bootstrap 3 class overrides
+@import 'theme_legacy/bootswatch/bootswatch';
+@import 'theme_legacy/totara/bootstrapoverride';
+// Bootstrap 3 LESS to SCSS helper mixins
+@import 'theme_legacy/totara/bootstrapoverridemixins';
+// Align button colours with parent theme
+@import 'theme_legacy/totara/standardise_btns';
+
+// Plugins
+@import 'theme_legacy/admin/tool/sitepolicy/sitepolicy';
+@import 'theme_legacy/auth/oauth2/oauth2';
+@import 'theme_legacy/blocks/admin_subnav/admin_subnav';
+@import 'theme_legacy/blocks/site_main_menu/site_main_menu';
+@import 'theme_legacy/blocks/course_navigation/course_navigation';
+@import 'theme_legacy/blocks/current_learning/current_learning';
+@import 'theme_legacy/blocks/totara_community/totara_community';
+@import 'theme_legacy/blocks/totara_dashboard/totara_dashboard';
+@import 'theme_legacy/blocks/totara_featured_links/totara_featured_links';
+@import 'theme_legacy/blocks/totara_recent_learning/totara_recent_learning';
+@import 'theme_legacy/blocks/totara_recently_viewed/totara_recently_viewed';
+@import 'theme_legacy/blocks/totara_report_graph/totara_report_graph';
+@import 'theme_legacy/blocks/totara_report_table/totara_report_table';
+@import 'theme_legacy/blocks/totara_stats/totara_stats';
+@import 'theme_legacy/blocks/totara_user_profile/totara_user_profile';
+@import 'theme_legacy/mod/feedback/feedback';
+@import 'theme_legacy/format/topics';
+@import 'theme_legacy/report/participation/participation';
+@import 'theme_legacy/report/progress/progress';
+@import 'theme_legacy/totara/appraisal/appraisal';
+@import 'theme_legacy/totara/cohort/cohort';
+@import 'theme_legacy/totara/feedback360/feedback360';
+@import 'theme_legacy/totara/form/form';
+@import 'theme_legacy/totara/hierarchy/hierarchy';
+@import 'theme_legacy/totara/job/job';
+@import 'theme_legacy/totara/mobile/mobile';
+@import 'theme_legacy/totara/plan/plan';
+@import 'theme_legacy/totara/program/program';
+@import 'theme_legacy/totara/reportbuilder/reportbuilder';
+@import 'theme_legacy/totara/customfield/customfield';
+@import 'theme_legacy/totara/workflow/workflow';
+@import 'theme_legacy/blocks/last_course_accessed/last_course_accessed';
+@import 'theme_legacy/totara/assign/assign';
+@import 'theme_legacy/totara/contentmarketplace/contentmarketplace';
+@import 'theme_legacy/mod/facetoface/facetoface';
+@import 'theme_legacy/mod/perform/perform';
+@import 'theme_legacy/mod/contentmarketplace/content_marketplace';
+
+// Roll back nameclashes.
+@import 'theme_legacy/totara/undo';
+
+// Core styles
+@import 'theme_legacy/totara/core';
+@import 'theme_legacy/totara/atto';
+@import 'theme_legacy/totara/admin';
+@import 'theme_legacy/totara/calendar';
+@import 'theme_legacy/totara/course';
+@import 'theme_legacy/totara/completion';
+@import 'theme_legacy/totara/filemanager';
+@import 'theme_legacy/totara/message';
+@import 'theme_legacy/totara/question';
+@import 'theme_legacy/totara/user';
+@import 'theme_legacy/totara/userprofile';
+@import 'theme_legacy/totara/login';
+@import 'theme_legacy/totara/tags';
+@import 'theme_legacy/totara/badges';
+@import 'theme_legacy/totara/new';
+@import 'theme_legacy/totara/blocks';
+@import 'theme_legacy/totara/forms';
+@import 'theme_legacy/totara/modules';
+@import 'theme_legacy/totara/modal';
+@import 'theme_legacy/totara/chat';
+@import 'theme_legacy/totara/reports';
+@import 'theme_legacy/totara/backup-restore';
+@import 'theme_legacy/totara/tables';
+@import 'theme_legacy/totara/button';
+@import 'theme_legacy/totara/navs';
+@import 'theme_legacy/totara/enrolment';
+@import 'theme_legacy/totara/responsive';
+@import 'theme_legacy/totara/debug';
+@import 'theme_legacy/totara/dock';
+@import 'theme_legacy/totara/grade';
+@import 'theme_legacy/totara/editor';
+@import 'theme_legacy/totara/tool_usertours';
+@import 'theme_legacy/totara/progressbar';
+@import 'theme_legacy/totara/popover';
+@import 'theme_legacy/totara/form-notification';
+@import 'theme_legacy/totara/add_block_popover_content';
+@import 'theme_legacy/totara/embeds';
+@import 'theme_legacy/totara/richtext';
+@import 'theme_legacy/totara/core/select_region_panel';
+@import 'theme_legacy/totara/core/select_region_panel_toggle';
+@import 'theme_legacy/totara/core/select_region_primary';
+@import 'theme_legacy/totara/core/select_multi';
+@import 'theme_legacy/totara/core/select_search_text';
+@import 'theme_legacy/totara/core/select_tree';
+@import 'theme_legacy/totara/core/reports';
+@import 'theme_legacy/totara/core/grid';
+@import 'theme_legacy/totara/core/accordion';
+@import 'theme_legacy/totara/core/inline-edit';
+@import 'theme_legacy/totara/totara-dialog';
+@import 'theme_legacy/totara/catalog/catalog';
+@import 'theme_legacy/totara/completionimport/completionimport';
+
+// Navigation
+@import 'theme_legacy/totara/nav/main';
+@import 'theme_legacy/totara/core/quickaccessmenu';
+@import 'theme_legacy/totara/core/quickaccesssettings';
+
+// JQuery
+@import 'theme_legacy/totara/totara_jquery/totara_jquery_datatables';
+@import 'theme_legacy/totara/totara_jquery/totara_jquery_treeview';
+@import 'theme_legacy/totara/totara_jquery/totara_jquery_ui_dialog';
+
+// Popover
+@import 'theme_legacy/totara/popover_region';
+@import 'theme_legacy/totara/message_popup';
+
+// Search
+@import 'theme_legacy/totara/search';
+
+// Originally from Basis
+@import 'theme_legacy/totara/avatar';
+@import 'theme_legacy/totara/buttons';
+@import 'theme_legacy/totara/page-footer';
+@import 'theme_legacy/totara/notifications';
+
+// Evidence
+@import 'theme_legacy/totara/evidence/evidence';
+
+// User profile card
+@import 'theme_legacy/totara/profile_summary_card_edit';
+@import 'theme_legacy/totara/profile_card';
+
+// Perform competencies
+@import 'theme_legacy/totara/competency/assignments';
+@import 'theme_legacy/totara/competency/basket_list';
+@import 'theme_legacy/totara/competency/crumb_with_title';
+@import 'theme_legacy/totara/competency/edit_achievement_paths';
+@import 'theme_legacy/totara/competency/edit_scale_value_paths';
+@import 'theme_legacy/totara/competency/edit_scale_value_paths_group';
+@import 'theme_legacy/totara/competency/lists';
+@import 'theme_legacy/totara/competency/loader';
+@import 'theme_legacy/totara/competency/manage_linked_courses';
+@import 'theme_legacy/totara/competency/manage_competencies';
+@import 'theme_legacy/totara/competency/paging';
+@import 'theme_legacy/totara/competency/selection_basket';
+
+// Ms-teams
+@import 'theme_legacy/totara/msteams/msteams';
+
+// Container course
+@import 'theme_legacy/container/course/enrolment_banner';

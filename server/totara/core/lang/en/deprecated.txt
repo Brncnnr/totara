@@ -1,0 +1,13 @@
+bookingsfor,totara_core
+configenhancedcatalog,totara_core
+enhancedcatalog,totara_core
+error:itemhaschildren,totara_core
+error:menuitemurlrequired,totara_core
+menuitem:resettodefaultconfirm,totara_core
+menuitem:topnavigation,totara_core
+numberofactiveusers,totara_core
+pastbookingsfor,totara_core
+totaranavigation,totara_core
+strftimedateshortmonth,totara_core
+a11yachievementtarget,totara_core
+a11yachievedrequiredgoal,totara_core

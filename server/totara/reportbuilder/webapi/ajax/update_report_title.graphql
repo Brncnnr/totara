@@ -1,0 +1,6 @@
+mutation totara_reportbuilder_update_report_title(
+  $reportid: core_id!
+  $title: String!
+) {
+  totara_reportbuilder_update_report_title(reportid: $reportid, title: $title)
+}

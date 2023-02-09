@@ -1,0 +1,81 @@
+"""
+Retrieved data sort order
+"""
+enum totara_hierarchy_goal_order_dir {
+  ASC
+  DESC
+}
+
+"""
+Goal "class"
+"""
+enum totara_hierarchy_goal_scope {
+  COMPANY
+  PERSONAL
+}
+
+"""
+Indicates how a goal was assigned to a user
+"""
+type totara_hierarchy_goal_assignment_type {
+  """
+  Assignment type name.
+  """
+  name: String!
+  """
+  Assignment type value.
+  """
+  value: Int!
+  """
+  Assignment type display label.
+  """
+  label(format: core_format = PLAIN): String!
+}
+
+"""
+Extends totara_hierarchy_goal_assignment_type to include details of the group or
+person that assigned a goal to a user
+"""
+type totara_hierarchy_goal_assignment_type_extended {
+  """
+  Raw assignment type
+  """
+  type: totara_hierarchy_goal_assignment_type!
+  """
+  Assignment description
+  """
+  description(format: core_format = PLAIN): String!
+}
+
+"""
+Describes a goal scale value.
+"""
+type totara_hierarchy_goal_scale_value {
+  """
+  Scale value id
+  """
+  id: core_id!
+  """
+  Scale value name
+  """
+  name(format: core_format = PLAIN): String!
+}
+
+"""
+Parameters to retrieve a set of goal assignment types.
+"""
+input totara_hierarchy_goal_assignment_types_input {
+  """
+  Indicates whether to retrieve company or personal goal assignment types
+  """
+  scope: totara_hierarchy_goal_scope
+}
+
+extend type Query {
+  """
+  Retrieves a set of goal assignment types corresponding to the goal "class"
+  """
+  totara_hierarchy_goal_assignment_types(
+    input: totara_hierarchy_goal_assignment_types_input
+  ): [totara_hierarchy_goal_assignment_type!]!
+}

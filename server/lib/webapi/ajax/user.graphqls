@@ -1,0 +1,53 @@
+"""
+User list sort order.
+"""
+enum core_users_order_dir {
+  ASC
+  DESC
+}
+
+"""
+User list query result.
+"""
+type core_users_result implements core_pageable_result {
+  items: [core_user!]!
+  total: Int!
+  next_cursor: String!
+}
+
+"""
+Filters for querying users.
+"""
+input core_users_filter {
+  """
+  Filters users by their record ids
+  """
+  ids: [param_integer!]
+  """
+  Filters users by full names
+  """
+  name: param_text
+}
+
+"""
+input type for querying users.
+"""
+input core_users_query {
+  filters: core_users_filter
+  order_by: String
+  order_dir: core_users_order_dir
+  result_size: param_integer
+  cursor: String
+}
+
+extend type Query {
+  """
+  Return a users own profile information
+  """
+  core_user_own_profile: core_user!
+
+  """
+  Return filtered list of users in the system.
+  """
+  core_users(query: core_users_query): core_users_result!
+}

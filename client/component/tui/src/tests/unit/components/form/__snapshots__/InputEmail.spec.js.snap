@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputEmail Checks snapshot has not changed 1`] = `
+<input-stub
+  ariadescribedby="#ariaDescription"
+  arialabel="aria label"
+  arialabelledby="#ariaLabel"
+  autocomplete="on"
+  autofocus="true"
+  disabled="true"
+  id="inputid"
+  maxlength="10"
+  minlength="1"
+  name="emailinput"
+  pattern="[A-Za-z]"
+  placeholder="email here"
+  readonly="true"
+  required="true"
+  size="20"
+  styleclass="[object Object]"
+  type="email"
+  value="foo"
+/>
+`;

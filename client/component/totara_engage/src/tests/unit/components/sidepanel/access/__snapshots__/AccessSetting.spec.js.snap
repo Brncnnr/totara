@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage AccessSetting Checks snapshot 1`] = `
+<div
+  class="tui-accessSetting"
+>
+  <!---->
+   
+  <confirmationmodal-stub
+    confirmbuttontext="[[privacywarningconfirm, totara_playlist]]"
+    size="normal"
+    title="[[privacywarningtitle, totara_playlist]]"
+  >
+    <p>
+      
+      [[change_playlist_visibility_confirm_1, totara_playlist]]
+    
+    </p>
+     
+    <p>
+      
+      [[change_playlist_visibility_confirm_2, totara_playlist]]
+    
+    </p>
+  </confirmationmodal-stub>
+   
+  <accessdisplay-stub
+    accessvalue="PUBLIC"
+    slot="content"
+    topics=""
+  />
+</div>
+`;

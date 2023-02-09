@@ -1,0 +1,53 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_core
+}}
+{{!
+    @template totara_competency/crumb_with_title
+
+    Displays a crumbtrail followed by a heading
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-crumbtrailWithTitle-events: Key for propagated events
+    * data-tw-crumbtrailWithTitle: target for crumbtrail
+    * data-tw-crumbtrailWithTitle-heading: Target for updating the heading
+
+    Context variables required for this template:
+    * crumbtrail: context for displaying crumbtrail
+    * fullname: value for heading
+    * heading: alternative value for heading
+
+}}
+<div class="tw-crumbWithTitle"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/crumb_with_title"
+    data-tw-crumbtrailWithTitle-events="totara_core/crumbtrail"
+    data-tw-crumbtrailWithTitle="">
+    {{> totara_competency/crumb_with_title_body}}
+</div>
+<h3 class="tw-crumbWithTitle__heading" data-tw-crumbtrailWithTitle-heading="">
+    {{#fullname}}{{fullname}}{{/fullname}}
+    {{^fullname}}{{heading}}{{/fullname}}
+</h3>

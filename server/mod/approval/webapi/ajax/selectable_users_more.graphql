@@ -1,0 +1,23 @@
+query mod_approval_selectable_users_more(
+  $input: mod_approval_selectable_users_input!
+) {
+  mod_approval_selectable_users(input: $input) {
+    items {
+      id
+      fullname
+      card_display {
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          associate_url
+          value
+          label
+          is_custom
+        }
+      }
+    }
+    total
+    next_cursor
+  }
+}

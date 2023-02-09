@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingCell Checks snapshot 1`] = `
+<div
+  class="tui-bulkManualRatingCell__newRating"
+  comment="Test comment"
+  scalevalueid="1"
+>
+  <ratingpopover-stub
+    compid="123"
+    scale="[object Object]"
+  />
+</div>
+`;

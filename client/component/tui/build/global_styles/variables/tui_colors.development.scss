@@ -1,0 +1,164 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2020 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+:root {
+  /**/
+  /* Theme colours*/
+  /**/
+
+  /* Primary colour*/
+  /* Often used for default image, backgrounds, line separators & visual indicators*/
+  --color-primary: #3a45ac;
+
+  /* Secondary colour*/
+  /* Often used for visual components such as progress bars & charts*/
+  --color-secondary: #007ab8;
+
+  /* Tertiary colour*/
+  /* Often used for visual components, must have high contrast to background*/
+  --color-tertiary: #1ea4a9;
+
+  /**/
+  /* Interactive state colours*/
+  /**/
+
+  /* Default state colour, shows an element is interactive*/
+  --color-state: #3982ac;
+
+  /* Hover state colour, shown when cursor is over interactive element*/
+  --color-state-hover: #265773;
+  /* Focus state colour, shown when element has focus (keyboard tabbing)*/
+  --color-state-focus: #265773;
+  /* Active state colour, shown when element is active (clicked)*/
+  --color-state-active: #193a4c;
+  /* Highlight, visual clue for things that need to be highlighted more*/
+  /* prominently than highlight-neutral.*/
+  --color-state-highlight: #f6f9d7;
+  /* Neutral highlight, visual clue for hover/focus on components such as a list row*/
+  --color-state-highlight-neutral: var(--color-neutral-3);
+  /* Disabled colour of interactive elements*/
+  --color-state-disabled: var(--color-neutral-5);
+
+  /**/
+  /* Visual prompt colours*/
+  /**/
+
+  /* Used to indicate an informational message*/
+  --color-prompt-info: #007ab8;
+  --color-prompt-info-bg: #daf3fe;
+  /* Used to indicate an important message (error, danger)*/
+  --color-prompt-alert: #cc2428;
+  --color-prompt-alert-bg: #fee6e6;
+  /* Used to indicate a warning message*/
+  --color-prompt-warning: #b2611f;
+  --color-prompt-warning-bg: #f1e2d7;
+  /* Used to indicate a success message*/
+  --color-prompt-success: #4b7e2b;
+  --color-prompt-success-bg: #d8eacd;
+
+  /**/
+  /* Neutral colour ranges*/
+  /**/
+
+  /* Often used for navigation bar, backgrounds & footer*/
+  --color-neutral-1: #fff;
+  /* Often used for content background*/
+  --color-neutral-2: #fafafa;
+  /* Often used for side panel background & disabled buttons*/
+  --color-neutral-3: #f7f7f7;
+  /* Often used for progress bar background*/
+  --color-neutral-4: #e6e4e4;
+  /* Often used for card component borders, line separators & disabled button*/
+  --color-neutral-5: #c7c7c7;
+  /* Often used for icons and form component borders*/
+  --color-neutral-6: #767676;
+  /* Often used for headers and body text*/
+  --color-neutral-7: #262626;
+
+  /**/
+  /* Chart colors*/
+  /**/
+  --color-chart-background-1: #007ab8;
+  --color-chart-transparent-1: rgba(#007ab8, 0.38);
+  --color-chart-background-2: #da7c2f;
+  --color-chart-transparent-2: rgba(#da7c2f, 0.38);
+  --color-chart-background-3: #bf6c78;
+  --color-chart-transparent-3: rgba(#bf6c78, 0.38);
+  --color-chart-background-4: #dac725;
+  --color-chart-transparent-4: rgba(#dac725, 0.38);
+  --color-chart-background-5: #5d5d5d;
+  --color-chart-transparent-5: rgba(#5d5d5d, 0.38);
+  --color-chart-background-6: #98aada;
+  --color-chart-transparent-6: rgba(#98aada, 0.38);
+  --color-chart-background-7: #23c1a0;
+  --color-chart-transparent-7: rgba(#23c1a0, 0.38);
+
+  /**/
+  /* Content colours*/
+  /**/
+  --color-background: var(--color-neutral-1);
+  --color-border: var(--color-neutral-5);
+  --color-text: var(--color-neutral-7);
+  --color-text-disabled: var(--color-neutral-5);
+  --color-text-hint: var(--color-neutral-6);
+  --link-color: var(--color-state);
+  --link-color-hover: var(--color-state-hover);
+
+  /* Backdrops*/
+  --color-backdrop-standard: rgba(0, 0, 0, 0.4);
+  --color-backdrop-heavy: rgba(0, 0, 0, 0.8);
+  --color-backdrop-contrast: var(--color-neutral-1);
+
+  /**/
+  /* Header colors*/
+  /**/
+  --nav-bg-color: #fff;
+  --nav-text-color: var(--color-text);
+}
+
+/* Arrows*/
+@import 'tui/variables/colors/arrow';
+/* Forms*/
+@import 'tui/variables/colors/forms';
+/* Avatar*/
+@import 'tui/variables/colors/avatar';
+/* Drop down*/
+@import 'tui/variables/colors/dropdown';
+/* Data table*/
+@import 'tui/variables/colors/datatable';
+/* Tabs*/
+@import 'tui/variables/colors/tabs';
+/* Card*/
+@import 'tui/variables/colors/card';
+/* Charts*/
+@import 'tui/variables/colors/charts';
+/* Filters*/
+@import 'tui/variables/colors/filters';
+/* Tags*/
+@import 'tui/variables/colors/tags';
+/* Tags*/
+@import 'tui/variables/colors/progressbar';
+/* collapsible*/
+@import 'tui/variables/colors/collapsible';
+/* progress tracker*/
+@import 'tui/variables/colors/progresstracker';
+/* Side panel navigation*/
+@import 'tui/variables/colors/side_panel_nav';
+/* Toggle buttons*/
+@import 'tui/variables/colors/toggle';
+/* Notification toast*/
+@import 'tui/variables/colors/notificationtoast';
+

@@ -1,0 +1,45 @@
+.tui-oauth2ProviderContent {
+  margin-top: var(--gap-8);
+  &__url {
+    @include tui-wordbreak--hard();
+    margin-top: 2px;
+    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+      monospace;
+  }
+}
+
+.tui-oauth2ProviderForm {
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__requiredStar {
+    color: var(--color-prompt-alert);
+  }
+}
+
+.tui-oauth2ProviderPage {
+  &__provider {
+    margin-bottom: 2px;
+  }
+  &__form {
+    @include tui-wordbreak--hard();
+    margin-bottom: var(--gap-6);
+  }
+  &__formDesc {
+    margin-top: var(--gap-6);
+  }
+  &__clientId {
+    margin-top: var(--gap-4);
+  }
+  &__monospaceFont {
+    @include tui-font-monospace();
+  }
+  &__deleteBody {
+    @include tui-wordbreak--hard();
+  }
+  &__inputGroupBtn {
+    min-width: 6rem;
+  }
+}
+

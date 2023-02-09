@@ -1,0 +1,100 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+:root {
+  //
+  // Main navigation
+  //
+
+  // Primary bar
+  --nav-bg-color: var(--color-neutral-1);
+  --nav-text-color: var(--color-text);
+
+  // Primary tab
+  --nav-tab-bg-color: transparent;
+  --nav-tab-border-color: var(--nav-tab-bg-color);
+  --nav-tab-text-color: var(--nav-text-color);
+  // Primary tab hover/focus
+  --nav-tab-bg-color-focus: transparent;
+  --nav-tab-border-color-focus: var(--nav-tab-bg-color-focus);
+  --nav-tab-border-inner-color-focus: var(--color-neutral-5);
+  --nav-tab-text-color-focus: var(--nav-text-color);
+  // Primary tab selected
+  --nav-tab-bg-color-selected: transparent;
+  --nav-tab-border-inner-color-selected: var(--color-primary);
+  --nav-tab-text-color-selected: var(--nav-text-color);
+
+  // Primary tab expanded menu
+  --nav-tab-expand-bg-color: var(--color-neutral-1);
+  --nav-tab-expand-border-color: var(--color-neutral-5);
+  --nav-tab-expand-text-color: var(--color-text);
+  // Primary tab expanded menu hover/focus
+  --nav-tab-expand-bg-color-focus: var(--color-state-highlight-neutral);
+  --nav-tab-expand-text-color-focus: var(--color-text);
+  // Expanded menu selected expand item
+  --nav-tab-expand-bg-color-selected: transparent;
+  // Primary tab expanded menu - mobile
+  --nav-tab-expand-mobile-bg-color: transparent;
+  --nav-tab-expand-mobile-text-color: var(--nav-text-color);
+  // Primary tab expanded menu - mobile hover/focus
+  --nav-tab-expand-mobile-bg-color-focus: transparent;
+  --nav-tab-expand-mobile-text-color-focus: var(--nav-text-color);
+
+  // Side primary navigation
+  --nav-side-seperator-color: var(--color-neutral-5);
+  // Side primary navigation icons
+  --nav-side-text-color: var(--nav-text-color);
+  // Side primary popover (Notifications/messages)
+  --nav-side-popover-text-color: var(--color-text);
+
+  //
+  // Sub navigation
+  //
+  --nav-sub-bg-color: var(--color-neutral-1);
+  --nav-sub-border-color: var(--color-neutral-5);
+
+  // Sub tab
+  --nav-sub-tab-bg-color: var(--color-neutral-1);
+  --nav-sub-tab-text-color: var(--color-text);
+  // Sub tab hover/focus
+  --nav-sub-tab-bg-color-focus: var(--color-state-highlight-neutral);
+  --nav-sub-tab-border-color-focus: var(--color-state-highlight-neutral);
+  --nav-sub-tab-text-color-focus: var(--color-text);
+  // Sub tab selected
+  --nav-sub-tab-bg-color-selected: var(--color-neutral-1);
+  --nav-sub-tab-border-color-selected: var(--color-primary);
+  // Expanded menu selected expand item
+  --nav-sub-tab-expand-bg-color-selected: var(--color-state-highlight-neutral);
+
+  //
+  // Navigation Quick access menu
+  //
+  --nav-quick-bg-color: var(--color-neutral-1);
+  --nav-quick-border-top-color: var(--color-primary);
+  --nav-quick-seperator-color: var(--color-neutral-5);
+  --nav-quick-text-color: var(--color-text);
+  // items
+  --nav-quick-item-text-color: var(--color-state);
+  --nav-quick-item-text-color-focus: var(--color-state-focus);
+  --nav-quick-item-text-color-active: var(--color-state-active);
+}

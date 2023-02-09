@@ -1,0 +1,4 @@
+query totara_mobile_webview($secret: String!) {
+  webview: totara_mobile_webview(secret: $secret)
+  __typename
+}

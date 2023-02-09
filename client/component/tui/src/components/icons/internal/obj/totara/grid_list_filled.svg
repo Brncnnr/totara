@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>grid_list_filled</title>
+    <g id="grid_list_filled" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="Group-5" transform="translate(1.000000, 1.000000)">
+            <path d="M0,11.0002667 C0,10.4482667 0.448,10.0002667 1,10.0002667 L3,10.0002667 C3.552,10.0002667 4,10.4482667 4,11.0002667 L4,13.0002667 C4,13.5522667 3.552,14.0002667 3,14.0002667 L1,14.0002667 C0.448,14.0002667 0,13.5522667 0,13.0002667 L0,11.0002667 Z M0,6.00026667 C0,5.44693333 0.448,5.00026667 1,5.00026667 L3,5.00026667 C3.552,5.00026667 4,5.44693333 4,6.00026667 L4,8.00026667 C4,8.55226667 3.552,9.00026667 3,9.00026667 L1,9.00026667 C0.448,9.00026667 0,8.55226667 0,8.00026667 L0,6.00026667 Z M0,1.00026667 C0,0.446933333 0.448,0.000266666667 1,0.000266666667 L3,0.000266666667 C3.552,0.000266666667 4,0.446933333 4,1.00026667 L4,3.00026667 C4,3.55226667 3.552,4.00026667 3,4.00026667 L1,4.00026667 C0.448,4.00026667 0,3.55226667 0,3.00026667 L0,1.00026667 Z" id="Fill-1"></path>
+        </g>
+        <rect id="Rectangle" stroke="currentColor" x="6.5" y="1.5" width="8" height="3" rx="1"></rect>
+        <rect id="Rectangle-Copy" stroke="currentColor" x="6.5" y="6.5" width="8" height="3" rx="1"></rect>
+        <rect id="Rectangle-Copy-2" stroke="currentColor" x="6.5" y="11.5" width="8" height="3" rx="1"></rect>
+    </g>
+</svg>

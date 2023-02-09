@@ -1,0 +1,193 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @package   theme_legacy
+
+.totara_core__QuickAccessSettings {
+  max-width: 100ch;
+
+  .ie11 & {
+    // TL-20522: IE11 calculates ch units differently to other browsers (it doesn't account for the space between letters)
+    // so we're going to magic-number a conversion from chrome
+    max-width: 88rem;
+  }
+
+  .totara_core__Accordion__item {
+    border: 1px solid $quickAccessSettings-accordion-border-color;
+  }
+
+  &__group {
+    &-header {
+      padding: $quickAccessSettings-spacing-medium;
+      background-color: $quickAccessSettings-accordion-header-bg-color;
+
+      button.totara_core__Accordion__item__header__icon {
+        background: none;
+        border: 0px;
+
+        &:hover {
+          border: 0px;
+          box-shadow: none;
+        }
+
+        &:focus {
+          outline: 1px dashed;
+          outline-offset: 1px;
+          box-shadow: none;
+        }
+      }
+
+      .fa-pencil {
+        font-size: $quickAccessSettings-accordion-icon-size;
+      }
+
+      &::after {
+        display: block;
+        clear: both;
+        content: '';
+      }
+
+      h3 {
+        display: inline-block;
+        margin: 0;
+      }
+    }
+
+    &-content {
+      padding: $quickAccessSettings-spacing-medium;
+    }
+
+    &--controls {
+      float: right;
+      font-size: $quickAccessSettings-accordion-icon-size;
+
+      a {
+        &,
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &:first-of-type {
+      [data-quickaccesssettings-group-action="moveup"] {
+        z-index: -1;
+        visibility: hidden;
+      }
+    }
+
+    &:last-of-type {
+      [data-quickaccesssettings-group-action="movedown"] {
+        z-index: -1;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__item-list {
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: $quickAccessSettings-spacing-medium;
+    border-top: 1px solid $quickAccessSettings-accordion-item-border-color;
+    transition: transform 0ms ease-out; //set to 0 duration so swap doesn't try and ease
+
+    @media (max-width: $quickAccessSettings-screen-sm-max) {
+      padding: $quickAccessSettings-spacing-medium 0;
+    }
+
+    &:last-of-type {
+      border-bottom: 1px solid $quickAccessSettings-accordion-item-border-color;
+    }
+
+    //Animations to swap up and down
+    &-swap-up {
+      //When the menu is open, we don't know how big everything is, so we can't move the menu by any percentage of itself
+      //so instead, we approximate the height of the header by using font-size * line-height + padding-top + padding-bottom
+      transform: translateY(($quickAccessSettings-accordion-updown-offset) * -1);
+      transition-duration: $quickAccessSettings-accordion-item-reorder-transition;
+      @include prepend-current('.collapsed') {
+        transform: translateY(-100%);
+      }
+    }
+    &-swap-down {
+      //When the menu is open, we don't know how big everything is, so we can't move the menu by any percentage of itself
+      //so instead, we approximate the height of the header by using font-size * line-height + padding-top + padding-bottom
+      transform: translateY($quickAccessSettings-accordion-updown-offset);
+      transition-duration: $quickAccessSettings-accordion-item-reorder-transition;
+      @include prepend-current('.collapsed') {
+        transform: translateY(100%);
+      }
+    }
+
+    &--name {
+      flex: 1 1 auto;
+    }
+
+    &--label {
+      flex: 0 0 30%;
+      max-width: 30%; //cap this so text doesn't mis-align on small sizes
+      margin-left: $quickAccessSettings-spacing-medium;
+
+      overflow-wrap: break-word;
+      hyphens: auto;
+
+      input {
+        max-width: 100%;
+      }
+    }
+
+    &--controls {
+      flex: 0 1 auto;
+      margin-left: $quickAccessSettings-spacing-medium;
+      white-space: nowrap;
+      text-align: right;
+
+      a {
+        &,
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &:first-of-type {
+      [data-quickaccesssettings-item-action="moveup"] {
+        z-index: -1;
+        visibility: hidden;
+      }
+    }
+
+    &:last-of-type {
+      [data-quickaccesssettings-item-action="movedown"] {
+        z-index: -1;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: $quickAccessSettings-spacing-medium;
+  }
+}

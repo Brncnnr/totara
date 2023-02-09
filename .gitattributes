@@ -1,0 +1,14 @@
+# This file lists files/directories that are not included in Totara packages built by git-archive
+.gitattributes export-ignore
+.gitignore export-ignore
+/dev export-ignore
+
+server/**/yui/build/** -diff
+server/**/amd/build/** -diff
+client/build/** -diff
+
+# Compiled theme CSS files
+server/theme/roots/style/totara-rtl.css -diff
+server/theme/roots/style/totara.css     -diff
+server/theme/basis/style/totara-rtl.css -diff
+server/theme/basis/style/totara.css     -diff

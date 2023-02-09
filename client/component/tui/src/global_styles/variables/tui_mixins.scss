@@ -1,0 +1,67 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Simon Chester <simon.chester@totaralearning.com>
+// @module tuickage   tui
+
+@mixin sr-only {
+  /* The use of '!important' here is an exception and should not be replicated else where */
+  /* stylelint-disable declaration-no-important */
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  /* stylelint-enable */
+}
+
+@mixin tui-focus {
+  outline: 1px dashed var(--color-state-focus);
+  outline-offset: 1px;
+}
+
+/**
+ * For adding a fixed sized header image to a card, including optional margin on the outer edges.
+ */
+@mixin card-header-image(
+  $width,
+  $height,
+  $margin: null,
+  $orientation: 'vertical'
+) {
+  background-position: center;
+  background-size: cover;
+
+  @if $margin == null {
+    width: $width;
+    height: $height;
+  } @else {
+    @if $orientation == 'vertical' {
+      width: calc(#{$width} - (#{$margin} * 2));
+      height: calc(#{$height} - #{$margin});
+      margin-top: $margin;
+      margin-right: $margin;
+      margin-left: $margin;
+    } @else {
+      width: calc(#{$height} - #{$margin});
+      height: calc(#{$height} - (#{$margin} * 2));
+      margin-top: $margin;
+      margin-bottom: $margin;
+      margin-left: $margin;
+    }
+  }
+}

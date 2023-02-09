@@ -1,0 +1,2 @@
+This files describes API changes in /blocks/totara_user_profile,
+information provided here is intended especially for developers.

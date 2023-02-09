@@ -1,0 +1,142 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2020 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+:root {
+  /**/
+  /* Form colours*/
+  /**/
+
+  /* Form radio colours*/
+  --form-radio-dot-color: var(--color-state);
+  --form-radio-bg-color: var(--color-neutral-1);
+  --form-radio-bg-color-disabled: var(--color-neutral-3);
+  --form-radio-bg-color-focus: var(--color-state-highlight-neutral);
+  --form-radio-bg-color-hover: var(--color-neutral-1);
+  --form-radio-bg-color-active: var(--color-neutral-1);
+  --form-radio-border-color: var(--color-neutral-6);
+  --form-radio-border-color-disabled: var(--color-state-disabled);
+  --form-radio-border-color-focus: var(--color-state-focus);
+  --form-radio-border-color-active: var(--color-state-focus);
+
+  /* Form checkbox colours*/
+  --form-checkbox-check-color: var(--color-neutral-1);
+  --form-checkbox-check-color-disabled: var(--color-neutral-5);
+  --form-checkbox-bg-color: var(--color-neutral-1);
+  --form-checkbox-bg-color-disabled: var(--color-neutral-3);
+  --form-checkbox-bg-color-focus: var(--color-state-highlight-neutral);
+  --form-checkbox-bg-color-active: var(--color-state);
+  --form-checkbox-border-color: var(--color-neutral-6);
+  --form-checkbox-border-color-disabled: var(--color-state-disabled);
+  --form-checkbox-border-color-focus: var(--color-state-focus);
+  --form-checkbox-border-color-active: var(--color-state-focus);
+  --form-checkbox-border-color-invalid: var(--color-prompt-alert);
+
+  /* Text colour (labels)*/
+  --form-text-color: var(--color-neutral-7);
+
+  /* Background of form elements*/
+  --form-input-bg-color: var(--color-neutral-1);
+  --form-input-bg-color-disabled: var(--color-neutral-3);
+  --form-input-bg-color-focus: var(--form-input-bg-color);
+  --form-input-bg-color-invalid-focus: var(--form-input-bg-color);
+
+  /* Border of form elements*/
+  --form-input-border-color: var(--color-neutral-6);
+  --form-input-border-color-disabled: var(--color-neutral-4);
+  --form-input-border-color-focus: var(--color-state);
+  --form-input-border-color-invalid: var(--color-prompt-alert);
+  /* Text colour of form elements*/
+  --form-input-text-color: var(--color-neutral-7);
+  --form-input-text-color-disabled: var(--color-state-disabled);
+  --form-input-text-placeholder-color: var(--color-neutral-6);
+  /* Text colour of form field defaults and details*/
+  --form-details-text-color: var(--color-neutral-7);
+  --form-defaults-text-color: var(--color-neutral-7);
+
+  /* Standard btn background, border & text*/
+  --btn-accent-color: var(--color-state);
+  --btn-accent-color-active: var(--color-state-active);
+  --btn-accent-color-focus: var(--color-state-focus);
+  --btn-accent-color-disabled: var(--color-state-disabled);
+  --btn-bg-color: var(--color-neutral-1);
+  --btn-bg-color-active: var(--color-neutral-1);
+  --btn-bg-color-disabled: var(--color-neutral-3);
+  --btn-bg-color-focus: var(--color-neutral-3);
+  --btn-border-color: var(--btn-accent-color);
+  --btn-border-color-active: var(--btn-accent-color-active);
+  --btn-border-color-disabled: var(--btn-accent-color-disabled);
+  --btn-border-color-focus: var(--btn-accent-color-focus);
+  --btn-loader-color-disabled: var(--color-neutral-6);
+  --btn-text-color: var(--btn-accent-color);
+  --btn-text-color-active: var(--btn-accent-color-active);
+  --btn-text-color-disabled: var(--btn-accent-color-disabled);
+  --btn-text-color-focus: var(--btn-accent-color-focus);
+
+  /* Primary btn background, text & border*/
+  --btn-prim-accent-color: var(--color-state);
+  --btn-prim-accent-color-active: var(--color-state-active);
+  --btn-prim-accent-color-focus: var(--color-state-focus);
+  --btn-prim-accent-color-disabled: var(--color-state-disabled);
+
+  --btn-prim-bg-color: var(--btn-prim-accent-color);
+  --btn-prim-bg-color-active: var(--btn-prim-accent-color-active);
+  --btn-prim-bg-color-disabled: var(--btn-prim-accent-color-disabled);
+  --btn-prim-bg-color-focus: var(--btn-prim-accent-color-focus);
+  --btn-prim-border-color: var(--btn-prim-accent-color);
+  --btn-prim-border-color-active: var(--btn-prim-accent-color-active);
+  --btn-prim-border-color-disabled: var(--btn-prim-accent-color-disabled);
+  --btn-prim-border-color-focus: var(--btn-prim-accent-color-focus);
+  --btn-prim-loader-color-disabled: var(--color-neutral-7);
+  --btn-prim-text-color: var(--color-neutral-1);
+  --btn-prim-text-color-active: var(--color-neutral-1);
+  --btn-prim-text-color-disabled: var(--color-neutral-3);
+  --btn-prim-text-color-focus: var(--color-neutral-1);
+
+  /* Alert btn background, border & text*/
+  --btn-alert-bg-color: var(--color-prompt-alert);
+  --btn-alert-bg-color-active: var(--color-prompt-alert);
+  --btn-alert-bg-color-disabled: var(--color-neutral-3);
+  --btn-alert-bg-color-focus: var(--color-prompt-alert);
+  --btn-alert-border-color: var(--color-prompt-alert);
+  --btn-alert-border-color-active: var(--color-prompt-alert);
+  --btn-alert-border-color-disabled: var(--color-state-disabled);
+  --btn-alert-border-color-focus: var(--color-prompt-alert);
+  --btn-alert-text-color: var(--color-neutral-1);
+  --btn-alert-text-color-active: var(--color-neutral-1);
+  --btn-alert-text-color-disabled: var(--color-state-disabled);
+  --btn-alert-text-color-focus: var(--color-neutral-1);
+
+  /* Checkbox btn background & text*/
+  --btn-checkbox-bg-color-selected: var(--color-neutral-3);
+  --btn-checkbox-bg-color-hover: var(--color-state-highlight-neutral);
+  --btn-checkbox-text-color: var(--color-state);
+  --btn-checkbox-text-color-active: var(--color-state-active);
+  --btn-checkbox-text-color-focus: var(--color-state-focus);
+  --btn-checkbox-text-color-selected: var(--color-neutral-7);
+
+  /* Toolbar btn background & text*/
+  --btn-toolbar-bg-color: transparent;
+  --btn-toolbar-bg-color-hover: var(--color-neutral-4);
+  --btn-toolbar-bg-color-focus: var(--color-neutral-4);
+  --btn-toolbar-bg-color-selected: var(--color-state-active);
+  --btn-toolbar-text-color: var(--color-neutral-6);
+  --btn-toolbar-text-color-selected: var(--color-neutral-1);
+
+  /* Form errors*/
+  --form-error-bg-color: var(--color-prompt-alert-bg);
+  --form-error-text-color: var(--color-prompt-alert);
+}
+

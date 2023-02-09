@@ -1,0 +1,7 @@
+query totara_engage_time_view_options {
+  options: totara_engage_time_view_options {
+    __typename
+    value
+    label
+  }
+}

@@ -1,0 +1,10 @@
+query totara_evidence_user_evidence_types(
+  $input: totara_evidence_user_evidence_types_input!
+) {
+  types: totara_evidence_user_evidence_types(input: $input) {
+    items {
+      id
+      name
+    }
+  }
+}

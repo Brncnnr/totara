@@ -1,0 +1,25 @@
+mutation mod_approval_workflow_archive($input: mod_approval_workflow_input!) {
+  mod_approval_workflow_archive(input: $input) {
+    workflow {
+      __typename
+      id
+      latest_version {
+        __typename
+        id
+        status
+        status_label
+      }
+
+      interactor {
+        can_activate
+        can_archive
+        can_unarchive
+        can_clone
+        can_edit
+        can_delete
+        can_publish
+        can_view_applications_report
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/reportedcontent/db" VERSION="20200303" COMMENT="XMLDB file for Moodle totara/reportedcontent"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_reportedcontent" COMMENT="Inappropriate content reported by users">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="target_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Target user of content that was reported"/>
+        <FIELD NAME="complainer_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="User who reported content"/>
+        <FIELD NAME="reviewer_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="User who reviewed reported content"/>
+        <FIELD NAME="content" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Reported content snapshot"/>
+        <FIELD NAME="format" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="url" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="URL to reported content"/>
+        <FIELD NAME="time_content" TYPE="int" LENGTH="18" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when reported content was created"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="null - not decided, 1 - remove, 2 - approve"/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="false" COMMENT="The timestamp of user complain"/>
+        <FIELD NAME="time_reviewed" TYPE="int" LENGTH="18" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when content was reviewed"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="context_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="component" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Content component"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Component area"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="target_user_id_fk" TYPE="foreign" FIELDS="target_user_id" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="complainer_id_fk" TYPE="foreign" FIELDS="complainer_id" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="reviewer_id_fk" TYPE="foreign" FIELDS="reviewer_id" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="context_id_fk" TYPE="foreign" FIELDS="context_id" REFTABLE="context" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="time_created_idx" UNIQUE="false" FIELDS="time_created"/>
+        <INDEX NAME="status_idx" UNIQUE="false" FIELDS="status"/>
+        <INDEX NAME="time_reviewed_idx" UNIQUE="false" FIELDS="time_reviewed"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,19 @@
+{
+  "dependencies": [
+    {
+      "name": "tui_xstate"
+    },
+    {
+      "name": "totara_engage"
+    },
+    {
+      "name": "totara_comment"
+    },
+    {
+      "name": "totara_notification"
+    },
+    {
+      "name": "editor_weka"
+    }
+  ]
+}

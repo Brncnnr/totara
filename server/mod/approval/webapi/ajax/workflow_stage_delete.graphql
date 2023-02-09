@@ -1,0 +1,9 @@
+mutation mod_approval_workflow_stage_delete(
+  $input: mod_approval_workflow_stage_input!
+) {
+  mod_approval_workflow_stage_delete(input: $input) {
+    workflow {
+      id
+    }
+  }
+}

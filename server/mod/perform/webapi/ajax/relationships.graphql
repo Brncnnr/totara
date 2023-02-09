@@ -1,0 +1,8 @@
+query mod_perform_relationships($activity_id: core_id!) {
+  mod_perform_relationships(activity_id: $activity_id) {
+    id
+    name
+    type
+    idnumber
+  }
+}

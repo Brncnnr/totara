@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weka toolbar is showing and render correctly 1`] = `
+<div
+  class="tui-weka no-yui-ids"
+  id="uid-weka"
+>
+  <toolbar-stub
+    items="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+    sticky="true"
+  />
+   
+  <div
+    class="tui-weka__editorHost tui-rendered"
+    data-placeholder=""
+  >
+    <div
+      aria-label="Weka label"
+      aria-multiline="true"
+      class="ProseMirror tui-weka-editor"
+      contenteditable="true"
+      role="textbox"
+      translate="no"
+    >
+      <p>
+        <br
+          class="ProseMirror-trailingBreak"
+        />
+      </p>
+    </div>
+  </div>
+   
+  <div />
+   
+  <div
+    aria-live="polite"
+    role="status"
+  />
+</div>
+`;

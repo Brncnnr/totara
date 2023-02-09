@@ -1,0 +1,439 @@
+"""
+Mutation result type returned after creation of a new user or updates to an existing user.
+Returns the user that was created or updated.
+"""
+type core_user_user_result {
+  """
+  User object for the user that was created or updated as part of the operation.
+  """
+  user: core_user!
+}
+
+"""
+Mutation result type returned after deletion of a user.
+
+Returns the id of deleted user if it was deleted successfully.
+"""
+type core_user_delete_user_result {
+  """
+  Internal database id of the user that was just deleted from the system.
+  """
+  user_id: core_id!
+}
+
+"""
+Result returned from the core_user_users query. Contains a page of results along with pagination information.
+"""
+type core_user_users_result implements core_pageable_result {
+  """
+  Array of one page of users returned by the query.
+  """
+  items: [core_user!]!
+  """
+  Total number of users from this query (across all pages).
+  """
+  total: Int!
+  """
+  Cursor to request the next set of results for this query.
+  """
+  next_cursor: String!
+}
+
+"""
+Input provided when creating a user.
+"""
+input core_user_create_user_input {
+  """
+  Username for the user. This field is used in combination with the password for logging in with some authentication types.
+  Username must be unique on the site.
+  """
+  username: String!
+  """
+  Email address of the user. Must be unique unless 'allowaccountssameemail' setting is enabled (not recommended).
+  """
+  email: param_email!
+  """
+  Initial password for user. This will only be used with certain auth methods such as 'manual'.
+  This field is required unless you set generate_password to true.
+  """
+  password: String
+  """
+  First name of the user.
+  """
+  firstname: String!
+  """
+  Last name of the user.
+  """
+  lastname: String!
+  """
+  The id number of the user.
+  """
+  idnumber: String
+  """
+  Optional phonetic spelling of the user's first name.
+  """
+  firstnamephonetic: String
+  """
+  Optional phonetic spelling of the user's last name.
+  """
+  lastnamephonetic: String
+  """
+  Middle name of the user.
+  """
+  middlename: String
+  """
+  Alternate name of the user.
+  """
+  alternatename: String
+  """
+  City where the user is located. If not provided the system will use the admin setting 'defaultcity' if set.
+  """
+  city: String
+  """
+  Rich-text description field for the user's profile.
+  """
+  description: String
+  """
+  Format of the description field for the user's profile. See core_format for options.
+  """
+  descriptionformat: core_format
+  """
+  URL for the user's profile.
+  """
+  url: String
+  """
+  Skype username for the user's profile.
+  """
+  skype: String
+  """
+  Institution (organisation) the user belongs to, for the user's profile. This is not connected to job assignment organisation.
+  """
+  institution: String
+  """
+  Department the user belongs to.
+  """
+  department: String
+  """
+  Primary phone number of the user.
+  """
+  phone1: String
+  """
+  Secondary phone number of the user.
+  """
+  phone2: String
+  """
+  The user's address.
+  """
+  address: String
+  """
+  ISO-3166 two-letter country code of the user, e.g. 'NZ'. Country code list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
+  """
+  country: String
+  """
+  Timezone of the user, as a string, for example 'Pacific/Auckland'. If not provided the value from the admin setting 'timezone'
+  will be used instead. We recommend using location-based timezones rather than UTC+1 etc. A list of available timezones can
+  be found at https://www.php.net/manual/en/timezones.php.
+
+  Note that if the admin setting 'forcetimezone' is configured, any value provided
+  here will be stored but not displayed/used - the forcetimezone value will be used instead.
+  """
+  timezone: String
+  """
+  Language of the user, for example 'en_us'. Valid options depend on the site's installed language packs.
+  """
+  lang: String
+  """
+  Theme setting for the user. If the Totara system setting for 'allow user themes' is enabled, then a valid theme name
+  will be accepted from this request, e.g. 'ventura'. If the system setting is disabled, then the theme value will be ignored.
+  """
+  theme: String
+  """
+  Authentication plugin for this user, for example 'manual'. The available options will depend on which authentication
+  plugins are installed and enabled on the site.
+  """
+  auth: String
+  """
+  Calendar type for this user, for example 'gregorian'. The available options will depend on which calendar plugins are
+  installed and enabled on the site.
+  """
+  calendartype: String
+  """
+  Whether this user should be completely prevented from receiving any email notifications. Default is false.
+  """
+  emailstop: Boolean = false
+  """
+  Whether this user should be marked as suspended. Suspended users are unable to log in. Default is false.
+  """
+  suspended: Boolean = false
+  """
+  A reference to a tenant that the user should be assigned to. The API client must be permitted to assign the specified
+  tenant. If not given the user will be automatically assigned based on the API client's tenant, or to the System.
+
+  Ignored if multitenancy is disabled.
+  """
+  tenant: totara_tenant_tenant_reference
+  """
+  Optional array of custom profile field data (each array element describes a single custom field value for this user).
+  Hidden and restricted custom fields require 'moodle/user:viewalldetails' capability.
+  """
+  custom_fields: [core_user_custom_field_input!]
+  """
+  Prompt the user to change their password on their next login.
+  """
+  force_password_change: Boolean
+  """
+  Generate a random password for the user and send it to them via email.
+  """
+  generate_password: Boolean
+}
+
+"""
+Input provided when updating a user.
+"""
+input core_user_update_user_input {
+  """
+  Username for the user. This field is used in combination with the password for logging in with some authentication types.
+  Username must be unique on the site.
+  """
+  username: param_username
+  """
+  First name of the user.
+  """
+  firstname: String
+  """
+  Last name of the user.
+  """
+  lastname: String
+  """
+  Email address of the user. Must be unique unless 'allowaccountssameemail' admin setting is enabled.
+  """
+  email: param_email
+  """
+  New password for the user. This will only be used with certain auth methods such as 'manual'.
+  """
+  password: String
+  """
+  The id number of the user.
+  """
+  idnumber: String
+  """
+  Optional phonetic spelling of the user's first name.
+  """
+  firstnamephonetic: String
+  """
+  Optional phonetic spelling of the user's last name.
+  """
+  lastnamephonetic: String
+  """
+  Middle name of the user.
+  """
+  middlename: String
+  """
+  Alternate name of the user.
+  """
+  alternatename: String
+  """
+  City where the user is located. If not provided the system will use the admin setting 'defaultcity' if set.
+  """
+  city: String
+  """
+  Rich-text description field for the user's profile.
+  """
+  description: String
+  """
+  Rich-text format of the description field.
+  """
+  descriptionformat: core_format
+  """
+  URL for the user's profile.
+  """
+  url: String
+  """
+  Skype username for the user's profile.
+  """
+  skype: String
+  """
+  Institution (organisation) the user belongs to, for the user's profile. This is not connected to job assignment organisation.
+  """
+  institution: String
+  """
+  Department the user belongs to.
+  """
+  department: String
+  """
+  Primary phone number of the user.
+  """
+  phone1: String
+  """
+  Secondary phone number of the user.
+  """
+  phone2: String
+  """
+  The user's address.
+  """
+  address: String
+  """
+  ISO-3166 two-letter country code of the user, e.g. 'NZ'. Country code list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
+  """
+  country: String
+  """
+  Timezone of the user, as a string, for example 'Pacific/Auckland'. We recommend using location-based timezones rather
+  than UTC+1 etc. A list of available timezones can be found at https://www.php.net/manual/en/timezones.php.
+
+  Note that if the admin setting 'forcetimezone' is configured, any value provided
+  here will be stored but not displayed/used - the forcetimezone value will be used instead.
+  """
+  timezone: String
+  """
+  Language of the user, for example 'en_us'. Valid options depend on the site's installed language packs.
+  """
+  lang: String
+  """
+  Theme setting for the user. If the admin setting 'allowuserthemes' is enabled, then a valid theme name
+  will be accepted from this request, e.g. 'ventura'. If that admin setting is disabled, then the theme value will be ignored.
+  """
+  theme: String
+  """
+  Authentication plugin for this user, for example 'manual'. The available options will depend on which authentication
+  plugins are installed and enabled on the site.
+  """
+  auth: String
+  """
+  Calendar type for this user, for example 'gregorian'. The available options will depend on which calendar plugins are
+  installed and enabled on the site.
+  """
+  calendartype: String
+  """
+  Whether this user should be completely prevented from receiving any email notifications. Default is false.
+  """
+  emailstop: Boolean
+  """
+  Whether this user should be marked as suspended. Suspended users are unable to log in. Default is false.
+  """
+  suspended: Boolean
+  """
+  A reference to a tenant that the user should be assigned to. The API client must be permitted to assign the specified tenant.
+  To change tenant the API client must have 'totara/tenant:manageparticipants' capability in system context.
+  """
+  tenant: totara_tenant_tenant_reference
+  """
+  Optional array of custom profile field data (each array element describes a single custom field value for this user).
+  Hidden and restricted custom fields require 'moodle/user:viewalldetails' capability.
+  """
+  custom_fields: [core_user_custom_field_input!]
+  """
+  Prompt the user to change their password on their next login.
+  """
+  force_password_change: Boolean
+  """
+  Generate a random password for the user and send it to them via email.
+  """
+  generate_password: Boolean
+}
+
+"""
+Input type representing a single custom field for a particular user.
+"""
+input core_user_custom_field_input {
+  """
+  Shortname is used to uniquely identify the custom field the data is for. It must exactly match the shortname
+  of a custom field that exists on the site or an error will be thrown. Note if the same shortname is provided
+  multiple times in a request (not recommended) they will be applied in order so the last one will be used.
+  """
+  shortname: String!
+  """
+  Represents the value for the custom field for this user. This field is required unless the delete flag is set.
+  The format of this data will depend on the field type of the field specified by shortname:
+
+  * checkbox: string of 0 (unchecked) or 1 (checked).
+  * menu: A string exactly matching one of the menu options (case sensitive).
+  * text: A string of plain-text.
+  * textarea: A string of formatted text, in the format specified via the data_format field (see below).
+  * datetime: A string in the format YYYY-MM-DD or YYYY-MM-DD-HH-MM-SS (depending on if the field uses the 'Include time?' option).
+  If the field defines a year range, the input will be validated to ensure it falls within that range. If only YYYY-MM-DD is provided for
+  a field where 'Include time?' is enabled, midnight will be used for the time.
+  Stored as a unix timestamp using the timezone of the client's service account.
+  * date: A string in the format YYYY-MM-DD. Stored as a timestamp so uses noon UTC for time to ensure
+    date displayed is consistent across most timezones.
+  """
+  data: String
+  """
+  Optional property, which must be provided textarea field types but should not be passed for other types. Used to record the format of the 'data' field so it can be correctly rendered.
+  Options are:
+  * 1: HTML
+  * 2: Plain-text
+  * 4: Markdown
+  * 5: JSON
+  """
+  data_format: Int
+  """
+  Flag indicating that the data for this custom field should be deleted. This flag should only be set if not passing new or updated data for the field.
+  """
+  delete: Boolean
+}
+
+"""
+Input type used when querying for a list of users. Specifies pagination and sorting information that can impact the
+structure of the results.
+"""
+input core_user_users_query {
+  """
+  Pagination information such as which page to return and the number of results requested.
+  """
+  pagination: core_pagination_input
+  """
+  The sort order of the query.
+  Allowed entity fields for the sort column are 'id', 'firstname', 'lastname', 'username' and 'timemodified'.
+  """
+  sort: [core_sort_input!]
+}
+
+extend type Mutation {
+  """
+  Create a new user.
+  """
+  core_user_create_user(
+    """
+    Input object specifying data for the new user.
+    """
+    input: core_user_create_user_input!
+  ): core_user_user_result!
+
+  """
+  Update the specified target user with new properties.
+  Note: a service account making a request cannot suspend its own user account.
+  """
+  core_user_update_user(
+    """
+    User to be updated.
+    """
+    target_user: core_user_user_reference!
+    """
+    Input object specifying data for updating the user.
+    """
+    input: core_user_update_user_input!
+  ): core_user_user_result!
+
+  """
+  Delete the target user.
+  Note: a service account making a request cannot delete its own user account.
+  """
+  core_user_delete_user(
+    """
+    Target user which is being deleted.
+    """
+    target_user: core_user_user_reference!
+  ): core_user_delete_user_result!
+}
+
+extend type Query {
+  """
+  Return a paginated list of users in the system. Deleted users are excluded and multitenancy restrictions apply.
+  """
+  core_user_users(
+    """
+    Sort and pagination information to control the data returned.
+    """
+    query: core_user_users_query
+  ): core_user_users_result!
+}

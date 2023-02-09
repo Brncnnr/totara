@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/contentmarketplace/contentmarketplaces/goone/db" VERSION="20210921" COMMENT="XMLDB file for Go1 integration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="marketplace_goone_learning_object" COMMENT="Stores the learning assets from Go1 locally">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="external_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The learning object ID of the Go1 course"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="external_id_index" UNIQUE="true" FIELDS="external_id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

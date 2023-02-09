@@ -1,0 +1,15 @@
+query mod_scorm_current_status($scormid: core_id!) {
+  mod_scorm_current_status(scormid: $scormid) {
+    maxattempt
+    attempts_current
+    completion
+    completionview
+    completionstatusrequired
+    completionscorerequired
+    completionstatusallscos
+    completionstatus
+    gradefinal
+    grademax
+    gradepercentage
+  }
+}

@@ -1,0 +1,58 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Aleksandr Baishev <aleksandr.baishev@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+    @template totara_competency/save_selected_user_group_body
+
+    Displays the selected items for a user group type
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-assignCompSave-selected-row-type: group type
+    * data-tw-assignCompSave-selected-row-id: ID
+    * data-tw-assignCompSave-remove-selected-group: Trigger for removing row
+
+    Context variables required for this template:
+    * items:
+    * items -> display_name: item name
+    * items -> id: ID
+    * items -> type: group type
+
+}}
+<div class="tw-assignCompSave__selected_group {{^items.0}}tw-assignCompSave__hidden{{/items.0}}" role="table">
+    <h4 class="tw-assignCompSave__selected_group_heading">{{title}}</h4>
+    <div class="tw-assignCompSave__selected_group_rows">
+        {{#items}}
+        <div class="tw-assignCompSave__selected_group_row" data-tw-assignCompSave-selected-row-type="{{type}}"
+        data-tw-assignCompSave-selected-row-id="{{id}}" role="row">
+            <div class="tw-assignCompSave__selected_group_row_name">
+                {{display_name}}
+            </div>
+            <a href="#" class="tw-assignCompSave__selected_group_row_icon" data-tw-assignCompSave-remove-selected-group="">
+                {{#flex_icon}}remove, remove, core{{/flex_icon}}
+            </a>
+        </div>
+        {{/items}}
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+query contentmarketplace_linkedin_catalog_import_learning_objects_filter_options(
+  $input: contentmarketplace_linkedin_catalog_import_learning_objects_filter_options_input!
+) {
+  result: contentmarketplace_linkedin_catalog_import_learning_objects_filter_options(
+    input: $input
+  ) {
+    subjects {
+      ...contentmarketplace_linkedin_catalog_import_filter_option
+      children {
+        ...contentmarketplace_linkedin_catalog_import_filter_option
+      }
+    }
+    time_to_complete {
+      ...contentmarketplace_linkedin_catalog_import_filter_option
+    }
+    in_catalog {
+      ...contentmarketplace_linkedin_catalog_import_filter_option
+    }
+  }
+}
+
+fragment contentmarketplace_linkedin_catalog_import_filter_option on contentmarketplace_linkedin_catalog_import_filter_node {
+  __typename
+  id
+  label
+  content {
+    id
+    label
+  }
+}

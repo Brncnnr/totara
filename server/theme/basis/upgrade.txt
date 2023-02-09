@@ -1,0 +1,43 @@
+This file describes API changes for 'theme_basis'.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* Deprecated the following icons:
+** notification-info - use theme_basis|notification-info instead
+** notification-succes - use theme_basis|notification-success instead
+** notification-warning - use theme_basis|notification-warning instead
+** notification-error - use theme_basis|notification-error instead
+** home - use totara_core|home instead
+* Modified the following templates, extracting out the ft-size-200 class that was previously applied to the flex icon declaration:
+** core/notification_error
+** core/notification_info
+** core/notification_success
+** core/notification_warning
+* Added theme setting for primary button color
+* Added theme_basis_resolve_favicon() that handles the theme_basis/favicon setting
+* Added reset tour container to theme/roots/layout/partials/footer.php
+
+=== 12.0 ===
+
+* Altered theme/basis/layout/partials/footer.php, removing reference to page_footer_nav
+* Deprecated page_footer_nav.mustage template
+* Deprecated theme_basis_renderer::page_footer_nav()
+* Deprecated theme_basis_renderer::render_page_footer_nav()
+* Deprecated theme_basis\output\page_footer_nav
+* Changed totara/core/templates/totara_menu.mustache, adding aria menu attributes
+* Added theme setting for navigation text color
+* Added propagation of color theme settings to new navigation in settings-noprocess.css
+* Changed totara/core/templates/totara_menu.mustache, adding aria menu attributes
+* Deprecated class theme_basis_totara_core_renderer
+* Deprecated templates\totara_core\totara_menu.mustache
+* Redesigned navigation implemented, deprecated navigation hasn't been removed
+
+=== 10.0 ===
+
+* Ensured block action icons conform to WCAG AA contrast for text and background
+
+=== 9.2 ===
+
+* Additional grid classes added to template 'theme_basis/page_footer_nav' for a 4 column layout for small devices

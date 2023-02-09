@@ -1,0 +1,57 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2022 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author Simon Chester <simon.chester@totaralearning.com>
+// @module editor_weka
+
+.tui-editor_weka-unknownBlock {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--paragraph-gap);
+  padding: var(--gap-2);
+  color: color(--color-neutral-6);
+  font-size: var(--font-size-32);
+  background-color: var(--color-neutral-4);
+  border-radius: var(--border-radius-small);
+
+  &:after {
+    content: '?';
+  }
+}
+
+.tui-editor_weka-unknownInline {
+  padding: 0 var(--gap-2);
+  color: color(--color-neutral-7);
+  background-color: var(--color-neutral-4);
+  border-radius: var(--border-radius-small);
+
+  &:after {
+    content: '?';
+  }
+}
+
+.tui-editor_weka-svgFill {
+  &--neutral-5 {
+    fill: var(--color-neutral-5);
+  }
+
+  &--neutral-6 {
+    fill: var(--color-neutral-6);
+  }
+}
+
+.tui-editor_weka-svgStroke {
+  &--neutral-6 {
+    stroke: var(--color-neutral-6);
+  }
+}

@@ -1,0 +1,229 @@
+"""
+Pathway classification indicates whether completing a pathway results in a specific scale value or can result in any of the scale values
+"""
+enum totara_competency_pathway_classification {
+  """
+  Completing the pathway can result in any scale value
+  """
+  MULTIVALUE
+  """
+  Completing the pathway will result in a specific scale value
+  """
+  SINGLEVALUE
+}
+
+"""
+Possible pathway statuses
+"""
+enum totara_competency_pathway_status {
+  """
+  The pathway is in use
+  """
+  ACTIVE
+  """
+  The pathway has been archived
+  """
+  ARCHIVED
+}
+
+"""
+Summarized pathway criteria item
+"""
+type totara_competency_summarized_pathway_criterion_item {
+  """
+  Human readable string describing this criterion
+  """
+  description(format: core_format = PLAIN): String
+  """
+  Error string displayed if there are issues with this criterion
+  """
+  error(format: core_format = PLAIN): String
+}
+
+"""
+Summarized pathway criteria detail
+"""
+type totara_competency_summarized_pathway_criteria {
+  item_type: String!
+  item_aggregation: String
+  error(format: core_format = PLAIN): String
+  items: [totara_competency_summarized_pathway_criterion_item!]
+}
+
+"""
+This is the generic pathway type. Each plugin must define its specific type with name pathway_<pathway_type>_instance
+These should be retrieved separately and should contain the plugin specific detail
+None of the strings are retrieved from user input - therefore no formatting requirement
+"""
+type totara_competency_pathway {
+  id: core_id!
+  pathway_type: String!
+  instance_id: core_id
+  title: String!
+  sortorder: Int!
+  status: totara_competency_pathway_status!
+  classification: totara_competency_pathway_classification!
+  scale_value(format: core_format = PLAIN): String
+  error(format: core_format = PLAIN): String
+  criteria_summary: [totara_competency_summarized_pathway_criteria!]
+}
+
+"""
+How achievement values are aggregated
+None of the strings are retrieved from user input - therefore no formatting requirement
+"""
+type totara_competency_overall_aggregation {
+  """
+  Type of aggregation
+  """
+  aggregation_type: String!
+  """
+  Human readable string describing aggregation type
+  """
+  title: String!
+  """
+  Human readable description of aggregration type
+  """
+  description: String
+}
+
+"""
+Achievement configuration
+"""
+type totara_competency_achievement_configuration {
+  """
+  ID of competency being configured
+  """
+  competency_id: core_id!
+  """
+  Aggregation method used between pathways
+  """
+  overall_aggregation: totara_competency_overall_aggregation!
+  """
+  List of pathways in use
+  """
+  paths: [totara_competency_pathway!]!
+}
+
+"""
+Competency details achievement path
+"""
+type totara_competency_achievement_path {
+  """
+  Type of pathway classification, e.g. SINGLEVALUE, MULTIVALUE
+  """
+  class: totara_competency_pathway_classification!
+  """
+  Type of achievement path, e.g. 'manual', 'learning_plan', null
+  """
+  type: String
+  """
+  Human readable name for the achievement path
+  """
+  name: String!
+}
+
+"""
+This represents an item which is shown under within a specific scale.
+The pathway_type can be any type which supports single scale values, i.e. criteria_group
+"""
+type totara_competency_scale_achievement_item {
+  instance_id: core_id! # specific instance id
+  pathway_type: String # criteria_group
+}
+
+"""
+The status of a pathway achievement
+"""
+enum totara_competency_pathway_achievement_status {
+  """
+  This is the current achievement for a user
+  """
+  CURRENT
+  """
+  Every outdated record is marked as archived
+  """
+  ARCHIVED
+}
+
+"""
+A single pathway achievement for a user
+"""
+type totara_competency_pathway_achievement {
+  """
+  Pathway ID
+  """
+  id: core_id!
+  """
+  The pathway object
+  """
+  pathway: totara_competency_pathway!
+  """
+  The user object for the user
+  """
+  user: core_user!
+  """
+  Scale value object
+  """
+  scale_value: totara_competency_scale_value
+  """
+  True if there is a scale value attached to this pathway
+  """
+  has_scale_value: Boolean!
+  """
+  Time the pathway was achieved
+  """
+  date_achieved(format: core_date_format = TIMESTAMP): core_date
+  """
+  Time the pathway was last aggregated
+  """
+  last_aggregated(format: core_date_format = TIMESTAMP): core_date
+  """
+  Status of pathway, e.g. is it current or archived
+  """
+  status: totara_competency_pathway_achievement_status!
+  """
+  This is a meta field which indicates if the user achieved this pathway
+  """
+  achieved: Boolean!
+  related_info: String
+}
+
+"""
+Returns items for each scale value, which could be criteria groups
+"""
+type totara_competency_scale_achievement {
+  """
+  Specific scale value to return pathways for
+  """
+  scale_value: totara_competency_scale_value
+  """
+  List of pathways for this scale value
+  """
+  items: [totara_competency_pathway_achievement]
+}
+
+extend type Query {
+  """
+  Fetch achievement criteria for a given competency
+  """
+  totara_competency_achievement_criteria(
+    competency_id: core_id!
+  ): totara_competency_achievement_configuration!
+
+  """
+  Fetch all achievement paths for a given competency and user
+  """
+  totara_competency_achievement_paths(
+    assignment_id: core_id!
+    user_id: core_id!
+  ): [totara_competency_achievement_path]
+
+  """
+  Fetch all scale achievements for a given competency and user
+  """
+  totara_competency_scale_achievements(
+    assignment_id: core_id!
+    user_id: core_id!
+  ): [totara_competency_scale_achievement]
+}

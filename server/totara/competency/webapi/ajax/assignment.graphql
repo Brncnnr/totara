@@ -1,0 +1,6 @@
+query totara_competency_assignment($assignment_id: core_id!) {
+  totara_competency_assignment(assignment_id: $assignment_id) {
+    id
+    type
+  }
+}

@@ -1,0 +1,551 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+//
+// Variables overwriting bootstrap defaults
+//
+
+// Font families
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  'Helvetica Neue', Arial, sans-serif !default;
+$font-family-monospace: Menlo, Monaco, Consolas, 'Liberation Mono',
+  'Courier New', monospace !default;
+// Panel
+$panel-default-border: var(--color-border) !default;
+// Spacing
+$padding-large-vertical: 10px !default;
+// Form
+$form-group-margin-bottom: 30px !default;
+// Buttons
+$btn-border-radius-base: var(--btn-radius) !default;
+// Nav
+$navbar-default-bg: $boot-color-neutral-2 !default;
+$navbar-border-radius: 0 !default;
+$nav-link-hover-bg: var(--color-neutral-3) !default;
+$nav-link-padding: 15px 30px !default;
+$nav-tabs-border-color: var(--tabs-border-color) !default;
+// Popover
+$popover-border-color: $boot-color-neutral-5 !default;
+// Code
+$pre-bg: var(--color-neutral-1) !default;
+// Modal
+$modal-inner-padding: 5px;
+$modal-backdrop-bg: rgba(0, 0, 0, 0.2);
+// Progress bar
+$progress-bar-bg: var(--color-secondary) !default;
+// Alerts
+$alert-border-radius: 8px;
+$alert-info-border: $boot-color-secondary !default;
+$alert-info-bg: var(--color-neutral-1) !default;
+$alert-info-text: $boot-color-neutral-7 !default;
+$alert-success-border: $boot-color-prompt-success !default;
+$alert-success-bg: var(--color-neutral-1) !default;
+$alert-success-text: $boot-color-neutral-7 !default;
+$alert-warning-border: $boot-color-prompt-warning !default;
+$alert-warning-bg: var(--color-neutral-1) !default;
+$alert-warning-text: $boot-color-neutral-7 !default;
+$alert-danger-border: $boot-color-prompt-alert !default;
+$alert-danger-bg: var(--color-neutral-1) !default;
+$alert-danger-text: $boot-color-neutral-7 !default;
+
+// Colours
+// Brand colours
+$brand-primary: $boot-color-primary;
+$brand-info: $boot-color-secondary;
+$brand-success: $boot-color-prompt-success;
+$brand-warning: $boot-color-prompt-warning;
+$brand-danger: $boot-color-prompt-alert;
+// Fonts colours
+$link-color: $boot-color-state !default;
+$link-hover-color: $boot-color-state-hover !default;
+$text-color: var(--color-text) !default;
+// Gray scale colours
+$gray: $boot-color-neutral-6 !default;
+$gray-base: #000 !default;
+$gray-darker: #1d2125 !default;
+$gray-dark: #3d444b !default;
+$gray-light: #64717d !default;
+$gray-lighter: #dde1e5 !default;
+// State colours
+$state-success-text: #6a7e26 !default;
+$state-success-bg: #f7faee !default;
+$state-success-border: #b2cb6c !default;
+$state-info-text: #1d2125 !default;
+$state-info-bg: #eff7fb !default;
+$state-info-border: #88b8d5 !default;
+$state-warning-text: #bf8400 !default;
+$state-warning-bg: #fff9ed !default;
+$state-warning-border: #ecc876 !default;
+$state-danger-text: #bb4247 !default;
+$state-danger-bg: #fef6f6 !default;
+$state-danger-border: #e7898d !default;
+
+// make sure popovers are displayed under modals (unless loaded in a modal)
+$zindex-popover: 1035 !default;
+
+//
+// End of bootstrap overwrites
+//
+
+//
+// Legacy
+//
+
+// Set to false if you want to drop all legacy styles, or want to manually import individual legacy files
+$include-all-legacy-styles: true;
+
+//
+// Tables
+//
+$moodle-table-striped: true !default;
+$moodle-table-hover: true !default;
+
+//
+// Calendar
+//
+$calendar-border-radius: 4px !default;
+$calendar-event-course-bg-color: var(--color-prompt-alert-bg) !default;
+$calendar-event-course-border-color: var(--color-prompt-alert-bg) !default;
+$calendar-event-global-bg-color: var(--color-prompt-success-bg) !default;
+$calendar-event-global-border-color: var(
+  --color-prompt-success-bg
+) !default;
+$calendar-event-group-bg-color: var(--color-prompt-warning-bg) !default;
+$calendar-event-group-border-color: var(--color-prompt-warning-bg) !default;
+$calendar-event-panel-bg-color: var(--color-neutral-2) !default;
+$calendar-event-panel-border-color: var(--color-border) !default;
+$calendar-event-user-bg-color: var(--color-neutral-3) !default;
+$calendar-event-user-border-color: var(--color-neutral-3) !default;
+$calendar-event-list-border-color: var(--color-border) !default;
+$calendar-event-list-desc-bg-color: var(--color-neutral-1) !default;
+$calendar-month-border-color: var(--color-border) !default;
+$calendar-month-today-bg-color: var(--color-state) !default;
+$calendar-month-today-text-color: var(--color-neutral-1) !default;
+$calendar-weekend-text-color: var(--color-neutral-5) !default;
+
+//
+// Modal
+//
+$modal-outer-padding: 15px;
+$modal-border-radius: 4px;
+
+//
+// Progress bar
+//
+$progress-bar-inverted-color: var(--color-neutral-7) !default;
+
+//
+// Dock
+//
+$dock-width: 36px;
+$dock-title-margin: 0;
+$dock-title-font-size: var(--font-size-12) !default;
+
+//
+// Blocks
+//
+$block-header-padding-vertical: ($padding-large-vertical * 1.5) !default;
+$block-border-color: var(--color-neutral-5) !default;
+$block-actions-text-color: var(--color-neutral-6) !default;
+$block-actions-bg: var(--color-neutral-1) !default;
+
+// Totara Menu
+$totara-menu-link-hover-color: var(--color-neutral-1) !default;
+$totara-menu-link-hover-bg: var(--color-neutral-7) !default;
+
+//
+// Totara style breakpoints
+//
+$totara-style-screen-sm-min: 768px !default; // Matches @screen-sm-min
+$totara-style-screen-md-min: 992px !default; // Matches @screen-md-min
+$totara-style-screen-lg-min: 1200px !default; // Matches @screen-lg-min
+$totara-style-screen-xl-min: 1400px !default;
+
+//
+// mod facetoface colours
+//
+$facetoface-border-color: var(--color-border) !default;
+$facetoface-border-color-error: var(--color-prompt-alert) !default;
+$facetoface-bulk-select-option-before-text-color: var(
+  --color-prompt-alert
+) !default;
+$facetoface-text-color-error: var(--color-prompt-alert) !default;
+// Session state backgrounds
+$facetoface-session-bg-color-overbooked: #f2d9b3 !default;
+$facetoface-session-bg-color-cancelled: #e6bdbc !default;
+$facetoface-session-bg-color-available: #daead3 !default;
+$facetoface-session-bg-color-upcomming: #daead3 !default;
+$facetoface-session-bg-color-underbooked: #ffffc0 !default;
+$facetoface-session-bg-color-ended: #ffffc0 !default;
+$facetoface-session-bg-color-full: #b3dab6 !default;
+$facetoface-session-bg-color-started: #b3dab6 !default;
+$facetoface-dialog-bg: #ffffff !default;
+$facetoface-dialog-tab-top-shadow: #e5eb77 !default; // 10% lighter than $brand-primary
+$facetoface-dialog-tab-top-shadow-secondary: rgba(165, 70, 70, 0.03) !default;
+$facetoface-table-border-color: var(--color-neutral-5) !default;
+$facetoface-table-bg-accent: var(--color-neutral-2) !default;
+$facetoface-border-radius: 4px !default;
+// Spacing
+$facetoface-spacing-x-small: var(--gap-1) !default;
+$facetoface-spacing-medium: var(--gap-4) !default;
+$facetoface-spacing-large: var(--gap-6) !default;
+$facetoface-navbar-height: calc(var(--font-size-14) * 2) !default;
+
+//
+// My reports
+//
+$myReports-image-bg-color: #f0f0f0 !default; // taken from svg
+// Grid
+$myReports-grid-description-height: 10em !default;
+$myReports-grid-border-color: var(--color-border) !default;
+$myReports-grid-spacing: var(--gap-2) !default;
+$myReports-grid-text-size: var(--font-size-12);
+$myReports-grid-title-text-size: var(--font-size-14) !default;
+// Table
+$myReports-table-border-color: var(--color-border) !default;
+$myReports-table-text-size: var(--font-size-12) !default;
+$myReports-table-title-text-size: var(--font-size-14) !default;
+$myReports-table-row-height: 3.5em;
+// Spacing
+$myReports-spacing-small: var(--gap-2) !default;
+$myReports-spacing-med: var(--gap-4) !default;
+// Breakpoints
+$myReports-screen-xsm-min: 500px !default;
+
+//
+// Report builder
+//
+$reportbuilder-transition: 200ms !default;
+$reportbuilder-image-background: #f0f0f0 !default;
+$reportbuilder-create-grid-height: 20em !default;
+$reportbuilder-create-table-height: 5em !default;
+
+//
+// Quick access menu
+//
+$quickAccessMenu-box-padding: var(--gap-4) !default;
+// Breakpoints
+$quickAccessMenu-screen-sm-max: ($totara-style-screen-sm-min - 1px) !default;
+
+//
+// Quick access menu settings
+//
+$quickAccessSettings-accordion-border-color: var(--color-border) !default;
+$quickAccessSettings-accordion-header-bg-color: var(
+  --color-neutral-3
+) !default;
+$quickAccessSettings-accordion-icon-size: var(--font-size-18) !default;
+$quickAccessSettings-accordion-item-border-color: var(
+  --color-border
+) !default;
+$quickAccessSettings-accordion-item-reorder-transition: 200ms !default;
+// Spacing
+$quickAccessSettings-spacing-medium: var(--gap-4) !default;
+$quickAccessSettings-accordion-updown-offset: 4.2rem;
+// Breakpoints
+$quickAccessSettings-screen-sm-max: (
+  $totara-style-screen-sm-min - 1px
+) !default;
+
+//
+// Add block trigger and popover
+//
+$addBlock-popover-close-text-size: var(--font-size-18) !default;
+$addBlock-popover-item-bg-color-focus: var(--color-neutral-3) !default;
+$addBlock-popover-overlay-bg-color: var(--color-neutral-1) !default;
+$addBlock-popover-overlay-text-color: var(--color-text) !default;
+$addBlock-trigger-text-size: var(--font-size-30) !default;
+// Spacing
+$addBlock-spacing-small: var(--gap-2) !default;
+$addBlock-spacing-medium: var(--gap-4) !default;
+$addBlock-spacing-xx-large: var(--gap-10) !default;
+
+//
+// Totara forms
+//
+$totara-form-input-bg-color: var(--color-neutral-1) !default;
+$totara-form-input-bg-color-disabled: var(
+  --form-input-bg-color-disabled
+) !default;
+$totara-form-input-border-color: var(--color-border) !default;
+$totara-form-input-text-color: var(--form-text-color) !default;
+$totara-form-input-text-color-placeholder: var(
+  --form-input-text-placeholder-color
+) !default;
+// Error at top of form
+$totara-form-error-top-bg-color: var(--color-neutral-2) !default;
+$totara-form-error-top-border-color: var(--color-neutral-4) !default;
+$totara-form-error-top-text-color: var(--color-prompt-alert) !default;
+// Error above input
+$totara-form-error-above-bg-color: var(--color-prompt-alert) !default;
+$totara-form-error-above-text-color: var(--color-neutral-1) !default;
+// Icons
+$totara-form-icon-color-required: var(--color-prompt-alert) !default;
+// Spacing
+$totara-form-bottom-space-element: 30px !default;
+$totara-form-bottom-space-other: 20px !default;
+
+//
+// Current learning
+//
+$current-learning-bg-color: var(--color-neutral-5) !default;
+$current-learning-bg-color-default: var(--color-neutral-1) !default;
+$current-learning-bg-color-light: var(--color-neutral-3) !default;
+$current-learning-bg-color-lightish: var(--color-neutral-4) !default;
+$current-learning-border-color-complete: var(
+  --color-prompt-success
+) !default;
+$current-learning-border-color-unavailable: var(
+  --color-prompt-alert
+) !default;
+$current-learning-border-radius: 4px !default;
+$current-learning-border-radius-large: 8px !default;
+$current-learning-text-color: var(--color-neutral-7) !default;
+$current-learning-text-color-complete: var(--color-prompt-success) !default;
+$current-learning-text-color-unavailable: var(
+  --color-prompt-alert
+) !default;
+$current-learning-text-size-small: 12px !default;
+$current-learning-title-text-size: 16px !default;
+// Spacing
+$current-learning-empty-padding: 15px !default;
+$current-learning-padding-horizontal: 10px !default;
+$current-learning-padding-vertical: 4px !default;
+$current-learning-set-header-padding: 5px !default;
+
+//
+// Featured links
+//
+$featuredLinks-block-border-color: var(--color-state-active) !default;
+$featuredLinks-block-text-shadow-color: var(--color-neutral-5) !default;
+$featuredLinks-block-header-text-size: var(--font-size-18) !default;
+$featuredLinks-block-indicator-arrow-size: 28px;
+// Spacing
+$featuredLinks-block-padding-vertical: 4px !default;
+$featuredLinks-block-padding-small-vertical: 5px !default;
+$featuredLinks-block-padding-small-horizontal: 10px !default;
+// Tile sizes
+$featuredLinks-block-tile-size-large: 320px !default;
+$featuredLinks-block-tile-size-medium: 210px !default;
+$featuredLinks-block-tile-size-small: 140px !default;
+// Icon selector
+$featuredLinks-icon-selector-item-border-radius: 3px !default;
+$featuredLinks-icon-selector-item-margin: 3px !default;
+$featuredLinks-icon-selector-item-padding: 8px !default;
+$featuredLinks-icon-selector-item-size: 25px !default;
+$featuredLinks-icon-selector-item-width: 55px !default;
+
+//
+// Appraisals
+//
+$appraisal-border-color: var(--color-border) !default;
+$appraisal-gray-light: var(--color-neutral-6) !default;
+$appraisal-green-light: var(--color-prompt-success-bg) !default;
+$appraisal-padding-small-horizontal: 10px !default;
+$appraisal-padding-small-vertical: 5px !default;
+$appraisal-padding-large-vertical: 10px !default;
+
+//
+// Inline edit
+//
+$inlineEdit-tooltip-bg-color: var(--color-neutral-2) !default;
+$inlineEdit-tooltip-bg-color-error: var(--color-prompt-alert) !default;
+$inlineEdit-tooltip-border-color: var(--color-border) !default;
+$inlineEdit-tooltip-text-color: var(--color-text) !default;
+$inlineEdit-tooltip-text-color-error: var(--color-neutral-1) !default;
+$inlineEdit-tooltip-text-size: var(--font-size-12) !default;
+$inlineEdit-tooltip-padding: 0.5em !default;
+
+//
+// Wizard
+//
+$wizardBar-item-bg-color: var(--color-neutral-2) !default;
+$wizardBar-item-bg-color-current: var(--color-neutral-3) !default;
+$wizardBar-item-bg-color-hover: var(--color-neutral-4) !default;
+$wizardBar-item-bg-color-selected: var(--color-neutral-1) !default;
+$wizardBar-item-border-color: var(--color-border) !default;
+$wizardBar-item-border-color-selected: var(--color-primary) !default;
+$wizardBar-item-shadow-color-selected: rgba(0, 0, 0, 0.2) !default;
+$wizardBar-item-text-color: var(--color-text) !default;
+$wizardBar-item-text-color-disabled: var(--color-text) !default;
+$wizardBar-item-text-color-interactive: var(--color-text) !default;
+$wizardBar-item-text-size: var(--font-size-12) !default;
+// Arrows
+$wizardBar-item-arrow-angle: 30deg !default;
+$wizardBar-item-arrow-color: var(--color-border) !default;
+// Spacing
+$wizardBar-item-firstlink-padding-lft: 2.5em !default;
+$wizardBar-item-lastlink-padding-rgt: 2.5em !default;
+$wizardBar-item-link-padding-btm: 1.25em !default;
+$wizardBar-item-link-padding-lft: 2.5em !default;
+$wizardBar-item-link-padding-rgt: 1.25em !default;
+$wizardBar-item-link-padding-top: 1.25em !default;
+
+//
+// Grid
+//
+$grid-spacing-small: var(--gap-2) !default;
+$grid-spacing-x-small: var(--gap-1) !default;
+// Breakpoints
+$grid-screen-xsm-min: 500px !default;
+
+//
+// FILTERS
+//
+
+//
+// Multi select filter
+//
+$selectMulti-bg-color-active: var(--color-neutral-2) !default;
+$selectMulti-bg-color-hover: var(--color-neutral-2) !default;
+$selectMulti-text-color: var(--color-state) !default;
+$selectMulti-text-color-selected: var(--color-neutral-7) !default;
+// Spacing
+$selectMulti-spacing-x-small: var(--gap-1) !default;
+$selectMulti-spacing-small: var(--gap-2) !default;
+
+//
+// Search filter
+//
+$selectSearchText-border-color: var(--color-border) !default;
+$selectSearchText-border-color-focus: var(--color-state) !default;
+// Spacing
+$selectSearchText-spacing-x-small: var(--gap-1) !default;
+$selectSearchText-spacing-small: var(--gap-2) !default;
+$selectSearchText-spacing-medium: var(--gap-4) !default;
+
+//
+// Select tree filter
+//
+$selectTree-current-border-active: var(--color-neutral-5) !default;
+$selectTree-current-text-color: var(--color-neutral-7) !default;
+$selectTree-options-bg-color: var(--color-neutral-1) !default;
+$selectTree-options-bg-color-active: var(--color-neutral-3) !default;
+$selectTree-options-bg-color-hover: var(--color-neutral-2) !default;
+$selectTree-options-border-color: var(--color-neutral-5) !default;
+$selectTree-options-border-color-focus: var(--color-state-focus) !default;
+$selectTree-options-text-color-active: var(--color-neutral-7) !default;
+$selectTree-options-text-size: var(--font-size-16) !default;
+// Spacing
+$selectTree-spacing-x-small: var(--gap-1) !default;
+$selectTree-spacing-small: var(--gap-2) !default;
+
+//
+// Select region primary
+//
+$selectRegionPrimary-border-color: var(--color-border) !default;
+// Spacing
+$selectRegionPrimary-spacing-medium: var(--gap-4);
+
+//
+// Select region panel
+//
+$selectRegionPanel-spacing-small: var(--gap-2) !default;
+$selectRegionPanel-spacing-x-small: var(--gap-1) !default;
+
+//
+// TYPOGRAPHY
+//
+// Heading font sizes
+$totara-style-font-heading-label-small-size: var(--font-size-13) !default;
+$totara-style-font-heading-label-medium-size: var(--font-size-14) !default;
+$totara-style-font-heading-x-small-size: var(--font-size-14) !default;
+// Body font sizes
+$totara-style-font-body-small-size: var(--font-size-13) !default;
+$totara-style-font-body-x-small-size: var(--font-size-12) !default;
+// Font weight
+$totara-style-font-weight-bold-light: 500 !default;
+// Font line heights
+$totara-style-font-line-height-small: 1.25 !default;
+$totara-style-font-line-height-standard: 1.5 !default;
+$totara-style-font-line-height-large: 1.63 !default;
+
+//
+// MIXINS
+//
+
+@mixin totara-style-heading-medium {
+  font-weight: bold;
+  font-size: var(--font-size-24);
+  line-height: $totara-style-font-line-height-small;
+}
+
+@mixin totara-style-heading-x-small {
+  font-weight: bold;
+  font-size: $totara-style-font-heading-x-small-size;
+  line-height: $totara-style-font-line-height-standard;
+}
+
+@mixin totara-style-heading-label-medium {
+  font-weight: $totara-style-font-weight-bold-light;
+  font-size: $totara-style-font-heading-label-medium-size;
+  line-height: $totara-style-font-line-height-standard;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+@mixin totara-style-heading-label-small {
+  font-weight: $totara-style-font-weight-bold-light;
+  font-size: $totara-style-font-heading-label-small-size;
+  line-height: $totara-style-font-line-height-standard;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+@mixin totara-style-body-medium {
+  font-weight: normal;
+  font-size: var(--font-size-14);
+  line-height: $totara-style-font-line-height-standard;
+}
+
+@mixin totara-style-body-small {
+  font-weight: normal;
+  font-size: $totara-style-font-body-small-size;
+  line-height: $totara-style-font-line-height-standard;
+}
+
+@mixin totara-style-body-x-small {
+  font-weight: normal;
+  font-size: $totara-style-font-body-x-small-size;
+  line-height: $totara-style-font-line-height-large;
+}
+
+//
+// Totara style forms
+//
+@mixin totara-style-textInput {
+  width: 280px;
+  padding: var(--gap-2);
+  line-height: 1;
+}
+
+@mixin totara-style-textInput-withIcon {
+  padding-left: var(--gap-8);
+}
+
+@mixin totara-style-textInput-Icon {
+  position: absolute;
+  top: var(--font-size-11);
+  left: var(--gap-2);
+}

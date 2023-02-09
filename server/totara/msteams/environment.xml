@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<COMPATIBILITY_MATRIX>
+    <TOTARA version="14" require="13.0">
+        <CUSTOM_CHECKS>
+            <CUSTOM_CHECK level="required" file="/totara/msteams/db/environment_lib.php" function="totara_msteams_openssl_php_extension_check"/>
+        </CUSTOM_CHECKS>
+    </TOTARA>
+</COMPATIBILITY_MATRIX>

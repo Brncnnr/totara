@@ -1,0 +1,21 @@
+mutation totara_reaction_create_like(
+  $component: param_component!
+  $area: param_area!
+  $instanceid: param_integer!
+) {
+  reaction: totara_reaction_create(
+    component: $component
+    area: $area
+    instanceid: $instanceid
+  ) {
+    __typename
+    component
+    area
+    instanceid
+    user {
+      __typename
+      id
+      fullname
+    }
+  }
+}

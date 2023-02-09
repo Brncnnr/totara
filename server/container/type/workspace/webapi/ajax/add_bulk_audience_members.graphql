@@ -1,0 +1,10 @@
+# @deprecated since Totara 16.0 - use add audience feature.
+mutation container_workspace_add_bulk_audience_members(
+  $input: container_workspace_add_bulk_audience_members_input!
+) {
+  container_workspace_add_bulk_audience_members(input: $input) {
+    workspace {
+      id
+    }
+  }
+}

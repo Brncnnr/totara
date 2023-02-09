@@ -1,0 +1,457 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @copyright 2015 Bas Brands <www.sonsbeekmedia.nl>
+// @author    Bas Brands
+// @author    David Scotson
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @package   theme_legacy
+
+.box.message {
+  @include make-row();
+  .mdl-align {
+    text-align: left;
+  }
+  table {
+    tr {
+      &:nth-child(odd) {
+        > td,
+        > th {
+          background-color: $table-bg-accent;
+        }
+      }
+      border-bottom: 1px solid $table-border-color;
+    }
+    td.heading {
+      @include bs-panel-default-heading();
+      padding: 5px 10px;
+      font-size: $font-size-base;
+    }
+  }
+  tbody {
+    margin: 5px 10px;
+    padding: 5px 10px;
+  }
+  tbody {
+    display: table;
+    margin: 5px 0;
+    padding: 5px 0;
+    width: 100%;
+  }
+  .message_form {
+    width: 100%;
+    tr {
+      border: 0;
+    }
+    /* stylelint-disable declaration-no-important */
+    td {
+      background-color: inherit !important;
+    }
+    /* stylelint-enable */
+
+    input[type='text'] {
+      @include bs-form-control();
+      display: inline-block;
+    }
+  }
+  .contactselector {
+    .singleselect select {
+      width: 100%;
+    }
+    @include make-md-column(4);
+    form#usergroupform {
+      padding: 5px 10px;
+      fieldset {
+        @include make-row();
+        margin-left: 0;
+        margin-right: 0;
+        .fitem {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        label {
+          @include make-md-column(4);
+          /* stylelint-disable declaration-no-important */
+          display: block !important;
+          /* stylelint-enable */
+        }
+        select {
+          @include make-md-column(7);
+          float: left;
+          @include bs-form-control();
+          width: auto;
+        }
+      }
+    }
+    table#message_contacts,
+    table#message_participants {
+      /* stylelint-disable declaration-no-important */
+      float: none !important;
+      /* stylelint-enable */
+      display: block;
+      margin: 5px 5px;
+
+      td.pix {
+        padding: 10px;
+        width: 30px;
+      }
+      td.contact {
+        width: 100px;
+        padding: 10px;
+      }
+      td.link {
+        padding: 10px;
+        width: 100px;
+      }
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .message-contacts {
+      position: relative;
+      border-bottom: 1px solid $table-border-color;
+      margin-bottom: 10px;
+
+      li:nth-child(odd) {
+        background-color: $table-bg-accent;
+      }
+
+      li {
+        padding: 5px 0;
+        line-height: 26px;
+        border-top: 1px solid $table-border-color;
+      }
+      .contact {
+        margin: 0 24% 0 25px;
+        text-align: left;
+      }
+      .link {
+        // stylelint-disable-next-line totara/at-extend-only-placeholders
+        @extend .pull-right;
+      }
+      .pix {
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+  .messagearea {
+    @include make-md-column(8);
+
+    textarea {
+      @include bs-form-control();
+      height: 200px;
+    }
+
+    p.heading {
+      margin: 10px 15px;
+      font-size: $font-size-h2;
+      color: $headings-color;
+    }
+
+    textarea {
+      @include bs-form-control();
+      height: 200px;
+    }
+
+    #personsearch {
+      margin: 10px 15px;
+      input[type='text'] {
+        width: 150px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+      }
+      input[type='submit'] {
+        margin-left: 0;
+      }
+    }
+    .mdl-left {
+      .heading {
+        font-size: $font-size-base;
+      }
+      .messagesearchresults {
+        width: 100%;
+        margin: 10px 0;
+        padding: 0 15px;
+        display: block;
+        td.pix {
+          padding: 10px;
+          width: 30px;
+        }
+        td.contact {
+          width: 30px;
+          img {
+            margin: 10px;
+          }
+        }
+      }
+    }
+    .messagerecent {
+      .singlemessage {
+        margin: 10px 15px;
+
+        @include bs-panel-root();
+        @include bs-panel-default();
+        .otheruser {
+          @include bs-panel-default-heading();
+          padding: 10px 15px;
+          display: block;
+          width: 100%;
+          .pix {
+            margin: 5px;
+          }
+        }
+        .themessage {
+          border: 2px solid $state-warning-border;
+          padding: 5px 10px;
+          margin: 10px 15px;
+          display: block;
+        }
+        .messagedate {
+          margin: 10px 15px 0;
+        }
+        .messagecontext {
+          margin: 0 15px 10px;
+        }
+      }
+    }
+
+    .messagehistory {
+      .messagehistory {
+        border-top: 1px solid var(--color-neutral-5);
+        clear: both;
+        .mdl-left {
+          @include make-row();
+        }
+        .mdl-left.left .message {
+          @include make-md-column(7);
+          .text {
+            border: 2px solid $state-success-border;
+          }
+        }
+        .mdl-left.right .message {
+          @include make-md-column(7);
+          @include make-md-column-push(5);
+          .text {
+            border: 2px solid $state-info-border;
+          }
+        }
+        .message {
+          display: block;
+          .text {
+            border-radius: $border-radius-base;
+            padding: 5px 10px;
+            display: block;
+          }
+        }
+        .deleteicon {
+          position: relative;
+        }
+      }
+
+      #message_user_pictures {
+        @include make-row();
+        .box.user {
+          @include make-xs-column(5);
+          text-align: center;
+        }
+        .box.between {
+          @include make-xs-column(2);
+          text-align: center;
+        }
+      }
+      .messagehistorytype {
+        color: var(--color-neutral-1);
+        //@include nav-tabs;
+        border: 0;
+        .hiddenelement {
+          display: none;
+        }
+
+        span.visible {
+          color: var(--color-state);
+          position: relative;
+          display: block;
+          padding: $nav-link-padding;
+          float: left;
+          margin-bottom: -1px;
+          margin-right: 2px;
+          line-height: $line-height-base;
+          border: 1px solid transparent;
+          border-radius: $border-radius-base $border-radius-base 0 0;
+
+          &:hover {
+            border-color: $nav-tabs-link-hover-border-color
+              $nav-tabs-link-hover-border-color var(--color-neutral-5);
+          }
+          &:hover,
+          &:focus {
+            text-decoration: none;
+            color: var(--color-state-hover);
+            cursor: default;
+            background-color: var(--color-neutral-1);
+            border: 1px solid var(--color-neutral-1);
+            border-bottom-color: transparent;
+          }
+        }
+        a.visible {
+          position: relative;
+          display: block;
+          padding: $nav-link-padding;
+          float: left;
+          margin-bottom: -1px;
+          margin-right: 2px;
+          line-height: $line-height-base;
+          border: 1px solid transparent;
+          border-radius: $border-radius-base $border-radius-base 0 0;
+          color: var(--link-color);
+          &:hover,
+          &:focus {
+            text-decoration: none;
+            background-color: var(--color-neutral-3);
+          }
+          &:hover {
+            border-color: $nav-tabs-link-hover-border-color
+              $nav-tabs-link-hover-border-color var(--color-neutral-5);
+          }
+        }
+      }
+    }
+    .messagesend {
+      .mform {
+        fieldset .fitem .felement,
+        fieldset.hidden > div {
+          padding: 0;
+          margin: 0;
+          float: none;
+          width: 100%;
+          #id_submitbutton {
+            margin: 5px 0 0 0;
+          }
+        }
+        .fitemtitle,
+        .form-label {
+          // stylelint-disable-next-line totara/at-extend-only-placeholders
+          @extend h3;
+          float: none;
+          text-align: left;
+        }
+        fieldset .fitem {
+          margin: 0;
+        }
+        .fitem_ftextarea {
+          margin: 15px;
+        }
+      }
+    }
+  }
+}
+
+#newmessageoverlay {
+  //fix for yui absolute positioning
+  width: $popover-max-width;
+  // stylelint-disable-next-line totara/at-extend-only-placeholders
+  @extend .popover;
+  position: fixed;
+  top: inherit;
+  left: inherit;
+  bottom: 5px;
+  right: 5px;
+  a {
+    text-decoration: underline;
+  }
+  display: block;
+  #newmessagetext {
+    // stylelint-disable-next-line totara/at-extend-only-placeholders
+    @extend .popover-title;
+  }
+  #usermessage {
+    // stylelint-disable-next-line totara/at-extend-only-placeholders
+    @extend .popover-content;
+    border: 1px dotted var(--color-border);
+    border-radius: $border-radius-base;
+    margin-top: 5px;
+    background-color: var(--color-neutral-2);
+  }
+  #newmessagelinks {
+    margin: 5px 14px;
+  }
+}
+
+/** Messenger send message dialog */
+.core_message-messenger-sendmessage-hidden {
+  display: none;
+}
+
+.core_message-messenger-sendmessage {
+  .message-actions {
+    position: relative;
+  }
+  .message-area {
+    height: 240px;
+    max-height: 100%;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .message-input {
+    width: 100%;
+    height: 100%;
+    @include box-sizing(border-box);
+  }
+  .message-send {
+    margin: 0;
+    float: right;
+  }
+  .message-notice-area {
+    display: table;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .message-notice {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    > div {
+      background: var(--color-neutral-4);
+      padding: 5px;
+      font-size: 12px;
+    }
+  }
+  .message-footer {
+    margin-top: 3px;
+    line-height: 20px;
+  }
+  .message-history {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+// End of original bootstrap theme code.
+#page-message-edit .btn-toolbar {
+  margin-top: $padding-large-vertical;
+}

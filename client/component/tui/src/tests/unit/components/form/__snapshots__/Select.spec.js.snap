@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select matches snapshot 1`] = `
+<div
+  class="tui-select"
+>
+  <select
+    aria-label="Letters"
+    class="tui-select__input"
+  >
+    <option
+      value="abc"
+    >
+      
+        abc
+      
+    </option>
+    <option
+      value="def"
+    >
+      
+        ghi
+      
+    </option>
+    <optgroup
+      label="capitals"
+    >
+      <option
+        value="ABC"
+      >
+        
+          ABC
+        
+      </option>
+      <option
+        value="DEF"
+      >
+        
+          GHI
+        
+      </option>
+    </optgroup>
+  </select>
+</div>
+`;

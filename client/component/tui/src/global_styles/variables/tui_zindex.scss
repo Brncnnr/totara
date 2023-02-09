@@ -1,0 +1,33 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Simon Chester <simon.chester@totaralearning.com>
+// @module tuickage   tui
+
+// #dock is 12000, modal must be above that
+:root {
+  // Above regular content, but below popups/overlays
+  --zindex-sticky: 500;
+
+  // Floating UI, below dropdown but above sticky content
+  --zindex-floating-ui: 5000;
+
+  --zindex-dropdown-menu: 10000;
+  --zindex-modal: 100050;
+  --zindex-modal-backdrop: 100040;
+  --zindex-popover: 100050;
+  --zindex-loading-page: 100060;
+  --zindex-toast: 100070;
+  --zindex-error-modal: 100070;
+  --zindex-draggable: 100080;
+}

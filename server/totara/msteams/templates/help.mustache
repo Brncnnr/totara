@@ -1,0 +1,126 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2021 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Qingyang Liu<qingyang.liu@totaralearning.com>
+   @package totara_msteams
+}}
+
+{{!
+    @template totara_msteams/help_description
+
+    This template generates a static help tab page.
+}}
+
+<div class="totaraMsteamsHelp__container">
+    <div class="totaraMsteamsHelp__logoSection">
+        <img src="{{logo}}" alt="{{#str}}help_page_title, totara_msteams{{/str}}" class="totaraMsteamsHelp__logo">
+        <h3>{{#str}} help_page_title, totara_msteams {{/str}}</h3>
+    </div>
+
+    <div>
+        <h3 class="totaraMsteamsHelp__head">{{#str}} help_page_using_app, totara_msteams {{/str}}</h3>
+        <p> {{#str}} help_page_using_app_tabs, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_using_app_course, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_using_app_more_info, totara_msteams {{/str}} {{{doc_link}}}</p>
+    </div>
+
+    <div>
+        <h4 class="totaraMsteamsHelp__subHead">{{#str}} help_page_accessing_app, totara_msteams {{/str}}</h4>
+        <p>{{#str}} help_page_accessing_app_steps, totara_msteams {{/str}}</p>
+        <ol>
+            <li>{{#str}} help_page_accessing_app_signin, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_accessing_app_more_app, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_accessing_app_built_for_organisation, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_accessing_app_adding_app, totara_msteams {{/str}} </li>
+        </ol>
+        <p>{{#str}} help_page_accessing_app_uninstall, totara_msteams {{/str}}</p>
+        <img src="{{access_app}}" alt="{{#str}}help_page_accessing_app , totara_msteams{{/str}}" class="totaraMsteamsHelp__img"/>
+    </div>
+
+    <div>
+        <h4 class="totaraMsteamsHelp__subHead">{{#str}} help_page_chat, totara_msteams {{/str}}</h4>
+        <p> {{#str}} help_page_chat_notification, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_chat_commands, totara_msteams {{/str}} </p>
+        <ul>
+            <li>{{#str}} help_page_chat_signin, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_chat_signout, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_chat_help, totara_msteams {{/str}} </li>
+        </ul>
+    </div>
+
+    <div>
+        <h4 class="totaraMsteamsHelp__subHead">{{#str}} tab:catalog, totara_msteams {{/str}}</h4>
+        <p> {{#str}} help_page_catalog_items, totara_msteams {{/str}} </p>
+        <img src="{{find_learning}}" alt="{{#str}}tab:catalog , totara_msteams{{/str}}" class="totaraMsteamsHelp__img"/>
+        <p> {{#str}} help_page_catalog_search, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_catalog_content, totara_msteams {{/str}} </p>
+    </div>
+
+    <div>
+        <h4 class="totaraMsteamsHelp__subHead">{{#str}} help_page_current_learning, totara_msteams {{/str}}</h4>
+        <p> {{#str}} help_page_current_learning_tab, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_current_learning_course, totara_msteams {{/str}} </p>
+    </div>
+
+    <div>
+        <h4 class="totaraMsteamsHelp__subHead">{{#str}} tab:library, totara_msteams {{/str}}</h4>
+        <p> {{#str}} help_page_library_tab, totara_msteams {{/str}} </p>
+        <ul>
+            <li>{{#str}} help_page_library_resource, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_library_shared_with_you, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_library_saved_resource, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_library_playlist, totara_msteams {{/str}} </li>
+            <li>{{#str}} help_page_library_saved_playlist, totara_msteams {{/str}} </li>
+        </ul>
+        <p> {{#str}} help_page_library_createtab, totara_msteams {{/str}} </p>
+        <img src="{{library}}" alt="{{#str}}tab:library , totara_msteams{{/str}}" class="totaraMsteamsHelp__img"/>
+    </div>
+
+    <div>
+        <h4 class="totaraMsteamsHelp__subHead">{{#str}} help_page_about, totara_msteams {{/str}}</h4>
+        <p> {{#str}} help_page_about_info, totara_msteams {{/str}} </p>
+    </div>
+
+    <div>
+        <h3 class="totaraMsteamsHelp__head">{{#str}} help_page_pinning_app, totara_msteams {{/str}}</h3>
+        <p> {{#str}} help_page_pinning_app_adding, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_pinning_app_viewing, totara_msteams {{/str}} </p>
+        <img src="{{pinning_app}}" alt="{{#str}} help_page_pinning_app, totara_msteams{{/str}}" class="totaraMsteamsHelp__img"/>
+    </div>
+
+    <div>
+        <h3 class="totaraMsteamsHelp__head">{{#str}} help_page_extension, totara_msteams {{/str}}</h3>
+        <p> {{#str}} help_page_extension_desc, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_extension_instruction, totara_msteams {{/str}} </p>
+        <p> {{#str}} help_page_extension_pinning, totara_msteams {{/str}} </p>
+        <img src="{{extension}}" alt="{{#str}} help_page_extension, totara_msteams{{/str}}" class="totaraMsteamsHelp__img"/>
+    </div>
+
+    <div>
+        <h3 class="totaraMsteamsHelp__head">{{#str}} help_page_config, totara_msteams {{/str}}</h3>
+        <p> {{#str}} help_page_config_tab, totara_msteams {{/str}} </p>
+        <ol>
+          <li>{{#str}} help_page_config_click, totara_msteams {{/str}} </li>
+          <li>{{#str}} help_page_config_select, totara_msteams {{/str}} </li>
+          <li>{{#str}} help_page_config_add, totara_msteams {{/str}} </li>
+        </ol>
+        <img src="{{config_tab}}" alt="{{#str}} help_page_config, totara_msteams{{/str}}" class="totaraMsteamsHelp__img" >
+        <p>{{#str}} help_page_config_search, totara_msteams {{/str}} </p>
+        <img src="{{display_config_tab}}" alt="{{#str}} help_page_config, totara_msteams{{/str}}" class="totaraMsteamsHelp__img" >
+    </div>
+</div>

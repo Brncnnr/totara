@@ -1,0 +1,89 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @package   theme_legacy
+
+/*
+ Styles specific to the workflow selector page.
+ In the future we should have a core panel/tile component that supports:
+ 1. Fixed height, responsive panels that form a grid
+ 2. Linked panels, where the whole panel is clickable and has appropriate hover/focus/active states
+ In the mean time this is implemented as a one-off
+ */
+.workflow-tile-selector {
+  /* Emulate fixed height, to a point. Need flexbox really. */
+  .panel-body {
+    display: flex;
+    min-height: 15em;
+    width: 100%;
+
+    .tile-image {
+      display: block;
+      width: 100px;
+      height: 100px;
+      margin: 10px 10px 0px 0px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      img {
+        display: block;
+        max-height: 100%;
+
+        [dir='rtl'] & {
+          transform: translateX(50%) translateX(-50px);
+        }
+
+        [dir='ltr'] & {
+          transform: translateX(-50%) translateX(50px);
+        }
+
+      }
+    }
+
+    .tile-text {
+      display: block;
+      max-width: 260px;
+    }
+  }
+
+  .linked-panel {
+    color: var(--color-neutral-7);
+
+    /* Remove link underlines inside panel */
+    &:hover {
+      text-decoration: none;
+    }
+    /* Darken on hover */
+    &:hover,
+    &:focus {
+      .panel {
+        background: var(--color-neutral-2);
+        border-color: var(--color-neutral-4);
+      }
+    }
+
+    &:active {
+      .panel {
+        background: var(--color-neutral-3);
+      }
+    }
+  }
+}

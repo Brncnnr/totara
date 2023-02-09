@@ -1,0 +1,402 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Carl Anderson <carl.anderson@totaralearning.com>
+// @package   theme_roots
+
+// Base variables
+@createReports_base-color_neutral_2: @totara_style-color_neutral_2;
+@createReports_base-color_neutral_4: @totara_style-color_neutral_4;
+@createReports_base-color_neutral_3: @totara_style-color_neutral_3;
+@createReports_base-color_neutral_5: @totara_style-color_neutral_5;
+@createReports_base-color_neutral_7: @totara_style-color_neutral_7;
+@createReports_base-color_neutral_8: @totara_style-color_neutral_8;
+@createReports_base-color_theme_1: @totara_style-color_theme_1;
+@createReports_base-border-color: @createReports_base-color_neutral_5;
+@createReports_base-image-background: #f0f0f0; // taken from svg
+
+@createReports_base-title_font-size: @totara_style-font_heading_x_small_size;
+@createReports-primaryFilter-size: @totara_style-size_18;
+
+@createReports_base-spacing_x_small: @totara_style-spacing_x_small;
+@createReports_base-spacing_small: @totara_style-spacing_small;
+@createReports_base-spacing_medium: @totara_style-spacing_medium;
+@createReports_base-spacing_large: @totara_style-spacing_large;
+
+@createReports_base-screen_xsm_min: 500px;
+@createReports_base-screen_sm_min: @totara_style-screen_sm_min;
+@createReports_base-screen_xl_min: @totara_style-screen_xl_min;
+
+@createReports_base-transition_speed: 200ms;
+
+#region-main div[role="main"] h2.totara_reportbuilder__report_create_title {
+    float: left;
+    margin-top: .4rem;
+}
+
+.totara_reportbuilder__report_create {
+    clear: both;
+    position: relative;
+    z-index: 1;
+
+    &_aside {
+        .make-xs-column(12, 0);
+        .make-sm-column(4, 0);
+        .make-md-column(3, 0);
+    }
+
+    &_primaryFilter {
+        border-bottom: 1px solid @createReports_base-color_neutral_4;
+        border-top: 1px solid @createReports_base-color_neutral_4;
+        font-size: @createReports-primaryFilter-size;
+        margin: @createReports_base-spacing_medium 0;
+        padding: @createReports_base-spacing_medium 0;
+    }
+
+    &_results {
+        & {
+            .make-xs-column(12, 0);
+            .make-sm-column(8, 0);
+            .make-md-column(9, 0);
+        }
+
+        &_overview {
+            display: flex;
+            flex-wrap: wrap;
+            padding: @createReports_base-spacing_medium 0;
+
+            &_row {
+                display: flex;
+                height: 100%;
+                margin-bottom: @createReports_base-spacing_large;
+                width: 100%;
+            }
+        }
+    }
+
+    &_hidden {
+        display: none;
+    }
+}
+
+.totara_reportbuilder__createreport_container {
+    opacity: 0;
+    transition: opacity @createReports_base-transition_speed ease-out;
+
+    &.tw-list-toggle-loaded {
+        opacity: 1;
+    }
+}
+
+.totara_reportbuilder__createreport_label {
+    padding: 0.1em 0.8em;
+    border-radius: 4px;
+
+    font-size: 0.9em;
+
+    &--primary {
+        background-color: @totara_style-color_info;
+        color: #ffffff;
+    }
+
+    &--secondary {
+        border: 1px solid @createReports_grid-border-color;
+    }
+}
+
+.totara_reportbuilder__createreport_list {
+    clear: both;
+    padding: 1rem 0;
+    margin: 0;
+
+    &_item {
+        display: block;
+
+        // Hover animation
+        transition-property: box-shadow;
+        transition-duration: @createReports_base-transition_speed;
+        transition-timing-function: ease-in-out;
+
+        &,
+        &:hover,
+        &:focus {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:focus,
+        .tw-grid__item_active & {
+            box-shadow: @totara_style-shadow_1;
+        }
+
+        &_title {
+            font-weight: 600;
+        }
+    }
+}
+
+.totara_reportbuilder__createreport_load {
+    position: relative;
+    height: 3em;
+
+    [data-tw-report-create-disabled]& {
+        display: none;
+        pointer-events: none;
+    }
+
+    button {
+        display: none;
+        width: 100%;
+
+        [data-tw-report-create-loaded=true] & {
+            display: block;
+        }
+    }
+}
+
+// ------------------------------
+//  GRID VIEW
+// ------------------------------
+
+@createReports_grid-card-height: 20em;
+
+@createReports_grid-padding: @createReports_base-spacing_x_small;
+
+@createReports_grid-title_font-size: @createReports_base-title_font-size;
+
+@createReports_grid-border-color: @createReports_base-border-color;
+
+.totara_reportbuilder__createreport_list--grid {
+
+    .totara_reportbuilder__createreport_label {
+        &--primary {
+            position: absolute; // Sit over the top of the image
+            left: @createReports_base-spacing_small;
+            top: @createReports_base-spacing_small;
+        }
+
+        &--container {
+            display: none;
+        }
+    }
+
+    & .totara_reportbuilder__createreport_list {
+
+        &_item {
+            border: 1px solid @createReports_grid-border-color;
+            min-width: 140px;
+
+            &_info {
+                padding: 0 @createReports_base-spacing_small @createReports_base-spacing_small;
+            }
+
+            &_image {
+                background-color: @createReports_base-image-background;
+                padding: 0.7em 0.5em 0;
+                position: relative;
+
+                img.icon {
+                    display: block;
+                    max-width: 100%;
+                    max-height: 100%;
+
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &_title {
+                .totara_style-heading_x_small;
+                
+                height: 5.55rem;
+
+                overflow: hidden;
+                padding: @createReports_base-spacing_small 0;
+            }
+        }
+    }
+}
+
+// ------------------------------
+//  TABLE VIEW
+// ------------------------------
+
+@createReports_table-padding: @totara_style-spacing_small;
+
+@createReports_table-title_font-size: @createReports_base-title_font-size;
+
+@createReports_table-border-color: @createReports_base-border-color;
+
+.totara_reportbuilder__createreport_list--table {
+    // Override width from grid css
+    .tw-grid__item {
+        flex-basis: 100%;
+        margin: 0 @totara_style-spacing_small;
+        padding: 0;
+        border-bottom: 1px solid @createReports_table-border-color;
+
+        &:first-child {
+            border-top: 1px solid @createReports_table-border-color;
+        }
+    }
+
+    .totara_reportbuilder__createreport_label {
+        &--primary,
+        &--secondary {
+            display: none;
+            margin-left: @createReports_table-padding;
+        }
+
+        &--container {
+            padding-top: @createReports_table-padding;
+
+            .totara_reportbuilder__createreport_label--primary,
+            .totara_reportbuilder__createreport_label--secondary {
+                display: inline;
+            }
+        }
+    }
+
+    [data-tw-report-create-item-active]:not(:last-child) {
+        border-bottom: 1px solid @createReports_table-border-color;
+    }
+
+    & .totara_reportbuilder__createreport_list {
+        &_item {
+            box-sizing: content-box;
+            height: 50px;
+            clear: both;
+
+            @media screen and (min-width: @createReports_Toggle-screen_xsm_min) {
+                height: 70px;
+            }
+
+            &_image {
+                max-height: 100%;
+                float: left;
+
+                width: auto;
+                height: 100%;
+
+                img.icon {
+                    width: auto;
+                    height: 100%;
+
+                    max-height: 100%;
+                    background-color: @createReports_base-image-background;
+
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+
+            &:hover,
+            &:focus,
+            .tw-grid__item_active & {
+                position: relative; // lift the image above the shadow
+            }
+
+            &_title {
+                .totara_style-heading_x_small;
+
+                padding: 0 @createReports_table-padding @createReports_table-padding;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                @media screen and (min-width: @createReports_Toggle-screen_xsm_min) {
+                    padding: @createReports_table-padding;
+                }
+
+            }
+        }
+    }
+}
+
+// ------------------------------
+//  LIST ITEM TOGGLE
+// ------------------------------
+
+// Colours
+@createReports_Toggle-color_neutral_2: @createReports_base-color_neutral_2;
+@createReports_Toggle-color_neutral_3: @createReports_base-color_neutral_3;
+@createReports_Toggle-color_neutral_5: @createReports_base-color_neutral_5;
+@createReports_Toggle-color_neutral_7: @createReports_base-color_neutral_7;
+@createReports_Toggle-color_theme_1: @createReports_base-color_theme_1;
+// Spacing
+@createReports_Toggle-spacing_x_small: @createReports_base-spacing_x_small;
+@createReports_Toggle-spacing_small: @createReports_base-spacing_small;
+// Font Size
+@createReports_Toggle-btn_font_size: @totara_style-font_heading_label_small_size;
+// Breakpoint
+@createReports_Toggle-screen_xsm_min: @createReports_base-screen_xsm_min;
+@createReports_Toggle-screen_sm_min: @createReports_base-screen_sm_min;
+
+.totara_reportbuilder__createreport_itemstyletoggle {
+    display: flex;
+    margin: auto @createReports_Toggle-spacing_x_small @createReports_Toggle-spacing_x_small auto;
+    float: right;
+
+    &_btn {
+        border: 1px solid @createReports_Toggle-color_neutral_5;
+        color: @createReports_Toggle-color_theme_1;
+        font-size: @createReports_Toggle-btn_font_size;
+        padding: @createReports_Toggle-spacing_small;
+
+        &:active,
+        &:focus,
+        &:hover {
+            background: @createReports_Toggle-color_neutral_2;
+            color: @createReports_Toggle-color_neutral_7;
+            outline: 0;
+            text-decoration: none;
+        }
+
+        &_active {
+            background: @createReports_Toggle-color_neutral_3;
+            color: @createReports_Toggle-color_neutral_7;
+            cursor: default;
+
+            &:active,
+            &:focus,
+            &:hover {
+                background: @createReports_Toggle-color_neutral_3;
+                color: @createReports_Toggle-color_neutral_7;
+            }
+        }
+    }
+
+    @media (min-width: @createReports_Toggle-screen_xsm_min) {
+        & {
+            margin: auto @createReports_Toggle-spacing_x_small @createReports_Toggle-spacing_x_small 0;
+        }
+    }
+
+    @media (min-width: @createReports_Toggle-screen_sm_min) {
+        & {
+            margin-right: 0;
+        }
+    }
+}
+
+@import 'details';
+@import 'loading_overlay';

@@ -1,0 +1,58 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package totara_topic
+}}
+{{!
+    @template totara_topic/delete_topic_email
+
+    This template generate the email message of topic deletion.
+
+    Classes requried for JS:
+    * none
+
+    Context variables required for this template:
+    * message: The general message
+    * usages -> label: The component label
+    * usages -> has_url: Whether there are urls or not
+    * usages -> urls: An array of the url object
+    * usages -> urls -> url: The actual url
+    * usages -> urls -> name: The url text
+
+    Example context (json):
+        There is no example for this template
+}}
+<div class="tw-deleteTopicEmail">
+    <p> {{ message }} </p>
+    {{#usages}}
+        <div>
+            <label> {{label}} </label>
+
+            {{#has_url}}
+                <ul>
+                    {{#urls}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/urls}}
+                </ul>
+            {{/has_url}}
+        </div>
+    {{/usages}}
+</div>

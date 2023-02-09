@@ -1,0 +1,48 @@
+mutation mod_approval_application_submit(
+  $input: mod_approval_application_save_input!
+) {
+  mod_approval_application_submit(input: $input) {
+    application {
+      __typename
+      id
+      created(format: DATETIME)
+      submitted(format: DATETIME)
+      submitter {
+        __typename
+        id
+        fullname
+        card_display {
+          __typename
+          profile_url
+        }
+      }
+      completed(format: DATETIME)
+      last_published_submission {
+        submitted(format: DATETIME)
+        updated(format: DATETIME)
+        user {
+          __typename
+          id
+          fullname
+          card_display {
+            __typename
+            profile_url
+          }
+        }
+        is_first_submission
+      }
+      interactor {
+        can_edit
+        can_withdraw
+        can_delete
+        can_clone
+        can_edit_without_invalidating
+      }
+      page_urls {
+        edit
+        preview
+        view
+      }
+    }
+  }
+}

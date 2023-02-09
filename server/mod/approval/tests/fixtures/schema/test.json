@@ -1,0 +1,29 @@
+{
+	"title": "test",
+	"shortname": "test",
+	"revision": "1.0",
+	"version": "2021040100",
+	"language": "en-NZ",
+	"fields": [
+		{
+			"key": "kia",
+			"line": "A",
+			"label": "First",
+			"type": "text"
+		}
+	],
+	"sections": [
+		{
+			"key": "A",
+			"line": "A",
+			"label": "Section",
+			"fields": [
+				{
+					"key": "ora",
+					"label": "Last",
+					"type": "text"
+				}
+			]
+		}
+	]
+}

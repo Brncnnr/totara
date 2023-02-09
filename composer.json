@@ -1,0 +1,30 @@
+{
+  "name": "totara/totara_meta",
+  "description": "Totara is a fully supported Open Source learning platform specifically designed for the requirements of corporate, industry and vocational training.",
+  "license": "proprietary",
+  "type": "metapackage",
+  "homepage": "https://www.totaralearning.com",
+  "require": {
+    "php": ">=7.4.3 <8.2",
+    "ext-ctype": "*",
+    "ext-curl": "*",
+    "ext-date": "*",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
+    "ext-gd": "*",
+    "ext-hash": "*",
+    "ext-iconv": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-mbstring": "*",
+    "ext-pcre": "*",
+    "ext-session": "*",
+    "ext-SimpleXML": "*",
+    "ext-SPL": "*",
+    "ext-xml": "*",
+    "ext-xmlreader": "*",
+    "ext-zip": "*",
+    "ext-zlib": "*"
+  }
+}

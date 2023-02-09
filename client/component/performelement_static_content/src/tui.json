@@ -1,0 +1,7 @@
+{
+  "component": "performelement_static_content",
+  "vendor": "totara",
+  "dependencies": [
+    "editor_weka"
+  ]
+}

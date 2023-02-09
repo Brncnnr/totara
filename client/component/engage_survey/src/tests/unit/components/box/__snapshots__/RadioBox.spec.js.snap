@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage RadioBox Checks snapshot 1`] = `
+<div
+  class="tui-formRow tui-engageSurveyRadioBox tui-formRow--emptyDesc"
+>
+  <div
+    class="tui-formRow__inner"
+  >
+    <div
+      class="tui-formRow__desc"
+    >
+      <label
+        class="tui-formLabel tui-formLabel--hidden tui-formLabel--inline"
+        for="some-undefined"
+        id="some-label"
+      >
+        <!---->
+        
+
+  Label for the group of radios
+  
+        <!---->
+      </label>
+      <!---->
+    </div>
+     
+    <div
+      class="tui-formRow__action tui-formRow__action--isStacked"
+    >
+      <div
+        aria-labelledby="some-label"
+        class="tui-radioGroup"
+        role="radiogroup"
+      />
+    </div>
+  </div>
+</div>
+`;

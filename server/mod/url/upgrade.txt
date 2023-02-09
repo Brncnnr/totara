@@ -1,0 +1,7 @@
+This files describes API changes in /mod/url/*,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+
+* Added new function url_cm_info_dynamic() to lib.php for overriding course module data.
+  This was done in order to add a URL parameter to the course module URL in order to better support Microsoft teams.

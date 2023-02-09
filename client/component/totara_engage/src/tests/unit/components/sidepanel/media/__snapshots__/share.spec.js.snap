@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage sidepanel share matches snapshot 1`] = `
+<div
+  class="tui-shareSetting"
+  sharedto=""
+>
+  <buttoniconwithlabel-stub
+    buttonarialabel="Share resource \\"unicorn\\""
+    class="tui-shareSetting__buttonLabel"
+    contextmode="uncontained"
+    labelarialabel="numberofshares, totara_engage"
+    labeltext="5"
+    styleclass="[object Object]"
+  />
+   
+  <modalpresenter-stub>
+    <modal-stub
+      dismissable="[object Object]"
+      shade="true"
+      size="normal"
+    >
+      <modalcontent-stub
+        closebutton="true"
+        contentpadding="true"
+        title="reshare, totara_engage"
+        titlevisible="true"
+      >
+        <div
+          class="tui-shareSetting__recipient"
+        >
+          <recipientsselector-stub
+            access="PUBLIC"
+            component="engage_article"
+            itemid="4"
+          />
+           
+          <sharedboard-stub
+            receipts="[object Object]"
+          />
+           
+          <donecancelgroup-stub />
+        </div>
+      </modalcontent-stub>
+    </modal-stub>
+  </modalpresenter-stub>
+</div>
+`;

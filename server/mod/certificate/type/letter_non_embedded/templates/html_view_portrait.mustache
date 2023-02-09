@@ -1,0 +1,211 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2021 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Johannes Cilliers <johannes.cilliers@totaralearning.com>
+    @package mod_certificate
+}}
+{{!
+    @template A4_embedded/html_view_portrait
+
+    Certificate HTML view template.
+
+    Context variables required for this template:
+    * font_sans - Sans font family
+    * font_serif - Serif font family
+    * title - Certificate title
+    * direction - Left or Right
+    * background - Array of background properties
+    * watermark - Array of watermark properties
+    * seal - Array of seal properties
+    * signature - Array of signature properties
+    * border - Array of border properties
+    * body_content - Array of content to print in the body of the certificate
+
+    Example context (json):
+    {
+        "font_sans": "freesans",
+        "font_serif": "freeserif",
+        "title": "Certificate name",
+        "direction": "left",
+        "background": {
+            "show_background": "true",
+            "background_url": "http://localhost/path/to/image"
+        },
+        "watermark": {
+            "show_watermark": "true",
+            "watermark_url": "http://localhost/path/to/image"
+        },
+        "seal": {
+            "show_seal": "true",
+            "seal_url": "http://localhost/path/to/image"
+        },
+        "signature": {
+            "show_signature": "true",
+            "signature_url": "http://localhost/path/to/image"
+        },
+        "border": {
+            "show_border": "true",
+            "border_color": "pink"
+        },
+        "body_content": {
+            "certificate_title": "CERTIFICATE of ACHIEVEMENT",
+            "certify": "This is to certify that",
+            "user": "User One",
+            "statement": "has completed the course",
+            "course_full_name": "Name of certificate",
+            "time_completed": "time_of_completion",
+            "grade": "Pass",
+            "outcome": "",
+            "show_credit_hours": "true",
+            "credit_hours": "",
+            "code": "",
+            "custom_text": "",
+            "teachers": [
+                {
+                    "name": "Teacher1",
+                    "y": lambdaFunction_to_calc_y
+                },
+                {
+                    "name": "Teacher2",
+                    "y": lambdaFunction_to_calc_y
+                }
+            ]
+        }
+    }
+}}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        <style>
+            .container {
+                position:relative;
+                height:792pt;
+                width:612pt;
+                overflow:hidden;
+                {{#background.show_background}}
+                    background-image:url('{{background.background_url}}');
+                    background-size:592pt 772pt;
+                    background-position:10pt 10pt;
+                    background-repeat:no-repeat;
+                {{/background.show_background}}
+            }
+            .entry {
+                position:absolute;
+                display:block;
+                width:592pt;
+                text-align:center;
+                margin:0 10pt;
+                font-weight:normal;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            {{#watermark.show_watermark}}
+                <div style="
+                    position:absolute;
+                    top:130pt;
+                    {{direction}}:78pt;
+                    background-image:url('{{watermark.watermark_url}}');
+                    background-repeat:no-repeat;
+                    background-size:100% 100%;
+                    width:450pt;
+                    height:480pt;
+                    opacity:0.1;">
+                </div>
+            {{/watermark.show_watermark}}
+            {{#seal.show_seal}}
+                <div style="
+                    position:absolute;
+                    top:590pt;
+                    {{direction}}:440pt;
+                    background-image:url('{{seal.seal_url}}');
+                    background-repeat:no-repeat;
+                    width:172pt;
+                    height:202pt;">
+                </div>
+            {{/seal.show_seal}}
+            {{#signature.show_signature}}
+                <div style="
+                    position:absolute;
+                    top:580pt;
+                    {{direction}}:85pt;
+                    background-image:url('{{signature.signature_url}}');
+                    background-repeat:no-repeat;
+                    width:527pt;
+                    height:212pt;">
+                </div>
+            {{/signature.show_signature}}
+            {{#border.show_border}}
+                <div style="
+                    top:10mm;
+                    left:10mm;
+                    right:10mm;
+                    bottom:10mm;
+                    border:1.5mm solid {{border.border_color}};
+                    position:absolute;">
+                </div>
+                <div style="
+                    top:13mm;
+                    left:13mm;
+                    right:13mm;
+                    bottom:13mm;
+                    border:0.2mm solid {{border.border_color}};
+                    position:absolute;">
+                </div>
+                <div style="
+                    top:16mm;
+                    left:16mm;
+                    right:16mm;
+                    bottom:16mm;
+                    border:1mm solid {{border.border_color}};
+                    position:absolute;">
+                </div>
+            {{/border.show_border}}
+            <h1 style="top:170pt;font-size:30pt;font-family:Helvetica;color:#007;"
+                class="entry">{{body_content.certificate_title}}</h1>
+            <span style="top:225pt;font-size:20pt;font-family:Times;"
+                  class="entry">{{body_content.certify}}</span>
+            <span style="top:275pt;font-size:30pt;font-family:Helvetica;"
+                  class="entry">{{body_content.user}}</span>
+            <span style="top:325pt;font-size:20pt;font-family:Helvetica;"
+                  class="entry">{{body_content.statement}}</span>
+            <span style="top:375pt;font-size:20pt;font-family:Helvetica;"
+                  class="entry">{{body_content.course_full_name}}</span>
+            <span style="top:425pt;font-size:14pt;font-family:Helvetica;"
+                  class="entry">{{body_content.time_completed}}</span>
+            <span style="top:453pt;font-size:10pt;font-family:Times;"
+                  class="entry">{{body_content.grade}}</span>
+            <span style="top:481pt;font-size:10pt;font-family:Times;"
+                  class="entry">{{body_content.outcome}}</span>
+            {{#body_content.show_credit_hours}}
+                <span style="top:509pt;font-size:10pt;font-family:Times;"
+                      class="entry">{{body_content.credit_hours}}</span>
+            {{/body_content.show_credit_hours}}
+            <span style="top:660pt;font-size:10pt;font-family:Times;"
+                  class="entry">{{body_content.code}}</span>
+            {{#body_content.teachers}}
+                <span style="text-align:left;left:78pt;top:{{#y}}567{{/y}}pt;font-size:10pt;font-family:Times;"
+                      class="entry">{{name}}</span>
+            {{/body_content.teachers}}
+            <span style="top:540pt;font-size:12pt;"
+                  class="entry">{{{body_content.custom_text}}}</span>
+        </div>
+    </body>
+</html>

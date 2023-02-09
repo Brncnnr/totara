@@ -1,0 +1,28 @@
+query totara_reportbuilder_creation_sources(
+  $label: [String]
+  $search: String
+  $start: Int
+  $limit: Int
+  $sort: Int
+) {
+  totara_reportbuilder_creation_sources(
+    label: $label
+    search: $search
+    start: $start
+    limit: $limit
+    sort: $sort
+  ) {
+    templates {
+      key
+      fullname
+      label
+      graph
+    }
+    sources {
+      key
+      fullname
+      label
+    }
+    totalcount
+  }
+}

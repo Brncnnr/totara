@@ -1,0 +1,27 @@
+query totara_competency_scale(
+  $id: core_id
+  $competency_id: core_id
+  $framework_id: core_id
+) {
+  totara_competency_scale(
+    id: $id
+    competency_id: $competency_id
+    framework_id: $framework_id
+  ) {
+    id
+    name
+    description
+    defaultid
+
+    values {
+      id
+      name
+      idnumber
+      description
+      scaleid
+      numericscore
+      sortorder
+      proficient
+    }
+  }
+}

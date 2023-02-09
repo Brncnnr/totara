@@ -1,0 +1,7 @@
+query totara_competency_linked_courses($competency_id: core_id!) {
+  totara_competency_linked_courses(competency_id: $competency_id) {
+    course_id
+    fullname
+    is_mandatory
+  }
+}

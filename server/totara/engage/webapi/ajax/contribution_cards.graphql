@@ -1,0 +1,87 @@
+query totara_engage_contribution_cards(
+  $component: param_component!
+  $area: param_area!
+  $page: param_integer
+  $access: totara_engage_access
+  $type: param_component
+  $topic: param_integer
+  $sort: param_integer
+  $search: param_text
+  $section: param_integer
+  $include_footnotes: Boolean!
+  $footnotes_type: param_text
+  $footnotes_item_id: core_id
+  $footnotes_area: param_area
+  $footnotes_component: param_component
+  $cursor: String
+  $source: String
+  $image_preview_mode: String
+  $theme: param_component
+) {
+  contribution: totara_engage_contributions(
+    component: $component
+    area: $area
+    filter: {
+      page: $page
+      access: $access
+      type: $type
+      topic: $topic
+      sort: $sort
+      search: $search
+      section: $section
+    }
+    footnotes: {
+      type: $footnotes_type
+      item_id: $footnotes_item_id
+      area: $footnotes_area
+      component: $footnotes_component
+    }
+    cursor: $cursor
+  ) {
+    cursor {
+      total
+      next
+    }
+    cards {
+      instanceid
+      name(format: PLAIN)
+      summary
+      component
+      tuicomponent
+      imagetuicomponent
+      image(theme: $theme, preview_mode: $image_preview_mode)
+      access
+      comments
+      reactions
+      timecreated
+      sharedbycount
+      bookmarked
+      extra(theme: $theme)
+      owned
+      user {
+        id
+        fullname
+        profileimageurl
+        profileimagealt
+      }
+      topics {
+        id
+        value(format: PLAIN)
+      }
+      footnotes(
+        type: $footnotes_type
+        item_id: $footnotes_item_id
+        area: $footnotes_area
+        component: $footnotes_component
+      ) @include(if: $include_footnotes) {
+        component
+        tuicomponent
+        props
+      }
+      url(source: $source, search: $search)
+      interactor {
+        can_bookmark
+      }
+    }
+  }
+}

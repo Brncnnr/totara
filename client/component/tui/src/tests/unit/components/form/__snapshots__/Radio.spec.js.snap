@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio checks snapshot 1`] = `
+<div
+  class="tui-radio"
+  label="Some radio"
+>
+  <input
+    autocomplete="true"
+    autofocus="autofocus"
+    class="tui-radio__input"
+    disabled="disabled"
+    id="a"
+    name="n"
+    readonly="readonly"
+    required="required"
+    type="radio"
+    value="v"
+  />
+   
+  <label
+    class="tui-radio__label"
+    for="a"
+  />
+</div>
+`;

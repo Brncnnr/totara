@@ -1,0 +1,23 @@
+mutation totara_api_create_client($input: totara_api_client_input!) {
+  client: totara_api_create_client(input: $input) {
+    __typename
+    id
+    name(format: PLAIN)
+    description(format: HTML)
+    status
+    oauth2_client_providers {
+      id
+      client_id
+      client_secret
+    }
+    service_account {
+      __typename
+      is_valid
+      status
+      user {
+        id
+        fullname
+      }
+    }
+  }
+}

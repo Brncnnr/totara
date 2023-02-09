@@ -1,0 +1,49 @@
+mutation container_workspace_leave_workspace($workspace_id: param_integer!) {
+  member: container_workspace_leave(workspace_id: $workspace_id) {
+    __typename
+    id
+    workspace_id
+    user {
+      __typename
+      id
+      fullname
+      email
+      profileimageurl
+      profileimagealt
+    }
+    member_interactor {
+      __typename
+      can_remove
+    }
+    workspace_interactor {
+      __typename
+      can_delete
+      can_update
+      can_invite
+      can_join
+      joined
+      workspaces_admin
+      own
+      can_request_to_join
+      has_requested_to_join
+      can_view
+      can_view_discussions
+      can_create_discussions
+      can_view_library
+      can_view_members
+      can_view_member_requests
+      can_share_resources
+      can_unshare_resources
+      muted
+      user {
+        __typename
+        id
+        # These are used within post discussion form.
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    time_joined(format: DATELONG)
+  }
+}

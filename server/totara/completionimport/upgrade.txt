@@ -1,0 +1,56 @@
+This files describes API changes in Totara Completion Import,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* Deprecated function display_report_link, please use display class (\totara_completionimport\output\import_results) and template instead.
+* Changed the Upload Completion Records page:
+  * The header text of each form has been moved to the upload_form class.
+  * The description texts have been moved to the upload_form class.
+* Removed the ability to specify additional custom fields to upload for evidence from csv_import, upload_form, create_evidence(), create_evidence_item(), upload.php
+* Deprecated get_evidence_customfields(), please call totara_evidence\models\evidence_type::get_fields() if you need to access evidence custom fields.
+* Changed the Upload Completion Records page:
+  * The header text of each form has been moved to the upload_form class.
+  * The description texts have been moved to the upload_form class.
+
+=== 12.0 ===
+
+* Removed deprecated methods:
+  * check_fields_exist()
+  * import_csv()
+  * import_completions()
+* Removed deprecated file csv_iterator.php
+* totara_compl_import_cert.certificationid has been added as a field.
+* totara_compl_import_course.courseid has been added as a field.
+* Deprecated the following report builder display functions and replaced with display classes
+  * rb_source_completionimport_certification::rb_display_importerrormsg(), please call totara_completionimport\rb\display\completionimport_error_message::display() instead.
+  * rb_source_completionimport_course::rb_display_importerrormsg(), please call totara_completionimport\rb\display\completionimport_error_message::display() instead.
+* Deprecated function import, please use basic_import and totara_completionimport\task\import_certification_completions_task adhock task instead.
+* Deprecated function get_importsqlwhere, please use \totara_completionimport\helper::get_importsqlwhere() instead.
+* Deprecated function get_list_of_certification_import_users, please use \totara_completionimport\helper::get_list_of_import_users() instead.
+
+=== 11.0 ===
+
+* create_evidence_item() added eighth argument $evidencefields
+
+=== 10.0 ===
+
+* The index totacompimpocour_evi_ix on the table totara_compl_import_course was changed to allow
+non-unique values. This was done to allow compatibility with SQL Server given that the evidenceid field
+can contain multiple null values. Non-unique values, other than null, should still not be added to
+the evidenceid field in this table.
+
+* The index totacompimpocert_evi_ix on the table totara_compl_import_cert was changed to allow
+non-unique values. This was done to allow compatibility with SQL Server given that the evidenceid field
+can contain multiple null values. Non-unique values, other than null, should still not be added to
+the evidenceid field in this table.
+
+Deprecations:
+
+* class csv_iterator has been deprecated, please use \totara_completionimport\import_csv::import() instead.
+* check_fields_exist() has been deprecated, please import csv data using \totara_completionimport\import_csv::import(),
+where this validation is done internally.
+* import_csv() has been deprecated, please use \totara_completionimport\import_csv::import() instead.
+* import_completions() has been deprecated, please use \totara_completionimport\import_csv::import() instead.

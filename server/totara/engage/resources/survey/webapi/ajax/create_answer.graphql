@@ -1,0 +1,11 @@
+mutation engage_survey_create_answer(
+  $resourceid: param_integer!
+  $questionid: param_integer!
+  $options: [param_integer!]!
+) {
+  result: engage_survey_create_answer(
+    resourceid: $resourceid
+    questionid: $questionid
+    options: $options
+  )
+}

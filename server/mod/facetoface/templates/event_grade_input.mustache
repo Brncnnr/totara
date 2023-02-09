@@ -1,0 +1,47 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/event_grade_input
+
+    This template generates an event grade input for seminar events.
+
+    Context variables required for this template:
+
+    Example content (json):
+    {
+        "min": 0,
+        "max": 100,
+        "value": 80,
+        "disabled": false,
+        "label": "Event grade",
+        "placeholder": "Grade",
+        "name": "signupid_5",
+        "type": "number",
+        "step": null,
+    }
+}}
+
+<div class="mod_facetoface__grade">
+    <input type="{{type}}" {{#step}}min="{{min}}" max="{{max}}" step="{{step}}"{{/step}} value="{{value}}" placeholder="{{placeholder}}" name="{{name}}" class="mod_facetoface__grade__input" autocomplete="off" aria-label="{{label}}"{{#disabled}} disabled{{/disabled}}>
+</div>

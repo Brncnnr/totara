@@ -1,0 +1,7 @@
+This files describes API changes in /totara/engage/article,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+
+--- Update to graphQL ---
+* Updated field 'name' scalar type 'param_text' to 'String' for mutation 'engage_article_update_article' and 'engage_article_create_article'

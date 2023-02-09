@@ -1,0 +1,128 @@
+query mod_approval_load_application($input: mod_approval_application_input!) {
+  mod_approval_load_application(input: $input) {
+    application {
+      __typename
+      id
+      id_number
+      title
+      workflow_type
+      interactor {
+        can_approve
+        can_edit
+        can_withdraw
+        can_delete
+        can_clone
+        can_edit_without_invalidating
+      }
+      approver_users {
+        __typename
+        id
+        fullname
+        email
+        card_display {
+          __typename
+          profile_picture_alt
+          profile_picture_url
+          profile_url
+        }
+      }
+      creator {
+        id
+        fullname
+      }
+      created(format: DATETIME)
+      submitted(format: DATETIME)
+      submitter {
+        __typename
+        id
+        fullname
+        card_display {
+          __typename
+          profile_url
+        }
+      }
+      completed(format: DATETIME)
+      overall_progress
+      overall_progress_label
+      current_state {
+        stage {
+          __typename
+          id
+          name
+          ordinal_number
+          approval_levels {
+            id
+          }
+        }
+        approval_level {
+          __typename
+          id
+          name
+          ordinal_number
+        }
+        is_draft
+        is_before_submission
+        is_in_approvals
+      }
+      last_action {
+        __typename
+        label
+        user {
+          __typename
+          id
+          fullname
+          card_display {
+            __typename
+            profile_url
+          }
+        }
+        created
+      }
+      last_published_submission {
+        submitted(format: DATETIME)
+        updated(format: DATETIME)
+        user {
+          __typename
+          id
+          fullname
+          card_display {
+            __typename
+            profile_url
+          }
+        }
+        is_first_submission
+      }
+      user {
+        __typename
+        id
+        fullname
+        email
+        card_display {
+          __typename
+          profile_picture_alt
+          profile_picture_url
+          profile_url
+          display_fields {
+            __typename
+            associate_url
+            label
+            value
+            is_custom
+          }
+        }
+      }
+      workflow_stages {
+        stage {
+          id
+          name
+          ordinal_number
+        }
+      }
+      page_urls {
+        edit
+        preview
+        view
+      }
+    }
+  }
+}

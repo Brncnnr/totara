@@ -1,0 +1,11 @@
+mutation totara_engage_update_bookmark(
+  $itemid: param_integer!
+  $component: param_component!
+  $bookmarked: param_boolean!
+) {
+  result: totara_engage_update_bookmark(
+    itemid: $itemid
+    component: $component
+    bookmarked: $bookmarked
+  )
+}

@@ -1,0 +1,3 @@
+mutation engage_survey_delete_survey($resourceid: param_integer!) {
+  result: engage_survey_delete(resourceid: $resourceid)
+}

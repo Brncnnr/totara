@@ -1,0 +1,139 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Marco Song <marco.song@totaralearning.com>
+   @package criteria_othercompetency
+}}
+{{!
+
+    @template criteria_othercompetency/othercompetency_edit
+
+    Template for management of Other Competency criteria
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+        * data-core-autoinitialise: State of this JS auto initilise
+        * data-core-autoinitialise-amd: AMD to be linked to template
+        * data-tw-criterionOtherCompetency: Target for competency criterion
+        * data-tw-criterionOtherCompetency-detail: Target for detail section
+        * data-tw-criterionOtherCompetency-competencies: Target for the competencies section
+        * data-tw-criterionOtherCompetency-addCompetencies: Trigger for showing competency adder
+        * data-tw-criterionOtherCompetency-error: Targets for error sections
+        * data-tw-criterionOtherCompetency-aggregation: Target for aggregation section
+        * data-tw-criterionOtherCompetency-aggregationMethod: int Section for the specific aggregation method
+        * data-tw-criterionOtherCompetency-aggregationMethod-changed: Trigger when aggregation settings changed
+        * data-tw-criterionOtherCompetency-aggregationCount: Section for ggregation required count
+        * data-tw-criterionOtherCompetency-aggregationCount-changed: Triger when arequired count changes
+
+    Context variables required for this template:
+        * key
+        * competencies
+        * nocompetencies
+
+}}
+
+<div data-tw-criterionOtherCompetency=""
+data-core-autoinitialise="true"
+data-core-autoinitialise-amd="criteria_othercompetency/othercompetency"
+data-tw-loader-target="">
+
+    <div class="tw-editAchievementPaths__criterionForm" data-tw-criterionOtherCompetency-detail="">
+        <h5 class="tw-editAchievementPaths__criterionForm-title">
+            {{#str}}competencies, criteria_othercompetency{{/str}}
+        </h5>
+
+        <div>
+            <ul class="tw-editAchievementPaths__criterionForm-list" data-tw-criterionOtherCompetency-competencies="">
+                <li class="tw-editAchievementPaths__criterionForm-warning tw-editAchievementPaths--hidden" data-tw-criterionOtherCompetency-error="notenoughothercompetency">
+                    {{#flex_icon}}notification-warning, error, criteria_othercompetency{{/flex_icon}}
+                    <span>{{#str}}error_not_enough_competencies, criteria_othercompetency{{/str}}</span>
+                </li>
+
+                {{#items}}{{> totara_criteria/partial_item}}{{/items}}
+            </ul>
+
+            <div>
+                <div class="tw-editAchievementPaths__criterionForm-warning tw-editAchievementPaths--hidden" data-tw-criterionOtherCompetency-error="noothercompetency">
+                    {{#flex_icon}}notification-warning, error, criteria_othercompetency{{/flex_icon}}
+                    <span>{{#str}}error_no_competencies, criteria_othercompetency{{/str}}</span>
+                </div>
+
+                <button type="button" class="tw-editAchievementPaths__transparentBtn" data-tw-criterionOtherCompetency-addCompetencies="">
+                    {{#str}}add_competencies, criteria_othercompetency{{/str}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <form class="tw-editAchievementPaths__criterionForm"
+    data-tw-criterionOtherCompetency-aggregation="{{#aggregation}}{{method}}{{/aggregation}}{{^aggregation}}1{{/aggregation}}"
+    data-tw-criterionOtherCompetency-aggregation-reqitems="{{#aggregation}}{{reqitems}}{{/aggregation}}{{^aggregation}}1{{/aggregation}}">
+
+        <h5 class="tw-editAchievementPaths__criterionForm-title" id="tw_criterionOtherCompetency-radioGroup-label-{{key}}">
+            {{#str}}aggregation, totara_criteria{{/str}}
+        </h5>
+
+        <div role="radiogroup" aria-labelledby="tw_criterionOtherCompetency-radioGroup-label-{{key}}" aria-describedby="criterion_title--{{key}}" class="tw-editAchievementPaths__criterionForm-items">
+            <div data-tw-criterionOtherCompetency-aggregationMethod="1">
+                <input type="radio"
+                id="tw_criterionOtherCompetency_agg_all__{{key}}"
+                name="tw_criterionOtherCompetency_agg__{{key}}"
+                value="1"
+                data-tw-criterionOtherCompetency-aggregationMethod-changed="all"/>
+
+                <label class="tw-editAchievementPaths__criterionForm-label" for="tw_criterionOtherCompetency_agg_all__{{key}}">
+                    {{#str}}complete_all, totara_criteria{{/str}}
+                </label>
+                <span class="tf_loading" style="display: none;">
+                    {{#pix}} i/loading, core, loading, totara_core{{/pix}}
+                </span>
+            </div>
+
+            <div class="tw-editAchievementPaths__criterionForm-item" data-tw-criterionOtherCompetency-aggregationMethod="2">
+                <input type="radio"
+                id="tw_criterionOtherCompetency_agg_any__{{key}}"
+                name="tw_criterionOtherCompetency_agg__{{key}}"
+                value="2"
+                data-tw-criterionOtherCompetency-aggregationMethod-changed="any"/>
+
+                <label class="tw-editAchievementPaths__criterionForm-label" for="tw_criterionOtherCompetency_agg_any__{{key}}">
+                    {{#str}}complete_any, totara_criteria{{/str}}
+                </label>
+                <span class="tf_loading" style="display: none;">
+                    {{#pix}} i/loading, core, loading, totara_core{{/pix}}
+                </span>
+
+                <div data-tw-criterionOtherCompetency-aggregationCount="">
+                    <input type="number"
+                    name="tw_criterionOtherCompetency_agg_count__{{key}}"
+                    value="1" min="1"
+                    data-tw-criterionOtherCompetency-aggregationCount-changed=""
+                    disabled="disabled"/>
+                </div>
+                <div class="tw-editAchievementPaths__criterionForm-info tw-editAchievementPaths--hidden"
+                     data-tw-criterionOtherCompetency-info="aggregation-count"
+                >
+                    {{#flex_icon}}notification-info, info, totara_criteria{{/flex_icon}}
+                    <span>{{#str}}info_aggregation_minumum, criteria_othercompetency{{/str}}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

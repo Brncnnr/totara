@@ -1,0 +1,12 @@
+.tui-aggregationAdminView {
+  > * + * {
+    margin-top: var(--gap-8);
+  }
+}
+
+.tui-aggregationParticipantForm {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+}
+

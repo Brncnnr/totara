@@ -1,0 +1,11 @@
+query totara_reaction_liked(
+  $component: param_component!
+  $area: param_area!
+  $instanceid: param_integer!
+) {
+  result: totara_reaction_liked(
+    component: $component
+    area: $area
+    instanceid: $instanceid
+  )
+}

@@ -1,0 +1,81 @@
+"""
+Paginated list of selectable users.
+"""
+type mod_approval_user_page implements core_pageable_result {
+  """
+  List of users.
+  """
+  items: [core_user!]!
+
+  """
+  Total number of users.
+  """
+  total: Int!
+
+  """
+  Cursor to request the next set of results for this query
+  """
+  next_cursor: String!
+}
+
+"""
+Input for selectable_applicants query
+"""
+input mod_approval_selectable_applicants_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input!
+  """
+  Workflow optional
+  """
+  workflow_id: core_id
+  """
+  Filters input
+  """
+  filters: mod_approval_selectable_users_filter_input
+}
+
+"""
+Input for filtering what users can be selected.
+"""
+input mod_approval_selectable_users_filter_input {
+  """
+  Matches against the fullname of potential users
+  """
+  fullname: String
+}
+
+"""
+Input for selectable users query
+"""
+input mod_approval_selectable_users_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input!
+  """
+  Workflow
+  """
+  workflow_id: core_id!
+  """
+  Filters input
+  """
+  filters: mod_approval_selectable_users_filter_input
+}
+
+extend type Query {
+  """
+  Get the users that are visible and selectable by the current user for creating an application-on-behalf.
+  """
+  mod_approval_selectable_applicants(
+    input: mod_approval_selectable_applicants_input!
+  ): mod_approval_user_page!
+
+  """
+  Get the users that are visible and selectable by the current user to be assignment approvers.
+  """
+  mod_approval_selectable_users(
+    input: mod_approval_selectable_users_input!
+  ): mod_approval_user_page!
+}

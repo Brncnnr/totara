@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleButton Checks snapshot 1`] = `
+<button
+  aria-checked="false"
+  aria-label="toggle item"
+  class="tui-toggleBtn tui-toggleBtn--hasText"
+  role="radio"
+  tabindex="-1"
+  type="button"
+  value="abc"
+>
+  <div
+    aria-hidden="true"
+    class="tui-toggleBtn__content"
+  >
+    <!---->
+     
+    <span
+      class="tui-toggleBtn__text"
+    >
+      
+      example text
+    
+    </span>
+  </div>
+</button>
+`;

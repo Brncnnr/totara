@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/xapi/db" VERSION="20210928" COMMENT="XMLDB file for Totara XAPI plugin"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_xapi_statement" COMMENT="The table that stores the xapi statement from xapi request">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="statement" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The xAPI statement, which is stored as json blob."/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="User that this statement is pertaining to (if applicable)"/>
+        <FIELD NAME="client_id" TYPE="char" LENGTH="80" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="time_created_idx" UNIQUE="false" FIELDS="time_created"/>
+        <INDEX NAME="user_id_idx" UNIQUE="false" FIELDS="user_id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

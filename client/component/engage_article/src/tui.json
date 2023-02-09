@@ -1,0 +1,11 @@
+{
+  "component": "engage_article",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_engage",
+    "totara_comment",
+    "editor_weka",
+    "totara_reaction",
+    "totara_playlist"
+  ]
+}

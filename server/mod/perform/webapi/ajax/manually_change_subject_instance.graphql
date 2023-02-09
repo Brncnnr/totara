@@ -1,0 +1,9 @@
+mutation mod_perform_manually_change_subject_instance(
+  $input: mod_perform_manually_change_subject_instance_input!
+) {
+  mod_perform_manually_change_subject_instance(input: $input) {
+    subject_instance {
+      id
+    }
+  }
+}

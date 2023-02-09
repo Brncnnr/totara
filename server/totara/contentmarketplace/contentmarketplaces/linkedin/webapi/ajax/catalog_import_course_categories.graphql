@@ -1,0 +1,6 @@
+query contentmarketplace_linkedin_catalog_import_course_categories {
+  categoryOptions: contentmarketplace_linkedin_catalog_import_course_categories {
+    id
+    label: name(format: PLAIN)
+  }
+}

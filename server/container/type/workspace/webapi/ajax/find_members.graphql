@@ -1,0 +1,61 @@
+query container_workspace_find_members(
+  $workspace_id: param_integer!
+  $search_term: param_text
+  $sort: container_workspace_member_sort!
+  $cursor: param_text
+) {
+  cursor: container_workspace_member_cursor(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+    status: ACTIVE
+  ) {
+    __typename
+    total
+    next
+  }
+
+  members: container_workspace_members(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    sort: $sort
+    status: ACTIVE
+    cursor: $cursor
+  ) {
+    __typename
+    id
+    workspace_id
+    user {
+      __typename
+      id
+      # Full name is need for behat and aria-label.
+      fullname
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          associate_url
+          label
+          value
+          is_custom
+        }
+      }
+    }
+    member_interactor {
+      __typename
+      can_remove
+    }
+    workspace_interactor {
+      __typename
+      own
+    }
+    time_joined(format: DATELONG)
+    audiences {
+      id
+      name
+    }
+  }
+}

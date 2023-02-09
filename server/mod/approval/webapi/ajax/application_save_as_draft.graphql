@@ -1,0 +1,33 @@
+mutation mod_approval_application_save_as_draft(
+  $input: mod_approval_application_save_input!
+) {
+  mod_approval_application_save_as_draft(input: $input) {
+    application {
+      id
+      __typename
+      title
+      workflow_type
+      interactor {
+        can_edit
+        can_withdraw
+        can_delete
+        can_clone
+        can_edit_without_invalidating
+      }
+      last_published_submission {
+        submitted(format: DATETIME)
+        updated(format: DATETIME)
+        user {
+          __typename
+          id
+          fullname
+          card_display {
+            __typename
+            profile_url
+          }
+        }
+        is_first_submission
+      }
+    }
+  }
+}

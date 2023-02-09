@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RowGroup Checks snapshot 1`] = `
+<div
+  class="tui-dataTableRows"
+/>
+`;

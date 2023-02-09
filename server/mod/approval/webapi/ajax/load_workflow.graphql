@@ -1,0 +1,150 @@
+query mod_approval_load_workflow($input: mod_approval_workflow_input!) {
+  mod_approval_load_workflow(input: $input) {
+    workflow {
+      __typename
+      id
+      id_number
+      context_id
+      name
+      description
+      latest_version {
+        __typename
+        form_version {
+          json_schema
+        }
+        id
+        status
+        status_label
+        stages {
+          __typename
+          id
+          name
+          type {
+            label
+            enum
+          }
+          features {
+            enum
+          }
+          ordinal_number
+          type {
+            label
+            enum
+          }
+          approval_levels {
+            __typename
+            id
+            name
+            active
+            ordinal_number
+            created
+            updated
+            approvers {
+              __typename
+              id
+              type
+              approver_entity {
+                ... on core_user {
+                  __typename
+                  id
+                  name: fullname
+                  fullname
+                  card_display {
+                    profile_picture_alt
+                    profile_picture_url
+                    profile_url
+                    display_fields {
+                      associate_url
+                      label
+                      value
+                      is_custom
+                    }
+                  }
+                }
+                ... on totara_core_relationship {
+                  __typename
+                  id
+                  name
+                }
+              }
+            }
+          }
+          formviews {
+            field_key
+            visibility
+          }
+          interactions {
+            __typename
+            id
+            action_code
+            # conditional_actions {
+            # id
+            # priority
+            # condition {
+            # condition_key
+            # condition_data
+            # }
+            # action {
+            # action
+            # }
+            # }
+            # conditional_transitions {
+            # id
+            # priority
+            # condition {
+            # condition_key
+            # condition_data
+            # }
+            # transition
+            # }
+            default_transition {
+              __typename
+              id
+              priority
+              transition
+            }
+          }
+        }
+      }
+      workflow_type {
+        __typename
+        id
+        name
+      }
+      default_assignment {
+        __typename
+        id
+        assignment_type_label
+        assigned_to {
+          ... on totara_hierarchy_position {
+            __typename
+            id
+            fullname
+          }
+          ... on core_cohort {
+            __typename
+            id
+            fullname: name
+          }
+          ... on totara_hierarchy_organisation {
+            __typename
+            id
+            fullname
+          }
+        }
+      }
+      interactor {
+        can_edit
+        can_archive
+        can_unarchive
+        can_activate
+        can_clone
+        can_delete
+        can_publish
+        can_upload_approver_overrides
+        can_assign_roles
+        can_view_applications_report
+      }
+    }
+  }
+}

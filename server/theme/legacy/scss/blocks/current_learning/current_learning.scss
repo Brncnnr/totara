@@ -1,0 +1,469 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @package   theme_legacy
+
+.block_current_learning {
+  .panel-heading .btn-group {
+    margin-left: 20px;
+  }
+  .content {
+    // prefix needed to overwrite .block .content which comes from the theme
+    @include prepend-current(div) {
+      padding: 0;
+      margin: 0;
+    }
+
+    .block_current_learning-row-item {
+      font-size: $current-learning-title-text-size;
+      line-height: 28px;
+      margin: 0;
+      padding: 0 0 0 26px;
+      display: inline-block;
+      width: 100%;
+
+      > span {
+        padding: 0 5px;
+      }
+
+      &__status {
+        min-width: 20%;
+        float: right;
+        text-align: right;
+
+        .progressbar_container {
+          padding-top: 5px;
+        }
+      }
+
+      > .expand-collapse-icon-wrap {
+        padding: 0.3em;
+        border-radius: $current-learning-border-radius;
+        margin: 0 0 0 -1.8em;
+        text-align: center;
+
+        &:hover {
+          background-color: var(--color-neutral-4);
+          cursor: pointer;
+        }
+        .collapsed-icon {
+          display: none;
+        }
+        .expanded-icon {
+          display: inherit;
+        }
+        &.collapsed {
+          .collapsed-icon {
+            display: inherit;
+          }
+          .expanded-icon {
+            display: none;
+          }
+        }
+      }
+      > .ft-certificate {
+        font-size: 18px;
+      }
+
+      h3 {
+        display: inline-block;
+      }
+
+      .info {
+        .label {
+          display: inline-block;
+        }
+      }
+    }
+
+    .progressbar_container {
+      min-width: 70px;
+    }
+  }
+  .panel-body {
+    padding: 0;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        border-bottom: 1px solid var(--color-border);
+        padding: $current-learning-padding-vertical $current-learning-padding-horizontal;
+      }
+      li:nth-of-type(even) {
+        background-color: $current-learning-bg-color-light;
+      }
+    }
+  }
+  .panel-footer {
+    background-color: $current-learning-bg-color-default;
+    overflow: hidden;
+
+    .count {
+      margin: 10px 0 0;
+      float: left;
+    }
+
+    .pagination {
+      margin: 0;
+      float: right;
+
+      .disabled a {
+        color: var(--color-text-disabled);
+      }
+    }
+  }
+
+  // Message displayed when the user has no current learning.
+  .current_learning-no-content {
+    padding: $current-learning-empty-padding;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  ul li:nth-of-type(even) .current_learning-set {
+    background-color: $current-learning-bg-color-default;
+  }
+
+  ul li:nth-of-type(even) .current_learning-course {
+    background-color: $current-learning-bg-color;
+  }
+}
+
+// Program user learning items.
+.block_current_learning-program {
+  .current_learning-operator {
+    text-align: center;
+    font-size: 30px;
+    line-height: 40px;
+    height: 40px;
+    color: var(--color-neutral-5);
+    margin: 0;
+
+    .fa-caret-down {
+      font-size: 40px;
+    }
+  }
+  .current_learning-bundle {
+    padding: 10px 40px;
+
+    .block_current_learning-row-item__status .progressbar_container {
+      padding-top: 0;
+    }
+  }
+  .current_learning-set {
+    padding: $padding-large-vertical $current-learning-padding-horizontal;
+    background-color: $current-learning-bg-color;
+    border-radius: $current-learning-border-radius-large;
+    h4 {
+      &:not(:first-child) {
+        padding-top: $current-learning-set-header-padding;
+      }
+      span {
+        color: var(--color-neutral-7);
+        font-size: $current-learning-text-size-small;
+      }
+    }
+    .points {
+      color: var(--color-neutral-7);
+      display: inline-block;
+      min-width: 10px;
+      padding: 2px 7px;
+      font-size: $current-learning-text-size-small;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      background-color: $current-learning-bg-color-light;
+      border-radius: 10px;
+      border: 1px solid $current-learning-bg-color-lightish;
+    }
+  }
+  .current_learning-set-stamp {
+    text-align: center;
+
+    &:first-child {
+      margin-bottom: 12px;
+    }
+    &:last-child {
+      margin-top: 12px;
+    }
+
+    p {
+      padding: 4px 10px;
+      background-color: $current-learning-bg-color;
+      border-radius: $current-learning-border-radius;
+      margin: 0;
+      display: inline-block;
+      font-size: $current-learning-text-size-small;
+    }
+
+    .status-complete {
+      background-color: $current-learning-bg-color-default;
+      border: 2px solid $current-learning-border-color-complete;
+      font-weight: bold;
+      color: $current-learning-text-color-complete;
+
+      .flex-icon {
+        color: $current-learning-bg-color-default;
+      }
+    }
+
+    .status-unavailable {
+      background-color: $current-learning-bg-color-default;
+      border: 2px solid $current-learning-border-color-unavailable;
+      font-weight: bold;
+      color: $current-learning-text-color-unavailable;
+    }
+  }
+}
+
+// Course user learning items appearing at the top level and within programs.
+.block_current_learning .current_learning-course {
+  padding: $current-learning-padding-vertical;
+  background-color: $current-learning-bg-color-default;
+  border-radius: $current-learning-border-radius-large;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  margin-top: $current-learning-padding-vertical;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .flex-icon {
+    float: right;
+    margin-top: 3px;
+  }
+
+  .info {
+    margin-top: -1px;
+  }
+
+  .label .flex-icon {
+    float: none;
+  }
+}
+
+// Tile styles
+.block_current_learning-tiles {
+  padding: var(--gap-2);
+
+  &-loading {
+    margin: 100px auto;
+    width: 100%;
+    text-align: center;
+
+    [data-loading="false"] & {
+      display: none; 
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  &[data-loading="true"] ul {
+    display: none; 
+  }
+  
+  &:after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+}
+
+.block_current_learning-tile {
+  width: calc(100% - calc(2 * var(--gap-2)));
+  float: left;
+  margin: var(--gap-2);
+  border: var(--border-width-thin) solid var(--color-neutral-5);
+  border-radius: var(--border-radius-normal);
+  position: relative;
+
+  [data-items-per-row="1"] & {
+    width: calc(100% - calc(2 * var(--gap-2)));
+    max-width: 284px;
+  }
+
+  [data-items-per-row="2"] & {
+    width: calc(50% - calc(2 * var(--gap-2)));
+  }
+
+  [data-items-per-row="3"] & {
+    width: calc(33.33% - calc(2 * var(--gap-2)));
+  }
+
+  [data-items-per-row="4"] & {
+    width: calc(25% - calc(2 * var(--gap-2)));
+  }
+
+  [data-items-per-row="5"] & {
+    width: calc(20% - calc(2 * var(--gap-2)));
+  }
+
+  [data-items-per-row="6"] & {
+    width: calc(16.66% - calc(2 * var(--gap-2)));
+  }
+
+  [data-items-per-row="7"] & {
+    width: calc(14.28% - calc(2 * var(--gap-2)));
+  }
+
+  [data-items-per-row="8"] & {
+    width: calc(12.5% - calc(2 * var(--gap-2)));
+  }
+
+  &__image {
+    padding-top: 128px;
+    position: relative;
+
+    &_ratio {
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-top-left-radius: calc(var(--border-radius-normal) - 1px);
+      border-top-right-radius: calc(var(--border-radius-normal) - 1px);
+
+      &_img {
+        background-position: 50%;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .block .content &__link {
+    color: var(--color-text);
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      outline: none;
+    }
+
+    &_title {
+      @include totara_style-heading_x_small();
+      height: 3em;
+      overflow: hidden;
+      display: block;
+      margin: var(--gap-4) var(--gap-4) 0;
+
+      &:after {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+        content: "";
+      }
+    }
+  }
+
+  &__content {
+    padding: var(--gap-2) var(--gap-4) var(--gap-2);
+
+    &_progress {
+      height: 23px;
+      margin-bottom: var(--gap-2);
+      overflow: hidden;
+
+      .progressbar_container {
+        z-index: 1;
+        position: absolute;
+        left: var(--gap-4);
+        right: var(--gap-4);
+
+        h2 {
+          display: none;
+        }
+      }
+    }
+
+    &_duedate {
+      height: 24px;
+      margin-bottom: var(--gap-2);
+
+      &_text {
+        @include totara-style-body-x-small();
+        padding: 0 var(--gap-2);
+        border: var(--border-width-thin) solid var(--color-neutral-5);
+        border-radius: 12px;
+
+        &-label-info {
+          color: var(--color-prompt-info);
+        }
+
+        &-label-warning {
+          color: var(--color-prompt-warning);
+        }
+
+        &-label-danger {
+          color: var(--color-prompt-alert);
+        }
+      }
+    }
+
+    &_progress-no_display,
+    &_duedate-no_duedate {
+      visibility: hidden;
+    }
+
+    &_component {
+      @include totara-style-body-x-small();
+      color: var(--color-neutral-6);
+    }
+  }
+
+  &:hover,
+  &:focus-within {
+    color: var(--catalog-item-text-color);
+    box-shadow: var(--shadow-2);
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.block_docked {
+  .block_current_learning-tiles {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .block_current_learning-tile {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+
+    &__image {
+      padding-top: 88px;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation mod_approval_workflow_stage_edit_approval_level(
+  $input: mod_approval_workflow_stage_edit_approval_level_input!
+) {
+  mod_approval_workflow_stage_edit_approval_level(input: $input) {
+    approval_level {
+      __typename
+      id
+      name
+    }
+  }
+}

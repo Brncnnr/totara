@@ -1,0 +1,59 @@
+mutation totara_playlist_update_playlist(
+  $id: param_integer!
+  $access: totara_engage_access
+  $topics: [param_integer!]
+  $shares: [totara_engage_recipient_in!]
+) {
+  playlist: totara_playlist_update(
+    id: $id
+    access: $access
+    topics: $topics
+    shares: $shares
+  ) {
+    __typename
+    user {
+      __typename
+      id
+      # Note that fullname is needed for accessibility in page
+      fullname
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          is_custom
+          associate_url
+          label
+          value
+        }
+      }
+    }
+    id
+    contextid
+    timedescription
+    topics {
+      __typename
+      id
+      value(format: PLAIN)
+    }
+    name(format: PLAIN)
+    access
+    summary(format: HTML)
+    rating {
+      itemid
+      rating
+      count
+      rated
+    }
+    updateable
+    contributable
+    totalresources
+    sharedbycount
+    owned
+    bookmarked
+    manageable
+    hasnonpublicresources
+  }
+}

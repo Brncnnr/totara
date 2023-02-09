@@ -1,0 +1,7955 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2020 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+html {
+  font-size: 10px;
+}
+
+.tui-sr-only {
+  @include sr-only();
+}
+
+/* rendered editor content*/
+.tui-rendered {
+  @include tui-font-body();
+  word-break: break-word;
+
+  h2 {
+    @include tui-font-heading-large();
+  }
+
+  h3 {
+    @include tui-font-heading-medium();
+  }
+
+  h4 {
+    @include tui-font-heading-small();
+  }
+
+  h5 {
+    @include tui-font-heading-x-small();
+  }
+
+  &__block {
+    margin-bottom: var(--paragraph-gap);
+  }
+
+  &__embedContainer {
+    max-width: var(--embedded-media-max-width);
+  }
+}
+
+/* Color state for the icons.*/
+.tui-icon {
+  &--disabled {
+    color: var(--color-neutral-2);
+  }
+
+  &--action {
+    color: var(--color-state);
+  }
+
+  &--info {
+    color: var(--color-prompt-info);
+  }
+
+  &--alert {
+    color: var(--color-prompt-alert);
+  }
+
+  &--warning {
+    color: var(--color-prompt-warning);
+  }
+
+  &--success {
+    color: var(--color-prompt-success);
+  }
+
+  &--dimmed {
+    color: var(--color-neutral-6);
+  }
+}
+
+.tui-adder {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 50rem;
+  margin-top: calc(var(--gap-6) - var(--modal-content-separation));
+
+  &__notices {
+    margin-bottom: var(--gap-6);
+  }
+
+  &__tabs {
+    flex-grow: 1;
+    min-height: 0;
+  }
+
+  &__tabPanel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list {
+    flex-grow: 1;
+    height: 316px;
+    overflow-y: auto;
+
+    &-loading {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      min-height: 50px;
+    }
+
+    &-loadMore {
+      margin: var(--gap-4) 0 var(--gap-4);
+      text-align: center;
+    }
+
+    &::before {
+      display: block;
+      height: var(--gap-4);
+      content: '';
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: var(--border-width-normal) solid var(--color-neutral-5);
+
+    & > * {
+      margin-top: var(--gap-6);
+    }
+  }
+
+  &__summary {
+    display: flex;
+    align-items: center;
+    @include tui-font-heading-label();
+  }
+
+  &__actions {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+.tui-hierarchicalParentButton {
+  display: flex;
+  align-items: center;
+  padding: var(--gap-4) 0 0;
+
+  &__backArrow {
+    text-align: start;
+
+    @media screen and (min-width: $tui-screen-xs) {
+      text-align: center;
+    }
+  }
+
+  &__label {
+    margin-left: var(--gap-2);
+  }
+}
+
+:root {
+  --avatar-border-radius: 50%;
+  --avatar-large-width: 185px;
+  --avatar-large-height: 185px;
+  --avatar-large-padding: 5px;
+  --avatar-medium-width: 105px;
+  --avatar-medium-height: 105px;
+  --avatar-medium-padding: 3px;
+  --avatar-small-width: 50px;
+  --avatar-small-height: 50px;
+  --avatar-small-padding: 2px;
+  --avatar-xsmall-width: 38px;
+  --avatar-xsmall-height: 38px;
+  --avatar-xsmall-padding: 1px;
+  --avatar-xxsmall-width: 24px;
+  --avatar-xxsmall-height: 24px;
+  --avatar-xxsmall-padding: 1px;
+}
+
+.tui-avatar {
+  border: var(--border-width-normal) solid var(--avatar-border-color);
+  border-radius: var(--avatar-border-radius);
+
+  &--large {
+    width: var(--avatar-large-width);
+    height: var(--avatar-large-height);
+    padding: var(--avatar-large-padding);
+  }
+
+  &--medium {
+    width: var(--avatar-medium-width);
+    height: var(--avatar-medium-height);
+    padding: var(--avatar-medium-padding);
+  }
+
+  &--small {
+    width: var(--avatar-small-width);
+    height: var(--avatar-small-height);
+    padding: var(--avatar-small-padding);
+  }
+
+  &--xsmall {
+    width: var(--avatar-xsmall-width);
+    height: var(--avatar-xsmall-height);
+    padding: var(--avatar-xsmall-padding);
+  }
+
+  &--xxsmall {
+    width: var(--avatar-xxsmall-width);
+    height: var(--avatar-xxsmall-height);
+    padding: var(--avatar-xxsmall-padding);
+  }
+}
+
+.tui-basket {
+  @include tui-font-body();
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: var(--color-neutral-3);
+  border: var(--border-width-thin) solid var(--color-neutral-5);
+
+  @media (min-width: $tui-screen-sm) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__status,
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: var(--gap-2) var(--gap-3);
+
+    & > * {
+      margin-top: var(--gap-2);
+      margin-left: var(--gap-4);
+    }
+
+    @media (min-width: $tui-screen-xs) {
+      & > * {
+        margin-top: 0;
+        margin-left: 0;
+      }
+
+      > .tui-formBtn--transparent {
+        padding: var(--gap-1);
+      }
+
+      > * + * {
+        margin-left: var(--gap-2);
+      }
+
+      .tui-basket--wideGap & {
+        > * + * {
+          margin-left: var(--gap-4);
+        }
+      }
+    }
+  }
+
+  &__selected {
+    font-weight: bold;
+  }
+
+  &__selectedCount {
+    font-size: var(--font-size-18);
+  }
+}
+
+/* Reset*/
+.tui-toggleBtn,
+.tui-formBtn {
+  display: inline-block;
+  align-items: flex-start;
+  box-sizing: border-box;
+  height: auto;
+  padding: 1px 7px 2px;
+  overflow: visible;
+  color: buttontext;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: normal;
+  white-space: normal;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  text-indent: 0;
+  text-shadow: none;
+  vertical-align: baseline;
+  word-spacing: normal;
+  background-color: buttonface;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0;
+  border-image: initial;
+  cursor: pointer;
+  touch-action: auto;
+  text-rendering: auto;
+
+  &:active {
+    border-style: inset;
+  }
+  &:focus {
+    outline-width: 5px;
+    outline-style: auto;
+  }
+}
+
+.tui-formBtn,
+%tui-formBtn {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: var(--btn-min-width);
+  max-width: 100%;
+  min-height: var(--btn-min-height);
+  /* prettier-ignore*/
+  padding: calc((var(--btn-min-height) - var(--form-input-font-size) * 1.2) / 2 - var(--form-input-border-size)) var(--gap-4);
+
+  color: var(--btn-text-color);
+  font-size: var(--form-input-font-size);
+  line-height: 1.2;
+  word-wrap: break-word;
+  word-break: break-word;
+  -webkit-hyphens: none;
+      -ms-hyphens: none;
+          hyphens: none;
+  background: var(--btn-bg-color);
+  border: var(--form-input-border-size) solid;
+  border-color: var(--btn-border-color);
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: tui-transition('button', background-color),
+    tui-transition('button', border-color), tui-transition('button', box-shadow);
+
+  > .tui-formBtn__caret {
+    margin-left: var(--gap-2);
+  }
+
+  .tui-formBtn__loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--btn-loader-color-disabled);
+  }
+
+  &:active,
+  &:focus,
+  &:active:focus,
+  &:active:hover,
+  &:hover {
+    color: var(--btn-text-color-focus);
+    text-decoration: none;
+    background: var(--btn-bg-color-focus);
+    border-color: var(--btn-border-color-focus);
+    outline: 0;
+    box-shadow: var(--btn-shadow-focus);
+  }
+
+  &:active,
+  &:active:focus,
+  &:active:hover {
+    color: var(--btn-text-color-active);
+    background: var(--btn-bg-color-active);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--btn-border-color-active);
+    box-shadow: var(--btn-shadow-active);
+  }
+
+  &:disabled,
+  &[disabled],
+  &--loading {
+    color: var(--btn-text-color-disabled);
+    background-color: var(--btn-bg-color-disabled);
+    border-color: var(--btn-border-color-disabled);
+    cursor: default;
+    opacity: 1;
+
+    &:active,
+    &:focus,
+    &:active:focus,
+    &:active:hover,
+    &:hover {
+      color: var(--btn-text-color-disabled);
+      background-color: var(--btn-bg-color-disabled);
+      border-color: var(--btn-border-color-disabled);
+      box-shadow: none;
+    }
+  }
+
+  &--alert {
+    color: var(--btn-alert-text-color);
+    background: var(--btn-alert-bg-color);
+    border-color: var(--btn-alert-border-color);
+
+    &:focus,
+    &:hover {
+      color: var(--btn-alert-text-color-focus);
+      background: var(--btn-alert-bg-color-focus);
+      border-color: var(--btn-alert-border-color-focus);
+    }
+
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      color: var(--btn-alert-text-color-active);
+      background: var(--btn-alert-bg-color-active);
+      border-color: var(--btn-alert-border-color-active);
+    }
+
+    &:disabled,
+    &[disabled],
+    &.tui-formBtn--loading {
+      color: var(--btn-alert-text-color-disabled);
+      background: var(--btn-alert-bg-color-disabled);
+      border-color: var(--btn-alert-border-color-disabled);
+      cursor: default;
+      opacity: 1;
+
+      &:active,
+      &:focus,
+      &:active:focus,
+      &:active:hover,
+      &:hover {
+        color: var(--btn-alert-text-color-disabled);
+        background: var(--btn-alert-bg-color-disabled);
+        border-color: var(--btn-alert-border-color-disabled);
+        box-shadow: none;
+      }
+    }
+  }
+
+  &--prim {
+    color: var(--btn-prim-text-color);
+    font-weight: bold;
+    background: var(--btn-prim-bg-color);
+    border-color: var(--btn-prim-border-color);
+
+    &:focus,
+    &:hover {
+      color: var(--btn-prim-text-color-focus);
+      background: var(--btn-prim-bg-color-focus);
+      border-color: var(--btn-prim-border-color-focus);
+    }
+
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      color: var(--btn-prim-text-color-active);
+      background: var(--btn-prim-bg-color-active);
+      border-color: var(--btn-prim-border-color-active);
+    }
+
+    &:disabled,
+    &[disabled],
+    &.tui-formBtn--loading {
+      color: var(--btn-prim-text-color-disabled);
+      background: var(--btn-prim-bg-color-disabled);
+      border-color: var(--btn-prim-border-color-disabled);
+      cursor: default;
+      opacity: 1;
+
+      &:active,
+      &:focus,
+      &:active:focus,
+      &:active:hover,
+      &:hover {
+        color: var(--btn-prim-text-color-disabled);
+        background: var(--btn-prim-bg-color-disabled);
+        border-color: var(--btn-prim-border-color-disabled);
+        box-shadow: none;
+      }
+    }
+
+    .tui-formBtn__loading {
+      color: var(--btn-prim-loader-color-disabled);
+    }
+  }
+
+  &--small {
+    min-height: var(--form-input-height);
+    /* prettier-ignore*/
+    padding: calc((var(--form-input-height) - var(--form-input-font-size-sm) * 1.2) / 2 - var(--form-input-border-size)) var(--gap-3);
+
+    font-size: var(--form-input-font-size-sm);
+    line-height: 1.2;
+  }
+
+  &--transparent,
+  &--reveal {
+    min-height: auto;
+    padding: 0;
+    line-height: 1;
+    border-radius: 0;
+  }
+
+  &--transparent,
+  &--reveal,
+  &--stealth {
+    min-width: 0;
+    color: var(--color-state);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+      color: var(--color-state-focus);
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: var(--color-state-hover);
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    &:active,
+    &:active:hover,
+    &:active:focus {
+      color: var(--color-state-active);
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    &:active:focus,
+    &:focus {
+      @include tui-focus();
+    }
+
+    &:disabled,
+    &.tui-formBtn--loading {
+      color: var(--color-state-disabled);
+      background: transparent;
+      opacity: 1;
+
+      &:active,
+      &:focus,
+      &:active:focus,
+      &:active:hover,
+      &:hover {
+        color: var(--color-state-disabled);
+        background: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &--reveal {
+    color: currentColor;
+    border-bottom: 1px dashed var(--color-state);
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:active:hover,
+    &:active:focus {
+      color: currentColor;
+      border-bottom: 1px dashed var(--color-state);
+    }
+
+    &:disabled,
+    &.tui-formBtn--loading {
+      color: currentColor;
+      border-bottom: 1px dashed var(--color-state);
+      opacity: 0.7;
+
+      &:active,
+      &:focus,
+      &:active:focus,
+      &:active:hover,
+      &:hover {
+        color: currentColor;
+        border-bottom: 1px dashed var(--color-state);
+      }
+    }
+  }
+
+  &--transparent &__text {
+    position: relative;
+  }
+
+  &--loading &__text {
+    visibility: hidden;
+  }
+
+  &--srOnly {
+    @include sr-only();
+  }
+}
+
+.tui-formBtnGroup {
+  display: flex;
+
+  .tui-formBtn {
+    min-width: 80px;
+  }
+
+  > :not(:first-child) {
+    margin: auto 0 auto var(--gap-4);
+  }
+}
+
+.tui-iconBtn {
+  /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+  @extend .tui-formBtn;
+
+  display: inline-block;
+  min-width: 0;
+  padding: 0 var(--gap-2);
+
+  /* in order to vertically center content in IE we need this display: flex*/
+  /* wrapping div because:*/
+  /*   * putting `display: flex;` on .tui-iconBtn does not center vertically*/
+  /*     due to an IE 11 flex bug*/
+  /*     https://github.com/philipwalton/flexbugs#flexbug-3*/
+  /*   * relying on vertical-align for centering instead is not good enough -*/
+  /*     it's off by a px or two*/
+  &__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .tui-iconBtn__caret {
+      margin: 0 var(--gap-1);
+    }
+
+    > .tui-iconBtn__loading {
+      margin-left: var(--gap-1);
+    }
+  }
+
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--font-size-16);
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__text {
+    @include tui-wordbreak--hard;
+  }
+
+  &--alert {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--alert;
+  }
+
+  &--prim {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--prim;
+  }
+
+  &--small {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--small;
+    padding: 0 var(--gap-1);
+    font-size: var(--font-size-13);
+
+    .tui-iconBtn__icon {
+      padding: 0 2px;
+      font-size: var(--font-size-14);
+    }
+  }
+
+  &--xsmall {
+    min-height: 2rem;
+    padding: 0 0.1rem;
+    font-size: var(--font-size-12);
+
+    .tui-iconBtn__icon {
+      padding: 0 1px;
+      font-size: var(--font-size-11);
+    }
+  }
+
+  &--small&--hasText,
+  &--xsmall&--hasText {
+    .tui-iconBtn__icon {
+      padding-right: 0;
+    }
+  }
+
+  &--circle {
+    width: 3.6rem;
+    height: 3.6rem;
+    padding: 0;
+    border-radius: 50%;
+
+    &.tui-iconBtn--small {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &.tui-iconBtn--xsmall {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &--transparent {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--transparent;
+  }
+
+  &--transparent-noPadding {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--transparent;
+    &.tui-iconBtn,
+    &.tui-iconBtn--small,
+    &.tui-iconBtn--xsmall {
+      padding: 0;
+    }
+  }
+
+  &--stealth {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--stealth;
+  }
+
+  &--textFirst &__label {
+    flex-direction: row-reverse;
+    .tui-iconBtn__text {
+      padding: 0 var(--gap-1);
+    }
+  }
+}
+
+.tui-iconBtn__text {
+  padding: 0 var(--gap-1);
+}
+
+.tui-infoIconButton {
+  &.tui-iconBtn {
+    width: auto;
+    height: auto;
+    vertical-align: -0.125em;
+  }
+}
+
+.tui-labelledButtonTrigger {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__label {
+    color: var(--color-state);
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.tui-actionCard {
+  flex-direction: column;
+  padding: var(--gap-4);
+
+  &__body {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__action {
+    display: flex;
+    flex-shrink: 0;
+    align-items: normal;
+    padding: var(--gap-4) 0 0;
+  }
+
+  &--shaded {
+    background: var(--color-neutral-3);
+  }
+}
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-actionCard {
+    flex-direction: row;
+    &--stacked {
+      flex-direction: column;
+    }
+
+    &:not(&--stacked) &__action {
+      align-items: center;
+      padding: 0 0 0 var(--gap-4);
+    }
+  }
+}
+
+.tui-card {
+  position: relative;
+  display: flex;
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  outline: none;
+
+  &__link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  &--noBorder {
+    border: none;
+    &:focus,
+    &:hover {
+      border: none;
+    }
+  }
+
+  &--hasHoverShadow:focus,
+  &--hasHoverShadow:hover {
+    box-shadow: var(--shadow-2);
+  }
+
+  &--hasShadow {
+    box-shadow: var(--shadow-2);
+  }
+
+  &--clickable {
+    transition: box-shadow var(--transition-form-function)
+      var(--transition-form-duration);
+
+    &.tui-focusWithin {
+      box-shadow: var(--shadow-2);
+    }
+  }
+
+  &--clickable:hover,
+  &--clickable:focus {
+    box-shadow: var(--shadow-2);
+    cursor: pointer;
+  }
+}
+
+.tui-collapsible {
+  &__header {
+    display: flex;
+    background: var(--collapsible-header-bg-color);
+    border: var(--border-width-thin) solid
+      var(--collapsible-header-border-color);
+
+    &-heading {
+      display: flex;
+      flex-grow: 1;
+      margin: 0;
+    }
+
+    &-button {
+      @include tui-wordbreak--hard();
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      margin: 0;
+      padding: var(--gap-2) var(--gap-2) var(--gap-2) 0;
+      cursor: pointer;
+      -webkit-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+
+      &:focus {
+        @include tui-focus();
+      }
+    }
+
+    &-icon {
+      flex-shrink: 0;
+      margin: 0 var(--gap-4);
+      color: var(--color-state);
+    }
+
+    &-text {
+      @include tui-font-heading-x-small();
+      margin: 0;
+    }
+
+    &-sideContent {
+      display: flex;
+      flex-shrink: 0;
+      padding: var(--gap-2);
+    }
+  }
+
+  &__content {
+    & > .tui-formRowStack {
+      margin-top: var(--gap-4);
+    }
+
+    /* line up with text of header*/
+    &--indented {
+      padding-left: var(--gap-12);
+    }
+  }
+  &--minimal &__header {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  &--largePadding &__header-button {
+    padding: var(--gap-5) var(--gap-2) var(--gap-5) var(--gap-1);
+  }
+  &--largePadding &__header-sideContent {
+    padding: var(--gap-2) var(--gap-4);
+  }
+  &--largePadding &__content {
+    padding: var(--gap-3);
+    padding-top: 0;
+
+    &--indented {
+      padding-left: calc(var(--gap-12) + var(--gap-1));
+    }
+  }
+}
+
+.tui-collapsibleGroupToggle {
+  display: flex;
+  &--alignEnd &__button {
+    margin-left: auto;
+  }
+}
+
+.tui-hideShow {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-neutral-1);
+
+  &__content {
+    display: none;
+    &--show {
+      display: block;
+      outline: none;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    padding: var(--gap-2) 0;
+
+    &--sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: inherit;
+    }
+  }
+}
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-hideShow--mobile {
+    & > .tui-hideShow__toggle {
+      display: none;
+    }
+
+    & > .tui-hideShow__content {
+      display: block;
+    }
+  }
+}
+
+.tui-dataTableCell {
+  display: flex;
+  flex-basis: 0;
+  flex-direction: column;
+  flex-grow: 1;
+
+  /* ensure excessively long words don't push out cell width */
+  min-width: 0;
+
+  /* ensure excessively long words don't overflow */
+  word-wrap: break-word;
+
+  &__label {
+    display: none;
+    margin-top: var(--gap-2);
+    padding: var(--gap-1) 0 var(--gap-2);
+    @include tui-font-heading-label-small();
+  }
+
+  &--stacked &__label {
+    display: inline-block;
+  }
+
+  &--repeatedHeader &__content {
+    @include sr-only();
+  }
+
+  &--size {
+    &_1 {
+      flex-grow: 1;
+    }
+
+    &_2 {
+      flex-grow: 2;
+    }
+
+    &_3 {
+      flex-grow: 3;
+    }
+
+    &_4 {
+      flex-grow: 4;
+    }
+
+    &_5 {
+      flex-grow: 5;
+    }
+
+    &_6 {
+      flex-grow: 6;
+    }
+
+    &_7 {
+      flex-grow: 7;
+    }
+
+    &_8 {
+      flex-grow: 8;
+    }
+
+    &_9 {
+      flex-grow: 9;
+    }
+
+    &_10 {
+      flex-grow: 10;
+    }
+
+    &_11 {
+      flex-grow: 11;
+    }
+
+    &_12 {
+      flex-grow: 12;
+    }
+
+    &_13 {
+      flex-grow: 13;
+    }
+
+    &_14 {
+      flex-grow: 14;
+    }
+
+    &_15 {
+      flex-grow: 15;
+    }
+
+    &_16 {
+      flex-grow: 16;
+    }
+  }
+
+  &--align {
+    &-center {
+      align-items: center;
+    }
+
+    &-end {
+      align-items: flex-end;
+    }
+  }
+
+  &--heavy {
+    @include tui-font-heavy();
+  }
+
+  &--valign {
+    &-center {
+      justify-content: center;
+    }
+
+    &-end {
+      justify-content: flex-end;
+    }
+  }
+
+  &--stacked {
+    flex-basis: auto;
+    align-items: initial;
+  }
+}
+
+.tui-dataTableExpandCell {
+  display: flex;
+  order: 0;
+  width: var(--gap-9);
+  margin: 0;
+
+  .tui-iconBtn {
+    margin: 0 auto;
+  }
+
+  &.tui-dataTableExpandCell--header {
+    margin-left: 0;
+  }
+
+  &--stacked {
+    order: 1;
+    width: 100%;
+    margin: var(--gap-2) 0;
+  }
+}
+
+.tui-dataTableExpandableRow {
+  position: relative;
+  margin: 0 0 var(--gap-2) calc(0px - var(--border-width-thin));
+  color: var(--datatable-expanded-text-color);
+  background: var(--datatable-expanded-bg-color);
+  border: var(--border-width-thin) solid var(--datatable-expanded-border-color);
+  border-top: none;
+  box-shadow: var(--shadow-2);
+
+  &--stealth {
+    border: none;
+    box-shadow: none;
+    &__content {
+      padding: 0;
+    }
+  }
+
+  &__content {
+    padding: var(--gap-3);
+    background: var(--datatable-expanded-bg-color);
+  }
+
+  &--indented {
+    padding-left: var(--gap-11);
+  }
+
+  &--stacked {
+    border-top: none;
+  }
+
+  &--stacked&--indented {
+    padding-left: 0;
+  }
+
+  &--indented &__content {
+    padding: var(--gap-3) 0 var(--gap-3) var(--gap-3);
+  }
+}
+
+.tui-dataTableHeaderCell {
+  /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+  @extend .tui-dataTableCell;
+  @include tui-font-heading-label();
+  display: flex;
+  color: var(--datatable-cell-header-text-color);
+  font-weight: bold;
+
+  &--stacked {
+    display: none;
+  }
+}
+
+.tui-dataTableRowHeader {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--gap-3) var(--gap-1);
+
+  &--stacked {
+    display: block;
+    padding: 0;
+  }
+
+  &--stackedGap {
+    margin-top: var(--gap-2);
+  }
+
+  &--empty {
+    display: none;
+  }
+
+  & > * + * {
+    margin-left: var(--gap-4);
+  }
+
+  &--indented {
+    padding-left: var(--gap-11);
+  }
+}
+
+.tui-dataTableRow {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: var(--gap-3) var(--gap-1);
+  background: var(--datatable-row-bg-color);
+  border-top: 1px solid var(--datatable-row-border-color);
+
+  & > * + * {
+    padding-left: var(--gap-4);
+  }
+
+  &:first-child {
+    border-top: var(--border-width-normal) solid
+      var(--datatable-row-first-border-color);
+  }
+
+  &:last-child {
+    border-bottom: 1px solid var(--datatable-row-border-color);
+  }
+
+  &.tui-focusWithin,
+  &:active,
+  &:hover {
+    background: var(--datatable-row-bg-color-focus);
+  }
+
+  &--indented {
+    padding-left: var(--gap-11);
+  }
+
+  &--stealth {
+    box-shadow: none;
+  }
+
+  &--borderTopFirstOff {
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  &--borderBottomLastOff {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &--borderSeparatorOff:not(:first-child) {
+    border-top: none;
+  }
+
+  &--selected {
+    background: var(--datatable-row-bg-color-active);
+
+    &:hover {
+      background: var(--datatable-row-bg-color-focus);
+    }
+  }
+
+  &--colorOdd:not(&--selected) {
+    &:nth-child(odd) {
+      background: var(--datatable-row-bg-color-odd);
+
+      &.tui-focusWithin,
+      &:hover {
+        background: var(--datatable-row-bg-color-focus);
+      }
+    }
+  }
+
+  &--hoverOff {
+    &.tui-focusWithin,
+    &:active,
+    &:hover {
+      background: var(--datatable-row-bg-color);
+    }
+  }
+
+  &--hoverOff&--colorOdd {
+    &:nth-child(odd) {
+      &.tui-focusWithin,
+      &:hover {
+        background: var(--datatable-row-bg-color-odd);
+      }
+    }
+  }
+
+  &--inGroup {
+    border-top: none;
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &--disabled {
+    color: var(--color-neutral-6);
+  }
+
+  /* don't show hover background when another item is being dragged over it*/
+  [data-tui-droppable-any-active] &:hover {
+    background: var(--datatable-row-bg-color);
+  }
+
+  &--draggable {
+    /* apply a background so you don't see through the row when dragging*/
+    /* (default is transparent)*/
+    background: var(--color-background);
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    &.tui-focusWithin,
+    &:active,
+    &:hover {
+      background: var(--color-background);
+    }
+  }
+
+  &--draggable > .tui-dataTableCell {
+    pointer-events: none;
+  }
+
+  &--dragging {
+    box-shadow: var(--shadow-3);
+  }
+
+  &--expanded {
+    margin-left: calc(0px - var(--border-width-thin));
+    background-color: var(--datatable-expanded-bg-color);
+    border: var(--border-width-thin) solid
+      var(--datatable-expanded-border-color);
+    border-bottom: none;
+    box-shadow: var(--shadow-2);
+  }
+
+  &--stealthExpanded {
+    border-right: none;
+    border-left: none;
+    box-shadow: none;
+  }
+}
+
+.tui-dataTableRow--stacked {
+  flex-direction: column;
+  padding: var(--gap-3) 0;
+
+  & > * + * {
+    padding-left: 0;
+  }
+
+  &:first-child {
+    border-top: var(--border-width-normal) solid
+      var(--datatable-row-first-border-color);
+  }
+
+  &:last-child {
+    border-bottom: 1px solid var(--datatable-row-border-color);
+  }
+
+  &.tui-dataTableRow--inGroup {
+    border-top: 1px solid var(--datatable-row-border-color);
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:nth-child(odd) {
+      background: none;
+    }
+    &:hover {
+      background: none;
+    }
+  }
+}
+
+.tui-dataTableRowGroup {
+  padding: 0;
+  border-top: 2px solid var(--datatable-row-first-border-color);
+
+  &--stacked {
+    padding: 0 var(--gap-2);
+  }
+
+  & + & {
+    border-top: 1px solid var(--datatable-row-border-color);
+  }
+
+  &:last-child {
+    border-bottom: 1px solid var(--datatable-row-border-color);
+  }
+
+  &.tui-focusWithin,
+  &:active,
+  &:hover {
+    background: var(--datatable-row-bg-color-focus);
+  }
+
+  &--selected {
+    background: var(--datatable-row-bg-color-active);
+
+    &:hover {
+      background: var(--datatable-row-bg-color-focus);
+    }
+  }
+}
+
+.tui-dataTableSelectEveryRowToggle {
+  padding: var(--gap-2);
+  background-color: var(--datatable-select-everything-prompt-bg);
+}
+
+.tui-dataTableSelectRowCell {
+  display: flex;
+  flex-direction: column;
+
+  &--hidden {
+    visibility: hidden;
+  }
+
+  &__loader {
+    width: var(--form-checkbox-size);
+    height: var(--form-checkbox-size);
+
+    &--large {
+      width: var(--form-checkbox-size-large);
+      height: var(--form-checkbox-size-large);
+    }
+  }
+
+  &--stacked&--hidden {
+    height: 0;
+  }
+
+  &--valign {
+    &-start {
+      justify-content: flex-start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-end {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.tui-dataTableSelectVisibleRowsCell {
+  display: flex;
+
+  &--hidden {
+    visibility: hidden;
+  }
+
+  &__loader {
+    width: var(--form-checkbox-size);
+    height: var(--form-checkbox-size);
+
+    &--large {
+      width: var(--form-checkbox-size-large);
+      height: var(--form-checkbox-size-large);
+    }
+  }
+
+  &--stacked {
+    margin: var(--gap-2) 0;
+  }
+
+  &__label {
+    display: none;
+    @include tui-font-heading-label-small();
+
+    padding: 0 0 var(--gap-1) var(--gap-1);
+
+    &--stacked {
+      display: inline-block;
+    }
+
+    &--large {
+      padding: var(--gap-1) 0 var(--gap-1) var(--gap-2);
+    }
+  }
+}
+
+.tui-dataTable {
+  &--archived {
+    background: var(--datatable-bg-archived);
+  }
+
+  &__row-move-cell {
+    flex-basis: var(--gap-5);
+    flex-grow: 0;
+  }
+
+  &__row-move-menu {
+    position: absolute;
+    top: 0;
+    left: var(--gap-8);
+    background: var(--color-background);
+  }
+}
+
+.tui-andBox {
+  /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+  @extend .tui-orBox;
+
+  &__text {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-orBox__text;
+  }
+}
+
+@mixin generate-arrow-base($sel, $size) {
+  #{$sel}--top,
+  #{$sel}--bottom {
+    /*!rtl:ignore*/
+    left: 50%;
+    width: $size * 2;
+    height: $size * 2;
+    /*!rtl:ignore*/
+    margin-left: -$size;
+  }
+
+  #{$sel}--top {
+    top: -($size * 2);
+  }
+
+  #{$sel}--bottom {
+    bottom: -($size * 2);
+  }
+
+  #{$sel}--left,
+  #{$sel}--right {
+    top: 50%;
+    width: $size * 2;
+    height: $size * 2;
+    margin-top: -$size;
+  }
+
+  #{$sel}--left {
+    left: -($size * 2);
+  }
+
+  #{$sel}--right {
+    right: -($size * 2);
+  }
+}
+
+@mixin generate-arrow-part($sel, $sel_2, $size, $offset, $color) {
+  #{$sel}#{$sel_2} {
+    position: absolute;
+    display: block;
+    border: $size solid transparent;
+    content: '';
+  }
+
+  #{$sel}--top#{$sel_2} {
+    top: $offset * 2;
+    left: $offset;
+    border-bottom-color: $color;
+  }
+
+  #{$sel}--bottom#{$sel_2} {
+    bottom: $offset * 2;
+    left: $offset;
+    border-top-color: $color;
+  }
+
+  #{$sel}--left#{$sel_2} {
+    top: $offset;
+    left: $offset * 2;
+    border-right-color: $color;
+  }
+
+  #{$sel}--right#{$sel_2} {
+    top: $offset;
+    right: $offset * 2;
+    border-left-color: $color;
+  }
+}
+
+.tui-arrow {
+  position: absolute;
+  pointer-events: none;
+}
+
+@include generate-arrow-base('.tui-arrow--normal.tui-arrow', 10px);
+@include generate-arrow-part(
+  '.tui-arrow--normal.tui-arrow',
+  '::before',
+  10px,
+  0,
+  var(--arrow-border-color)
+);
+@include generate-arrow-part(
+  '.tui-arrow--normal.tui-arrow',
+  '::after',
+  8px,
+  2px,
+  var(--arrow-bg-color)
+);
+
+@include generate-arrow-base('.tui-arrow--large.tui-arrow', 14px);
+@include generate-arrow-part(
+  '.tui-arrow--large.tui-arrow',
+  '::before',
+  14px,
+  0,
+  var(--arrow-border-color)
+);
+@include generate-arrow-part(
+  '.tui-arrow--large.tui-arrow',
+  '::after',
+  12px,
+  2px,
+  var(--arrow-bg-color)
+);
+
+.tui-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.tui-orBox {
+  display: inline-flex;
+  margin: 0 auto;
+  border: var(--border-width-thin) solid var(--color-neutral-6);
+  border-radius: 6px;
+
+  &__text {
+    margin: 0;
+    padding: var(--gap-2) var(--gap-4);
+    text-transform: uppercase;
+    @include tui-font-heading-label();
+  }
+}
+
+.tui-separator {
+  margin: var(--gap-4) 0;
+
+  &--spread {
+    margin: var(--gap-8) 0;
+  }
+
+  /* simple implementation using a horizontal rule element*/
+  &-rule {
+    height: var(--border-width-thin);
+    line-height: var(--border-width-thin);
+    background-color: var(--color-neutral-5);
+    border: none;
+
+    &.tui-separator--thick {
+      height: var(--border-width-thick);
+      line-height: var(--border-width-thick);
+    }
+
+    &.tui-separator--normal {
+      height: var(--border-width-normal);
+      line-height: var(--border-width-normal);
+    }
+  }
+
+  /* alternative implementation with wrapper markup to center slotted content*/
+  /* horizontal rule visible only to screen readers, the visual lines added with*/
+  /* pseudo selectors*/
+  &--wrapped {
+    display: flex;
+    align-items: center;
+
+    .tui-separator-content {
+      margin: 0 var(--gap-4);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    &:before,
+    &:after {
+      width: 50%;
+      height: var(--border-width-thin);
+      line-height: var(--border-width-thin);
+      background-color: var(--color-neutral-5);
+      content: '';
+    }
+
+    &.tui-separator--thick:before,
+    &.tui-separator--thick:after {
+      height: var(--border-width-thick);
+      line-height: var(--border-width-thick);
+    }
+
+    &.tui-separator--normal:before,
+    &.tui-separator--normal:after {
+      height: var(--border-width-normal);
+      line-height: var(--border-width-normal);
+    }
+  }
+}
+
+.tui-performance {
+  &__summary {
+    list-style: none;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__wrapper {
+    margin-right: var(--gap-4);
+    margin-bottom: var(--gap-4);
+    border: 1px solid var(--color-neutral-5);
+    border-radius: 3px;
+
+    > * {
+      padding-right: var(--gap-2);
+      padding-left: var(--gap-2);
+
+      &:first-child {
+        font-weight: bold;
+      }
+
+      &:not(:first-child) {
+        background: var(--color-chart-transparent-3);
+      }
+    }
+  }
+}
+
+[data-tui-draggable] {
+  &[data-animated] {
+    transition: transform 0.25s;
+  }
+
+  &[data-dragging] {
+    position: fixed;
+    z-index: var(--zindex-draggable);
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    /* required so droppable can get mouse events*/
+    pointer-events: none;
+  }
+}
+
+.tui-draggableMoveMenu {
+  &__button:not(:focus):not([aria-expanded='true']) {
+    @include sr-only();
+  }
+}
+
+.tui-droppable {
+  &__dropLine {
+    z-index: var(--zindex-draggable);
+    background: var(--color-secondary);
+    pointer-events: none;
+
+    &--vertical {
+      height: var(--border-width-normal);
+      margin-top: calc(var(--border-width-normal) * -0.5);
+    }
+
+    &--horizontal {
+      width: var(--border-width-normal);
+      margin-left: calc(var(--border-width-normal) * -0.5);
+    }
+  }
+}
+[data-tui-droppable-location-indicator] {
+  background-color: var(--color-neutral-5);
+}
+
+.tui-dropdown {
+  &__menu {
+    z-index: var(--zindex-dropdown-menu);
+    min-width: 15rem;
+    max-width: 35rem;
+    max-height: 40vh;
+    overflow-y: auto;
+    background-color: var(--dropdown-menu-bg-color);
+    background-clip: padding-box;
+    border: var(--border-width-thin) solid var(--dropdown-menu-border-color);
+    box-shadow: var(--shadow-2);
+  }
+
+  &--flexibleWidth &__menu {
+    min-width: 0;
+    max-width: none;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    &--separator > * + *,
+    /* work around specificity issues with button*/
+    &--separator > * + .tui-dropdownButton,
+    &--separator > * + .tui-dropdownButton:hover,
+    &--separator > * + .tui-dropdownButton:focus,
+    &--separator > * + .tui-dropdownButton:active,
+    &--separator > * + .tui-dropdownButton:focus:active {
+      border-top: var(--border-width-thin) solid
+        var(--dropdown-menu-border-color);
+    }
+  }
+
+  &--fixedHeight {
+    .tui-dropdown__content {
+      height: 100%;
+    }
+
+    .tui-dropdown__menu {
+      height: 38vh;
+      overflow-y: visible;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    .tui-dropdown__trigger {
+      pointer-events: none;
+    }
+  }
+}
+
+/* override <button> styles*/
+.tui-dropdownButton {
+  color: var(--dropdown-item-text-color);
+  text-align: left;
+  border: none;
+  border-radius: 0;
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus:active {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+/* tui-dropdownButton styles*/
+.tui-dropdownButton {
+  @include tui-font-body();
+  padding: var(--gap-2) var(--gap-4);
+  overflow: hidden;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus:active {
+    color: var(--dropdown-item-text-color-hover);
+    text-decoration: none;
+    background-color: var(--dropdown-item-bg-color-hover);
+    outline: 0;
+  }
+
+  &:focus,
+  &:active,
+  &:focus:active {
+    color: var(--dropdown-item-text-color-focus);
+    background-color: var(--dropdown-item-bg-color-focus);
+
+    outline: 2px solid var(--dropdown-item-focus-ring-color);
+    outline-offset: -3px;
+  }
+
+  &--disabled,
+  &--disabled:hover,
+  &--disabled:focus {
+    color: var(--dropdown-item-text-color-disabled);
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+
+  &--disabled:active {
+    pointer-events: none;
+  }
+
+  &--noPadding {
+    padding: 0;
+  }
+}
+
+.tui-dropdownGroup {
+  &__header {
+    padding: var(--gap-2) var(--gap-4);
+    @include tui-font-heavy();
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      padding-left: var(--gap-7);
+    }
+  }
+
+  &--separator &__items {
+    & > * {
+      border-top: var(--border-width-thin) solid
+        var(--dropdown-menu-border-color);
+    }
+  }
+}
+
+.tui-dropdownItem {
+  @include tui-font-body();
+  display: block;
+  width: 100%;
+  padding: var(--gap-2) var(--gap-4);
+  overflow: hidden;
+  color: var(--dropdown-item-text-color);
+  line-height: 1.4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--dropdown-item-text-color-hover);
+    text-decoration: none;
+    background-color: var(--dropdown-item-bg-color-hover);
+  }
+
+  &:focus {
+    color: var(--dropdown-item-text-color-focus);
+    background-color: var(--dropdown-item-bg-color-focus);
+
+    outline: 2px solid var(--dropdown-item-focus-ring-color);
+    outline-offset: -3px;
+  }
+
+  &--disabled,
+  &--disabled:hover,
+  &--disabled:focus {
+    color: var(--dropdown-item-text-color-disabled);
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+
+  &--disabled:focus {
+    background-color: var(--dropdown-item-bg-color-disabled-focus);
+  }
+
+  &--disabled:active {
+    pointer-events: none;
+  }
+
+  &--noPadding {
+    padding: 0;
+  }
+
+  &--selected {
+    color: var(--color-neutral-1);
+    background: var(--color-state-active);
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: var(--color-neutral-1);
+      background: var(--color-state-active);
+    }
+
+    &:focus {
+      outline-color: var(--color-neutral-1);
+    }
+  }
+}
+
+.tui-editorLoading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--form-input-bg-color);
+  border: var(--border-width-thin) solid var(--color-neutral-5);
+
+  /* inner must be separate for intrinsic height to work*/
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* similar to default Weka height*/
+    height: calc(9.5rem);
+  }
+
+  &--compact &__inner {
+    /* similar to default Weka height with compact on*/
+    height: calc(6.2rem);
+  }
+
+  &__spinner {
+    color: var(--color-neutral-5);
+  }
+}
+
+.tui-editorTextarea {
+  display: flex;
+  flex-direction: column;
+  /* expand to full width if in horizontal flex*/
+  width: 100%;
+
+  /* needed a more specific selector to override tui-select { flex-grow: 1; }*/
+  > :first-child {
+    flex-grow: 0;
+  }
+
+  &__textarea {
+    /* stretch child input to be full height if the editor is given a specific height*/
+    flex-grow: 1;
+    margin-top: var(--gap-1);
+  }
+}
+
+.tui-responsiveEmbedIframe {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: '';
+  }
+
+  &__item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.tui-errorModal {
+  &__detailsToggle {
+    display: block;
+    margin-top: var(--gap-4);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__navButtons {
+    display: flex;
+    align-items: center;
+    @include tui-stack-horizontal(var(--gap-4));
+  }
+
+  &__details {
+    margin-top: var(--gap-3);
+  }
+
+  &__label {
+    @include tui-font-heading-x-small();
+  }
+
+  &__context {
+    color: var(--color-text-hint);
+  }
+
+  &__extraInfo {
+    white-space: pre-wrap;
+  }
+
+  &__stackPre {
+    margin: var(--gap-2) 0 0 0;
+    padding: var(--gap-4);
+    color: var(--color-neutral-7);
+    word-break: break-word;
+    background-color: var(--color-neutral-3);
+    border-radius: 4px;
+  }
+}
+
+.tui-errorDisplay {
+  padding: var(--gap-8);
+  background: var(--color-neutral-3);
+  border-radius: 4px;
+
+  &__title {
+    margin-top: 0;
+  }
+
+  &__buttons {
+    margin-bottom: var(--gap-4);
+  }
+
+  &__buttons:last-child {
+    margin-bottom: 0;
+  }
+
+  &__detailsToggle {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &__detailsPre {
+    margin-top: var(--gap-2);
+    margin-bottom: 0;
+    padding: var(--gap-4);
+    background-color: var(--color-neutral-1);
+    border-radius: 4px;
+  }
+}
+
+.tui-sesskeyExpired {
+  &__button {
+    margin-top: var(--gap-6);
+    margin-left: auto;
+  }
+}
+
+.tui-fileCard {
+  @media (max-width: 490px) {
+    /* From 490px downward*/
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @media (min-width: 491px) {
+    /* From 490px onward*/
+    flex-basis: 20%;
+    min-width: 235px;
+  }
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--gap-2);
+  white-space: normal;
+  border: var(--border-width-thin) solid var(--color-neutral-5);
+  border-radius: var(--card-border-radius);
+
+  &__info {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__fileSize {
+    margin: 0;
+    font-size: var(--font-size-3);
+    white-space: nowrap;
+  }
+
+  &__filename {
+    display: flex;
+
+    &-text {
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &-ext {
+      flex-shrink: 0;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 3.2rem;
+    margin-right: var(--gap-2);
+    color: var(--color-state);
+  }
+
+  &--downloadable {
+    cursor: pointer;
+  }
+}
+
+.tui-buttonFilter.tui-buttonFilter {
+  &--stacked {
+    text-align: right;
+    > * {
+      margin-top: var(--gap-4);
+    }
+  }
+}
+
+.tui-filterBar {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--gap-3);
+
+  &--hasTop {
+    padding-top: var(--gap-4);
+    border-top: var(--border-width-thin) solid var(--filter-bar-border-color);
+  }
+
+  &--hasBottom {
+    padding-bottom: var(--gap-4);
+    border-bottom: var(--border-width-thin) solid var(--filter-bar-border-color);
+  }
+
+  &__heading {
+    @include sr-only();
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: center;
+
+    &-btn {
+      margin: var(--gap-2) 0;
+    }
+  }
+
+  &__filters {
+    $stacked: #{&}--stacked;
+    display: flex;
+    flex-grow: 1;
+
+    &-left,
+    &-right {
+      display: flex;
+      flex-shrink: 0;
+
+      > * {
+        flex-shrink: 0;
+        margin-left: var(--gap-4);
+      }
+
+      > * + * {
+        margin-left: var(--gap-4);
+      }
+
+      /* make slider icon closer to next filter item*/
+      > .tui-filterBar__filters-icon + * {
+        margin-left: var(--gap-2);
+      }
+
+      #{$stacked} & {
+        flex-direction: column;
+        margin-left: 0;
+        border-left: none;
+
+        .tui-formLabel {
+          @include tui-font-heading-label-small();
+        }
+
+        > * {
+          margin-left: 0;
+          padding-left: 0;
+        }
+
+        > :first-child {
+          border-left: none;
+        }
+      }
+    }
+
+    &-right {
+      justify-content: flex-start;
+
+      > :first-child {
+        border-left: var(--border-width-thin) solid var(--color-neutral-5);
+      }
+
+      > * {
+        padding-left: var(--gap-4);
+      }
+    }
+
+    &-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    &-iconSlider {
+      display: flex;
+      margin: auto 0;
+    }
+
+    &--stacked {
+      flex-direction: column;
+    }
+  }
+
+  &__reset {
+    margin-left: var(--gap-4);
+
+    &-stacked {
+      margin-top: var(--gap-4);
+      padding-top: var(--gap-4);
+      padding-bottom: var(--gap-4);
+    }
+  }
+}
+
+.tui-filterSidePanel {
+  display: block;
+
+  &__header {
+    @include tui-font-heading-small();
+    min-width: 0;
+    margin: 0 var(--gap-2) 0 0;
+  }
+
+  &__heading {
+    display: flex;
+    padding-bottom: var(--gap-2);
+    border-bottom: var(--border-width-normal) solid var(--color-neutral-7);
+  }
+
+  &__instructions,
+  &__status {
+    @include sr-only();
+  }
+
+  .tui-filterSidePanel__clearBtn {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+}
+
+.tui-filterSidePanel.tui-filterSidePanel {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  .tui-fieldset__legend,
+  .tui-formLabel {
+    @include tui-font-heading-label-small();
+  }
+}
+
+.tui-multiSelectFilter {
+  & > * + * {
+    margin-top: var(--gap-1);
+  }
+
+  &__collapsible {
+    margin: 0;
+
+    &-collapsed {
+      & > * {
+        margin-top: var(--gap-1);
+      }
+    }
+
+    &-toggle {
+      margin-left: var(--gap-1);
+    }
+  }
+}
+
+.tui-searchFilter {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  input.tui-formInput {
+    flex-grow: 0;
+  }
+
+  .tui-formLabel {
+    margin: auto var(--gap-3) auto 0;
+  }
+
+  &__group {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    margin-top: 0;
+    margin-bottom: auto;
+
+    &--stacked {
+      margin-top: var(--gap-1);
+    }
+
+    &-icon {
+      position: absolute;
+      left: var(--gap-1);
+      display: flex;
+      align-items: center;
+      height: 100%;
+      color: var(--filter-search-icon-color);
+
+      .fa-search {
+        margin: auto 0;
+      }
+    }
+
+    &-clearContainer {
+      position: absolute;
+      right: 0;
+      height: 100%;
+    }
+  }
+
+  &__search {
+    /* disable the default clear (x) action in IE*/
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  &__removeIcon {
+    color: var(--filter-search-clear-icon-color);
+  }
+
+  &--stacked {
+    flex-direction: column;
+    align-items: stretch;
+
+    .tui-formLabel {
+      margin: var(--gap-1) 0;
+    }
+  }
+}
+
+.tui-selectFilter {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .tui-formLabel {
+    margin: auto var(--gap-3) auto 0;
+  }
+
+  .tui-select {
+    width: auto;
+    max-width: 250px;
+  }
+
+  &--stacked {
+    flex-direction: column;
+    align-items: stretch;
+
+    .tui-formLabel {
+      margin: var(--gap-1) 0 0;
+    }
+
+    .tui-select {
+      max-width: initial;
+      margin-top: var(--gap-1);
+    }
+  }
+}
+
+:root {
+  /* Size of checkbox*/
+  --form-checkbox-size: var(--form-input-font-size);
+  --form-checkbox-size-large: calc(var(--form-input-font-size) * 1.333);
+  --checkbox-check-width: 0.2rem;
+}
+
+.tui-checkbox {
+  position: relative;
+  display: flex;
+  min-height: calc(var(--form-checkbox-size) + 2px);
+
+  &--large {
+    min-height: calc(var(--form-checkbox-size-large) + 2px);
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &__label {
+    position: relative;
+    margin: 0;
+    padding-left: calc(var(--form-checkbox-size) * 1.5);
+    font-weight: normal;
+    font-size: var(--form-input-font-size);
+    line-height: 1;
+
+    .tui-checkbox--large & {
+      padding-left: calc(var(--form-checkbox-size-large) * 1.5);
+    }
+
+    &--noOffset {
+      padding-left: var(--form-checkbox-size);
+      .tui-checkbox--large & {
+        padding-left: var(--form-checkbox-size-large);
+      }
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: var(--form-checkbox-size);
+      height: var(--form-checkbox-size);
+      margin-top: 1px;
+      background: var(--form-checkbox-bg-color);
+      border: var(--form-input-border-size) solid;
+      border-color: var(--form-checkbox-border-color);
+      transition: border var(--transition-form-function)
+          var(--transition-form-duration),
+        box-shadow var(--transition-form-function)
+          var(--transition-form-duration);
+      content: '';
+      pointer-events: none;
+
+      .tui-checkbox--large & {
+        width: var(--form-checkbox-size-large);
+        height: var(--form-checkbox-size-large);
+      }
+
+      .tui-contextInvalid & {
+        border-color: var(--form-input-border-color-invalid);
+        box-shadow: var(--shadow-none), var(--form-input-shadow-invalid);
+      }
+    }
+  }
+
+  &__input:disabled ~ &__label {
+    color: var(--form-input-text-color-disabled);
+  }
+
+  &__input:checked:hover ~ &__label::before,
+  &__input:hover ~ &__label::before,
+  &__input:focus ~ &__label::before {
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-checkbox-border-color-focus);
+    box-shadow: var(--form-input-shadow-focus);
+
+    .tui-contextInvalid & {
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--shadow-none), var(--form-input-shadow-invalid-focus);
+    }
+  }
+
+  &__input:focus ~ &__label::before {
+    background: var(--form-checkbox-bg-color-focus);
+  }
+
+  &__input:disabled:checked ~ &__label::before,
+  &__input:disabled ~ &__label::before {
+    background: var(--form-checkbox-bg-color-disabled);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-checkbox-border-color-disabled);
+    box-shadow: none;
+  }
+
+  &__input ~ &__label::after {
+    /* construct a check mark out of two sides of a rotated box*/
+    position: absolute;
+    top: calc(0.267 * var(--form-checkbox-size));
+    left: calc(0.133 * var(--form-checkbox-size));
+    display: block;
+    width: calc(0.733 * var(--form-checkbox-size));
+    height: calc(0.4 * var(--form-checkbox-size));
+    border-color: var(--form-checkbox-check-color);
+    border-style: solid;
+    /*!rtl:ignore*/
+    border-width: 0 0 var(--checkbox-check-width) var(--checkbox-check-width);
+    transform: rotate(-45deg);
+    opacity: 0;
+    transition: opacity var(--transition-form-function)
+      var(--transition-form-duration);
+    content: '';
+    pointer-events: none;
+
+    .tui-checkbox--large & {
+      top: calc(0.267 * var(--form-checkbox-size-large));
+      left: calc(0.133 * var(--form-checkbox-size-large));
+      width: calc(0.733 * var(--form-checkbox-size-large));
+      height: calc(0.4 * var(--form-checkbox-size-large));
+    }
+  }
+
+  &__input:disabled:checked ~ &__label::after,
+  &__input:disabled ~ &__label::after {
+    border-color: var(--form-checkbox-check-color-disabled);
+  }
+
+  &__input:checked ~ &__label::before {
+    background: var(--form-checkbox-bg-color-active);
+  }
+
+  &__input:checked ~ &__label::after {
+    opacity: 1;
+  }
+}
+
+@media print {
+  .tui-checkbox {
+    &__input:checked ~ &__label::before {
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+    }
+  }
+
+  /* IE11 & Edge support*/
+  .ie,
+  .msedge {
+    .tui-checkbox {
+      &__input:checked ~ .tui-checkbox__label::before {
+        border: solid var(--form-checkbox-bg-color-active);
+        border-width: 0 var(--form-checkbox-size) 0 0;
+      }
+    }
+  }
+}
+
+.tui-checkboxButton {
+  $block: #{&};
+  position: relative;
+  display: flex;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &__label {
+    display: flex;
+    flex-grow: 1;
+    margin: 0;
+    padding: var(--gap-1);
+    color: var(--btn-checkbox-text-color);
+    font-weight: normal;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--btn-checkbox-text-color-focus);
+      background: var(--btn-checkbox-bg-color-hover);
+    }
+
+    &:active:hover,
+    &:active {
+      color: var(--btn-checkbox-text-color-active);
+    }
+  }
+
+  &__deselectIcon {
+    margin: auto 0 auto auto;
+    color: var(--btn-checkbox-text-color-selected);
+    visibility: hidden;
+  }
+
+  &__input:checked ~ &__label {
+    color: var(--btn-checkbox-text-color-selected);
+    background: var(--btn-checkbox-bg-color-selected);
+
+    #{$block}__deselectIcon {
+      visibility: visible;
+    }
+
+    &:hover {
+      color: var(--btn-checkbox-text-color-focus);
+      background: var(--btn-checkbox-bg-color-hover);
+
+      #{$block}__deselectIcon {
+        color: var(--btn-checkbox-text-color-focus);
+        visibility: visible;
+      }
+    }
+
+    &:active:hover,
+    &:active {
+      color: var(--btn-checkbox-text-color-active);
+      background: var(--btn-checkbox-bg-color-hover);
+
+      #{$block}__deselectIcon {
+        color: var(--btn-checkbox-text-color-active);
+        visibility: visible;
+      }
+    }
+  }
+
+  &__input:focus ~ &__label {
+    @include tui-focus();
+  }
+
+  &__input:focus:checked ~ &__label {
+    @include tui-focus();
+
+    #{$block}__deselectIcon {
+      color: var(--btn-checkbox-text-color-selected);
+      visibility: visible;
+    }
+  }
+}
+
+:root {
+  --form-checkbox-group-padding: var(--gap-2);
+  --form-checkbox-group-spacing-v: var(--gap-4);
+  --form-checkbox-group-spacing-h: var(--gap-4);
+}
+
+.tui-checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  padding: var(--form-checkbox-group-padding) 0;
+
+  @include tui-stack-vertical(var(--form-checkbox-group-spacing-v));
+}
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-checkboxGroup--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* stylelint-disable length-zero-no-unit*/
+    /* prettier-ignore*/
+    margin-top: calc(0px - var(--form-checkbox-group-spacing-v) + var(--form-checkbox-group-padding));
+    padding-top: 0;
+
+    & > * {
+      margin-top: var(--form-checkbox-group-spacing-v);
+      margin-right: var(--form-checkbox-group-spacing-h);
+    }
+  }
+}
+
+.tui-dateSelector {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__date {
+    display: flex;
+    margin: 0 var(--gap-4) var(--gap-2) 0;
+
+    & > * {
+      display: flex;
+    }
+
+    @include tui-stack-horizontal(var(--gap-2));
+
+    &-day {
+      width: 5rem;
+    }
+
+    &-month {
+      width: 12rem;
+    }
+
+    &-year {
+      width: 7rem;
+    }
+  }
+
+  &__time {
+    display: flex;
+    width: calc((var(--gap-2) * 2) + 24rem);
+  }
+}
+
+.tui-formFieldError {
+  /* offset the extra red shadow on invalid elements + we want the error*/
+  /* message to be spaced 1px away*/
+  margin-top: calc(var(--form-input-invalid-shadow-size) + 1px);
+
+  &__inner {
+    @include tui-font-body-small();
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    color: var(--form-error-text-color);
+    background: var(--form-error-bg-color);
+  }
+
+  &__dismiss {
+    margin-left: var(--gap-1);
+    padding: 0;
+    color: inherit;
+    opacity: 0.7;
+
+    &:hover:active,
+    &:active,
+    &:hover,
+    &:focus {
+      color: inherit;
+      opacity: 1;
+    }
+
+    &-icon {
+      position: relative;
+      top: -1px;
+      @include tui-font-body-small();
+    }
+  }
+}
+
+.tui-formFieldGroup {
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.tui-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &__legend {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--form-text-color);
+    font-size: var(--font-size-18);
+    line-height: inherit;
+    border: none;
+  }
+
+  &--hidden {
+    @include sr-only();
+  }
+}
+
+.tui-form {
+  @include tui-stack-vertical(var(--gap-4));
+}
+
+.tui-formRow {
+  display: flex;
+  flex-direction: column;
+
+  /* __inner is needed as setting margin on the root element is the*/
+  /* responsibility of the containing element (outside-in spacing).*/
+  /* (see below for margin setting)*/
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__inner > &__desc {
+    min-width: 0;
+    padding-top: var(--gap-1);
+    padding-right: var(--gap-2);
+    text-align: left;
+    overflow-wrap: break-word;
+
+    .tui-form--vertical &,
+    .tui-formRow--vertical &,
+    .tui-formRow--emptyDesc & {
+      padding: 0;
+    }
+  }
+
+  &__inner > &__action {
+    display: flex;
+    max-width: 71.2rem;
+
+    .tui-form--vertical &,
+    .tui-formRow--vertical & {
+      margin-top: var(--gap-2);
+    }
+
+    .tui-formRow--emptyDesc & {
+      margin-top: 0;
+    }
+
+    &--isStacked {
+      display: block;
+      flex-direction: column;
+
+      @include tui-stack-vertical(var(--gap-2));
+    }
+  }
+
+  &--fullWidth &__inner > &__action {
+    max-width: none;
+  }
+}
+
+.tui-form--horizontal .tui-formRow:not(.tui-formRow--vertical) > {
+  .tui-formRow {
+    &__inner {
+      @include tui-layout-sidebar(
+        $side-width: 22rem,
+        $content-min-width: 60%,
+        $gutter: var(--gap-1),
+        $sidebar-selector: '.tui-formRow__desc',
+        $content-selector: '.tui-formRow__action'
+      );
+    }
+  }
+}
+
+.tui-formRow__defaults {
+  color: var(--form-defaults-text-color);
+  @include tui-font-body-x-small;
+}
+
+.tui-formRow__details {
+  color: var(--form-details-text-color);
+  @include tui-font-body-small;
+}
+
+.tui-formRowStack {
+  @include tui-stack-vertical(var(--gap-4));
+
+  &--spacing {
+    &-large {
+      @include tui-stack-vertical(var(--gap-8));
+    }
+  }
+}
+
+.tui-formHelpIcon {
+  display: inline-block;
+
+  &__icon {
+    padding: 0;
+    color: var(--color-state);
+  }
+
+  &__desc {
+    /* aria-describedby still works even if the target element is display: none*/
+    /* https://developer.paciellogroup.com/blog/2015/05/short-note-on-aria-labelledby-and-aria-describedby/*/
+    display: none;
+  }
+}
+
+.tui-formImageUpload {
+  color: var(--form-input-text-color);
+  font-size: var(--form-input-font-size);
+  line-height: 1;
+  background: var(--form-input-bg-color);
+
+  &__actions {
+    display: flex;
+    padding: var(--form-input-v-padding) var(--gap-2);
+    background: var(--color-neutral-3);
+    border-color: var(--form-input-border-color);
+    border-top: var(--form-input-border-size) solid;
+    border-right: var(--form-input-border-size) solid;
+    border-left: var(--form-input-border-size) solid;
+  }
+  &__deleteButton {
+    margin-left: auto;
+  }
+  &__filearea {
+    padding: var(--form-input-v-padding) var(--gap-2);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-input-border-color);
+
+    .tui-formImageUpload--highlight & {
+      background: var(--form-input-bg-color-focus);
+      border-color: var(--form-input-border-color-focus);
+      outline: none;
+      box-shadow: var(--form-input-shadow-focus);
+    }
+
+    .tui-formImageUpload--isError & {
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--form-input-shadow-invalid);
+    }
+  }
+  &__display {
+    .tui-responsiveImage {
+      max-height: 25rem;
+    }
+  }
+  &__progress {
+    padding: var(--form-input-v-padding) var(--gap-2);
+  }
+}
+
+/* Reset*/
+input[type].tui-formInput {
+  display: inline-block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding: 1px;
+  color: rgb(0, 0, 0);
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-align: start;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  word-spacing: normal;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(218, 218, 218);
+  border-style: inset;
+  border-width: 2px;
+  border-radius: 0;
+  border-image-source: none;
+  border-image-slice: 100%;
+  border-image-width: 1;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-spacing: 0;
+  box-shadow: none;
+  cursor: text;
+  transition-delay: 0s;
+  transition-timing-function: ease;
+  transition-duration: 0s;
+  transition-property: all;
+  text-rendering: auto;
+
+  &[disabled] {
+    color: rgb(61, 68, 75);
+    background: rgb(218, 218, 218);
+    cursor: default;
+  }
+
+  &:focus {
+    border-color: rgb(218, 218, 218);
+    outline-width: 3px;
+    outline-style: auto;
+    outline-color: Highlight;
+    outline-color: -webkit-focus-ring-color;
+    outline-offset: -2px;
+    box-shadow: none;
+    -moz-user-focus: normal;
+  }
+
+  &::-webkit-input-placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+  }
+
+  &::placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+  }
+}
+
+input[type].tui-formInput {
+  display: block;
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: var(--form-input-height);
+  padding: var(--form-input-v-padding) var(--gap-2);
+  color: var(--form-input-text-color);
+  font-size: var(--form-input-font-size);
+  line-height: 1;
+  background: var(--form-input-bg-color);
+  border: var(--form-input-border-size) solid;
+  border-color: var(--form-input-border-color);
+
+  @include tui-char-length-classes();
+
+  &::-webkit-input-placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &:-ms-input-placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &::placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  .tui-contextInvalid & {
+    border-color: var(--form-input-border-color-invalid);
+    box-shadow: var(--form-input-shadow-invalid);
+  }
+
+  &:focus {
+    background: var(--form-input-bg-color-focus);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-input-border-color-focus);
+    outline: none;
+    box-shadow: var(--form-input-shadow-focus);
+
+    .tui-contextInvalid & {
+      background: var(--form-input-bg-color-invalid-focus);
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--form-input-shadow-invalid-focus);
+    }
+  }
+
+  &--preIcon {
+    padding-left: var(--gap-6);
+  }
+
+  &--postIcon {
+    padding-right: var(--gap-6);
+  }
+
+  &[readonly] {
+    color: var(--form-input-text-color);
+    background: var(--form-input-bg-color);
+    border-color: var(--form-input-border-color);
+
+    &::-webkit-input-placeholder {
+      color: var(--form-input-text-placeholder-color);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--form-input-text-placeholder-color);
+    }
+
+    &::placeholder {
+      color: var(--form-input-text-placeholder-color);
+    }
+  }
+
+  &[disabled] {
+    color: var(--form-input-text-color-disabled);
+    background: var(--form-input-bg-color-disabled);
+    border-color: var(--form-input-border-color-disabled);
+
+    &::-webkit-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+
+    &::placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+  }
+
+  &--transparent,
+  &--transparent:focus,
+  &--transparent[readonly],
+  &--transparent[disabled],
+  .tui-contextInvalid &--transparent,
+  .tui-contextInvalid &--transparent:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.tui-inputColor {
+  position: relative;
+
+  @include tui-char-length-classes();
+
+  /* visually hide the colour Input control*/
+  & &__picker[type='color'] {
+    position: absolute;
+    width: calc(var(--gap-8) + var(--gap-2));
+    opacity: 0;
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
+  }
+
+  /* quite acute box model and positioning values to make sure they scale with*/
+  /* associated text Input values*/
+  &__colorBlock {
+    position: absolute;
+    /* prettier-ignore*/
+    top: calc( var(--form-input-v-padding) / 2 + var(--form-input-border-size) );
+    left: calc(var(--gap-2) / 2);
+    width: var(--gap-8);
+    /* prettier-ignore*/
+    height: calc(100% - var(--form-input-v-padding) - var(--form-input-border-size) * 2);
+    border-radius: var(--border-radius-small);
+
+    &--disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  & &__input[type='text'] {
+    padding-left: calc(var(--gap-8) + var(--gap-2));
+  }
+}
+
+.tui-formInputCurrency {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+
+  @include tui-char-length-classes();
+
+  &__symbol {
+    @include tui-font-heading-label;
+
+    &:first-child {
+      margin-right: var(--gap-1);
+    }
+
+    &:last-child {
+      margin-left: var(--gap-1);
+    }
+  }
+}
+
+.tui-inputGroup {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: var(--form-input-height);
+  color: var(--form-input-text-color);
+  font-size: var(--form-input-font-size);
+  line-height: 1;
+  background: var(--form-input-bg-color);
+  border: var(--form-input-border-size) solid;
+  border-color: var(--form-input-border-color);
+
+  @include tui-char-length-classes();
+
+  .tui-contextInvalid & {
+    border-color: var(--form-input-border-color-invalid);
+    box-shadow: var(--form-input-shadow-invalid);
+  }
+
+  &--hasFocus {
+    background: var(--form-input-bg-color-focus);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-input-border-color-focus);
+    box-shadow: var(--form-input-shadow-focus);
+
+    .tui-contextInvalid & {
+      background: var(--form-input-bg-color-invalid-focus);
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--form-input-shadow-invalid-focus);
+    }
+  }
+
+  &--disabled {
+    color: var(--form-input-text-color-disabled);
+    background: var(--form-input-bg-color-disabled);
+    border-color: var(--form-input-border-color-disabled);
+
+    &::-webkit-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+
+    &::placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+  }
+}
+
+.tui-inputGroupButton {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gap-2);
+  color: var(--color-state);
+  font-size: var(--form-input-font-size);
+  cursor: pointer;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+
+  &:focus {
+    color: var(--color-state-focus);
+    @include tui-focus();
+  }
+
+  &:hover {
+    color: var(--color-state-hover);
+  }
+
+  &:active {
+    color: var(--color-state-active);
+  }
+
+  &[disabled] {
+    color: var(--color-state-disabled);
+    cursor: default;
+  }
+}
+
+/* Reset*/
+input[type].tui-inputGroupInput {
+  display: inline-block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding: 1px;
+  color: rgb(0, 0, 0);
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-align: start;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  word-spacing: normal;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(218, 218, 218);
+  border-style: inset;
+  border-width: 2px;
+  border-radius: 0;
+  border-image-source: none;
+  border-image-slice: 100%;
+  border-image-width: 1;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-spacing: 0;
+  box-shadow: none;
+  cursor: text;
+  transition-delay: 0s;
+  transition-timing-function: ease;
+  transition-duration: 0s;
+  transition-property: all;
+  text-rendering: auto;
+
+  &[disabled] {
+    color: rgb(61, 68, 75);
+    background: rgb(218, 218, 218);
+    cursor: default;
+  }
+
+  &:focus {
+    border-color: rgb(218, 218, 218);
+    outline-width: 3px;
+    outline-style: auto;
+    outline-color: Highlight;
+    outline-color: -webkit-focus-ring-color;
+    outline-offset: -2px;
+    box-shadow: none;
+    -moz-user-focus: normal;
+  }
+
+  &::-webkit-input-placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+  }
+
+  &::placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+  }
+}
+
+input[type].tui-inputGroupInput {
+  display: block;
+  flex-grow: 1;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 0 var(--gap-2);
+  color: var(--form-input-text-color);
+  font-size: var(--form-input-font-size);
+  line-height: 1;
+  background: transparent;
+  border: none;
+
+  @include tui-char-length-classes();
+
+  &::-webkit-input-placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &:-ms-input-placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &::placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &:focus {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    color: var(--form-input-text-color-disabled);
+    background: transparent;
+    &::-webkit-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+    &:-ms-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+    &::placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+  }
+
+  &[readonly] {
+    background: transparent;
+  }
+
+  &--monospaceFont {
+    @include tui-font-monospace();
+  }
+}
+
+@mixin tui-input-set-stack-below($name, $size) {
+  &--stackBelow-#{$name} > *,
+  /* need to specify .tui-formInput here too for specificity reasons*/
+  &--stackBelow-#{$name} > .tui-formInput {
+    /* This triggers the children to switch to being vertically stacked below a*/
+    /* certain width.*/
+    /* It works like this:*/
+    /* Above the specified width, (width - 100%) evaluates to a large*/
+    /* negative flex basis, and is therefore ignored.*/
+    /* Below the specified width, (width - 100%) evaluates to a large*/
+    /* positve flex basis, and forces each item to take up its own line.*/
+    /* Magic!*/
+    /* prettier-ignore*/
+    flex-basis: calc((#{tui-char-length($size)} - (100% - var(--input-set-spacing))) * 999);
+  }
+}
+.tui-inputSet {
+  display: flex;
+  flex-grow: 1;
+
+  @include tui-char-length-classes();
+
+  /* can't set margin on inputSet itself, so it is just a wrapper for this*/
+  /* the variants are on inner to ensure the & > * selectors retain low specificity (0-1-0)*/
+  & > &__inner {
+    display: flex;
+    flex-basis: 0; /* required for things to look correct in IE 11*/
+    flex-grow: 1;
+    margin: calc((var(--input-set-spacing) / 2) * -1);
+
+    &--vertical {
+      flex-direction: column;
+    }
+
+    &--horizontal {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    & > *,
+    & > .tui-formInput {
+      margin: calc(var(--input-set-spacing) / 2);
+    }
+
+    & > .tui-formLabel {
+      padding: 0;
+    }
+
+    & > {
+      /* replaced input elements have their width set to 100% normally as*/
+      /* `width: auto` doesn't fill the container like it does on divs*/
+      #{$tui-input-replaced-selectors} {
+        width: auto;
+      }
+    }
+
+    &--split {
+      & > * {
+        flex-basis: 0;
+        flex-grow: 1;
+        width: auto;
+      }
+    }
+
+    @each $size in $tui-char-length-scale {
+      @include tui-input-set-stack-below($size, $size);
+    }
+  }
+}
+
+.tui-formInputSizedText {
+  /* prettier-ignore*/
+  padding: calc((var(--form-input-height) - (1em * var(--font-body-line-height))) / 2) 0;
+  line-height: var(--font-body-line-height);
+}
+
+.tui-formLabel {
+  @include tui-font-heading-label();
+  min-width: 0;
+  margin: 0;
+  padding: 0 var(--gap-1) 0 0;
+
+  legend& {
+    width: auto;
+    margin: 0;
+    padding: 0 var(--gap-1) 0 0;
+    color: inherit;
+    border: none;
+  }
+
+  &--inline {
+    display: inline;
+  }
+
+  &--hidden {
+    @include sr-only();
+  }
+
+  &--subfield {
+    @include tui-font-body();
+  }
+
+  &__required {
+    color: var(--color-prompt-alert);
+  }
+}
+
+.tui-notepadLines {
+  @include tui-char-length-classes;
+
+  &__line {
+    height: var(--form-notepad-line-height);
+    border-bottom: var(--form-notepad-line-border);
+  }
+}
+
+:root {
+  /* Size of radio circle*/
+  --form-radio-size: var(--font-size-16);
+  /* Size of radio inner dot*/
+  --form-radio-dot-size: calc(var(--form-radio-size) / 2);
+  /* Offset to center dot*/
+  --radio-dot-offset: calc(var(--form-radio-size) / 4);
+}
+
+.tui-radio {
+  position: relative;
+  display: inline-flex;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &__label {
+    position: relative;
+    margin: 0;
+    padding-left: var(--radio-label-offset);
+    font-weight: normal;
+    font-size: var(--form-input-font-size);
+    line-height: 1;
+
+    &::before {
+      position: absolute;
+      top: calc(50% - var(--form-radio-size) / 2);
+      left: 0;
+      display: block;
+      width: var(--form-radio-size);
+      height: var(--form-radio-size);
+      background: var(--form-radio-bg-color);
+      border: var(--form-input-border-size) solid;
+      border-color: var(--form-radio-border-color);
+      border-radius: 50%;
+      transition: border var(--transition-form-function)
+          var(--transition-form-duration),
+        box-shadow var(--transition-form-function)
+          var(--transition-form-duration);
+      content: '';
+      pointer-events: none;
+
+      .tui-contextInvalid & {
+        border-color: var(--form-input-border-color-invalid);
+        box-shadow: var(--shadow-none), var(--form-input-shadow-invalid);
+      }
+    }
+  }
+
+  &__input:disabled ~ &__label {
+    color: var(--form-input-text-color-disabled);
+  }
+
+  &__input:hover ~ &__label::before {
+    background: var(--form-radio-bg-color-hover);
+  }
+
+  &__input:focus ~ &__label::before {
+    background: var(--form-radio-bg-color-focus);
+  }
+
+  &__input:hover ~ &__label::before,
+  &__input:focus ~ &__label::before {
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-radio-border-color-focus);
+    box-shadow: var(--form-input-shadow-focus);
+
+    .tui-contextInvalid & {
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--shadow-none), var(--form-input-shadow-invalid-focus);
+    }
+  }
+
+  &__input:active:focus ~ &__label::before,
+  &__input:active:hover ~ &__label::before,
+  &__input:active ~ &__label::before {
+    background: var(--form-radio-bg-color-active);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-radio-border-color-active);
+    box-shadow: var(--form-input-shadow-focus);
+
+    .tui-contextInvalid & {
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--shadow-none), var(--form-input-shadow-invalid-focus);
+    }
+  }
+
+  &__input:disabled:active ~ &__label::before,
+  &__input:disabled ~ &__label::before {
+    background: var(--form-radio-bg-color-disabled);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-radio-border-color-disabled);
+    box-shadow: none;
+  }
+
+  &__input ~ &__label::after {
+    position: absolute;
+    top: calc(50% - var(--form-radio-dot-size) / 2);
+    left: var(--radio-dot-offset);
+    display: block;
+    width: var(--form-radio-dot-size);
+    height: var(--form-radio-dot-size);
+    background-color: var(--form-radio-dot-color);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity var(--transition-form-function)
+      var(--transition-form-duration);
+    content: '';
+    pointer-events: none;
+  }
+
+  &__input:disabled ~ &__label::after {
+    background-color: var(--form-input-text-color-disabled);
+  }
+
+  &__input:checked ~ &__label::after {
+    opacity: 1;
+  }
+}
+
+@media print {
+  .tui-radio {
+    &__input ~ &__label::after {
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+    }
+  }
+
+  /* IE11 & Edge support*/
+  .ie,
+  .msedge {
+    .tui-radio {
+      &__input ~ .tui-radio__label::after {
+        border: 4px solid var(--form-radio-dot-color);
+      }
+    }
+  }
+}
+
+.tui-radioDateRangeInput {
+  display: flex;
+
+  & > * + * {
+    margin-left: var(--gap-2);
+  }
+
+  &__number {
+    display: flex;
+    width: 6rem;
+  }
+
+  &__type {
+    display: flex;
+    width: 12rem;
+  }
+}
+
+:root {
+  --form-radio-group-padding: var(--gap-2);
+  /* note: should not be more than twice padding*/
+  --form-radio-group-spacing-v: var(--gap-4);
+  --form-radio-group-spacing-h: var(--gap-4);
+}
+
+.tui-radioGroup {
+  display: flex;
+  flex-direction: column;
+  padding: var(--form-radio-group-padding) 0;
+
+  @include tui-stack-vertical(var(--form-radio-group-spacing-v));
+
+  &--inputSizedOptions {
+    & > * {
+      align-items: center;
+      min-height: var(--form-input-height);
+    }
+  }
+
+  &--noPaddingTop {
+    padding-top: 0;
+  }
+}
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-radioGroup--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* prettier-ignore*/
+    padding: calc(var(--form-radio-group-padding) - var(--form-radio-group-spacing-v) / 2) 0;
+
+    & > * {
+      margin: calc(var(--form-radio-group-spacing-v) / 2) 0;
+      margin-right: var(--form-radio-group-spacing-h);
+    }
+  }
+}
+
+.tui-radioNumberInput {
+  display: flex;
+  /* Use same indentation as radio for nicer wrapping*/
+  margin-left: var(--radio-label-offset);
+
+  &__number {
+    display: flex;
+    width: 6rem;
+  }
+}
+
+.tui-radioWithInput {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & > * + * {
+    /* Use same indentation as radio for nicer wrapping*/
+    margin-left: var(--radio-label-offset);
+  }
+
+  &__radio {
+    margin: var(--gap-2) 0;
+  }
+}
+
+.tui-range {
+  flex: auto;
+  flex-direction: column;
+
+  &__labels {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: var(--gap-1);
+  }
+
+  &__lowLabel,
+  &__highLabel {
+    @include tui-font-body-small();
+    flex-basis: 40%;
+    color: var(--color-neutral-6);
+  }
+
+  &__lowLabel {
+    text-align: left;
+  }
+
+  &__highLabel {
+    text-align: right;
+  }
+
+  &__input {
+    height: var(--form-range-height);
+    padding: 0;
+    outline: none;
+    -webkit-appearance: none;
+
+    &:disabled {
+      background-color: transparent;
+    }
+
+    &:focus {
+      @include tui-focus();
+    }
+    &::-moz-focus-outer {
+      border: 0;
+    }
+
+    /* Track styles */
+    &::-webkit-slider-runnable-track {
+      @include tui-range-track();
+    }
+    &:focus::-webkit-slider-runnable-track {
+      background: var(--color-neutral-4);
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+    }
+    &::-moz-range-track {
+      @include tui-range-track();
+    }
+    &::-ms-track {
+      @include tui-range-track();
+      color: transparent; /* Remove default tick marks */
+      background: transparent; /* Replace bg colour from the track with ms-fill-lower and ms-fill-upper */
+      border-color: transparent; /* Thumb can not overlay track so we add invisible border */
+    }
+    &::-ms-fill-upper,
+    &::-ms-fill-lower {
+      background: var(--color-neutral-4);
+      border-radius: var(--border-radius-small);
+    }
+    &:focus::-ms-fill-upper,
+    &:focus::-ms-fill-lower {
+      background: var(--color-neutral-4);
+    }
+
+    /* Thumb styles */
+    &::-webkit-slider-thumb {
+      @include tui-range-thumb();
+      margin-top: var(--form-range-thumb-margin-top);
+      -webkit-appearance: none;
+    }
+    &::-moz-range-thumb {
+      @include tui-range-thumb();
+    }
+    &::-ms-thumb {
+      @include tui-range-thumb();
+    }
+
+    &.tui-range__input--selected {
+      &::-webkit-slider-thumb {
+        background: var(--color-state);
+      }
+      &::-moz-range-thumb {
+        background: var(--color-state);
+      }
+      &::-ms-thumb {
+        background: var(--color-state);
+      }
+    }
+
+    &.tui-range__input--noThumb {
+      &::-webkit-slider-thumb {
+        display: none;
+      }
+      &::-moz-range-thumb {
+        /* Display none does not work.*/
+        opacity: 0;
+      }
+      &::-ms-thumb {
+        display: none;
+      }
+    }
+  }
+}
+
+.tui-repeater {
+  display: block;
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
+
+  & > * + * {
+    margin-top: var(--gap-3);
+  }
+
+  &__row,
+  &__headerRow {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__headerRow + &__row {
+    margin-top: var(--gap-2);
+  }
+
+  &__row + &__afterRow {
+    margin-top: var(--gap-4);
+  }
+
+  &__afterRow + &__row {
+    margin-top: var(--gap-8);
+  }
+
+  &__afterRow + &__headerRow {
+    margin-top: var(--gap-4);
+  }
+
+  &--noSpacing > * {
+    margin: 0;
+  }
+
+  &__headerRow &__delete {
+    height: 1px;
+    min-height: 1px;
+    overflow: hidden;
+  }
+}
+
+.tui-searchBox {
+  position: relative;
+  display: flex;
+
+  &__inputWrapper {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    @include tui-char-length-classes();
+  }
+
+  &__search {
+    /* disable the default clear (x) action in IE*/
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  .tui-formLabel {
+    margin-right: var(--gap-2);
+  }
+
+  &__clearContainer {
+    position: absolute;
+    right: 0;
+    height: 100%;
+  }
+
+  &__removeIcon {
+    color: var(--filter-search-clear-icon-color);
+  }
+
+  /* So that the search button matches the format of the input that is next to it*/
+  &__button {
+    border-left: none;
+    border-radius: 0;
+
+    &:active,
+    &:focus,
+    &:active:focus,
+    &:active:hover,
+    &:hover {
+      border-left: none;
+    }
+  }
+}
+
+:root {
+  --select-icon-size: var(--gap-1);
+}
+
+/* Reset*/
+.tui-select__input {
+  display: inline-block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  color: black;
+  font: 400 13.3333px Arial;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  white-space: pre;
+  text-align: start;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  word-spacing: normal;
+  background-color: white;
+  border-color: rgb(169, 169, 169);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0;
+  border-image: initial;
+  box-shadow: none;
+  cursor: default;
+  transition-delay: 0s;
+  transition-timing-function: ease;
+  transition-duration: 0s;
+  transition-property: all;
+  text-rendering: auto;
+  -webkit-appearance: menulist;
+          appearance: menulist;
+
+  &[disabled] {
+    color: rgb(61, 68, 75);
+    background: rgb(218, 218, 218);
+    cursor: default;
+  }
+
+  &[multiple] {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  &:focus {
+    border-color: rgb(218, 218, 218);
+    outline-width: 3px;
+    outline-style: auto;
+    outline-color: Highlight;
+    outline-color: -webkit-focus-ring-color;
+    outline-offset: -2px;
+    box-shadow: none;
+    -moz-user-focus: normal;
+  }
+}
+
+.tui-select {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
+  height: var(--form-input-height);
+
+  @include tui-char-length-classes();
+
+  &::after {
+    position: absolute;
+    top: calc((var(--form-input-height) - var(--select-icon-size)) / 2);
+    right: calc((var(--form-input-height) - var(--select-icon-size) * 2) / 2);
+    display: block;
+    width: 0;
+    height: 0;
+    border: var(--select-icon-size) solid transparent;
+    border-top-color: var(--form-input-text-color);
+    content: '';
+    pointer-events: none;
+  }
+
+  &--disabled::after {
+    border-top-color: var(--form-input-text-color-disabled);
+  }
+
+  &--multiple::after {
+    display: none;
+  }
+
+  &--large {
+    height: var(--form-input-height-large);
+
+    &::after {
+      top: calc((var(--form-input-height-large) - var(--select-icon-size)) / 2);
+      /* prettier-ignore*/
+      right: calc((var(--form-input-height-large) - var(--select-icon-size) * 2) / 2);
+    }
+  }
+
+  &__input {
+    flex-grow: 1;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 0 var(--gap-6) 0 var(--gap-1);
+    color: var(--form-input-text-color);
+    font-size: var(--form-input-font-size);
+    background: var(--form-input-bg-color);
+    border: var(--form-input-border-size) solid;
+    border-color: var(--form-input-border-color);
+    -webkit-appearance: none;
+            appearance: none;
+
+    &[multiple] {
+      height: auto;
+    }
+
+    &[disabled] {
+      color: var(--form-input-text-color-disabled);
+      background: var(--form-input-bg-color-disabled);
+      border-color: var(--form-input-border-color-disabled);
+    }
+
+    &:focus {
+      background: var(--form-input-bg-color-focus);
+      border: var(--form-input-border-size) solid;
+      border-color: var(--form-input-border-color-focus);
+      outline: none;
+      box-shadow: var(--form-input-shadow-focus);
+
+      .tui-contextInvalid & {
+        background: var(--form-input-bg-color-invalid-focus);
+        border-color: var(--form-input-border-color-invalid);
+        box-shadow: var(--form-input-shadow-invalid-focus);
+      }
+    }
+
+    /* Drop select outline*/
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+
+    /* appearance: none; equivalent for IE*/
+    &::-ms-expand {
+      display: none;
+    }
+
+    /* prevent weird styling after selecting value*/
+    &::-ms-value {
+      color: inherit;
+      background-color: transparent;
+    }
+
+    .tui-contextInvalid & {
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--form-input-shadow-invalid);
+    }
+  }
+}
+
+.tui-formTextarea {
+  display: block;
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  max-height: 100%;
+  padding: var(--gap-1) var(--gap-2);
+  overflow: auto;
+  color: var(--form-input-text-color);
+  font-size: var(--form-input-font-size);
+  font-family: inherit;
+  line-height: inherit;
+  border: var(--form-input-border-size) solid var(--form-input-border-color);
+  resize: none;
+
+  @include tui-char-length-classes();
+
+  &::-webkit-input-placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &:-ms-input-placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  &::placeholder {
+    color: var(--form-input-text-placeholder-color);
+  }
+
+  .tui-contextInvalid & {
+    border-color: var(--form-input-border-color-invalid);
+    box-shadow: var(--form-input-shadow-invalid);
+  }
+
+  &:focus {
+    background: var(--form-input-bg-color-focus);
+    border: var(--form-input-border-size) solid
+      var(--form-input-border-color-focus);
+    outline: none;
+    box-shadow: var(--form-input-shadow-focus);
+
+    .tui-contextInvalid & {
+      background: var(--form-input-bg-color-invalid-focus);
+      border-color: var(--form-input-border-color-invalid);
+      box-shadow: var(--form-input-shadow-invalid-focus);
+    }
+  }
+
+  &[disabled] {
+    color: var(--form-input-text-color-disabled);
+    background: var(--form-input-bg-color-disabled);
+    border-color: var(--form-input-border-color-disabled);
+
+    &::-webkit-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+
+    &::placeholder {
+      color: var(--form-input-text-color-disabled);
+    }
+  }
+}
+
+@mixin grid-item-generate-gutters(
+  $_borderType: left,
+  $_gutterSize: var(--grid-gutter)
+) {
+  > .tui-grid-item {
+    /* because we use transparent borders for gutters but don't want that*/
+    /* counting as visible item width*/
+    box-sizing: content-box;
+    background-clip: padding-box;
+    /* reset all possibly existing border widths, it is assumed that grid gaps*/
+    /* are unidirectional*/
+    border-width: 0;
+    border-#{$_borderType}: #{$_gutterSize} solid transparent;
+  }
+  /* the "first" item should never have a gutter, but `:first-child` may not be*/
+  /* accurate if flex re-ordering has been applied, so use generated "first"*/
+  /* className instead. this works in most cases with the exception of:*/
+  /*  - when the browser ignores the order property due to siblings not having*/
+  /*    an order property also*/
+  > .tui-grid-item--first {
+    border-width: 0;
+  }
+}
+
+/* Grid styles*/
+.tui-grid {
+  display: flex;
+  flex-grow: 1; /* in case nested inside a parent grid cell*/
+  max-width: 100%;
+
+  /* main Grid modifiers applied based on supplied prop values*/
+  &--wrapped {
+    flex-wrap: wrap;
+  }
+
+  /* content-containing elements*/
+  &-item {
+    flex-grow: 0; /* by default we want item size to respect unit-based calculations*/
+    flex-shrink: 1; /* by default we want to auto-adjust for gutters*/
+    min-width: 0; /* allows flex items to shrink below their minimum content size*/
+    margin: 0;
+    padding: 0;
+    -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto; /* default prevents text from causing grid mis-alignments*/
+
+    /* Grid item modifiers based on supplied prop values*/
+    &--grow {
+      flex-grow: 1;
+    }
+    &--no-shrink {
+      flex-shrink: 0;
+    }
+    &--no-hyphens {
+      -webkit-hyphens: none;
+          -ms-hyphens: none;
+              hyphens: none;
+    }
+    &--overflow {
+      overflow: auto;
+    }
+  }
+
+  /* horizontal grid*/
+  &--horizontal {
+    flex-direction: row;
+
+    &-gap {
+      @include grid-item-generate-gutters(left, var(--grid-gutter));
+    }
+  }
+
+  /* vertical grid*/
+  &--vertical {
+    flex-direction: column;
+
+    &-gap {
+      @include grid-item-generate-gutters(top, var(--grid-gutter));
+    }
+
+    /* IE11 doesn't distribute vertical space without an explicit height set*/
+    /* on the container, so the safest thing to do is revert to block layout*/
+    .ie & {
+      display: block;
+    }
+  }
+
+  &--wrapped-gap .tui-grid-item--wrapped {
+    /* margin better to use here instead of borders, as natural grid gap is*/
+    /* assumed to be unidirectional, whereas this additional type of grid gap*/
+    /* only applies when grid items wrap, and if the gap is confgured as*/
+    /* desirable for a given grid*/
+    margin-top: var(--grid-gutter);
+  }
+
+  /* all zero unit GridItems should not show any gutters or content*/
+  &--vertical,
+  &--horizontal {
+    .tui-grid-item--no-units {
+      overflow: hidden;
+      border-width: 0;
+    }
+  }
+
+  /* switch to stacked display at an container-based pixel width breakpoint*/
+  /* value (class is conditionally applied during Grid render())*/
+  &--stacked {
+    display: block;
+
+    > .tui-grid-item {
+      flex-basis: auto;
+    }
+
+    &-gap {
+      @include grid-item-generate-gutters(top, var(--grid-gutter));
+    }
+  }
+
+  &--list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+.tui-iconLoading {
+  animation: tui-iconLoading-spin 1s steps(12, end) infinite;
+}
+
+@keyframes tui-iconLoading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.tui-svgIcon {
+  /* same as the bootstrap icons default css*/
+  /* better alignment in most cases than vertical-align: middle*/
+  vertical-align: text-bottom;
+
+  &--size {
+    &-100 {
+      font-size: 1.4rem;
+    }
+    &-200 {
+      font-size: 1.6rem;
+    }
+    &-300 {
+      font-size: 2rem;
+    }
+    &-400 {
+      font-size: 2.4rem;
+    }
+    &-500 {
+      font-size: 2.8rem;
+    }
+    &-600 {
+      font-size: 3.2rem;
+    }
+    &-700 {
+      font-size: 3.8rem;
+    }
+  }
+
+  &--state {
+    &-info {
+      color: var(--color-prompt-info);
+    }
+
+    &-alert {
+      color: var(--color-prompt-alert);
+    }
+
+    &-warning {
+      color: var(--color-prompt-warning);
+    }
+
+    &-success {
+      color: var(--color-prompt-success);
+    }
+
+    &-dimmed {
+      color: var(--color-neutral-6);
+    }
+  }
+}
+
+.dir-rtl .tui-svgIcon--flipRtl {
+  transform: scale(-1, 1);
+}
+
+.tui-responsiveImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  &--grow {
+    width: 100%;
+  }
+}
+
+.tui-attachmentNodeCollection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--gap-1) 0;
+  white-space: normal;
+  border-top: var(--border-width-thin) solid var(--color-neutral-5);
+  border-bottom: var(--border-width-thin) solid var(--color-neutral-5);
+
+  > .tui-fileCard {
+    /* Doing the margin for the single attachment.*/
+    margin-top: var(--gap-1);
+    margin-right: var(--gap-1);
+    margin-bottom: var(--gap-1);
+
+    @media (min-width: 720px) {
+      margin-right: var(--gap-4);
+    }
+  }
+}
+
+.tui-audioBlock {
+  margin: var(--gap-8) 0;
+
+  &__actionsWrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-2);
+  }
+
+  &__viewTranscript {
+    margin-right: auto;
+  }
+
+  &__transcriptContent {
+    height: 60rem;
+    white-space: pre-line;
+  }
+}
+
+.tui-emoji {
+  display: inline-block;
+  font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', Times, Symbola, Aegyptus, Code2000, Code2001, Code2002,
+    Musica, serif, LastResort;
+  white-space: normal;
+  text-decoration: none;
+  font-variant-emoji: emoji;
+}
+
+.tui-hashtag {
+  display: inline-block;
+  white-space: normal;
+
+  &__text {
+    color: var(--color-state);
+
+    &:hover {
+      /* Hover state, for now we keep the same color.*/
+      color: var(--color-state);
+    }
+  }
+}
+
+.tui-imageBlock {
+  margin: 0 0 var(--paragraph-gap) 0;
+
+  @each $name, $size in $tui-media-named-sizes {
+    &--displaySize-#{$name} {
+      /* IE11 does not support the responsive sizes, so specify a fixed fallback*/
+      width: map-get($size, 'fixed');
+      width: map-get($size, 'responsive');
+    }
+  }
+}
+
+figure > .tui-imageBlock {
+  margin-bottom: var(--gap-1);
+}
+
+.tui-linkBlock {
+  position: relative;
+  display: flex;
+  max-width: 28.6rem;
+  height: calc(7.6rem + 2px);
+  font-size: var(--font-size-13);
+  line-height: 1.15;
+  white-space: normal;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  transition: box-shadow var(--transition-form-function)
+    var(--transition-form-duration);
+
+  &:hover,
+  &:focus {
+    box-shadow: var(--shadow-2);
+  }
+
+  &__image {
+    flex-shrink: 0;
+    order: 2;
+    width: 6rem;
+    height: 6rem;
+    margin: var(--gap-2);
+    background-position: center;
+    background-size: cover;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    > img {
+      width: 100%;
+    }
+  }
+
+  &__summary {
+    flex-grow: 1;
+    order: 1;
+    padding: var(--gap-2);
+    overflow: hidden;
+  }
+
+  &__site {
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    font-size: var(--font-size-12);
+    line-height: 1.15;
+  }
+
+  &__title {
+    margin-bottom: 0.3rem;
+    color: var(--color-state);
+    font-weight: bold;
+  }
+
+  &__description {
+    /* show a max of 2 lines*/
+    height: calc(var(--font-size-13) * 2 * 1.15);
+    overflow: hidden;
+  }
+
+  &__linkOnly {
+    /* show a max of 4 lines*/
+    height: calc(var(--font-size-13) * 4 * 1.12);
+    margin-top: 0.2rem;
+    overflow: hidden;
+    color: var(--color-state);
+    font-weight: bold;
+    font-size: var(--font-size-13);
+    line-height: 1.15;
+  }
+
+  &__overlayLink {
+    position: absolute;
+    /* -1px to account for border*/
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+  }
+}
+
+.tui-mention {
+  display: inline-block;
+  white-space: normal;
+
+  &__displayName {
+    color: var(--color-state);
+
+    &:hover {
+      /* Hover state, for now we keep the same color.*/
+      color: var(--color-state);
+    }
+  }
+}
+
+.tui-videoBlock {
+  display: flex;
+  width: 100%;
+  max-width: var(--embedded-media-max-width);
+
+  margin: var(--gap-8) 0;
+
+  .video-js .vjs-control {
+    white-space: nowrap;
+  }
+}
+
+/* Ensure the controls aren't incorrectly reversed in RTL*/
+[dir='rtl'] {
+  .tui-videoBlock {
+    .video-js {
+      .vjs-progress-holder .vjs-play-progress,
+      .vjs-progress-holder .vjs-load-progress,
+      .vjs-progress-holder .vjs-load-progress div,
+      .vjs-volume-level {
+        /*!rtl:ignore*/
+        right: auto;
+        /*!rtl:ignore*/
+        left: 0;
+      }
+
+      .vjs-play-progress:before,
+      .vjs-slider-horizontal .vjs-volume-level:before {
+        /*!rtl:ignore*/
+        right: -0.5em;
+        /*!rtl:ignore*/
+        left: auto;
+      }
+    }
+  }
+}
+
+.tui-layoutOneColumn {
+  @include tui-font-body();
+  margin-top: var(--gap-2);
+
+  @include tui-stack-vertical(var(--gap-8));
+
+  &__heading {
+    @include tui-stack-vertical(var(--gap-2));
+  }
+
+  &--flush {
+    margin-top: var(--gap-12);
+  }
+}
+
+.tui-layoutThreeColumn__heading {
+  @include tui-font-heading-medium();
+}
+
+.tui-layoutTwoColumn__heading {
+  @include tui-font-heading-medium();
+}
+
+.tui-pageBackLink {
+  display: inline-flex;
+  align-items: center;
+
+  &__icon {
+    margin-right: var(--gap-1);
+    /* Negative Offset to left align arrow with page content*/
+    margin-left: -0.19em;
+  }
+}
+
+.tui-pageHeading {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  &__title {
+    @include tui-font-heading-page-title;
+    @include tui-wordbreak--hard;
+  }
+
+  &__buttons {
+    & > * {
+      margin: var(--gap-3) 0 0 var(--gap-2);
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tui-pageHeading {
+    flex-direction: row;
+
+    &__buttons {
+      margin-left: auto;
+      & > * {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.tui-actionLink {
+  /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+  @extend .tui-formBtn;
+  display: inline-block;
+
+  &--prim {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--prim;
+  }
+
+  &--small {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--small;
+  }
+
+  &--srOnly {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--srOnly;
+  }
+
+  &:not([href]) {
+    color: var(--btn-text-color-disabled);
+    background-color: var(--btn-bg-color-disabled);
+    border-color: var(--btn-border-color-disabled);
+    cursor: default;
+    opacity: 1;
+    &:active,
+    &:focus,
+    &:active:focus,
+    &:active:hover,
+    &:hover {
+      color: var(--btn-text-color-disabled);
+      background-color: var(--btn-bg-color-disabled);
+      border-color: var(--btn-border-color-disabled);
+      box-shadow: none;
+    }
+  }
+}
+
+.tui-skipToContent {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+
+  &:focus {
+    position: static;
+    display: block;
+    width: auto;
+    height: auto;
+  }
+}
+
+.tui-componentLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-3);
+  color: var(--color-neutral-6);
+}
+
+.tui-loader {
+  $loading-fullpage: #{&}--fullpage;
+
+  position: relative;
+
+  /* Don't show nested loaders*/
+  &--active > * .tui-loader__overlay {
+    display: none;
+  }
+
+  /* If no slot content (e.g. initial load)*/
+  &__empty {
+    min-height: var(--gap-8);
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    /*!rtl:ignore*/
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    #{$loading-fullpage} & {
+      position: fixed;
+      z-index: var(--zindex-loading-page);
+    }
+
+    &-positioner {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: var(--color-background);
+      opacity: 0.85;
+      content: '';
+    }
+  }
+
+  &__display {
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--gap-6);
+    bottom: var(--gap-6);
+    color: var(--color-neutral-6);
+    font-size: var(--font-size-15);
+
+    .fa-spinner {
+      position: relative;
+      top: -1px;
+    }
+  }
+}
+
+:root {
+  /* Background colour of skeleton area*/
+  /* Should have at least 3:1 contrast ratio*/
+  /* https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html*/
+  /* Future option https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast*/
+  --skeleton-content-background: #949494;
+  /* Background colour of skeleton area when under a loading overlay*/
+  --skeleton-content-overlay-background: var(--color-neutral-5);
+  /* Colour of shimmer*/
+  --skeleton-content-shimmer-color: #aaa;
+  /* Colour of shimmer when under a loading overlay*/
+  --skeleton-content-shimmer-overlay-color: #e6e5e5;
+  /* Border radius for skeleton content*/
+  --skeleton-content-border-radius: var(--border-radius-small);
+}
+
+.tui-skeletonContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--skeleton-content-background);
+  border-radius: var(--skeleton-content-border-radius);
+
+  @include tui-char-length-classes();
+
+  &--hasOverlay {
+    background: var(--skeleton-content-overlay-background);
+  }
+
+  &--shimmer {
+    background: linear-gradient(
+      -55deg,
+      var(--skeleton-content-background) 0%,
+      var(--skeleton-content-background) 35%,
+      var(--skeleton-content-shimmer-color) 50%,
+      var(--skeleton-content-background) 58%,
+      var(--skeleton-content-background) 100%
+    );
+    background-size: 1000px 100%;
+    background-attachment: fixed;
+    animation: tui-skeletonShimmer 3s linear infinite;
+
+    @media (prefers-reduced-motion) {
+      animation: none;
+    }
+  }
+
+  @keyframes tui-skeletonShimmer {
+    0% {
+      /*!rtl:ignore*/
+      background-position: 0 0;
+    }
+    100% {
+      /*!rtl:ignore*/
+      background-position: 1000px 0;
+    }
+  }
+}
+
+.tui-skeletonContent--hasOverlay.tui-skeletonContent--shimmer {
+  background: linear-gradient(
+    -55deg,
+    var(--skeleton-content-overlay-background) 0%,
+    var(--skeleton-content-overlay-background) 35%,
+    var(--skeleton-content-shimmer-overlay-color) 50%,
+    var(--skeleton-content-overlay-background) 58%,
+    var(--skeleton-content-overlay-background) 100%
+  );
+  background-size: 1000px 100%;
+  background-attachment: fixed;
+}
+
+.tui-lozenge {
+  display: inline-flex;
+  padding: 3px var(--gap-2) 3px;
+  color: var(--color-neutral-1);
+  @include tui-font-body-x-small();
+  @include tui-font-heavy();
+  line-height: 1;
+  background: var(--color-prompt-info);
+  border-radius: var(--border-radius-small);
+
+  &--alert {
+    background: var(--color-prompt-alert);
+  }
+
+  &--success {
+    background: var(--color-prompt-success);
+  }
+
+  &--warning {
+    background: var(--color-prompt-warning);
+  }
+
+  &--neutral {
+    background: var(--color-neutral-6);
+  }
+}
+
+$tui-modal-smallSize: 400px !default;
+$tui-modal-normalSize: 560px !default;
+$tui-modal-largeSize: 800px !default;
+$tui-modal-sheetBreakpoint: 768px !default;
+
+.tui-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--zindex-modal);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: none;
+
+  &--shade {
+    background-color: var(--color-backdrop-standard);
+    &.tui-modal--size-sheet {
+      background-color: var(--color-backdrop-heavy);
+    }
+  }
+
+  &--animated {
+    opacity: 0;
+    transition: opacity var(--transition-modal-function)
+      var(--transition-modal-duration);
+
+    .tui-modal__inner {
+      transform: translateY(100vh);
+      transition: transform var(--transition-modal-function)
+        var(--transition-modal-duration);
+    }
+
+    &.tui-modal--in {
+      opacity: 1;
+    }
+
+    &.tui-modal--in .tui-modal__inner {
+      transform: translateY(0);
+    }
+  }
+
+  &--error {
+    z-index: var(--zindex-error-modal);
+  }
+
+  &.tui-modal--size-sheet {
+    .tui-modal__inner {
+      overflow: auto;
+    }
+  }
+
+  &__pad {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-4);
+  }
+
+  &__header {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__close,
+  &__outsideClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    padding: var(--gap-4);
+    font-size: var(--font-size-18);
+  }
+
+  &__outsideClose {
+    display: none;
+    color: var(--color-backdrop-contrast);
+  }
+
+  &__outsideClose:hover,
+  &__outsideClose:focus {
+    color: var(--color-backdrop-contrast);
+    opacity: 0.8;
+  }
+}
+
+.has-tui-modal {
+  overflow: hidden;
+}
+
+@media (min-width: $tui-modal-sheetBreakpoint) {
+  .tui-modal.tui-modal--size-sheet {
+    &.tui-modal--animated {
+      .tui-modal__inner {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      &.tui-modal--in .tui-modal__inner {
+        transform: none;
+        opacity: 1;
+      }
+
+      .tui-modal__outsideClose {
+        opacity: 0;
+        transition: opacity var(--transition-modal-function)
+          var(--transition-modal-duration);
+      }
+
+      &.tui-modal--in .tui-modal__outsideClose {
+        opacity: 1;
+      }
+
+      &.tui-modal--in .tui-modal__outsideClose:hover,
+      &.tui-modal--in .tui-modal__outsideClose:focus {
+        opacity: 0.8;
+      }
+    }
+
+    .tui-modal {
+      &__pad {
+        padding: var(--modal-sheet-padding);
+      }
+
+      &__inner {
+        border-radius: var(--modal-border-radius);
+      }
+
+      &__close {
+        display: none;
+      }
+
+      &__outsideClose {
+        display: flex;
+      }
+    }
+  }
+}
+
+@mixin tui-modal-size($name, $width) {
+  @media (min-width: ($width + 75px)) {
+    .tui-modal.tui-modal--size-#{$name} {
+      overflow-y: auto;
+
+      &.tui-modal--always-scroll {
+        overflow-y: scroll;
+      }
+
+      &.tui-modal--animated {
+        .tui-modal__inner {
+          transform: scale(0.9);
+        }
+
+        &.tui-modal--in .tui-modal__inner {
+          transform: none;
+        }
+      }
+
+      /* a separate __pad element is required as flexbox centering with*/
+      /* `margin-top/bottom: auto;` and padding on the parent are not compatible*/
+      .tui-modal {
+        &__pad {
+          height: auto;
+          margin: auto;
+          padding: var(--modal-container-padding) 0;
+        }
+
+        &__inner {
+          width: $width;
+          height: auto;
+          border-radius: var(--modal-border-radius);
+        }
+
+        &__close {
+          display: none;
+        }
+
+        &__outsideClose {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+@include tui-modal-size('small', $tui-modal-smallSize);
+@include tui-modal-size('normal', $tui-modal-normalSize);
+@include tui-modal-size('large', $tui-modal-largeSize);
+
+.tui-modalContent {
+  @include tui-font-body();
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+
+  &__header {
+    display: flex;
+    flex-shrink: 0;
+    padding: var(--modal-content-outer-padding)
+      var(--modal-content-outer-padding) 0;
+
+    &-title {
+      @include tui-font-heading-small();
+      flex-grow: 1;
+      overflow: hidden;
+
+      &--sronly {
+        @include sr-only();
+      }
+    }
+
+    &-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: var(--gap-3);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    padding: 0 var(--modal-content-outer-padding) 2px;
+    /* Padding top required to support form & button shadows*/
+    padding-top: var(--modal-content-separation);
+    overflow-y: auto;
+  }
+
+  &--noContentPadding &__content {
+    padding: 0;
+  }
+
+  &__footer {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    margin-top: var(--modal-content-separation-large);
+    padding: 0 var(--modal-content-outer-padding);
+
+    &-buttons {
+      margin-left: auto;
+    }
+  }
+
+  & > :last-child {
+    padding-bottom: var(--modal-content-outer-padding);
+  }
+
+  &--noContentPadding {
+    & > :last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+@mixin tui-notification-banner-color($name, $color) {
+  .tui-notificationBanner {
+    &--#{$name} {
+      border-color: $color;
+    }
+
+    &--#{$name} &__icon {
+      background: $color;
+    }
+  }
+}
+
+.tui-notificationBanner {
+  @include tui-font-body-small();
+
+  display: flex;
+  background-color: var(--color-background);
+  border: var(--border-width-thin) solid var(--color-prompt-info);
+  border-radius: var(--border-radius-small);
+
+  &__icon {
+    display: flex;
+    padding: var(--gap-4);
+    color: var(--color-neutral-1);
+    background: var(--color-prompt-info);
+    /* -1px to avoid issue with razor thin white line between icon container and notification border*/
+    /* prettier-ignore*/
+    border-top-left-radius: calc(var(--border-radius-small) - var(--border-width-thin) - 1px);
+    /* prettier-ignore*/
+    border-bottom-left-radius: calc(var(--border-radius-small) - var(--border-width-thin) - 1px);
+  }
+
+  &__body {
+    flex-grow: 1;
+  }
+
+  &__message {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: var(--gap-3);
+
+    &--inline {
+      display: inline;
+    }
+  }
+
+  &__dismiss {
+    display: flex;
+
+    &_button {
+      color: var(--color-neutral-6);
+    }
+  }
+}
+
+@include tui-notification-banner-color('success', var(--color-prompt-success));
+@include tui-notification-banner-color('warning', var(--color-prompt-warning));
+@include tui-notification-banner-color('error', var(--color-prompt-alert));
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-notificationBanner {
+    @include tui-font-body();
+
+    border-radius: var(--border-radius-normal);
+
+    &__icon {
+      /* -1px to avoid issue with razor thin white line between icon container and notification border*/
+      /* prettier-ignore*/
+      border-top-left-radius: calc(var(--border-radius-normal) - var(--border-width-thin) - 1px);
+      /* prettier-ignore*/
+      border-bottom-left-radius: calc(var(--border-radius-normal) - var(--border-width-thin) - 1px);
+    }
+  }
+}
+
+@mixin tui-notification-toast-color($name, $color) {
+  .tui-notificationToast {
+    &--#{$name} {
+      background: $color;
+    }
+
+    &--#{$name} &__icon {
+      background: $color;
+    }
+  }
+}
+
+.tui-notificationToast {
+  @include tui-font-body-small();
+
+  display: flex;
+  color: var(--toast-color-text);
+  background-color: var(--color-prompt-success);
+  border-radius: var(--border-radius-small);
+  box-shadow: var(--shadow-3);
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    padding: var(--gap-4) 0 var(--gap-4) var(--gap-4);
+    color: var(--color-neutral-1);
+    background: var(--color-prompt-success);
+    /* -1px to avoid isue with razor thin white line between icon container and notification border*/
+    /* prettier-ignore*/
+    border-top-left-radius: calc(var(--border-radius-small) - var(--border-width-thin) - 1px);
+    /* prettier-ignore*/
+    border-bottom-left-radius: calc(var(--border-radius-small) - var(--border-width-thin) - 1px);
+  }
+
+  &__message {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: var(--gap-4) var(--gap-2);
+  }
+
+  &__dismiss {
+    display: flex;
+
+    &_button {
+      color: var(--color-neutral-3);
+
+      &:hover {
+        color: var(--color-neutral-1);
+      }
+    }
+  }
+}
+
+@include tui-notification-toast-color('error', var(--color-prompt-alert));
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-notificationToast {
+    @include tui-font-body();
+    color: var(--toast-color-text);
+
+    border-radius: var(--border-radius-normal);
+
+    &__icon {
+      /* -1px to avoid isue with razor thin white line between icon container and notification border*/
+      /* prettier-ignore*/
+      border-top-left-radius: calc(var(--border-radius-normal) - var(--border-width-thin) - 1px);
+      /* prettier-ignore*/
+      border-bottom-left-radius: calc(var(--border-radius-normal) - var(--border-width-thin) - 1px);
+    }
+  }
+}
+
+.tui-toastContainer {
+  position: fixed;
+  top: var(--gap-6);
+  right: 0;
+  left: 0;
+  z-index: var(--zindex-toast);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+
+  &__inner {
+    position: relative;
+    flex-basis: 300px;
+    pointer-events: auto;
+  }
+
+  &__item-transition {
+    &-enter-active,
+    &-leave-active {
+      transition: all 0.15s ease-out;
+    }
+
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+    }
+
+    &-leave-active {
+      position: absolute;
+      right: 0;
+      left: 0;
+      opacity: 0;
+    }
+  }
+}
+
+@media screen and (min-width: $tui-screen-sm) {
+  .tui-toastContainer {
+    &__inner {
+      flex-basis: 500px;
+    }
+  }
+}
+
+.tui-overflowContainer {
+  &__container {
+    display: flex;
+
+    > * + * {
+      margin-left: var(--gap-4);
+
+      .tui-overflowContainer--wide & {
+        margin-left: var(--gap-6);
+      }
+    }
+  }
+
+  &__containerItem {
+    display: flex;
+    flex-basis: 200px;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 198px;
+    max-width: 248px;
+
+    > * {
+      flex-grow: 1;
+    }
+
+    &--post {
+      color: var(--color-state);
+
+      .tui-overflowContainer__containerItem {
+        &-viewAll {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          margin: auto 0;
+          text-align: center;
+          background-color: var(--color-neutral-3);
+
+          &--only {
+            min-height: 200px;
+          }
+        }
+
+        &-viewAllIcon {
+          display: block;
+          width: 48px;
+          height: 48px;
+          margin: auto auto 0 auto;
+          padding: 10px;
+          font-size: var(--font-size-24);
+          border: var(--border-width-thin) solid var(--color-state);
+          border-radius: 50%;
+        }
+
+        &-viewAllAction {
+          margin: var(--gap-2) 0 auto;
+        }
+
+        &-link {
+          outline: 0;
+        }
+      }
+    }
+  }
+}
+
+.tui-paging {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__perPage {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: center;
+    margin: auto 0;
+
+    &-label {
+      margin: auto var(--gap-3) auto 0;
+    }
+
+    &-select {
+      flex: 7rem 0 0;
+    }
+  }
+
+  &__selector {
+    display: flex;
+    flex-shrink: 0;
+    margin: auto 0;
+
+    &-number {
+      min-width: 40px;
+      min-height: 40px;
+      margin: auto 0;
+      padding: var(--gap-4);
+
+      &--current {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__direct {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+    margin: auto 0;
+    padding-left: var(--gap-4);
+    border-left: var(--border-width-thin) solid var(--color-neutral-5);
+
+    .tui-paging--narrow & {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    &-label {
+      margin: auto var(--gap-2) auto 0;
+    }
+
+    & &-page[type] {
+      margin: auto var(--gap-1) auto 0;
+    }
+  }
+
+  &__loading {
+    width: 100%;
+  }
+}
+
+.tui-popover {
+  &__wrap {
+    &--valign {
+      &-center {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.tui-popoverFrame {
+  @include tui-font-body();
+  position: relative;
+  max-width: 300px;
+  /* margin must be equal on all 4 sides, and must not change with position*/
+  margin: 10px;
+  padding: var(--gap-4);
+  background: var(--color-background);
+  background-clip: padding-box;
+  box-shadow: var(--shadow-3);
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 0 1px var(--color-neutral-5);
+    content: '';
+  }
+
+  &--size-sm {
+    width: 250px;
+    max-width: none;
+  }
+
+  &--size-md {
+    width: 300px;
+    max-width: none;
+  }
+
+  &--size-lg {
+    width: 95vw;
+    max-width: none;
+
+    @media (min-width: 600px) {
+      width: 560px;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    padding: calc(1.4rem - 0.1em) calc(1.4rem - 0.3em);
+  }
+
+  &__title {
+    @include tui-font-heading-x-small();
+    padding-top: var(--gap-2);
+    padding-right: var(--gap-4);
+  }
+
+  &__content {
+    padding: var(--gap-2) var(--gap-4) var(--gap-2) 0;
+
+    & img {
+      max-width: 100%;
+    }
+  }
+
+  &__title + &__content,
+  &__content--nonClosable {
+    padding-right: 0;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding-top: var(--gap-1);
+    padding-bottom: var(--gap-3);
+
+    > * {
+      margin-top: var(--gap-2);
+    }
+
+    > * + * {
+      margin-left: var(--gap-4);
+    }
+  }
+}
+
+.tui-popoverPositioner {
+  /* note: position: absolute + z-index triggers a new stacking context*/
+  /* this allows us to escape from overflow: hidden.*/
+  /* because stacking contexts can be nested, this will still work correctly*/
+  /* even inside modals, which have a higher z-index*/
+  position: absolute;
+  top: 0;
+  /*!rtl:ignore*/
+  left: 0;
+  z-index: var(--zindex-popover);
+  width: auto;
+  @include tui-font-body();
+
+  &--fixed {
+    position: fixed;
+  }
+
+  &--transition-default {
+    transition: opacity 0.2s;
+  }
+
+  &--transition-default-enter,
+  &--transition-default-leave-to {
+    opacity: 0;
+  }
+
+  &--transition-dropdown {
+    transition: opacity 0s;
+  }
+
+  &--transition-dropdown-enter,
+  &--transition-dropdown-leave-to {
+    opacity: 0;
+  }
+
+  &--transition-dropdown-leave-to {
+    transition: opacity 0.15s;
+  }
+}
+
+.tui-modal--animated .tui-popoverPositioner {
+  display: none;
+}
+.tui-modal--animated.tui-modal--in .tui-popoverPositioner {
+  display: block;
+}
+
+.tui-miniProfileCard {
+  /* The parent who uses this card decides the width/height.*/
+  display: flex;
+  align-items: flex-start;
+  padding: var(--gap-2);
+  outline: none;
+
+  &--no-avatar {
+    padding-left: var(--gap-4);
+  }
+
+  &--no-dropdown {
+    padding-right: var(--gap-4);
+  }
+
+  &--no-padding {
+    /* Reset padding to zero.*/
+    padding: 0;
+  }
+
+  &--border {
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+    border-radius: var(--border-radius-normal);
+  }
+
+  &--hasShadow {
+    box-shadow: var(--shadow-2);
+  }
+
+  &__avatar {
+    margin-right: var(--gap-2);
+  }
+
+  &--horizontal {
+    align-items: center;
+  }
+
+  &__description {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+
+    &--horizontal {
+      flex-direction: row;
+      justify-content: space-between;
+
+      & > * + * {
+        padding-left: var(--gap-4);
+      }
+    }
+
+    &--horizontalItems-1 {
+      & > * {
+        width: 100%;
+      }
+    }
+
+    &--horizontalItems-2 {
+      & > * {
+        width: 50%;
+      }
+    }
+
+    &--horizontalItems-3 {
+      & > * {
+        width: 33%;
+      }
+    }
+
+    &--horizontalItems-4 {
+      & > * {
+        width: 25%;
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    &-text {
+      @include tui-font-body-small();
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &--bold {
+        @include tui-font-heavy();
+      }
+    }
+
+    &-link {
+      @include tui-font-link-small();
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &--bold {
+        @include tui-font-heavy();
+      }
+    }
+
+    &--withGap {
+      margin-bottom: var(--gap-1);
+    }
+  }
+
+  &__dropDown {
+    margin-left: var(--gap-4);
+  }
+}
+
+.tui-progress {
+  @include tui-font-body-xx-small();
+
+  display: flex;
+  height: 14px;
+  background-color: var(--progress-container-bg-color);
+  border: 1px solid var(--progress-border-color);
+  border-radius: var(--gap-2);
+
+  &--small {
+    height: 12px;
+    line-height: 10px;
+  }
+
+  &--hideBackground {
+    background: none;
+  }
+
+  &__bar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--progress-value-bg-color);
+    border-radius: var(--gap-2);
+    transition: width var(--transition-progress-function)
+      var(--transition-progress-duration);
+  }
+
+  &__label {
+    padding: 0 var(--gap-1);
+    opacity: 0;
+
+    &--inside {
+      color: var(--progress-value-text-color);
+      opacity: 1;
+      transition: opacity var(--transition-progress-function)
+        var(--transition-progress-duration);
+    }
+    &--outside {
+      color: var(--progress-container-text-color);
+      opacity: 1;
+    }
+  }
+}
+
+$progress-tracker-line-sm: 100px !default;
+$progress-tracker-line-md: 200px !default;
+$progress-tracker-line-lg: 250px !default;
+$progress-tracker-half-circle: 14px !default;
+
+.tui-progressTrackerItems {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  list-style: none;
+
+  /* Line styles*/
+  & > * + * {
+    &.tui-progressTrackerItem {
+      .tui-progressTrackerItem__content::before {
+        position: absolute;
+        top: $progress-tracker-half-circle;
+        left: -50%;
+        display: block;
+        width: 100%;
+        border-style: solid;
+        border-width: var(--border-width-thin) 0 0 0;
+        content: '';
+      }
+
+      &--pending {
+        .tui-progressTrackerItem__content::before {
+          border-color: var(--progresstracker-color-pending);
+          border-style: dotted;
+        }
+      }
+
+      &--complete {
+        .tui-progressTrackerItem__content::before {
+          top: ($progress-tracker-half-circle - 1);
+          border-color: var(--progresstracker-color-complete);
+          border-width: var(--border-width-thick) 0 0 0;
+        }
+      }
+
+      &--achieved {
+        .tui-progressTrackerItem__content::before {
+          top: ($progress-tracker-half-circle - 1);
+          border-color: var(--progresstracker-color-achieved);
+          border-width: var(--border-width-thick) 0 0 0;
+        }
+      }
+    }
+  }
+  &--vertical {
+    & > * + * {
+      &.tui-progressTrackerItem {
+        .tui-progressTrackerItem__content::before {
+          top: -50%;
+          left: ($progress-tracker-half-circle - 1);
+          width: 0;
+          height: 100%;
+          border-width: 0 0 0 var(--border-width-thick);
+        }
+      }
+    }
+  }
+
+  .tui-progressTrackerItem {
+    position: relative;
+    flex-shrink: 0;
+
+    &--small {
+      width: $progress-tracker-line-sm;
+    }
+
+    &--medium {
+      width: $progress-tracker-line-md;
+    }
+
+    &--large {
+      width: $progress-tracker-line-lg;
+    }
+
+    &__content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    &__label {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+      padding: var(--gap-2);
+      text-align: center;
+
+      &-current {
+        .tui-formBtn {
+          color: var(--color-state-active);
+          font-weight: bold;
+        }
+      }
+    }
+
+    &__status,
+    &__target {
+      @include sr-only();
+    }
+
+    /* Spacing after for overflow detector*/
+    :last-child {
+      &--small {
+        width: ($progress-tracker-line-sm * 2);
+        padding-right: $progress-tracker-line-sm;
+      }
+
+      &--medium {
+        width: ($progress-tracker-line-md * 2);
+        padding-right: $progress-tracker-line-md;
+      }
+
+      &--large {
+        width: ($progress-tracker-line-lg * 2);
+        padding-right: $progress-tracker-line-lg;
+      }
+    }
+  }
+
+  &--vertical {
+    flex-direction: column;
+
+    .tui-progressTrackerItem {
+      width: auto;
+      height: 80px;
+
+      &__content {
+        flex-direction: row;
+        height: 100%;
+      }
+
+      &__label {
+        margin: 0;
+        padding: var(--gap-1) var(--gap-2);
+        text-align: left;
+      }
+    }
+  }
+}
+
+.tui-progressTrackerButton {
+  width: 100%;
+  padding: var(--gap-2);
+  color: var(--color-state);
+  line-height: var(--font-body-line-height);
+  text-align: left;
+  @include tui-wordbreak--hard();
+
+  &:hover,
+  &:focus {
+    color: var(--color-state);
+    background: var(--color-state-highlight-neutral);
+  }
+
+  &--selected {
+    color: var(--color-neutral-1);
+    background: var(--color-state-active);
+    border-color: var(--color-neutral-3);
+
+    &:hover,
+    &:focus,
+    &:focus:hover {
+      color: var(--color-neutral-1);
+      background: var(--color-state-active);
+      border-color: var(--color-neutral-3);
+    }
+  }
+}
+
+.tui-progressTrackerCircle {
+  $pending: #{&}--pending;
+  $complete: #{&}--complete;
+  $achieved: #{&}--achieved;
+  $target: #{&}--target;
+
+  &__outer {
+    z-index: 2;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--gap-7) + 1px);
+    height: calc(var(--gap-7) + 1px);
+    border: var(--border-width-normal) transparent dotted;
+    border-radius: 50%;
+
+    /* Pending target*/
+    &#{$pending}&#{$target} {
+      border-color: var(--progresstracker-color-pending);
+    }
+
+    /* Achieved target*/
+    &#{$target}&#{$achieved} {
+      background: var(--progresstracker-container-bg-color);
+      border-color: var(--progresstracker-color-achieved);
+      border-style: solid;
+    }
+  }
+
+  &__middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--gap-4) + 1px);
+    height: calc(var(--gap-4) + 1px);
+    background: transparent;
+    border: var(--border-width-thin) solid transparent;
+    border-radius: 50%;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+
+    /* Pending*/
+    #{$pending} & {
+      background: var(--progresstracker-color-pending);
+    }
+
+    /* Pending target*/
+    #{$pending}#{$target} & {
+      background: transparent;
+    }
+
+    /* Complete*/
+    #{$complete} & {
+      background: var(--progresstracker-color-complete);
+    }
+
+    /* Achieved*/
+    #{$achieved} & {
+      background: var(--progresstracker-color-achieved);
+    }
+  }
+
+  &__inner {
+    width: calc(var(--gap-2) + 1px);
+    height: calc(var(--gap-2) + 1px);
+    background: var(--progresstracker-container-bg-color);
+    border: var(--border-width-thin) solid
+      var(--progresstracker-container-bg-color);
+    border-radius: 50%;
+
+    /* Pending*/
+    #{$pending} & {
+      border-color: var(--progresstracker-container-bg-color);
+    }
+
+    /* Pending target*/
+    #{$pending}#{$target} & {
+      border-color: var(--progresstracker-color-pending);
+    }
+
+    /* Achieved*/
+    #{$achieved} & {
+      border-color: var(--progresstracker-container-bg-color);
+    }
+  }
+}
+.ie,
+.msedge {
+  .tui-progressTrackerCircle--achieved {
+    .tui-progressTrackerCircle {
+      &__middle {
+        border: var(--gap-1) solid var(--progresstracker-color-achieved);
+      }
+    }
+  }
+
+  .tui-progressTrackerCircle--complete {
+    .tui-progressTrackerCircle {
+      &__middle {
+        border: var(--gap-1) solid var(--progresstracker-color-complete);
+      }
+    }
+  }
+}
+
+.tui-progressTrackerNav__items {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  list-style: none;
+
+  .tui-progressTrackerNav--vertical & {
+    flex-direction: column;
+  }
+}
+
+.tui-progressTrackerNavCircleAchievement {
+  /* states*/
+  $pending: #{&}--pending;
+  $complete: #{&}--complete;
+  $achieved: #{&}--achieved;
+  $target: #{&}--target;
+  $current: #{&}--current;
+
+  &__outer {
+    z-index: 2;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--progresstracker-full-marker-size);
+    height: var(--progresstracker-full-marker-size);
+    border: var(--border-width-normal) transparent dotted;
+    border-radius: 50%;
+
+    /**
+     * states
+     **/
+    &#{$pending}&#{$target} {
+      border-color: var(--progresstracker-color-pending);
+    }
+
+    &#{$target}&#{$achieved} {
+      background: var(--progresstracker-container-bg-color);
+      border-color: var(--progresstracker-color-achieved);
+      border-style: solid;
+    }
+  }
+
+  &__middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(
+      calc(var(--progresstracker-full-marker-size) / 2) + var(--gap-1)
+    );
+    height: calc(
+      calc(var(--progresstracker-full-marker-size) / 2) + var(--gap-1)
+    );
+    background: transparent;
+    border: var(--border-width-thin) solid transparent;
+    border-radius: 50%;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+
+    /**
+     * states
+     **/
+    #{$pending} & {
+      background: var(--progresstracker-color-pending);
+    }
+
+    #{$pending}#{$target} & {
+      background: transparent;
+    }
+
+    #{$complete} & {
+      background: var(--progresstracker-color-complete);
+    }
+
+    #{$achieved} & {
+      background: var(--progresstracker-color-achieved);
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    width: calc(
+      calc(var(--progresstracker-full-marker-size) / 4) +
+        var(--border-width-thin)
+    );
+    height: calc(
+      calc(var(--progresstracker-full-marker-size) / 4) +
+        var(--border-width-thin)
+    );
+    background: var(--progresstracker-container-bg-color);
+    border: var(--border-width-thin) solid
+      var(--progresstracker-container-bg-color);
+    border-radius: 50%;
+
+    /**
+     * states
+     **/
+    #{$pending} & {
+      border-color: var(--progresstracker-container-bg-color);
+    }
+
+    #{$pending}#{$target} & {
+      border-color: var(--progresstracker-color-pending);
+    }
+
+    #{$achieved} & {
+      border-color: var(--progresstracker-container-bg-color);
+    }
+  }
+  &__label {
+    @include sr-only();
+  }
+}
+.ie,
+.msedge {
+  .tui-progressTrackerCircle--achieved {
+    .tui-progressTrackerCircle {
+      &__middle {
+        border: var(--gap-1) solid var(--progresstracker-color-achieved);
+      }
+    }
+  }
+
+  .tui-progressTrackerCircle--complete {
+    .tui-progressTrackerCircle {
+      &__middle {
+        border: var(--gap-1) solid var(--progresstracker-color-complete);
+      }
+    }
+  }
+}
+
+.tui-progressTrackerNavCircleWorkflow {
+  /* states*/
+  $ready: #{&}--ready;
+  $locked: #{&}--locked;
+  $optional: #{&}--optional;
+  $selected: #{&}--selected;
+  $done: #{&}--done;
+  $invalid: #{&}--invalid;
+  $view-only: #{&}--view-only;
+
+  &__outer {
+    z-index: 2;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--progresstracker-full-marker-size);
+    height: var(--progresstracker-full-marker-size);
+    border: var(--border-width-normal) transparent none;
+    border-radius: 50%;
+
+    /**
+     * states
+     **/
+
+    &#{$selected} {
+      border-color: var(--progresstracker-color-selected);
+      border-style: solid;
+    }
+
+    &#{$ready} {
+      border-color: var(--progresstracker-color-ready);
+    }
+
+    &#{$locked} {
+      border-color: var(--progresstracker-color-locked);
+    }
+
+    &#{$done} {
+      border-color: var(--progresstracker-color-done);
+    }
+
+    &#{$optional} {
+      border-color: var(--progresstracker-color-optional);
+    }
+
+    &#{$invalid} {
+      border-color: var(--progresstracker-color-invalid);
+    }
+  }
+
+  &__middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--progresstracker-full-marker-size) - var(--gap-2));
+    height: calc(var(--progresstracker-full-marker-size) - var(--gap-2));
+    background-color: transparent;
+    border: var(--border-width-thin) none transparent;
+    border-radius: 50%;
+
+    /**
+     * states
+     **/
+
+    #{$selected} & {
+      background: var(--progresstracker-color-selected);
+      border-color: var(--progresstracker-color-selected);
+    }
+
+    #{$ready} & {
+      background: var(--progresstracker-color-ready--inverse);
+      border-color: var(--progresstracker-color-ready);
+      border-style: solid;
+    }
+
+    #{$locked} & {
+      background: var(--progresstracker-color-locked--inverse);
+      border-color: var(--progresstracker-color-locked);
+      border-style: solid;
+    }
+
+    #{$done} & {
+      background: var(--progresstracker-color-done);
+      border-color: var(--progresstracker-color-done);
+    }
+
+    #{$optional} & {
+      background: var(--progresstracker-color-optional--inverse);
+      border-color: var(--progresstracker-color-optional);
+      border-style: dashed;
+    }
+
+    #{$invalid} & {
+      background: var(--progresstracker-color-invalid);
+      border-color: var(--progresstracker-color-invalid);
+    }
+
+    #{$view-only} & {
+      border-color: var(--progresstracker-color-view-only);
+      border-style: solid;
+    }
+
+    #{$ready}#{$selected} & {
+      background: var(--progresstracker-color-ready);
+    }
+
+    #{$locked}#{$selected} & {
+      background: var(--progresstracker-color-locked);
+    }
+
+    #{$optional}#{$selected} & {
+      background: var(--progresstracker-color-optional);
+      border-color: var(--progresstracker-container-bg-color);
+      border-style: dashed;
+    }
+
+    #{$view-only}#{$selected} & {
+      background: var(--progresstracker-color-view-only);
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--gap-5);
+    height: var(--gap-5);
+    border-radius: 50%;
+
+    /**
+     * states
+     **/
+
+    #{$selected} & {
+      color: var(--progresstracker-color-selected--inverse);
+    }
+
+    #{$ready} & {
+      color: var(--progresstracker-color-ready);
+    }
+
+    #{$locked} & {
+      color: var(--progresstracker-color-locked);
+    }
+
+    #{$done} & {
+      color: var(--progresstracker-color-done--inverse);
+    }
+
+    #{$optional} & {
+      color: var(--progresstracker-color-optional);
+    }
+
+    #{$invalid} & {
+      color: var(--progresstracker-color-invalid--inverse);
+    }
+
+    #{$view-only} & {
+      color: var(--progresstracker-color-view-only);
+    }
+
+    #{$ready}#{$selected} & {
+      color: var(--progresstracker-color-ready--inverse);
+    }
+
+    #{$locked}#{$selected} & {
+      color: var(--progresstracker-color-locked--inverse);
+    }
+
+    #{$optional}#{$selected} & {
+      color: var(--progresstracker-color-optional--inverse);
+    }
+
+    #{$view-only}#{$selected} & {
+      color: var(--progresstracker-color-view-only--inverse);
+    }
+  }
+
+  &__icon--locked {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-bottom: 2px;
+  }
+
+  &__icon--done {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: 2px;
+  }
+
+  &__icon--invalid {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-bottom: 3px;
+  }
+
+  &__label {
+    @include sr-only();
+  }
+}
+
+$progressTracker-half-marker-size: calc(
+  var(--progresstracker-full-marker-size) / 2
+) !default;
+
+/**
+  * Connector lines
+  **/
+.tui-progressTrackerNav__itemContentWrapper:before {
+  position: absolute;
+  display: block;
+  border-color: var(--progresstracker-color-pending);
+  border-style: dotted;
+  content: '';
+
+  .tui-progressTrackerNav--vertical & {
+    top: calc(
+      var(--progresstracker-full-marker-size) + var(--border-width-normal)
+    );
+    /* nested calc() will get botched by RTLCSS processing if it is broken down onto multiple lines */
+    /* prettier-ignore */
+    left: calc( #{$progressTracker-half-marker-size} - calc(var(--border-width-normal) / 2) );
+    width: var(--border-width-normal);
+    /* prettier-ignore */
+    height: calc( 100% - calc( var(--progresstracker-full-marker-size) + calc(var(--border-width-normal) * 2) ) );
+    border-width: 0 0 0 var(--border-width-normal);
+  }
+  .tui-progressTrackerNav--horizontal & {
+    /* nested calc() will get botched by RTLCSS processing if it is broken down onto multiple lines */
+    /* prettier-ignore */
+    top: calc( #{$progressTracker-half-marker-size} - calc(var(--border-width-normal) / 2) );
+    /* prettier-ignore */
+    left: calc(50% + #{$progressTracker-half-marker-size} + var(--progresstracker-connector-gap) - var(--border-width-normal));
+    /* prettier-ignore */
+    width: calc( 100% - calc( var(--progresstracker-full-marker-size) + calc(var(--progresstracker-connector-gap)) + var(--border-width-normal)));
+    height: var(--border-width-normal);
+    border-width: var(--border-width-normal) 0 0 0;
+  }
+}
+
+/**
+  * Connector line modifiers
+  **/
+.tui-progressTrackerNav__connector {
+  /* item states related to Achievement*/
+  &--pending {
+    /* this is the default state if no state Array is passed into the item*/
+    .tui-progressTrackerNav__itemContentWrapper:before {
+      border-color: var(--progresstracker-color-pending);
+    }
+  }
+
+  &--complete {
+    .tui-progressTrackerNav__itemContentWrapper:before {
+      border-color: var(--progresstracker-color-complete);
+      border-style: solid;
+    }
+  }
+
+  &--achieved {
+    .tui-progressTrackerNav__itemContentWrapper:before {
+      border-color: var(--progresstracker-color-achieved);
+      border-style: solid;
+    }
+  }
+}
+
+/**
+ * Items and their content
+ **/
+.tui-progressTrackerNav {
+  &__item {
+    position: relative;
+    flex-shrink: 0;
+
+    &:last-child {
+      .tui-progressTrackerNav__itemContentWrapper:before {
+        display: none;
+      }
+    }
+
+    /**
+    * Connector gap adjustment for large item markers
+    **/
+    &--selected,
+    &--target {
+      .tui-progressTrackerNav__itemContentWrapper:after {
+        position: absolute;
+        display: block;
+        /* nested calc() will get botched by RTLCSS processing if it is broken down onto multiple lines */
+        /* prettier-ignore */
+        width: calc( var(--progresstracker-full-marker-size) + calc(var(--progresstracker-connector-gap) * 2) );
+        /* prettier-ignore */
+        height: calc( var(--progresstracker-full-marker-size) + calc(var(--progresstracker-connector-gap) * 2) );
+        border-color: var(--progresstracker-container-bg-color);
+        border-style: solid;
+        border-width: var(--progresstracker-connector-gap);
+        border-radius: 50%;
+        content: '';
+
+        .tui-progressTrackerNav--horizontal & {
+          top: calc(var(--progresstracker-connector-gap) * -1);
+          left: calc(
+            50% - #{$progressTracker-half-marker-size} - var(--progresstracker-connector-gap)
+          );
+        }
+        .tui-progressTrackerNav--vertical & {
+          top: calc(var(--progresstracker-connector-gap) * -1);
+          left: calc(var(--progresstracker-connector-gap) * -1);
+        }
+      }
+    }
+  }
+
+  &__itemContentWrapper {
+    position: relative;
+    display: flex;
+
+    .tui-progressTrackerNav--vertical & {
+      flex-direction: row;
+      align-items: stretch;
+      height: 100%;
+    }
+    .tui-progressTrackerNav--horizontal & {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__itemContent {
+    display: flex;
+    flex-direction: column;
+
+    &--full-width {
+      width: 100%;
+    }
+
+    &--overflow-hidden {
+      overflow: hidden;
+    }
+
+    .tui-progressTrackerNav--vertical & {
+      padding-left: var(--gap-2);
+
+      /**
+      * variable width and gap sizes based on supplied props
+      **/
+      &--gap-small {
+        padding-bottom: var(--gap-2);
+      }
+
+      &--gap-medium {
+        padding-bottom: var(--gap-5);
+      }
+
+      &--gap-large {
+        padding-bottom: var(--gap-7);
+      }
+    }
+
+    .tui-progressTrackerNav--horizontal & {
+      align-items: center;
+
+      /**
+        * variable width and gap sizes based on supplied props
+        **/
+      &--gap-small {
+        padding-right: var(--progress-tracker-horizontal-gap--small);
+        padding-left: var(--progress-tracker-horizontal-gap--small);
+      }
+      &--size-small {
+        width: var(--progress-tracker-horizontal-size--small);
+      }
+
+      &--gap-medium {
+        padding-right: var(--progress-tracker-horizontal-gap--medium);
+        padding-left: var(--progress-tracker-horizontal-gap--medium);
+      }
+      &--size-medium {
+        width: var(--progress-tracker-horizontal-size--medium);
+      }
+
+      &--gap-large {
+        padding-right: var(--progress-tracker-horizontal-gap--large);
+        padding-left: var(--progress-tracker-horizontal-gap--large);
+      }
+      &--size-large {
+        width: var(--progress-tracker-horizontal-size--large);
+      }
+    }
+  }
+
+  &__itemLabel {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding-top: var(--gap-1);
+    padding-bottom: var(--gap-1);
+
+    .tui-progressTrackerNav--horizontal & {
+      text-align: center;
+    }
+
+    &--current {
+      .tui-formBtn {
+        color: var(--color-state-active);
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__itemStatus {
+    @include sr-only();
+  }
+}
+
+:root {
+  --settings-navigation-spacing: var(--gap-2);
+  --settings-navigation-tree-width: 340px;
+}
+
+.tui-settingsNavigation {
+  .tui-popoverPositioner {
+    width: var(--settings-navigation-tree-width);
+  }
+
+  &__content {
+    margin: 0 var(--settings-navigation-spacing);
+  }
+}
+
+.tui-settingsNavigationTree {
+  -webkit-hyphens: none;
+      -ms-hyphens: none;
+          hyphens: none;
+
+  &__spacing {
+    padding: var(--gap-2) 0;
+  }
+
+  &__popover {
+    &-topBranch {
+      padding-bottom: var(--gap-2);
+      color: var(--color-neutral-6);
+    }
+
+    &-contentsItem {
+      margin-top: var(--gap-2);
+      white-space: normal;
+    }
+
+    &-contentsLabel {
+      width: 100%;
+      color: var(--color-neutral-6);
+    }
+  }
+
+  &__link {
+    position: relative;
+    left: -100%;
+    width: calc(200% + var(--settings-navigation-spacing));
+    padding: var(--gap-2) 0 var(--gap-2) 100%;
+
+    &:hover {
+      color: var(--btn-checkbox-text-color-focus);
+    }
+  }
+}
+
+:root {
+  --tui-sidepanel-button-width: 30px;
+  --tui-sidepanel-button-height: 66px;
+  --tui-sidepanel-border-width: 1px;
+}
+
+.tui-sidePanel {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+
+  /* inner content alignment*/
+  &--rtl,
+  .dir-rtl .tui-sidePanel--ltr & {
+    justify-content: flex-end;
+  }
+  &--ltr,
+  .dir-rtl .tui-sidePanel--rtl & {
+    justify-content: flex-start;
+  }
+
+  &--sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow: hidden;
+
+    .ie &,
+    .msedge & {
+      position: relative;
+      top: auto;
+      max-height: initial;
+    }
+  }
+
+  &--sticky&--closed {
+    overflow: visible;
+  }
+
+  /**
+   * Close button, somewhat complicated by the SidePanel being configurably
+   * bi-directional and both of those directions also requiring RTL support
+   **/
+  @mixin attrs-from-right() {
+    margin-right: -1px;
+    border-right-width: 0;
+    border-left-width: var(--tui-sidepanel-border-width);
+    border-radius: var(--btn-radius) 0 0 var(--btn-radius);
+
+    &:hover,
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      border-right-width: 0;
+      border-left-width: var(--tui-sidepanel-border-width);
+      box-shadow: -2px 1px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* FlexIcon*/
+    .tui-iconBtn__icon {
+      transform: rotate(90deg);
+    }
+  }
+  @mixin attrs-from-left() {
+    margin-left: -1px;
+    border-right-width: 1px;
+    border-left-width: 0;
+    border-radius: 0 var(--btn-radius) var(--btn-radius) 0;
+
+    &:hover,
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      border-right-width: var(--tui-sidepanel-border-width);
+      border-left-width: 0;
+      box-shadow: 2px 1px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    /* FlexIcon*/
+    .tui-iconBtn__icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &__outsideClose {
+    .tui-sidePanel--sticky & {
+      position: -webkit-sticky;
+      position: sticky;
+      top: calc(50% - (var(--tui-sidepanel-button-height) / 2));
+    }
+
+    .ie & {
+      /* height, position and scrolling will degrade in IE11, so the toggle*/
+      /* button needs a more appropriate location than "the middle" of the*/
+      /* SidePanel, which could be very tall in IE11*/
+      top: auto;
+      align-self: flex-start;
+      max-width: var(--tui-sidepanel-button-width);
+      max-height: var(--tui-sidepanel-button-height);
+      margin-top: var(--gap-8);
+    }
+
+    flex-grow: 0;
+    min-width: var(--tui-sidepanel-button-width);
+    min-height: var(--tui-sidepanel-button-height);
+    margin-bottom: -1px;
+    padding: var(--gap-6) var(--gap-1);
+    background-color: var(--color-neutral-3);
+    border-color: var(--color-neutral-5);
+
+    .tui-sidePanel--rtl &,
+    .dir-rtl .tui-sidePanel--ltr & {
+      @include attrs-from-right();
+    }
+
+    .tui-sidePanel--ltr &,
+    .dir-rtl .tui-sidePanel--rtl & {
+      @include attrs-from-left();
+    }
+  }
+
+  /**
+   * A wrapper for content container, which helps with transitions on width
+   * while overflowing content is still visible, and providing whitespace
+   * between content and the edges of the SidePanel
+   **/
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-neutral-3);
+    border: var(--tui-sidepanel-border-width) solid var(--color-neutral-5);
+
+    .tui-sidePanel--flush & {
+      border-top: none;
+      border-bottom: none;
+    }
+
+    .ie & {
+      /* put the border back, it usually wouldn't reach the footer, only on really small resources, and would otherwise look chopped off */
+      border-bottom: var(--tui-sidepanel-border-width) solid
+        var(--color-neutral-5);
+    }
+
+    .tui-sidePanel--open.tui-sidePanel--overflows & {
+      overflow-y: auto;
+    }
+
+    .tui-sidePanel--closed & {
+      max-width: 1px;
+      padding-right: 0;
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    /* we have to cut off overflow during these states otherwise we'll bump*/
+    /* page scrollbars, or a containing element scrollbars*/
+    .tui-sidePanel--closed &,
+    .tui-sidePanel--closing &,
+    .tui-sidePanel--opening & {
+      overflow: hidden;
+    }
+  }
+
+  /**
+   * Transitioned container for arbitrary SidePanel content
+   **/
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+
+    .ie & {
+      height: 100%;
+    }
+
+    .tui-sidePanel--closed &,
+    .tui-sidePanel--closing & {
+      opacity: 0;
+    }
+
+    .tui-sidePanel--closed & {
+      display: none;
+    }
+
+    .tui-sidePanel--open &,
+    .tui-sidePanel--opening & {
+      opacity: 1;
+    }
+
+    .tui-sidePanel--animated & {
+      transition: opacity var(--transition-sidepanel-content-duration)
+        var(--transition-sidepanel-content-function);
+    }
+
+    .tui-sidePanel--open.tui-sidePanel--overflows & {
+      overflow-y: auto;
+    }
+  }
+}
+
+.tui-sidePanelNav {
+  padding: var(--gap-4) 0;
+  background: var(--side-panel-nav-bg-color);
+
+  & > * + * {
+    margin-top: var(--gap-7);
+  }
+}
+
+.tui-sidePanelNavButtonItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--side-panel-nav-item-text-color);
+  background: var(--side-panel-nav-item-bg-color);
+  border-color: var(--side-panel-nav-item-border-color);
+
+  /* Item li*/
+  &.tui-focusWithin,
+  &:hover {
+    color: var(--side-panel-nav-item-text-color-focus);
+    background: var(--side-panel-nav-item-bg-color-focus);
+    border-color: var(--side-panel-nav-item-border-color-focus);
+  }
+
+  &__side {
+    margin-left: auto;
+    padding-right: var(--gap-4);
+  }
+
+  &__notificationDot {
+    position: absolute;
+    /* The same as padding left of actioin plus another tui-gap-4 to make sure there is a padding between*/
+    /* the action link and the dot.*/
+    width: var(--sidepanel-navigation-item-padding-left);
+    pointer-events: none;
+
+    &-inner {
+      display: block;
+      width: 0.6rem;
+      height: 0.6rem;
+      margin-left: var(--gap-3);
+      background-color: var(--color-prompt-alert);
+      border-radius: 100%;
+    }
+  }
+
+  /* Item link*/
+  &__action {
+    flex-grow: 1;
+    padding: var(--gap-2) var(--gap-4);
+    padding-left: var(--sidepanel-navigation-item-padding-left);
+    color: inherit;
+    text-align: left;
+    -ms-word-break: break-all;
+    word-break: break-word;
+
+    &:hover,
+    &:focus,
+    &:focus:hover {
+      color: inherit;
+    }
+  }
+
+  &--active {
+    color: var(--side-panel-nav-item-text-color-selected);
+    background: var(--side-panel-nav-item-bg-color-selected);
+    border-color: var(--side-panel-nav-item-border-color-selected);
+
+    &.tui-focusWithin,
+    &:hover {
+      color: var(--side-panel-nav-item-text-color-selected);
+      background: var(--side-panel-nav-item-bg-color-selected);
+      border-color: var(--side-panel-nav-item-border-color-selected);
+    }
+  }
+}
+
+.tui-sidePanelNavGroup {
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--gap-4);
+    padding-left: var(--sidepanel-navigation-item-padding-left);
+
+    &-title {
+      margin: 0;
+      @include tui-font-heading-label();
+    }
+
+    &-side {
+      margin-left: auto;
+      padding-left: var(--gap-2);
+    }
+  }
+
+  &__items {
+    margin-left: 0;
+    list-style: none;
+  }
+}
+
+.tui-sidePanelNavLinkItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--side-panel-nav-item-text-color);
+  background: var(--side-panel-nav-item-bg-color);
+  border-color: var(--side-panel-nav-item-border-color);
+
+  /* Item li*/
+  &.tui-focusWithin,
+  &:hover {
+    color: var(--side-panel-nav-item-text-color-focus);
+    background: var(--side-panel-nav-item-bg-color-focus);
+    border-color: var(--side-panel-nav-item-border-color-focus);
+  }
+
+  &__side {
+    margin-left: auto;
+    padding-right: var(--gap-4);
+  }
+
+  &__notificationDot {
+    position: absolute;
+    /* The same as padding left of actioin plus another tui-gap-4 to make sure there is a padding between*/
+    /* the action link and the dot.*/
+    width: var(--sidepanel-navigation-item-padding-left);
+    pointer-events: none;
+
+    &-inner {
+      display: block;
+      width: 0.6rem;
+      height: 0.6rem;
+      margin-left: var(--gap-3);
+      background-color: var(--color-prompt-alert);
+      border-radius: 100%;
+    }
+  }
+
+  /* Item link*/
+  &__action {
+    flex-grow: 1;
+    padding: var(--gap-2) var(--gap-4);
+    padding-left: var(--sidepanel-navigation-item-padding-left);
+    color: inherit;
+    line-height: 1;
+    -ms-word-break: break-all;
+    word-break: break-word;
+
+    &:hover,
+    &:focus,
+    &:focus:hover {
+      color: inherit;
+    }
+  }
+
+  &--active {
+    color: var(--side-panel-nav-item-text-color-selected);
+    background: var(--side-panel-nav-item-bg-color-selected);
+    border-color: var(--side-panel-nav-item-border-color-selected);
+
+    &.tui-focusWithin,
+    &:hover {
+      color: var(--side-panel-nav-item-text-color-selected);
+      background: var(--side-panel-nav-item-bg-color-selected);
+      border-color: var(--side-panel-nav-item-border-color-selected);
+    }
+  }
+}
+
+:root {
+  --tab-border-width: 1px;
+  /* Tab inner horizontal padding*/
+  --tab-h-padding: var(--gap-6);
+  /* Tab inner vertical padding*/
+  --tab-v-padding: var(--gap-3);
+  /* Size of Highlight*/
+  --tab-highlight-height: var(--gap-1);
+  /* Add extra spacing for drop shadow to be displayed*/
+  --tab-shadow-offset: var(--gap-3);
+  /* Tab small version inner horizontal padding*/
+  --tab-small-h-padding: var(--gap-4);
+  /* Tab small version inner vertical padding*/
+  --tab-small-v-padding: var(--gap-3);
+}
+
+.tui-tabs {
+  $mod-fill: #{&}--fill;
+  $mod-horizontal: #{&}--horizontal;
+  $mod-vertical: #{&}--vertical;
+
+  &--fill {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  &--vertical {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__selector {
+    list-style: none;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
+
+    #{$mod-horizontal} & {
+      border-bottom: var(--tab-border-width) solid;
+      border-bottom-color: var(--tabs-border-color);
+    }
+
+    #{$mod-vertical} & {
+      border-right: var(--tab-border-width) solid;
+      border-right-color: var(--tabs-border-color);
+    }
+  }
+
+  #{$mod-vertical} &__tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__tab {
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+
+    #{$mod-horizontal} & {
+      margin: calc(var(--tab-shadow-offset) * -1);
+      margin-bottom: calc(var(--tab-border-width) * -1);
+      padding: var(--tab-shadow-offset);
+      padding-bottom: var(--tab-border-width);
+    }
+
+    #{$mod-vertical} & {
+      max-width: 220px;
+      margin-right: calc(var(--tab-border-width) * -1);
+      margin-bottom: calc(var(--tab-shadow-offset) * -1);
+      padding-right: var(--tab-border-width);
+      padding-bottom: var(--tab-shadow-offset);
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  a&__link {
+    @include tui-font-link-large();
+    display: flex;
+    padding: var(--tab-v-padding) var(--tab-h-padding);
+    color: var(--tabs-text-color);
+    text-decoration: none;
+
+    border: var(--tab-border-width) solid;
+    border-color: transparent;
+
+    pointer-events: auto;
+
+    &:hover {
+      color: var(--tabs-text-color-focus);
+      background: var(--tabs-bg-color-focus);
+    }
+
+    &:focus {
+      color: var(--tabs-text-color-focus);
+      background: var(--tabs-bg-color-focus);
+      outline: dashed 1px var(--color-state-focus);
+      outline-offset: -0.75rem;
+    }
+
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      color: var(--tabs-text-color-active);
+      outline: none;
+    }
+
+    #{$mod-horizontal} & {
+      margin-top: var(--tab-highlight-height);
+      /* overlap edges to avoid double border*/
+      margin-right: calc(var(--tab-border-width) * -1);
+      border-bottom: none;
+    }
+
+    #{$mod-vertical} & {
+      /* overlap edges to avoid double border*/
+      margin-bottom: calc(var(--tab-border-width) * -1);
+      margin-left: var(--tab-highlight-height);
+      border-right: none;
+    }
+  }
+
+  &__tab--disabled a&__link {
+    color: var(--tabs-text-color-disabled);
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &__tab--active a&__link {
+    position: relative;
+    color: var(--tabs-text-color-selected);
+    background: var(--tabs-bg-color-selected);
+
+    #{$mod-horizontal} & {
+      top: var(--tab-border-width);
+      padding-top: calc(var(--tab-v-padding) - var(--tab-border-width));
+      padding-bottom: calc(var(--tab-v-padding) + var(--tab-border-width));
+      border-color: var(--tabs-border-color);
+      box-shadow: var(--shadow-3);
+    }
+
+    #{$mod-vertical} & {
+      left: var(--tab-border-width);
+      padding-right: calc(var(--tab-v-padding) + var(--tab-border-width));
+      padding-left: calc(var(--tab-h-padding) - var(--tab-border-width));
+      border-color: var(--tabs-border-color);
+      box-shadow: var(--shadow-2);
+    }
+
+    &::after {
+      position: absolute;
+      background: var(--tabs-selected-bar-color);
+      content: '';
+
+      #{$mod-horizontal} & {
+        top: calc(var(--tab-highlight-height) * -1);
+        right: 0;
+        left: -1px;
+        width: calc(100% + 2px);
+        height: var(--tab-highlight-height);
+      }
+
+      #{$mod-vertical} & {
+        top: 0;
+        bottom: 0;
+        left: calc(var(--tab-border-width) * -2);
+        width: var(--tab-highlight-height);
+        height: calc(100% + 1px);
+      }
+    }
+  }
+
+  &__tabLabel {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #{$mod-fill} > &__panels {
+    flex-grow: 1;
+    > .tui-tabContent {
+      height: 100%;
+    }
+  }
+}
+
+.tui-tabs {
+  $mod-horizontal: #{&}--horizontal;
+  $block: #{&};
+
+  /* Small tab*/
+  &__tab--small {
+    #{$mod-horizontal} & {
+      #{$block}__link {
+        @include tui-font-body-small;
+        padding: var(--tab-small-v-padding) var(--tab-small-h-padding);
+      }
+    }
+  }
+
+  /* Active small tab*/
+  &__tab--active&__tab--small {
+    #{$mod-horizontal} & {
+      #{$block}__link {
+        padding-top: calc(var(--tab-small-v-padding) - var(--tab-border-width));
+        /* prettier-ignore*/
+        padding-bottom: calc(var(--tab-small-v-padding) + var(--tab-border-width));
+        color: var(--tabs-text-color-selected);
+      }
+    }
+  }
+
+  /* Disabled small tab*/
+  &__tab--disabled&__tab--small {
+    #{$mod-horizontal} & {
+      #{$block}__link {
+        color: var(--tabs-text-color-disabled);
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.tui-tabContent {
+  .tui-tabs--horizontal & {
+    padding-top: var(--gap-4);
+  }
+
+  .tui-tabs--horizontal.tui-tabs--contentSpacing-large & {
+    padding-top: var(--gap-8);
+  }
+
+  .tui-tabs--vertical & {
+    padding-left: var(--gap-4);
+  }
+
+  .tui-tabs--vertical.tui-tabs--contentSpacing-large & {
+    padding-left: var(--gap-8);
+  }
+}
+
+.tui-tag {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: var(--tag-height);
+  white-space: nowrap;
+  background-color: var(--tag-bg-color);
+  border: var(--border-width-thin) solid var(--tag-border-color);
+  border-radius: var(--tag-border-radius);
+
+  &__content {
+    padding: 0 var(--gap-2);
+    font-size: var(--font-size-13);
+
+    &--withButton {
+      padding-right: 0;
+      color: var(--tag-button-color);
+    }
+  }
+
+  &--primary {
+    text-transform: uppercase;
+    background-color: var(--color-state);
+  }
+
+  &--primary &__content {
+    color: var(--color-neutral-1);
+  }
+}
+
+.tui-tagList {
+  display: flex;
+  align-items: flex-start;
+  min-width: 230px;
+  padding: var(--gap-2);
+  border: var(--border-width-thin) solid var(--form-input-border-color);
+  .tui-contextInvalid & {
+    border-color: var(--form-input-border-color-invalid);
+    box-shadow: var(--form-input-shadow-invalid);
+  }
+
+  &__tags {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: calc(var(--tag-height) + (2 * var(--border-width-thin)));
+  }
+
+  &__tagItems {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    min-width: 0;
+
+    &--open {
+      flex-wrap: wrap;
+    }
+
+    & > * {
+      margin-right: var(--gap-1);
+      margin-bottom: 0.2rem;
+    }
+  }
+
+  &__suffix {
+    @include tui-font-body-small();
+    flex-shrink: 0;
+    padding-right: var(--gap-2);
+    padding-left: var(--gap-1);
+    color: var(--color-state);
+    white-space: nowrap;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    flex-grow: 1;
+    margin: -2px 0;
+  }
+
+  &__expandArrow {
+    height: calc(var(--tag-height) + (2 * var(--border-width-thin)));
+  }
+
+  &__caret {
+    fill: var(--color-neutral-7);
+  }
+
+  &__loading {
+    margin: var(--gap-4);
+  }
+}
+
+.tui-settingsFormBrand__testEmailInfoButton {
+  align-self: center;
+}
+
+.tui-toggleBtn {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: var(--gap-12);
+  max-width: 100%;
+  height: var(--form-input-height);
+  padding: 0 var(--gap-2);
+  color: var(--toggle-btn-text-color);
+  font-size: var(--form-input-font-size);
+  line-height: 1.2;
+  background: var(--toggle-btn-bg-color);
+  border: none;
+  border-radius: calc(var(--btn-radius) - 1px);
+
+  &:focus,
+  &:hover {
+    color: var(--toggle-btn-text-color-focus);
+    text-decoration: none;
+    background: var(--toggle-btn-bg-color-focus);
+    box-shadow: none;
+  }
+
+  &:active,
+  &:active:focus,
+  &:active:hover {
+    color: var(--toggle-btn-text-color-active);
+    text-decoration: none;
+    background: var(--toggle-btn-bg-color-active);
+    border: none;
+    box-shadow: none;
+  }
+
+  &:active:focus,
+  &:focus {
+    outline: 1px dashed var(--toggle-btn-text-color-active);
+    outline-offset: -3px;
+  }
+
+  &[disabled] {
+    color: var(--toggle-btn-text-color-disabled);
+    background: var(--toggle-btn-bg-color-disabled);
+    cursor: default;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      color: var(--toggle-btn-text-color-disabled);
+      background: var(--toggle-btn-bg-color-disabled);
+    }
+  }
+
+  &--selected {
+    color: var(--toggle-btn-text-color-selected);
+    background: var(--toggle-btn-bg-color-selected);
+    cursor: default;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      color: var(--toggle-btn-text-color-selected);
+      background: var(--toggle-btn-bg-color-selected);
+    }
+
+    &:active:focus,
+    &:focus {
+      outline: 1px dashed var(--toggle-btn-text-color-selected);
+      outline-offset: -3px;
+    }
+  }
+
+  &[disabled]&--selected {
+    color: var(--toggle-btn-text-color-selected);
+    background: var(--toggle-btn-bg-color-selected);
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:active:focus,
+    &:active:hover {
+      color: var(--toggle-btn-text-color-selected);
+      background: var(--toggle-btn-bg-color-selected);
+    }
+  }
+
+  &--hasText {
+    min-width: 70px;
+
+    .tui-toggleBtn__icon {
+      font-size: var(--font-size-14);
+    }
+  }
+
+  &--large {
+    min-width: 10rem;
+    min-height: 4.6rem;
+
+    .tui-toggleBtn__content {
+      flex-direction: column;
+
+      & > * + * {
+        margin-top: var(--gap-1);
+      }
+    }
+  }
+
+  &__content {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__icon {
+    position: relative;
+    top: 1px;
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--font-size-15);
+  }
+
+  &__text {
+    padding: 0 var(--gap-1);
+  }
+}
+
+.tui-toggleSet {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 1px;
+  background: var(--toggle-bg-color);
+  border-radius: var(--btn-radius);
+
+  &--disabled {
+    opacity: 0.4;
+  }
+
+  &--select {
+    width: 100%;
+    background: transparent;
+  }
+
+  &--large {
+    padding: 2px;
+  }
+}
+
+:root {
+  --form-toggle-color: var(--color-neutral-7);
+  --form-toggle-dot-size: 1.6rem;
+  --form-toggle-container-width: 4rem;
+  --form-toggle-container-height: 2rem;
+  --form-toggle-container-radius: 1rem;
+  --form-toggle-text-offset: var(--gap-2);
+  --form-toggle-dot-offset: 0.2rem;
+  --form-toggle-bottom: 1.8rem;
+  --form-toggle-focus-border: var(--border-width-normal);
+  --form-toggle-focus-gap: 0.1rem;
+}
+
+.tui-toggleSwitch {
+  display: flex;
+  align-items: center;
+
+  &__btn {
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn;
+    /* stylelint-disable-next-line tui/at-extend-only-placeholders*/
+    @extend .tui-formBtn--transparent;
+    color: var(--form-toggle-color);
+
+    &:focus,
+    &:active:focus {
+      color: var(--form-toggle-color);
+      outline: none;
+    }
+
+    &:hover {
+      color: var(--form-toggle-color);
+    }
+
+    &[disabled] {
+      color: initial;
+      &:hover {
+        color: initial;
+      }
+      &:hover,
+      &:active:hover {
+        color: initial;
+      }
+    }
+
+    &-text {
+      position: relative;
+    }
+  }
+
+  /* toggle size and shape*/
+  &__ui {
+    position: relative;
+    width: var(--form-toggle-container-width);
+    margin-left: var(--form-toggle-text-offset);
+    /* prettier-ignore*/
+    padding: calc(var(--form-toggle-focus-gap) + var(--form-toggle-focus-border));
+
+    &--toggleOnly {
+      margin-left: calc(
+        -1 * (var(--form-toggle-focus-gap) + var(--form-toggle-focus-border))
+      );
+    }
+
+    /* the toggle background*/
+    &:before {
+      display: block;
+      height: var(--form-toggle-container-height);
+      border-radius: var(--form-toggle-container-radius);
+      transition: background-color var(--transition-button-duration)
+          var(--transition-button-function),
+        border-color var(--transition-button-duration)
+          var(--transition-button-function);
+      content: '';
+
+      .tui-contextInvalid & {
+        box-shadow: 0 0 0 2px var(--form-input-border-color-invalid);
+      }
+    }
+
+    /* the toggle dot*/
+    &:after {
+      position: absolute;
+      /* prettier-ignore*/
+      top: calc(var(--form-toggle-dot-offset) + calc(var(--form-toggle-focus-gap) + var(--form-toggle-focus-border)));
+      /* prettier-ignore*/
+      left: calc(var(--form-toggle-dot-offset) + calc(var(--form-toggle-focus-gap) + var(--form-toggle-focus-border)));
+      display: block;
+      width: var(--form-toggle-dot-size);
+      height: var(--form-toggle-dot-size);
+      border-radius: 50%;
+      box-shadow: var(--shadow-2);
+      content: '';
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+
+    /* toggled off*/
+
+    /* the toggle background*/
+    &:before {
+      background-color: var(--form-toggle-off-bg-color);
+      border: var(--form-input-border-size) solid;
+      border-color: var(--form-toggle-border-color);
+    }
+
+    /* the toggle dot*/
+    &:after {
+      background-color: var(--form-toggle-dot-color);
+    }
+
+    &:hover,
+    &:focus {
+      &:before {
+        background-color: var(--form-toggle-off-bg-color-hover-focus);
+      }
+    }
+
+    &[data-disabled] {
+      cursor: default;
+      &:before {
+        background-color: var(--form-toggle-off-bg-color-disabled);
+        border-color: var(--form-toggle-border-color-disabled);
+      }
+    }
+  }
+
+  /* toggled off, via the button*/
+  &__btn {
+    &:hover,
+    &:focus {
+      ~ .tui-toggleSwitch__ui {
+        padding: var(--form-toggle-focus-gap);
+        border: var(--form-toggle-focus-border) solid transparent;
+        /* prettier-ignore*/
+        border-radius: calc(calc(var(--form-toggle-container-radius) + var(--form-toggle-focus-gap)) + var(--form-toggle-focus-border));
+
+        &:after {
+          /* prettier-ignore*/
+          top: calc(var(--form-toggle-dot-offset) + var(--form-toggle-focus-gap));
+          /* prettier-ignore*/
+          left: calc(var(--form-toggle-dot-offset) + var(--form-toggle-focus-gap));
+        }
+      }
+    }
+
+    &:focus ~ .tui-toggleSwitch__ui {
+      border: var(--form-toggle-focus-border) solid var(--color-state);
+    }
+  }
+
+  /* toggled on*/
+  &__btn[aria-pressed] ~ &__ui {
+    /* the dot*/
+    &:after {
+      /* prettier-ignore*/
+      right: calc(var(--form-toggle-dot-offset) + calc(var(--form-toggle-focus-gap) + var(--form-toggle-focus-border)));
+      left: auto;
+    }
+
+    /* the toggle background*/
+    &:before {
+      background-color: var(--form-toggle-on-bg-color);
+      border-color: var(--form-toggle-on-border-color);
+    }
+
+    &:hover,
+    &:focus {
+      &:before {
+        background-color: var(--form-toggle-on-bg-color-hover-focus);
+      }
+    }
+    &[data-disabled] {
+      &:before {
+        background-color: var(--form-toggle-on-bg-color-disabled);
+        border-color: var(--form-toggle-border-color-disabled);
+      }
+    }
+  }
+
+  /* toggled on, via the button*/
+  &__btn[aria-pressed] {
+    &:hover,
+    &:focus {
+      ~ .tui-toggleSwitch__ui {
+        &:after {
+          /* prettier-ignore*/
+          right: calc(var(--form-toggle-dot-offset) + var(--form-toggle-focus-gap));
+        }
+      }
+    }
+  }
+
+  /* toggle on the left, text on the right*/
+  &--left {
+    .tui-toggleSwitch__ui {
+      order: 1;
+      margin-right: var(--form-toggle-text-offset);
+      margin-left: 0;
+    }
+
+    .tui-toggleSwitch__btn {
+      order: 2;
+    }
+
+    .tui-toggleSwitch__icon {
+      order: 3;
+    }
+  }
+}
+
+.tui-tree {
+  list-style: none;
+}
+
+.tui-treeNode {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  padding: 1px 0;
+
+  &--noPadding {
+    padding: 0;
+  }
+
+  &--top {
+    position: relative;
+    padding: var(--gap-2) 0;
+  }
+
+  &--separator {
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-bottom: var(--border-width-thin) solid var(--color-neutral-5);
+      content: '';
+    }
+  }
+
+  &__content {
+    width: 100%;
+    min-width: 0;
+    padding-left: calc(var(--gap-1) / 2);
+  }
+
+  &__trigger {
+    position: relative;
+    top: calc(var(--gap-1) / 2);
+    z-index: 1;
+    height: 1em;
+
+    &-btn {
+      left: calc(var(--gap-1) / 2 * -1);
+      padding: 0 var(--gap-1);
+    }
+
+    &--top {
+      .tui-treeNode__trigger-btn {
+        left: 0;
+      }
+    }
+
+    &--spacing {
+      padding-left: var(--gap-6);
+    }
+  }
+
+  &__bar {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+
+    & > * + * {
+      margin-left: var(--gap-2);
+    }
+
+    &-btn {
+      flex-grow: 0;
+      flex-shrink: 1;
+      line-height: 1.2;
+      text-align: left;
+      -ms-word-break: break-all;
+      word-break: break-word;
+    }
+
+    &-label,
+    &-link {
+      @include tui-font-heading-label();
+      margin: 0;
+      -ms-word-break: break-all;
+      word-break: break-word;
+      -webkit-hyphens: none;
+          -ms-hyphens: none;
+              hyphens: none;
+    }
+
+    &-side {
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+  }
+
+  &__child {
+    margin: 0;
+    padding-top: var(--gap-3);
+    list-style: none;
+
+    &--noPadding {
+      padding-top: 0;
+    }
+  }
+}
+
+.tui-formField {
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
+
+  @include tui-char-length-classes();
+}
+
+.tui-themeSettings {
+  &__content {
+    margin-top: var(--gap-8);
+  }
+
+  &__forms {
+    @include tui-stack-vertical(var(--gap-8));
+  }
+}
+
+.tui-themeTenants {
+  &__content {
+    margin-top: var(--gap-8);
+  }
+
+  &__section + &__section {
+    margin-top: var(--gap-12);
+  }
+
+  &__section {
+    @include tui-stack-vertical(var(--gap-4));
+  }
+}
+

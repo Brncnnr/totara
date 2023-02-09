@@ -1,0 +1,11 @@
+query message_popup_messages {
+  message_popup_messages {
+    id
+    subject
+    fullmessage(format: HTML)
+    fullmessageformat
+    contexturl
+    timecreated
+    isread
+  }
+}

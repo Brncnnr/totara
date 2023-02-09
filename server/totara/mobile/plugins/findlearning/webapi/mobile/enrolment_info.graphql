@@ -1,0 +1,17 @@
+query mobile_findlearning_enrolment_info($courseid: core_id!) {
+  enrolmentInfo: core_enrol_course_info(courseid: $courseid) {
+    isComplete: is_complete
+    isEnrolled: is_enrolled
+    guestAccess: guest_access
+    canEnrol: can_enrol
+    privileged: can_view
+    enrolmentOptions: enrolment_options {
+      id
+      type
+      roleName: role_name
+      customName: custom_name
+      sortOrder: sort_order
+      passwordRequired: password_required
+    }
+  }
+}

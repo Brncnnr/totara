@@ -1,0 +1,75 @@
+This files describes API changes in /admin/*.
+
+=== 17.0 ===
+
+* Added the "Delete course completion logs after" cleanup setting
+* restrict_php_version_7() has been deprecated. Please call restrict_php_version() instead.
+* restrict_php_version_71() has been deprecated. Please call restrict_php_version() instead.
+* restrict_php_version_74() has been deprecated. Please call restrict_php_version() instead.
+* restrict_php_version_81() has been deprecated. Please call restrict_php_version() instead.
+
+=== 16.0 ===
+
+* Removed deprecated mustache template setting_courselist_frontpage.mustache
+
+=== 15.0 ===
+
+* Added the 'admin/roles/classes/hook/core_role_potential_assignees_container()' hook to 'core_role_get_potential_user_selector()' function
+  under admin/roles/lib.php
+
+=== 14.0 ===
+
+* Added more role ids (managerroleid, learnerroleid, assessorroleid, performanceactivitycreatornewroleid, creatornewroleid, restorernewroleid)
+  which can't be removed if they are assigned under User Policies.
+  Changed the logic for deleting the roles if the users are assigned to these roles.
+
+=== 13.0 ===
+
+* Shortname for a new role will accept the alphanumeric characters only and fails for the hyphen and underscore characters
+* Hub registration functionality has been removed
+* Deprecated core_admin_renderer::registration_warning() has been removed
+* Deprecated setting 'uselegacybrowselistofusersreport' has been removed
+* Legacy "Browse list of users" admin page (admin/user_legacy.php) has been removed
+* Added default value to core_admin_renderer::admin_notifications_page for users that have logged in
+    in the last 3 months
+
+=== 12.0 ===
+
+* Icon helpers are no longer used in the following templates, icon data is passed via context data:
+** admin/templates/setting_configcolourpicker.mustache
+** admin/templates/setting_emoticons.mustache
+* The admin settings admin_setting_configselect and admin_setting_configmultiselect now support the optgroup tag.
+  Grouping of options can be created with this new tag.
+  For using it, the option parameters needs the Group names as indexes:
+  [
+    "Spain" =>  ["madrid" => "Madrid", "barcelona" => "Barcelona"],
+    "France" => ["paris" => "Paris", "marseille" => "Marseille"],
+  ]
+* Template setting_courselist_frontpage.mustache has been deprecated
+* Admin settings categories have been restructured:
+** 'accounts' has been removed and split into 'users' and 'roles'
+** 'language' and 'location' categories have been merged into one 'localisation' category
+** 'frontpage' category has been replaced with 'navigationcat' which now contains setting for both
+   site front page and general site navigation
+** reportbuilder related pages have been extracted into their own 'reportsmain' category
+
+=== 11.0 ===
+
+* Hub functionality has been deprecated and will be removed entirely in the next major version.
+* \core_admin_renderer::registration_warning() has been deprecated, the functionality for registering hubs will be removed in the next major version
+* admin/registration/confirmregistration.php has been deprecated and should no longer be linked to.
+* admin/registration/forms.php has been deprecated and should no longer be linked to.
+* admin/registration/index.php has been deprecated and should no longer be linked to.
+* admin/registration/register.php has been deprecated and should no longer be linked to.
+* admin/registration/renderer.php has been deprecated and should no longer be linked to.
+* admin/registration/renewregistration.php has been deprecated and should no longer be linked to.
+* admin/registration/lib.php has been deprecated and should no longer be included anywhere.
+* Database table for hub registration 'registration_hubs' has been deprecated.
+
+=== 10.0 ===
+
+* Admin settings have been refined to better support right-to-left languages. In RTL,
+  most fields should not have their direction flipped, a URL, a path to a file, ...
+  are always displayed LTR. The admin setting will now best guess if they should be
+  RTLized based on their PARAM_* type. To override that guess, use
+  admin_setting::set_force_ltr(true/false).

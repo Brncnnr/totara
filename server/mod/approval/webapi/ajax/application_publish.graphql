@@ -1,0 +1,19 @@
+mutation mod_approval_application_publish(
+  $input: mod_approval_application_publish_input!
+) {
+  mod_approval_application_publish(input: $input) {
+    application {
+      id
+      __typename
+      title
+      workflow_type
+      interactor {
+        can_edit
+        can_withdraw
+        can_delete
+        can_clone
+        can_edit_without_invalidating
+      }
+    }
+  }
+}

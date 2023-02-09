@@ -1,0 +1,100 @@
+.tui-linkedinActivityContentTree {
+  &__contents {
+    padding: var(--gap-2) var(--gap-4);
+
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+
+    &-item {
+      @include tui-font-body-small();
+    }
+  }
+}
+
+.tui-linkedinActivity {
+  &__admin {
+    margin-left: auto;
+  }
+
+  &__body {
+    & > * + * {
+      margin-top: var(--gap-5);
+    }
+  }
+
+  &__collapsibleContent {
+    padding: 0 var(--gap-10);
+  }
+
+  &__divider {
+    margin-top: var(--gap-9);
+    margin-bottom: var(--gap-9);
+  }
+
+  &__progressContainer {
+    @media (min-width: $tui-screen-xs) {
+      width: 50%;
+    }
+  }
+
+  &__status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    & > * {
+      margin-bottom: var(--gap-2);
+    }
+
+    &-completion {
+      margin-right: var(--gap-4);
+    }
+
+    &-toggle {
+      flex-wrap: wrap;
+    }
+
+    &-progress {
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      @media (max-width: $tui-screen-xs) {
+        width: 100%;
+        margin-top: var(--gap-2);
+      }
+    }
+  }
+
+  &__details {
+    margin-top: var(--gap-9);
+
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+
+    &-header {
+      margin: 0;
+      @include tui-font-heading-small();
+    }
+
+    &-bar {
+      @include tui-separator-dot();
+      color: var(--color-neutral-6);
+      @include tui-font-heading-label();
+    }
+
+    &-content {
+      & > * + * {
+        margin-top: var(--gap-4);
+      }
+    }
+
+    &-desc {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+

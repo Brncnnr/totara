@@ -1,0 +1,7 @@
+query mod_perform_activity_types {
+  mod_perform_activity_types {
+    id
+    name
+    display_name
+  }
+}

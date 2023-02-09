@@ -1,0 +1,8 @@
+{
+  "component": "tui",
+  "vendor": "totara",
+  "preEntry": "./js/pre_entry.js",
+  "exposeNodeModules": [
+    "vue"
+  ]
+}

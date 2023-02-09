@@ -1,0 +1,94 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2015 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+
+    @template totara_core/report_list
+
+    Report List.
+
+    This template generates a simple list of available report builder reports with an edit link if appropriate.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * report_list A array of reports that is required information to generate the list.
+
+    Example context (json):
+    {
+        "report_list": [
+            {
+                "name":"My Objectives",
+                "graphicon": "some/pixicon/string"
+                "href": "http://example.com",
+                "edit_href": "http://example.com",
+                "show_description": true,
+                "description": "This is a description"
+                "icon": {
+                    "template": "core/flex_icon",
+                    "context": {
+                        "identifier" : "edit",
+                        "customdata": {
+                            "alt": "Edit report x"
+                        },
+                        "classes": "fa-edit"
+                    }
+                }
+            },
+            {
+                "name":"My Users",
+                "graphicon": "some/pixicon/string"
+                "href": "http://example.com",
+                "edit_href": "http://example.com",
+                "show_description": true,
+                "description": "This is a description"
+                "icon": {
+                    "template": "core/flex_icon",
+                    "context": {
+                        "identifier" : "edit",
+                        "customdata": {
+                            "alt": "Edit report x"
+                        },
+                        "classes": "fa-edit"
+                    }
+                }
+            }
+        ]
+    }
+}}
+<li class="totara_core__myreports__list__item">
+    <a class="totara_core__myreports__list__item__content" href="{{href}}">
+        <div class="totara_core__myreports__list__item__content__image">
+            {{#graphimagedata}}{{> &&graphimagetemplate }}{{/graphimagedata}}
+        </div>
+
+        <div class="totara_core__myreports__list__item__content__title">
+            {{name}}
+        </div>
+
+        {{#showdescription}}
+            <div class="totara_core__myreports__list__item__content__description">
+                {{description}}
+            </div>
+        {{/showdescription}}
+    </a>
+</li>

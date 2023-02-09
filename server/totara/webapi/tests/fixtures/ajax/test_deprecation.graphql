@@ -1,0 +1,8 @@
+query totara_webapi_test_deprecation {
+  totara_webapi_test_deprecation {
+    __typename
+    nondeprecated
+    deprecated
+    deprecated_without_reason
+  }
+}

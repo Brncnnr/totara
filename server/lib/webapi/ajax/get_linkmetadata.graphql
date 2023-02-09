@@ -1,0 +1,11 @@
+query core_get_linkmetadata($url: param_url!) {
+  link: core_get_linkmetadata(url: $url) {
+    __typename
+    title(format: PLAIN)
+    description(format: PLAIN)
+    url
+    image
+    videoheight
+    videowidth
+  }
+}

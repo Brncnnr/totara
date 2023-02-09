@@ -1,0 +1,10 @@
+{
+  "INPUT_OBJECT": {
+    "mod_perform_activity_manual_relationship_selection_input": {
+      "documentation": { "undocumented": true }
+    },
+    "mod_perform_activities_input": {
+      "documentation": { "undocumented": true }
+    }
+  }
+}

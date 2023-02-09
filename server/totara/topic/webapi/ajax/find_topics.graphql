@@ -1,0 +1,11 @@
+query totara_topic_find_topics(
+  $search: param_text!
+  $exclude: [param_integer!]
+) {
+  topics: totara_topic_find_topics(search: $search, exclude: $exclude) {
+    __typename
+    id
+    value(format: PLAIN)
+    catalog
+  }
+}

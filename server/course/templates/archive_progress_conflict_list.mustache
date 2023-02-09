@@ -1,0 +1,86 @@
+{{!
+  This file is part of Totara Learn
+
+  Copyright (C) 2021 onwards Totara Learning Solutions LTD
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  @author Kunle Odusan <kunle.odusan@totaralearning.com>
+}}
+{{!
+    @template core_course/archive_progress
+
+    This template displays the list of certifications and programs conflicting with a course
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * error
+        * message string error message
+    * programs
+        * has_conflicts bool course has conflicts with programs
+        * names array names of programs
+    * certifications
+        * has_conflicts bool course has conflicts with certifications
+        * names array names of certifications
+
+    Other context variables for following partials:
+     * core/notification_error
+
+    Example context (json):
+    {
+        "error": {
+            "message": "conflicts below"
+        },
+        "programs": {
+            "has_conflicts": true,
+            "names": ["Program 1", "Program 2"]
+        },
+        "certifications": {
+            "has_conflicts": true,
+            "names": ["Certification 1", "Certification 2"]
+        }
+    }
+}}
+<div class="core_course-archive_conflict_progs_certs">
+  {{#error}}
+    {{> core/notification_error}}
+  {{/error}}
+
+  {{#programs.has_conflicts}}
+  <div class="programlist">
+    <p>{{#str}}programs, totara_program{{/str}}</p>
+    <ul>
+      {{#programs.names}}
+        <li>{{{.}}}</li>
+      {{/programs.names}}
+    </ul>
+  </div>
+  {{/programs.has_conflicts}}
+
+  {{#certifications.has_conflicts}}
+    <div class="certificationlist">
+      <p>{{#str}}certifications, totara_certification{{/str}}</p>
+      <ul>
+        {{#certifications.names}}
+          <li>{{{.}}}</li>
+        {{/certifications.names}}
+      </ul>
+    </div>
+  {{/certifications.has_conflicts}}
+</div>

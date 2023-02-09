@@ -1,0 +1,26 @@
+query core_editor(
+  $context_id: param_integer
+  $variant_name: param_alphaext
+  $format: param_integer
+  $usage_identifier: core_editor_usage_identifier
+  $framework: param_alpha
+  $extra_extensions: param_text
+) {
+  editor: core_editor(
+    context_id: $context_id
+    format: $format
+    framework: $framework
+  ) {
+    js_module(framework: $framework)
+    context_id
+    name
+    variant(
+      variant_name: $variant_name
+      usage_identifier: $usage_identifier
+      extra_extensions: $extra_extensions
+    ) {
+      options
+      name
+    }
+  }
+}

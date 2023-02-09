@@ -1,0 +1,11 @@
+mutation totara_reaction_remove_like(
+  $component: param_component!
+  $area: param_area!
+  $instanceid: param_integer!
+) {
+  result: totara_reaction_delete(
+    component: $component
+    area: $area
+    instanceid: $instanceid
+  )
+}

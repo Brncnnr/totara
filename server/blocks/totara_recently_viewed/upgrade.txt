@@ -1,0 +1,7 @@
+This files describes API changes in /blocks/totara_recently_viewed,
+information provided here is intended especially for developers.
+
+=== 13.5 ===
+
+* Second parameter "$theme_config" added to card::get_image needed by the workspace theme file
+* Second parameter "$theme_config" added to container_workspace/card::get_image needed by the workspace theme file

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage AccessModal Checks snapshot 1`] = `
+<modal-stub size="normal" dismissable="[object Object]" shade="true" arialabelledby="some-title" class="tui-engageAccessModal">
+  <modalcontent-stub title="accesssettings, totara_engage" titleid="some-title" titlevisible="true" contentpadding="true" class="tui-engageAccessModal__content">
+    <accessform-stub itemid="1" component="test_component" selectedaccess="PRIVATE" selectedoptions="[object Object]" donebuttontext="done, totara_engage"></accessform-stub>
+  </modalcontent-stub>
+</modal-stub>
+`;

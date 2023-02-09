@@ -1,0 +1,27 @@
+query totara_hierarchy_personal_goals(
+  $input: totara_hierarchy_personal_goal_input
+) {
+  totara_hierarchy_personal_goals(input: $input) {
+    items {
+      id
+      user_id
+      name
+      description
+      goal_scope
+      type_name
+      assignment_type {
+        type {
+          name
+          value
+        }
+        description
+      }
+      target_date
+      scale_value {
+        name
+      }
+    }
+    total
+    next_cursor
+  }
+}

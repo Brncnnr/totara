@@ -1,0 +1,3 @@
+useridnumber,idnumber,timemodified,deleted,username,firstname,lastname,email,menu1,text1
+UID3,User3,0,0,clivej,Clive,Jones,cjones@example.com,xx,import test
+UID4,User4,0,0,johns,John,Smith,jsmith@example.com,,import2

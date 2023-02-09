@@ -1,0 +1,20 @@
+query totara_api_client_for_editing($id: core_id!) {
+  result: totara_api_client(id: $id) {
+    client {
+      __typename
+      id
+      name(format: RAW)
+      service_account {
+        user {
+          id
+          fullname
+        }
+        is_valid
+        status
+      }
+      description(format: RAW)
+      status
+      tenant_id
+    }
+  }
+}

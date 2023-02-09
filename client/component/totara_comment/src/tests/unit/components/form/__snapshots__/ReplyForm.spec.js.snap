@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReplyForm Checks snapshot 1`] = `
+<responsebox-stub
+  class="tui-commentReplyForm"
+>
+  <form-stub
+    autocomplete="off"
+    class="tui-commentReplyForm__form"
+    inputwidth="limited"
+  >
+    <!---->
+     
+    <weka-stub
+      class="tui-commentReplyForm__editor"
+      compact="true"
+      data-file-item-id="100"
+      fileitemid="100"
+      isloggedin="true"
+      placeholder="enterreply-totara_comment"
+      stickytoolbar="true"
+      usageidentifier="[object Object]"
+      value="[object Object]"
+    />
+     
+    <submitcancelbuttonsgroup-stub
+      disablesubmit="true"
+      size="small"
+      submittext="reply-totara_comment"
+    />
+  </form-stub>
+</responsebox-stub>
+`;

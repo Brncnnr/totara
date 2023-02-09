@@ -1,0 +1,46 @@
+# Load recommended articles
+query ml_recommender_get_recommended_articles(
+  $article_id: param_integer!
+  $cursor: param_text
+  $source: String
+  $theme: param_component
+) {
+  cursor: ml_recommender_recommended_articles_cursor(
+    article_id: $article_id
+    cursor: $cursor
+  ) {
+    __typename
+    total
+    next
+  }
+
+  articles: ml_recommender_recommended_articles(
+    article_id: $article_id
+    cursor: $cursor
+  ) {
+    instanceid
+    name(format: PLAIN)
+    summary
+    component
+    tuicomponent
+    access
+    comments
+    reactions
+    timecreated
+    sharedbycount
+    bookmarked
+    extra(theme: $theme)
+    owned
+    user {
+      id
+      fullname
+      profileimageurl
+      profileimagealt
+    }
+    topics {
+      id
+      value(format: PLAIN)
+    }
+    url(source: $source)
+  }
+}

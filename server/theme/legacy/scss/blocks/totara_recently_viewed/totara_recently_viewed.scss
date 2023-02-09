@@ -1,0 +1,689 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Cody Finegan <cody.finegan@totaralearning.com>
+// @package   theme_legacy
+//
+
+$block-recently-viewed-image-height: 128px;
+
+.block .block-totara-recently-viewed h3.block-trv-title {
+  font-weight: bold;
+  font-size: var(--font-size-15);
+  line-height: var(--font-size-18);
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.block .block-totara-recently-viewed .block-trv-engage_survey h3.block-trv-title {
+  font-weight: normal;
+}
+
+.block-totara-recently-viewed {
+  .block-trv-top-title {
+    font-size: var(--font-size-13);
+    line-height: var(--font-size-15);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: var(--gap-4);
+  }
+
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    &.block-trv-layout-vertical {
+      display: flex;
+      flex-grow: 1;
+      flex-wrap: wrap;
+      flex-direction: column;
+      flex-basis: 100%;
+      margin: calc(var(--gap-1) * -1) 0;
+
+      li {
+        margin: var(--gap-1) 0;
+        width: 100%;
+      }
+
+      .block-trv-title {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &.block-trv-layout-horizontal {
+      margin: calc(var(--gap-2) * -1);
+
+      &.block-trv-layout-horizontal-single {
+        align-items: center;
+        flex-direction: column;
+
+        li {
+          flex-basis: 100%;
+          width: 100%;
+          max-width: 284px;
+        }
+      }
+
+      li {
+        padding: var(--gap-2);
+        display: flex;
+        min-height: 300px;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  a {
+    color: var(--color-neutral-7);
+    text-decoration: none;
+
+    &:focus {
+      outline: none;
+      text-decoration: underline;
+    }
+
+    // make the whole card clickable
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  // Standard card layout
+  // Wrapper holds the height
+  .block-trv-card-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .block-trv-card-border {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-normal);
+    transition: box-shadow var(--transition-form-function)
+      var(--transition-form-duration);
+    height: 100%;
+  }
+
+  .block-trv-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-normal);
+    &:hover,
+    &:focus-within {
+      box-shadow: var(--shadow-2);
+      a:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Float the playlist resources
+  .block-trv-image-wrapper {
+    position: relative;
+    width: 100%;
+    border-top-left-radius: var(--border-radius-normal);
+    border-top-right-radius: var(--border-radius-normal);
+    .block-trv-image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      .block-trv-image-overlay-content {
+        width: 48px;
+        height: 48px;
+        background-color: var(--color-neutral-1);
+        border-radius: 50%;
+
+        p {
+          margin: 0 auto;
+          padding: 0;
+          font-weight: 700;
+          font-size: var(--font-size-16);
+          line-height: 48px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  // Surveys have some specific styles
+  .block-trv-engage_survey {
+    &.block-trv-li-vertical {
+      text-align: initial;
+    }
+
+    svg {
+      color: var(--color-primary);
+    }
+
+    .block-trv-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: var(--gap-2) var(--gap-4) 0 var(--gap-4);
+    }
+    .block-trv-header > :first-child {
+      width: 40px;
+      height: 40px;
+    }
+
+    .block-trv-name {
+      @include tui-font-heading-label-small();
+      margin-top: var(--gap-2);
+      margin-left: var(--gap-2);
+      color: var(--color-neutral-6);
+    }
+
+    .block-trv-card {
+      border: var(--border-width-normal) solid var(--color-primary);
+
+      .block-trv-content {
+        padding: var(--gap-2) var(--gap-4) var(--gap-4) var(--gap-4);
+      }
+    }
+
+    &.block-trv-li-horizontal {
+      .block-trv-card {
+        height: calc(264px - 20px);
+      }
+
+      .block-trv-title {
+        flex-basis: 52%;
+        width: 100%;
+        font-size: var(--font-size-20);
+        line-height: 1.25;
+      }
+    }
+
+    &.block-trv-li-vertical {
+      .block-trv-card {
+        // Overriding min-width to fit survey card.
+        min-width: 0;
+        .block-trv-image-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 76px;
+          padding: 0;
+          min-height: 76px;
+        }
+        .block-trv-image-wrapper > :first-child {
+          width: 40px;
+          height: 40px;
+        }
+        .block-trv-content {
+          padding: var(--gap-2);
+        }
+        .block-trv-name-vertical {
+          @include tui-font-heading-label-small();
+          color: var(--color-neutral-6);
+          margin-bottom: var(--gap-2);
+        }
+      }
+    }
+
+    .block-trv-title {
+      font-weight: normal;
+    }
+
+    .block-trv-footer-text {
+      color: var(--color-neutral-7);
+    }
+  }
+
+  // Courses have a progress bar
+  .block-trv-container_course {
+    .block-trv-progress {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  // Workspace specific styles
+  .block-trv-container_workspace {
+    &.block-trv-li-horizontal {
+      .block-trv-gradient {
+        background-image: linear-gradient(
+          to top,
+          transparent 0%,
+          var(--color-backdrop-heavy) 78%,
+          var(--color-backdrop-heavy)
+        );
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 50%;
+        border-radius: var(--border-radius-normal);
+      }
+
+      .block-trv-title a {
+        color: var(--color-neutral-1);
+      }
+
+      .block-trv-content {
+        z-index: 1;
+      }
+    }
+  }
+
+  // Playlist specific styles
+  .block-trv-totara_playlist {
+    .block-trv-image {
+      background-color: var(--color-primary);
+    }
+  }
+
+  .block-trv-subtitle {
+    font-size: var(--font-size-12);
+    line-height: var(--font-size-16);
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .block-trv-footer-text {
+    font-size: var(--font-size-12);
+    line-height: var(--font-size-15);
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: var(--color-neutral-6);
+  }
+
+  // Actions & reactions
+  .block-trv-reactions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    .block-trv-timetoview {
+      margin-right: var(--gap-4);
+    }
+  }
+
+  .block-trv-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .block-trv-footer-bar {
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    bottom: var(--gap-4);
+    font-size: var(--font-size-12);
+    background: var(--color-neutral-1);
+    display: flex;
+    height: 24px;
+    text-align: center;
+    align-items: center;
+
+    .block-trv-footer-divider {
+      width: 2%;
+      color: var(--color-neutral-5);
+    }
+
+    .block-trv-footer-pretext,
+    .block-trv-footer-posttext {
+      width: 49%;
+    }
+
+    .block-trv-footer-posttext {
+      color: var(--color-neutral-6);
+    }
+  }
+
+  // Set the sizes
+  &.block-trv-list {
+    .block-trv-card {
+      min-width: 187px;
+      height: 80px;
+      flex-direction: row;
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        min-width: auto;
+        height: auto;
+        flex-direction: column;
+      }
+    }
+
+    .block-trv-card-inner {
+      flex-direction: row;
+    }
+
+    .block-trv-reactions {
+      margin-top: auto;
+      //margin-bottom: var(--gap-1);
+    }
+
+    .block-trv-content {
+      padding: var(--gap-2);
+    }
+
+    // Playlist bubble is smaller
+    .block-trv-image-wrapper {
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        width: auto;
+      }
+
+      .block-trv-image-overlay {
+        .block-trv-image-overlay-content {
+          width: 32px;
+          height: 32px;
+
+          p {
+            font-size: var(--font-size-13);
+            line-height: 32px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  &.block-trv-tiles {
+    .block-trv-card {
+      height: 100%;
+      min-height: 284px;
+    }
+
+    .block-trv-image {
+      border-top-left-radius: var(--border-radius-normal);
+      border-top-right-radius: var(--border-radius-normal);
+      width: 100%;
+      height: $block-recently-viewed-image-height;
+      max-height: $block-recently-viewed-image-height;
+      min-height: $block-recently-viewed-image-height;
+      display: block;
+    }
+
+    .block-trv-reactions {
+      margin-top: var(--gap-2);
+    }
+
+    .block-trv-content {
+      padding: var(--gap-4);
+
+      // Titles don't wrap
+      .block-trv-title {
+        white-space: initial;
+        overflow: visible;
+      }
+    }
+
+    // Article image padded in
+    .block-trv-engage_article {
+      .block-trv-image {
+        border-radius: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    // Workspace
+    .block-trv-container_workspace {
+      .block-trv-content {
+        width: 100%;
+      }
+    }
+  }
+
+  // Misc elements
+  .block-trv-timetoview,
+  .block-trv-likes {
+    display: inline-flex;
+    align-items: center;
+    padding-right: var(--gap-1);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+    border-radius: 50px;
+    font-size: var(--font-size-12);
+    line-height: var(--font-size-12);
+    max-width: 100%;
+    height: 22px;
+    .block-trv-timetoview-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+    .flex-icon {
+      min-width: 1.3em;
+      color: var(--color-neutral-6);
+    }
+  }
+
+  .block-trv-likes {
+    border-color: transparent;
+    padding: 0;
+
+    .flex-icon {
+      font-size: var(--font-size-14);
+    }
+  }
+
+  .block-trv-stars {
+    vertical-align: bottom;
+    display: inline-block;
+    font-size: var(--font-size-12);
+    height: 15px;
+
+    svg {
+      width: var(--font-size-14);
+      height: var(--font-size-14);
+    }
+
+    .block-trv-star-filled {
+      stop-color: var(--color-chart-background-2);
+    }
+
+    .block-trv-star-unfilled {
+      stop-color: var(--color-neutral-1);
+    }
+
+    .block-trv-star-polygon {
+      stroke: var(--color-neutral-7);
+      stroke-width: 3;
+    }
+  }
+
+  .block-trv-footer-text {
+    margin-top: auto;
+  }
+
+  .block-trv-progress {
+    width: 104px;
+    height: 12px;
+    position: relative;
+    font-size: var(--font-size-11);
+    line-height: var(--font-size-12);
+    max-width: 100%;
+
+    .block-trv-progress-bar-wrapper,
+    .block-trv-progress-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 40px;
+    }
+
+    .block-trv-progress-background {
+      background: var(--color-neutral-4);
+    }
+
+    .block-trv-progress-bar {
+      background: var(--color-chart-background-1);
+      border-radius: 40px;
+      text-align: right;
+    }
+
+    .block-trv-progress-bar,
+    .block-trv-progress-text-outer {
+      display: inline-block;
+      height: 100%;
+      vertical-align: top;
+    }
+
+    .block-trv-progress-text-outer {
+      margin-left: 5px;
+    }
+
+    .block-trv-progress-text-inner {
+      color: var(--color-neutral-1);
+      margin-right: 5px;
+    }
+  }
+}
+
+.block-trv-li-vertical {
+  .block-trv-card {
+    display: flex;
+  }
+
+  // Images
+  .block-trv-image-wrapper {
+    width: 110px;
+    min-width: 110px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    .block-trv-image {
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  &.block-trv-engage_article {
+    .block-trv-image {
+      margin: var(--gap-2);
+    }
+  }
+}
+
+.block-trv-engage_article {
+  .block-trv-image {
+    border-radius: 0;
+  }
+}
+
+.block-trv-layout-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.block-trv-li-horizontal {
+  .block-trv-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &.block-trv-engage_article {
+    .block-trv-image-wrapper {
+      padding: var(--gap-4) var(--gap-4) 0 var(--gap-4);
+    }
+
+    .block-trv-image {
+      height: calc(#{$block-recently-viewed-image-height} - var(--gap-4));;
+      max-height: calc(#{$block-recently-viewed-image-height} - var(--gap-4));
+      min-height: calc(#{$block-recently-viewed-image-height} - var(--gap-4));
+    }
+  }
+}
+
+.block-trv-totara_playlist {
+  .block-trv-image {
+    background-size: cover;
+  }
+}
+
+// The floating dock needs specific overrides
+#block-region-side-pre,
+#block-region-side-post,
+#dock {
+  .block-totara-recently-viewed {
+    .block-trv-layout-horizontal {
+      justify-content: center;
+    }
+
+    > ul {
+      flex-direction: column;
+
+      &.block-trv-layout-horizontal {
+        li {
+          flex-basis: 100%;
+          width: 100%;
+          min-width: 100%;
+          align-self: center;
+          max-width: 284px;
+        }
+      }
+    }
+  }
+}
+
+#dock {
+  .block-totara-recently-viewed {
+    > ul {
+      flex-direction: column;
+
+      &.block-trv-layout-horizontal {
+        .block-trv-card {
+          min-height: 224px;
+
+          .block-trv-image-wrapper {
+            min-height: 88px;
+            height: 88px;
+            .block-trv-image {
+              min-height: 88px;
+              height: 88px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

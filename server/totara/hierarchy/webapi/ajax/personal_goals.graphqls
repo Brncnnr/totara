@@ -1,0 +1,157 @@
+"""
+Field on which to sort retrieved personal goal assignments.
+"""
+enum totara_hierarchy_personal_goal_order_field {
+  ASSIGNMENT_TYPE
+  GOAL_ID
+  GOAL_NAME
+  TARGET_DATE
+}
+
+"""
+Details of a personal goal
+"""
+type totara_hierarchy_personal_goal {
+  """
+  Unique personal goal identifier
+  """
+  id: core_id!
+  """
+  User to whom the personal goal was assigned
+  """
+  user_id: core_id!
+  """
+  Personal goal name
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Personal goal description if any
+  """
+  description(format: core_format = HTML): String
+  """
+  Indicates how a personal goal was assigned to the user, e.g. self, manager, etc.
+  """
+  assignment_type: totara_hierarchy_goal_assignment_type_extended!
+  """
+  Goal completion target date if any.
+  """
+  target_date(format: core_date_format = DATE): core_date
+  """
+  Goal status.
+  """
+  scale_value: totara_hierarchy_goal_scale_value
+  """
+  Goal scope.
+  """
+  goal_scope: totara_hierarchy_goal_scope!
+  """
+  Goal type name
+  """
+  type_name(format: core_format = HTML): String
+}
+
+"""
+Paginator holding a set of retrieved personal goals.
+"""
+type totara_hierarchy_personal_goal_result implements core_pageable_result {
+  """
+  Retrieved personal goals
+  """
+  items: [totara_hierarchy_personal_goal!]!
+  """
+  Total number of personal goals retrieved across all pages
+  """
+  total: Int!
+  """
+  Pointer to next page of personal goals
+  """
+  next_cursor: String!
+}
+
+"""
+Personal goal type
+"""
+input totara_hierarchy_goal_filter_input {
+  check_goal_exist: param_boolean
+}
+
+type totara_hierarchy_personal_goal_type implements totara_hierarchy_type {
+  id: core_id!
+  fullname(format: core_format = PLAIN): String!
+  idnumber: String
+  shortname(format: core_format = PLAIN): String
+  description(format: core_format = HTML): String
+}
+
+type totara_hierarchy_personal_goal_types_result {
+  items: [totara_hierarchy_personal_goal_type!]!
+}
+
+"""
+Parameters to filter a set of retrieved personal goals.
+"""
+input totara_hierarchy_personal_goal_filter {
+  """
+  Personal goal ids to look up
+  """
+  ids: [param_integer]
+  """
+  Personal goal name to look up
+  """
+  name: param_text
+  """
+  Personal goal assignment type to match. NB this must be the name of a personal
+  goal assignment type - see the personal_goal_assignment_type class
+  """
+  assignment_type: param_text
+  """
+  User whose personal goals are to be retrieved
+  """
+  user_id: param_integer
+  """
+  personal goal type to look up
+  """
+  type_id: param_integer
+}
+
+"""
+Parameters to retrieve a set of personal goals.
+"""
+input totara_hierarchy_personal_goal_input {
+  """
+  Filter values
+  """
+  filters: totara_hierarchy_personal_goal_filter
+  """
+  Attribute on which to sort retrieved personal goals
+  """
+  order_by: totara_hierarchy_personal_goal_order_field
+  """
+  Whether to sort retrieved personal goals in ascending or descending order.
+  """
+  order_dir: totara_hierarchy_goal_order_dir
+  """
+  No of personal goals to retrieve at a time
+  """
+  result_size: param_integer
+  """
+  Pointer to next page of personal goals
+  """
+  cursor: String
+}
+
+extend type Query {
+  """
+  Retrieves a set of personal goals
+  """
+  totara_hierarchy_personal_goals(
+    input: totara_hierarchy_personal_goal_input
+  ): totara_hierarchy_personal_goal_result!
+
+  """
+  Query to retrieve personal goal types.
+  """
+  totara_hierarchy_personal_goal_types(
+    input: totara_hierarchy_goal_filter_input
+  ): totara_hierarchy_personal_goal_types_result!
+}

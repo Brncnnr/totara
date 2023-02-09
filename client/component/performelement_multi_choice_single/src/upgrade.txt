@@ -1,0 +1,14 @@
+This file describes API changes in /client/component/performelement_multi_choice_single,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+* Replaced several components to centralise common functionality improving consistency and reducing duplication
+    * MultiChoiceSingleElementAdminDisplay.vue replaced with MultiChoiceSingleAdminView.vue
+    * MultiChoiceSingleElementAdminForm.vue replaced with MultiChoiceSingleAdminEdit.vue
+    * MultiChoiceSingleElementAdminReadOnlyDisplay.vue replaced with MultiChoiceSingleAdminSummary.vue
+* Removed MultiChoiceSingleElementParticipantResponse.vue, generic ResponseDisplay.vue component is used instead
+* Replaced MultiChoiceSingleElementParticipantResponse.vue with MultiChoiceSingleParticipantResponse.vue
+* Updated MultiChoiceSingleParticipantResponse.vue to have more control of it's display and to handle switching
+  between difference states using a generic helper component ElementParticipantFormContent.
+    * Changed validation to use core validation rules where possible
+    * Changes to template (wrapping the formScope with helper component) & lang strings

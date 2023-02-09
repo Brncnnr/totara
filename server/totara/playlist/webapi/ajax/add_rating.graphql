@@ -1,0 +1,11 @@
+mutation totara_playlist_add_rating(
+  $playlistid: param_integer!
+  $rating: Int!
+  $ratingarea: String!
+) {
+  result: totara_playlist_add_rating(
+    playlistid: $playlistid
+    rating: $rating
+    ratingarea: $ratingarea
+  )
+}

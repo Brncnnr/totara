@@ -1,0 +1,12 @@
+mutation totara_competency_copy_pathway(
+  $input: totara_competency_copy_pathway_input!
+) {
+  totara_competency_copy_pathway(input: $input) {
+    success
+    error {
+      message
+    }
+    copied_count
+    need_review_count
+  }
+}

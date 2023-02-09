@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReplyCard Checks snapshot 1`] = `
+<div
+  class="tui-commentReplyCard"
+>
+  <div
+    class="tui-commentReplyCard__profilePicture"
+  />
+   
+  <div
+    class="tui-commentReplyCard__body"
+  >
+    <div
+      class="tui-commentReplyCard__header"
+    />
+     
+    <div
+      class="tui-commentReplyCard__content"
+    />
+     
+    <div
+      class="tui-commentReplyCard__footer"
+    />
+  </div>
+</div>
+`;

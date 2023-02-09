@@ -1,0 +1,137 @@
+{
+	"title": "Test Form",
+	"shortname": "TesF",
+	"revision": "1.0",
+	"version": "2021040100",
+	"language": "en-NZ",
+	"fields": [
+		{
+			"key": "agency_code",
+			"line": "A",
+			"label": "Agency code",
+			"required" : false,
+			"type": "text"
+		},
+		{
+			"key": "gender",
+			"line": "B",
+			"label": "Gender",
+			"required" : false,
+			"type": "select_one",
+			"default": null,
+			"attrs": {
+				"choices": [
+					{
+						"key": null,
+						"label": "Select one"
+					},
+					{
+						"key": "M",
+						"label": "Male"
+					},
+					{
+						"key": "F",
+						"label": "Female"
+					},
+					{
+						"key": "?",
+						"label": "N/A"
+					}
+				]
+			}
+		},
+		{
+			"key": "color",
+			"line": "C",
+			"label": "Share images of your favourite color",
+			"required" : false,
+			"type": "editor"
+		}
+	],
+	"sections": [
+		{
+			"key": "A",
+			"line": "Section A",
+			"label": "Food & drinks",
+			"fields": [
+				{
+					"key": "food",
+					"label": "What food do you want",
+					"required" : false,
+					"type": "text"
+				},
+				{
+					"key": "drink",
+					"label": "What beverage do you want",
+					"required" : false,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"key": "B",
+			"line": "Section B",
+			"label": "Optional questions",
+			"fields": [
+				{
+					"key": "genre",
+					"label": "What movie genre do you like",
+					"required" : false,
+					"type": "text"
+				},
+				{
+					"key": "tomato",
+					"label": "Tomayto, Tomahto",
+					"required" : false,
+					"type": "select_one",
+					"attrs": {
+						"choices": [
+							{
+								"key": null,
+								"label": "Select one"
+							},
+							{
+								"key": "tomayto",
+								"label": "Tomayto"
+							},
+							{
+								"key": "tomahto",
+								"label": "Tomahto"
+							}
+						]
+					}
+				},
+				{
+					"key": "shirt",
+					"label": "Which is your shirt size",
+					"required" : false,
+					"type": "select_one",
+					"attrs": {
+						"choices": [
+							{
+								"key": null,
+								"label": "Select one"
+							},
+							{
+								"key": "S",
+								"label": "S"
+							},
+							{
+								"key": "M",
+								"label": "M"
+							},
+							{
+								"key": "L",
+								"label": "L"
+							},
+							{
+								"key": "?",
+								"label": "N/A"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}

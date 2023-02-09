@@ -1,0 +1,489 @@
+.tui-engageCreateSurvey {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tui-engageSurveyRadioBox {
+  .tui-radioGroup {
+    padding: 0;
+    overflow: auto;
+  }
+
+  .tui-radioGroup > * + * {
+    margin-top: 0;
+  }
+
+  &__radio {
+    margin-bottom: var(--gap-4);
+
+    .tui-radio__label {
+      font-size: var(--font-size-15);
+      @include tui-wordbreak--hyphens;
+    }
+  }
+}
+
+.tui-engageSurveySquareBox {
+  &__checkbox {
+    font-size: var(--font-size-15);
+  }
+  .tui-checkbox {
+    min-height: var(--gap-4);
+    @include tui-wordbreak--hyphens;
+  }
+  .tui-checkboxGroup > * + * {
+    margin-top: 0;
+  }
+}
+
+.tui-engageSurveyCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__cardContent {
+    width: 100%;
+
+    &--calcHeight {
+      height: calc(var(---engage-card-height) - 22px);
+    }
+
+    &--height {
+      height: var(---engage-card-height);
+    }
+
+    &:hover {
+      box-shadow: var(--shadow-2);
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: var(--border-width-normal) solid var(--color-primary);
+    border-radius: calc(var(--card-border-radius) - 1px);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &-image {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-top: var(--gap-2);
+      padding-left: var(--gap-4);
+    }
+
+    &-title {
+      @include tui-font-heading-label-small();
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: var(--gap-2);
+      color: var(--color-neutral-6);
+    }
+
+    &-bookmark {
+      align-self: flex-start;
+      /* Negative margin here to neutralise the default redundant edges of icon.*/
+      margin-top: -2px;
+    }
+  }
+}
+
+.tui-engageSurveyCardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--gap-2) var(--gap-4) var(--gap-2) var(--gap-4);
+  overflow: hidden;
+
+  &__title {
+    @include tui-font-heading-small-regular();
+    flex-grow: 1;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    @include tui-wordbreak--hyphens;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+
+  &__text {
+    @include tui-font-heading-label-small();
+    margin-top: 0;
+    margin-bottom: var(--gap-4);
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__icon {
+    align-self: flex-end;
+    margin-right: -3px;
+  }
+}
+
+.tui-engageSurveyImage {
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.tui-engageSurveyResultBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--gap-2) var(--gap-4);
+
+  &__title {
+    @include tui-font-heading-x-small();
+    margin-bottom: var(--gap-6);
+    color: var(--color-text);
+    @include tui-wordbreak--hyphens;
+  }
+
+  &__progress {
+    flex-basis: 90%;
+  }
+
+  &__footer {
+    display: flex;
+    flex-basis: 10%;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__text {
+    @include tui-font-body-small();
+  }
+
+  &__icon {
+    align-self: flex-end;
+    margin-right: -5px;
+  }
+}
+
+.tui-engageSurveyQuestionResult {
+  &__progressBar {
+    margin-bottom: var(--gap-2);
+  }
+
+  &__progress {
+    display: flex;
+    align-items: center;
+    margin-top: var(--gap-4);
+  }
+
+  &__cardProgress {
+    display: flex;
+    align-items: center;
+  }
+
+  &__bar {
+    width: 100%;
+  }
+
+  &__count {
+    @include tui-font-body();
+    margin-left: var(--gap-2);
+    text-align: end;
+  }
+
+  &__answer {
+    @include tui-font-body();
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &Percent {
+      margin-right: var(--gap-2);
+      color: var(--color-secondary);
+      font-weight: bold;
+    }
+  }
+
+  &__votes {
+    @include tui-font-heading-label();
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-4);
+  }
+
+  &__participant {
+    @include tui-font-heavy();
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-2);
+  }
+}
+
+.tui-engageSurveyResultContent {
+  &__participant {
+    @include tui-font-body();
+    @include tui-font-heavy();
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--gap-2);
+  }
+
+  &__participantnumber {
+    @include tui-font-body();
+    @include tui-font-heavy();
+    padding-right: var(--gap-1);
+  }
+}
+
+:root {
+  --survey-header-iconBtn-height: 3.2rem;
+}
+
+.tui-engageSurveyVoteTitle {
+  display: flex;
+  flex-direction: column;
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+
+    .tui-iconBtn--circle {
+      height: var(--survey-header-iconBtn-height);
+      .tui-iconBtn__icon {
+        top: 0;
+      }
+    }
+
+    > :last-child {
+      margin-left: var(--gap-2);
+    }
+  }
+
+  &__title {
+    @include tui-font-heading-medium();
+    width: 90%;
+    margin: 0;
+    @include tui-wordbreak--hyphens;
+
+    @media (max-width: $tui-screen-sm) {
+      width: 100%;
+    }
+  }
+}
+
+.tui-engageSurveyForm {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: var(--gap-8);
+
+  &__title {
+    display: flex;
+    padding-bottom: var(--gap-4);
+  }
+
+  &__optionType {
+    width: 200px;
+  }
+
+  &__options {
+    margin-top: var(--gap-8);
+
+    &__input {
+      display: flex;
+    }
+  }
+
+  &__repeater {
+    .tui-repeater__row {
+      .tui-engageSurveyForm__optionInput {
+        width: 80%;
+        .tui-formField {
+          width: 100%;
+          input[type='text'].tui-formInput {
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    flex-grow: 1;
+    align-items: flex-end;
+    margin-top: var(--gap-2);
+    button.tui-engageSurveyForm__cancelButton {
+      margin-bottom: 0;
+    }
+    &--left {
+      justify-content: flex-start;
+    }
+    &--right {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.tui-engageSurveyIcon {
+  text-align: center;
+
+  &__img {
+    width: 40px;
+    height: 40px;
+    color: var(--color-primary);
+  }
+}
+
+.tui-engageSurveyAuthor {
+  display: flex;
+  align-items: center;
+
+  &__userLink {
+    margin-left: var(--gap-2);
+    font-size: var(--font-size-13);
+  }
+}
+
+.tui-engageSurveySidePanel {
+  padding: var(--gap-8);
+
+  &__profile {
+    margin-bottom: var(--gap-8);
+  }
+
+  &__timeDescription {
+    @include tui-font-body-small();
+  }
+}
+
+.tui-engageSurveyEditView {
+  .tui-grid-item {
+    min-height: var(--engageSurvey-min-height);
+  }
+
+  &__backButton {
+    margin-bottom: var(--gap-12);
+    padding: var(--gap-4) var(--gap-8);
+  }
+
+  &__navBar {
+    margin-top: var(--gap-4);
+    margin-left: var(--gap-4);
+  }
+
+  &__layout {
+    display: flex;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 0 var(--gap-12) 0;
+    @media (max-width: $tui-screen-sm) {
+      max-width: 80vw;
+      margin-left: var(--gap-8);
+    }
+  }
+}
+
+.tui-engageSurveyView {
+  .tui-grid-item {
+    min-height: var(--engageSurvey-min-height);
+  }
+
+  &__backButton {
+    margin-bottom: var(--gap-12);
+    padding: var(--gap-4) var(--gap-8);
+  }
+
+  &__navBar {
+    margin-top: var(--gap-4);
+    margin-left: var(--gap-4);
+  }
+
+  &__layout {
+    display: flex;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 var(--gap-12) 0;
+
+    @media (max-width: $tui-screen-sm) {
+      width: 70vw;
+      margin-left: var(--gap-8);
+    }
+  }
+
+  &__title {
+    margin-bottom: var(--gap-4);
+  }
+}
+
+.tui-engageSurveyVoteView {
+  .tui-grid-item {
+    min-height: var(--engageSurvey-min-height);
+  }
+
+  &__backButton {
+    margin-bottom: var(--gap-12);
+    padding: var(--gap-4) var(--gap-8);
+  }
+
+  &__navBar {
+    margin-top: var(--gap-4);
+    margin-left: var(--gap-4);
+  }
+
+  &__layout {
+    display: flex;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 var(--gap-12) 0;
+    @media (max-width: $tui-screen-sm) {
+      width: 70vw;
+      margin-left: var(--gap-8);
+    }
+  }
+
+  &__title {
+    margin-bottom: var(--gap-4);
+  }
+}
+

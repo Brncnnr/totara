@@ -1,0 +1,6 @@
+This files describes API changes in /admin/tool/task,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+
+* Deprecated the behat step "I run the "([^"]*)" task", please use "I run the scheduled task "(?P<task_name>[^"]+)" instead.

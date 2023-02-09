@@ -1,0 +1,5 @@
+mutation mod_perform_override_global_participation_settings(
+  $input: mod_perform_override_global_participation_settings_input!
+) {
+  mod_perform_override_global_participation_settings(input: $input)
+}

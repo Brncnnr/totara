@@ -1,0 +1,1050 @@
+"""
+Input sort options for manageable workflows.
+"""
+enum mod_approval_manageable_workflows_sort_option_enums {
+  """
+  Sort by name
+  """
+  NAME
+
+  """
+  Sort by last updated
+  """
+  UPDATED
+
+  """
+  Sort by idnumber
+  """
+  ID_NUMBER
+
+  """
+  Sort by status
+  """
+  STATUS
+}
+
+"""
+Workflow version status enums.
+"""
+enum mod_approval_status_enum {
+  """
+  Draft status
+  """
+  DRAFT
+
+  """
+  Active status
+  """
+  ACTIVE
+
+  """
+  Archived status
+  """
+  ARCHIVED
+}
+
+"""
+Workflow stage features enums
+"""
+enum mod_approval_workflow_stage_feature_enum {
+  """
+  Form views feature enum.
+  """
+  FORMVIEWS
+
+  """
+  Approval level feature enum.
+  """
+  APPROVAL_LEVELS
+
+  """
+  Interactions feature enum.
+  """
+  INTERACTIONS
+}
+
+"""
+Formviews visibility enums
+"""
+enum mod_approval_workflow_stage_formview_visibility_enum {
+  """
+  Editable formview option
+  """
+  EDITABLE
+  """
+  Editable & required formview option
+  """
+  EDITABLE_AND_REQUIRED
+  """
+  Read-only formview option
+  """
+  READ_ONLY
+  """
+  Hidden formview option
+  """
+  HIDDEN
+}
+
+"""
+Interaction application action enums
+"""
+enum mod_approval_workflow_stage_interaction_application_action_enum {
+  """
+  Approve action
+  """
+  APPROVE
+  """
+  Reject action
+  """
+  REJECT
+  """
+  Reset approvals
+  """
+  RESET_APPROVALS
+  """
+  Submit form action
+  """
+  SUBMIT
+  """
+  Withdraw in a form stage action
+  """
+  WITHDRAW_BEFORE_SUBMISSION
+  """
+  Withdraw in an approval stage action
+  """
+  WITHDRAW_IN_APPROVALS
+}
+
+"""
+Workflow stage type enums
+"""
+enum mod_approval_workflow_stage_type_enum {
+  """
+  Form submission stage type.
+  """
+  FORM_SUBMISSION
+
+  """
+  Approvals stage type.
+  """
+  APPROVALS
+
+  """
+  Waiting stage type.
+  """
+  WAITING
+
+  """
+  Finished stage type.
+  """
+  FINISHED
+}
+
+"""
+Report success.
+"""
+type mod_approval_success_result {
+  success: Boolean!
+}
+
+"""
+Workflow
+"""
+type mod_approval_workflow {
+  """
+  Workflow id
+  """
+  id: core_id!
+
+  """
+  Workflow idnumber
+  """
+  id_number: String!
+
+  """
+  Workflow course context id
+  """
+  context_id: core_id!
+
+  """
+  Workflow name
+  """
+  name(format: core_format = PLAIN): String!
+
+  """
+  Workflow description
+  """
+  description(format: core_format = PLAIN): String!
+
+  """
+  Workflow type
+  """
+  workflow_type: mod_approval_workflow_type!
+
+  """
+  Latest workflow version.
+  """
+  latest_version: mod_approval_workflow_version!
+
+  """
+  Workflow created timestamp
+  """
+  created(format: core_date_format = DATELONG): core_date!
+
+  """
+  Default assignment.
+  """
+  default_assignment: mod_approval_workflow_assignment!
+
+  """
+  Workflow last updated timestamp
+  """
+  updated(format: core_date_format = DATELONG): core_date!
+
+  """
+  Interactor object for the current user
+  """
+  interactor: mod_approval_workflow_interactor!
+}
+
+"""
+Results container for workflow approval level query
+"""
+type mod_approval_workflow_approval_level_result {
+  approval_level: mod_approval_workflow_stage_approval_level!
+}
+
+"""
+Result for clone workflow
+"""
+type mod_approval_workflow_clone_result {
+  workflow: mod_approval_workflow!
+}
+
+"""
+Workflow interaction condition.
+"""
+type mod_approval_workflow_interaction_condition {
+  condition_key: String
+
+  condition_data: String
+}
+
+"""
+Workflow interactor.
+"""
+type mod_approval_workflow_interactor {
+  can_edit: Boolean!
+  can_clone: Boolean!
+  can_archive: Boolean!
+  can_unarchive: Boolean!
+  can_activate: Boolean!
+  can_delete: Boolean!
+  can_publish: Boolean!
+  can_upload_approver_overrides: Boolean!
+  can_assign_roles: Boolean!
+  can_view_applications_report: Boolean!
+}
+
+"""
+Paginated workflows.
+"""
+type mod_approval_workflow_page_result implements core_pageable_result {
+  """
+  List of workflows on the page.
+  """
+  items: [mod_approval_workflow!]!
+
+  """
+  Total number of workflows.
+  """
+  total: Int!
+
+  """
+  Cursor to the next workflow page.
+  """
+  next_cursor: String!
+}
+
+"""
+Output of workflow
+"""
+type mod_approval_workflow_result {
+  workflow: mod_approval_workflow!
+}
+
+"""
+Workflow stage
+"""
+type mod_approval_workflow_stage {
+  """
+  Workflow stage id
+  """
+  id: core_id!
+
+  """
+  Workflow stage name
+  """
+  name(format: core_format = PLAIN): String!
+
+  """
+  Stage number: 1, 2, 3, ...
+  """
+  ordinal_number: Int!
+
+  """
+  Stage type
+  """
+  type: mod_approval_workflow_stage_type!
+
+  """
+  Stage features
+  """
+  features: [mod_approval_workflow_stage_feature!]!
+
+  formviews: [mod_approval_workflow_stage_formview!]!
+
+  """
+  Workflow stage approval levels
+  """
+  approval_levels: [mod_approval_workflow_stage_approval_level!]!
+
+  """
+  Workflow version
+  """
+  workflow_version: mod_approval_workflow_version!
+
+  """
+  Created timestamp
+  """
+  created(format: core_date_format = TIMESTAMP): core_date!
+
+  """
+  Updated timestamp
+  """
+  updated(format: core_date_format = TIMESTAMP): core_date!
+
+  """
+  Workflow stage interactions
+  """
+  interactions: [mod_approval_workflow_stage_interaction!]!
+}
+
+"""
+Workflow stage approval level
+"""
+type mod_approval_workflow_stage_approval_level {
+  """
+  Workflow stage approval id
+  """
+  id: core_id!
+
+  """
+  Approval level name
+  """
+  name(format: core_format = PLAIN): String!
+
+  """
+  Level number: 1, 2, 3, ...
+  """
+  ordinal_number: Int!
+
+  """
+  Active
+  """
+  active: Boolean!
+
+  """
+  Workflow stage.
+  """
+  workflow_stage: mod_approval_workflow_stage!
+
+  """
+  Approvers
+  """
+  approvers: [mod_approval_assignment_approver!]!
+
+  """
+  Created timestamp
+  """
+  created(format: core_date_format = DATELONG): core_date!
+
+  """
+  Updated timestamp
+  """
+  updated(format: core_date_format = DATELONG): core_date!
+}
+
+type mod_approval_workflow_stage_feature {
+  label: String!
+
+  enum: mod_approval_workflow_stage_feature_enum!
+}
+
+type mod_approval_workflow_stage_formview {
+  """
+  Form field key
+  """
+  field_key: String!
+
+  """
+  Form field visibility
+  """
+  visibility: mod_approval_workflow_stage_formview_visibility_enum!
+}
+
+"""
+Workflow stage interaction
+"""
+type mod_approval_workflow_stage_interaction {
+  """
+  Workflow stage interaction id
+  """
+  id: core_id!
+
+  """
+  Application action
+  """
+  action_code: mod_approval_workflow_stage_interaction_application_action_enum!
+
+  """
+  Workflow stage interaction transitions
+  """
+  conditional_transitions: [mod_approval_workflow_stage_interaction_transition!]!
+
+  """
+  Default workflow stage interaction transition
+  """
+  default_transition: mod_approval_workflow_stage_interaction_transition!
+}
+
+"""
+Workflow stage interaction transition
+"""
+type mod_approval_workflow_stage_interaction_transition {
+  """
+  Workflow stage interaction transition id
+  """
+  id: core_id!
+
+  """
+  Priority
+  """
+  priority: Int!
+
+  """
+  Workflow interaction condition
+  """
+  condition: mod_approval_workflow_interaction_condition
+
+  """
+  Workflow interaction transition
+  """
+  transition: String!
+}
+
+"""
+Results container for workflow stage interaction transition mutation
+"""
+type mod_approval_workflow_stage_interaction_transition_result {
+  transition: mod_approval_workflow_stage_interaction_transition!
+}
+
+"""
+Results container for workflow stage query
+"""
+type mod_approval_workflow_stage_move_to_result {
+  options: [mod_approval_workflow_transition_option!]!
+}
+
+"""
+Results container for workflow stage query
+"""
+type mod_approval_workflow_stage_result {
+  stage: mod_approval_workflow_stage!
+}
+
+"""
+Workflow stage type
+"""
+type mod_approval_workflow_stage_type {
+  """
+  label identifying the stage type
+  """
+  label: String!
+
+  """
+  Enum identifying the stage type
+  """
+  enum: mod_approval_workflow_stage_type_enum!
+}
+
+"""
+Workflow status type.
+"""
+type mod_approval_workflow_status {
+  """
+  Workflow name.
+  """
+  name: String!
+
+  """
+  Workflow state code.
+  """
+  code: Int!
+}
+
+"""
+Workflow transition option.
+"""
+type mod_approval_workflow_transition_option {
+  name: String!
+
+  value: String!
+
+  data: String
+}
+
+"""
+Workflow type
+"""
+type mod_approval_workflow_type {
+  """
+  Workflow type id
+  """
+  id: core_id!
+
+  """
+  Workflow type name
+  """
+  name(format: core_format = PLAIN): String!
+
+  """
+  Workflow type created timestamp
+  """
+  created(format: core_date_format = TIMESTAMP): core_date
+}
+
+"""
+Result container for workflow types.
+"""
+type mod_approval_workflow_type_result {
+  """
+  Workflow types.
+  """
+  workflow_types: [mod_approval_workflow_type!]!
+}
+
+"""
+Workflow version.
+"""
+type mod_approval_workflow_version {
+  """
+  Workflow version id
+  """
+  id: core_id!
+
+  """
+  Workflow version status code
+  """
+  status: Int!
+
+  """
+  Workflow version status label
+  """
+  status_label(format: core_format = PLAIN): String!
+
+  """
+  Form version associated with the workflow version
+  """
+  form_version: mod_approval_form_version!
+
+  """
+  Workflow version created timestamp
+  """
+  created(format: core_date_format = DATELONG): core_date!
+
+  """
+  Workflow version last updated timestamp
+  """
+  updated(format: core_date_format = DATELONG): core_date!
+
+  """
+  Workflow stages
+  """
+  stages: [mod_approval_workflow_stage!]!
+}
+
+"""
+Workflow assigned to union.
+"""
+union mod_approval_workflow_assigned_to_union =
+    totara_hierarchy_organisation
+  | core_cohort
+  | totara_hierarchy_position
+
+"""
+Options for load_workflow_types query
+"""
+input mod_approval_load_workflow_types_input {
+  """
+  Return only workflow_types where there is an active workflow
+  """
+  require_active_workflow: Boolean!
+}
+
+"""
+Input filters for manageable workflows.
+"""
+input mod_approval_manageable_workflows_filters_input {
+  """
+  Filter by workflow status.
+  """
+  status: mod_approval_status_enum
+
+  """
+  Search for specific workflow name or idnumber.
+  """
+  name: String
+
+  """
+  Filter by assignment type.
+  """
+  assignment_type: mod_approval_assignment_type
+
+  """
+  Filter by workflow type id.
+  """
+  workflow_type_id: param_integer
+}
+
+"""
+Input for manageable paginated workflows.
+"""
+input mod_approval_manageable_workflows_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input
+
+  """
+  Filter results
+  """
+  filters: mod_approval_manageable_workflows_filters_input
+
+  """
+  Sort by input
+  """
+  sort_by: mod_approval_manageable_workflows_sort_option_enums = UPDATED
+}
+
+"""
+Input for clone workflow
+"""
+input mod_approval_workflow_clone_input {
+  workflow_id: core_id!
+  name: param_text
+  default_assignment: mod_approval_workflow_default_assignment_input
+}
+
+"""
+Input for create workflow
+"""
+input mod_approval_workflow_create_input {
+  """
+  Workflow name
+  """
+  name: String!
+
+  """
+  Workflow type id
+  """
+  workflow_type_id: core_id!
+
+  """
+  Form id
+  """
+  form_id: core_id!
+
+  """
+  Assignment type
+  """
+  assignment_type: mod_approval_assignment_type!
+
+  """
+  Assignment identifier
+  """
+  assignment_identifier: core_id!
+
+  """
+  Workflow description
+  """
+  description: String
+
+  """
+  Workflow idnumber
+  """
+  id_number: String
+}
+
+"""
+Input for default assignment
+"""
+input mod_approval_workflow_default_assignment_input {
+  """
+  Assignment id
+  """
+  id: core_id!
+  """
+  Assignment type enum
+  """
+  type: mod_approval_assignment_type!
+}
+
+"""
+Input for edit workflow
+"""
+input mod_approval_workflow_edit_input {
+  """
+  Workflow id
+  """
+  workflow_id: param_integer!
+
+  """
+  Workflow idnumber
+  """
+  id_number: String!
+
+  """
+  Workflow name
+  """
+  name: String!
+
+  """
+  Workflow description
+  """
+  description: String
+}
+
+"""
+Generic workflow input.
+"""
+input mod_approval_workflow_id_number_is_unique_input {
+  workflow_id: param_integer
+  id_number: String!
+}
+
+"""
+Generic workflow input.
+"""
+input mod_approval_workflow_input {
+  workflow_id: param_integer!
+}
+
+"""
+Input for shuffling approval levels.
+"""
+input mod_approval_workflow_reorder_levels_input {
+  """
+  Workflow stage id
+  """
+  workflow_stage_id: core_id!
+
+  """
+  Approval level ids
+  """
+  workflow_stage_approval_level_ids: [core_id!]!
+}
+
+"""
+Input for adding an approval level to a workflow stage
+"""
+input mod_approval_workflow_stage_add_approval_level_input {
+  """
+  Workflow stage id
+  """
+  workflow_stage_id: param_integer!
+
+  """
+  Approval level name (optional)
+  """
+  name: param_text
+}
+
+"""
+Update workflow stage formviews input
+"""
+input mod_approval_workflow_stage_configure_formviews_input {
+  """
+  Stage id
+  """
+  workflow_stage_id: param_integer!
+
+  """
+  Fields and their visibility to update
+  """
+  updates: [mod_approval_workflow_stage_formview_update_input!]!
+}
+
+"""
+Input for deleting an approval level from a workflow stage
+"""
+input mod_approval_workflow_stage_delete_approval_level_input {
+  """
+  Workflow stage approval level id
+  """
+  workflow_stage_approval_level_id: core_id!
+}
+
+"""
+Input for editing an approval level from a workflow stage
+"""
+input mod_approval_workflow_stage_edit_approval_level_input {
+  """
+  Workflow stage approval level id
+  """
+  workflow_stage_approval_level_id: core_id!
+
+  """
+  Level name
+  """
+  name: String!
+}
+
+"""
+Input for editing a workflow stage
+"""
+input mod_approval_workflow_stage_edit_input {
+  """
+  Workflow stage id
+  """
+  workflow_stage_id: param_integer!
+
+  """
+  Stage name
+  """
+  name: String!
+}
+
+input mod_approval_workflow_stage_formview_update_input {
+  """
+  Form field key
+  """
+  field_key: String!
+
+  """
+  Visibility to set form field to
+  """
+  visibility: mod_approval_workflow_stage_formview_visibility_enum!
+}
+
+"""
+Input for getting a workflow stage
+"""
+input mod_approval_workflow_stage_input {
+  """
+  Workflow stage id
+  """
+  workflow_stage_id: param_integer!
+}
+
+"""
+Input for managing a transition.
+"""
+input mod_approval_workflow_stage_interaction_transition_input {
+  """
+  Workflow stage interaction id
+  """
+  workflow_stage_interaction_id: param_integer!
+
+  """
+  Workflow stage interaction transition id, nullable for creating new transition
+  """
+  workflow_stage_interaction_transition_id: param_integer
+
+  """
+  Transition, either a workflow_stage id (careful, it's a string!) or the name of the transition to use
+  """
+  transition: String!
+}
+
+"""
+Input for adding a new stage to a workflow version
+"""
+input mod_approval_workflow_version_add_stage_input {
+  """
+  Workflow version id
+  """
+  workflow_version_id: param_integer!
+  """
+  Stage name
+  """
+  name: String!
+  """
+  Stage type
+  """
+  type: mod_approval_workflow_stage_type_enum!
+}
+
+"""
+Input for publish workflow version
+"""
+input mod_approval_workflow_version_publish_input {
+  workflow_version_id: core_id!
+}
+
+extend type Query {
+  """
+  Load a workflow for the logged in user.
+  """
+  mod_approval_load_workflow(
+    input: mod_approval_workflow_input!
+  ): mod_approval_workflow_result!
+
+  """
+  Query all workflow types.
+  """
+  mod_approval_load_workflow_types(
+    input: mod_approval_load_workflow_types_input!
+  ): mod_approval_workflow_type_result!
+
+  """
+  Query to get manageable workflows.
+  """
+  mod_approval_manageable_workflows(
+    query_options: mod_approval_manageable_workflows_input!
+  ): mod_approval_workflow_page_result!
+
+  """
+  Check id number
+  """
+  mod_approval_workflow_id_number_is_unique(
+    input: mod_approval_workflow_id_number_is_unique_input!
+  ): Boolean!
+
+  """
+  Get a list of approval levels for a workflow stage
+  """
+  mod_approval_workflow_stage(
+    input: mod_approval_workflow_stage_input!
+  ): mod_approval_workflow_stage_result!
+
+  """
+  Get a list of options a workflow stage can transition to
+  """
+  mod_approval_workflow_stage_move_to(
+    input: mod_approval_workflow_stage_input!
+  ): mod_approval_workflow_stage_move_to_result!
+}
+
+extend type Mutation {
+  """
+  Archive
+  """
+  mod_approval_workflow_archive(
+    input: mod_approval_workflow_input!
+  ): mod_approval_workflow_result!
+
+  """
+  Clone an existing workflow
+  """
+  mod_approval_workflow_clone(
+    input: mod_approval_workflow_clone_input!
+  ): mod_approval_workflow_clone_result!
+
+  """
+  Create a workflow
+  """
+  mod_approval_workflow_create(
+    input: mod_approval_workflow_create_input!
+  ): mod_approval_workflow_result!
+
+  """
+  Deletion
+  """
+  mod_approval_workflow_delete(input: mod_approval_workflow_input!): Boolean!
+
+  """
+  Edit
+  """
+  mod_approval_workflow_edit(
+    input: mod_approval_workflow_edit_input!
+  ): mod_approval_workflow_result!
+
+  """
+  Shuffle levels
+  """
+  mod_approval_workflow_reorder_levels(
+    input: mod_approval_workflow_reorder_levels_input!
+  ): mod_approval_workflow_stage_result!
+
+  """
+  Add approval level to workflow stage
+  """
+  mod_approval_workflow_stage_add_approval_level(
+    input: mod_approval_workflow_stage_add_approval_level_input!
+  ): mod_approval_workflow_approval_level_result!
+
+  """
+  Configure visibility of form fields in a specific stage.
+  """
+  mod_approval_workflow_stage_configure_formviews(
+    input: mod_approval_workflow_stage_configure_formviews_input!
+  ): mod_approval_workflow_stage_result!
+
+  """
+  Delete a stage
+  """
+  mod_approval_workflow_stage_delete(
+    input: mod_approval_workflow_stage_input!
+  ): mod_approval_workflow_result!
+
+  """
+  Delete approval level to workflow stage
+  """
+  mod_approval_workflow_stage_delete_approval_level(
+    input: mod_approval_workflow_stage_delete_approval_level_input!
+  ): mod_approval_workflow_stage_result!
+
+  """
+  Edit workflow stage
+  """
+  mod_approval_workflow_stage_edit(
+    input: mod_approval_workflow_stage_edit_input!
+  ): mod_approval_workflow_stage_result!
+
+  """
+  Edit workflow stage approval level
+  """
+  mod_approval_workflow_stage_edit_approval_level(
+    input: mod_approval_workflow_stage_edit_approval_level_input!
+  ): mod_approval_workflow_approval_level_result!
+
+  """
+  Configure a transition on an interaction
+  """
+  mod_approval_workflow_stage_interaction_configure_transition(
+    input: mod_approval_workflow_stage_interaction_transition_input!
+  ): mod_approval_workflow_stage_interaction_transition_result!
+
+  """
+  Unarchive
+  """
+  mod_approval_workflow_unarchive(
+    input: mod_approval_workflow_input!
+  ): mod_approval_workflow_result!
+
+  """
+  Add a stage to a workflow version
+  """
+  mod_approval_workflow_version_add_stage(
+    input: mod_approval_workflow_version_add_stage_input!
+  ): mod_approval_workflow_stage_result!
+
+  """
+  Publish version
+  """
+  mod_approval_workflow_version_publish(
+    input: mod_approval_workflow_version_publish_input!
+  ): mod_approval_workflow_result!
+}

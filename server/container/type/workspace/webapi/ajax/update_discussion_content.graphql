@@ -1,0 +1,42 @@
+mutation container_workspace_update_discussion_content(
+  $content: String!
+  $content_format: param_integer
+  $id: param_integer!
+  $draft_id: param_integer
+) {
+  discussion: container_workspace_update_discussion(
+    id: $id
+    content: $content
+    content_format: $content_format
+    draft_id: $draft_id
+  ) {
+    __typename
+    id
+    workspace_id
+    content(format: HTML)
+    time_description
+    owner {
+      __typename
+      id
+      fullname
+      email
+    }
+    total_comments
+    total_reactions
+    discussion_interactor {
+      __typename
+      discussion_id
+      workspace_id
+      can_comment
+      can_delete
+      can_update
+      can_react
+      reacted
+      can_report
+      removed
+    }
+    edited
+    comment_cursor
+    workspace_context_id
+  }
+}

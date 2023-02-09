@@ -1,0 +1,122 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+
+    @template totara_competency/save
+
+    This template generates the final create assignments page
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-loader-target: Used to display loading overlay
+    * data-manage-assignments-url: string, URL for redirecting to assignments index
+    * data-tw-assignCompSave-backBtn: Trigger for returning to assignment index
+    * data-tw-assignCompSave-tree: target for group adder tree
+    * data-tw-assignCompSave-selected-empty: target for toggling no selection view
+    * data-tw-assignCompSave-selected-group: target for updating group selection
+    * data-tw-assignCompSave-selected-group-count: target for updaing selection count
+    * data-tw-assignCompSave-browse-individuals: trigger for viewing selection modal
+    * data-tw-assignCompSave-save: trigger for save btn
+
+
+    Context variables required for this template:
+    * index_url: string, URL for assignments index
+    * title: string, page title
+    * count_string: string, for displaying competancy selection count
+    * create_url: string, URL for create assignments selection page
+    * user_groups: user groups markup for select tree
+    * user_groups_count: Group selection count
+    * user_group_types: list of types
+    * user_group_types -> type: string, type of group
+!}}
+<div class="tw-assignCompSave"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/save_assignments"
+    data-competencies-count="{{count}}"
+    data-basket-audiences="{{basket_audiences}}"
+    data-basket-audiences-count="{{basket_audiences_count}}"
+    data-basket-competencies="{{basket_competencies}}"
+    data-basket-organisations="{{basket_organisations}}"
+    data-basket-organisations-count="{{basket_organisations_count}}"
+    data-basket-positions="{{basket_positions}}"
+    data-basket-positions-count="{{basket_positions_count}}"
+    data-basket-users="{{basket_users}}"
+    data-basket-users-count="{{basket_users_count}}"
+    data-manage-assignments-url="{{index_url}}">
+
+    <div class="tw-assignCompSave__backLink">
+        <a href="{{index_url}}" data-tw-assignCompSave-backBtn="">
+            {{#str}}assignment_back_to_assignments, totara_competency{{/str}}
+        </a>
+    </div>
+
+    <h2 class="tw-assignCompSave__title">{{title}}</h2>
+
+    <div class="tw-assignCompSave__basket">
+        <div class="tw-assignCompSave__basket_count">
+            {{{count_string}}}
+        </div>
+        <a href="{{create_url}}" class="tw-assignCompSave__basket_link">
+            {{#str}}change_competency_selection, totara_competency{{/str}}
+        </a>
+    </div>
+
+    <div class="tw-assignCompSave__assign">
+        <h4 class="tw-assignCompSave__assign_header">
+            {{#str}}users_to_assign, totara_competency{{/str}}
+        </h4>
+        <div class="tw-assignCompSave__assign_selector" data-tw-assignCompSave-tree="">{{{user_groups}}}</div>
+    </div>
+
+    <div class="tw-assignCompSave__selected tw-loader__overlay" data-tw-loader-target="">
+        <div class="tw-assignCompSave__selected_empty {{#user_groups_count}}tw-assignCompSave__hidden{{/user_groups_count}}"
+            data-tw-assignCompSave-selected-empty="">
+            {{#str}}user_groups_empty, totara_competency{{/str}}
+        </div>
+
+        {{#user_group_types}}
+        <div data-tw-assignCompSave-selected-group="{{type}}">{{> totara_competency/save_selected_user_group_body}}</div>
+        {{/user_group_types}}
+    </div>
+
+    <div class="tw-assignCompSave__overview">
+        <h3 class="tw-assignCompSave__overview_count">
+            <span data-tw-assignCompSave-selected-group-count="">{{user_groups_count}}</span>
+            {{#str}}user_groups_selected, totara_competency{{/str}}
+        </h3>
+
+        <a href="#" class="tw-assignCompSave__overview_users tw-assignCompSave__disabled" data-tw-assignCompSave-browse-individuals=""
+        role="button" aria-disabled="true">
+            {{#flex_icon}}users{{/flex_icon}}
+            {{#str}}browse_users, totara_competency{{/str}}
+        </a>
+
+        <button class="tw-assignComp__btn tw-assignComp__btn_prim tw-assignCompSave__overview_btn tw-assignComp__btn_disabled"
+        data-tw-assignCompSave-save="" aria-disabled="true">
+            {{#str}}save_create_assignments, totara_competency{{/str}}
+        </button>
+    </div>
+</div>

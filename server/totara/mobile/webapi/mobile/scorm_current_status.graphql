@@ -1,0 +1,16 @@
+query totara_mobile_scorm_current_status($scormid: core_id!) {
+  status: mod_scorm_current_status(scormid: $scormid) {
+    maxattempt
+    attemptsCurrent: attempts_current
+    completion
+    completionview
+    completionstatusrequired
+    completionscorerequired
+    completionstatusallscos
+    completionstatus
+    gradefinal
+    grademax
+    gradepercentage
+    __typename
+  }
+}

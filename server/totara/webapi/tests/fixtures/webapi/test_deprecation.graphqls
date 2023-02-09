@@ -1,0 +1,9 @@
+type totara_webapi_test_deprecation {
+  nondeprecated: String
+  deprecated: String @deprecated(reason: "This field is now deprecated")
+  deprecated_without_reason: String @deprecated
+}
+
+extend type Query {
+  totara_webapi_test_deprecation: totara_webapi_test_deprecation
+}

@@ -1,0 +1,37 @@
+{
+  "paging": {
+    "start": 0,
+    "count": 100,
+    "links": [
+      {
+        "type": "application/json",
+        "rel": "next",
+        "href": "/v2/learningClassifications?q=localeAndType&type=TOPIC&sourceLocale.language=en&sourceLocale.country=US&start=1&count=100"
+      }
+    ],
+    "total": 2
+  },
+  "elements": [
+    {
+      "name": {
+        "locale": {
+          "country": "US",
+          "language": "en"
+        },
+        "value": "Creative"
+      },
+      "owner": {
+        "urn": "urn:li:organization:1337",
+        "name": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "LinkedIn"
+        }
+      },
+      "urn": "urn:li:lyndaCategory:7163",
+      "type": "TOPIC"
+    }
+  ]
+}

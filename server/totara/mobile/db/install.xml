@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/mobile/db" VERSION="20190619" COMMENT="XMLDB file for mobile API"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_mobile_requests" COMMENT="List of registration requests">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User using the device"/>
+        <FIELD NAME="setupsecret" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Token for initial setup of device, can be used only once - record is deleted after first use"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="When device registration started, requests older than 1 hour are deleted"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="setupsecret" UNIQUE="true" FIELDS="setupsecret"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_mobile_tokens" COMMENT="List of tokins for mobile login setup">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="loginsecret" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Token for initial login request from a mobile device, can be used only once - record is deleted after first use"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="When device registration started, requests older than 1 hour are deleted"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="loginsecret" UNIQUE="true" FIELDS="loginsecret"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_mobile_devices" COMMENT="List of registered mobile devices for each user">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User using the device"/>
+        <FIELD NAME="keyprefix" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="API key prefix"/>
+        <FIELD NAME="keyhash" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Hash of a long and random API key - the hashing must be very fast because it is checked on each request"/>
+        <FIELD NAME="timeregistered" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="When was the device registration completed"/>
+        <FIELD NAME="timelastaccess" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="When did the device last called mobile api"/>
+        <FIELD NAME="appname" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Name of the used app"/>
+        <FIELD NAME="appversion" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Version of the used app"/>
+        <FIELD NAME="fcmtoken" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The FCM token associated with the device"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="keyprefix" UNIQUE="true" FIELDS="keyprefix"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_mobile_webviews" COMMENT="Web view mobile access with real browser session">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="deviceid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User using the device"/>
+        <FIELD NAME="url" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="Requested initial URL for webview"/>
+        <FIELD NAME="secret" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Token for initial setup of browser session"/>
+        <FIELD NAME="sessionid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Session id"/>
+        <FIELD NAME="sid" TYPE="char" LENGTH="128" NOTNULL="false" SEQUENCE="false" COMMENT="Session cookie value, webview is invalid if it does not match sid in sessions table"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="When was the session requested"/>
+        <FIELD NAME="timestarted" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="When was the session started"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="deviceid" TYPE="foreign" FIELDS="deviceid" REFTABLE="totara_mobile_devices" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="sessions" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="secret" UNIQUE="true" FIELDS="secret"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_mobile_compatible_courses" COMMENT="Lookup table of courses which are suitable for native app rendering">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign-unique" FIELDS="courseid" REFTABLE="course" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

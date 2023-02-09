@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Repeater matches snapshot 1`] = `
+<div
+  aria-live="polite"
+  arialabel="Repeater btn"
+  class="tui-repeater"
+  id="uid-9"
+  role="group"
+>
+  <!---->
+   
+  <div
+    class="tui-repeater__row"
+  >
+     
+    <buttonicon-stub
+      arialabel="Add"
+      class="tui-repeater__delete"
+      styleclass="[object Object]"
+      type="button"
+    >
+      <deleteicon-stub
+        size="200"
+      />
+    </buttonicon-stub>
+  </div>
+   
+  <!---->
+  <!---->
+   
+  <div
+    class="tui-repeater__row"
+  >
+     
+    <buttonicon-stub
+      arialabel="Add"
+      class="tui-repeater__delete"
+      styleclass="[object Object]"
+      type="button"
+    >
+      <deleteicon-stub
+        size="200"
+      />
+    </buttonicon-stub>
+  </div>
+   
+  <!---->
+  <!---->
+   
+  <div
+    class="tui-repeater__row"
+  >
+     
+    <buttonicon-stub
+      arialabel="Add"
+      class="tui-repeater__delete"
+      styleclass="[object Object]"
+      type="button"
+    >
+      <deleteicon-stub
+        size="200"
+      />
+    </buttonicon-stub>
+  </div>
+   
+  <!---->
+   
+  <buttonicon-stub
+    aria-controls="uid-9"
+    arialabel="Add"
+    styleclass="[object Object]"
+    type="button"
+  >
+    <addicon-stub
+      size="200"
+    />
+  </buttonicon-stub>
+</div>
+`;

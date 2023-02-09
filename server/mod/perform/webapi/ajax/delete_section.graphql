@@ -1,0 +1,3 @@
+mutation mod_perform_delete_section($input: mod_perform_delete_section_input!) {
+  mod_perform_delete_section(input: $input)
+}

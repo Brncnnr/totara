@@ -1,0 +1,100 @@
+"""
+User information.
+
+NOTE: internal API for now, do not use outside of reportbuilder
+
+
+Reportbuilder source type
+"""
+type totara_reportbuilder_source {
+  key: String!
+  fullname: String!
+  label: String!
+  summary: String!
+  defaultcolumns: [totara_reportbuilder_column!]!
+}
+
+"""
+Reportbuilder column type
+"""
+type totara_reportbuilder_column {
+  type: String!
+  name: String!
+}
+
+"""
+Reportbuilder template type
+"""
+type totara_reportbuilder_template {
+  key: String!
+  fullname: String!
+  summary: String!
+  defaultcolumns: [totara_reportbuilder_column!]!
+  graph: String!
+  source: totara_reportbuilder_source!
+  label: String!
+}
+
+"""
+Reportbuilder creation_source type
+"""
+type totara_reportbuilder_creation_source {
+  templates: [totara_reportbuilder_template!]!
+  sources: [totara_reportbuilder_source!]!
+  totalcount: String!
+}
+
+extend type Query {
+  """
+  Query to return sources
+  """
+  totara_reportbuilder_sources: [totara_reportbuilder_source!]!
+
+  """
+  Query to return a source
+  """
+  totara_reportbuilder_source(key: String): totara_reportbuilder_source!
+
+  """
+  Query to return templates
+  """
+  totara_reportbuilder_templates: [totara_reportbuilder_template!]!
+
+  """
+  Query to return template
+  """
+  totara_reportbuilder_template(key: String): totara_reportbuilder_template!
+
+  """
+  Query to return creation sources
+  """
+  totara_reportbuilder_creation_sources(
+    label: [String]
+    search: String
+    start: Int
+    limit: Int
+    sort: Int
+  ): totara_reportbuilder_creation_source
+}
+
+extend type Mutation {
+  """
+  Changes the title of a report
+  """
+  totara_reportbuilder_update_report_title(
+    reportid: core_id!
+    title: String!
+  ): String!
+
+  """
+  Creates a report from template
+  """
+  totara_reportbuilder_create_report_from_template(
+    key: param_alphanumext!
+  ): core_id!
+
+  """
+  Creates a report
+  """
+  totara_reportbuilder_create_report(key: param_alphanumext!): core_id!
+}

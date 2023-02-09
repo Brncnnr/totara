@@ -1,0 +1,7 @@
+{
+  "component": "weka_simple_multi_lang",
+  "vendor": "totara",
+  "dependencies": [
+    "editor_weka"
+  ]
+}

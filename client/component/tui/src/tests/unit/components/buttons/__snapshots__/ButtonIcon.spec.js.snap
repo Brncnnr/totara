@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonIcon Checks snapshot 1`] = `
+<button
+  aria-label="btn icon"
+  class="tui-iconBtn tui-iconBtn--hasText"
+  id="buttonicon"
+  title="btn icon"
+  type="button"
+>
+  <span
+    class="tui-iconBtn__wrap"
+  >
+    <span
+      class="tui-iconBtn__label"
+    >
+      <span
+        aria-hidden="true"
+        class="tui-iconBtn__icon"
+      />
+       
+      <span
+        class="tui-iconBtn__text"
+      >
+        
+        Magic
+      
+      </span>
+    </span>
+     
+    <!---->
+     
+    <!---->
+  </span>
+</button>
+`;

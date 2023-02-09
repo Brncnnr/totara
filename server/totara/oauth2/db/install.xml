@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/oauth2/db" VERSION="20180625" COMMENT="XMLDB file for Totara OAuth2 server"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_oauth2_client_provider" COMMENT="A table to store the client's id and secret that we are providing to other parties">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="client_id" TYPE="char" LENGTH="80" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="client_secret" TYPE="char" LENGTH="80" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="description_format" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="scope" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="List of scopes supported by the client. A string that contains list of scope, separated by a space."/>
+        <FIELD NAME="grant_types" TYPE="char" LENGTH="80" NOTNULL="false" SEQUENCE="false" COMMENT="List of grant types supported by the client. An array imploded by a space."/>
+        <FIELD NAME="internal" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="tenant_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="component" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="totara_oauth2_client_provider_tenant_id_fk" TYPE="foreign" FIELDS="tenant_id" REFTABLE="tenant" REFFIELDS="id" ONDELETE="cascade" ONUPDATE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="name_idx" UNIQUE="false" FIELDS="name"/>
+        <INDEX NAME="client_id_idx" UNIQUE="true" FIELDS="client_id"/>
+        <INDEX NAME="client_secret_idx" UNIQUE="true" FIELDS="client_secret"/>
+        <INDEX NAME="time_created_idx" UNIQUE="false" FIELDS="time_created"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_oauth2_access_token" COMMENT="A Table to store the list of access tokens that had been generated for OAuth2 clients.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="client_provider_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The field 'id' from table totara_oauth2_client_provider."/>
+        <FIELD NAME="identifier" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="A generated identifier token for OAuth2 clients. Please be aware that this identifier is not the access token that we provide to external parties, it is a unique hash that is a part of access token."/>
+        <FIELD NAME="expires" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The timestamp when this very token expires."/>
+        <FIELD NAME="scope" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="A string that contains list of scopes, separated by a space."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="client_provider_id_fk" TYPE="foreign" FIELDS="client_provider_id" REFTABLE="totara_oauth2_client_provider" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="identifier_idx" UNIQUE="true" FIELDS="identifier"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

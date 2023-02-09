@@ -1,0 +1,62 @@
+<?php
+/*
+ * This file is part of Totara Learn
+ *
+ * Copyright (C) 2020 onwards Totara Learning Solutions LTD
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author David Curry <david.curry@totaralearning.com>
+ * @package engage_article
+ * @category totara_catalog
+ */
+
+namespace engage_article\totara_catalog\article\observer;
+
+defined('MOODLE_INTERNAL') || die();
+
+use totara_catalog\observer\object_update_observer;
+
+/**
+ * update catalog items based on removed tags
+ */
+class tag_removed extends object_update_observer {
+
+    public function get_observer_events(): array {
+        return [
+            '\core\event\tag_removed',
+        ];
+    }
+
+    /**
+     * init update for catalog items based on removed tag
+     */
+    protected function init_change_objects(): void {
+        global $DB;
+        $data = new \stdClass();
+
+        $eventdata = $DB->get_records(
+            'tag_instance',
+            ['itemtype' => 'engage_article', 'id' => $this->event->objectid],
+            '',
+            'id, itemid, contextid'
+        );
+
+        foreach ($eventdata as $updatetag) {
+            $data->objectid = $updatetag->itemid;
+            $data->contextid = $updatetag->contextid;
+            $this->register_for_update($data);
+        }
+    }
+}

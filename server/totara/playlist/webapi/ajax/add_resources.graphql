@@ -1,0 +1,9 @@
+mutation totara_playlist_add_resources(
+  $playlistid: param_integer!
+  $resources: [param_integer!]!
+) {
+  playlist: totara_playlist_add_resources(
+    playlistid: $playlistid
+    resources: $resources
+  )
+}

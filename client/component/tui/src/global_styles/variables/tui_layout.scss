@@ -1,0 +1,57 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Simon Chester <simon.chester@totaralearning.com>
+// @module tuickage   tui
+
+// Sidebar layout that is responsive based on the size of its container, rather
+// than the viewport.
+@mixin tui-layout-sidebar(
+  // width of the sidebar
+    $side-width: 'content',
+  // width of the content
+    $content-min-width: 50%,
+  // size of the gutter between sidebar and content
+    $gutter: 0,
+  // selector for child sidebar element
+    $sidebar-selector: ':nth-child(1)',
+  // selector for child content element
+    $content-selector: ':nth-child(2)'
+) {
+  & {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: calc((#{$gutter} / 2) * -1);
+
+    & > #{$sidebar-selector} {
+      @if $side-width != 'content' {
+        flex-basis: $side-width;
+      }
+      flex-grow: 0;
+      margin: calc(#{$gutter} / 2);
+    }
+
+    & > #{$content-selector} {
+      flex-basis: 0;
+      // Set a really high flex-grow value so it takes up all the available
+      // space. This will squish the sidebar down to its intrinsic width
+      // (or flex-basis, if set).
+      flex-grow: 999;
+      // This element cannot shrink beyond min-width, so it will wrap on to the
+      // next line (switch to vertical).
+      min-width: calc(#{$content-min-width} - #{$gutter});
+      margin: calc(#{$gutter} / 2);
+    }
+  }
+}

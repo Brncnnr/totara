@@ -1,0 +1,49 @@
+query container_workspace_pending_member_requests(
+  $workspace_id: param_integer!
+) {
+  member_requests: container_workspace_member_requests(
+    workspace_id: $workspace_id
+    status: PENDING
+    # For now we are fetching unlimited.
+    cursor: "eyJsaW1pdCI6MCwicGFnZSI6MX0="
+  ) {
+    __typename
+    id
+    is_declined
+    is_accepted
+    time_description
+    workspace_id
+    request_content
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          associate_url
+          label
+          value
+          is_custom
+        }
+      }
+    }
+  }
+
+  cursor: container_workspace_member_request_cursor(
+    workspace_id: $workspace_id
+    status: PENDING
+    # For now we are fetching unlimited
+    cursor: "eyJsaW1pdCI6MCwicGFnZSI6MX0="
+  ) {
+    __typename
+    next
+    total
+  }
+}

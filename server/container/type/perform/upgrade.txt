@@ -1,0 +1,9 @@
+This files describes API changes in /container/type/perform/*.
+The information here is intended only for developers.
+
+=== 14.0 ===
+
+* Perform container categories are now created upon installation, instead of created on-demand
+* Created a 'container_perform' enrol plugin class that is automatically enabled for every perform container.
+  It is not a 'real' plugin, but simulates the enrolment of users in a performance activity.
+  See the perform_enrollment class for more details.

@@ -1,0 +1,13 @@
+{
+  "name": "moodle-editor_atto-dompurify",
+  "builds": {
+    "moodle-editor_atto-dompurify": {
+      "jsfiles": [
+        "dompurify.js"
+      ]
+    }
+  },
+  "shifter": {
+    "lint": false
+  }
+}

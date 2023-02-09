@@ -1,0 +1,248 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+// Item image ratio (default 16x9)
+$catalog_item_narrow-image_width: 2.5 !default;
+$catalog_item_narrow-image_height: 1 !default;
+$catalog_item_narrow-image_ratio: $catalog_item_narrow-image_height / $catalog_item_narrow-image_width * 100% !default;
+
+.tw-catalogItemNarrow {
+  color: var(--catalog-item-text-color);
+  background: var(--catalog-item-bg-color);
+  border: 1px solid;
+  border-color: var(--catalog-item-border-color);
+  display: block;
+  position: relative;
+  transition: box-shadow 0.2s ease-in-out;
+  border-radius: var(--border-radius-normal);
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: var(--catalog-item-text-color);
+    box-shadow: var(--shadow-2);
+    outline: none;
+    text-decoration: none;
+  }
+
+  &__image {
+    padding-top: $catalog_item_narrow-image_ratio;
+    position: relative;
+
+    &_ratio {
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      &_img {
+        background-position: 50%;
+        background-size: cover;
+        border-top-left-radius: calc(var(--border-radius-normal) - 1px);
+        border-top-right-radius: calc(var(--border-radius-normal) - 1px);
+        height: 100%;
+        width: 100%;
+
+        &_background {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: 8px;
+          background-color: white;
+        }
+
+        &_logo {
+          height: 20px;
+          max-width: 70px;
+
+          .ie & {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &[data-type=playlist] &__image_ratio_img {
+    background-color: var(--color-primary);
+  }
+
+  &__noimage {
+    display: block;
+    margin-bottom: var(--gap-2);
+    padding: var(--gap-2);
+  }
+
+  &__content {
+    padding: var(--gap-2);
+  }
+
+  &__hero {
+    left: calc(var(--gap-1) * -1);
+    max-width: 100%;
+    position: absolute;
+    top: var(--gap-2);
+    white-space: nowrap;
+
+    &_icon {
+      background: var(--catalog-item-hero-icon-bg-color);
+      border-radius: 15px;
+      box-shadow: var(--shadow-2);
+      overflow: hidden;
+      padding: var(--gap-1) 0.1rem;
+
+      > .flex-icon {
+        max-height: 28px;
+        vertical-align: baseline;
+        width: 28px;
+      }
+
+      &_img {
+        max-height: 28px;
+        width: 28px;
+      }
+    }
+
+    &_text {
+      @include totara-style-heading-label-small();
+      background: var(--catalog-item-hero-bg-color);
+      border-radius: 3px;
+      box-shadow: var(--shadow-2);
+      color: var(--catalog-item-hero-text-color);
+      max-width: 100%;
+      overflow: hidden;
+      padding: 0 var(--gap-2);
+      text-overflow: ellipsis;
+      text-transform: inherit;
+    }
+  }
+
+  &__progress {
+    overflow: hidden;
+  }
+
+  &__noprogress {
+    display: block;
+    padding: var(--gap-2);
+    height: $line-height-computed;
+  }
+
+  &__title {
+    // This is the easiest way to get consistent styling with engage cards
+    @include tui-font-heading-x-small();
+    height: 3.75em; // Line height x3
+    margin: var(--gap-2) 0;
+    overflow: hidden;
+    position: relative;
+
+    &_featured {
+      @include totara-style-heading-label-small();
+      background: var(--catalog-item-featured-bg-color);
+      border-radius: 3px;
+      color: var(--catalog-item-featured-text-color);
+      display: inline-block;
+      margin: 0 var(--gap-1) 0 0;
+      padding: 0 var(--gap-2);
+      text-transform: none;
+      vertical-align: text-bottom;
+    }
+  }
+
+  &__description {
+    @include totara-style-body-small();
+    height: 4.5em; // Line height x3
+    margin: var(--gap-2) 0;
+    overflow: hidden;
+  }
+
+  &__textarea_group {
+    padding-top: var(--gap-2);
+
+    &_item {
+      @include totara-style-body-x-small();
+      color: var(--catalog-item-additional-text-color);
+      height: 1.63em; // line height
+      margin: var(--gap-1) 0 var(--gap-2);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      p {
+        display: inline; // Item doesn't support block elements
+      }
+    }
+  }
+
+  &__iconRow {
+    height: 25px;
+    line-height: 25px;
+    margin: var(--gap-4) 0 var(--gap-2);
+    overflow: hidden;
+
+    > .flex-icon {
+      font-size: var(--font-size-13);
+    }
+
+    > .flex-icon,
+    &_icon {
+      margin-right: var(--gap-2);
+      max-height: 25px;
+      width: 25px;
+    }
+  }
+
+  &__ellipsis {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    word-wrap: break-word;
+  }
+  .tw-catalogItem__showEllipsis {
+    max-height: 100%;
+
+    &:after {
+      background: var(--catalog-item-bg-color);
+      bottom: 0;
+      content: '\2026';
+      position: absolute;
+      right: 0;
+      width: 1.5em;
+    }
+  }
+}
+
+.tw-grid__item_active {
+  .tw-catalogItemNarrow {
+    box-shadow: var(--shadow-3);
+
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: var(--shadow-3);
+      outline: none;
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentCard Checks snapshot 1`] = `
+<div
+  class="tui-commentCard"
+>
+  <div
+    class="tui-commentCard__comment"
+  >
+    <div
+      class="tui-commentCard__profilePicture"
+    />
+     
+    <div
+      class="tui-commentCard__body"
+    >
+      <div
+        class="tui-commentCard__header"
+      />
+       
+      <div
+        class="tui-commentCard__content"
+      />
+       
+      <div
+        class="tui-commentCard__footer"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="tui-commentCard__replyBox"
+  />
+</div>
+`;

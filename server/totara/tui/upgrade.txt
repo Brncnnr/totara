@@ -1,0 +1,14 @@
+This file describes API changes in /tui/ information provided here is intended
+especially for developers.
+
+=== 16.0 ===
+
+* Added a check to bail out early instead of hanging when compiling large non-ASCII SCSS files under PHP < 7.4, and added the pre_php74_allow_unperformant_css plugin setting to allow switching this off and attempting to compile anyway.
+
+=== 15.0 ===
+
+* Changed type of theme parameter from param_alphaext! to param_component! for query totara_tui_themes_with_variables.
+
+=== 14.0 ===
+
+* tenantid renamed to tenant_id in totara_tui\controllers\theme_settings

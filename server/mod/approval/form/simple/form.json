@@ -1,0 +1,62 @@
+{
+  "title": "Simple Request Form",
+  "shortname": "simple",
+  "revision": "Revised December 2022",
+  "version": "2022120801",
+  "language": "en-US",
+  "sections": [
+    {
+      "key": "A",
+      "line": "Section A",
+      "label": "Request",
+      "fields": [
+        {
+          "key": "request",
+          "line": "1",
+          "label": "What are you requesting approval for?",
+          "type": "text",
+          "required": false
+        },
+        {
+          "key": "notes",
+          "line": "2",
+          "label": "Further details",
+          "type": "editor",
+          "char_length": "50",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "B",
+      "line": "Section B",
+      "label": "Followup",
+      "fields": [
+        {
+          "key": "complete",
+          "line": "1",
+          "label": "Discussed with manager?",
+          "required": false,
+          "type": "select_one",
+          "default": null,
+          "attrs": {
+            "choices": [
+              {
+                "key": null,
+                "label": "Select one"
+              },
+              {
+                "key": "Complete",
+                "label": "Yes"
+              },
+              {
+                "key": "Incomplete",
+                "label": "No"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

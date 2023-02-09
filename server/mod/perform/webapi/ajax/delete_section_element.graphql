@@ -1,0 +1,49 @@
+mutation mod_perform_delete_section_element(
+  $input: mod_perform_delete_section_element_input!
+) {
+  updated_section_details: mod_perform_delete_section_element(input: $input) {
+    section {
+      id
+      section_elements {
+        id
+        sort_order
+        element {
+          ...mod_perform_delete_section_element_element_data
+          children {
+            ...mod_perform_delete_section_element_element_data
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment mod_perform_delete_section_element_element_data on mod_perform_element {
+  __typename
+  id
+  title
+  raw_title: title(format: RAW)
+  identifier
+  data
+  raw_data: data(format: RAW)
+  is_required
+  element_plugin {
+    plugin_name
+    name
+    plugin_config {
+      is_respondable
+      has_title
+      has_reporting_id
+      title_text
+      title_help_text
+      is_title_required
+      is_response_required_enabled
+    }
+    admin_edit_component
+    admin_view_component
+    admin_summary_component
+    participant_form_component
+    participant_print_component
+    group
+  }
+}

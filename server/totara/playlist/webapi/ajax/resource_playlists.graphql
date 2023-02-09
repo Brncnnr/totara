@@ -1,0 +1,66 @@
+query totara_playlist_resource_playlists(
+  $resource_id: param_integer!
+  $cursor: param_text
+  $source: String
+) {
+  playlists: totara_playlist_playlists(
+    cursor: $cursor
+    resource_id: $resource_id
+    sort: RATING
+  ) {
+    __typename
+    user {
+      __typename
+      id
+      # Note that fullname is needed for displaying data.
+      fullname
+      card_display {
+        __typename
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          __typename
+          is_custom
+          associate_url
+          label
+          value
+        }
+      }
+    }
+    id
+    contextid
+    timedescription
+    topics {
+      __typename
+      id
+      value(format: PLAIN)
+    }
+    name(format: PLAIN)
+    access
+    summary(format: PLAIN)
+    rating {
+      itemid
+      rating
+      count
+      rated
+    }
+    updateable
+    contributable
+    totalresources
+    sharedbycount
+    owned
+    bookmarked
+    manageable
+    url(source: $source, library_view: false)
+  }
+
+  cursor: totara_playlist_playlists_cursor(
+    cursor: $cursor
+    resource_id: $resource_id
+  ) {
+    __typename
+    total
+    next
+  }
+}

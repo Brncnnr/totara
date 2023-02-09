@@ -1,0 +1,263 @@
+"""
+Interactor type for checking all the available actions
+of a single user against the comment instance.
+"""
+type totara_comment_comment_interactor {
+  user_id: Int!
+  comment_id: Int!
+  can_update: Boolean!
+  can_delete: Boolean!
+  can_report: Boolean!
+  can_reply: Boolean!
+  can_react: Boolean!
+  can_view_author: Boolean!
+  reacted: Boolean!
+}
+
+"""
+Interactor type for checking all the available actions of a single user
+against the reply instance
+"""
+type totara_comment_reply_interactor {
+  user_id: Int!
+  reply_id: Int!
+  can_update: Boolean!
+  can_delete: Boolean!
+  can_report: Boolean!
+  can_react: Boolean!
+  can_follow_reply: Boolean!
+  can_view_author: Boolean!
+  reacted: Boolean!
+}
+
+type totara_comment_draft_item {
+  id: Int!
+  content: String!
+  format: Int!
+  component: String!
+  area: String!
+  """
+  To identify whether this draft item is for comment or for reply.
+  """
+  comment_area: totara_comment_area!
+  """
+  The file draft's id where all the area files are moved to here.
+  """
+  file_draft_id: Int!
+}
+
+type totara_comment_comment {
+  id: core_id!
+  user: core_user!
+  content(format: core_format! = HTML): String!
+  timedescription: String!
+  totalreplies: Int!
+  totalreactions: Int!
+  edited: Boolean!
+  deleted: Boolean!
+  reasondeleted: Int
+  """
+  Interactor against this comment. If user_id is provided, then it will run check against that user.
+  Otherwise user in session will be used.
+  """
+  interactor(user_id: param_integer): totara_comment_comment_interactor!
+}
+
+type totara_comment_reply {
+  id: core_id!
+  user: core_user!
+  content(format: core_format! = HTML): String!
+  commentid: core_id!
+  timedescription: String!
+  edited: Boolean!
+  deleted: Boolean!
+  reasondeleted: Int
+  totalreactions: Int
+  """
+  Interactor against this reply. If user_id is provided, then it will run check against that user.
+  Otherwise user in session will be used.
+  """
+  interactor(user_id: param_integer): totara_comment_reply_interactor!
+}
+
+"""
+Mainly being used for fetching the editor weka. To see whether it is for comment or reply.
+"""
+enum totara_comment_area {
+  COMMENT
+  REPLY
+}
+
+"""
+Type of the cursor. A generic one.
+"""
+type totara_comment_cursor {
+  """
+  The total number of the comments or replies.
+  """
+  total: Int!
+  """
+  The next cursor. If it is null, meaning that we are at the end of the list.
+  """
+  next: String
+}
+
+extend type Query {
+  totara_comment_comments(
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+    """
+    The cursor which it contain the metadata about current page and how many records
+    we are going to fetch. However if it is not provided, then we start at the begining
+    of the list.
+    """
+    cursor: param_text
+    page: param_integer
+  ): [totara_comment_comment!]!
+
+  """
+  A query to load comment's cursor
+  """
+  totara_comment_comment_cursor(
+    component: param_component!
+    area: param_area!
+    instance_id: param_integer!
+    """
+    The current cursor to identify where we at, so that we can figure out the next cursor
+    """
+    cursor: param_text
+  ): totara_comment_cursor!
+
+  """
+  Query to fetch the current actor within session.
+  """
+  totara_comment_actor: core_user!
+
+  """
+  Query to load all the replies that are related to the comment.
+  """
+  totara_comment_replies(
+    commentid: param_integer!
+    page: param_integer
+  ): [totara_comment_reply!]!
+
+  """
+  Getting the draft reply/comment, which the content can either be a json_encoded document or just
+  purely text - depends on the text format. This is for preparing the content that being used by
+  the editor. Furthermore, the content will be run passed by the file system to make sure that all
+  the files are moved to draft.
+  """
+  totara_comment_draft_item(id: param_integer!): totara_comment_draft_item!
+
+  """
+  Since we are allowing the comment's editor to be flexible where it is being used, and the editor is only allow to
+  be locked down to the component it is used. Which in this case, the editor is locked down to the totara_comment
+  component. And totara_comment component is being used in different component - therefore we are going to fetch
+  the extensions for editor weka that the parent component want the editor to be. Then we will mask it with
+  the totara_comment component.
+
+  This query had been deprecated and the behaviour of the query had been changed.
+  Please use query editor_weka_editor instead.
+  """
+  totara_comment_editor_weka(
+    """
+    The component of place where the comment's weka editor is being used.
+    """
+    component: param_component!
+    """
+    The area of place where the comment's weka editor is being used.
+    """
+    area: param_area!
+    """
+    This is to identify whether it is for comment or reply.
+    """
+    comment_area: param_area!
+    """
+    This parameter is deprecated. Do not use this input field, use query totara_comment_editor_weka_from_id instead
+    @deprecated
+    """
+    id: param_integer
+    """
+    The instance's id of which that is using the comment component.
+    """
+    instance_id: param_integer!
+    """
+    Draft item id needed for draft files
+    """
+    draft_id: param_integer
+  ): editor_weka_editor
+
+  """
+  This query will behave similar to query totara_comment_editor_weka. However, this query is fetching based
+  on either comment's id or reply's id as they are from the same table.
+
+  This query had been deprecated and the behaviour had been changed.
+  Please use query editor_weka_editor instead.
+  """
+  totara_comment_editor_weka_from_id(
+    """
+    Either comment's id or reply's id.
+    """
+    id: param_integer!
+    """
+    This is to identify whether it is for comment or reply.
+    """
+    comment_area: param_area!
+    """
+    Draft item id needed for draft files
+    """
+    draft_id: param_integer
+  ): editor_weka_editor
+}
+
+extend type Mutation {
+  totara_comment_create_comment(
+    content: String!
+    component: param_component!
+    area: param_area!
+    instanceid: param_integer!
+    format: param_integer
+    """
+    For handling the saving of files. If this is left empty then there are no files to save.
+    """
+    draft_id: param_integer
+  ): totara_comment_comment
+
+  totara_comment_update_comment(
+    id: param_integer!
+    format: param_integer
+    content: String!
+    """
+    For handling the saving of files. If this is left empty then there are no files to save.
+    """
+    draft_id: param_integer
+  ): totara_comment_comment!
+
+  totara_comment_update_reply(
+    id: param_integer!
+    format: param_integer
+    content: String!
+    """
+    For handling the saving of files. If this is left empty then there are no files to save.
+    """
+    draft_id: param_integer
+  ): totara_comment_reply!
+
+  totara_comment_delete_comment(id: param_integer!): totara_comment_comment!
+
+  totara_comment_delete_reply(id: param_integer!): totara_comment_reply!
+
+  """
+  Mutation to create a reply, which its parent is the comment's id.
+  """
+  totara_comment_create_reply(
+    commentid: param_integer!
+    content: String!
+    format: param_integer
+    """
+    For handling the saving of files. If this is left empty then there are no files to save.
+    """
+    draft_id: param_integer
+  ): totara_comment_reply!
+}

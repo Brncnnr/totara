@@ -1,0 +1,87 @@
+This files describes API changes in /course/*,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+ * Updated function get_module_metadata(), return urls will no longer contain sesskey.
+ * \core_course\rb\traits\required_columns::add_audiencevisibility_columns() has been deprecated and \coure_course\rb\traits\required_joins::add_audiencevisibility_joins() should be used instead when attempting to check visibility in Course's reports
+
+=== 15.0 ===
+
+ * Updated function get_module_types_names() internally to use container_course\course_helper::get_all_modules(), instead of using container_course\course::get_module_types_supported. The function get_module_types_names() is still deprecated.
+ * Deprecated get_module_types_names() please use \container_course\course_helper::get_all_modules()
+ * Updated function course_allowed_module() internally to use container_course\course_helper::is_module_addable(), instead of using container_course\course::is_module_allowed. The function course_allowed_module() is still deprecated.
+
+=== 14.0 ===
+
+  * core_course\management_renderer::course_search_form converted fieldset to div
+
+=== 13.0 ===
+
+ * core_course_renderer::course_section_cm_name_title now adds activity type name as the title of the acitivity icon
+ * archive_course_completion() added third optional argument $inprogress
+ * core_course_renderer::course_section_cm_completion() has been changed to show an activity complete tickmark when a
+   grade item or grade is hidden, rather than a pass/fail tickmark
+ * core_course_renderer::course_section_cm_completion() has been changed to show an activity complete tickmark when a
+   completion tracking is manual and the activity is completed via RPL
+ * core_course_management_renderer::category_listitem() has been updated to delay-render action menu items
+ * core_course\management\helper::get_category_listitem_actions() added a second argument $onlyfastactions
+ * core_course_renderer::course_section_cm_completion has been updated changing the self completion icon to a checkbox
+ * core_course\totara_catalog\course\observer\course_restored::init_change_objects now only updates courses with the course container type
+ * Function get_module_types_names has been deprecated and will be removed in the future, please use container_course\course::get_module_types_supported instead
+ * Function add_course_module has been deprecated and will be removed in the future, please use container_course\module\course_module::create instead
+ * Function course_create_section has been deprecated and will be removed in the future, please use container_course\section\course_section::create instead
+ * Function course_add_cm_to_section has been deprecated and will be removed in the future, please use container_course\module\course_module::add_to_section instead
+ * Function set_coursemodule_groupmode has been deprecated and will be removed in the future, please use container_course\module\course_module::update_group_mode instead
+ * Function set_coursemodule_idnumber has been deprecated and will be removed in the future, please use container_course\module\course_module::update_id_number instead
+ * Function set_coursemodule_visible has been deprecated and will be removed in the future, please use container_course\module\course_module::update_visible instead
+ * Function set_coursemodule_name has been deprecated and will be removed in the future, please use container_course\module\course_module::update_name instead
+ * Function course_delete_module has been deprecated and will be removed in the future, please use container_course\module\course_module::delete instead
+ * Function course_module_flag_for_async_deletion has been deprecated and will be removed in the future, please use container_course\module\course_module::async_delete instead
+ * Function delete_mod_from_section has been deprecated and will be removed in the future, please use container_course\section\course_section::remove_module instead
+ * Function moveto_module has been deprecated and will be removed in the future, please use container_course\module\course_module::move_to_section instead
+ * Function course_allowed_module has been deprecated and will be removed in the future, please use container_course\course::is_module_allowed instead
+ * Function create_course has been deprecated and will be removed in the future, please use container_course\course_helper::create_course instead
+ * Function update_course has been deprecated and will be removed in the future, please use container_course\course_helper::update_course instead
+ * Function add_moduleinfo has been deprecated and will be removed in the future, please use container_course\course::add_module instead
+ * Function update_moduleinfo has been deprecated and will be removed in the future, please use container_course\module\course_module::update instead
+ * Function include_modulelib has been deprecated and will be removed in the future, please use core_container\module\helper::include_modulelib instead
+ * Function set_moduleinfo_defaults has been deprecated and will be removed in the future, please \container_course\module\course_module::set_moduleinfo_defaults instead
+
+=== 12.0 ===
+
+ * External function core_course_external::get_courses_by_field now returns the course filters list and status.
+ * External function core_course_external::get_courses_by_field now returns the end date of the course as well.
+ * External function core_course_external::get_course_contents now return the following additional file fields:
+   - mimetype (the file mime type)
+   - isexternalfile (if is a file reference to a external repository)
+   - repositorytype (the repository name in case is a external file)
+   Those fields are VALUE_OPTIONAL for backwards compatibility.
+ * core_course_renderer::course_section_cm_completion() has changed
+ * core_course_management_renderer::detail_pair has changed
+ * core_course_renderer::frontpage_remote_course() has been deprecated
+ * core_course_renderer::frontpage_remote_host() has been deprecated
+ * core_course_renderer::frontpage_my_courses() has been deprecated
+ * core_course_renderer::frontpage_available_courses() has been deprecated
+ * core_course_renderer::frontpage_combo_list() has been deprecated
+ * Column course.completionstartonenrol has been deprecated and will be removed from the course table in Totara 13
+
+=== 11.0 ===
+
+ * Publishing course on a hub (Hub functionality) has been deprecated and will be removed entirely in the next major version.
+
+=== 10.0 ===
+
+ * External function core_course_external::get_course_contents now returns the section's number in the course (new section field).
+ * External function core_course_external::get_course_contents now returns if a section is hidden in the course format.
+ * External functions that were returning file information now return the following file fields:
+   filename, filepath, mimetype, filesize, timemodified and fileurl.
+   Those fields are now marked as VALUE_OPTIONAL for backwards compatibility.
+ * The modchooser now uses a renderable and a template, thus its associated renderer
+   methods have been deprecated. Note that the call to core_course_render::course_modchooser,
+   is still required. Deprecated methods:
+   - core_course_renderer::course_modchooser_module_types
+   - core_course_renderer::course_modchooser_module
+   - core_course_renderer::course_modchooser_title
+ * You can now specify a course end date when calling core_course_external::create_courses and core_course_external::update_courses
+   external functions. core_course_external::get_courses external function is now returning courses end date values.

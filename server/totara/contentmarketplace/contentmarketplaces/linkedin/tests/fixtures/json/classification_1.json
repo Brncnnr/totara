@@ -1,0 +1,21 @@
+{
+  "urn": "urn:li:lyndaCategory:7220",
+  "owner": {
+    "urn": "urn:li:company:1337",
+    "name": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "LinkedIn"
+    }
+  },
+  "name": {
+    "locale": {
+      "country": "US",
+      "language": "en"
+    },
+    "value": "Audio Post-Production"
+  },
+  "type": "TOPIC"
+}

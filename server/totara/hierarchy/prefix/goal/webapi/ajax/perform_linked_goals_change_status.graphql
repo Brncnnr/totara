@@ -1,0 +1,17 @@
+mutation hierarchy_goal_perform_linked_goals_change_status(
+  $input: hierarchy_goal_perform_linked_goals_change_status_input!
+) {
+  hierarchy_goal_perform_linked_goals_change_status(input: $input) {
+    perform_status {
+      status_changer_user {
+        fullname
+      }
+      scale_value {
+        name
+        proficient
+      }
+      created_at(format: DATE)
+    }
+    already_exists
+  }
+}

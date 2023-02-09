@@ -1,0 +1,42 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Oleg Demeshev <oleg.demeshev@totaralearning.com>
+   @package totara_catalog
+}}
+
+{{!
+
+    @template totara_catalog/default_home_page_block
+
+    This template generates the administartion default home page block
+
+    Context variables required for this template:
+    * defaulthomepage: is catalog home page
+    * defaulthomepage_url: moodle url html string
+
+    Example content (json):
+    {
+        "defaulthomepage": true,
+        "defaulthomepage_url": totara/catalog/index.php?setdefaulthome=1&sesskey=XXXXXXXXXX
+    }
+}}
+
+{{#defaulthomepage}}
+    <a href="{{{defaulthomepage_url}}}" class="tw-catalogManageBtns__btn btn">{{#str}} makehomepage, totara_core {{/str}}</a>
+{{/defaulthomepage}}

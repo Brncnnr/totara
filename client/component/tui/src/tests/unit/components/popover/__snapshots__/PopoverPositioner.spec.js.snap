@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopoverPositioner matches snapshot 1`] = `
+<transition-stub
+  name="tui-popoverPositioner--transition-default"
+>
+  <div
+    class="tui-popoverPositioner tui-popoverPositioner--transition-default"
+    style="transform: translate3d(0px, 0px, 0); display: none;"
+  >
+    <div>
+      hello
+    </div>
+  </div>
+</transition-stub>
+`;

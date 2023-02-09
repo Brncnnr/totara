@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage AccessDisplay Checks snapshot 1`] = `
+<div
+  class="tui-engageAccessDisplay"
+>
+  <div
+    class="tui-engageAccessDisplay__accessIcon"
+  >
+    <div
+      class="tui-engageAccessDisplay__accessIcon-icons"
+    >
+      <accessicon-stub
+        access="PUBLIC"
+        coloring="true"
+        size="300"
+      />
+       
+      <span>
+        viewpublic-totara_engage
+      </span>
+    </div>
+     
+    <div
+      class="tui-engageAccessDisplay__accessIcon-shareButton"
+    >
+      <button-stub
+        styleclass="[object Object]"
+        text="share-totara_engage"
+        type="button"
+      />
+    </div>
+  </div>
+   
+  <!---->
+   
+  <!---->
+   
+  <div
+    class="tui-engageAccessDisplay__editSettings"
+  >
+    <button-stub
+      styleclass="[object Object]"
+      text="editsettings-totara_engage"
+      type="button"
+    />
+  </div>
+</div>
+`;

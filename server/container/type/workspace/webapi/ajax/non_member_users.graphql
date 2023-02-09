@@ -1,0 +1,39 @@
+query container_workspace_non_member_users(
+  $workspace_id: param_integer!
+  $search_term: param_text
+  $cursor: param_text
+) {
+  cursor: container_workspace_non_member_users_cursor(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+  ) {
+    __typename
+    total
+    next
+  }
+
+  users: container_workspace_non_member_users(
+    workspace_id: $workspace_id
+    search_term: $search_term
+    cursor: $cursor
+  ) {
+    __typename
+    id
+    fullname
+    card_display {
+      __typename
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+
+      display_fields {
+        __typename
+        label
+        value
+        is_custom
+        associate_url
+      }
+    }
+  }
+}

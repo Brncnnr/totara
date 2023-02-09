@@ -1,0 +1,2 @@
+This file describes API changes in /client/component/performelement_linked_review,
+information provided here is intended especially for developers.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>person_x</title>
+    <g id="person_x" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="Group" transform="translate(6.000000, 6.000000)" stroke="currentColor" stroke-linecap="round">
+            <line x1="0.833333333" y1="0.833333333" x2="9.16666667" y2="9.16666667" id="Line-14"></line>
+            <line x1="0.833333333" y1="0.833333333" x2="9.16666667" y2="9.16666667" id="Line-14-Copy" transform="translate(5.000000, 5.000000) scale(-1, 1) translate(-5.000000, -5.000000) "></line>
+        </g>
+        <g id="Group" transform="translate(-0.500000, 0.000000)">
+            <g id="Group-3" transform="translate(0.000000, 5.000000)">
+                <path d="M5,0 C6.05054545,0 6.87116471,0.255473554 7.50658887,0.642167615 L7.3086995,0.666522663 C7.00272578,0.702850971 6.71787573,0.841077769 6.5,1.0589535 C5.96399481,1.59495869 5.96399481,2.46399481 6.5,3 L6.5,3 L8.5,5 L8.5,5 L1.4,5 C1.4,5 0.5,5 0.5,4 C0.5,3 1.4,0 5,0 Z" id="Combined-Shape"></path>
+            </g>
+            <g id="Group-3" transform="translate(0.500000, 0.000000)">
+                <g id="Clip-2"></g>
+                <path d="M4.25,4.5002 C5.492,4.5002 6.5,3.4932 6.5,2.2502 C6.5,1.0072 5.492,0.0002 4.25,0.0002 C3.008,0.0002 2,1.0072 2,2.2502 C2,3.4932 3.008,4.5002 4.25,4.5002 L4.25,4.5002 Z" id="Fill-1" transform="translate(4.250000, 2.250200) scale(-1, 1) translate(-4.250000, -2.250200) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

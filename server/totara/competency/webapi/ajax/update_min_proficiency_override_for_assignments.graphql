@@ -1,0 +1,11 @@
+mutation totara_competency_update_min_proficiency_override_for_assignments(
+  $input: totara_competency_assignment_min_proficiency_override_input
+) {
+  totara_competency_update_min_proficiency_override_for_assignments(
+    input: $input
+  ) {
+    assignments {
+      id
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query mod_approval_get_active_forms(
+  $query_options: mod_approval_active_forms_input!
+) {
+  mod_approval_get_active_forms(query_options: $query_options) {
+    items {
+      __typename
+      id
+      title
+      created
+      updated
+      active_version {
+        __typename
+        id
+      }
+    }
+    total
+    next_cursor
+  }
+}

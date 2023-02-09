@@ -1,0 +1,14 @@
+mutation totara_notification_toggle_notifiable_event_v2(
+  $resolver_class_name: param_text!
+  $extended_context: totara_notification_extended_context_input
+  $is_enabled: param_boolean!
+) {
+  notifiable_event: totara_notification_toggle_notifiable_event_v2(
+    resolver_class_name: $resolver_class_name
+    extended_context: $extended_context
+    is_enabled: $is_enabled
+  ) {
+    __typename
+    class_name
+  }
+}

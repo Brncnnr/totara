@@ -1,0 +1,63 @@
+Feature: Custom roles to edit an application submission
+  Scenario: x
+    Given I am on a totara site
+    And the following "users" exist:
+      | username   | firstname | lastname | email                 |
+      | applicant  | Applie    | Kaant    | applicant@example.com |
+      | editor1    | Eddie     | Tuar     |   editor1@example.com |
+      | editor2    | Eddie     | Tang     |   editor2@example.com |
+    And the following "roles" exist:
+      | shortname         |
+      | assignmenteditor1 |
+      | assignmenteditor2 |
+    And the following "role assigns" exist:
+      | user    | role              | contextlevel | reference |
+      | editor1 | assignmenteditor1 | User         | applicant |
+      | editor2 | assignmenteditor2 | User         | applicant |
+    And the following "permission overrides" exist:
+      | capability                              | permission |  role  |   contextlevel  | reference |
+      | mod/approval:view_application_user           | Allow | assignmenteditor1 | User | applicant |
+      | mod/approval:edit_submitted_application_user | Allow | assignmenteditor1 | User | applicant |
+      | mod/approval:view_application_user           | Allow | assignmenteditor2 | User | applicant |
+      | mod/approval:submit_application_user         | Allow | assignmenteditor2 | User | applicant |
+      | mod/approval:edit_submitted_application_user | Allow | assignmenteditor2 | User | applicant |
+    And the following "cohorts" exist:
+      | name | idnumber |
+      | aud1 | AUD001   |
+    And the following "workflow types" exist in "mod_approval" plugin:
+      | name                  |
+      | A very simple request |
+    And the following "forms" exist in "mod_approval" plugin:
+      | title     |
+      | Test form |
+    And the following "form versions" exist in "mod_approval" plugin:
+      | form      | version | json_schema |
+      | Test form | 1       | test1       |
+    And the following "workflows" exist in "mod_approval" plugin:
+      | name          | description               | id_number | form      | workflow_type         |
+      | Test workflow | test workflow description | WKF001    | Test form | A very simple request |
+    And the following "workflow versions" exist in "mod_approval" plugin:
+      | workflow | form_version |
+      | WKF001   | 1            |
+    And the following "workflow stages" exist in "mod_approval" plugin:
+      | workflow | name       |
+      | WKF001   | Test stage |
+    And the following "approval levels" exist in "mod_approval" plugin:
+      | workflow_stage | name         |
+      | Test stage     | Test level 1 |
+      | Test stage     | Test level 2 |
+    And the following "form views" exist in "mod_approval" plugin:
+      | workflow_stage | respondent | field_key | required |
+      | Test stage     | user       | food      | true     |
+    And the following "assignments" exist in "mod_approval" plugin:
+      | name            | id_number  | workflow | type   | identifier | default |
+      | Test assignment | ASS001     | WKF001   | cohort | AUD001     | true    |
+    And the following "applications" exist in "mod_approval" plugin:
+      | title            | user      | workflow | assignment | creator   |
+      | Test application | applicant | WKF001   | ASS001     | applicant |
+    And the following "application submissions" exist in "mod_approval" plugin:
+      | application      | user      | form_data                     |
+      | Test application | applicant | {"food":"What a great meal!"} |
+    And the following "application actions" exist in "mod_approval" plugin:
+      | application      | user      | action |
+      | Test application | applicant | submit |

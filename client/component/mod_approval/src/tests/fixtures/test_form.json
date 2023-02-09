@@ -1,0 +1,82 @@
+{
+  "title": "Test Form",
+  "shortname": "test",
+  "revision": "1.0",
+  "version": "2021030200",
+  "language": "en-US",
+  "fields": [
+    {
+      "key": "agency_code",
+      "line": "A",
+      "label": "Agency code",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "key": "request_status",
+      "line": "B",
+      "label": "Request Status",
+      "type": "select_one",
+      "required": false,
+      "default": null,
+      "attrs": {
+        "choices": [
+          {
+            "key": null,
+            "label": "Select one"
+          },
+          {
+            "key": "Yes",
+            "label": "Yes, of course"
+          },
+          {
+            "key": "No",
+            "label": "No thank you"
+          }
+        ]
+      }
+    },
+    {
+      "key": "detailed_description",
+      "line": "C",
+      "label": "A detailed description",
+      "required": false,
+      "type": "editor"
+    }
+  ],
+  "sections": [
+    {
+      "key": "A",
+      "line": "Section A",
+      "label": "Basic Information",
+      "fields": [
+        {
+          "key": "applicant_name",
+          "line": "1",
+          "label": "Applicant's Name",
+          "instruction": "Last, First, Middle Initial",
+          "required": false,
+          "type": "fullname",
+          "attrs": {
+            "format": "last,first,middle-initial"
+          }
+        }
+      ]
+    },
+    {
+      "key": "B",
+      "line": "Section B",
+      "label": "Course Information",
+      "fields": [
+        {
+          "key": "training_vendor",
+          "line": "1",
+          "label": "Name and Mailing Address of Training Vendor",
+          "instruction": "No., Street, City, Sata, ZIP Code",
+          "required": false,
+          "type": "address"
+        }
+      ]
+    }
+  ]
+}

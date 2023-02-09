@@ -1,0 +1,48 @@
+This files describes API changes in /client/component/totara_playlist,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Updated PlaylistForm, PlaylistSidePanel, and PlaylistSummary to use Weka core variants
+  * Template changes
+
+=== 16.0 ===
+* Updates in AddNewPlaylistCard.vue to reference renamed css variable (---engage-card-height)
+  * SCSS changes
+* Updates in Related.vue to pass image alt text to the RelatedCard components
+  * JS changes
+* Updates in PlaylistCard.vue and RelatedCard.vue to use background image based (css cropping) card header images
+  And using class styling for the resource count instead of relying on dom structure
+  * Template, SCSS and JS changes
+* Updated Adder.vue loading state
+  * Template and JS changes
+
+=== 15.0 ===
+* Updates in PlaylistSidePanel.vue
+  * Template changes
+* Updates in Related.vue
+  * Template and JS changes
+  * Deprecated getRecommendations as it is now an apollo query
+* Updates in PlaylistSidePanel.vue
+  * Template changes
+* Updates in Adder.vue
+  * Template changes
+
+=== 14.0 ===
+* Updates in PlaylistForm.vue:
+  * Template changes
+    * Replaced props "component" and "area" with "usage-identifier" for component editor_weka Weka.vue
+    * Added props "variant" and "compact" to component "editor_weka" Weka.vue
+* Updated PlaylistSidePanel.vue to add prop "editor-variant" and "editor-context-id" to component totara_comment SidePanelCommetnBox.vue
+  * Template changes
+* Updates in PlaylistSummary.vue:
+  * Template changes
+    * Replaced props "component" and "area" with "usage-identifier" for component editor_weka Weka.vue
+    * Added props "variant" and "compact" to component editor_weka Weka.vue
+* Updated PlaylistTitleForm.vue to pass through optional prop "focusInput" to tui InputText.vue
+  * Template changes
+* Updated HeaderBox.vue to pass variable to totara_engage InlineEditing prop "focus-button"
+  * Template changes
+* Added optional prop "focusInput" to component PlaylistTitleForm.vue
+* Updated PlaylistCard.vue page to use a link here instead of in totara_engage BaseCard
+    * Template & SCSS changes

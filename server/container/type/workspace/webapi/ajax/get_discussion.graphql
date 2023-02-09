@@ -1,0 +1,34 @@
+query container_workspace_get_discussion($id: param_integer!) {
+  discussion: container_workspace_discussion(id: $id) {
+    __typename
+    id
+    workspace_id
+    content(format: HTML)
+    time_description
+    owner {
+      __typename
+      id
+      fullname
+      email
+      profileimagealt
+      profileimageurl
+    }
+    total_comments
+    total_reactions
+    workspace_context_id
+    discussion_interactor {
+      __typename
+      discussion_id
+      workspace_id
+      can_comment
+      can_delete
+      can_update
+      can_report
+      removed
+      can_react
+      reacted
+    }
+    edited
+    comment_cursor
+  }
+}

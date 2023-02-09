@@ -1,0 +1,100 @@
+Feature: Org framework with many orgs, two levels in one stage, no overrides
+  Scenario: x
+    Given I am on a totara site
+    And the following "organisation frameworks" exist in "totara_hierarchy" plugin:
+      | fullname         | idnumber |
+      | Agency Framework | FED      |
+    And the following "organisations" exist in "totara_hierarchy" plugin:
+      | org_framework | fullname                | shortname          | idnumber           | org_parent   |
+      | FED           | Agency                  | org                | org                |              |
+      | FED           | Sub-agency A            | org_a              | org_a              | org          |
+      | FED           | Sub-agency A Program A  | org_a_prog_a       | org_a_prog_a       | org_a        |
+      | FED           | Program A Sub-Program A | org_a_prog_a_sub_a | org_a_prog_a_sub_a | org_a_prog_a |
+      | FED           | Program A Sub-Program B | org_a_prog_a_sub_b | org_a_prog_a_sub_b | org_a_prog_a |
+      | FED           | Sub-agency A Program B  | org_a_prog_b       | org_a_prog_b       | org_a        |
+      | FED           | Sub-agency C            | org_c              | org_c              | org          |
+      | FED           | Sub-agency D            | org_d              | org_d              | org          |
+      | FED           | Sub-agency E            | org_e              | org_e              | org          |
+      | FED           | Sub-agency F            | org_f              | org_f              | org          |
+      | FED           | Sub-agency G            | org_g              | org_g              | org          |
+      | FED           | Sub-agency H            | org_h              | org_h              | org          |
+      | FED           | Sub-agency I            | org_i              | org_i              | org          |
+      | FED           | Sub-agency J            | org_j              | org_j              | org          |
+      | FED           | Sub-agency K            | org_k              | org_k              | org          |
+      | FED           | Sub-agency L            | org_l              | org_l              | org          |
+      | FED           | Sub-agency M            | org_m              | org_m              | org          |
+      | FED           | Sub-agency N            | org_n              | org_n              | org          |
+      | FED           | Sub-agency O            | org_o              | org_o              | org          |
+      | FED           | Sub-agency P            | org_p              | org_p              | org          |
+      | FED           | Sub-agency Q            | org_q              | org_q              | org          |
+      | FED           | Sub-agency R            | org_r              | org_r              | org          |
+      | FED           | Sub-agency S            | org_s              | org_s              | org          |
+      | FED           | Sub-agency T            | org_t              | org_t              | org          |
+      | FED           | Sub-agency U            | org_u              | org_u              | org          |
+      | FED           | Sub-agency V            | org_v              | org_v              | org          |
+      | FED           | Sub-agency W            | org_w              | org_w              | org          |
+      | FED           | Sub-agency X            | org_x              | org_x              | org          |
+      | FED           | Sub-agency Y            | org_y              | org_y              | org          |
+      | FED           | Sub-agency Z            | org_z              | org_z              | org          |
+    And the following "users" exist:
+      | username   | firstname | lastname | email             |
+      | manager_a  | Manager   | A        | manaa@example.com |
+      | manager_b  | Manager   | B        | manab@example.com |
+      | approver_a | Approver  | A        | usera@example.com |
+      | approver_b | Approver  | B        | userb@example.com |
+      | approver_c | Approver  | C        | userc@example.com |
+      | approver_d | Approver  | D        | userd@example.com |
+      | approver_e | Approver  | E        | usere@example.com |
+      | approver_f | Approver  | F        | userf@example.com |
+      | approver_g | Approver  | G        | userg@example.com |
+      | approver_h | Approver  | H        | userh@example.com |
+      | approver_i | Approver  | I        | useri@example.com |
+      | approver_j | Approver  | J        | userj@example.com |
+      | approver_k | Approver  | K        | userk@example.com |
+      | approver_l | Approver  | L        | userl@example.com |
+      | approver_m | Approver  | M        | userm@example.com |
+      | approver_n | Approver  | N        | usern@example.com |
+      | approver_o | Approver  | O        | usero@example.com |
+      | approver_p | Approver  | P        | userp@example.com |
+      | approver_q | Approver  | Q        | userq@example.com |
+      | approver_r | Approver  | R        | userr@example.com |
+      | approver_s | Approver  | S        | users@example.com |
+      | approver_t | Approver  | T        | usert@example.com |
+      | approver_u | Approver  | U        | useru@example.com |
+      | approver_v | Approver  | V        | userv@example.com |
+      | approver_w | Approver  | W        | userw@example.com |
+      | approver_x | Approver  | X        | userx@example.com |
+      | approver_y | Approver  | Y        | usery@example.com |
+      | approver_z | Approver  | Z        | userz@example.com |
+    And the following "workflow types" exist in "mod_approval" plugin:
+      | name               |
+      | Test workflow type |
+    And the following "forms" exist in "mod_approval" plugin:
+      | title     |
+      | Test form |
+    And the following "form versions" exist in "mod_approval" plugin:
+      | form      | version | json_schema |
+      | Test form | 1       | test1       |
+    And the following "workflows" exist in "mod_approval" plugin:
+      | name          | description               | id_number | form      | workflow_type      |
+      | Test workflow | test workflow description | WKF001    | Test form | Test workflow type |
+    And the following "workflow versions" exist in "mod_approval" plugin:
+      | workflow | form_version |
+      | WKF001   | 1            |
+    And the following "workflow stages" exist in "mod_approval" plugin:
+      | workflow | name       |
+      | WKF001   | Test stage |
+    And the following "approval levels" exist in "mod_approval" plugin:
+      | workflow_stage | name |
+      | Test stage     | TL1  |
+      | Test stage     | TL2  |
+    And the following "form views" exist in "mod_approval" plugin:
+      | workflow_stage | respondent | field_key | required |
+      | Test stage     | user       | food      | true     |
+    And the following "assignments" exist in "mod_approval" plugin:
+      | name            | id_number | workflow | type         | identifier | default |
+      | Test assignment | AGENCY    | WKF001   | organisation | org        | true    |
+    And the following "approvers" exist in "mod_approval" plugin:
+      | assignment | approval_level | type | identifier |
+      | AGENCY     | TL1            | user | approver_a |
+      | AGENCY     | TL2            | user | approver_b |

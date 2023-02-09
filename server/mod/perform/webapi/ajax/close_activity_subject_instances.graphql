@@ -1,0 +1,5 @@
+mutation mod_perform_close_activity_subject_instances(
+  $input: mod_perform_close_activity_subject_instances_input!
+) {
+  mod_perform_close_activity_subject_instances(input: $input)
+}

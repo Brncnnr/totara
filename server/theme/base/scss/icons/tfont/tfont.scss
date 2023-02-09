@@ -1,0 +1,88 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Brian Barnes <brian.barnesr@totaralearning.com>
+// @package   theme_base
+
+/* stylelint-disable declaration-no-important */
+
+:root {
+  // Define colours just in case
+  --color-prompt-success: #4b7e2b;
+  --color-prompt-warning: #b2611f;
+  --color-prompt-alert: #cc2428;
+  --color-prompt-info: #007ab8;
+  --color-state-disabled: #c7c7c7;
+}
+
+// icon colours
+// .ft-state-default is sometimes used to reset icons
+
+.ft-state-success {
+  color: var(--color-prompt-success) !important;
+}
+
+.ft-state-warning {
+  color: var(--color-prompt-warning) !important;
+}
+
+.ft-state-danger {
+  color: var(--color-prompt-alert) !important;
+}
+
+.ft-state-info {
+  color: var(--color-prompt-info) !important;
+}
+
+.ft-state-disabled {
+  color: var(--color-state-disabled) !important;
+}
+
+.tfont-spin {
+  -webkit-animation: tfont-spin 2s infinite linear;
+        animation: tfont-spin 2s infinite linear;
+}
+
+.tfont-pulse {
+  -webkit-animation: tfont-spin 1s infinite steps(16);
+          animation: tfont-spin 1s infinite steps(16);
+}
+
+@-webkit-keyframes tfont-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes tfont-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "component": "contentmarketplace_linkedin",
+  "bundleWith": "totara_core",
+  "dependencies": [
+    "totara_contentmarketplace"
+  ],
+  "vendor": "totara"
+}

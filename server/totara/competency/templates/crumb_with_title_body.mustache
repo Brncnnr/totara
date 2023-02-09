@@ -1,0 +1,58 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+    @template totara_competency/crumb_with_title_body
+
+    Displays the crumbtrail content for a currently displayed item
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-crumbtrailWithTitle-id: int: crumb id
+    * data-tw-crumbtrailWithTitle-name: string, label for crumb
+    * data-tw-crumbtrailWithTitle-top-level: bool, first item
+
+    Context variables required for this template:
+    * crumbtrail: an array of crumbs to render
+    * crumbtrail -> active: bool, item is active (current level)
+    * crumbtrail -> custom_top_label: string, custom string for top crumb (optional)
+    * crumbtrail -> first: bool, first item
+    * crumbtrail -> id: int, id for crumb
+    * crumbtrail -> name: string, label for crumb
+
+}}
+<ul class="tw-crumbWithTitle__list">
+    {{#crumbtrail}}{{!
+  }}{{^active}}{{!
+  }}<li class="tw-crumbWithTitle__list_item">
+        {{^first}}<span class="tw-crumbWithTitle__list_chev">&gt;</span>{{/first}}{{!
+      }}<a href="#" data-tw-crumbtrailWithTitle-id="{{id}}" data-tw-crumbtrailWithTitle-name="{{name}}"
+        {{#first}}data-tw-crumbtrailWithTitle-top-level=""{{/first}}>{{!
+          }}{{#first}}{{custom_top_label}}{{^custom_top_label}}{{name}}{{/custom_top_label}}{{/first}}{{!
+          }}{{^first}}{{#shortentext}}40, {{name}}{{/shortentext}}{{/first}}{{!
+      }}</a>
+    </li>{{!
+  }}{{/active}}{{!
+  }}{{#active}}<li class="tw-crumbWithTitle__list_item"><span class="tw-crumbWithTitle__list_chev">&gt;</span></li>{{/active}}{{!
+  }}{{/crumbtrail}}
+</ul>

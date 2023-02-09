@@ -1,0 +1,7 @@
+This files describes API changes in /totara/engage/survey,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+
+--- Update to graphQL ---
+* Updated field 'value' and field 'options' scalar type 'param_text' to 'String' for input 'engage_survey_question_parameter'

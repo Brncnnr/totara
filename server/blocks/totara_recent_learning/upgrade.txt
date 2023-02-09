@@ -1,0 +1,8 @@
+This files describes API changes in the recent learning block and APIs,
+information provided here is intended especially for developers.
+
+=== 13 ===
+* block_totara_recent_learning class has been changed to hide the progress bar if no active enrolment
+
+=== 11 ===
+* Changed HTML from a table to a list, adding mustache templates

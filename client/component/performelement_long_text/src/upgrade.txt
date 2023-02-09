@@ -1,0 +1,18 @@
+This file describes API changes in /client/component/performelement_long_text,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+* Replaced several components to centralise common functionality improving consistency and reducing duplication
+    * LongTextElementAdminDisplay.vue replaced with LongTextAdminView.vue
+    * LongTextElementAdminForm.vue replaced with LongTextAdminEdit.vue
+    * LongTextElementAdminReadOnlyDisplay.vue replaced with LongTextAdminSummary.vue
+* Removed LongTextElementParticipantResponse.vue, generic HtmlResponseDisplay.vue component is used instead
+* LongTextParticipantForm.vue and LongTextAdminView.vue have been refactored to use the Weka editor,
+  and now longer use a textarea element
+* LongTextParticipantPrint.vue now supports rendering Weka HTML responses
+* Replaced LongTextElementParticipantForm.vue with LongTextParticipantForm.vue
+* Replaced GraphQL prepareDraftArea mutation with GraphQL getDraftId query in LongTextElementParticipantForm.vue
+* Updated LongTextElementParticipantForm.vue to have more control of it's display and to handle switching
+  between difference states using a generic helper component ElementParticipantFormContent.
+    * Changed validation to use core validation rules where possible
+    * Changes to template (wrapping the formScope with helper component) & lang strings

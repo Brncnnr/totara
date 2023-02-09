@@ -1,0 +1,20 @@
+extend type Mutation {
+  """
+  Prepare draft area for Weka editor
+  @deprecated since 14.0 Use Get draft_area_id query instead.
+  """
+  performelement_long_text_prepare_draft_area(
+    section_element_id: core_id!
+    participant_instance_id: core_id!
+  ): core_id!
+}
+
+extend type Query {
+  """
+  Get draft area id used for Weka editor
+  """
+  performelement_long_text_get_draft_id(
+    section_element_id: core_id!
+    participant_instance_id: core_id!
+  ): core_id!
+}

@@ -1,0 +1,50 @@
+mutation engage_article_create_article(
+  $content: String!
+  $name: String!
+  $format: param_integer
+  $access: totara_engage_access
+  $topics: [param_integer!]
+  $timeview: totara_engage_timeview
+  $shares: [totara_engage_recipient_in!]
+  $draft_id: param_integer
+) {
+  article: engage_article_create(
+    content: $content
+    name: $name
+    format: $format
+    access: $access
+    topics: $topics
+    timeview: $timeview
+    shares: $shares
+    draft_id: $draft_id
+  ) {
+    __typename
+    id
+    resource {
+      __typename
+      id
+      name(format: PLAIN)
+      access
+      time
+      context_id
+      user {
+        id
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    content(format: HTML)
+    format
+    image
+    owned
+    timeview
+    topics {
+      __typename
+      id
+      value(format: PLAIN)
+    }
+    sharedbycount
+    reacted
+  }
+}

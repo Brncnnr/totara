@@ -1,0 +1,98 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/virtualroom_card
+
+    This template generates the informational card for a seminar resource.
+
+    Context variables required for this template:
+    * heading: heading text
+    * subtitle: sub heading text
+    * instruction: instruction text
+    * simple: simple card or not
+    * inactive: grayed out or not
+    * detailsection: template data of seminarevent_detail_section, available only if simple is false
+    * has_buttons: has any buttons or not
+    * buttons: a link that looks like a button
+    * buttons.url: the url of the button
+    * buttons.hint: the aria-label of the button
+    * buttons.style: primary or default
+    * buttons.text: the label of the button
+    * preview: additional html; do *not* abuse this!!
+
+    Example content (json):
+    {
+        "heading": "Virtual meeting",
+        "subtitle": "We are still working on it",
+        "instruction": "Please come back later",
+        "simple": false,
+        "inactive": false,
+        "detailsection": {
+            "class" : "sessioninfo",
+            "details" : [
+                {
+                    "label" : "Seminar",
+                    "description" : "Test seminar 1"
+                },
+                {
+                    "label" : "Session time",
+                    "description" : "25 December 2020, 12:00 PM - 6:00 PM"
+                }
+            ]
+        },
+        "buttons": [
+            {
+                "text": "Join now",
+                "url": "https://example.com/123456",
+                "style": "primary",
+                "hint": "Go to Meeting Room",
+            }
+        ],
+        "preview": "<p>more data</p>",
+    }
+}}
+
+<div class="mod_facetoface__eventinfo__sidebars"{{#copy}} data-core-autoinitialise="true" data-core-autoinitialise-amd="mod_facetoface/virtualroom_card"{{/copy}}>
+    <div class="mod_facetoface__eventinfo__sidebar__panel mod_facetoface__resource-card{{#simple}} mod_facetoface__resource-card--simple{{/simple}}{{#inactive}} mod_facetoface__resource-card--inactive{{/inactive}}">
+        {{#heading}}<h3>{{.}}</h3>{{/heading}}
+        {{#subtitle}}<h4>{{.}}</h4>{{/subtitle}}
+        {{#instruction}}<p class="mod_facetoface__resource-card__instruction">{{{.}}}</p>{{/instruction}}
+        {{^simple}}{{#detailsection}}{{> mod_facetoface/seminarevent_detail_section }}{{/detailsection}}{{/simple}}
+        {{#has_buttons}}
+            <div class="mod_facetoface__resource-card__buttons">
+                {{#buttons}}<a role="button" href="{{url}}" class="mod_facetoface__resource-card__button btn {{#style}}btn-{{.}}{{/style}}{{^style}}btn-default{{/style}}" target="_blank" rel="noopener noreferrer"{{#hint}} aria-label="{{.}}"{{/hint}}>{{text}}</a>{{/buttons}}
+                {{#copy}}
+                    <div class="mod_facetoface__resource-card__copy">
+                        <button type="button" class="mod_facetoface__resource-card__copy-link">
+                            {{#icon}}{{#context}}{{> &&template }}{{/context}}{{/icon}}
+                            <span class="mod_facetoface__resource-card__copy-link-text">{{text}}</span>
+                        </button>
+                        <input class="mod_facetoface__resource-card__copy-container" type="text" aria-hidden="true" value="{{url}}" tabIndex="-1">
+                    </div>
+                {{/copy}}
+            </div>
+        {{/has_buttons}}
+        {{#preview}}<div class="mod_facetoface__resource-card__preview">{{{.}}}</div>{{/preview}}
+    </div>
+</div>

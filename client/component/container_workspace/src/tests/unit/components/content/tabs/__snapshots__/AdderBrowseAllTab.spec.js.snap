@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdderBrowseAllTab should check snapshot 1`] = `
+<div
+  class="tui-dataSelectTable tui-engageAdderBrowseTable"
+>
+  <div>
+    
+  tempString
+
+  </div>
+</div>
+`;

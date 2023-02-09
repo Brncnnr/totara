@@ -1,0 +1,55 @@
+enum core_cohort_type {
+  STATIC
+  DYNAMIC
+}
+
+enum core_cohort_order_dir {
+  ASC
+  DESC
+}
+
+type core_cohort {
+  id: core_id!
+  name(format: core_format = PLAIN): String!
+  idnumber(format: core_format = PLAIN): String
+  description(format: core_format = HTML): String
+  type: core_cohort_type!
+  active: Boolean!
+  members_count: Int!
+}
+
+type core_cohorts_result implements core_pageable_result {
+  items: [core_cohort!]!
+  total: Int!
+  next_cursor: String!
+}
+
+input core_cohorts_filter {
+  ids: [param_integer]
+  name: param_text
+  type: param_text
+  active: param_boolean
+}
+
+input core_cohorts_query {
+  """
+  Leaf context from which to start search ie get cohorts from this context and
+  all its parent contexts until and including the system context.
+  """
+  leaf_context_id: core_id
+  filters: core_cohorts_filter
+  order_by: String
+  order_dir: core_cohort_order_dir
+  result_size: param_integer
+  cursor: String
+  """
+  Scope results to tenant that the leaf context belongs to.
+  If this is set to true & multitenancy is enabled, system level audiences will not be returned when a
+  context associated with a particular tenant is passed.
+  """
+  tenant_scope: Boolean
+}
+
+extend type Query {
+  core_cohorts(query: core_cohorts_query): core_cohorts_result!
+}

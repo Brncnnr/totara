@@ -1,0 +1,30 @@
+mutation totara_comment_delete_comment($id: param_integer!) {
+  comment: totara_comment_delete_comment(id: $id) {
+    __typename
+    id
+    content(format: HTML)
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+    timedescription
+    totalreplies
+    totalreactions
+    edited
+    deleted
+    reasondeleted
+    interactor {
+      __typename
+      user_id
+      can_delete
+      can_report
+      can_update
+      can_reply
+      can_react
+      reacted
+    }
+  }
+}

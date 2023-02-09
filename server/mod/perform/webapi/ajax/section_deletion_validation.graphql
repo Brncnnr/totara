@@ -1,0 +1,12 @@
+query mod_perform_section_deletion_validation(
+  $input: mod_perform_section_deletion_validation_input!
+) {
+  validation_info: mod_perform_section_deletion_validation(input: $input) {
+    title
+    can_delete
+    reason {
+      description
+      data
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation totara_api_set_client_status($id: core_id!, $status: Boolean!) {
+  result: totara_api_set_client_status(id: $id, status: $status) {
+    __typename
+    id
+    status
+  }
+}

@@ -1,0 +1,15 @@
+mutation mod_perform_reorder_child_element(
+  $input: mod_perform_reorder_child_element_input!
+) {
+  mod_perform_reorder_child_element(input: $input) {
+    parent_element {
+      id
+      title
+      children {
+        id
+        title
+        sort_order
+      }
+    }
+  }
+}

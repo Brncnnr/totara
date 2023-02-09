@@ -1,0 +1,12 @@
+mutation totara_core_delete_draft_file(
+  $draftid: param_integer!
+  $filename: String!
+) {
+  result: totara_core_delete_draft_file(
+    draftid: $draftid
+    filename: $filename
+  ) {
+    __typename
+    success
+  }
+}

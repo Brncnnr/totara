@@ -1,0 +1,182 @@
+type totara_playlist_playlist {
+  id: core_id!
+  name(format: core_format!): String!
+  summary(format: core_format!): String
+  summaryformat: Int!
+  access: totara_engage_access!
+  user: core_user!
+  timedescription: String!
+  contextid: core_id
+  rating: totara_engage_rating!
+  topics: [totara_topic_topic!]
+  updateable: Boolean!
+  contributable: Boolean!
+  totalresources: Int!
+  url(library_view: param_boolean!, source: String): String!
+  owned: Boolean!
+  sharedbycount: Int!
+  bookmarked: Boolean!
+  manageable: Boolean!
+  """
+  A flag to tell whether this playlist is containing a miss matched resources
+  """
+  hasnonpublicresources: Boolean!
+}
+
+"""
+For pagination the playlists collection.
+"""
+type totara_playlist_cursor {
+  total: Int!
+  """
+  If next is null, then we are at the end of the list.
+  """
+  next: String
+}
+
+"""
+Capabilities of the user interacting with the playlist.
+"""
+type totara_playlist_playlist_interactor {
+  user_id: Int!
+  can_bookmark: Boolean!
+  can_comment: Boolean!
+  can_rate: Boolean!
+  can_react: Boolean!
+  can_share: Boolean!
+}
+
+extend type Query {
+  """
+  Fetching a single playlist, based on its id.
+  """
+  totara_playlist_instance(id: param_integer!): totara_playlist_playlist!
+
+  """
+  Query to fetch all the playlists related to a user.
+  """
+  totara_playlist_playlists(
+    """
+    The user that we are fetching playlists for. If null is given then
+    user in session will be used.
+    """
+    userid: param_integer
+    """
+    If resource_id is set, then we are only looking for the playlists that contains this resource only.
+    """
+    resource_id: param_integer
+    """
+    The cursor that we are fetching records from. If it is null, then we are
+    at the start of the collection/list.
+    """
+    cursor: param_text
+    """
+    If source is not provided, then the query will start looking
+    into all the playlists that a user is able to see.
+    """
+    source: totara_playlist_playlist_source
+    """
+    Sort option for playlist.
+    """
+    sort: totara_playlist_playlist_sort
+  ): [totara_playlist_playlist!]!
+
+  """
+  Query to fetch the cursor (most likely the next cursor) for playlists query.
+  """
+  totara_playlist_playlists_cursor(
+    """
+    The user that we are fetching playlists for. If null is given then
+    user in session will be used.
+    """
+    user_id: param_integer
+    """
+    If resource_id is set, then we are only looking for the playlists that contains this resource only.
+    """
+    resource_id: param_integer
+    """
+    The current cursor that is used to find out the next cursor.
+    """
+    cursor: param_text
+    """
+    If source is not provided, then the query will start looking
+    into all the playlists that a user is able to see.
+    """
+    source: totara_playlist_playlist_source
+  ): totara_playlist_cursor!
+
+  """
+  Fetching all the playlist cards.
+  """
+  totara_playlist_cards(
+    id: param_integer!
+    cursor: String
+    source: String
+    footnotes: totara_engage_footnotes
+  ): totara_engage_cards!
+
+  """
+  Playlist specific resource enquiry that will return resources
+  that have not yet been added to the playlist.
+  """
+  totara_playlist_resources(
+    playlist_id: param_integer!
+    area: param_area
+    filter: totara_engage_filter!
+    footnotes: totara_engage_footnotes
+    cursor: String
+  ): totara_engage_cards!
+
+  """
+  Get the capabilities of the user interacting with the playlist.
+  """
+  totara_playlist_interactor(
+    playlist_id: core_id!
+  ): totara_playlist_playlist_interactor
+}
+
+extend type Mutation {
+  totara_playlist_create(
+    name: String!
+    summary: String
+    summary_format: param_integer
+    access: totara_engage_access
+    contextid: param_integer
+    topics: [param_integer!]
+    shares: [totara_engage_recipient_in!]
+  ): totara_playlist_playlist
+
+  totara_playlist_update(
+    id: param_integer!
+    name: String
+    summary: String
+    summary_format: param_integer
+    access: totara_engage_access
+    topics: [param_integer!]
+    shares: [totara_engage_recipient_in!]
+  ): totara_playlist_playlist
+
+  totara_playlist_delete(id: param_integer!): Boolean!
+
+  totara_playlist_add_resources(
+    playlistid: param_integer!
+    resources: [param_integer!]!
+  ): Boolean!
+
+  totara_playlist_add_rating(
+    playlistid: param_integer!
+    rating: Int!
+    ratingarea: String!
+  ): Boolean!
+
+  totara_playlist_update_order(
+    id: param_integer!
+    instanceid: param_integer!
+    order: param_integer!
+  ): Boolean!
+
+  totara_playlist_remove_resource(
+    id: param_integer!
+    instanceid: param_integer!
+  ): Boolean!
+}

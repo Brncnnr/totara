@@ -1,0 +1,60 @@
+<?php
+/*
+ * This file is part of Totara Learn
+ *
+ * Copyright (C) 2018 onwards Totara Learning Solutions LTD
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Fabian Derschatta <fabian.derschatta@totaralearning.com>
+ * @package core
+ * @group orm
+ */
+
+namespace core\orm\query\sql;
+
+use core\orm\query\builder;
+
+/**
+ * Class union
+ *
+ * Generate sql for unions stored on the builder
+ *
+ * @internal This is not meant to be used as external API
+ * @package core\orm\query\sql
+ */
+final class union extends sql {
+
+    /**
+     * Generate SQL for the query itself. Woo-hoo.
+     *
+     * @return array [SQL, [Params]]
+     */
+    public function build(): array {
+        $output = '';
+        $params = [];
+
+        foreach ($this->properties->unions as [$builder, $all]) {
+            /** @var $builder builder */
+            [$sql, $union_params] = query::from_builder($builder)->build();
+            $all = $all ? 'ALL' : '';
+            $output .= $this->prettify_sql(["UNION", $all, $sql]) . ' ';
+
+            $params = array_merge($params, $union_params);
+        }
+
+        return [trim($output), $params];
+    }
+
+}

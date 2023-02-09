@@ -1,0 +1,27 @@
+{
+  "actor": {
+    "mbox": "mailto:bolobala@example.com",
+    "objectType": "Agent"
+  },
+  "result": {
+    "completion": false,
+    "extensions": {
+      "https://w3id.org/xapi/cmi5/result/extensions/progress": "39"
+    }
+  },
+  "verb": {
+    "display": {
+      "en-US": "PROGRESSED"
+    },
+    "id": "http://adlnet.gov/expapi/verbs/progressed"
+  },
+  "id": "6a9fefbb-3517-4b92-9d5e-5710aaba924f",
+  "object": {
+    "definition": {
+      "type": "http://adlnet.gov/expapi/activities/course"
+    },
+    "id": "urn:li:lyndaCourse:1222",
+    "objectType": "Activity"
+  },
+  "timestamp": "2021-08-18T04:44:23.764Z"
+}

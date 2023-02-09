@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/core/tests/fixtures" VERSION="20190523" COMMENT="XMLDB file for testing of foreign keys"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+        <TABLE NAME="test_sessions" COMMENT="Just a fake sessions table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="sid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="sid" TYPE="unique" FIELDS="sid" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="test_other1" COMMENT="Fake linked table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="sid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="sid" TYPE="foreign" FIELDS="sid" REFTABLE="test_sessions" REFFIELDS="sid" ONUPDATE="restrict"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="test_other2" COMMENT="Fake linked table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="sid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="sid" TYPE="foreign" FIELDS="sid" REFTABLE="test_sessions" REFFIELDS="sid" ONUPDATE="cascade"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="test_other3" COMMENT="Fake linked table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="sid" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="sid" TYPE="foreign" FIELDS="sid" REFTABLE="test_sessions" REFFIELDS="sid" ONUPDATE="setnull"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="test_other4" COMMENT="Fake linked table">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+                <FIELD NAME="sid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+                <KEY NAME="sid" TYPE="foreign-unique" FIELDS="sid" REFTABLE="test_sessions" REFFIELDS="sid" ONDELETE="cascade" ONUPDATE="cascade"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>

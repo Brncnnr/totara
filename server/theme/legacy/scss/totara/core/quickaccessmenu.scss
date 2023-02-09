@@ -1,0 +1,375 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @package   theme_legacy
+
+.totara_core__QuickAccess {
+  &_hr {
+    position: relative;
+    top: 2em;
+    left: calc(#{$quickAccessMenu-box-padding} * -1);
+    display: none;
+    clear: both;
+    width: 120%;
+    margin: auto 0;
+    border-top: 1px solid var(--nav-quick-seperator-color);
+  }
+
+  &_chevron {
+    position: relative;
+    top: -1px;
+    font-size: 0.7em;
+  }
+
+  //Using double & to beat specificity from main navigation
+  & &_menu {
+    z-index: 1;
+    min-width: 300px;
+    min-height: 150px;
+    max-width: 100%;
+    padding: $quickAccessMenu-box-padding $quickAccessMenu-box-padding 0 $quickAccessMenu-box-padding;
+    overflow: hidden;
+    color: var(--nav-quick-text-color);
+    background-color: var(--nav-quick-bg-color);
+    opacity: 1;
+
+    &.totara_core__QuickAccess_menu--loading {
+      display: flex;
+      align-items: center;
+      text-align: center;
+
+      .totara_core__QuickAccess_menu_content_loadingContainer {
+        width: 100%;
+      }
+    }
+
+    @include prepend-current('.collapsed') {
+      display: none;
+    }
+
+    &_search {
+      display: flex;
+      max-width: 100%;
+
+      > .input-group {
+        display: flex;
+      }
+
+      .input-group-btn {
+        width: auto;
+      }
+
+      &-button {
+        @include bs-btn-sm();
+        border-radius: 0;
+        height: 3rem;
+      }
+
+      &-input {
+        border-color: var(--form-input-border-color);
+        height: 3rem;
+        padding-left: 8px;
+      }
+    }
+
+    &-header {
+      margin-bottom: var(--gap-2);
+      line-height: 2.5em;
+
+      &_title {
+        display: inline-block;
+        margin: 0;
+        font-size: var(--font-size-13);
+      }
+
+      &_control {
+        float: right;
+        color: inherit;
+        font-size: var(--font-size-15);
+      }
+    }
+  }
+
+  &_flex-container {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+
+    &-empty {
+      padding-top: 1em;
+    }
+  }
+
+  & &_group {
+    flex: 1 1 auto;
+
+    &-title {
+      max-width: 25ch;
+      min-height: 1em; //Set this to the font-size to make sure that empty titles still have height
+      margin: var(--gap-2) 0;
+      overflow: hidden;
+      font-size: var(--font-size-14);
+      line-height: normal;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      .ie11 & {
+        // TL-20522: IE11 calculates ch units differently to other browsers (it doesn't account for the space between letters)
+        // so we have to use a higher number for the same effect
+        max-width: 1.33 * 25ch;
+      }
+    }
+
+    &-list {
+      margin: 0;
+
+      li {
+        margin: var(--gap-2) 0;
+
+        a {
+          color: var(--nav-quick-item-text-color);
+
+          &:focus,
+          &:hover {
+            color: var(--nav-quick-item-text-color-focus);
+          }
+
+          &:active {
+            color: var(--nav-quick-item-text-color-active);
+          }
+        }
+      }
+    }
+  }
+
+  & &_footer {
+    margin-top: var(--gap-2);
+    line-height: 2.5em;
+
+    //Horizontal rule
+    &:before {
+      position: relative;
+      left: calc(#{$quickAccessMenu-box-padding} * -1);
+      display: block;
+      width: 120%;
+      border-top: 1px solid var(--nav-quick-seperator-color);
+      content: '';
+    }
+
+    &:after {
+      display: block;
+      clear: both;
+      content: '';
+    }
+
+    // Menu settings link
+    > a {
+      float: right;
+      font-size: var(--font-size-12);
+    }
+
+    &-last {
+      margin-right: var(--gap-2);
+    }
+  }
+
+  // When there are no groups within the menu
+  &_empty {
+    // Toggle icon
+    &-icon {
+      flex: 0 0 20%;
+      font-size: var(--font-size-32);
+    }
+
+    &-text {
+      // Customise menu link
+      a {
+        @include bs-btn();
+        @include bs-btn-primary();
+        margin-top: var(--gap-1);
+      }
+    }
+  }
+
+  //Remove the chevron added by totaraNav--prim styling
+  .popover-region-toggle {
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+}
+
+#quickaccess-popover-content {
+  h3 {
+    //Override for global h3 styling on course/management.php
+    //Remove this when possible
+    padding: 0;
+  }
+}
+
+@media (max-width: $quickAccessMenu-screen-sm-max) {
+  .totara_core__QuickAccess {
+    & &_menu {
+      //Mobile sizings
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      width: 85%;
+      height: 100%;
+      box-shadow: var(--shadow-3);
+      transform: translateX(0);
+
+      @include prepend-current('.collapsed') {
+        [dir='ltr'] & {
+          transform: translateX(100%);
+        }
+
+        [dir='rtl'] & {
+          transform: translateX(-100%);
+        }
+      }
+
+      &_search {
+        flex: 0 0 auto;
+
+        > .input-group {
+          width: 100%;
+        }
+      }
+
+      &-header {
+        //Horizontal rule
+        &:after {
+          position: relative;
+          left: calc(#{$quickAccessMenu-box-padding} * -1);
+          display: block;
+          width: 120%;
+          border-top: 1px solid var(--nav-quick-seperator-color);
+          content: '';
+        }
+      }
+    }
+
+    &_flex-container {
+      display: block;
+      flex: 1 1 auto;
+
+      &-empty {
+        display: flex;
+      }
+    }
+
+    & &_group {
+      &-list {
+        li {
+          padding-left: var(--gap-4);
+        }
+      }
+    }
+
+    & &_footer {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+@media (min-width: $totara-style-screen-sm-min) {
+  .totara_core__QuickAccess {
+    &_hr {
+      display: block;
+    }
+
+    & &_menu {
+      //Desktop sizings
+      position: absolute;
+      max-width: 95vw;
+      border-top: 1px solid var(--nav-quick-border-top-color);
+      //Open/Close animation properties
+      box-shadow: var(--shadow-3);
+      transform-origin: top center;
+
+      [dir='rtl'] & {
+        transform: scaleY(1) translateX(50%);
+      }
+
+      [dir='ltr'] & {
+        transform: scaleY(1) translateX(-50%);
+      }
+
+      &--large {
+        right: 0;
+
+        [dir='rtl'] &,
+        [dir='ltr'] & {
+          transform: scaleY(1);
+        }
+      }
+
+      @include prepend-current('.collapsed') {
+        [dir='rtl'] & {
+          transform: scaleY(0) translateX(50%);
+        }
+
+        [dir='ltr'] & {
+          transform: scaleY(0) translateX(-50%);
+        }
+
+        &--large {
+          [dir='rtl'] &,
+          [dir='ltr'] & {
+            transform: scaleY(0);
+          }
+        }
+      }
+
+      &_search {
+        > .input-group {
+          margin-left: auto;
+        }
+      }
+
+      &-header {
+        &_title {
+          @include bs-sr-only();
+        }
+
+        &_control {
+          display: none;
+        }
+      }
+    }
+
+    & &_group {
+      &-list {
+        li {
+          width: 20ch;
+          .ie11 & {
+            // TL-20522: IE11 calculates ch units differently to other browsers (it doesn't account for the space between letters)
+            // so we have to use a higher number for the same effect
+            width: 1.33 * 20ch;
+          }
+        }
+      }
+    }
+  }
+}

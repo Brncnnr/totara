@@ -1,0 +1,215 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-selectionBasket {
+  background: var(--color-neutral-2);
+  border: 1px solid var(--color-neutral-5);
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  margin-bottom: var(--gap-4);
+  max-width: 99.9%;
+  padding: 0 var(--gap-2) var(--gap-2) var(--gap-2);
+  transition: all 0.07s ease;
+  transition-property: flex-basis, max-width;
+
+  > * {
+    padding-right: var(--gap-2);
+    padding-top: var(--gap-2);
+  }
+
+  &__actions {
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+    position: relative;
+
+    &_group {
+      &_list {
+        background: var(--color-neutral-1);
+        border: 1px solid var(--color-neutral-5);
+        box-shadow: var(--shadow-2);
+        display: none;
+        list-style: none;
+        margin: 0;
+        min-width: 100px;
+        position: absolute;
+        right: var(--gap-1);
+        z-index: 2;
+      }
+
+      &_link {
+        display: block;
+        padding: var(--gap-1) var(--gap-2);
+
+        &:focus,
+        &:hover {
+          background: var(--color-neutral-2);
+          text-decoration: none;
+        }
+      }
+
+      &_active {
+        .tw-selectionBasket__actions_group_list {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__btn {
+    @include bs-btn();
+    @include bs-btn-default();
+    font-size: 1.3rem;
+    padding: var(--gap-1) var(--gap-2);
+    line-height: 1.31;
+
+    &_prim {
+      @include bs-btn-primary();
+      font-size: 1.3rem;
+      padding: var(--gap-1) var(--gap-2);
+      line-height: 1.31;
+    }
+
+    &_small_icon {
+      position: relative;
+      top: -1px;
+    }
+
+    &_disabled {
+      background: var(--btn-prim-bg-color-disabled);
+      color: var(--btn-prim-text-color-disabled);
+      border: var(--btn-prim-border-color-disabled);
+
+      &:active,
+      &:active:hover,
+      &:focus,
+      &:hover {
+        background: var(--btn-prim-bg-color-disabled);
+        color: var(--btn-prim-text-color-disabled);
+        border: var(--btn-prim-border-color-disabled);
+        box-shadow: none;
+        cursor: default;
+      }
+    }
+  }
+
+  &__transparentBtn {
+    @include tui-font-heading-label-small();
+    color: var(--color-state);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    white-space: normal;
+    text-align: left;
+    padding: 0;
+
+    .flex-icon {
+      position: relative;
+      top: -1px;
+    }
+
+    &:active,
+    &:focus,
+    &:hover:active,
+    &:hover {
+      color: var(--color-state-hover);
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  &__clear {
+    display: none;
+  }
+
+  &__count {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    margin: 0 var(--gap-4) 0 var(--gap-1);
+
+    &_num {
+      @include tui-font-heading-x-small();
+      min-width: 2rem;
+      padding: 0 var(--gap-1);
+      position: relative;
+      top: -0.5px;
+    }
+  }
+
+  &__displayed {
+    .tw-selectionBasket__hideSelection {
+      display: block;
+    }
+
+    .tw-selectionBasket__showSelection {
+      display: none;
+    }
+  }
+
+  &__empty {
+    .tw-selectionBasket__showSelection {
+      visibility: hidden;
+    }
+  }
+
+  &__hideSelection {
+    display: none;
+    margin: auto var(--gap-2) auto 0;
+  }
+
+  &__showSelection {
+    display: block;
+    margin: auto var(--gap-2) auto 0;
+  }
+
+  &--wide {
+    flex-basis: 100%;
+    max-width: 100%;
+
+    .tw-selectionBasket__clear {
+      display: flex;
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tw-selectionBasket {
+    flex-basis: 35%;
+    margin-bottom: 0;
+    margin-left: auto;
+    max-width: 60%;
+
+    > * {
+      padding-right: 0;
+    }
+
+    &--wide {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+}

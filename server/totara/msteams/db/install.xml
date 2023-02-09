@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/msteams/db" VERSION="20190815" COMMENT="XMLDB file for totara/msteams"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_msteams_user" COMMENT="Stores user mapping for MS Teams.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="teams_id" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="ms teams user id"/>
+        <FIELD NAME="verified" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="is the user verified?"/>
+        <FIELD NAME="mschannelid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="reference to ms teams channel"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="totara user id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="channel_fk" TYPE="foreign" FIELDS="mschannelid" REFTABLE="totara_msteams_channel" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="teams_ix" UNIQUE="true" FIELDS="teams_id, mschannelid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_user_state" COMMENT="Stores authentication state of a user for MS Teams.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="sesskey" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="user sesskey"/>
+        <FIELD NAME="verify_code" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="unique verifcation code"/>
+        <FIELD NAME="timeexpiry" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="false" COMMENT="time expiry"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="false" COMMENT="time record created"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="totara user id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="state_ix" UNIQUE="true" FIELDS="verify_code"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_user_settings" COMMENT="Stores per user settings.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="area of settings"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="false" COMMENT="time record created"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="18" NOTNULL="false" SEQUENCE="false" COMMENT="time record modified"/>
+        <FIELD NAME="data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="user data"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="totara user id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="area_ix" UNIQUE="true" FIELDS="userid, area"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_bot" COMMENT="Stores bot information.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="bot_id" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="ms teams bot id"/>
+        <FIELD NAME="bot_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="ms teams bot name"/>
+        <FIELD NAME="service_url" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="ms teams bot service url"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="bot_ix" UNIQUE="true" FIELDS="bot_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_bot_settings" COMMENT="Stores per bot settings.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="area" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="area of settings"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="false" COMMENT="time record created"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="18" NOTNULL="false" SEQUENCE="false" COMMENT="time record modified"/>
+        <FIELD NAME="data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="bot data"/>
+        <FIELD NAME="msbotid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="msteams_bot id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="bot_fk" TYPE="foreign" FIELDS="msbotid" REFTABLE="totara_msteams_bot" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="area_ix" UNIQUE="true" FIELDS="msbotid, area"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_channel" COMMENT="Stores channel information of MS Teams.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="channel_id" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="ms teams channel id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="channel_ix" UNIQUE="true" FIELDS="channel_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_tenant" COMMENT="Stores tenant information of MS Teams.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="tenant_id" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="ms teams tenant id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="tenant_ix" UNIQUE="true" FIELDS="tenant_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_msteams_subscription" COMMENT="Stores subscription information.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="conversation_id" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="ms teams conversation id"/>
+        <FIELD NAME="msbotid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="totara_msteams_bot id"/>
+        <FIELD NAME="mstenantid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="totara_msteams_tenant id"/>
+        <FIELD NAME="msuserid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="msteams_user id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="msbot_fk" TYPE="foreign" FIELDS="msbotid" REFTABLE="totara_msteams_bot" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="mstenant_fk" TYPE="foreign" FIELDS="mstenantid" REFTABLE="totara_msteams_tenant" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="msuser_fk" TYPE="foreign" FIELDS="msuserid" REFTABLE="totara_msteams_user" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="subscription_ix" UNIQUE="true" FIELDS="conversation_id"/>
+        <INDEX NAME="tenantuser_ix" UNIQUE="true" FIELDS="mstenantid, msuserid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

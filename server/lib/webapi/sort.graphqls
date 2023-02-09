@@ -1,0 +1,29 @@
+"""
+Input type for specifying sorting of arbitrary data.
+"""
+input core_sort_input {
+  """
+  String containing either a single field or a comma-separated list of fields to be sorted by.
+  Allowed fields are defined in the specific data provider and should be documented in the query,
+  but typically column options will align with existing type field names.
+  """
+  column: String!
+  """
+  The sort direction of the column or columns.
+  """
+  direction: core_sort_direction_enum
+}
+
+"""
+Options available when specifying the direction of a sort.
+"""
+enum core_sort_direction_enum {
+  """
+  Sort column in ascending order. This refers to 0, 1, 2, 3 for numbers and A, B, C, D for strings.
+  """
+  ASC
+  """
+  Sort column in descending order. This refers to 3, 2, 1, 0 for numbers and D, C, B, A for strings.
+  """
+  DESC
+}

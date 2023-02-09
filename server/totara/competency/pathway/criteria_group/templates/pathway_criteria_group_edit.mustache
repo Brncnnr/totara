@@ -1,0 +1,67 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Riana Rossouw <riana.rossouw@totaralearning.com>
+   @author Brendan Cox <brendan.cox@totaralearning.com>
+   @package pathway_criteria_group
+}}
+{{!
+
+    @template pathway_criteria_group/pathway_criteria_group
+
+    This template displays and manages a Criteria Group Pathway's configuration
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+
+    Other context variables for following partials:
+
+    Example context (json):
+        {
+        }
+}}
+
+<div class="tw-editScaleValuePathGroup"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="pathway_criteria_group/criteria_group"
+     data-tw-editAchievementPaths-save-endPoint="pathway_criteria_group_update"
+     data-tw-editAchievementPaths-save-req-sortOrder="1"
+     data-tw-editScaleValuePaths-value="{{scalevalue}}"
+     data-tw-loader-target="">
+
+    <div class="tw-editScaleValuePathGroup__criteria" data-tw-editScaleValuePaths-group-criteria="">
+        {{> pathway_criteria_group/scalevalue_group_criteria}}
+    </div>
+
+    <div class="tw-editScaleValuePathGroup__scaleHeader-add" data-tw-editScaleValuePaths-group-add="">
+        <button aria-expanded="false" class="tw-editScaleValuePaths__addButton" aria-label="{{#str}}criteria_add, pathway_criteria_group{{/str}}" type="button" data-cg-action="addcriterion">
+            <span>
+                <span aria-hidden="true" class="">
+                    {{#flex_icon}}plus{{/flex_icon}}
+                </span>
+                <span>{{#str}}and, pathway_criteria_group{{/str}}</span>
+            </span>
+        </button>
+        {{> totara_competency/scalevalue_add_criteria_select}}
+    </div>
+</div>

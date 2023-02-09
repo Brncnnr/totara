@@ -1,0 +1,67 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/report
+
+    Wrapper for an evidence report
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * debughtml: HTML, if debug is active contains debug information
+    * restrictions: HTML, restrictions part of the report
+    * description: HTML, report description
+    * savedsearch: HTML, report saved search options output
+    * search: HTML, report filter output
+    * showhide: HTML, report show/hide columns button
+    * sidebar: HTML, report sidebar filters
+    * reporthtml: HTML, report table
+    * export: HTML, report export option
+
+    Example context (json):
+    {
+        "debughtml": "",
+        "restrictions": "",
+        "description": "",
+        "savedsearch": "",
+        "search": "<input type=\"text\"/><button>Search</button>",
+        "showhide": "<button>Show/Hide Columns</button>",
+        "sidebar": "",
+        "reporthtml": "<table><tr><td>There are no records in this report</td></tr></table>",
+        "export": "<button>Export this report</button>"
+    }
+}}
+<div>
+    {{{debughtml}}}
+    {{{restrictions}}}
+    {{{description}}}
+    {{{savedsearch}}}
+    {{{search}}}
+    {{{showhide}}}
+    {{{sidebar}}}
+    {{{reporthtml}}}
+    {{{export}}}
+</div>

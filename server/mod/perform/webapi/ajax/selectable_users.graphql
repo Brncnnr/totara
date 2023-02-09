@@ -1,0 +1,22 @@
+query mod_perform_selectable_users(
+  $subject_instance_id: core_id!
+  $filters: mod_perform_selectable_users_filters
+) {
+  mod_perform_selectable_users(
+    subject_instance_id: $subject_instance_id
+    filters: $filters
+  ) {
+    id
+    card_display {
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+      display_fields {
+        associate_url
+        value
+        label
+        is_custom
+      }
+    }
+  }
+}

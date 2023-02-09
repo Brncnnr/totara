@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell Checks snapshot 1`] = `
+<div
+  class="tui-dataTableCell tui-dataTableCell--size_3"
+  role="cell"
+>
+  <!---->
+   
+  <div
+    class="tui-dataTableCell__content"
+  />
+</div>
+`;

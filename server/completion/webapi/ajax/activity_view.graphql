@@ -1,0 +1,3 @@
+mutation core_completion_activity_view($cmid: core_id!, $activty: String!) {
+  core_completion_activity_view(cmid: $cmid, activity: $activity)
+}

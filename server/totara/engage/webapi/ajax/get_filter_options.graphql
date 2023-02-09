@@ -1,0 +1,66 @@
+query totara_engage_get_filter_options(
+  $component: param_component
+  $area: param_area
+) {
+  accesses: totara_engage_filter_options(filtertype: ACCESS) {
+    __typename
+    type
+    label
+    options {
+      value
+      label
+      id
+    }
+  }
+
+  types: totara_engage_filter_options(
+    filtertype: TYPE
+    component: $component
+    area: $area
+  ) {
+    __typename
+    type
+    label
+    options {
+      value
+      label
+      id
+    }
+  }
+
+  topics: totara_topic_system_topics {
+    __typename
+    id
+    value(format: PLAIN)
+  }
+
+  sorts: totara_engage_filter_options(
+    filtertype: SORT
+    component: $component
+    area: $area
+  ) {
+    __typename
+    type
+    label
+    options {
+      value
+      label
+      id
+    }
+  }
+
+  sections: totara_engage_filter_options(
+    filtertype: SECTION
+    component: $component
+    area: $area
+  ) {
+    __typename
+    type
+    label
+    options {
+      value
+      label
+      id
+    }
+  }
+}

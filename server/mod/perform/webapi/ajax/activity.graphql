@@ -1,0 +1,73 @@
+query mod_perform_activity($activity_id: core_id!) {
+  mod_perform_activity(activity_id: $activity_id) {
+    id
+    name
+    type {
+      id
+      display_name
+    }
+    edit_name: name(format: RAW)
+    description
+    edit_description: description(format: RAW)
+    anonymous_responses
+    state_details {
+      name
+    }
+    can_potentially_activate
+    default_track {
+      due_date_is_enabled
+    }
+    sections {
+      id
+      title
+      display_title
+      sort_order
+      section_relationships {
+        id
+        can_view
+        can_answer
+        core_relationship {
+          id
+          name
+          sort_order
+        }
+      }
+      section_elements_summary {
+        required_question_count
+        optional_question_count
+        other_element_count
+      }
+      raw_created_at: created_at(format: TIMESTAMP)
+      raw_updated_at: updated_at(format: TIMESTAMP)
+    }
+    settings {
+      close_on_completion
+      close_on_due_date
+      multisection
+      visibility_condition {
+        name
+        value
+      }
+      override_global_participation_settings
+      sync_participant_instance_creation
+      sync_participant_instance_closure
+    }
+    manual_relationships {
+      manual_relationship {
+        id
+        idnumber
+        name
+      }
+      selector_relationship {
+        id
+        idnumber
+        name
+      }
+    }
+    visibility_condition_options {
+      name
+      value
+    }
+    context_id
+  }
+}

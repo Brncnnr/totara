@@ -1,0 +1,93 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2018 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package core_user
+}}
+
+{{!
+    @template core_user/profile_card
+
+    Course participants template.
+
+    The purpose of this template is to render a user profile card when looking at the user profile page.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * profile_picture_url   -> URL of user's profile picture
+    * profile_picture_alt   -> Alt text for user's profile picture
+    * profile_url           -> URL to user's profile
+    * fields                -> An array of displaying fields
+    * fields.value          -> Value to show on the page
+    * fields.associate_url  -> Associate url that we want embedded to the text value from `fields.value`
+    * fields.title          -> The key to indicate whether to print text as heading or just normal text.
+
+    Example context (json): none
+}}
+
+<div class="tw-profileCard">
+    {{#profile_picture_url}}
+        <a
+            href="{{profile_url}}"
+            class="tw-profileCard__avatar"
+        >
+            <img
+                alt="{{profile_picture_alt}}"
+                src="{{profile_picture_url}}"
+                class="tw-profileCard__avatar__img"
+            />
+        </a>
+    {{/profile_picture_url}}
+
+    <div class="tw-profileCard__description">
+        {{#fields}}
+            {{#associate_url}}
+                <a
+                    href="{{associate_url}}"
+                    class="tw-profileCard__description__link"
+                >
+                    {{#is_title}}
+                        <h4 class="tw-profileCard__description__link__header">
+                            {{value}}
+                        </h4>
+                    {{/is_title}}
+                    {{^is_title}}
+                        <span>{{value}}</span>
+                    {{/is_title}}
+                </a>
+            {{/associate_url}}
+            {{^associate_url}}
+                {{#is_title}}
+                    <h4 class="tw-profileCard__description__header">
+                        {{value}}
+                    </h4>
+                {{/is_title}}
+                {{^is_title}}
+                    <p class="tw-profileCard__description__text tw-profileCard__description__typography--{{key}}">
+                        {{ value }}
+                    </p>
+                {{/is_title}}
+            {{/associate_url}}
+        {{/fields}}
+    </div>
+</div>

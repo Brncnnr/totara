@@ -1,0 +1,63 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/type_list_actions
+
+    The action icons for the evidence types list
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-evidence-type-actions
+    * data-evidence-type-edit
+    * data-evidence-type-hide
+    * data-evidence-type-show
+    * data-evidence-type-delete
+
+    Context variables required for this template:
+    * is_system: bool, is the evidence type a system type?
+    * in_use: bool, is the evidence type being used?
+    * is_visible: bool, is the evidence type visible to users?
+    * edit_url: string, the URL for editing the evidence type
+
+    Example context (json):
+    {
+        "is_system": false,
+        "in_use": false,
+        "is_visible": true,
+        "edit_url": "/totara/evidence/type/fields?typeid=2"
+    }
+}}
+<div data-evidence-type-actions="{{id}}">
+{{#is_system}}{{#flex_icon}}info, error_message_system_types, totara_evidence{{/flex_icon}}{{/is_system}}
+{{^is_system}}
+    {{^in_use}}<a href="{{edit_url}}" data-evidence-type-edit>{{#flex_icon}}edit, edit{{/flex_icon}}</a>{{/in_use}}
+    {{#in_use}}{{#flex_icon}}edit, error_message_edit_type_in_use, totara_evidence{{/flex_icon}}{{/in_use}}
+
+    {{^is_visible}}<a href="#" data-evidence-type-show>{{#flex_icon}}show, show{{/flex_icon}}</a>{{/is_visible}}
+    {{#is_visible}}<a href="#" data-evidence-type-hide>{{#flex_icon}}hide, hide{{/flex_icon}}</a>{{/is_visible}}
+
+    {{^in_use}}<a href="#" data-evidence-type-delete>{{#flex_icon}}delete, delete{{/flex_icon}}</a>{{/in_use}}
+    {{#in_use}}{{#flex_icon}}delete-disabled, error_message_delete_type_in_use, totara_evidence{{/flex_icon}}{{/in_use}}
+{{/is_system}}
+</div>

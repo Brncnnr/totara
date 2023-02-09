@@ -1,0 +1,5 @@
+query mod_approval_assignment_identifiers(
+  $input: mod_approval_assignment_identifiers_input!
+) {
+  mod_approval_assignment_identifiers(input: $input)
+}

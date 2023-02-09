@@ -1,0 +1,51 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_signup_card
+
+    This template generates the signup / cancellation block.
+
+    Context variables required for this template:
+    * heading: heading text
+    * statictext: plain text to display
+    * toggle: information for the toggle link
+    * toggle.label: the text of the link to toggle the visibility of a cancellation form
+    * toggle.checkboxid: the id of the associated hidden checkbox
+
+    Example content (json):
+    {
+        "heading": "Booked",
+        "statictext": "",
+        "toggle": {
+            "label": "Cancel booking",
+            "checkboxid": "f2f-signup-cancel-314159"
+        }
+    }
+}}
+
+<div>
+    <h3>{{heading}}</h3>
+    {{#statictext}}{{statictext}}{{/statictext}}
+    {{#toggle}}<button title="{{label}}" data-for="{{checkboxid}}" class="mod_facetoface__eventinfo__toggle mod_facetoface__eventinfo__card__toggle">{{label}}</button>{{/toggle}}
+</div>

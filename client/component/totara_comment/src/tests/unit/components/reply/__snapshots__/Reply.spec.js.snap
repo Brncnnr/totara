@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reply Checks snapshot 1`] = `
+<replycard-stub
+  class="tui-commentReply"
+  data-id="12"
+>
+  <avatar-stub
+    imagealt=""
+    imagesrc="http://example.com"
+  />
+   
+  <replyheader-stub
+    deleteable="true"
+    size="small"
+    timedescription="5th of September 1996"
+    updateable="true"
+    userfullname="Admin user"
+  />
+   
+  <replycontent-stub
+    content="Hello world"
+    editor="[object Object]"
+    isreply="true"
+    itemid="12"
+    size="small"
+  />
+   
+  <commentaction-stub
+    area="reply"
+    class="tui-commentReply__footer"
+    commentid="12"
+    reactable="true"
+    replyable="true"
+    showlikebutton="true"
+    size="small"
+    totalreplies="0"
+  />
+</replycard-stub>
+`;
+
+exports[`Reply Checks snapshot without thumbs up 1`] = `
+<replycard-stub
+  class="tui-commentReply"
+  data-id="12"
+>
+  <avatar-stub
+    imagealt=""
+    imagesrc="http://example.com"
+  />
+   
+  <replyheader-stub
+    deleteable="true"
+    size="small"
+    timedescription="5th of September 1996"
+    updateable="true"
+    userfullname="Admin user"
+  />
+   
+  <replycontent-stub
+    content="Hello world"
+    editor="[object Object]"
+    isreply="true"
+    itemid="12"
+    size="small"
+  />
+   
+  <commentaction-stub
+    area="reply"
+    class="tui-commentReply__footer"
+    commentid="12"
+    reactable="true"
+    replyable="true"
+    size="small"
+    totalreplies="0"
+  />
+</replycard-stub>
+`;

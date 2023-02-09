@@ -1,0 +1,9 @@
+mutation container_workspace_remove_member_from_workspace(
+  $workspace_id: param_integer!
+  $user_id: param_integer!
+) {
+  result: container_workspace_remove_member(
+    workspace_id: $workspace_id
+    user_id: $user_id
+  )
+}

@@ -1,0 +1,73 @@
+query mod_perform_subject_instance_for_participant(
+  $subject_instance_id: core_id!
+) {
+  mod_perform_subject_instance_for_participant(
+    subject_instance_id: $subject_instance_id
+  ) {
+    id
+    progress_status
+    created_at
+    instance_count
+    due_on {
+      due_date
+      is_overdue
+      units_to_due_date
+      units_to_due_date_type
+    }
+    activity {
+      id
+      name
+      type {
+        display_name
+      }
+      settings {
+        close_on_completion
+        multisection
+        visibility_condition {
+          participant_description
+          view_only_participant_description
+        }
+      }
+      anonymous_responses
+    }
+    subject_user {
+      id
+      fullname
+      profileimagealt
+      profileimageurlsmall
+      card_display {
+        profile_picture_alt
+        profile_picture_url
+        profile_url
+        display_fields {
+          associate_url
+          value
+          label
+          is_custom
+        }
+      }
+    }
+    job_assignment {
+      fullname
+    }
+    static_instances {
+      fullname
+      managerja {
+        id
+        fullname
+        user {
+          id
+          fullname
+        }
+      }
+      position {
+        id
+        fullname
+      }
+      organisation {
+        id
+        fullname
+      }
+    }
+  }
+}

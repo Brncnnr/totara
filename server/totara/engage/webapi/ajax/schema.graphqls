@@ -1,0 +1,267 @@
+type totara_engage_rating {
+  """
+  Item id
+  """
+  itemid: Int!
+
+  """
+  Total rates
+  """
+  count: Int!
+
+  """
+  Star value
+  """
+  rating: Float!
+
+  """
+  Check the item is rated or not
+  """
+  rated: Boolean!
+}
+
+type totara_engage_filter_option {
+  value: String
+  id: String
+  label: String!
+}
+
+type totara_engage_filter_option_map {
+  options: [totara_engage_filter_option!]!
+  type: totara_engage_filter_type!
+  label: String!
+}
+
+enum totara_engage_timeview {
+  LESS_THAN_FIVE
+  FIVE_TO_TEN
+  MORE_THAN_TEN
+}
+
+enum totara_engage_access {
+  PUBLIC
+  PRIVATE
+  RESTRICTED
+}
+
+enum totara_engage_filter_type {
+  ACCESS
+  TYPE
+  TOPIC
+  SORT
+  SECTION
+}
+
+enum totara_engage_source {
+  SELF
+  OTHER
+}
+
+type totara_engage_time_view_option {
+  value: totara_engage_timeview!
+  label: String!
+}
+
+type totara_engage_access_option {
+  value: totara_engage_access!
+  label: String!
+}
+
+type totara_engage_resource {
+  id: core_id!
+  instanceid: core_id!
+  name(format: core_format!): String
+  user: core_user!
+  access: totara_engage_access!
+  time: String!
+  context_id: Int!
+}
+
+type totara_engage_card {
+  instanceid: core_id!
+  name(format: core_format!): String
+  summary: String
+  # The owner of the card, the user who created the content of the card. Not the user who interact with it.
+  user: core_user!
+  component: String!
+  tuicomponent: String!
+  imagetuicomponent: String!
+  image(theme: param_component, preview_mode: String): String
+  access: totara_engage_access!
+  timecreated: String!
+  extra(theme: param_component): String!
+  comments: Int!
+  reactions: Int!
+  sharedbycount: Int!
+  bookmarked: Boolean!
+  owned: Boolean!
+  topics: [totara_topic_topic!]
+  footnotes(
+    type: param_text
+    item_id: core_id
+    area: param_area
+    component: param_component
+  ): [totara_engage_footnote!]
+  url(source: String, search: param_text): String
+  interactor: totara_engage_resource_interactor!
+}
+
+type totara_engage_cards {
+  cursor: totara_engage_cursor!
+  cards: [totara_engage_card!]
+}
+
+type totara_engage_modal {
+  component: String!
+  expandable: Boolean!
+  label: String!
+  id: String!
+  can_share: Boolean!
+}
+
+type totara_engage_navigation_panel_section {
+  component: String!
+  tuicomponent: String!
+  showcontribute: Boolean!
+  can_share: Boolean
+}
+
+type totara_engage_advanced_features {
+  library: Boolean!
+  recommenders: Boolean!
+  workspaces: Boolean!
+}
+
+"""
+Capabilities of the user interacting with the resource.
+"""
+type totara_engage_resource_interactor {
+  user_id: Int!
+  can_bookmark: Boolean!
+  can_comment: Boolean!
+  can_react: Boolean!
+  can_share: Boolean!
+}
+
+input totara_engage_filter {
+  """
+  Specify the query template to use - 'null' would use default.
+  """
+  page: param_integer
+  access: totara_engage_access
+  type: param_component
+  topic: param_integer
+  sort: param_integer
+  search: param_text
+  section: param_integer
+  saved: param_boolean
+  shared: param_boolean
+  owned: param_boolean
+  adder: param_boolean
+}
+
+input totara_engage_footnotes {
+  type: param_text
+  item_id: core_id
+  area: param_area
+  component: param_component
+}
+
+extend type Query {
+  totara_engage_filter_options(
+    filtertype: totara_engage_filter_type!
+    component: param_component
+    area: param_area
+  ): totara_engage_filter_option_map!
+
+  totara_engage_contributions(
+    component: param_component!
+    area: param_area!
+    filter: totara_engage_filter!
+    footnotes: totara_engage_footnotes
+    cursor: String
+    source: String
+  ): totara_engage_cards!
+
+  """
+  A query to find cards owned by user_id that can be seen by the active user.
+  """
+  totara_engage_user_contributions(
+    user_id: core_id!
+    component: param_component!
+    area: param_area!
+    filter: totara_engage_filter!
+    footnotes: totara_engage_footnotes
+    cursor: String
+    source: String
+  ): totara_engage_cards!
+
+  """
+  A query to count the number of contributions user_id has that the active user can see.
+  """
+  totara_engage_user_contributions_count(
+    user_id: core_id!
+    component: param_component!
+    area: param_area!
+  ): Int!
+
+  totara_engage_modals(exclude: [param_component]): [totara_engage_modal]!
+
+  """
+  A query for getting all the access setting/options.
+  """
+  totara_engage_access_options: [totara_engage_access_option!]!
+
+  """
+  A query for getting all the timeview setting/options.
+  """
+  totara_engage_time_view_options: [totara_engage_time_view_option!]!
+
+  """
+  Retrieve all navigation panel section components.
+  """
+  totara_engage_navigation_panel_sections: [totara_engage_navigation_panel_section]!
+
+  """
+  Contains a hash map of the specific advanced features that engage may
+  have to react to.
+  """
+  totara_engage_advanced_features: totara_engage_advanced_features!
+
+  """
+  Get the capabilities of the user interacting with the resource.
+  """
+  totara_engage_interactor(
+    resource_id: core_id!
+  ): totara_engage_resource_interactor
+}
+
+extend type Mutation {
+  totara_engage_update_bookmark(
+    itemid: param_integer!
+    component: param_component!
+    bookmarked: param_boolean!
+  ): Boolean!
+
+  totara_engage_unshare(
+    item_id: param_integer!
+    component: param_component!
+    recipient_id: param_integer!
+  ): Boolean!
+}
+
+type totara_engage_people {
+  id: Int!
+  fullname: String!
+}
+
+type totara_engage_topic {
+  id: Int!
+  name: String!
+}
+
+type totara_engage_footnote {
+  component: String!
+  tuicomponent: String!
+  props: String!
+}

@@ -1,0 +1,60 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kevin Hottinger <kevin.hottinger@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+
+    @template totara_competency/index
+
+    This template generates the manage competency assignments page
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+
+    Context variables required for this template:
+    * content variables for totara_competency/basket_list
+    * create_btn_url: string, URL for create btn
+    * report_btn_url: string, URL for report btn
+    * title: page title
+!}}
+
+<div class="tw-assignComp"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/manage_assignments">
+
+    <h2 class="tw-assignComp__title">{{title}}</h2>
+    <div class="tw-assignComp__pageBtns">
+        <a href="{{report_btn_url}}" class="tw-assignComp__btn">
+            {{#str}}assignment_view_current, totara_competency{{/str}}
+        </a>
+        <a href="{{create_btn_url}}" class="tw-assignComp__btn">
+              {{#str}}assignment_create_new, totara_competency{{/str}}
+        </a>
+        <a href="{{edit_proficiency_value_btn_url}}" class="tw-assignComp__btn">
+          {{#str}}edit_proficiency_value_by_assignment, totara_competency{{/str}}
+        </a>
+    </div>
+
+    {{> totara_competency/basket_list}}
+</div>

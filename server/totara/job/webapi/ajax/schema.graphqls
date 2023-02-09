@@ -1,0 +1,95 @@
+"""
+Job assignment type
+
+NOTE: for privacy reasons the query is responsible of filtering only job assignments that are allowed to be seen
+"""
+type totara_job_assignment {
+  id: core_id!
+  userid: core_id!
+  user: core_user!
+  fullname(format: core_format = PLAIN): String
+  shortname(format: core_format = PLAIN): String
+  idnumber: String!
+  description(format: core_format = HTML): String
+  startdate: core_date
+  enddate: core_date
+  positionid: core_id
+  position: totara_hierarchy_position
+  organisationid: core_id
+  organisation: totara_hierarchy_organisation
+  managerjaid: core_id
+  managerja: totara_job_assignment
+  tempmanagerjaid: core_id
+  tempmanagerja: totara_job_assignment
+  tempmanagerexpirydate(format: core_date_format = TIMESTAMP): core_date
+  appraiserid: core_id
+  appraiser: core_user
+  staffcount: Int!
+  tempstaffcount: Int!
+}
+
+extend type Query {
+  """
+  Query to return all of the current users job assignments
+  """
+  totara_job_my_assignments: [totara_job_assignment!]!
+
+  """
+  Query to return all of the given users job assignments
+  """
+  totara_job_assignments(userid: core_id!): [totara_job_assignment!]!
+
+  """
+  Query to return a specific job assignment given its ID.
+  """
+  totara_job_assignment(assignmentid: core_id!): totara_job_assignment!
+}
+
+extend type Mutation {
+  """
+  Moves a job assignment to a new position.
+  newposition is a 0 index.
+  """
+  totara_job_move_assignment(
+    userid: core_id!
+    assignmentid: core_id!
+    newposition: param_integer!
+  ): Boolean!
+
+  """
+  Sorts job assignments, given the job assignment ids in the order you want them to be sorted in
+  """
+  totara_job_sort_assignments(
+    userid: core_id!
+    assignmentids: [core_id!]!
+  ): Boolean!
+
+  """
+  Deletes a job assignment
+  It is the callers responsibility to ensure the user has confirmed their intent to delete the job assignment.
+  """
+  totara_job_delete_assignment(
+    userid: core_id!
+    assignmentid: core_id!
+  ): Boolean!
+
+  """
+  Creates a job assignment
+  """
+  totara_job_create_assignment(
+    userid: core_id!
+    idnumber: String!
+    fullname: String
+    shortname: String
+    description: String
+    positionid: core_id
+    organisationid: core_id
+    startdate: core_date
+    enddate: core_date
+    managerjaid: core_id
+    tempmanagerjaid: core_id
+    tempmanagerexpirydate: core_date
+    appraiserid: core_id
+    totarasync: param_boolean
+  ): core_id!
+}

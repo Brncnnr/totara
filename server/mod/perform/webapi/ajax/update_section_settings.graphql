@@ -1,0 +1,40 @@
+mutation mod_perform_update_section_settings(
+  $input: update_section_settings_input!
+) {
+  mod_perform_update_section_settings(input: $input) {
+    section {
+      id
+      title
+      display_title
+      section_relationships {
+        id
+        can_view
+        can_answer
+        core_relationship {
+          id
+          name
+        }
+      }
+      section_elements_summary {
+        required_question_count
+        optional_question_count
+        other_element_count
+      }
+      raw_created_at: created_at(format: TIMESTAMP)
+      raw_updated_at: updated_at(format: TIMESTAMP)
+      section_elements_summary {
+        required_question_count
+        optional_question_count
+        other_element_count
+      }
+    }
+    validation_info {
+      can_delete
+      reason {
+        data
+        description
+      }
+      title
+    }
+  }
+}

@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterBar matches snapshot 1`] = `
+<section
+  class="tui-filterBar tui-filterBar--hasTop tui-filterBar--hasBottom"
+>
+  <div
+    class="tui-filterBar__heading"
+  >
+    <h2
+      class="tui-filterBar__heading-header"
+    >
+      
+      title text
+    
+    </h2>
+     
+    <div
+      class="tui-filterBar__heading-status"
+      role="status"
+    >
+      
+      tempstring
+    
+    </div>
+  </div>
+   
+  <div
+    class="tui-filterBar__filters"
+  >
+    <div
+      class="tui-filterBar__toggle"
+    >
+      <button
+        class="tui-iconBtn tui-filterBar__toggle-btn tui-iconBtn--hasText tui-iconBtn--transparent"
+        style="display: none;"
+        type="button"
+      >
+        <span
+          class="tui-iconBtn__wrap"
+        >
+          <span
+            class="tui-iconBtn__label"
+          >
+            <span
+              aria-hidden="true"
+              class="tui-iconBtn__icon"
+            >
+              <slidericon-stub
+                size="200"
+              />
+            </span>
+             
+            <span
+              class="tui-iconBtn__text"
+            >
+              
+        tempstring
+      
+            </span>
+          </span>
+           
+          <!---->
+           
+          <!---->
+        </span>
+      </button>
+    </div>
+     
+    <div
+      class="tui-filterBar__filters-left"
+    >
+      <div
+        aria-hidden="true"
+        class="tui-filterBar__filters-icon"
+        style=""
+      >
+        <slidericon-stub
+          customclass="tui-filterBar__filters-iconSlider"
+          size="300"
+          title="title text"
+        />
+      </div>
+       
+    </div>
+     
+    <!---->
+     
+    <div
+      class="tui-filterBar__filters-right"
+    />
+     
+    <!---->
+  </div>
+</section>
+`;

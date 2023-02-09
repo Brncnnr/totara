@@ -1,0 +1,9 @@
+mutation mod_approval_workflow_stage_configure_formviews(
+  $input: mod_approval_workflow_stage_configure_formviews_input!
+) {
+  mod_approval_workflow_stage_configure_formviews(input: $input) {
+    stage {
+      id
+    }
+  }
+}

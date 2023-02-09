@@ -1,0 +1,13 @@
+{
+  "OBJECT": {
+    "totara_webapi_status": {
+      "fields": {
+        "status": {
+          "documentation": {
+            "example": "ok"
+          }
+        }
+      }
+    }
+  }
+}

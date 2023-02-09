@@ -1,0 +1,30 @@
+query totara_job_assignment($assignmentid: core_id!) {
+  totara_job_assignment(assignmentid: $assignmentid) {
+    id
+    fullname
+    idnumber
+    description
+    startdate
+    enddate
+    managerja {
+      user {
+        id
+        fullname
+      }
+    }
+    position {
+      id
+      fullname
+    }
+    organisation {
+      id
+      fullname
+    }
+    appraiser {
+      id
+      fullname
+    }
+    staffcount
+    tempstaffcount
+  }
+}

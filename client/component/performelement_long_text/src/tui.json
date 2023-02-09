@@ -1,0 +1,5 @@
+{
+  "component": "performelement_long_text",
+  "vendor": "totara",
+  "dependencies": ["editor_weka"]
+}

@@ -1,0 +1,31 @@
+mutation mod_perform_toggle_activity_multisection_setting(
+  $input: toggle_activity_setting!
+) {
+  mod_perform_toggle_activity_multisection_setting(input: $input) {
+    sections {
+      id
+      title
+      display_title
+      sort_order
+      section_relationships {
+        id
+        can_view
+        can_answer
+        core_relationship {
+          id
+          name
+        }
+      }
+      section_elements_summary {
+        required_question_count
+        optional_question_count
+        other_element_count
+      }
+      raw_created_at: created_at(format: TIMESTAMP)
+      raw_updated_at: updated_at(format: TIMESTAMP)
+    }
+    settings {
+      multisection
+    }
+  }
+}

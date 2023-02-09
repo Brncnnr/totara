@@ -1,0 +1,22 @@
+"""
+Result for aggregatable question elements.
+"""
+type performelement_aggregation_aggregatable_question_elements_result {
+  sections: [mod_perform_section!]!
+}
+
+"""
+Input type for aggregatable question elements.
+"""
+input aggregatable_question_elements_input {
+  activity_id: param_integer!
+}
+
+extend type Query {
+  """
+  Aggregatable question elements
+  """
+  performelement_aggregation_aggregatable_question_elements(
+    input: aggregatable_question_elements_input!
+  ): performelement_aggregation_aggregatable_question_elements_result!
+}

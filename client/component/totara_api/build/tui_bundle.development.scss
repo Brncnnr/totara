@@ -1,0 +1,60 @@
+.tui-totara_api-duration {
+  @include tui-stack-vertical(var(--gap-2));
+}
+
+.tui-totara_api-addClient {
+  &__requiredStar {
+    color: var(--color-prompt-alert);
+    font-weight: bold;
+  }
+}
+
+.tui-totara_api-clients {
+  &__client {
+    margin-bottom: 2px;
+    &--invalid {
+      margin-top: 2px;
+      color: var(--color-prompt-warning);
+    }
+  }
+  &__form {
+    @include tui-wordbreak--hard();
+    margin-top: var(--gap-4);
+    margin-bottom: var(--gap-6);
+  }
+  &__formDesc {
+    margin-top: var(--gap-6);
+  }
+  &__monospaceFont {
+    @include tui-font-monospace();
+  }
+  &__deleteBody {
+    @include tui-wordbreak--hard();
+  }
+  &__serviceaccount {
+    @include tui-font-link();
+    margin-right: var(--gap-2);
+  }
+  &__inputGroupBtn {
+    min-width: 6rem;
+  }
+}
+
+.tui-totara_api-editClient {
+  &__requiredStar {
+    color: var(--color-prompt-alert);
+    font-weight: bold;
+  }
+}
+
+.tui-totara_api-editClientSettings {
+  &__defaultInfo {
+    color: var(--form-defaults-text-color);
+    @include tui-font-body-x-small;
+  }
+  &__requiredStar {
+    color: var(--color-prompt-alert);
+    font-weight: bold;
+  }
+}
+

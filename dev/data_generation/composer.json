@@ -1,0 +1,18 @@
+{
+  "name": "totara/dev-test-data-generation",
+  "description": "Totara is a fully supported Open Source learning platform specifically designed for the requirements of corporate, industry and vocational training.",
+  "license": "proprietary",
+  "type": "metapackage",
+  "homepage": "https://www.totaralearning.com",
+  "require": {
+    "php": ">=7.2.10 <7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "degeneration\\": "classes/"
+    }
+  },
+  "require-dev": {
+    "fzaninotto/faker": "^1.9"
+  }
+}

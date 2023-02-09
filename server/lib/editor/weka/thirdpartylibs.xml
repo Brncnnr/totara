@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>/client/component/editor_weka/src/js/lib/prosemirror_utils</location>
+        <name>prosemirror-utils</name>
+        <license>Apache 2.0</license>
+        <version>0.9.6</version>
+        <licenseversion>2.0</licenseversion>
+        <repository>https://github.com/atlassian/prosemirror-utils/tree/v0.9.6</repository>
+    </library>
+    <library>
+        <location>/client/component/editor_weka/src/js/lib/prosemirror_schema_list</location>
+        <name>prosemirror-schema-list</name>
+        <license>MIT</license>
+        <version>1.1.2</version>
+        <repository>https://github.com/ProseMirror/prosemirror-schema-list/tree/1.1.2</repository>
+    </library>
+</libraries>

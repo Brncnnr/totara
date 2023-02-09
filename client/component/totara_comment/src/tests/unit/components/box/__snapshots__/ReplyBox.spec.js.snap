@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReplyBox Checks snapshot 1`] = `
+<div
+  class="tui-commentReplyBox"
+>
+  <div
+    class="tui-commentReplyBox__replyLinkBox tui-commentReplyBox__replyLinkBox--withSeparator"
+  >
+    <a
+      class="tui-commentReplyBox__replyLinkBox-link"
+      href="#"
+      role="button"
+    >
+      <span>
+        viewreplies-totara_comment
+      </span>
+       
+      <!---->
+    </a>
+  </div>
+   
+  <reply-stub
+    canviewauthor="true"
+    class="tui-commentReplyBox__reply"
+    commentid="11"
+    component="totara_comment"
+    content="Hello world"
+    data-counter="0"
+    deleteable="true"
+    editor="[object Object]"
+    reactable="true"
+    replyable="true"
+    replyid="12"
+    reportable="true"
+    showlikebutton="true"
+    size="small"
+    timedescription="5th of September 1996"
+    totalreactions="56"
+    updateable="true"
+    userfullname="Admin user"
+    userid="42"
+    userprofileimagealt="Hello world"
+    userprofileimageurl="http://example.com"
+  />
+   
+  <replyform-stub
+    class="tui-commentReplyBox__replyForm"
+    commentid="15"
+    editor="[object Object]"
+    size="small"
+  />
+</div>
+`;
+
+exports[`ReplyBox Checks snapshot without thumbs up 1`] = `
+<div
+  class="tui-commentReplyBox"
+>
+  <div
+    class="tui-commentReplyBox__replyLinkBox tui-commentReplyBox__replyLinkBox--withSeparator"
+  >
+    <a
+      class="tui-commentReplyBox__replyLinkBox-link"
+      href="#"
+      role="button"
+    >
+      <span>
+        viewreplies-totara_comment
+      </span>
+       
+      <!---->
+    </a>
+  </div>
+   
+  <reply-stub
+    canviewauthor="true"
+    class="tui-commentReplyBox__reply"
+    commentid="11"
+    component="totara_comment"
+    content="Hello world"
+    data-counter="0"
+    deleteable="true"
+    editor="[object Object]"
+    reactable="true"
+    replyable="true"
+    replyid="12"
+    reportable="true"
+    size="small"
+    timedescription="5th of September 1996"
+    totalreactions="56"
+    updateable="true"
+    userfullname="Admin user"
+    userid="42"
+    userprofileimagealt="Hello world"
+    userprofileimageurl="http://example.com"
+  />
+   
+  <replyform-stub
+    class="tui-commentReplyBox__replyForm"
+    commentid="15"
+    editor="[object Object]"
+    size="small"
+  />
+</div>
+`;

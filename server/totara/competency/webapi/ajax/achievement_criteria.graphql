@@ -1,0 +1,33 @@
+query totara_competency_achievement_criteria(
+  $competency_id: core_id!
+  $summarized: Boolean = false
+) {
+  totara_competency_achievement_criteria(competency_id: $competency_id) {
+    competency_id
+    overall_aggregation {
+      aggregation_type
+      title
+      description
+    }
+    paths {
+      id
+      pathway_type
+      instance_id
+      title
+      sortorder
+      status
+      classification
+      scale_value
+      error
+      criteria_summary @include(if: $summarized) {
+        item_type
+        item_aggregation
+        error
+        items {
+          error
+          description
+        }
+      }
+    }
+  }
+}

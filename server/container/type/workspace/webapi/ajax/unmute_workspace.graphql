@@ -1,0 +1,6 @@
+mutation container_workspace_unmute_workspace($workspace_id: param_integer!) {
+  result: container_workspace_switch_notification(
+    workspace_id: $workspace_id
+    status: ON
+  )
+}

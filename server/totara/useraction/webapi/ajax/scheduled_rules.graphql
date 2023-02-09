@@ -1,0 +1,38 @@
+query totara_useraction_scheduled_rules(
+  $input: totara_useraction_scheduled_rules_input!
+) {
+  rules: totara_useraction_scheduled_rules(input: $input) {
+    items {
+      __typename
+      id
+      tenant_id
+      name(format: PLAIN)
+      description(format: PLAIN)
+      status
+      action {
+        identifier
+        name
+      }
+      filters {
+        user_status
+        duration {
+          source
+          unit
+          value
+        }
+        applies_to {
+          __typename
+          label
+          ... on totara_useraction_filters_applies_to_audiences {
+            audiences {
+              id
+              name(format: PLAIN)
+            }
+          }
+        }
+      }
+    }
+    total
+    next_cursor
+  }
+}

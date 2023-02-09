@@ -1,0 +1,17 @@
+query mod_approval_application_approvers(
+  $input: mod_approval_application_approvers_input!
+) {
+  mod_approval_application_approvers(input: $input) {
+    __typename
+    id
+    fullname
+    email
+    profileimageurlsmall
+    card_display {
+      __typename
+      profile_picture_alt
+      profile_picture_url
+      profile_url
+    }
+  }
+}

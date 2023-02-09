@@ -1,0 +1,12 @@
+query totara_topic_get_config(
+  $component: param_component!
+  $item_type: String!
+) {
+  config: totara_topic_get_config(
+    component: $component
+    item_type: $item_type
+  ) {
+    __typename
+    enabled
+  }
+}

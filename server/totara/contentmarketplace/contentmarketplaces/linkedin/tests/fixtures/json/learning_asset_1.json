@@ -1,0 +1,1882 @@
+{
+  "urn": "urn:li:lyndaCourse:252",
+  "details": {
+    "images": {
+      "primary": "https://cdn.lynda.com/course/252/252-636282989834935258-16x9.jpg"
+    },
+    "descriptionIncludingHtml": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "Like the other applications in Microsoft Office 2007, Excel 2007 boasts upgraded features and a brand-new look. In <em> Excel 2007 Essential Training </em>, instructor Lorna A. Daly introduces the new version in detail. The training begins with the essentials of using the program, including how and why to use a spreadsheet, how to set up and modify worksheets, and how to import and export data. Lorna then moves on to teach more advanced features, such as working with functions and macros. Exercise files accompany the tutorials."
+    },
+    "lastUpdatedAt": 1613522076915,
+    "publishedAt": 1170201600000,
+    "level": "BEGINNER",
+    "description": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "Like the other applications in Microsoft Office 2007, Excel 2007 boasts upgraded features and a brand-new look. In Excel 2007 Essential Training , instructor Lorna A. Daly introduces the new version in detail. The training begins with the essentials of using the program, including how and why to use a spreadsheet, how to set up and modify worksheets, and how to import and export data. Lorna then moves on to teach more advanced features, such as working with functions and macros. Exercise files accompany the tutorials."
+    },
+    "shortDescription": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "A detailed look at the features and uses of Excel 2007, including how and why to use spreadsheets."
+    },
+    "availability": "AVAILABLE",
+    "availableLocales": [
+      {
+        "country": "US",
+        "language": "en"
+      }
+    ],
+    "relationships": [],
+    "classifications": [
+      {
+        "assigner": {
+          "urn": "urn:li:organization:1337",
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "LinkedIn"
+          }
+        },
+        "path": [],
+        "associatedClassification": {
+          "owner": {
+            "urn": "urn:li:organization:1337",
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "LinkedIn"
+            }
+          },
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Microsoft Excel"
+          },
+          "urn": "urn:li:skill:163",
+          "type": "SKILL"
+        }
+      },
+      {
+        "assigner": {
+          "urn": "urn:li:organization:1337",
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "LinkedIn"
+          }
+        },
+        "path": [],
+        "associatedClassification": {
+          "owner": {
+            "urn": "urn:li:organization:1337",
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "LinkedIn"
+            }
+          },
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Spreadsheets"
+          },
+          "urn": "urn:li:skill:1267",
+          "type": "SKILL"
+        }
+      },
+      {
+        "assigner": {
+          "urn": "urn:li:organization:1337",
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "LinkedIn"
+          }
+        },
+        "path": [
+          {
+            "owner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "Business Software and Tools"
+            },
+            "urn": "urn:li:lyndaCategory:7166",
+            "type": "SUBJECT"
+          },
+          {
+            "owner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "Business"
+            },
+            "urn": "urn:li:lyndaCategory:7162",
+            "type": "LIBRARY"
+          }
+        ],
+        "associatedClassification": {
+          "owner": {
+            "urn": "urn:li:organization:1337",
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "LinkedIn"
+            }
+          },
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Spreadsheets"
+          },
+          "urn": "urn:li:lyndaCategory:7418",
+          "type": "TOPIC"
+        }
+      },
+      {
+        "assigner": {
+          "urn": "urn:li:organization:1337",
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "LinkedIn"
+          }
+        },
+        "path": [
+          {
+            "owner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "Business"
+            },
+            "urn": "urn:li:lyndaCategory:7162",
+            "type": "LIBRARY"
+          }
+        ],
+        "associatedClassification": {
+          "owner": {
+            "urn": "urn:li:organization:1337",
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "LinkedIn"
+            }
+          },
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Business Software and Tools"
+          },
+          "urn": "urn:li:lyndaCategory:7166",
+          "type": "SUBJECT"
+        }
+      },
+      {
+        "assigner": {
+          "urn": "urn:li:organization:1337",
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "LinkedIn"
+          }
+        },
+        "path": [],
+        "associatedClassification": {
+          "owner": {
+            "urn": "urn:li:organization:1337",
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "LinkedIn"
+            }
+          },
+          "name": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Business"
+          },
+          "urn": "urn:li:lyndaCategory:7162",
+          "type": "LIBRARY"
+        }
+      }
+    ],
+    "urls": {
+      "ssoLaunch": "https://www.linkedin.com/checkpoint/enterprise/login/105587602?pathWildcard=105587602&application=learning&redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Flearning%2Fexcel-2007-essential-training%3Fu%3D105587602",
+      "webLaunch": "https://www.linkedin.com/learning/excel-2007-essential-training",
+      "aiccLaunch": "https://www.linkedin.com/learning/aicc?content=urn%3Ali%3AlyndaCourse%3A252&account=urn%3Ali%3AenterpriseApplicationInstance%3A%28urn%3Ali%3AenterpriseAccount%3A105587602%2C113669290%29"
+    },
+    "shortDescriptionIncludingHtml": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "A detailed look at the features and uses of Excel 2007, including how and why to use spreadsheets."
+    },
+    "contributors": [
+      {
+        "name": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "Lorna Daly"
+        },
+        "urn": "urn:li:lyndaAuthor:88",
+        "contributionType": "AUTHOR",
+        "authorDetails": {
+          "lastName": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Daly"
+          },
+          "firstName": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Lorna"
+          }
+        }
+      }
+    ],
+    "timeToComplete": {
+      "duration": 18790,
+      "unit": "SECOND"
+    }
+  },
+  "title": {
+    "locale": {
+      "country": "US",
+      "language": "en"
+    },
+    "value": "Excel 2007 Essential Training"
+  },
+  "type": "COURSE",
+  "contents": [
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4472)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "Introduction"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24961)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Welcome"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4473)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "1. Getting Started"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24962)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Why use a spreadsheet?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24963)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What's changed in Excel 2007?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24964)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "The Ribbon"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24965)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "The Microsoft Office Button"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4474)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "2. Setting Up Excel 2007"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24966)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What's on the Ribbon?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24967)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Making your way around the Ribbon"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24968)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Customizing the Ribbon"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24969)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Customizing the Microsoft Office Button"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4475)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "3. Modifying Worksheets"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24970)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Opening old worksheets"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24971)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Adding and deleting worksheets"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24972)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Inserting and deleting cells"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24973)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Freezing areas of a worksheet"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4476)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "4. Basic Formatting"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24974)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Width and height"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24975)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Numeric formats"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24976)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Alignment of data"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24977)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Playing with fonts"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24978)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "AutoFilter"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24979)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Formatting as a table"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4477)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "5. Advanced Formatting"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24980)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Removing duplicates"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24981)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What is Conditional Formatting?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24982)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Working with Conditional Formatting"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24983)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Managing Conditional Formatting rule preferences"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24984)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Converting text to columns"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24985)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Data validation"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4478)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "6. Using Templates, Styles, and AutoFormat"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24986)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Templates"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24987)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Styles"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24988)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "AutoFormat"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4479)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "7. Managing Lists in Excel"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24989)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Excel lists have now become tables"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24990)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Converting text to columns"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24991)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Sorting and Grouping"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24992)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Creating a summary report"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4480)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "8. Reviewing Worksheets"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24993)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Proofing your work"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24994)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Providing comments on worksheets"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4481)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "9. Sharing Worksheets"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24995)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Protecting and sharing a worksheet"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24996)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Allowing others to edit ranges"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24997)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Track Changes"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4482)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "10. Printing Workbooks"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24998)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Preparing to print"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24999)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Print Preview"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25000)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "The Page Layout Tab"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25001)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Page Breaks"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25002)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "The Page Layout View"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25003)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Headers and Footers"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4483)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "11. Enhancing Worksheets"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25004)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Adding themes to your worksheet"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25005)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Page setup options"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25006)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Scale to Fit"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25007)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Worksheet options"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25008)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Inserting images"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4484)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "12. Using Templates"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25009)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Using templates"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4485)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "13. Manipulating the Screen Display"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25010)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Workbook Views"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25011)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Hiding and Zooming"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25012)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Window Panes"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25013)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "More screen options"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4486)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "14. Importing Data"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25014)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Importing from Access"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25015)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Using the Import Wizard for text files"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4487)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "15. Finding and Replacing Data"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25016)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "The Find and Select button"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25017)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Find and Replace"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25018)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Removing duplicates"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4488)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "16. Working with Formulas"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25019)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What are formulas?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25020)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Order of Operations"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25021)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Relative and absolute referencing"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25022)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "The new Formula Tab"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4489)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "17. Working with Basic Functions"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25023)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What are Functions?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25024)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "AutoSum"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25025)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Minimum"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25026)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Trim"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25027)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Left"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4490)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "18. Working with Advanced Functions"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25028)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Concatenation"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25029)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "SumIf"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25030)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Lookup"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25031)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What-If Analysis"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4491)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "19. Charts"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25032)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Why create a chart?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25033)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Creating your chart"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25034)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Modifying your chart"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25035)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Laying out your chart"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4492)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "20. Pivot Tables"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25036)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "What are PivotTable reports and PivotChart reports?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25037)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Creating a PivotTable"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25038)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Laying out your PivotTable"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25039)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Designing your PivotTable"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25040)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Creating a PivotChart"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4493)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "21. Working with Macros"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25041)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Why use macros?"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25042)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Creating a macro"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          },
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25043)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Macro security"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4494)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "22. Workflow in Excel 2007"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25044)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Reviewing a workflow in Excel"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "asset": {
+        "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4495)",
+        "title": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "Conclusion"
+        },
+        "type": "CHAPTER",
+        "contents": [
+          {
+            "asset": {
+              "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,25045)",
+              "title": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Conclusion"
+              },
+              "type": "VIDEO",
+              "contents": []
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

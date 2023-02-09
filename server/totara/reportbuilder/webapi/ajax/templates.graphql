@@ -1,0 +1,19 @@
+query totara_reportbuilder_templates {
+  totara_reportbuilder_templates {
+    key
+    fullname
+    label
+    summary
+    graph
+    source {
+      key
+      fullname
+      label
+      summary
+      defaultcolumns {
+        type
+        name
+      }
+    }
+  }
+}

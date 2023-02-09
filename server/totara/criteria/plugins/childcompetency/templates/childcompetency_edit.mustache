@@ -1,0 +1,114 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+   @author Riana Rossouw <riana.rossouw@totaralearning.com>
+   @package criteria_childcompetency
+}}
+{{!
+
+    @template criteria_childcompetency/childcompetency
+
+    Template for management of Child Competency criteria
+
+    Classes required for JS:
+        * none
+
+    Data attributes required for JS:
+        * data-core-autoinitialise: State of this JS auto initilise
+        * data-core-autoinitialise-amd: AMD to be linked to template
+        * data-tw-criterionChildCompetency: Target for child competency criterion
+        * data-tw-criterionChildCompetency-detail: Target for detail section
+        * data-tw-criterionChildCompetency-aggregation: Target for aggregation section
+        * data-tw-criterionChildCompetency-aggregationMethod: int, Section for the specific aggregation method
+        * data-tw-criterionChildCompetency-aggregationMethod-changed: Trigger when user changes aggregation method
+        * data-tw-criterionChildCompetency-aggregationCount: Section for aggregation required count
+        * data-tw-criterionChildCompetency-aggregationCount-changed: Trigger when user changes the required count
+
+    Context variables required for this template:
+        * key
+
+}}
+
+<div data-tw-criterionChildCompetency=""
+data-core-autoinitialise="true"
+data-core-autoinitialise-amd="criteria_childcompetency/childcompetency"
+data-tw-loader-target="">
+
+    <div {{^error}}class="tw-editAchievementPaths--hidden"{{/error}} data-tw-criterionChildCompetency-error="">
+        <span class="tw-editAchievementPaths__criterionForm-warning">
+            {{#flex_icon}}notification-warning{{/flex_icon}}
+            {{error}}
+        </span>
+    </div>
+
+    <form class="tw-editAchievementPaths__criterionForm"
+    data-tw-criterionChildCompetency-aggregation="{{#aggregation}}{{method}}{{/aggregation}}{{^aggregation}}1{{/aggregation}}"
+    data-tw-criterionChildCompetency-aggregation-reqitems="{{#aggregation}}{{reqitems}}{{/aggregation}}{{^aggregation}}1{{/aggregation}}">
+
+        <h5 class="tw-editAchievementPaths__criterionForm-title" id="tw_criterionChildCompetency-radioGroup-label-{{key}}">
+            {{#str}}aggregation, totara_criteria{{/str}}
+        </h5>
+
+        <div role="radiogroup" aria-labelledby="tw_criterionChildCompetency-radioGroup-label-{{key}}" aria-describedby="criterion_title--{{key}}" class="tw-editAchievementPaths__criterionForm-items">
+            <div data-tw-criterionChildCompetency-aggregationMethod="1">
+                <input type="radio"
+                id="tw_criterionChildCompetency_agg_all__{{key}}"
+                name="tw_criterionChildCompetency_agg__{{key}}"
+                value="1"
+                data-tw-criterionChildCompetency-aggregationMethod-changed="all"/>
+
+                <label class="tw-editAchievementPaths__criterionForm-label" for="tw_criterionChildCompetency_agg_all__{{key}}">
+                    {{#str}}complete_all, totara_criteria {{/str}}
+                </label>
+                <span class="tf_loading" style="display: none;">
+                    {{#pix}} i/loading, core, loading, totara_core{{/pix}}
+                </span>
+            </div>
+
+            <div class="tw-editAchievementPaths__criterionForm-item" data-tw-criterionChildCompetency-aggregationMethod="2">
+                <input type="radio"
+                id="tw_criterionChildCompetency_agg_any__{{key}}"
+                name="tw_criterionChildCompetency_agg__{{key}}"
+                value="2"
+                data-tw-criterionChildCompetency-aggregationMethod-changed="any"/>
+
+                <label class="tw-editAchievementPaths__criterionForm-label" for="tw_criterionChildCompetency_agg_any__{{key}}">
+                    {{#str}}complete_any, totara_criteria{{/str}}
+                </label>
+                <span class="tf_loading" style="display: none;">
+                    {{#pix}} i/loading, core, loading, totara_core{{/pix}}
+                </span>
+
+                <div data-tw-criterionChildCompetency-aggregationCount="">
+                    <input type="number"
+                    name="tw_criterionChildCompetency_agg_count__{{key}}"
+                    value="1" min="1"
+                    data-tw-criterionChildCompetency-aggregationCount-changed=""
+                    disabled="disabled"/>
+                </div>
+                <div class="tw-editAchievementPaths__criterionForm-info tw-editAchievementPaths--hidden"
+                     data-tw-criterionChildCompetency-info="aggregation-count"
+                >
+                    {{#flex_icon}}notification-info, info, totara_criteria{{/flex_icon}}
+                    <span>{{#str}}info_aggregation_minumum, criteria_childcompetency{{/str}}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

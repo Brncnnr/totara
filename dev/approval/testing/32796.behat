@@ -1,0 +1,359 @@
+Feature: Many many applications
+  Background:
+    Given I am on a totara site
+    And the following "users" exist:
+      | username   | firstname | lastname | email                 |
+      | applicant  | Applie    | Kaant    | applicant@example.com |
+      | manager    | Mana      | Djer     |   manager@example.com |
+    And the following job assignments exist:
+      | user      | manager    | idnumber  |
+      | applicant | manager    | jajaja2   |
+    And the following "role assigns" exist:
+      | user    | role    | contextlevel | reference |
+      | manager | manager | System       |           |
+    And the following "cohorts" exist:
+      | name          | idnumber |
+      | Test audience | AUD001   |
+    And the following "cohort members" exist:
+      | user      | cohort |
+      | applicant | AUD001 |
+    And the following "workflow types" exist in "mod_approval" plugin:
+      | name                  |
+      | A very simple request |
+    And the following "forms" exist in "mod_approval" plugin:
+      | title     |
+      | Test form |
+    And the following "form versions" exist in "mod_approval" plugin:
+      | form      | version | json_schema |
+      | Test form | 1       | test1       |
+    And the following "workflows" exist in "mod_approval" plugin:
+      | name          | description               | id_number | form      | workflow_type         |
+      | Test workflow | test workflow description | WKF001    | Test form | A very simple request |
+    And the following "workflow versions" exist in "mod_approval" plugin:
+      | workflow | form_version |
+      | WKF001   | 1            |
+    And the following "workflow stages" exist in "mod_approval" plugin:
+      | workflow | name       |
+      | WKF001   | Test stage |
+    And the following "approval levels" exist in "mod_approval" plugin:
+      | workflow_stage | name         |
+      | Test stage     | Test level 1 |
+      | Test stage     | Test level 2 |
+    And the following "form views" exist in "mod_approval" plugin:
+      | workflow_stage | respondent | field_key | required |
+      | Test stage     | user       | food      | true     |
+    And the following "assignments" exist in "mod_approval" plugin:
+      | name            | id_number  | workflow | type   | identifier | default |
+      | Test assignment | ASS001     | WKF001   | cohort | AUD001     | true    |
+    And the following "approvers" exist in "mod_approval" plugin:
+      | assignment | approval_level | type         | identifier |
+      | ASS001     | Test level 1   | relationship | manager    |
+      | ASS001     | Test level 2   | relationship | manager    |
+    And the following "applications" exist in "mod_approval" plugin:
+      | title                          | user      | workflow | assignment | creator   | job_assignment |
+      | Test application first         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application second        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application third         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fourth        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifth         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixth         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventh       | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighth        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninth         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application tenth         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eleven        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twelve        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirteen      | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fourteen      | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifteen       | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixteen       | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventeen     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighteen      | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application nineteen      | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-one    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-two    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-three  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-four   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-five   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-six    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-seven  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-eight  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application twenty-nine   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-one    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-two    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-three  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-four   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-five   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-six    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-seven  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-eight  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application thirty-nine   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-one     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-two     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-three   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-four    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-five    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-six     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-seven   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-eight   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application forty-nine    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-one     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-two     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-three   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-four    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-five    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-six     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-seven   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-eight   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application fifty-nine    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty         | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-one     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-two     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-three   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-four    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-five    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-six     | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-seven   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-eight   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application sixty-nine    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy       | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-one   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-two   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-three | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-four  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-five  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-six   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-seven | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-eight | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application seventy-nine  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-one    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-two    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-three  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-four   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-five   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-six    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-seven  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-eight  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application eighty-nine   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety        | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-one    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-two    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-three  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-four   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-five   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-six    | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-seven  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-eight  | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application ninety-nine   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+      | Test application one million   | applicant | WKF001   | ASS001     | applicant | jajaja2        |
+    And the following "application submissions" exist in "mod_approval" plugin:
+      | application                   | user      | form_data         |
+      | Test application first        | applicant | {"food":"Apple"}  |
+      | Test application second       | applicant | {"food":"Banana"} |
+      | Test application third        | applicant | {"food":"Cherry"} |
+      | Test application fourth       | applicant | {"food":"Feijoa"} |
+      | Test application sixth        | applicant | {"food":"Grape"}  |
+      | Test application seventh      | applicant | {"food":"Kiwi"}   |
+      | Test application fifth        | applicant | {"food":"Lemon"}  |
+      | Test application eighth       | applicant | {"food":"Melon"}  |
+      | Test application ninth        | applicant | {"food":"Orange"} |
+      | Test application tenth        | applicant | {"food":"Apple"}  |
+      | Test application eleven       | applicant | {"food":"Poison"} |
+      | Test application twelve       | applicant | {"food":"Poison"} |
+      | Test application thirteen     | applicant | {"food":"Poison"} |
+      | Test application fourteen     | applicant | {"food":"Poison"} |
+      | Test application fifteen      | applicant | {"food":"Poison"} |
+      | Test application sixteen      | applicant | {"food":"Poison"} |
+      | Test application seventeen    | applicant | {"food":"Poison"} |
+      | Test application eighteen     | applicant | {"food":"Poison"} |
+      | Test application nineteen     | applicant | {"food":"Poison"} |
+      | Test application twenty       | applicant | {"food":"Poison"} |
+      | Test application twenty-one   | applicant | {"food":"Poison"} |
+      | Test application twenty-two   | applicant | {"food":"Poison"} |
+      | Test application twenty-three | applicant | {"food":"Poison"} |
+      | Test application twenty-four  | applicant | {"food":"Poison"} |
+      | Test application twenty-five  | applicant | {"food":"Poison"} |
+      | Test application twenty-six   | applicant | {"food":"Poison"} |
+      | Test application twenty-seven | applicant | {"food":"Poison"} |
+      | Test application twenty-eight | applicant | {"food":"Poison"} |
+      | Test application twenty-nine  | applicant | {"food":"Poison"} |
+      | Test application thirty       | applicant | {"food":"Poison"} |
+      | Test application thirty-one   | applicant | {"food":"Poison"} |
+      | Test application thirty-two   | applicant | {"food":"Poison"} |
+      | Test application thirty-three | applicant | {"food":"Poison"} |
+      | Test application thirty-four  | applicant | {"food":"Poison"} |
+      | Test application thirty-five  | applicant | {"food":"Poison"} |
+      | Test application thirty-six   | applicant | {"food":"Poison"} |
+      | Test application thirty-seven | applicant | {"food":"Poison"} |
+      | Test application thirty-eight | applicant | {"food":"Poison"} |
+      | Test application thirty-nine  | applicant | {"food":"Poison"} |
+      | Test application forty        | applicant | {"food":"Poison"} |
+      | Test application forty-one    | applicant | {"food":"Poison"} |
+      | Test application forty-two    | applicant | {"food":"Poison"} |
+      | Test application forty-three  | applicant | {"food":"Poison"} |
+      | Test application forty-four   | applicant | {"food":"Poison"} |
+      | Test application forty-five   | applicant | {"food":"Poison"} |
+      | Test application forty-six    | applicant | {"food":"Poison"} |
+      | Test application forty-seven  | applicant | {"food":"Poison"} |
+      | Test application forty-eight  | applicant | {"food":"Poison"} |
+      | Test application forty-nine   | applicant | {"food":"Poison"} |
+      | Test application fifty        | applicant | {"food":"Poison"} |
+      | Test application fifty-one    | applicant | {"food":"Poison"} |
+      | Test application fifty-two    | applicant | {"food":"Poison"} |
+      | Test application fifty-three  | applicant | {"food":"Poison"} |
+      | Test application fifty-four   | applicant | {"food":"Poison"} |
+      | Test application fifty-five   | applicant | {"food":"Poison"} |
+      | Test application fifty-six    | applicant | {"food":"Poison"} |
+      | Test application fifty-seven  | applicant | {"food":"Poison"} |
+      | Test application fifty-eight  | applicant | {"food":"Poison"} |
+      | Test application fifty-nine   | applicant | {"food":"Poison"} |
+      | Test application sixty        | applicant | {"food":"Poison"} |
+      | Test application sixty-one    | applicant | {"food":"Poison"} |
+      | Test application sixty-two    | applicant | {"food":"Poison"} |
+      | Test application sixty-three  | applicant | {"food":"Poison"} |
+      | Test application sixty-four   | applicant | {"food":"Poison"} |
+      | Test application sixty-five   | applicant | {"food":"Poison"} |
+      | Test application sixty-six    | applicant | {"food":"Poison"} |
+      | Test application sixty-seven  | applicant | {"food":"Poison"} |
+      | Test application sixty-eight  | applicant | {"food":"Poison"} |
+      | Test application sixty-nine   | applicant | {"food":"Poison"} |
+      | Test application seventy      | applicant | {"food":"Poison"} |
+      | Test application seventy-one  | applicant | {"food":"Poison"} |
+      | Test application seventy-two  | applicant | {"food":"Poison"} |
+      | Test application seventy-three| applicant | {"food":"Poison"} |
+      | Test application seventy-four | applicant | {"food":"Poison"} |
+      | Test application seventy-five | applicant | {"food":"Poison"} |
+      | Test application seventy-six  | applicant | {"food":"Poison"} |
+      | Test application seventy-seven| applicant | {"food":"Poison"} |
+      | Test application seventy-eight| applicant | {"food":"Poison"} |
+      | Test application seventy-nine | applicant | {"food":"Poison"} |
+      | Test application eighty       | applicant | {"food":"Poison"} |
+      | Test application eighty-one   | applicant | {"food":"Poison"} |
+      | Test application eighty-two   | applicant | {"food":"Poison"} |
+      | Test application eighty-three | applicant | {"food":"Poison"} |
+      | Test application eighty-four  | applicant | {"food":"Poison"} |
+      | Test application eighty-five  | applicant | {"food":"Poison"} |
+      | Test application eighty-six   | applicant | {"food":"Poison"} |
+      | Test application eighty-seven | applicant | {"food":"Poison"} |
+      | Test application eighty-eight | applicant | {"food":"Poison"} |
+      | Test application eighty-nine  | applicant | {"food":"Poison"} |
+      | Test application ninety       | applicant | {"food":"Poison"} |
+      | Test application ninety-one   | applicant | {"food":"Poison"} |
+      | Test application ninety-two   | applicant | {"food":"Poison"} |
+      | Test application ninety-three | applicant | {"food":"Poison"} |
+      | Test application ninety-four  | applicant | {"food":"Poison"} |
+      | Test application ninety-five  | applicant | {"food":"Poison"} |
+      | Test application ninety-six   | applicant | {"food":"Poison"} |
+      | Test application ninety-seven | applicant | {"food":"Poison"} |
+      | Test application ninety-eight | applicant | {"food":"Poison"} |
+      | Test application ninety-nine  | applicant | {"food":"Poison"} |
+      | Test application one million  | applicant | {"food":"Poison"} |
+    And the following "application actions" exist in "mod_approval" plugin:
+      | application                   | user      | action |
+      | Test application first        | applicant | submit |
+      | Test application second       | applicant | submit |
+      | Test application third        | applicant | submit |
+      | Test application fourth       | applicant | submit |
+      | Test application fifth        | applicant | submit |
+      | Test application sixth        | applicant | submit |
+      | Test application seventh      | applicant | submit |
+      | Test application eighth       | applicant | submit |
+      | Test application ninth        | applicant | submit |
+      | Test application tenth        | applicant | submit |
+      | Test application eleven       | applicant | submit |
+      | Test application twelve       | applicant | submit |
+      | Test application thirteen     | applicant | submit |
+      | Test application fourteen     | applicant | submit |
+      | Test application fifteen      | applicant | submit |
+      | Test application sixteen      | applicant | submit |
+      | Test application seventeen    | applicant | submit |
+      | Test application eighteen     | applicant | submit |
+      | Test application nineteen     | applicant | submit |
+      | Test application twenty       | applicant | submit |
+      | Test application twenty-one   | applicant | submit |
+      | Test application twenty-two   | applicant | submit |
+      | Test application twenty-three | applicant | submit |
+      | Test application twenty-four  | applicant | submit |
+      | Test application twenty-five  | applicant | submit |
+      | Test application twenty-six   | applicant | submit |
+      | Test application twenty-seven | applicant | submit |
+      | Test application twenty-eight | applicant | submit |
+      | Test application twenty-nine  | applicant | submit |
+      | Test application thirty       | applicant | submit |
+      | Test application thirty-one   | applicant | submit |
+      | Test application thirty-two   | applicant | submit |
+      | Test application thirty-three | applicant | submit |
+      | Test application thirty-four  | applicant | submit |
+      | Test application thirty-five  | applicant | submit |
+      | Test application thirty-six   | applicant | submit |
+      | Test application thirty-seven | applicant | submit |
+      | Test application thirty-eight | applicant | submit |
+      | Test application thirty-nine  | applicant | submit |
+      | Test application forty        | applicant | submit |
+      | Test application forty-one    | applicant | submit |
+      | Test application forty-two    | applicant | submit |
+      | Test application forty-three  | applicant | submit |
+      | Test application forty-four   | applicant | submit |
+      | Test application forty-five   | applicant | submit |
+      | Test application forty-six    | applicant | submit |
+      | Test application forty-seven  | applicant | submit |
+      | Test application forty-eight  | applicant | submit |
+      | Test application forty-nine   | applicant | submit |
+      | Test application fifty        | applicant | submit |
+      | Test application fifty-one    | applicant | submit |
+      | Test application fifty-two    | applicant | submit |
+      | Test application fifty-three  | applicant | submit |
+      | Test application fifty-four   | applicant | submit |
+      | Test application fifty-five   | applicant | submit |
+      | Test application fifty-six    | applicant | submit |
+      | Test application fifty-seven  | applicant | submit |
+      | Test application fifty-eight  | applicant | submit |
+      | Test application fifty-nine   | applicant | submit |
+      | Test application sixty        | applicant | submit |
+      | Test application sixty-one    | applicant | submit |
+      | Test application sixty-two    | applicant | submit |
+      | Test application sixty-three  | applicant | submit |
+      | Test application sixty-four   | applicant | submit |
+      | Test application sixty-five   | applicant | submit |
+      | Test application sixty-six    | applicant | submit |
+      | Test application sixty-seven  | applicant | submit |
+      | Test application sixty-eight  | applicant | submit |
+      | Test application sixty-nine   | applicant | submit |
+      | Test application seventy      | applicant | submit |
+      | Test application seventy-one  | applicant | submit |
+      | Test application seventy-two  | applicant | submit |
+      | Test application seventy-three| applicant | submit |
+      | Test application seventy-four | applicant | submit |
+      | Test application seventy-five | applicant | submit |
+      | Test application seventy-six  | applicant | submit |
+      | Test application seventy-seven| applicant | submit |
+      | Test application seventy-eight| applicant | submit |
+      | Test application seventy-nine | applicant | submit |
+      | Test application eighty       | applicant | submit |
+      | Test application eighty-one   | applicant | submit |
+      | Test application eighty-two   | applicant | submit |
+      | Test application eighty-three | applicant | submit |
+      | Test application eighty-four  | applicant | submit |
+      | Test application eighty-five  | applicant | submit |
+      | Test application eighty-six   | applicant | submit |
+      | Test application eighty-seven | applicant | submit |
+      | Test application eighty-eight | applicant | submit |
+      | Test application eighty-nine  | applicant | submit |
+      | Test application ninety       | applicant | submit |
+      | Test application ninety-one   | applicant | submit |
+      | Test application ninety-two   | applicant | submit |
+      | Test application ninety-three | applicant | submit |
+      | Test application ninety-four  | applicant | submit |
+      | Test application ninety-five  | applicant | submit |
+      | Test application ninety-six   | applicant | submit |
+      | Test application ninety-seven | applicant | submit |
+      | Test application ninety-eight | applicant | submit |
+      | Test application ninety-nine  | applicant | submit |
+      | Test application one million  | applicant | submit |
+
+  Scenario: x

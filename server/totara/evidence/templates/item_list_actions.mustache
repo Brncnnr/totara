@@ -1,0 +1,63 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/item_list_actions
+
+    The action icons for the evidence items list
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-evidence-item-actions
+    * data-evidence-item-delete
+
+    Context variables required for this template:
+    * can_modify: bool, is the current user allowed to modify this item?
+    * in_use: bool, is the evidence item being used?
+    * id: int, the ID of the evidence item
+    * edit_url: string, the URL for editing the evidence item
+
+    Example context (json):
+    {
+        "can_modify": true,
+        "in_use": false,
+        "id": 23,
+        "edit_url": "/totara/evidence/type/fields?typeid=2"
+    }
+}}
+<div data-evidence-item-actions="{{id}}">
+{{#can_modify}}
+    <a href="{{edit_url}}">{{#flex_icon}}edit, edit{{/flex_icon}}</a>
+    <a href="#" data-evidence-item-delete="{{id}}">{{#flex_icon}}delete, delete{{/flex_icon}}</a>
+{{/can_modify}}
+{{^can_modify}}
+    {{#in_use}}
+        {{#flex_icon}}edit, error_message_edit_item_in_use, totara_evidence{{/flex_icon}}
+        {{#flex_icon}}delete-disabled, error_error_message_edit_item_in_use, totara_evidence{{/flex_icon}}
+    {{/in_use}}
+    {{^in_use}}
+        {{#flex_icon}}edit, error_message_edit_item_permissions, totara_evidence{{/flex_icon}}
+        {{#flex_icon}}delete-disabled, error_message_delete_item_permissions, totara_evidence{{/flex_icon}}
+    {{/in_use}}
+{{/can_modify}}
+</div>

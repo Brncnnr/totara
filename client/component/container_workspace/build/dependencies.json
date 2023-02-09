@@ -1,0 +1,19 @@
+{
+  "dependencies": [
+    {
+      "name": "totara_engage"
+    },
+    {
+      "name": "totara_topic"
+    },
+    {
+      "name": "editor_weka"
+    },
+    {
+      "name": "totara_comment"
+    },
+    {
+      "name": "ml_recommender"
+    }
+  ]
+}

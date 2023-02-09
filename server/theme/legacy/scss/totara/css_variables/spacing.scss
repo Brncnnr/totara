@@ -1,0 +1,40 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+$legacy-gap: 0.4rem;
+
+:root {
+  // Common spacing used for margin & padding
+  --gap-1: #{$legacy-gap * 1};
+  --gap-2: #{$legacy-gap * 2};
+  --gap-3: #{$legacy-gap * 3};
+  --gap-4: #{$legacy-gap * 4};
+  --gap-5: #{$legacy-gap * 5};
+  --gap-6: #{$legacy-gap * 6};
+  --gap-7: #{$legacy-gap * 7};
+  --gap-8: #{$legacy-gap * 8};
+  --gap-9: #{$legacy-gap * 9};
+  --gap-10: #{$legacy-gap * 10};
+  --gap-11: #{$legacy-gap * 11};
+  --gap-12: #{$legacy-gap * 12};
+}

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage CreateSurvey Checks snapshot 1`] = `
+<div
+  class="tui-engageCreateSurvey"
+  component="engage_survey"
+  itemid="1"
+>
+  <surveyform-stub
+    buttoncontent="next, core"
+    showbuttonright="true"
+    survey="[object Object]"
+  />
+   
+  <accessform-stub
+    component="engage_survey"
+    donebuttontext="done, totara_engage"
+    itemid="0"
+    selectedaccess="PRIVATE"
+    selectedoptions="[object Object]"
+    showback="true"
+    style="display: none;"
+  />
+</div>
+`;

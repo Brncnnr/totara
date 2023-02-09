@@ -1,0 +1,12 @@
+mutation mod_perform_clone_activity($input: mod_perform_clone_activity_input!) {
+  mod_perform_clone_activity(input: $input) {
+    activity {
+      id
+      name
+      state_details {
+        code
+        display_name
+      }
+    }
+  }
+}

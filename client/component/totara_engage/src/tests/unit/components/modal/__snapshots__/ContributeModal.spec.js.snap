@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ContributeModal Checks snapshot 1`] = `
+<span>
+  <modal-stub
+    arialabelledby="id-title"
+    dismissable="[object Object]"
+    shade="true"
+    size="large"
+  >
+    <modalcontent-stub
+      class="tui-engageContributeModal"
+      title="contribute, totara_engage"
+      titlevisible="true"
+    >
+      <div
+        class="tui-engageContributeModal__content"
+      >
+        <div
+          class="tui-engageContributeModal__adderContainer"
+        >
+          <span>
+            
+            or, totara_engage
+            
+            <button-stub
+              styleclass="[object Object]"
+              text="select an existing resource"
+              type="button"
+            />
+            
+            some where you like
+          
+          </span>
+        </div>
+         
+        <tabs-stub
+          class="tui-engageContributeModal__tabs"
+          controlled="true"
+          direction="horizontal"
+          selected="engage_survey"
+          smalltabs="true"
+        >
+          <tab-stub
+            id="engage_article"
+            name="cc"
+          />
+          <tab-stub
+            id="engage_survey"
+            name="cd"
+          />
+        </tabs-stub>
+         
+        <div
+          class="tui-engageContributeModal__componentContent"
+        >
+          <engage_survey-stub />
+        </div>
+         
+        <buttonicon-stub
+          arialabel="expand, totara_engage"
+          class="tui-engageContributeModal__resize"
+          styleclass="[object Object]"
+          type="button"
+        >
+          <sizeexpandicon-stub
+            size="200"
+          />
+        </buttonicon-stub>
+      </div>
+    </modalcontent-stub>
+  </modal-stub>
+   
+  <confirmationmodal-stub
+    confirmbuttontext="button_continue, totara_engage"
+    size="normal"
+    title="unsaved_changes_title, totara_engage"
+  >
+    <p>
+      unsaved_changes_message, totara_engage
+    </p>
+  </confirmationmodal-stub>
+</span>
+`;

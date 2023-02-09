@@ -1,0 +1,11 @@
+query mod_perform_responding_relationships_involved_in_subject_instance(
+  $subject_instance_id: core_id!
+) {
+  mod_perform_responding_relationships_involved_in_subject_instance(
+    subject_instance_id: $subject_instance_id
+  ) {
+    id
+    name
+    idnumber
+  }
+}

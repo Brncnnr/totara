@@ -1,0 +1,126 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/view_item
+
+    Show metadata and field data for an evidence item
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * fields: array, list of custom fields with values
+    * type: string, the name of the evidence type
+    * user_for: string, the name of who this evidence is for
+    * created_by: string, the name of who created this evidence
+    * modified_by: string, the name of who modified this evidence
+    * created_at: string, the date of when this evidence was created
+    * modified_at: string, the date of when this evidence was last modified
+    * usage_table: HTML, table of where the evidence is used - Uses list_evidence_in_use()
+
+    Example context (json):
+    {
+        "header": {
+            "has_buttons": true,
+            "buttons": {
+                "url": "#",
+                "label": "Edit this item"
+            },
+            "title": "Trevor's First Aid Certificate",
+            "smaller_title": true
+        },
+        "fields": [
+            {
+                "label": "Photo of Certificate",
+                "value": "<a href=\"#\">IMG_5468.jpg<\/a>"
+            },
+            {
+                "label": "Additional Notes",
+                "value": "None"
+            },
+            {
+                "label": "Time of Achievement",
+                "value": "Not set"
+            }
+        ],
+        "type": {
+            "can_manage": true,
+            "type_id": 1,
+            "type_name": "First Aid Certificate",
+            "user_id": 2,
+            "view_url": "#"
+        },
+        "user_for": {
+            "can_view": true,
+            "profile_url": "/user/profile.php?id=2",
+            "user_fullname": "Trevor"
+        },
+        "created_by": {
+            "can_view": true,
+            "profile_url": "/user/profile.php?id=2",
+            "user_fullname": "Shannon"
+        },
+        "modified_by": {
+            "can_view": true,
+            "profile_url": "/user/profile.php?id=2",
+            "user_fullname": "Murray"
+        },
+        "created_at": "14 June 2016",
+        "modified_at": "26 August 2018",
+        "usage_table": "<h4>Evidence usage<\/h4><table class=\"flexible\"><thead><tr><th>Plan name<\/th><\/thead><tbody><tr><td>Learning Plan<\/td><\/tr><\/tbody><\/table>"
+    }
+}}
+{{#header}}{{>totara_evidence/header}}{{/header}}
+<div class="tw-evidence__content_container">
+    {{>totara_evidence/customfields}}
+</div>
+<div class="tw-evidence__item_metadata totara_form">
+    <h4 class="tw-evidence__item_metadata_title">{{#str}}details, totara_evidence{{/str}}</h4>
+    <div class="tw-evidence__metadata_row tw-evidence__item_metadata_row tw-evidence__item_metadata_tf_element tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{#str}}type, totara_evidence{{/str}}</label></div>
+        <div class="tf_element_input">{{#type}}{{>totara_evidence/type_name_link}}{{/type}}</div>
+    </div>
+    <div class="tw-evidence__metadata_row tw-evidence__item_metadata_row tw-evidence__item_metadata_tf_element tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{#str}}subject_user, totara_evidence{{/str}}</label></div>
+        <div class="tf_element_input">{{#user_for}}{{>totara_evidence/user_name_link}}{{/user_for}}</div>
+    </div>
+    <div class="tw-evidence__metadata_row tw-evidence__item_metadata_row tw-evidence__item_metadata_tf_element tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{#str}}created_by, totara_evidence{{/str}}</label></div>
+        <div class="tf_element_input">{{#created_by}}{{>totara_evidence/user_name_link}}{{/created_by}}</div>
+    </div>
+    <div class="tw-evidence__metadata_row tw-evidence__item_metadata_row tw-evidence__item_metadata_tf_element tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{#str}}modified_by, totara_evidence{{/str}}</label></div>
+        <div class="tf_element_input">{{#modified_by}}{{>totara_evidence/user_name_link}}{{/modified_by}}</div>
+    </div>
+    <div class="tw-evidence__metadata_row tw-evidence__item_metadata_row tw-evidence__item_metadata_tf_element tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{#str}}created_on, totara_evidence{{/str}}</label></div>
+        <div class="tf_element_input">{{created_at}}</div>
+    </div>
+    <div class="tw-evidence__metadata_row tw-evidence__item_metadata_row tw-evidence__item_metadata_tf_element tf_element totara_form_element_text">
+        <div class="tf_element_title"><label class="legend">{{#str}}modified_on, totara_evidence{{/str}}</label></div>
+        <div class="tf_element_input">{{modified_at}}</div>
+    </div>
+</div>
+{{#usage_table}}<div class="tw-evidence__item_metadata">{{{usage_table}}}</div>{{/usage_table}}

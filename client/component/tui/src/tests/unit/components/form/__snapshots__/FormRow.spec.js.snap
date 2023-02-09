@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRow Checks snapshot 1`] = `
+<div
+  class="tui-formRow tui-formRow--emptyDesc"
+>
+  <div
+    class="tui-formRow__inner"
+  >
+    <div
+      class="tui-formRow__desc"
+    >
+      <!---->
+      <!---->
+    </div>
+     
+    <fieldcontextprovider-stub
+      id="example"
+      labelid="idlabel"
+    >
+      <div
+        class="tui-formRow__action tui-formRow__action--isStacked"
+      />
+    </fieldcontextprovider-stub>
+  </div>
+</div>
+`;

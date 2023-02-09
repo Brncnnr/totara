@@ -1,0 +1,176 @@
+{
+  "OBJECT": {
+    "totara_job_job_assignment": {
+      "fields": {
+        "user": {
+          "documentation": {
+            "example": {
+              "username": "joe.smith"
+            }
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Senior Project Manager"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "senior_pm"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "PM3"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "Grade 3 project manager."
+          }
+        },
+        "staffcount": {
+          "documentation": {
+            "example": 10
+          }
+        },
+        "tempstaffcount": {
+          "documentation": {
+            "example": 3
+          }
+        },
+        "position": {
+          "documentation": {
+            "example": {
+              "idnumber": "pos1"
+            }
+          }
+        },
+        "organisation": {
+          "documentation": {
+            "example": {
+              "idnumber": "org2"
+            }
+          }
+        },
+        "managerja": {
+          "documentation": {
+            "example": {
+              "idnumber": "managerjob1"
+            }
+          }
+        },
+        "tempmanagerja": {
+          "documentation": {
+            "example": {
+              "idnumber": "tempmanagerjob1"
+            }
+          }
+        },
+        "appraiser": {
+          "documentation": {
+            "example": {
+              "email": "appraiser@example.com"
+            }
+          }
+        }
+      }
+    },
+    "totara_job_update_job_assignment_result": {
+      "fields": {
+        "job_assignment": {
+          "documentation": {
+            "example": {
+              "id": 7,
+              "idnumber": "PM3",
+              "fullname": "Senior project manager",
+              "user": {
+                "fullname": "John Smith"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "INPUT_OBJECT": {
+    "totara_job_job_assignment_reference": {
+      "inputFields": {
+        "id": {
+          "documentation": {
+            "example": 4
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "job1"
+          }
+        }
+      }
+    },
+    "totara_job_update_job_assignment_input": {
+      "inputFields": {
+        "idnumber": {
+          "documentation": {
+            "example": "PM3"
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Senior Project Manager"
+          }
+        },
+        "start_date": {
+          "documentation": {
+            "example": "2020-07-15"
+          }
+        },
+        "end_date": {
+          "documentation": {
+            "example": "2025-03-26"
+          }
+        },
+        "position": {
+          "documentation": {
+            "example": {
+              "idnumber": "pos1"
+            }
+          }
+        },
+        "organisation": {
+          "documentation": {
+            "example": {
+              "idnumber": "org1"
+            }
+          }
+        },
+        "manager": {
+          "documentation": {
+            "example": {
+              "idnumber": "managerjob1"
+            }
+          }
+        },
+        "appraiser": {
+          "documentation": {
+            "example": {
+              "username": "jane.doe"
+            }
+          }
+        },
+        "temp_manager": {
+          "documentation": {
+            "example": {
+              "idnumber": "tempmanagerjob1"
+            }
+          }
+        },
+        "temp_manager_expiry_date": {
+          "documentation": {
+            "example": "2025-04-16"
+          }
+        }
+      }
+    }
+  }
+}

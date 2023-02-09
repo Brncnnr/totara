@@ -1,0 +1,22 @@
+This files describes API changes in /blocks/current_learning,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+* Deprecated the following functions and moved them to a more central location in user_learning
+** ensure_user_learning_items_unique() has been deprecated, please use \totara\core\item_helper::ensure_distinct_learning_items() instead.
+** filter_collective_content() is deprecated, please use \totara\core\item_helper::filter_collective_learning_items() instead.
+** expand_item_specialisations() is deprecated, please use \totara\core\item_helper::expand_learning_items_specialisations() instead.
+** only_prog_enrol() is deprecated, please use \totara\core\item_helper::only_prog_enrol() instead.
+
+=== 12.0 ===
+
+* Updated course_row.mustache
+* Updated program_row.mustache
+* Updated program_singlecourse_row.mustache
+* Icon helpers are no longer used in the following templates, icon data is passed via context data:
+** blocks/current_learning/templates/main_content.mustache
+** blocks/current_learning/templates/program_row.mustache
+** blocks/current_learning/templates/program_singlecourse_row.mustache

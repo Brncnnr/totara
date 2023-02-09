@@ -1,0 +1,37 @@
+query totara_core_settings_navigation_tree(
+  $context_id: core_id!
+  $page_url: param_url!
+) {
+  data: totara_core_settings_navigation_tree(
+    context_id: $context_id
+    page_url: $page_url
+  ) {
+    trees {
+      ...totara_core_settings_navigation_tree_node
+      children {
+        ...totara_core_settings_navigation_tree_node
+        children {
+          ...totara_core_settings_navigation_tree_node
+          children {
+            ...totara_core_settings_navigation_tree_node
+            children {
+              ...totara_core_settings_navigation_tree_node
+              children {
+                ...totara_core_settings_navigation_tree_node
+              }
+            }
+          }
+        }
+      }
+    }
+    open_ids
+  }
+}
+
+# Note: For now, additional information such as the current active node, icons and styling are not returned.
+fragment totara_core_settings_navigation_tree_node on totara_core_tui_tree_node {
+  __typename
+  id
+  label
+  linkUrl
+}

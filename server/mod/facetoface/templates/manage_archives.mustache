@@ -1,0 +1,80 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/manage_archives
+
+    This template generates the manage archived users page.
+
+    Context variables required for this template:
+    * posturl: post url
+    * backurl: back url
+    * banner: notification template data
+    * table: table template data
+    * sesskey: session key
+    * event_id: {facetoface_sessions}.id
+
+    Example content (json):
+    {
+        "posturl": "http://example.com/post.php",
+        "backurl": "http://example.com/back.html",
+        "banner": {
+            "template": "core/notification_warning",
+            "context": {
+                "message": "blah blah",
+                ...
+            }
+        },
+        "table": {
+            "template": "core/table",
+            "context": {
+                ...
+            }
+        },
+        "sesskey": "S3s5K1e",
+        "event_id": 42
+    }
+}}
+
+{{#banner}}{{#context}}{{> &&template }}{{/context}}{{/banner}}
+{{#table}}
+    <form method="post" action="{{posturl}}" autocomplete="off" data-core-autoinitialise-amd="mod_facetoface/manage_archives" data-core-autoinitialise="true">
+        <input type="hidden" name="sesskey" value="{{sesskey}}">
+        <input type="hidden" name="s" value="{{event_id}}">
+
+        {{#context}}{{> &&template }}{{/context}}
+
+        <div style="text-align: center">
+            <button class="btn btn-primary mod_facetoface__archive__submit" type="submit" disabled>{{#str}} archive_restore, mod_facetoface {{/str}}</button>
+            &nbsp;
+            <a class="btn btn-secondary mod_facetoface__archive__cancel" href="{{backurl}}">{{#str}} cancel {{/str}}</a>
+        </div>
+    </form>
+{{/table}}
+{{^table}}
+    <p>{{#str}} archive_nousers, mod_facetoface {{/str}}</p>
+
+    <div style="text-align: center">
+        <a class="btn btn-primary mod_facetoface__archive__cancel" href="{{backurl}}">{{#str}} continue {{/str}}</a>
+    </div>
+{{/table}}

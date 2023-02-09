@@ -1,0 +1,8 @@
+{
+  "component": "engage_survey",
+  "vendor": "totara",
+  "dependencies":[
+    "totara_engage",
+    "totara_reaction"
+  ]
+}

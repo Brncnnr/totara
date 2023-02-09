@@ -1,0 +1,71 @@
+query container_workspace_find_workspaces(
+  $source: container_workspace_workspace_source!
+  $sort: container_workspace_workspace_sort!
+  $search_term: param_text
+  $cursor: param_text
+  $access: container_workspace_access
+  $theme: param_component
+) {
+  cursor: container_workspace_workspace_cursor(
+    source: $source
+    search_term: $search_term
+    access: $access
+    cursor: $cursor
+  ) {
+    __typename
+    total
+    next
+  }
+
+  workspaces: container_workspace_workspaces(
+    source: $source
+    cursor: $cursor
+    sort: $sort
+    access: $access
+    search_term: $search_term
+  ) {
+    __typename
+    name(format: PLAIN)
+    id
+    image(theme: $theme)
+    url
+    description(format: PLAIN)
+    total_members
+    total_member_requests
+    total_discussions
+    context_id
+    interactor {
+      __typename
+      can_delete
+      can_update
+      can_invite
+      can_join
+      can_leave
+      cannot_leave_reason
+      joined
+      workspaces_admin
+      own
+      can_request_to_join
+      has_requested_to_join
+      can_view
+      can_view_discussions
+      can_create_discussions
+      can_view_library
+      can_view_members
+      can_view_member_requests
+      can_share_resources
+      can_unshare_resources
+      has_seen
+      muted
+      user {
+        __typename
+        id
+        # These are used within post discussion form.
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    access
+  }
+}

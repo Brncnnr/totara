@@ -1,0 +1,21 @@
+query totara_competency_competency($competency_id: core_id!) {
+  totara_competency_competency(competency_id: $competency_id) {
+    id
+    display_name
+    idnumber
+    description
+    framework {
+      id
+      display_name
+    }
+    type {
+      display_name
+    }
+    assign_availability
+    aggregation_method
+    display_custom_fields {
+      title
+      value
+    }
+  }
+}

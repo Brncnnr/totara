@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid Grid with a set gridTag Checks snapshot 1`] = `
+<ul
+  class="tui-grid tui-grid--vertical tui-grid--vertical-gap tui-grid--list"
+  id="grid"
+>
+  <vuecomponent-stub
+    class="tui-grid-item--first"
+    griditemtag="li"
+    hyphens="true"
+    order="1"
+    shrinks="true"
+    sizedata="[object Object]"
+    units="1"
+  />
+</ul>
+`;
+
+exports[`Grid Grid with default gridTag Checks snapshot 1`] = `
+<div
+  class="tui-grid tui-grid--vertical tui-grid--vertical-gap"
+  id="grid"
+>
+  <vuecomponent-stub
+    class="tui-grid-item--first"
+    griditemtag="div"
+    grows="true"
+    order="2"
+    overflows="true"
+    sizedata="[object Object]"
+    units="8"
+  />
+</div>
+`;

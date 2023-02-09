@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaylistCardImage Checks snapshot 1`] = `
+<div
+  class="tui-engagePlaylistImage"
+>
+  <img
+    alt="[image_alt, totara_playlist - Hello world ]"
+    class="tui-engagePlaylistImage__img"
+    src="http://example.com/image.png"
+  />
+</div>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmojiSelector matches snapshot 1`] = `
+<div
+  class="tui-wekaEmojiSelector"
+>
+  <buttonicon-stub
+    arialabel="🙁"
+    styleclass="[object Object]"
+    type="button"
+  >
+    <emoji-stub
+      class="tui-wekaEmojiSelector__emoji"
+      shortcode="1F641"
+    />
+  </buttonicon-stub>
+</div>
+`;

@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputUrl Checks snapshot 1`] = `
+<input-stub
+  styleclass="[object Object]"
+  type="url"
+/>
+`;

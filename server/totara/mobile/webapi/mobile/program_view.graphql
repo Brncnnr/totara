@@ -1,0 +1,5 @@
+mutation totara_mobile_program_view($program_id: core_id!) {
+  totara_mobile_program_view: totara_program_program_view(
+    program_id: $program_id
+  )
+}

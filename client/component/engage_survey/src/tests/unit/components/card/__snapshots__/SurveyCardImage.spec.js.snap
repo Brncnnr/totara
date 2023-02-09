@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage SurveyCardImage Checks snapshot 1`] = `
+<div
+  class="tui-engageSurveyImage"
+>
+  <surveyicon-stub
+    class="tui-engageSurveyImage__img"
+    imagealt="[image_alt, engage_survey - Hello world ]"
+  />
+</div>
+`;

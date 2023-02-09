@@ -1,0 +1,47 @@
+query totara_competency_competency_progress_for_user(
+  $user_id: core_id!
+  $order: String
+  $filters: totara_competency_profile_assignment_filters
+) {
+  totara_competency_profile_competency_progress(
+    user_id: $user_id
+    filters: $filters
+    order: $order
+  ) {
+    competency {
+      id
+      fullname
+    }
+    items {
+      assignment {
+        archived_at(format: DATE)
+        progress_name
+        is_assigned(user_id: $user_id)
+        unassigned_at(format: DATE, user_id: $user_id)
+        assignment_specific_scale {
+          id
+          name
+          description
+          defaultid
+          values {
+            id
+            name
+            idnumber
+            description
+            scaleid
+            numericscore
+            sortorder
+            proficient
+          }
+        }
+      }
+      my_value {
+        id
+        scale_id
+        name
+        percentage
+        proficient
+      }
+    }
+  }
+}

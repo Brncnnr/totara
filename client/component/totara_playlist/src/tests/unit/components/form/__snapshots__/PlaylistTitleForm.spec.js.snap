@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaylistTitleForm matches snapshot 1`] = `
+<form
+  autocomplete="off"
+  class="tui-form tui-playlistTitleForm tui-form--vertical tui-form--inputWidth-full"
+>
+  <div
+    class="tui-formRow tui-formRow--emptyDesc"
+  >
+    <div
+      class="tui-formRow__inner"
+    >
+      <div
+        class="tui-formRow__desc"
+      >
+        <label
+          class="tui-formLabel tui-formLabel--hidden tui-formLabel--inline"
+          for="id"
+          id="id-label"
+        >
+          <!---->
+          
+
+  playlisttitle-totara_playlist
+  
+          <!---->
+        </label>
+        <!---->
+      </div>
+       
+      <div
+        class="tui-formRow__action tui-formRow__action--isStacked"
+      >
+        <input
+          aria-label="playlisttitle-totara_playlist"
+          class="tui-formInput"
+          id="id"
+          maxlength="75"
+          name="playlist title"
+          placeholder="playlisttitle-totara_playlist"
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+   
+  <div
+    class="tui-formBtnGroup tui-doneCancelGroup"
+  >
+    <button
+      aria-label="done-totara_engage"
+      class="tui-formBtn tui-formBtn--prim tui-formBtn--small"
+      type="button"
+    >
+      <span
+        class="tui-formBtn__text"
+      >
+        
+    done-totara_engage
+  
+      </span>
+       
+      <!---->
+       
+      <span
+        aria-live="assertive"
+      >
+        <!---->
+      </span>
+    </button>
+     
+    <button
+      class="tui-formBtn tui-formBtn--small"
+      type="button"
+    >
+      <span
+        class="tui-formBtn__text"
+      >
+        
+    cancel-core
+  
+      </span>
+       
+      <!---->
+       
+      <span
+        aria-live="assertive"
+      >
+        <!---->
+      </span>
+    </button>
+  </div>
+</form>
+`;

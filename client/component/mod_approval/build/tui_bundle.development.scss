@@ -1,0 +1,1865 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2021 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author Simon Chester <simon.chester@totaralearning.com>*/
+/* @module mod_approval*/
+
+#page-mod-approval-application-preview {
+  #page {
+    padding: 0;
+  }
+
+  #page-content {
+    padding: 0;
+  }
+}
+
+.tui-mod_approval-sidePanel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--gap-4);
+
+  @media (min-width: $tui-screen-sm) {
+    padding: var(--gap-8);
+  }
+
+  &__tabs {
+    display: flex;
+    flex: 1 0 1px;
+    flex-direction: column;
+    padding-top: var(--gap-6);
+
+    @media (min-width: $tui-screen-sm) {
+      overflow: auto;
+    }
+
+    .tui-tabs__panels {
+      flex-basis: 0;
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      @media (min-width: $tui-screen-sm) {
+        min-height: 0;
+      }
+    }
+
+    /* Overriding the fallback select list when there isn't enough space*/
+    .tui-formRow__action {
+      width: 200px;
+    }
+  }
+
+  &__commentBox {
+    @media (min-width: $tui-screen-sm) {
+      /* Since the tab is already having a padding which it is '--gap-4'.*/
+      /* Therefore we just need another '--gap-4'.*/
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__actionsBox {
+    /* Since the tab is already having a padding which it is '--gap-4'.*/
+    /* Therefore we just need another '--gap-4'.*/
+    margin-top: var(--gap-4);
+  }
+
+  &__stage {
+    @include tui-font-body-x-small();
+  }
+
+  &__stageActivities {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  &__stageActivity {
+    padding: var(--gap-5) 0;
+    border-top: 1px solid var(--color-neutral-4);
+    &:first-child {
+      border-top: none;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &__stageActivityDescription {
+    margin-bottom: var(--gap-1);
+  }
+
+  &__stageActivityTimestamp {
+    @include tui-font-body-xx-small();
+  }
+}
+
+.tui-mod_approval-rejectApplicationModal {
+  &__form,
+  &__formRow,
+  &__editor {
+    height: 100%;
+  }
+  /* Eww, magic numbers taken from Modal.vue*/
+  $tui-modal-normalSize: 560px;
+  @media (min-width: ($tui-modal-normalSize + 75px)) {
+    &__editor {
+      height: 30vh;
+    }
+  }
+  &__formRow {
+    /* Eww, taken from ArticleForm.vue to override tui-formRow styles*/
+    .tui-formRow__action {
+      /* Expand the box.*/
+      flex-grow: 1;
+      max-width: none;
+      min-height: 0;
+    }
+  }
+}
+
+.tui-mod_approval-applicationsTable {
+  &__tabs {
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-mod_approval-otherApplicationsTable {
+  &__loader {
+    margin-top: var(--gap-6);
+  }
+
+  &__zeroApplications {
+    margin-top: var(--gap-6);
+    font-size: var(--font-size-15);
+  }
+
+  &__filterBar {
+    margin-top: var(--gap-2);
+    border-top: 0;
+  }
+
+  &__sort {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--gap-5) 0;
+
+    h5 {
+      @include tui-font-body();
+      font-weight: bold;
+    }
+  }
+
+  &__paging {
+    margin-top: var(--gap-5);
+  }
+}
+
+.tui-mod_approval-myApplicationsTable {
+  &__loader {
+    margin-top: var(--gap-6);
+  }
+
+  &__zeroApplications {
+    margin-top: var(--gap-6);
+    font-size: var(--font-size-15);
+  }
+
+  &__filterBar {
+    margin-top: var(--gap-2);
+    border-top: 0;
+  }
+
+  &__sort {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--gap-5) 0;
+
+    h5 {
+      @include tui-font-body();
+      font-weight: bold;
+    }
+  }
+
+  &__table {
+    &--querying {
+      .tui-dataTableRow {
+        opacity: 0.4;
+      }
+
+      /* <MoreIcon /> has no :disabled prop*/
+      a,
+      button {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__paging {
+    margin-top: var(--gap-5);
+  }
+}
+
+.tui-mod_approval-selectTypeStep {
+  min-height: 360px;
+
+  &__formRow {
+    margin-top: var(--gap-4);
+  }
+
+  &__select {
+    margin-top: var(--gap-1);
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+  }
+
+  &__buttonsRight {
+    margin-left: auto;
+  }
+}
+
+.tui-mod_approval-selectUserStep {
+  min-height: 360px;
+
+  &__formRow {
+    margin-top: var(--gap-4);
+  }
+
+  &__tagList {
+    margin-top: var(--gap-1);
+
+    &--error {
+      .tui-tagList,
+      .tui-tag {
+        border: var(--form-input-border-size) solid
+          var(--form-input-border-color-invalid);
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+  }
+
+  &__buttonsRight {
+    margin-left: auto;
+  }
+
+  /* TODO: TL-32178*/
+  /* remove this searching state when <TagList /> gets a supported loading state*/
+  &__profileCard {
+    &--searching {
+      opacity: 0.4;
+    }
+  }
+}
+
+.tui-mod_approval-selectJobAssignmentStep {
+  min-height: 360px;
+  &__formRow {
+    margin-top: var(--gap-4);
+  }
+
+  &__select {
+    margin-top: var(--gap-1);
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+  }
+
+  &__buttonsRight {
+    margin-left: auto;
+  }
+}
+
+.tui-mod_approval-newApplicationTrigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tui-mod_approval-header {
+  padding: var(--gap-10) var(--gap-8);
+  background-color: var(--color-neutral-3);
+
+  &__notificationRow {
+    margin-top: var(--gap-6);
+  }
+
+  &__titleRow {
+    margin-top: var(--gap-6);
+
+    @media (min-width: $tui-screen-md) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__title {
+    display: inline;
+  }
+
+  &__status {
+    margin-top: var(--gap-1);
+    margin-bottom: calc(var(--gap-2) + (var(--gap-1) / 2));
+    margin-left: var(--gap-2);
+    padding-top: calc(var(--gap-1) / 2);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: var(--gap-6);
+
+    @media (min-width: $tui-screen-md) {
+      margin-top: 0;
+    }
+
+    &--options {
+      margin-left: var(--gap-4);
+    }
+  }
+
+  &__applicationRow {
+    @include tui-font-body-small();
+    margin-top: var(--gap-4);
+
+    @media (min-width: $tui-screen-sm) {
+      display: flex;
+    }
+  }
+
+  &__id,
+  &__type {
+    margin-top: var(--gap-2);
+  }
+
+  &__idCol {
+    margin-right: var(--gap-4);
+  }
+
+  &__typeCol {
+    margin-top: var(--gap-3);
+
+    @media (min-width: $tui-screen-sm) {
+      margin-top: 0;
+    }
+  }
+
+  &__dateTime {
+    @include tui-font-body-x-small();
+    color: var(--color-neutral-7);
+  }
+}
+
+.tui-mod_approval-navigationBar {
+  display: flex;
+
+  @media (max-width: $tui-screen-sm) {
+    padding: var(--gap-4);
+  }
+
+  &__backLink {
+    display: flex;
+    align-items: center;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__backIcon {
+    margin-right: var(--gap-2);
+  }
+}
+
+.tui-mod_approval-browsePickerHierarchyNav {
+  display: flex;
+  align-items: center;
+  margin-top: var(--gap-1);
+
+  &__back {
+    margin-right: var(--gap-2);
+  }
+}
+
+.tui-mod_approval-browsePickerCommon {
+  display: flex;
+  flex-direction: column;
+
+  &__table {
+    margin: var(--gap-4) 0;
+  }
+
+  &__navigateDown {
+    display: flex;
+  }
+
+  &__selectionInfo {
+    margin-top: var(--gap-4);
+    font-weight: bold;
+  }
+
+  &__listScroll {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  &__loadMoreBar {
+    display: flex;
+    justify-content: center;
+    margin: var(--gap-4) 0;
+  }
+}
+
+.tui-mod_approval-collapsibleCard {
+  &__collapsible {
+    flex-grow: 1;
+  }
+}
+
+.tui-mod_approval-microProfileCard {
+  display: flex;
+  align-items: center;
+
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: var(--gap-2);
+  }
+  &__name--primary {
+    font-weight: bold;
+  }
+  /* We don't want to see a hyphenated email address.*/
+  &__email {
+    -webkit-hyphens: none;
+        -ms-hyphens: none;
+            hyphens: none;
+  }
+}
+
+.tui-mod_approval-responseCard {
+  flex-direction: column;
+  height: 100%;
+  padding: var(--gap-4);
+
+  &__username {
+    @include tui-font-heading-label-small();
+    margin-top: var(--gap-2);
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__submitted {
+    @include tui_font-body-x-small;
+    margin-top: var(--gap-1);
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__workflow {
+    @include tui-font-heading-small-regular();
+    height: 3.8em;
+    margin: var(--gap-4) 0;
+    overflow: hidden;
+
+    &--loading {
+      visibility: none;
+    }
+
+    a {
+      display: block;
+      height: 100%;
+      color: var(--color-text);
+    }
+  }
+
+  &__workflowAccessible {
+    @include sr-only;
+  }
+
+  &__workflowDetector {
+    visibility: hidden;
+  }
+}
+
+.tui-mod_approval-transitionCard {
+  display: flex;
+  &__card {
+    display: flex;
+    align-items: center;
+    padding: var(--gap-2);
+  }
+  &__icon {
+    margin: var(--gap-2);
+    margin-right: var(--gap-4);
+    color: var(--color-neutral-6);
+  }
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: calc(var(--gap-1) * -1) 0;
+  }
+  &__item {
+    margin: var(--gap-1) 0;
+    margin-right: var(--gap-10);
+    &:last-child {
+      margin-right: var(--gap-2);
+    }
+  }
+  &__item-header {
+    @include tui-font-body-small();
+    margin-bottom: var(--gap-1);
+    color: var(--color-neutral-6);
+    line-height: var(--font-body-line-height);
+  }
+  &__item-text {
+    @include tui-font-body();
+    color: var(--color-neutral-6);
+    font-weight: bold;
+  }
+}
+
+.tui-mod_approval-layoutOneColumnWithSidePanel {
+  &--fullSidePanel {
+    > .tui-responsive > .tui-grid > .tui-grid-item {
+      border-left: none;
+    }
+  }
+
+  /* Prevents the button edges from being hidden which would prevent the user*/
+  /* from selecting the button again*/
+  &--onSmallScreen {
+    > .tui-responsive > .tui-grid > .tui-grid-item {
+      .tui-sidePanel {
+        overflow: visible;
+        &--closed {
+          .tui-sidePanel__inner {
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tui-mod_approval-subPageHeading {
+  &__title {
+    margin: 0;
+    @include tui-font-heading-small-regular;
+  }
+
+  &__buttons {
+    display: flex;
+    & > * {
+      margin: var(--gap-3) 0 0 var(--gap-2);
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tui-mod_approval-subPageHeading {
+    display: flex;
+
+    &__buttons {
+      margin-left: auto;
+      & > * {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.tui-mod_approval-labelRow {
+  @include tui-font-heading-x-small();
+  font-weight: bold;
+}
+
+.tui-mod_approval-schemaFormSectionAdmin {
+  &__adminRow {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__rowWrap {
+    flex-grow: 1;
+    margin-right: var(--gap-4);
+  }
+}
+
+.tui-mod_approval-schemaView {
+  &__field {
+    display: flex;
+    margin-top: var(--gap-6);
+  }
+
+  &__labelContainer {
+    flex-basis: 50%;
+  }
+
+  &__label {
+    @include tui-font-heading-label();
+    min-width: 0;
+    margin: 0;
+    padding: 0 var(--gap-1) 0 0;
+  }
+
+  &__required {
+    color: var(--color-prompt-alert);
+  }
+
+  &__value {
+    white-space: pre-line;
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+}
+
+.tui-mod_approval-basicPrintView {
+  &__section {
+    & > dl {
+      @include tui-stack-vertical(var(--gap-2));
+    }
+  }
+  &__field {
+    display: flex;
+    break-inside: avoid;
+
+    & > dt {
+      @include tui-font-heading-label();
+      flex-basis: 0%;
+      flex-grow: 1;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    & > dd {
+      flex-basis: 0%;
+      flex-grow: 2;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    &-value {
+      white-space: pre-line;
+    }
+  }
+
+  &__approvals {
+    &-table {
+      width: 100%;
+
+      thead {
+        border-bottom: var(--border-width-thin) solid currentColor;
+      }
+
+      th {
+        font-weight: bold;
+      }
+
+      td,
+      th {
+        padding: var(--gap-1);
+      }
+    }
+
+    &-step {
+      width: 38%;
+    }
+
+    &-name {
+      width: 38%;
+    }
+
+    &-date {
+      width: 24%;
+    }
+  }
+}
+
+.tui-mod_approval-layoutPrintColumn {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  &--inField {
+    margin: calc(var(--border-width-thin) * -1)
+      calc(var(--border-width-thin) * -1) 0 0;
+  }
+}
+
+.tui-mod_approval-layoutPrintRow {
+  display: flex;
+  flex-grow: 1;
+  break-inside: avoid;
+
+  &__col {
+    display: flex;
+    flex-basis: 0%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    min-width: 0;
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      min-width: 0;
+      margin: 0 0 calc(var(--border-width-thin) * -1)
+        calc(var(--border-width-thin) * -1);
+      overflow: hidden; /* Required for correct layout in IE */
+      overflow-wrap: break-word;
+      overflow-wrap: anywhere;
+      border: var(--border-width-thin) solid black;
+
+      &--disabled {
+        background-color: var(--color-neutral-4);
+      }
+    }
+  }
+}
+
+.tui-mod_approval-layoutPrintView {
+  padding: 0 0 var(--border-width-thin) var(--border-width-thin);
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact; /* ensure backgrounds are printed*/
+  line-height: 1.2;
+
+  &__section {
+    &--no-break {
+      break-inside: avoid;
+    }
+
+    &--break-after {
+      page-break-after: always;
+    }
+  }
+}
+
+.tui-mod_approval-printView {
+  &__document {
+    @media screen {
+      width: 210mm;
+      margin: var(--gap-8) auto calc(var(--gap-10) * 2) auto;
+      padding: 10mm;
+      border: var(--border-width-thin) solid var(--color-border);
+      box-shadow: var(--shadow-4);
+    }
+
+    @media print {
+      &__actionButtons {
+        display: none;
+      }
+    }
+  }
+
+  &__actionButtons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: var(--gap-2) 0;
+    background: rgba(247, 247, 247, 0.8);
+
+    @media print {
+      display: none;
+    }
+  }
+}
+
+.tui-mod_approval-printApprovalsCell {
+  &__table {
+    width: calc(100% + var(--border-width-thin) * 2);
+    margin: calc(var(--border-width-thin) * -1);
+
+    th {
+      font-weight: normal;
+      font-size: 0.8em;
+    }
+
+    td,
+    th {
+      padding: var(--gap-1);
+      border: var(--border-width-thin) solid black;
+    }
+  }
+
+  &__step {
+    width: 38%;
+  }
+
+  &__name {
+    width: 38%;
+  }
+
+  &__date {
+    width: 24%;
+  }
+}
+
+.tui-mod_approval-printField {
+  padding: 0.26em;
+
+  &__label {
+    margin-bottom: 1px;
+    font-size: 0.8em;
+    line-height: 1.1;
+  }
+
+  &__value-text {
+    white-space: pre-line;
+  }
+}
+
+.tui-mod_approval-printLabel {
+  padding: var(--gap-1);
+  font-size: 0.8em;
+  line-height: 1.1;
+}
+
+.tui-mod_approval-printSectionLabel {
+  margin: 0;
+  padding: var(--gap-1);
+  font-weight: bold;
+  font-size: 1.14em;
+  line-height: 1.25;
+}
+
+.tui-mod_approval-printTitle {
+  margin: 0;
+  padding: var(--gap-1);
+  font-weight: bold;
+  font-size: 1.4em;
+  line-height: 1.25;
+}
+
+.tui-mod_approval-addStageModal {
+  &__content {
+    flex-grow: 1;
+    min-height: 22rem;
+    padding-top: var(--gap-4);
+  }
+}
+
+.tui-mod_approval-approvalsEdit {
+  display: flex;
+  flex-direction: column;
+  padding: var(--gap-4) var(--gap-6);
+
+  @mixin no-select {
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: none;
+  }
+
+  &__form {
+    &--disabled {
+      @include no-select;
+    }
+  }
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    &--disabled {
+      @include no-select;
+    }
+  }
+
+  &__approvers {
+    margin-top: var(--gap-4);
+    /* taglist is buggy??*/
+    &--disabled {
+      @include no-select;
+      opacity: 0.6;
+    }
+  }
+}
+
+.tui-mod_approval-approvalsLoading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* heights are hard-coded to match the height of the <AppovalLevel /> compnent at various screen sizes*/
+  height: 193px;
+  padding: var(--gap-4) var(--gap-6);
+
+  &__display {
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--gap-6);
+    bottom: var(--gap-6);
+    display: flex;
+    color: var(--color-neutral-6);
+    font-size: var(--font-size-15);
+
+    .tui-iconLoading {
+      position: relative;
+      top: 3px;
+      margin-right: var(--gap-1);
+    }
+  }
+
+  @media (min-width: $tui-screen-sm) {
+    height: 173px;
+  }
+
+  @media (min-width: $tui-screen-md) {
+    height: 145px;
+  }
+}
+
+.tui-mod_approval-approvalLevelsEdit {
+  &__droppable {
+    margin-top: var(--gap-6);
+    padding-bottom: var(--gap-6);
+    border-top: 1px solid var(--color-neutral-5);
+    /* No idea what is eating the padding on the last item when dragging.*/
+    &--dragging {
+      padding-bottom: var(--gap-12);
+    }
+  }
+  &__level {
+    /* hard-code background because body has hard-coded background: #fff.*/
+    background: #fff;
+  }
+  &__draggable {
+    position: relative;
+    margin-top: var(--gap-6);
+    cursor: default;
+  }
+  &__dragHandle {
+    position: absolute;
+    top: var(--gap-1);
+    left: var(--gap-3);
+    display: none;
+    border-radius: 100%;
+    cursor: -webkit-grab;
+    cursor: grab;
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    &-icon {
+      margin: var(--gap-3);
+    }
+  }
+  &__draggableItem--idle:hover &__dragHandle,
+  &__draggableItem--idle:focus &__dragHandle,
+  &__dragHandle--dragging {
+    display: block;
+  }
+  [data-tui-droppable-location-indicator] {
+    border-radius: var(--card-border-radius);
+  }
+}
+
+.tui-mod_approval-approvalLevelsManagement {
+  &__empty {
+    margin-top: var(--gap-8);
+    @include tui-font-heading-small-regular;
+    text-align: center;
+  }
+}
+
+.tui-mod_approval-approvalsOverrides {
+  &__filterBar {
+    margin-top: var(--gap-7);
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &__approversModalSubtitle {
+    margin-top: var(--gap-8);
+    margin-bottom: var(--gap-1);
+    padding: var(--gap-2);
+    background: var(--color-neutral-3);
+  }
+
+  &__inheritedFrom {
+    margin-top: var(--gap-2);
+  }
+
+  &__paging {
+    margin-top: var(--gap-5);
+  }
+}
+
+.tui-mod_approval-assignRolesModal {
+  &__contentChooseTarget {
+    padding-top: var(--gap-2);
+  }
+
+  &__contentPicker {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 50rem;
+    padding-top: var(--gap-4);
+  }
+
+  &__picker {
+    flex-grow: 1;
+    min-height: 0;
+  }
+
+  &__footer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+}
+
+.tui-mod_approval-overrideCell {
+  &__approvers {
+    display: flex;
+  }
+}
+
+.tui-mod_approval-renameApprovalLevelModal {
+  &__formRow {
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-mod_approval-renameStageModal {
+  &__formRow {
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-mod_approval-workflowCloneModal {
+  &__contentForm {
+    padding: var(--gap-4) 0;
+  }
+
+  &__contentPicker {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 50rem;
+    padding-top: var(--gap-4);
+  }
+
+  &__picker {
+    flex-grow: 1;
+    min-height: 0;
+  }
+
+  &__footer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+}
+
+.mod_aproval-workflowDefaultAssignmentPicker {
+  display: flex;
+  flex-direction: column;
+
+  &__picker {
+    flex-grow: 1;
+    min-height: 0;
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-mod_approval-workflowHeader {
+  padding: var(--gap-10) var(--gap-8);
+  background-color: var(--color-neutral-3);
+
+  &__savingStatus {
+    display: inline;
+    color: var(--color-neutral-6);
+    vertical-align: super;
+
+    &-loading {
+      margin-left: var(--gap-2);
+    }
+  }
+
+  &__notificationRow {
+    margin-top: var(--gap-6);
+  }
+
+  &__titleRow {
+    margin-top: var(--gap-6);
+
+    @media (min-width: $tui-screen-md) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__title {
+    display: inline;
+  }
+
+  &__status {
+    margin-top: var(--gap-1);
+    margin-bottom: calc(var(--gap-2) + (var(--gap-1) / 2));
+    margin-left: var(--gap-2);
+    padding-top: calc(var(--gap-1) / 2);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  &__actions {
+    display: flex;
+    align-self: flex-start;
+    margin-top: var(--gap-6);
+    @include tui-stack-horizontal(var(--gap-4));
+
+    @media (min-width: $tui-screen-md) {
+      margin-top: 0;
+    }
+  }
+
+  &__collections {
+    display: flex;
+
+    @include tui-stack-horizontal(var(--gap-4));
+  }
+
+  &__collection {
+    @include tui-font-body-small();
+    margin-top: var(--gap-3);
+  }
+
+  &__collectionValue {
+    margin-top: var(--gap-2);
+  }
+
+  &__dateTime {
+    @include tui-font-body-x-small();
+    color: var(--color-neutral-7);
+  }
+}
+
+.tui-mod_approval-editStep {
+  &__inherited {
+    @include tui-font-body-small();
+    margin-top: var(--gap-4);
+    margin-bottom: var(--gap-10);
+  }
+
+  &__inheritedRow {
+    margin-top: var(--gap-1);
+  }
+
+  &__row {
+    margin-top: var(--gap-6);
+  }
+
+  &__checkbox {
+    align-items: flex-end;
+    margin-top: var(--gap-1);
+  }
+
+  &__approverTypeSelect {
+    margin-top: var(--gap-2);
+  }
+
+  &__approverSelect {
+    margin-top: var(--gap-4);
+  }
+
+  &__profileCard {
+    &--searching {
+      opacity: 0.4;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
+
+.tui-mod_approval-createAssignmentStep {
+  &__content {
+    margin-top: var(--gap-6);
+  }
+
+  &__picker {
+    flex-grow: 1;
+    height: 50rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    max-height: 10rem;
+
+    &-hasBack {
+      justify-content: space-between;
+    }
+  }
+}
+
+.tui-mod_approval-chooseAssignmentStep {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 50rem;
+    padding-top: var(--gap-6);
+  }
+
+  &__picker {
+    flex-grow: 1;
+    min-height: 30rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    max-height: 10rem;
+  }
+}
+
+.tui-mod_approval-chooseFormStep {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 50rem;
+    padding-top: var(--gap-5);
+  }
+
+  &__table {
+    margin-top: var(--gap-8);
+
+    &--searching {
+      .tui-dataTableRow {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+}
+
+.tui-mod_approval-detailsStep {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 50rem;
+    padding-top: var(--gap-6);
+  }
+
+  &__checkingUniqueness {
+    margin-left: var(--gap-2);
+    color: var(--color-neutral-6);
+    line-height: 3rem;
+  }
+}
+
+.tui-mod_approval-workflowFormAdmin {
+  &__sections {
+    @include tui-stack-vertical(var(--gap-4));
+  }
+
+  &__section {
+    &--hidden {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--color-neutral-3),
+        var(--color-neutral-3) 3rem,
+        transparent 3rem,
+        transparent 5rem
+      );
+    }
+  }
+
+  &__sectionHeading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: var(--gap-2);
+  }
+
+  &__sectionTitle {
+    flex-grow: 1;
+    margin: 0;
+    @include tui-font-heading-small();
+  }
+
+  &__sectionContent {
+    padding: var(--gap-2) 0 var(--gap-8) 0;
+  }
+
+  &__rows {
+    @include tui-stack-vertical(var(--gap-2));
+  }
+
+  &__row {
+    padding: var(--gap-2);
+
+    &--readonly {
+      background: var(--color-neutral-2);
+    }
+    &--hidden {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--color-neutral-3),
+        var(--color-neutral-3) 3rem,
+        transparent 3rem,
+        transparent 5rem
+      );
+    }
+  }
+
+  &__visibilityOption {
+    display: flex;
+
+    &-label {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+    }
+
+    &-text {
+      margin-left: var(--gap-2);
+    }
+
+    &-selectedMark {
+      margin-left: var(--gap-4);
+      visibility: hidden;
+    }
+  }
+
+  &__visibilityOption--selected &__visibilityOption-selectedMark {
+    visibility: visible;
+  }
+
+  &__readonlyVisibilityOption {
+    display: flex;
+    align-items: center;
+    height: var(--form-input-height);
+
+    &-label {
+      margin-left: var(--gap-1);
+    }
+  }
+}
+
+.tui-mod_approval-formViewSection {
+  &__formAdmin {
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-mod_approval-editTransitionModal {
+  &__content {
+    min-height: 6rem;
+  }
+}
+
+.tui-mod_approval-interactionsSection {
+  &__events {
+    > :first-child {
+      margin-top: var(--gap-2);
+    }
+
+    > :not(:first-child) {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__event {
+    padding: var(--gap-1);
+  }
+
+  &__eventActions {
+    @include tui-stack-horizontal(var(--gap-4));
+    display: flex;
+    align-items: center;
+  }
+}
+
+.tui-mod_approval-individualTagList {
+  &__profileCard {
+    &--searching {
+      opacity: 0.4;
+    }
+  }
+}
+
+.tui-mod_approval-applicationDashboard {
+  padding: var(--gap-8);
+
+  &__empty {
+    text-align: center;
+  }
+
+  &__emptyHeader {
+    margin-top: var(--gap-12);
+    margin-bottom: var(--gap-12);
+    font-size: var(--font-size-30);
+  }
+
+  &__titleRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--gap-8);
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__action {
+    align-self: flex-start;
+  }
+
+  &__heading {
+    @include tui-font-heading-small();
+    margin-top: var(--gap-8);
+    margin-bottom: var(--gap-4);
+  }
+
+  &__awaiting {
+    margin-top: var(--gap-4);
+    margin-bottom: var(--gap-8);
+  }
+}
+
+.tui-mod_approval-applicationEdit {
+  &__body {
+    padding-right: var(--gap-8);
+    padding-bottom: var(--gap-8);
+    padding-left: var(--gap-8);
+
+    /* override <LayoutTwoColumn>'s unused heading slot which comes with spacing*/
+    .tui-layoutTwoColumn__heading {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__sectionNav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--gap-8);
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 20rem;
+    height: auto;
+    margin-top: var(--gap-8);
+    background-color: var(--color-neutral-3);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+  }
+
+  &__sectionNavHeader {
+    @include tui-font-body();
+    margin-top: var(--gap-2);
+    margin-bottom: var(--gap-2);
+    padding-left: var(--gap-2);
+    font-weight: bold;
+  }
+
+  &__sectionNavItem {
+    @include tui-font-link();
+    padding: var(--gap-2);
+    color: var(--link-color);
+
+    &--active {
+      @include tui-font-link();
+      padding: var(--gap-2);
+      color: var(--color-neutral-1);
+      background-color: var(--color-state-active);
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:active:hover,
+      &:active:focus {
+        color: var(--color-neutral-1);
+      }
+    }
+  }
+
+  &__schemaForm {
+    padding-left: var(--gap-5);
+  }
+
+  &__sectionTitle {
+    margin-top: 0;
+    margin-bottom: var(--gap-6);
+    padding-top: var(--gap-8);
+  }
+
+  &__section {
+    margin-top: var(--gap-12);
+  }
+}
+
+.tui-mod_approval-applicationView {
+  &__schemaForm {
+    padding-bottom: var(--gap-8);
+    padding-left: var(--gap-5);
+  }
+
+  &__sectionTitle {
+    margin-top: 0;
+    margin-bottom: var(--gap-6);
+    padding-top: var(--gap-8);
+    font-size: var(--font-size-20);
+  }
+
+  &__section {
+    margin-top: var(--gap-12);
+  }
+
+  &__field {
+    display: flex;
+    margin-top: var(--gap-6);
+  }
+
+  &__required {
+    color: var(--color-prompt-alert);
+  }
+
+  &__labelContainer {
+    flex-basis: 50%;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    @include tui-font-heading-label();
+    min-width: 0;
+    margin: 0;
+    padding: 0 var(--gap-1) 0 0;
+  }
+
+  &__sidePanel {
+    padding-top: var(--gap-8);
+    padding-right: var(--gap-8);
+    padding-bottom: var(--gap-8);
+    padding-left: var(--gap-4);
+
+    @media (min-width: $tui-screen-sm) {
+      height: 100%;
+      min-height: 42rem;
+      border-left: var(--border-width-thin) solid var(--color-neutral-5);
+    }
+  }
+
+  &__actions {
+    &_status + &_status {
+      margin-top: var(--gap-2);
+    }
+    &_label {
+      font-weight: bold;
+    }
+    &_last-action {
+      vertical-align: middle;
+    }
+    &_approvers {
+      margin-top: var(--gap-4);
+    }
+    &_action {
+      display: flex;
+      margin-top: var(--gap-10);
+    }
+    &_area {
+      margin-left: var(--gap-2);
+    }
+    &_buttons {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__noApprovers {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-mod_approval-pending {
+  &__back {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--gap-2);
+  }
+
+  &__resultsCount {
+    @include tui-font-heading-label();
+    margin: var(--gap-8) 0 var(--gap-1);
+  }
+
+  &__row {
+    padding: var(--gap-3) 0;
+  }
+
+  &__loadMore {
+    margin-top: var(--gap-3);
+    text-align: center;
+  }
+}
+
+.tui-mod_approval-workflowDashboard {
+  padding-top: 0;
+  padding-right: var(--gap-4);
+  padding-bottom: var(--gap-8);
+  padding-left: var(--gap-4);
+
+  &__titleRow {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: $tui-screen-sm) {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+    align-self: flex-start;
+    &--options {
+      margin-left: var(--gap-4);
+    }
+    @media (max-width: $tui-screen-sm) {
+      margin-top: var(--gap-6);
+    }
+  }
+
+  &__filterBar {
+    margin-top: var(--gap-10);
+  }
+
+  /* default is too narrow for placeholder text*/
+  &__search {
+    min-width: 22rem;
+  }
+
+  &__sortRow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--gap-7);
+
+    h5 {
+      font-weight: bold;
+    }
+  }
+
+  &__paging {
+    margin-top: var(--gap-5);
+  }
+}
+
+.tui-mod_approval-workflowEdit {
+  &__body {
+    padding-right: var(--gap-8);
+    padding-left: var(--gap-8);
+  }
+
+  &__workflowStages,
+  &__workflowDetails {
+    padding-bottom: var(--gap-8);
+  }
+
+  &__workflowStages {
+    height: 100%;
+    padding-top: var(--gap-8);
+    border-right: var(--border-width-thin) solid var(--color-neutral-5);
+  }
+
+  &__workflowStagesHeaderRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--gap-6);
+    padding-right: var(--gap-4);
+  }
+
+  &__workflowStagesHeader {
+    margin: 0;
+    font-size: var(--font-size-15);
+  }
+
+  &__stageItem {
+    display: flex;
+    /* align so stage link is centered*/
+    margin-top: calc(var(--gap-1) * -1);
+  }
+
+  &__stageLink {
+    flex-grow: 1;
+    padding-top: var(--gap-1);
+    padding-bottom: var(--gap-1);
+    padding-left: var(--gap-1);
+    color: var(--color-text);
+    &:hover,
+    &:focus {
+      color: var(--color-text);
+      text-decoration: none;
+    }
+    &:hover {
+      background-color: var(--color-state-highlight-neutral);
+    }
+  }
+
+  &__stageNumber {
+    @include tui-font-body-xx-small();
+    color: var(--color-neutral-6);
+  }
+
+  &__stageName {
+    @include tui-wordbreak--hard;
+  }
+
+  &__stageMenu {
+    margin-top: var(--gap-2);
+  }
+
+  &__subSections {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--gap-4);
+  }
+
+  &__subSectionNavItem {
+    padding: var(--gap-1) var(--gap-2);
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+    &:hover {
+      background-color: var(--color-state-highlight-neutral);
+    }
+
+    &--active {
+      color: var(--color-neutral-1);
+      background: var(--color-state);
+      &:hover,
+      &:focus {
+        color: var(--color-neutral-1);
+        background: var(--color-state);
+      }
+    }
+  }
+
+  &__subSectionNavButton {
+    &--active {
+      color: var(--color-neutral-1);
+      &:hover,
+      &:focus {
+        color: var(--color-neutral-1);
+      }
+    }
+  }
+
+  &__workflowDetails {
+    padding-top: var(--gap-8);
+  }
+
+  &__approversCard {
+    position: relative;
+    margin-bottom: var(--gap-4);
+    padding: var(--gap-4);
+  }
+
+  &__approversCard {
+    flex-direction: column;
+  }
+
+  &__approversCardDropdown {
+    position: absolute;
+    top: var(--gap-2);
+    right: var(--gap-2);
+  }
+}
+
+.tui-pageHeading {
+  &__title {
+    @include tui-font-heading-small;
+  }
+}
+
+/*  progressTracker overrides*/
+.tui-progressTrackerNav__itemContent {
+  flex-grow: 1;
+}
+
+.tui-mod_approval-workflowFormViewPreview {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--gap-8) 20rem var(--gap-8);
+
+  &__sections {
+    @include tui-stack-vertical(var(--gap-12));
+  }
+
+  &__sectionTitle {
+    margin-top: 0;
+    margin-bottom: var(--gap-6);
+    padding-top: var(--gap-8);
+  }
+
+  &__footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: var(--gap-8);
+    background: var(--color-neutral-3);
+
+    &-inner {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--gap-6) var(--gap-8);
+    }
+  }
+
+  &__footerInfo {
+    color: var(--color-neutral-6);
+  }
+
+  &__footerInfoIcon {
+    margin-right: var(--gap-2);
+  }
+}
+

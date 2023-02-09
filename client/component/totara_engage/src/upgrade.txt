@@ -1,0 +1,56 @@
+This files describes API changes in /client/component/totara_engage,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* Added an InfoIconButton to EngageTopicsSelector.vue 
+  * Template & SCSS changes
+* Added a custom placeholder string to the TagList in RecipientsSelector.vue
+  * Template changes
+
+=== 16.0 ===
+
+* Updated grid.js to handle zero perRow without causing an infinite loop
+* Updated _variables.scss to change ---totara-engage-card-height to ---engage-card-height to facilitate a shorter prefix for new variables
+  * SCSS changes
+* Updates in AccessSetting.vue
+  * Template changes
+* Updated EngageAdderModal.vue to include showLoadingBtn prop
+  * Template changes
+
+=== 15.0 ===
+
+* Updated EngageSidePanel.vue
+  * Template changes
+* Updated Contribution BaseContent and Filter to allow targeting with better selectors
+  * Template and SCSS changes
+* Updated BaseContent.vue to not be hard against the viewport edge on mobile
+    * SCSS changes
+* Updated LayoutOneColumnContentWithSidePanel.vue, LayoutOneColumnWithMultiSidePanel.vue, and LayoutOneColumnWithSidePanel.vue
+  to always use sticky mode for the collapsible sidebar (previously not used for mobile).
+  Never initially render with the collapsible sidebar open on mobile viewports,
+  force the persisted localstorage side panel state to be closed on mobile viewports.
+  * Template and script block changes
+* Updated LibraryView.vue to delegate right side panel initial state logic to LayoutOneColumnWithMultiSidePanel.vue
+  * Template changes
+
+=== 14.0 ===
+
+* Updated LayoutOneColumnWithMultiSidePanel.vue limiting width to stay in container
+  * SCSS changes
+* Update InlineEditing.vue to pass through prop "focusButton" to tui ButtonIcon.vue
+  * Template changes
+* Added optional prop "focusButton" to component InlineEditing.vue
+* Removed modal/EngageWarningModal.vue component
+  * use core ConfirmationModal instead
+* Added new optional prop "fromLibrary" for component BaseContent.vue
+* Added new optional prop "redirection" for component NavigationPanel.vue
+* Added new optional prop "redirection" for component EngageSection.vue
+* Added new optional prop "redirection" for component SearchLibrary.vue
+* Removed ButtonLabel.vue
+* Replaced ButtonLabel with LabelledButtonTrigger in Share.vue component
+* Removed the close button in the popover from Share.vue component
+* Updated BaseCard.vue by removing link and adding it in specific cards instead
+    * Template & SCSS changes
+* Removed getImage method from AdderBrowseAllTable.vue component, functionality is moved to EngageCardImage.vue component
+* Removed getImage method from AdderSelectedTable.vue component, functionality is moved to EngageCardImage.vue component

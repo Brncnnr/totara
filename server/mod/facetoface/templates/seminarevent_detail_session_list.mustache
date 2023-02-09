@@ -1,0 +1,141 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_detail_session_list
+
+    This template generates the session list table of event detail section on the event page.
+
+    Context variables required for this template:
+    * label: the accessibility text of the table
+    * sessioncount: the number of sessions
+    * id: the unique id of this table
+    * states: event status class - one or more of [waitlisted, start, over, cancelled, userbooked, fullybooked, closed]
+    * hasstatus: true if status is provided in any session
+    * hassessiontime: true if session time is provided in any session
+    * hasrooms: true if rooms are provided in any session
+    * hasfacilitators: true if facilitators are provided in any session
+    * hasassets: true if assets are provided in any session
+    * hasactions: true if actions are provided in any session
+    * sessions:
+    * sessions.states: session status class - one or more of [started, over, joinnow]
+    * sessions.status: session status in plain text
+    * sessions.sessiontime: session time in HTML
+    * sessions.rooms: array of room links in HTML
+    * sessions.facilitators: array of facilitator links in HTML
+    * sessions.assets: array of asset links in HTML
+    * sessions.actions: array of action links in HTML
+
+    Example content (json):
+    {
+        "label" : "List of sessions",
+        "sessioncount" : "2",
+        "id" : "foo-1",
+        "states" : [
+            "userbooked",
+            "started"
+        ],
+        "hasstatus" : true,
+        "hassessiontime" : true,
+        "hasrooms" : true,
+        "hasfacilitators" : true,
+        "hasassets" : false,
+        "hasactions" : false,
+        "sessions" : [
+            {
+                "states" : [
+                ],
+                "status" : "Upcoming",
+                "sessiontime" : "<time>...</time>",
+                "rooms" : [
+                    "<a href="...">Room 1</a>",
+                    "<a href="...">Room 2</a>"
+                ],
+                "facilitators" : [
+                    "<a href="...">Facilitator A</a>"
+                ],
+                "assets" : [
+                ],
+                "actions" : [
+                ]
+            },
+            {
+                "states" : [
+                    "started"
+                ],
+                "status" : "In progress",
+                "sessiontime" : "<time>...</time>",
+                "rooms" : [
+                    "<a href="...">Room 2</a>"
+                ],
+                "facilitators" : [
+                    "<a href="...">Facilitator A</a>",
+                    "<a href="...">Facilitator B</a>"
+                ],
+                "assets" : [
+                ],
+                "actions" : [
+                ]
+            }
+        ]
+    }
+}}
+
+<div role="grid" class="mod_facetoface__event_details__sessions{{#states}} {{.}}{{/states}}" aria-label="{{label}}" aria-rowcount="{{sessioncount}}">
+    <div role="row" class="mod_facetoface__event_details__sessions__rowheader">
+        {{#hasstatus}}<div role="columnheader" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--status">{{#str}} eventinfo:details:sessionstatus, mod_facetoface {{/str}}</div>{{/hasstatus}}
+        {{#hassessiontime}}<div role="columnheader" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--date">{{#str}} eventinfo:details:sessiondate, mod_facetoface {{/str}}</div>{{/hassessiontime}}
+        {{#hasrooms}}<div role="columnheader" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--rooms">{{#str}} rooms, mod_facetoface {{/str}}</div>{{/hasrooms}}
+        {{#hasfacilitators}}<div role="columnheader" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--facilitators">{{#str}} facilitators, mod_facetoface {{/str}}</div>{{/hasfacilitators}}
+        {{#hasassets}}<div role="columnheader" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--assets">{{#str}} assets, mod_facetoface {{/str}}</div>{{/hasassets}}
+        {{#hasactions}}<div role="columnheader" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--actions">{{#str}} actions, mod_facetoface {{/str}}</div>{{/hasactions}}
+    </div>
+    {{#sessions}}
+        <div role="row" class="mod_facetoface__event_details__sessions__row{{#states}} {{.}}{{/states}}">
+            {{#hasstatus}}
+                <div role="rowheader" class="mod_facetoface__event_details__sessions__cellheader mod_facetoface__event_details__sessions__cellheader--status">{{#str}} eventinfo:details:sessionstatus, mod_facetoface {{/str}}</div>
+                <div role="gridcell" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--status">{{status}}</div>
+            {{/hasstatus}}
+            {{#hassessiontime}}
+                <div role="rowheader" class="mod_facetoface__event_details__sessions__cellheader mod_facetoface__event_details__sessions__cellheader--date">{{#str}} eventinfo:details:sessiondate, mod_facetoface {{/str}}</div>
+                <div role="gridcell" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--date">{{{sessiontime}}}</div>
+            {{/hassessiontime}}
+            {{#hasrooms}}
+                <div role="rowheader" class="mod_facetoface__event_details__sessions__cellheader mod_facetoface__event_details__sessions__cellheader--rooms">{{#str}} rooms, mod_facetoface {{/str}}</div>
+                <div role="gridcell" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--rooms"><ul class="mod_facetoface__list-items">{{#rooms}}<li>{{{.}}}</li>{{/rooms}}</ul></div>
+            {{/hasrooms}}
+            {{#hasfacilitators}}
+                <div role="rowheader" class="mod_facetoface__event_details__sessions__cellheader mod_facetoface__event_details__sessions__cellheader--facilitators">{{#str}} facilitators, mod_facetoface {{/str}}</div>
+                <div role="gridcell" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--facilitators"><ul class="mod_facetoface__list-items">{{#facilitators}}<li>{{{.}}}</li>{{/facilitators}}</ul></div>
+            {{/hasfacilitators}}
+            {{#hasassets}}
+                <div role="rowheader" class="mod_facetoface__event_details__sessions__cellheader mod_facetoface__event_details__sessions__cellheader--assets">{{#str}} assets, mod_facetoface {{/str}}</div>
+                <div role="gridcell" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--assets"><ul class="mod_facetoface__list-items">{{#assets}}<li>{{{.}}}</li>{{/assets}}</ul></div>
+            {{/hasassets}}
+            {{#hasactions}}
+                <div role="rowheader" class="mod_facetoface__event_details__sessions__cellheader mod_facetoface__event_details__sessions__cellheader--actions">{{#str}} actions, mod_facetoface {{/str}}</div>
+                <div role="gridcell" class="mod_facetoface__event_details__sessions__cell mod_facetoface__event_details__sessions__cell--actions"><nav>{{#actions}}{{{.}}}{{/actions}}</nav></div>
+            {{/hasactions}}
+        </div>
+    {{/sessions}}
+</div>

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover matches snapshot 1`] = `
+<div
+  class="tui-popover__wrap"
+>
+  <popovertrigger-stub
+    triggers="click"
+  >
+    <button />
+  </popovertrigger-stub>
+   
+  <popoverpositioner-stub
+    contextmode="contained"
+    position="bottom"
+    preferslide="true"
+    transition="default"
+  />
+</div>
+`;
+
+exports[`Popover matches snapshot when non-closeable 1`] = `
+<div
+  class="tui-popover__wrap"
+>
+  <popovertrigger-stub
+    triggers="click"
+  >
+    <button />
+  </popovertrigger-stub>
+   
+  <div
+    class="tui-popoverPositioner tui-popoverPositioner--transition-default"
+    style="transform: translate3d(0px, 0px, 0); display: none;"
+  >
+    <div
+      class="tui-popoverFrame tui-popoverFrame--bottom"
+    >
+      <div
+        class="tui-arrow tui-arrow--top tui-arrow--normal"
+        style="left: 0px;"
+      />
+       
+      <!---->
+       
+      <!---->
+       
+      <div
+        class="tui-popoverFrame__content tui-popoverFrame__content--nonClosable"
+        role="tooltip"
+      >
+        <div>
+          hello
+        </div>
+      </div>
+       
+      <!---->
+    </div>
+  </div>
+</div>
+`;

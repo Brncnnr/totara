@@ -1,0 +1,63 @@
+mutation engage_survey_update_access(
+  $resourceid: param_integer!
+  $access: totara_engage_access!
+  $topics: [param_integer!]!
+) {
+  survey: engage_survey_update(
+    resourceid: $resourceid
+    access: $access
+    topics: $topics
+  ) {
+    __typename
+    id
+    timeexpired
+    resource {
+      __typename
+      id
+      access
+      user {
+        __typename
+        id
+        fullname
+        profileimagealt
+        profileimageurl
+      }
+    }
+    questions {
+      __typename
+      id
+      value(format: PLAIN)
+      user {
+        __typename
+        id
+        fullname
+      }
+      answertype
+      options {
+        __typename
+        id
+        questionid
+        value(format: PLAIN)
+      }
+    }
+    topics {
+      __typename
+      id
+      value(format: PLAIN)
+    }
+
+    questionresults {
+      __typename
+      answertype
+      votes
+      participants
+      value(format: PLAIN)
+
+      options {
+        __typename
+        value(format: PLAIN)
+        votes
+      }
+    }
+  }
+}

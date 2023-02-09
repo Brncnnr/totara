@@ -1,0 +1,88 @@
+.tui-competencyLinkedReviewRating {
+  padding: var(--gap-4) 0;
+  border-top: var(--border-width-thin) solid var(--color-neutral-7);
+  border-bottom: var(--border-width-normal) solid var(--color-neutral-7);
+
+  &--print {
+    border-top: none;
+  }
+
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__title {
+    margin: 0;
+    @include tui-font-heading-x-small;
+
+    &-help {
+      padding-left: var(--gap-1);
+    }
+
+    &-required {
+      @include tui-font-heading-label();
+      color: var(--color-prompt-alert);
+    }
+  }
+}
+
+.tui-competencyLinkedReviewRatingForm {
+  max-width: 1200px;
+
+  &__summary {
+    &-rating {
+      @include tui-font-heavy();
+    }
+  }
+}
+
+.tui-pathwayPerformRatingAchievement {
+  & > * + * {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-pathwayPerformRatingAchievementRater {
+  margin-top: var(--gap-2);
+  padding: var(--gap-4);
+  border: var(--border-width-thin) solid var(--color-neutral-5);
+  border-radius: var(--border-radius-normal);
+
+  &__overview {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+
+    &-text {
+      margin: 0;
+      @include tui-font-body();
+    }
+
+    &-relationship {
+      @include tui-font-heavy();
+    }
+  }
+
+  &__item {
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+
+    &-header {
+      margin: 0;
+      @include tui-font-heading-label-small();
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tui-pathwayPerformRatingAchievementRater {
+    &__item {
+      &-header {
+        @include sr-only();
+      }
+    }
+  }
+}
+

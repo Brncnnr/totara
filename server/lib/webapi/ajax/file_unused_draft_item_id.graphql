@@ -1,0 +1,3 @@
+mutation core_file_unused_draft_item_id {
+  item_id: core_file_unused_draft_item_id
+}

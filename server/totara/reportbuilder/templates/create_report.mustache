@@ -1,0 +1,101 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Carl Anderson <carl.anderson@totaralearning.com>
+   @package totara_reportbuilder
+}}
+{{!
+
+    @template totara_reportbuilder/create
+
+    This template generates a create report view.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-target: The parent objec that handles switching between grid and list view
+    * data-tw-target-class: The class of the grid object which is switched
+    * data-totara_reportbuilder-create_report-results_count: where the results count is to be displayed
+    * data-tw-trigger: States what the view should be after pressing
+    * data-tw-report-create-container: The list of reports that gets updated when the filters change
+    * data-tw-report-create-load: The load more button
+
+    Context variables required for this template:
+    * panel_region_enabled: whether the filter panel information is to be displayed
+    * filter_data: data for the filters
+    * tiles: data for the core grid component
+
+    Example context (json):
+    {
+        "panel_region_enabled": true,
+        "filter_data": ... ,
+        "tiles": ...
+    }
+
+}}
+
+<main class="totara_reportbuilder__report_create"
+      data-core-autoinitialise="true"
+      data-core-autoinitialise-amd="totara_reportbuilder/create">
+
+    <div class="totara_reportbuilder__report_create_content totara_reportbuilder__report_create_overlay{{#panel_region_enabled}} totara_reportbuilder__report_create__content--has_side_filter{{/panel_region_enabled}}">
+
+        {{! aside content, filters }}
+        <aside class="totara_reportbuilder__report_create_aside">
+            {{> totara_core/toggle_filter_panel }}
+            {{#filter_data}}
+                {{> &&filter_template }}
+            {{/filter_data}}
+            {{> totara_core/select_region_panel }}
+        </aside>
+
+        {{! Results: count, share, sort by, toggle, grid & paging }}
+        <div class="totara_reportbuilder__report_create_results"
+             aria-live="polite"
+             data-core-autoinitialise="true"
+             data-core-autoinitialise-amd="totara_core/list_toggle"
+             data-tw-target=".totara_reportbuilder__createreport_list"
+             data-tw-target-class="totara_reportbuilder__createreport_list">
+            <span data-totara_reportbuilder-create_report-results_count>
+            </span>
+
+            {{! Switcher }}
+            <div class="totara_reportbuilder__createreport_itemstyletoggle" data-tw-switcher>
+                <a href="#" role="button" class="totara_reportbuilder__createreport_itemstyletoggle_btn totara_reportbuilder__createreport_itemstyletoggle_btn--narrow"
+                   data-tw-trigger="grid">
+                    {{#flex_icon}}view-grid, tile_view, totara_reportbuilder{{/flex_icon}}
+                </a>
+                <a href="#" role="button" class="totara_reportbuilder__createreport_itemstyletoggle_btn totara_reportbuilder__createreport_itemstyletoggle_btn--wide"
+                   data-tw-trigger="table">
+                    {{#flex_icon}}view-list, list_view, totara_reportbuilder{{/flex_icon}}
+                </a>
+            </div>
+
+            <div class="totara_reportbuilder__createreport_list totara_reportbuilder__createreport_list--grid" data-tw-report-create-container>
+                {{> totara_core/grid}}
+            </div>
+
+            <div class="totara_reportbuilder__createreport_load" data-tw-report-create-load>
+                <button>{{#str}}loadmore, totara_reportbuilder{{/str}}</button>
+            </div>
+        </div>
+    </div>
+</main>

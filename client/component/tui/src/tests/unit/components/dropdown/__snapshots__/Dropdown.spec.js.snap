@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown render correctly 1`] = `
+<div class="tui-dropdown">
+  <!---->
+  <div class="tui-popoverPositioner tui-popoverPositioner--transition-dropdown" style="transform: translate3d(0px, 0px, 0); display: none;">
+    <div aria-hidden="true" aria-labelledby="id-trigger" aria-orientation="vertical" role="menu" class="tui-dropdown__menu">
+      <div class="tui-dropdown__content tui-dropdown__content--separator"><a href="#" tabindex="-1" role="menuitem" class="tui-dropdownItem"></a><a href="#" tabindex="-1" role="menuitem" class="tui-dropdownItem"></a><a href="#" tabindex="-1" role="menuitem" class="tui-dropdownItem"></a></div>
+    </div>
+  </div>
+</div>
+`;

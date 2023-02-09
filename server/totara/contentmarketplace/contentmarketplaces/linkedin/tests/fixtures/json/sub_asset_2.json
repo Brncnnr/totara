@@ -1,0 +1,71 @@
+{
+  "asset": {
+    "urn": "urn:li:lyndaChapter:(urn:li:lyndaCourse:252,4473)",
+    "title": {
+      "locale": {
+        "country": "US",
+        "language": "en"
+      },
+      "value": "1. Getting Started"
+    },
+    "type": "CHAPTER",
+    "contents": [
+      {
+        "asset": {
+          "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24962)",
+          "title": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "Why use a spreadsheet?"
+          },
+          "type": "VIDEO",
+          "contents": []
+        }
+      },
+      {
+        "asset": {
+          "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24963)",
+          "title": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "What's changed in Excel 2007?"
+          },
+          "type": "VIDEO",
+          "contents": []
+        }
+      },
+      {
+        "asset": {
+          "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24964)",
+          "title": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "The Ribbon"
+          },
+          "type": "VIDEO",
+          "contents": []
+        }
+      },
+      {
+        "asset": {
+          "urn": "urn:li:lyndaVideo:(urn:li:lyndaCourse:252,24965)",
+          "title": {
+            "locale": {
+              "country": "US",
+              "language": "en"
+            },
+            "value": "The Microsoft Office Button"
+          },
+          "type": "VIDEO",
+          "contents": []
+        }
+      }
+    ]
+  }
+}

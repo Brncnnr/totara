@@ -1,0 +1,18 @@
+query totara_core_user_learning_items_selected(
+  $input: totara_core_user_learning_items_input!
+) {
+  totara_core_user_learning_items_selected(input: $input) {
+    items {
+      id
+      itemtype
+      fullname(format: PLAIN)
+      description(format: HTML)
+      progress
+      image_src
+      url_view
+      unique_id
+    }
+    next_cursor
+    total
+  }
+}

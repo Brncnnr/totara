@@ -1,0 +1,330 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Brian Barnes <brian.barnes@totaralearning.com>
+// @package   theme_legacy
+
+#region-main div[role='main'] h2.totara_reportbuilder__report_create_title {
+  float: left;
+  margin-top: var(--gap-1);
+}
+
+.totara_reportbuilder__report_create {
+  clear: both;
+  position: relative;
+  z-index: 1;
+
+  &_aside {
+    @include make-xs-column(12, 0);
+    @include make-sm-column(4, 0);
+    @include make-md-column(3, 0);
+  }
+
+  &_primaryFilter {
+    border-bottom: 1px solid var(--color-neutral-4);
+    border-top: 1px solid var(--color-neutral-4);
+    font-size: var(--font-size-18);
+    margin: var(--gap-4) 0;
+    padding: var(--gap-4) 0;
+  }
+
+  &_results {
+    & {
+      @include make-xs-column(12, 0);
+      @include make-sm-column(8, 0);
+      @include make-md-column(9, 0);
+    }
+
+    &_overview {
+      display: flex;
+      flex-wrap: wrap;
+      padding: var(--gap-4) 0;
+
+      &_row {
+        display: flex;
+        height: 100%;
+        margin-bottom: var(--gap-6);
+        width: 100%;
+      }
+    }
+  }
+
+  &_hidden {
+    display: none;
+  }
+}
+
+.totara_reportbuilder__createreport_container {
+  opacity: 0;
+  transition: opacity $reportbuilder-transition ease-out;
+
+  &.tw-list-toggle-loaded {
+    opacity: 1;
+  }
+}
+
+.totara_reportbuilder__createreport_label {
+  padding: 0.1em var(--gap-2);
+  border-radius: 4px;
+
+  font-size: var(--font-size-13);
+
+  &--primary {
+    background-color: $brand-info;
+    color: var(--color-neutral-1);
+  }
+
+  &--secondary {
+    border: 1px solid var(--color-border);
+  }
+}
+
+.totara_reportbuilder__createreport_list {
+  clear: both;
+  padding: var(--gap-2) 0;
+  margin: 0;
+
+  &_item {
+    display: block;
+
+    // Hover animation
+    transition-property: box-shadow;
+    transition-duration: $reportbuilder-transition;
+    transition-timing-function: ease-in-out;
+
+    &,
+    &:hover,
+    &:focus {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    .tw-grid__item_active & {
+      box-shadow: var(--shadow-2);
+    }
+
+    &_title {
+      font-weight: 600;
+    }
+  }
+}
+
+.totara_reportbuilder__createreport_load {
+  position: relative;
+  height: 3em;
+
+  &[data-tw-report-create-disabled] {
+    display: none;
+    pointer-events: none;
+  }
+
+  button {
+    display: none;
+    width: 100%;
+
+    [data-tw-report-create-loaded=true] & {
+      display: block;
+    }
+  }
+}
+
+// ------------------------------
+//  GRID VIEW
+// ------------------------------
+.totara_reportbuilder__createreport_list--grid {
+
+  .totara_reportbuilder__createreport_label {
+    &--primary {
+      position: absolute; // Sit over the top of the image
+      left: var(--gap-2);
+      top: var(--gap-2);
+    }
+
+    &--container {
+      display: none;
+    }
+  }
+
+  & .totara_reportbuilder__createreport_list {
+
+    &_item {
+      border: 1px solid var(--color-border);
+      min-width: 140px;
+
+      &_info {
+        flex: 1 1 auto;
+        padding: 0 var(--gap-2) var(--gap-2);
+      }
+
+      &_image {
+        flex: 1 0 50%;
+        background-color: $reportbuilder-image-background;
+
+        padding: 0.7em 0.5em 0;
+        position: relative;
+
+        img.icon {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &_title {
+        @include totara_style-heading_x_small();
+        
+        height: 5.55rem;
+        overflow: hidden;
+        padding: var(--gap-2);
+      }
+    }
+  }
+}
+
+// ------------------------------
+//  TABLE VIEW
+// ------------------------------
+.totara_reportbuilder__createreport_list--table {
+  // Override width from grid css
+  .tw-grid__item {
+    flex-basis: 100%;
+    margin: 0 var(--gap-2);
+    padding: 0;
+    border-bottom: 1px solid var(--color-neutral-5);
+
+    &:first-child {
+      border-top: 1px solid var(--color-neutral-5);
+    }
+  }
+
+  .totara_reportbuilder__createreport_label {
+    &--primary,
+    &--secondary {
+      display: none;
+      margin-left: var(--gap-2);
+    }
+
+    &--container {
+      padding-top: var(--gap-2);
+
+      .totara_reportbuilder__createreport_label--primary,
+      .totara_reportbuilder__createreport_label--secondary {
+        display: inline;
+      }
+    }
+  }
+
+  [data-tw-report-create-item-active]:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  & .totara_reportbuilder__createreport_list {
+    &_item {
+      box-sizing: content-box;
+      height: 50px;
+      clear: both;
+
+      @media screen and (min-width: $myReports-screen-xsm-min) {
+        height: 70px;
+      }
+
+      &_image {
+        max-height: 100%;
+        float: left;
+
+        width: auto;
+        height: 100%;
+
+        img.icon {
+          width: auto;
+          height: 100%;
+
+          max-height: 100%;
+          background-color: $reportbuilder-image-background;
+
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      .tw-grid__item_active & {
+          position: relative; // lift the image above the shadow
+      }
+
+      &_title {
+        @include totara_style-heading_x_small();
+
+        padding: 0 var(--gap-2) var(--gap-2);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        @media screen and (min-width: $myReports-screen-xsm-min) {
+          padding: var(--gap-2);
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------
+//  LIST ITEM TOGGLE
+// ------------------------------
+.totara_reportbuilder__createreport_itemstyletoggle {
+  display: flex;
+  margin: auto var(--gap-1) var(--gap-1) auto;
+  float: right;
+  border-radius: var(--btn-radius);
+  background-color: var(--color-neutral-4);
+  border: 1px solid var(--color-neutral-5);
+
+  &_btn {
+    font-size: var(--font-size-13);
+    padding: var(--gap-1);
+    transition: background-color 0.2s ease;
+    margin: 1px;
+    border-width: 1px;
+
+    // Active etc is defined in theme/legacy/tui/styles/totara/core/reports.scss
+    // CSS classes aren't using totara_reportbuilder... as base
+  }
+
+  @media (min-width: $myReports-screen-xsm-min) {
+    & {
+      margin: auto var(--gap-1) var(--gap-1) 0;
+    }
+  }
+
+  @media (min-width: $totara-style-screen-sm-min) {
+    & {
+      margin-right: 0;
+    }
+  }
+}
+
+@import 'details';
+@import 'loading_overlay';

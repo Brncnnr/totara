@@ -1,0 +1,9 @@
+query container_workspace_get_discussion_draft_content($id: param_integer!) {
+  discussion: container_workspace_discussion(id: $id) {
+    __typename
+    draft_content(format: RAW)
+    draft_id
+    content_format
+    workspace_context_id
+  }
+}

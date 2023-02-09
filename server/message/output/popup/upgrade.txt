@@ -1,0 +1,21 @@
+This files describes API changes in /message/output/popup message output provider.
+Information provided here is intended especially for developers.
+
+
+=== 14.0 ===
+
+* Add new default settings for 'popup' message output provider
+
+=== 13.0 ===
+
+* Removed tabindex="0" from non-interactive elements of message_popover
+* Removed tabindex="0" from non-interactive elements of notification_popover
+
+=== 12.0 ===
+
+* String helpers are no longer used in the following templates, string data is passed via context data:
+** message/output/popup/templates/message_content_item.mustache
+** message/output/popup/templates/message_popover.mustache
+** message/output/popup/templates/notification_area_content_area_footer.mustache
+** message/output/popup/templates/notification_content_item.mustache
+** message/output/popup/templates/notification_popover.mustache

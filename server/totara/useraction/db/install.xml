@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/useraction/db" VERSION="20221130" COMMENT="XMLDB file for totara/useraction"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_useraction_scheduled_rule" COMMENT="List of available defined user action scheduled rules.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="tenant_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="action" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="filter_status" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The status the user must be in. Values map to the totata_useraction\filter\status::STATUS constants."/>
+        <FIELD NAME="filter_duration_source" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The duration source column. Values map to the totata_useraction\filter\duration::SOURCE constants."/>
+        <FIELD NAME="filter_duration_unit" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The duration type. Values map to the totata_useraction\filter\duration::UNIT constants."/>
+        <FIELD NAME="filter_duration_value" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The duration time in seconds."/>
+        <FIELD NAME="filter_all_users" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="If 1, then the mapped audiences will be ignored."/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="status" UNIQUE="false" FIELDS="status"/>
+        <INDEX NAME="tenant_id" UNIQUE="false" FIELDS="tenant_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_useraction_scheduled_rule_audience_map" COMMENT="Mapping between scheduled rules and audiences.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="scheduled_rule_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="cohort_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="scheduled_rule_id" TYPE="foreign" FIELDS="scheduled_rule_id" REFTABLE="totara_useraction_scheduled_rule" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="cohort_id" TYPE="foreign" FIELDS="cohort_id" REFTABLE="cohort" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="scheduled_rule_id_cohort_id" UNIQUE="true" FIELDS="scheduled_rule_id, cohort_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_useraction_scheduled_rule_history" COMMENT="Execution history of scheduled rule actions.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="scheduled_rule_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="success" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="action" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="message" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Messages related to execution (e.g. error messages)"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="scheduled_rule_fk" TYPE="foreign" FIELDS="scheduled_rule_id" REFTABLE="totara_useraction_scheduled_rule" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="user_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="success" UNIQUE="false" FIELDS="success"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

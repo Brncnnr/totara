@@ -1,0 +1,85 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Brian Barnes <brian,barnes@otaralearning.com
+// @package   theme_legacy
+
+.path-totara-mobile div.singlebutton {
+  text-align: center;
+}
+
+#page-footer .mobile-app-banner {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: rgba(0,0,0,0.25) -1px 0px 6px 0px;
+  background-color: var(--color-background);
+  padding: var(--gap-6) var(--gap-12) var(--gap-6) var(--gap-4);
+
+  div {
+    box-sizing: border-box;
+  }
+
+  &-message {
+    display: inline-block;
+    float: left;
+    width: auto;
+    font-weight: bold;
+    text-align: left;
+
+    .flex-icon {
+      font-size: 3em;
+    }
+  }
+
+  .btn {
+    float: right;
+    margin-left: var(--gap-2);
+  }
+
+  .btn-default {
+    @include bs-btn-default();
+  }
+
+  @media (max-width: calc(#{$tui-screen-xs} - 1px)) {
+    padding: var(--gap-6) var(--gap-4);
+
+    &-message {
+      float: none;
+
+      .flex-icon {
+        display: inline-block;
+        float: left;
+        margin-top: -5px;
+      }
+    }
+
+    .btn {
+      display: block;
+      float: none;
+      width: 100%;
+      margin: var(--gap-4) 0 0;
+      clear: both;
+    }
+  }
+}

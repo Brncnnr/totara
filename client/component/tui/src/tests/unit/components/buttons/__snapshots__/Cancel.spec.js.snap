@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons Cancel Checks snapshot 1`] = `
+<button
+  class="tui-formBtn"
+  type="button"
+>
+  <span
+    class="tui-formBtn__text"
+  >
+    
+    fff
+  
+  </span>
+   
+  <!---->
+   
+  <span
+    aria-live="assertive"
+  >
+    <!---->
+  </span>
+</button>
+`;

@@ -1,0 +1,102 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+    @template mod_facetoface/take_attendance_bulk_action
+
+    This template generate the bulk selections for taking attendance.
+
+    Classes required for JS:
+    * none
+
+    Context variables required for this template:
+    * bulkselection: Bulk selection box (picking learners)
+    * bulkselection -> name: Selection name
+    * bulkselection -> options: List of options
+    * bulkselection -> options -> value: Value of option
+    * bulkselection -> options -> option_label: Label of the option
+    * bulkaction: Bulk action box
+    * bulkaction -> name: Selection name
+    * bulkaction -> options: List of options
+    * bulkaction -> options -> value: Value of option
+    * bulkaction -> options -> option_label: Label of the option
+    * bulkaction -> options -> selected: Whether the option is selected or not
+    * attendeesselector: an array of selector codes that are used for determining which attendees to be picked
+
+    Example context (json):
+        There is no example for this template
+}}
+
+<div class="tw-takeAttendanceBulkAction f2f-takeattendance-bulk-action-box"
+     {{#attendeesselector}}
+        data-{{key}}="{{value}}"
+     {{/attendeesselector}}
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="mod_facetoface/take_attendance_bulk_action">
+
+    <span class="bulkactionstring">{{#str}} bulkactions, mod_facetoface {{/str}}</span>
+
+    {{#bulkselection}}
+        <div class="facetoface-bulk-actions-selector">
+            <label for="menu{{name}}" class="f2f-inline-box custom-facetoface-label">
+                {{#str}} selectlearner, mod_facetoface {{/str}}
+            </label>
+
+            <select name="{{name}}" id="menu{{name}}" class="f2f-inline-box" autocomplete="off"
+                {{#disabled}} disabled {{/disabled}}>
+
+                {{#options}}
+                    <option value="{{value}}">
+                        {{option_label}}
+                    </option>
+                {{/options}}
+            </select>
+        </div>
+    {{/bulkselection}}
+
+    {{#bulkaction}}
+        <div class="facetoface-bulk-actions-picker">
+            <label for="menu{{name}}" class="f2f-inline-box custom-facetoface-label">
+                {{#str}}mark_selected_as, mod_facetoface{{/str}}
+            </label>
+
+            <select name="{{name}}" id="menu{{name}}" class="f2f-inline-box bulkactions" autocomplete="off"
+                {{#disabled}} disabled {{/disabled}}>
+
+                <option value="-1">
+                    {{#str}} selectone, mod_facetoface {{/str}}
+                </option>
+
+                {{#options}}
+                    <option value="{{value}}">
+                        {{option_label}}
+                    </option>
+                {{/options}}
+            </select>
+            <span id="selectoptionbefore">
+                {{#str}} selectoptionbefore, mod_facetoface {{/str}}
+            </span>
+        </div>
+    {{/bulkaction}}
+    <input type="submit" name="saveattendance" value="{{#str}} saveattendance, mod_facetoface {{/str}}" id="f2f-save-taking-attendance"
+        class="btn btn-primary" {{#disabled}}disabled{{/disabled}}/>
+</div>

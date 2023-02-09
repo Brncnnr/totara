@@ -1,0 +1,100 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Carl Anderson <carl.anderson@totaralearning.com>
+   @package totara_reportbuilder
+}}
+{{!
+
+    @template totara_reportbuilder/create
+
+    This template generates a create report view.
+
+    Classes required for JS:
+    * totara_reportbuilder__overlay: add loading overlay
+
+    Data attributes required for JS:
+    * data-tw-grid-item-toggle: Signifies that this is a clickable item and will expand to show the course details
+    * data-tw-report-create-details: Where to put the details for the report
+
+    Context variables required for this template:
+    * graphimagedata: Flex Icon data
+    * graphimagetemplate: Flex icon template
+    * primary_label: Learner
+    * secondary_label: Template
+    * title: Report source title
+
+
+    Example context (json):
+    {
+        "graphimagedata": Flex Icon data,
+        "graphimagetemplate": Flex icon template,
+        "primary_label": "Learner"
+        "secondary_label": "Template"
+        "title": "Report source title"
+    }
+
+}}
+
+<div tabindex="0" class="totara_reportbuilder__createreport_list_item"
+    data-tw-grid-item-toggle="">
+    <div class="totara_reportbuilder__createreport_list_item_image">
+        {{#graphimagedata}}{{> &&graphimagetemplate}}{{/graphimagedata}}
+
+        {{#primary_label}}
+            <span class="totara_reportbuilder__createreport_label totara_reportbuilder__createreport_label--primary">
+                {{primary_label}}
+            </span>
+        {{/primary_label}}
+    </div>
+
+    {{! Duplicating labels for the list view }}
+    <div class="totara_reportbuilder__createreport_label--container">
+        {{#primary_label}}
+            <span class="totara_reportbuilder__createreport_label totara_reportbuilder__createreport_label--primary">
+                {{primary_label}}
+            </span>
+        {{/primary_label}}
+
+        {{#secondary_label}}
+            <span class="totara_reportbuilder__createreport_label totara_reportbuilder__createreport_label--secondary">
+                {{secondary_label}}
+            </span>
+        {{/secondary_label}}
+    </div>
+
+    <div class="totara_reportbuilder__createreport_list_item_info">
+        <div class="totara_reportbuilder__createreport_list_item_title">
+            <span class="totara_reportbuilder__createreport_list_item_link">{{title}}</span>
+        </div>
+
+        {{#secondary_label}}
+            <span class="totara_reportbuilder__createreport_label totara_reportbuilder__createreport_label--secondary">
+                {{secondary_label}}
+            </span>
+        {{/secondary_label}}
+    </div>
+</div>
+
+<div class="tw-catalogDetails">
+    <div class="tw-catalogDetails__arrow"></div>
+    <div class="tw-catalogDetails__placement">
+        <div class="tw-catalogDetails__content" data-tw-report-create-details="">
+        </div>
+    </div>
+</div>

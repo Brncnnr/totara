@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UploadWrapper Checks snapshot 1`] = `
+<upload-stub
+  acceptedtypes="image/*"
+  contextid="3"
+  href="upload.php"
+  itemid="42"
+  overwrite="true"
+  repositoryid="8"
+/>
+`;

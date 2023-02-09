@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagList Checks snapshot 1`] = `
+<div
+  class="tui-dropdown tui-dropdown--flexibleWidth"
+>
+  <div
+    class="tui-dropdown__trigger"
+    id="id-trigger"
+  >
+    <div
+      class="tui-tagList"
+    >
+      <div
+        class="tui-tagList__tags"
+      >
+        <div
+          aria-atomic="false"
+          aria-label="[[tags_selected, totara_core]]"
+          aria-live="polite"
+          aria-relevant="additions"
+          class="tui-tagList__tagItems"
+          role="status"
+        >
+          <div
+            class="tui-tag"
+          >
+            <span
+              class="tui-tag__content tui-tag__content--withButton"
+            >
+              Tui
+            </span>
+             
+            <button
+              aria-label="[[tag_remove, totara_core, \\"Tui\\"]]"
+              class="tui-iconBtn tui-iconBtn--prim tui-iconBtn--small tui-iconBtn--transparent"
+              title="[[tag_remove, totara_core, \\"Tui\\"]]"
+              type="button"
+            >
+              <span
+                class="tui-iconBtn__wrap"
+              >
+                <span
+                  class="tui-iconBtn__label"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="tui-iconBtn__icon"
+                  >
+                    <close-stub
+                      size="100"
+                    />
+                  </span>
+                   
+                  <!---->
+                </span>
+                 
+                <!---->
+                 
+                <!---->
+              </span>
+            </button>
+          </div>
+           
+          <div
+            class="tui-tagList__input"
+          >
+            <inputtext-stub
+              arialabel="[[filter_x_taglist, totara_core, \\"[[tag_list, totara_core]]\\"]]"
+              styleclass="[object Object]"
+              value=""
+            />
+          </div>
+        </div>
+         
+        <span
+          class="tui-tagList__suffix"
+        >
+          [[n_more, totara_core, 1]]
+        </span>
+      </div>
+       
+      <button
+        aria-expanded="false"
+        aria-haspopup="menu"
+        aria-label="[[tag_list, totara_core]]"
+        class="tui-iconBtn tui-tagList__expandArrow tui-iconBtn--transparent"
+        title="[[tag_list, totara_core]]"
+        type="button"
+      >
+        <span
+          class="tui-iconBtn__wrap"
+        >
+          <span
+            class="tui-iconBtn__label"
+          >
+            <span
+              aria-hidden="true"
+              class="tui-iconBtn__icon"
+            >
+              <expand-stub
+                customclass="tui-tagList__caret"
+                size="200"
+              />
+            </span>
+             
+            <!---->
+          </span>
+           
+          <!---->
+           
+          <!---->
+        </span>
+      </button>
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`TagList closeOnClick is passed through dropdown 1`] = `
+<dropdown-stub
+  animation="default"
+  canclose="true"
+  closeonclick="true"
+  contextmode="contained"
+  matchwidth="true"
+  position="bottom-left"
+  role="menu"
+>
+   
+</dropdown-stub>
+`;
+
+exports[`TagList uses the labelName provided for dropdown button, input field and remove tag button 1`] = `
+<div
+  class="tui-dropdown tui-dropdown--flexibleWidth"
+>
+  <div
+    class="tui-dropdown__trigger"
+    id="id-trigger"
+  >
+    <div
+      class="tui-tagList"
+    >
+      <div
+        class="tui-tagList__tags"
+      >
+        <div
+          aria-atomic="false"
+          aria-label="[[selected_tag_list_name, totara_core, \\"Learning category\\"]]"
+          aria-live="polite"
+          aria-relevant="additions"
+          class="tui-tagList__tagItems"
+          role="status"
+        >
+          <div
+            class="tui-tag"
+          >
+            <span
+              class="tui-tag__content tui-tag__content--withButton"
+            >
+              Tui
+            </span>
+             
+            <button
+              aria-label="[[tag_remove_from, totara_core, {\\"name\\":\\"Tui\\",\\"taglist\\":\\"Learning category\\"}]]"
+              class="tui-iconBtn tui-iconBtn--prim tui-iconBtn--small tui-iconBtn--transparent"
+              title="[[tag_remove_from, totara_core, {\\"name\\":\\"Tui\\",\\"taglist\\":\\"Learning category\\"}]]"
+              type="button"
+            >
+              <span
+                class="tui-iconBtn__wrap"
+              >
+                <span
+                  class="tui-iconBtn__label"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="tui-iconBtn__icon"
+                  >
+                    <span
+                      class=""
+                    />
+                  </span>
+                   
+                  <!---->
+                </span>
+                 
+                <!---->
+                 
+                <!---->
+              </span>
+            </button>
+          </div>
+           
+          <div
+            class="tui-tagList__input"
+          >
+            <input
+              aria-label="[[filter_x_taglist, totara_core, \\"Learning category\\"]]"
+              class="tui-formInput tui-formInput--transparent"
+              type="text"
+            />
+          </div>
+        </div>
+         
+        <span
+          class="tui-tagList__suffix"
+          style="display: none;"
+        >
+          [[n_more, totara_core, null]]
+        </span>
+      </div>
+       
+      <button
+        aria-expanded="false"
+        aria-haspopup="menu"
+        aria-label="[[tag_list_x, totara_core, \\"Learning category\\"]]"
+        class="tui-iconBtn tui-tagList__expandArrow tui-iconBtn--transparent"
+        title="[[tag_list_x, totara_core, \\"Learning category\\"]]"
+        type="button"
+      >
+        <span
+          class="tui-iconBtn__wrap"
+        >
+          <span
+            class="tui-iconBtn__label"
+          >
+            <span
+              aria-hidden="true"
+              class="tui-iconBtn__icon"
+            >
+              <span
+                class=""
+              />
+            </span>
+             
+            <!---->
+          </span>
+           
+          <!---->
+           
+          <!---->
+        </span>
+      </button>
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;

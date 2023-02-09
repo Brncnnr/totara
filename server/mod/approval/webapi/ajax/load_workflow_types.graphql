@@ -1,0 +1,11 @@
+query mod_approval_load_workflow_types(
+  $input: mod_approval_load_workflow_types_input!
+) {
+  mod_approval_load_workflow_types(input: $input) {
+    workflow_types {
+      __typename
+      id
+      label: name
+    }
+  }
+}

@@ -1,0 +1,120 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.totaraNav--list_item_expanded {
+  > .navExpand--list {
+    display: block;
+  }
+}
+
+.navExpand--list {
+  z-index: 3;
+  display: none;
+  min-width: 200px;
+  margin: 0;
+
+  &_item_label {
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  &_item_link {
+    display: flex;
+    padding: var(--gap-2) var(--gap-4) var(--gap-2) var(--gap-8);
+    color: var(--nav-tab-expand-mobile-text-color);
+    background: var(--nav-tab-expand-mobile-bg-color);
+
+    &:focus,
+    &:hover {
+      color: var(--nav-tab-expand-mobile-text-color-focus);
+      text-decoration: none;
+      background: var(--nav-tab-mobile-expand-bg-color-focus);
+    }
+  }
+}
+
+// Nest third layer of items on mobile
+.navExpand--listThird {
+  .navExpand--list_item_link {
+    padding-left: var(--gap-12);
+  }
+}
+
+@media (min-width: $tui-screen-md) {
+  .navExpand--listSecond {
+    position: absolute;
+    border: var(--border-width-thin) solid var(--nav-tab-expand-border-color);
+    box-shadow: var(--shadow-2);
+
+    .navExpand--list_item {
+      // Display sub tab top borders on desktop only
+      &_link {
+        color: var(--nav-tab-expand-text-color);
+        padding: var(--gap-2) var(--gap-4);
+        border-top: var(--border-width-thin) solid
+          var(--nav-tab-expand-border-color);
+
+        background: var(--nav-tab-expand-bg-color);
+
+        &:focus,
+        &:hover {
+          color: var(--nav-tab-expand-text-color-focus);
+          background: var(--nav-tab-expand-bg-color-focus);
+        }
+      }
+    }
+
+    // Prevent double border on first item
+    > .navExpand--list_item:first-child {
+      .navExpand--list_item_link {
+        border-top-color: transparent;
+      }
+    }
+  }
+
+  // Nest third layer of items on desktop
+  .navExpand--listThird {
+    .navExpand--list_item_link {
+      padding-left: var(--gap-10);
+    }
+  }
+
+  // Sub expanded navigation colours
+  .totaraNav_sub {
+    .navExpand--list {
+      background: var(--nav-tab-expand-bg-color);
+
+      &_item_label {
+        padding-left: 0;
+      }
+
+      &_item_link {
+        &:focus,
+        &:hover {
+          background: var(--nav-tab-expand-bg-color-focus);
+        }
+      }
+    }
+  }
+}

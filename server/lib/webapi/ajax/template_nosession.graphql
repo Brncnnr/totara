@@ -1,0 +1,7 @@
+query core_template_nosession(
+  $name: param_alphanumext!
+  $component: param_component!
+  $theme: param_theme!
+) {
+  template: core_template(name: $name, component: $component, theme: $theme)
+}

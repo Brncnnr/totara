@@ -1,0 +1,91 @@
+query mod_perform_my_subject_instances(
+  $filters: mod_perform_subject_instance_filters!
+  $options: mod_perform_subject_instance_options
+  $pagination: core_pagination_input
+) {
+  mod_perform_my_subject_instances(
+    filters: $filters
+    pagination: $pagination
+    options: $options
+  ) {
+    items {
+      subject {
+        id
+        progress_status
+        availability_status
+        created_at
+        due_on {
+          due_date
+          is_overdue
+          units_to_due_date
+          units_to_due_date_type
+        }
+        job_assignment {
+          idnumber
+          fullname
+        }
+        activity {
+          id
+          name
+          type {
+            display_name
+          }
+          settings {
+            multisection
+          }
+          anonymous_responses
+        }
+        subject_user {
+          fullname
+          profileimagealt
+          profileimageurlsmall
+        }
+        participant_instances {
+          id
+          participant_id
+          progress_status
+          availability_status
+          is_overdue
+          is_for_current_user
+          core_relationship {
+            id
+            name
+          }
+        }
+      }
+      sections {
+        can_participate
+        section {
+          id
+          display_title
+          sort_order
+        }
+        participant_sections {
+          id
+          progress_status
+          availability_status
+          is_overdue
+          can_answer
+          participant_instance {
+            progress_status
+            participant_id
+            participant {
+              fullname
+              profileimagealt
+              profileimageurlsmall
+            }
+            core_relationship {
+              id
+              name
+            }
+            is_for_current_user
+          }
+        }
+      }
+    }
+    total
+    next_cursor
+    completed_count
+    overdue_count
+  }
+}

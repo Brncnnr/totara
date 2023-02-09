@@ -1,0 +1,87 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+:root {
+  //
+  // Form colours
+  //
+
+  --form-text-color: var(--color-neutral-7);
+  --form-input-bg-color-disabled: var(--color-neutral-3);
+  --form-input-border-color: var(--color-neutral-6);
+  --form-input-text-placeholder-color: var(--color-neutral-6);
+  --form-error-text-color: var(--color-prompt-alert);
+  --form-error-bg-color: var(--color-prompt-alert-bg);
+
+  // Standard btn background, border & text
+  --btn-accent-color: var(--color-state);
+  --btn-accent-color-active: var(--color-state-active);
+  --btn-accent-color-focus: var(--color-state-focus);
+  --btn-accent-color-disabled: var(--color-state-disabled);
+  --btn-bg-color: var(--color-neutral-1);
+  --btn-bg-color-active: var(--color-neutral-1);
+  --btn-bg-color-disabled: var(--color-neutral-3);
+  --btn-bg-color-focus: var(--color-neutral-3);
+  --btn-border-color: var(--btn-accent-color);
+  --btn-border-color-active: var(--btn-accent-color-active);
+  --btn-border-color-disabled: var(--btn-accent-color-disabled);
+  --btn-border-color-focus: var(--btn-accent-color-focus);
+  --btn-loader-color-disabled: var(--color-neutral-7);
+  --btn-text-color: var(--btn-accent-color);
+  --btn-text-color-active: var(--btn-accent-color-active);
+  --btn-text-color-disabled: var(--btn-accent-color-disabled);
+  --btn-text-color-focus: var(--btn-accent-color-focus);
+
+  // Primary btn background, text & border
+  --btn-prim-accent-color: var(--color-state);
+  --btn-prim-accent-color-active: var(--color-state-active);
+  --btn-prim-accent-color-focus: var(--color-state-focus);
+  --btn-prim-accent-color-disabled: var(--color-state-disabled);
+  --btn-prim-bg-color: var(--btn-prim-accent-color);
+  --btn-prim-bg-color-active: var(--btn-prim-accent-color-active);
+  --btn-prim-bg-color-disabled: var(--btn-prim-accent-color-disabled);
+  --btn-prim-bg-color-focus: var(--btn-prim-accent-color-focus);
+  --btn-prim-border-color: var(--btn-prim-accent-color);
+  --btn-prim-border-color-active: var(--btn-prim-accent-color-active);
+  --btn-prim-border-color-disabled: var(--btn-prim-accent-color-disabled);
+  --btn-prim-border-color-focus: var(--btn-prim-accent-color-focus);
+  --btn-prim-loader-color-disabled: var(--color-neutral-7);
+  --btn-prim-text-color: var(--color-neutral-1);
+  --btn-prim-text-color-active: var(--color-neutral-1);
+  --btn-prim-text-color-disabled: var(--color-neutral-3);
+  --btn-prim-text-color-focus: var(--color-neutral-1);
+
+  // toggle icon btn background, border & text
+  --btn-toggle-bg-color: var(--color-neutral-1);
+  --btn-toggle-bg-color-disabled: var(--color-neutral-3);
+  --btn-toggle-bg-color-focus: var(--color-neutral-2);
+  --btn-toggle-bg-color-selected: var(--color-neutral-4);
+  --btn-toggle-border-color: var(--color-neutral-5);
+  --btn-toggle-border-color-disabled: var(--color-state-disabled);
+  --btn-toggle-border-color-focus: var(--color-neutral-5);
+  --btn-toggle-border-color-selected: var(--color-neutral-5);
+  --btn-toggle-text-color: var(--color-state);
+  --btn-toggle-text-color-disabled: var(--color-state-disabled);
+  --btn-toggle-text-color-focus: var(--color-state);
+  --btn-toggle-text-color-selected: var(--color-state);
+}

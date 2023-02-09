@@ -1,0 +1,192 @@
+{
+  "vars": {
+    "color-primary": {
+      "type": "value",
+      "value": "#69bd45"
+    },
+    "color-secondary": {
+      "type": "value",
+      "value": "#007ab8"
+    },
+    "color-tertiary": {
+      "type": "value",
+      "value": "#1ea4a9"
+    },
+    "color-state": {
+      "type": "value",
+      "value": "#4b7e2b"
+    },
+    "color-state-hover": {
+      "type": "value",
+      "value": "#3c6721",
+      "transform": {
+        "source": "color-state",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -10
+        ]
+      }
+    },
+    "color-state-focus": {
+      "type": "value",
+      "value": "#3c6721",
+      "transform": {
+        "source": "color-state",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -10
+        ]
+      }
+    },
+    "color-state-active": {
+      "type": "value",
+      "value": "#30541a",
+      "transform": {
+        "source": "color-state",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -27
+        ]
+      }
+    },
+    "color-state-disabled": {
+      "type": "var",
+      "value": "color-neutral-5"
+    },
+    "color-neutral-1": {
+      "type": "value",
+      "value": "#ffffff"
+    },
+    "color-neutral-2": {
+      "type": "value",
+      "value": "#fafafa"
+    },
+    "color-neutral-3": {
+      "type": "value",
+      "value": "#f7f7f7"
+    },
+    "color-neutral-4": {
+      "type": "value",
+      "value": "#e6e4e4"
+    },
+    "color-neutral-5": {
+      "type": "value",
+      "value": "#c7c7c7"
+    },
+    "color-neutral-6": {
+      "type": "value",
+      "value": "#767676"
+    },
+    "color-neutral-7": {
+      "type": "value",
+      "value": "#262626"
+    },
+    "color-text": {
+      "type": "var",
+      "value": "color-neutral-7"
+    },
+    "link-color": {
+      "type": "var",
+      "value": "color-state"
+    },
+    "link-color-hover": {
+      "type": "var",
+      "value": "color-state-hover",
+      "transform": {
+        "source": "link-color",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -10
+        ]
+      }
+    },
+    "nav-bg-color": {
+      "type": "value",
+      "value": "#ffffff"
+    },
+    "nav-text-color": {
+      "type": "var",
+      "value": "color-text"
+    },
+    "footer-bg-color": {
+      "type": "value",
+      "value": "#ffffff"
+    },
+    "footer-text-color": {
+      "type": "var",
+      "value": "color-text"
+    },
+    "footer-text-color-hover": {
+      "type": "var",
+      "value": "footer-text-color",
+      "transform": {
+        "source": "footer-text-color",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -10
+        ]
+      }
+    },
+    "btn-accent-color": {
+      "type": "var",
+      "value": "color-state"
+    },
+    "btn-accent-color-active": {
+      "type": "var",
+      "value": "color-state-active",
+      "transform": {
+        "source": "btn-accent-color",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -27
+        ]
+      }
+    },
+    "btn-accent-color-focus": {
+      "type": "var",
+      "value": "color-state-focus",
+      "transform": {
+        "source": "btn-accent-color",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -10
+        ]
+      }
+    },
+    "btn-prim-accent-color": {
+      "type": "var",
+      "value": "color-state"
+    },
+    "btn-prim-accent-color-active": {
+      "type": "var",
+      "value": "color-state-active",
+      "transform": {
+        "source": "btn-prim-accent-color",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -27
+        ]
+      }
+    },
+    "btn-prim-accent-color-focus": {
+      "type": "var",
+      "value": "color-state-focus",
+      "transform": {
+        "source": "btn-prim-accent-color",
+        "type": "var",
+        "call": "adjust-hex-value-brightness",
+        "args": [
+          -10
+        ]
+      }
+    }
+  }
+}

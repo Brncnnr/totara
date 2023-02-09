@@ -1,0 +1,26 @@
+query pathway_perform_rating_linked_competencies_rating(
+  $input: pathway_perform_rating_linked_competencies_rating_input!
+) {
+  pathway_perform_rating_linked_competencies_rating(input: $input) {
+    rating {
+      rater_user {
+        fullname(format: PLAIN)
+        profileimagealt
+        profileimageurl
+      }
+      rater_relationship {
+        idnumber
+        name(format: PLAIN)
+      }
+      rater_role(format: PLAIN)
+      scale_value {
+        name(format: PLAIN)
+        proficient
+      }
+      activity {
+        name(format: PLAIN)
+      }
+      created_at(format: DATE)
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "component": "mod_perform",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_notification"
+  ]
+}

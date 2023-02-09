@@ -1,0 +1,53 @@
+This file describes API changes in Totara forms,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.4 ===
+
+* Accessibility attributes Aria-describedby and aria-labelledby have been added to the following templates:
+** totara/form/templates/element_action_button.mustache
+** totara/form/templates/element_checkbox.mustache
+** totara/form/templates/element_checkboxes.mustache
+** totara/form/templates/element_datetime.mustache
+** totara/form/templates/element_email.mustache
+** totara/form/templates/element_multiselect.mustache
+** totara/form/templates/element_number.mustache
+** totara/form/templates/element_passwordunmask.mustache
+** totara/form/templates/element_radios.mustache
+** totara/form/templates/element_select.mustache
+** totara/form/templates/element_static_html.mustache
+** totara/form/templates/element_tel.mustache
+** totara/form/templates/element_text.mustache
+** totara/form/templates/element_textarea.mustache
+** totara/form/templates/element_url.mustache
+** totara/form/templates/element_utc10date.mustache
+** totara/form/templates/element_yesno.mustache
+* Added id and removed tabindex in totara/form/templates/validation_errors.mustache
+
+=== 12.0 ===
+
+* Icon helpers are no longer used in the following templates, icon data is passed via context data:
+** totara/form/templates/element_checkbox.mustache
+** totara/form/templates/element_filemanager.mustache
+** totara/form/templates/element_filepicker.mustache
+** totara/form/templates/element_select.mustache
+** totara/form/templates/element_suffix.mustache
+* totara/form/templates/element_checkboxes.mustache has changed to use "data-required" instead of "required" HTML attribute
+* Checkboxes now validate clientside
+* utc10 date field now uses polyfil date pickers in desktop browsers
+* Removed custom build of modernizr and IE9 polyfil libraries (IE9 has not been supported since Totara 10)
+* Removed totara_form/form_clientaction_autosubmit AMD module as it is not used and does not have an equivilent source file
+* Added support for autosubmit client actions on radio items
+
+=== 10.0 ===
+
+* totara/form/templates/element_filemanager.mustache flex-icon used for upload rather than CSS loaded image
+* totara/form/templates/element_filepicker.mustache flex-icon used for upload rather than CSS loaded image
+* \totara_form\form\element\checkboxes and \totara_form\form\element\radios now display vertically by default. A new
+  attribute 'horizontal' has been added to both for optional horizontal display and there have been minor changes
+  to totara_form/element_checkboxes and totara_form/element_radios templates to accommodate this
+
+=== 9.2 ===
+
+* \totara_form\model::get_current_data(null) now returns all current data

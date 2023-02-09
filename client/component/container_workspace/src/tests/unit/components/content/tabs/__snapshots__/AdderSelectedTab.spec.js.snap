@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdderSelectedTab should check snapshot 1`] = `
+<div
+  class="tui-dataSelectTable"
+>
+  <div>
+    
+  tempString
+
+  </div>
+</div>
+`;

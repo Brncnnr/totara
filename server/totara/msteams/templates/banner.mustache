@@ -1,0 +1,47 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package totara_msteams
+}}
+
+{{!
+    @template totara_msteams/banner
+
+    This template generates an banner.
+
+    Context variables required for this template:
+    * id: the unique id
+    * title: the title text
+    * content: the content text
+    * icon: set true to show icon
+
+    Example content (json):
+    {
+        "id": "msteams-123456",
+        "title": "Something went wrong",
+        "content": "Please contact an administrator",
+        "icon": true
+    }
+}}
+
+<div class="totara_msteams__banner" id="{{id}}">
+    {{#icon}}<svg class="totara_msteams__banner__icon" viewBox="0 0 18 18"><circle cy="9.5" cx="9.5" r="8" fill="none" stroke="currentColor" stroke-width="1.125"/><path d="M9.5 5v6z" fill="none" stroke="currentColor" stroke-width="1.125"/><circle cx="9.5" cy="13.5" r=".75" fill="currentColor"/></svg>{{/icon}}
+    {{#title}}<h2 class="totara_msteams__banner__title">{{.}}</h2>{{/title}}
+    {{#content}}<p class="totara_msteams__banner__content">{{.}}</p>{{/content}}
+</div>

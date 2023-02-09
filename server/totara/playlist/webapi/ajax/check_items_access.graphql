@@ -1,0 +1,13 @@
+query totara_playlist_check_items_access(
+  $items: [totara_engage_share_item!]!
+  $playlist_id: param_integer!
+) {
+  result: totara_playlist_check_items_access(
+    items: $items
+    playlist_id: $playlist_id
+  ) {
+    __typename
+    warning
+    message
+  }
+}

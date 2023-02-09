@@ -1,0 +1,9 @@
+mutation mod_contentmarketplace_set_self_completion(
+  $cm_id: core_id!
+  $status: param_boolean!
+) {
+  result: mod_contentmarketplace_set_self_completion(
+    cm_id: $cm_id
+    status: $status
+  )
+}

@@ -1,0 +1,11 @@
+query mod_approval_approval_levels($input: mod_approval_workflow_stage_input!) {
+  mod_approval_workflow_stage(input: $input) {
+    stage {
+      approval_levels {
+        id
+        name
+        ordinal_number
+      }
+    }
+  }
+}

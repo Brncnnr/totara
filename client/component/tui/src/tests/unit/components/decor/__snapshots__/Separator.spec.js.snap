@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Separator Checks v-else snapshot 1`] = `
+<hr
+  class="tui-separator tui-separator-rule tui-separator--thick tui-separator--spread"
+  id="separator"
+/>
+`;
+
+exports[`Separator Checks v-if snapshot 1`] = `
+<div
+  class="tui-separator tui-separator--wrapped"
+>
+  <span
+    class="tui-separator-content"
+  >
+    <span>
+      ok
+    </span>
+  </span>
+   
+  <hr
+    class="sr-only"
+  />
+</div>
+`;

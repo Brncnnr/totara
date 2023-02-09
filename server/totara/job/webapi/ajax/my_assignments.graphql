@@ -1,0 +1,15 @@
+query totara_job_my_assignments {
+  totara_job_my_assignments {
+    id
+    fullname
+    idnumber
+    managerja {
+      user {
+        fullname
+      }
+    }
+    appraiser {
+      fullname
+    }
+  }
+}

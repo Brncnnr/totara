@@ -1,0 +1,57 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_detail
+
+    This template generates part of event detail on the event page.
+
+    Context variables required for this template:
+    * class: part of css class
+    * title: the title of this area (optional)
+    * id: the id of this area (optional)
+    * collapsible: set id to be able to collapse/expand sections (optional)
+    * sectionsid: the id of sections area (required if collapsible is true)
+    * action: template data for mod_facetoface/seminarevent_actionbar
+    * sections: array of template data for mod_facetoface/seminarevent_detail_section
+
+    Example content (json):
+    {
+        "class" : "eventinfo",
+        "title" : "Event",
+        "id" : "f2f-eventinfo",
+        "sections": [ ... ]
+    }
+}}
+
+<article
+    class="mod_facetoface__eventinfo__content__eventdetail mod_facetoface__eventinfo__content__{{class}}"
+    {{#id}}id="{{.}}"{{/id}}
+    {{#collapsible}}data-collapsible="true" data-core-autoinitialise-amd="mod_facetoface/seminarevent_detail" data-core-autoinitialise="true"{{/collapsible}}>
+
+    {{#action}}{{> mod_facetoface/seminarevent_actionbar }}{{/action}}
+    {{#title}}<h3 class="mod_facetoface__eventinfo__content__eventdetail__heading">{{#collapsible}}<a href="#" role="button" class="f2f-expanded" aria-expanded="true" aria-controls="{{sectionsid}}" data-f2f-section-id="{{sectionsid}}">{{/collapsible}}{{title}}{{#collapsible}}</a>{{/collapsible}}</h3>{{/title}}
+    <div class="mod_facetoface__eventinfo__content__eventdetail__sections" id="{{sectionsid}}">
+        {{#sections}}{{#context}}{{> &&template }}{{/context}}{{/sections}}
+    </div>
+</article>

@@ -1,0 +1,240 @@
+"""
+How a timespan should be displayed.
+When in seconds, it will display the raw number of seconds.
+In human format, it will be displayed in the format "XXh YYm ZZs"
+"""
+enum contentmarketplace_linkedin_timespan_format {
+  SECONDS
+  HUMAN
+}
+
+"""
+What type of LinkedIn Learning asset it is.
+See https://docs.microsoft.com/en-us/linkedin/learning/reference/learningassets#assettype
+"""
+enum contentmarketplace_linkedin_asset_type {
+  COURSE
+  LEARNING_PATH
+  VIDEO
+}
+
+"""
+The way that the learning objects can be sorted by for the catalogue import.
+"""
+enum contentmarketplace_linkedin_catalog_import_sort_by {
+  ALPHABETICAL
+  LATEST
+}
+
+"""
+The level in the hierarchy that a classification is.
+"""
+enum contentmarketplace_linkedin_classification_type {
+  LIBRARY
+  SUBJECT
+  SKILL
+  TOPIC
+}
+
+"""
+The skill level required for the LinkedIn learning material.
+See https://docs.microsoft.com/en-us/linkedin/learning/reference/learningassets#difficultylevel
+"""
+enum contentmarketplace_linkedin_level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+"""
+Classifications representing groups of related learning objects.
+"""
+type contentmarketplace_linkedin_classification {
+  id: core_id!
+  name(format: core_format = PLAIN): String!
+  type: contentmarketplace_linkedin_classification_type!
+  parents: [contentmarketplace_linkedin_classification!]!
+  children: [contentmarketplace_linkedin_classification!]!
+}
+
+"""
+A LinkedIn Learning asset that can be turned into a Totara course.
+"""
+type contentmarketplace_linkedin_learning_object implements totara_contentmarketplace_learning_object {
+  id: core_id!
+  name(format: core_format = PLAIN): String!
+  language: String!
+  image_url: String
+  description(format: core_format = PLAIN): String!
+  description_include_html(format: core_format = HTML): String!
+  short_description(format: core_format = PLAIN): String!
+  last_updated_at(format: core_date_format = DATE): core_date!
+  published_at(format: core_date_format = DATE): core_date!
+  web_launch_url: String!
+  sso_launch_url: String
+  asset_type: contentmarketplace_linkedin_asset_type!
+  classifications: [contentmarketplace_linkedin_classification!]!
+  subjects: [contentmarketplace_linkedin_classification!]!
+  level: contentmarketplace_linkedin_level
+  display_level: String!
+  time_to_complete(
+    format: contentmarketplace_linkedin_timespan_format = HUMAN
+  ): String
+  courses: [core_course!]!
+}
+
+"""
+Output of the learning objects query.
+"""
+type contentmarketplace_linkedin_catalog_import_learning_objects_result implements core_pageable_result {
+  items: [contentmarketplace_linkedin_learning_object]!
+  total: Int!
+  next_cursor: String!
+  """
+  Array of the labels for the filters that were input to the query.
+  """
+  selected_filters(format: core_format = PLAIN): [String!]!
+}
+
+"""
+Output of the create course mutation.
+"""
+type contentmarketplace_linkedin_catalog_import_create_course_result {
+  success: Boolean!
+  message: String!
+  redirect_url: String
+}
+
+"""
+Output of the add activity mutation.
+"""
+type contentmarketplace_linkedin_catalog_import_add_activity_result {
+  success: Boolean!
+  message: String!
+  redirect_url: String
+}
+
+"""
+A filter multi-select option for display on the catalogue import page.
+"""
+type contentmarketplace_linkedin_catalog_import_filter_select_option {
+  id: String!
+  label: String!
+}
+
+"""
+A filter node for display on the catalogue import page.
+"""
+type contentmarketplace_linkedin_catalog_import_filter_node implements totara_core_tui_tree_node_interface {
+  id: String!
+  label(format: core_format = PLAIN): String!
+  """
+  Unused
+  """
+  linkUrl: String
+  children: [contentmarketplace_linkedin_catalog_import_filter_node!]!
+  content: [contentmarketplace_linkedin_catalog_import_filter_select_option!]
+}
+
+"""
+Output of the learning objects filter options query.
+"""
+type contentmarketplace_linkedin_catalog_import_learning_objects_filter_options_result {
+  subjects: [contentmarketplace_linkedin_catalog_import_filter_node!]!
+  time_to_complete: [contentmarketplace_linkedin_catalog_import_filter_node!]!
+  in_catalog: [contentmarketplace_linkedin_catalog_import_filter_node!]!
+}
+
+type contentmarketplace_linkedin_locale {
+  """
+  A code string, that machine can understand.
+  """
+  language: String!
+  """
+  The country code, that machine can understand.
+  Sometimes country is not provided by Linkedin, hence this field
+  is nullable.
+  """
+  country: String
+  """
+  A label that is a translate version of language code string.
+  This is meant for human to read.
+  """
+  language_label: String!
+}
+
+"""
+Applicable filters for the learning objects query.
+"""
+input contentmarketplace_linkedin_catalog_import_learning_objects_filters_input {
+  language: String!
+  search: String!
+  subjects: [core_id!]!
+  time_to_complete: [String!]!
+  in_catalog: [String!]!
+  ids: [core_id!]!
+}
+
+"""
+Input for the catalogue import query.
+"""
+input contentmarketplace_linkedin_catalog_import_learning_objects_input {
+  pagination: core_pagination_input!
+  filters: contentmarketplace_linkedin_catalog_import_learning_objects_filters_input!
+  sort_by: contentmarketplace_linkedin_catalog_import_sort_by!
+}
+
+"""
+Input for the catalogue import filter options query.
+"""
+input contentmarketplace_linkedin_catalog_import_learning_objects_filter_options_input {
+  language: String!
+}
+
+"""
+Input for the catalogue import create course mutation.
+"""
+input contentmarketplace_linkedin_catalog_import_course_input {
+  learning_object_id: core_id!
+  category_id: core_id!
+}
+
+extend type Query {
+  """
+  Query to return a paginated set of creatable courses from the LinkedIn Learning course catalogue.
+  """
+  contentmarketplace_linkedin_catalog_import_learning_objects(
+    input: contentmarketplace_linkedin_catalog_import_learning_objects_input!
+  ): contentmarketplace_linkedin_catalog_import_learning_objects_result!
+
+  """
+  Query to return the filters that are availble for querying the learning objects in the catalogue.
+  """
+  contentmarketplace_linkedin_catalog_import_learning_objects_filter_options(
+    input: contentmarketplace_linkedin_catalog_import_learning_objects_filter_options_input!
+  ): contentmarketplace_linkedin_catalog_import_learning_objects_filter_options_result!
+
+  """
+  Query to return the course categories that are availble.
+  """
+  contentmarketplace_linkedin_catalog_import_course_categories: [core_category!]!
+
+  """
+  Query to return the available locales within linkedin content marketplace.
+  """
+  contentmarketplace_linkedin_available_locales: [contentmarketplace_linkedin_locale!]!
+}
+
+extend type Mutation {
+  """
+  Mutation to create linkedin course.
+  """
+  contentmarketplace_linkedin_catalog_import_create_course(
+    input: [contentmarketplace_linkedin_catalog_import_course_input!]!
+  ): contentmarketplace_linkedin_catalog_import_create_course_result!
+
+  contentmarketplace_linkedin_catalog_import_add_activity(
+    learning_object_id: core_id!
+    section_id: core_id!
+  ): contentmarketplace_linkedin_catalog_import_add_activity_result!
+}

@@ -1,0 +1,166 @@
+"""
+Organisation framework object. An organisation framework is a collection of organisations arranged in a tree.
+"""
+type totara_hierarchy_organisation_framework implements totara_hierarchy_framework {
+  """
+  Internal database id of the organisation framework.
+  """
+  id: core_id!
+  """
+  Full name of the organisation framework.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the organisation framework across multiple systems.
+  """
+  idnumber: String
+  """
+  Short name of the organisation framework, only used if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the organisation framework.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+}
+
+"""
+Organisation type object. An organisation type is a user-defined classification which can be assigned to organisations
+leading to certain custom fields being available on that organisation.
+"""
+type totara_hierarchy_organisation_type implements totara_hierarchy_type {
+  """
+  Internal database id of the organisation type.
+  """
+  id: core_id!
+  """
+  Organisation type full name.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the organisation type across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the organisation type. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the organisation type.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = HTML
+  ): String
+}
+
+"""
+Organisation item object.
+
+The organisation structure defines the regions, departments, groups, areas, or teams that a company has defined.
+"""
+type totara_hierarchy_organisation implements totara_hierarchy_item {
+  """
+  Internal database id of the organisation.
+  """
+  id: core_id!
+  """
+  Full name of the organisation.
+  """
+  fullname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String!
+  """
+  Unique reference used to represent the organisation across multiple systems.
+  """
+  idnumber: String
+  """
+  The short name of the organisation. Only used as additional information if admin setting 'showhierarchyshortnames' is enabled.
+  """
+  shortname(
+    """
+    Output format this field should be formatted for.
+    """
+    format: core_format = PLAIN
+  ): String
+  """
+  Rich-text description of the organisation.
+  """
+  description(
+    """
+    Output format this field should be formatted for.
+    Please note: RAW format is only available to users with the capability 'totara/hierarchy:updateorganisation' in the
+    system context, as its purpose is for editing.
+    """
+    format: core_format = HTML
+  ): String
+  """
+  The internal database id of the organisation framework this organisation belongs to.
+  """
+  frameworkid: core_id
+  """
+  The organisation framework this organisation belongs to.
+  """
+  framework: totara_hierarchy_organisation_framework
+  """
+  An ordered list of parent database ids for this organisation, indicating the hierarchy of parent items. Includes the
+  current item and separated by forward slashes, e.g. item with id=6 might be: /1/4/6
+  This is a computed value.
+  """
+  path: String!
+  """
+  Flag determining whether the organisation is visible to end users or not.
+  """
+  visible: Boolean!
+  """
+  The id of this organisation's immediate parent in the framework hierarchy. Set to 0 if this is a top-level organisation.
+  """
+  parentid: core_id
+  """
+  The parent organisation in the hierarchy. Null if a top-level item.
+  """
+  parent: totara_hierarchy_organisation
+  """
+  Collection of organisations that are immediately below this one in the framework hierarchy. Empty if this organisation
+  has no children.
+  """
+  children: [totara_hierarchy_organisation!]!
+  """
+  The id of the organisation type, or 0 if this is a generic organisation.
+  """
+  typeid: core_id
+  """
+  Organisation type object.
+  """
+  type: totara_hierarchy_organisation_type
+}

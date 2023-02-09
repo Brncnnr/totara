@@ -1,0 +1,127 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template totara_competency/selection_basket
+
+    Creates a selection basket.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: State of this JS auto initilise
+    * data-core-autoinitialise-amd: AMD to be linked to template
+    * data-tw-selectionBasket: Unique attribute for selection basket
+    * data-tw-selectionBasket-action: Trigger for standard actions (clear/hide/show)
+    * data-tw-selectionBasket-count: Target for changing current count
+    * data-tw-selectionBasket-countReq: Toggle for buttons which require a count
+    * data-tw-selectionBasket-customAction: Trigger for custom actions
+    * data-tw-selectionBasket-events: Key for propagated events
+    * data-tw-selectionBasket-group: Target for group of action buttons
+    * data-tw-selectionBasket-group-trigger: Trigger for expanding action list
+
+    Context variables required for this template:
+    * actionBtn: array, list of action buttons
+    * actionBtn -> action: string, key of action
+    * actionBtn -> label: string, label for action
+    * actionBtnList: array, list of actions
+    * actionBtnList -> action: string, key of action
+    * actionBtnList -> label: string, label for action
+    * actionBtnListLabel: string, label for list
+    * count: int, count of items
+    * countLabel: string, text for type of items
+    * hasActionBtnList: bool, has action list
+    * hasToggleSelection: bool, has show/hide basket buttons
+    * selectionClearLabel: string, clear basket label
+    * selectionHideLabel: string, hide basket label
+    * selectionShowLabel: string, show basket label
+
+}}
+<div class="tw-selectionBasket {{^count}}tw-selectionBasket__empty{{/count}}"
+    data-core-autoinitialise="true"
+    data-core-autoinitialise-amd="totara_competency/selection_basket"
+    data-tw-selectionBasket=""
+    data-tw-selectionBasket-events="totara_core/selection_basket">
+
+    <div class="tw-selectionBasket__count">
+        {{countLabel}}{{^countLabel}}{{#str}}selected, totara_core{{/str}}{{/countLabel}}<span>:</span>
+        <span class="tw-selectionBasket__count_num" data-tw-selectionBasket-count="">{{#count}}{{count}}{{/count}}{{^count}}0{{/count}}</span>
+    </div>
+
+    <div class="tw-selectionBasket__clear">
+        <button class="clear-selectionBasket__btn tw-selectionBasket__btn_small
+        {{^count}}tw-selectionBasket__btn_disabled{{/count}}" data-tw-selectionBasket-action="clear"
+        data-tw-selectionBasket-countReq="">
+            <span class="tw-selectionBasket__btn_small_icon">
+                {{#flex_icon}}trash{{/flex_icon}}
+            </span>
+            {{selectionClearLabel}}{{^selectionClearLabel}}{{#str}}clearselection, totara_core{{/str}}{{/selectionClearLabel}}
+        </button>
+    </div>
+
+    <div class="tw-selectionBasket__actions">
+        {{#hasToggleSelection}}
+        <button class="tw-selectionBasket__transparentBtn tw-selectionBasket__showSelection" data-tw-selectionBasket-action="show">
+            {{selectionShowLabel}}{{^selectionShowLabel}}{{#str}}viewselected, totara_core{{/str}}{{/selectionShowLabel}}
+        </button>
+        <button class="tw-selectionBasket__transparentBtn tw-selectionBasket__hideSelection" data-tw-selectionBasket-action="hide">
+            {{selectionHideLabel}}{{^selectionHideLabel}}{{#str}}gobacktoall, totara_core{{/str}}{{/selectionHideLabel}}
+        </button>
+        {{/hasToggleSelection}}
+
+        {{#actionBtn}}
+        {{#save_url}}
+        <a href="{{save_url}}" class="tw-selectionBasket__btn tw-selectionBasket__btn_small tw-selectionBasket__btn_prim
+        {{^count}}tw-selectionBasket__btn_disabled{{/count}}" data-tw-selectionBasket-customAction="{{action}}"
+        data-tw-selectionBasket-countReq="">
+            {{label}}{{^label}}{{#str}}next, core{{/str}}{{/label}}
+        </a>
+        {{/save_url}}
+        {{^save_url}}
+        <button class="tw-selectionBasket__btn tw-selectionBasket__btn_small tw-selectionBasket__btn_prim
+        {{^count}}tw-selectionBasket__btn_disabled{{/count}}" data-tw-selectionBasket-customAction="{{action}}"
+        data-tw-selectionBasket-countReq="">
+            {{label}}{{^label}}{{#str}}next, core{{/str}}{{/label}}
+        </button>
+        {{/save_url}}
+        {{/actionBtn}}
+
+        {{#hasActionBtnList}}
+        <div class="tw-selectionBasket__actions_group" data-tw-selectionBasket-group="">
+            <button class="tw-selectionBasket__btn tw-selectionBasket__btn_small tw-selectionBasket__btn_prim
+            {{^count}}tw-selectionBasket__btn_disabled{{/count}}" data-tw-selectionBasket-group-trigger=""
+            data-tw-selectionBasket-countReq="">
+                {{actionBtnListLabel}}{{^actionBtnListLabel}}{{#str}}actions, core{{/str}}{{/actionBtnListLabel}}
+                <span class="tw-selectionBasket__btn_small_icon">
+                    {{#flex_icon}}expandable, expand, core{{/flex_icon}}
+                </span>
+            </button>
+            <ul class="tw-selectionBasket__actions_group_list">
+                {{#actionBtnList}}
+                <li>
+                    <a href="#" class="tw-selectionBasket__actions_group_link" data-tw-selectionBasket-customAction="{{action}}" role="button">
+                        {{label}}
+                    </a>
+                </li>
+                {{/actionBtnList}}
+            </ul>
+        </div>
+        {{/hasActionBtnList}}
+    </div>
+</div>

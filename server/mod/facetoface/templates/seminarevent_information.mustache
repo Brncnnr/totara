@@ -1,0 +1,127 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_information
+
+    This template generates the seminar event information page.
+
+    Context variables required for this template:
+    * navigation: template data for mod_facetoface/event_page_navigation (optional)
+    * nosidebar: set true to hide sidebars (optional)
+    * sidebars:
+    * sidebars.id: if of the sidebar
+    * sidebars.class: part of CSS class
+    * sidebars.content: content of the sidebar in HTML
+    * sidebars.toggle: add a hidden checkbox to toggle the visibility of sidebars (optional)
+    * sidebars.toggle.id: id of the check box
+    * sidebars.toggle.class: part of CSS class
+    * sidebars.toggle.on: set true to tick the checkbox by default
+    * sidebars.toggle.idon: (required)
+    * sidebars.toggle.idoff: (required)
+    * sidebars.togglebutton: add a button (label) to correspond the hidden checkbox (optional)
+    * sidebars.togglebutton.id: must be the same as the previous sidebars.toggle.id
+    * sidebars.togglebutton.text: button label in HTML
+    * sidebars.togglebutton.alttext: accessibility text (optional)
+    * sidebars.togglebutton.class: part of CSS class
+    * management: (optional)
+    * management.actions: array of manager action links in HTML
+    * heading: heading text (optional)
+    * intro: seminar intro in HTML (optional)
+    * details: array of template data for mod_facetoface/seminarevent_detail
+    * footeraction: template data for mod_facetoface/seminarevent_actionbar (optional)
+
+    Example content (json):
+    {
+        "class": "eventinfo",
+        "navigation": { ... },
+        "sidebars": [
+            {
+                "id": "f2f-signup-1234",
+                "class": "signup",
+                "content": "<p>Hello<\/p>"
+            }
+        ],
+        "management": {
+            "actions": [
+                "<a href=\"...\">Allocate spaces for team<\/a> (1\/2)",
+                "<a href=\"...\">Reserve spaces for team<\/a> (1\/1)",
+                "<a href=\"...\">Manage reservations<\/a>",
+                "<a href=\"...\">Manage attendees<\/a>"
+            ]
+        },
+        "heading": "Sign-up for Seminar 101",
+        "intro": "<h1>Intro<\/h1>",
+        "details": [ ... ],
+        "footeraction": { ... }
+    }
+}}
+
+<div id="{{id}}" data-core-autoinitialise-amd="mod_facetoface/seminarevent_information" data-core-autoinitialise="true">
+    {{#navigation}}{{> mod_facetoface/event_page_navigation }}{{/navigation}}
+    <div class="mod_facetoface__eventinfo mod_facetoface__event_details">
+        {{^nosidebar}}
+        <div class="mod_facetoface__eventinfo__sidebars mod_facetoface__sidebars">
+            {{#sidebars}}
+                {{#toggle}}<input type="checkbox" id="{{id}}" autocomplete="off" class="mod_facetoface__eventinfo__sidebars__toggle mod_facetoface__eventinfo__{{class}}" style="display:none" aria-hidden="true" aria-controls="{{idon}} {{idoff}}" tabindex="0" data-id-on="{{idon}}" data-id-off="{{idoff}}"{{#on}} checked{{/on}}>{{/toggle}}
+                <div class="mod_facetoface__eventinfo__sidebar__panel mod_facetoface__eventinfo__sidebar__{{class}}"{{#id}} id="{{.}}"{{/id}}>
+                    {{#togglebutton}}<button data-for="{{togglebutton.id}}" class="mod_facetoface__eventinfo__toggle mod_facetoface__eventinfo__sidebar__{{class}}" {{#alttext}} title="{{alttext}}" aria-label="{{alttext}}"{{/alttext}}>{{{text}}}</button>{{/togglebutton}}
+                    {{{content}}}
+                </div>
+            {{/sidebars}}
+        </div>
+        {{/nosidebar}}
+        <article class="mod_facetoface__eventinfo__content">
+            {{#management}}
+                <section class="mod_facetoface__eventinfo__content__management">
+                    <ul class="mod_facetoface__eventinfo__content__management__items">
+                        {{#actions}}
+                            <li class="mod_facetoface__eventinfo__content__management__item">{{{.}}}</li>
+                        {{/actions}}
+                    </ul>
+                </section>
+            {{/management}}
+            {{#heading}}<h2>{{.}}</h2>{{/heading}}
+            {{#intro}}<section class="mod_facetoface__eventinfo__content__intro">{{{.}}}</section>{{/intro}}
+            {{#details}}{{> mod_facetoface/seminarevent_detail }}{{/details}}
+        </article>
+    </div>
+    {{#footeraction}}{{> mod_facetoface/seminarevent_actionbar }}{{/footeraction}}
+</div>
+
+{{#js}}
+(function(doc, id) {
+    doc.getElementById(id).addEventListener('click', function(e) {
+        var sender = e.target.closest('.mod_facetoface__eventinfo__toggle');
+        if (sender) {
+            e.preventDefault();
+            var check = doc.getElementById(sender.getAttribute('data-for'));
+            check.checked = !check.checked;
+            var on = check.checked.toString();
+            var off = (!check.checked).toString();
+            doc.getElementById(check.getAttribute('data-id-on')).setAttribute('aria-hidden', on);
+            doc.getElementById(check.getAttribute('data-id-off')).setAttribute('aria-hidden', off);
+        }
+    });
+})(document, '{{id}}')
+{{/js}}

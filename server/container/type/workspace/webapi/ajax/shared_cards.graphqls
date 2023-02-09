@@ -1,0 +1,51 @@
+type container_workspace_share_access_check_result {
+  """
+  Whether we want to warn the actor or not.
+  """
+  warning: Boolean!
+  """
+  The message that we want to warn the actor.
+  """
+  message: String!
+}
+
+extend type Query {
+  """
+  A query to fetch all the cards of items that were shared with this workspace
+  """
+  container_workspace_shared_cards(
+    """
+    ID of the workspace.
+    """
+    workspace_id: core_id!
+    """
+    Area within workspace.
+    """
+    area: param_area!
+    """
+    Options to filter the shared cards.
+    """
+    filter: totara_engage_filter!
+    """
+    Footnote properties.
+    """
+    footnotes: totara_engage_footnotes
+    """
+    Cursor encoding the page and limit for classic offset based pagination.
+    """
+    cursor: String
+    """
+    Source indicating what page should be returned to when a library resource is opened
+    """
+    source: String
+  ): totara_engage_cards!
+
+  """
+  A query to start checking whether the sharing items are going to be changed with the access
+  setting or not.
+  """
+  container_workspace_check_share_access(
+    items: [totara_engage_share_item!]
+    workspace: totara_engage_recipient_in!
+  ): container_workspace_share_access_check_result!
+}

@@ -1,0 +1,7 @@
+query container_workspace_notifications {
+  notifications: container_workspace_notifications {
+    __typename
+    message
+    type
+  }
+}

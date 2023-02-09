@@ -1,0 +1,18 @@
+This file describes API changes in /client/component/performelement_numeric_rating_scale,
+information provided here is intended especially for developers.
+
+=== 15.0 ===
+* Updated NumericRatingScaleElementAdminEdit.vue to include an optional description field
+  * Renamed updateRangeValues method to updateValues
+
+=== 14.0 ===
+* Replaced several components to centralise common functionality improving consistency and reducing duplication
+    * NumericRatingScaleElementAdminDisplay.vue replaced with NumericRatingScaleAdminView.vue
+    * NumericRatingScaleElementAdminForm.vue replaced with NumericRatingScaleAdminEdit.vue
+    * NumericRatingScaleElementAdminReadOnlyDisplay.vue replaced with NumericRatingScaleAdminSummary.vue
+* Removed NumericRatingScaleElementParticipantResponse.vue, generic ResponseDisplay.vue component is used instead
+* Replaced NumericRatingScaleElementParticipantForm.vue with NumericRatingScaleParticipantForm.vue
+* Updated NumericRatingScaleParticipantForm.vue to have more control of it's display and to handle switching
+  between difference states using a generic helper component ElementParticipantFormContent.
+    * Changed validation to use core validation rules where possible
+    * Changes to template (wrapping the formScope with helper component), SCSS & lang strings

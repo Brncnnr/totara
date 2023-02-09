@@ -1,0 +1,40 @@
+query totara_competency_progress_for_user(
+  $user_id: core_id!
+  $filters: totara_competency_profile_assignment_filters
+) {
+  totara_competency_profile_progress(user_id: $user_id, filters: $filters) {
+    user {
+      fullname
+    }
+    items {
+      overall_progress
+      name
+      items {
+        min_value {
+          id
+          name
+          percentage
+          proficient
+        }
+        my_value {
+          id
+          name
+          percentage
+          proficient
+        }
+        competency {
+          id
+          fullname
+        }
+      }
+    }
+    filters {
+      name
+      status_name
+      status
+      type
+      user_group_id
+      user_group_type
+    }
+  }
+}

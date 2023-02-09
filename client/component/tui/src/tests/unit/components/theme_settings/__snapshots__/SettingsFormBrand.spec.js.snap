@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsFormBrand matches snapshot 1`] = `
+<uniform-stub
+  autocomplete="off"
+  initialvalues="[object Object]"
+  inputwidth="limited"
+  validate="function () { [native code] }"
+  validationmode="auto"
+>
+  <formrowstack-stub
+    spacing="large"
+  >
+    <formrow-stub
+      isstacked="true"
+      label="[[formbrand_label_logo, totara_tui]]"
+    >
+      <imageuploadsetting-stub
+        ariadescribedby="id-formbrand-logo-details"
+        arialabelextension="[[formbrand_label_logo, totara_tui]]"
+        metadata="[object Object]"
+      />
+       
+      <formrowdetails-stub
+        id="id-formbrand-logo-details"
+      >
+        
+        [[formbrand_details_logo, totara_tui]]
+      
+      </formrowdetails-stub>
+    </formrow-stub>
+     
+    <formrow-stub
+      ariadescribedby="id-formbrand-logoalttext-details"
+      isstacked="true"
+      label="[[formbrand_label_logoalttext, totara_tui]]"
+    >
+      <formtext-stub
+        name="formbrand_field_logoalttext,value"
+        required=""
+      />
+       
+      <formrowdetails-stub
+        id="id-formbrand-logoalttext-details"
+      >
+        
+        [[formbrand_details_logoalttext, totara_tui]]
+      
+      </formrowdetails-stub>
+    </formrow-stub>
+     
+    <formrow-stub
+      isstacked="true"
+      label="[[formbrand_label_favicon, totara_tui]]"
+    >
+      <imageuploadsetting-stub
+        ariadescribedby="id-formbrand-favicon-details"
+        arialabelextension="[[formbrand_label_favicon, totara_tui]]"
+        metadata="[object Object]"
+      />
+       
+      <formrowdetails-stub
+        id="id-formbrand-favicon-details"
+      >
+        
+        [[formbrand_details_favicon, totara_tui]]
+      
+      </formrowdetails-stub>
+    </formrow-stub>
+  </formrowstack-stub>
+   
+  <formrowstack-stub
+    spacing="large"
+  >
+    <collapsible-stub
+      label="[[formbrand_group_notifications, totara_tui]]"
+    >
+      <formrowstack-stub
+        spacing="large"
+      >
+        <formrow-stub
+          isstacked="true"
+          label="[[formbrand_label_notificationshtmlheader, totara_tui]]"
+        />
+         
+        <formrow-stub
+          isstacked="true"
+          label="[[formbrand_label_notificationshtmlfooter, totara_tui]]"
+        />
+         
+        <formrow-stub
+          aria-label="[[formbrand_label_notificationstextfooter, totara_tui]]"
+          ariadescribedby="id-formbrand-notifications-textfooter-details"
+          isstacked="true"
+          label="[[formbrand_label_notificationstextfooter, totara_tui]]"
+        >
+          <formtextarea-stub
+            charlength="full"
+            name="formbrand_field_notificationstextfooter,value"
+            rows="8"
+            spellcheck="false"
+          />
+           
+          <formrowdetails-stub
+            id="id-formbrand-notifications-textfooter-details"
+          >
+            
+            [[formbrand_details_notificationstextfooter, totara_tui]]
+          
+          </formrowdetails-stub>
+        </formrow-stub>
+         
+        <formrow-stub
+          isstacked="true"
+        >
+          <inputset-stub>
+            <button-stub
+              styleclass="[object Object]"
+              text="[[test_email_notification, totara_core]]"
+              type="button"
+            />
+             
+            <infoiconbutton-stub
+              class="tui-settingsFormBrand__testEmailInfoButton"
+              ishelpfor="[[test_email_notification, totara_core]]"
+            >
+              
+              [[test_email_notification_help, totara_core]]
+            
+            </infoiconbutton-stub>
+          </inputset-stub>
+        </formrow-stub>
+      </formrowstack-stub>
+    </collapsible-stub>
+     
+    <formrow-stub
+      isstacked="true"
+    >
+      <buttongroup-stub>
+        <button-stub
+          aria-label="[[saveextended, totara_core, \\"[[tabbrand, totara_tui]]\\"]]"
+          styleclass="[object Object]"
+          text="[[save, totara_core]]"
+          type="submit"
+        />
+      </buttongroup-stub>
+    </formrow-stub>
+  </formrowstack-stub>
+</uniform-stub>
+`;

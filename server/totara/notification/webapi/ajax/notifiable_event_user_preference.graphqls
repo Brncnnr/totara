@@ -1,0 +1,77 @@
+"""
+User notifiable event preference
+"""
+type totara_notification_notifiable_event_user_preference {
+  """
+  ID of the user this preference belongs to
+  """
+  user_id: core_id!
+  """
+  The component name where this notifiable event belongs to.
+  """
+  component: String!
+  """
+  The human readerable name of the component
+  """
+  plugin_name: String!
+  """
+  The class name of resolver class
+  """
+  resolver_class_name: String!
+  """
+  The human readable notifiable event name.
+  """
+  name: String!
+  """
+  Is the notification enabled for this user
+  """
+  enabled: Boolean!
+  """
+  ID of the user preference record if it already exists
+  """
+  user_preference_id: core_id
+  """
+  The delivery channels for this preference.
+  """
+  delivery_channels: [totara_notification_delivery_channel!]!
+  """
+  If true the user has opted to override the delivery channels for this channel.
+  """
+  overridden_delivery_channels: Boolean!
+}
+
+extend type Query {
+  """
+  A query to fetch all the notifiable event preferences for a specific user
+  """
+  totara_notification_notifiable_event_user_preferences(
+    user_id: param_integer!
+    extended_context: totara_notification_extended_context_input!
+  ): [totara_notification_notifiable_event_user_preference!]!
+}
+
+extend type Mutation {
+  totara_notification_update_notifiable_event_user_preference(
+    """
+    Notifiable event resolver class name
+    """
+    resolver_class_name: param_text!
+    """
+    Enabled status to set
+    """
+    is_enabled: param_boolean!
+    """
+    ID of the user this preference belongs to
+    """
+    user_id: param_integer
+    """
+    Context to update enabled in.
+    Note: Only the system context is accepted currently.
+    """
+    extended_context: totara_notification_extended_context_input
+    """
+    ID of the user preference record if it already exists
+    """
+    user_preference_id: param_integer
+  ): totara_notification_notifiable_event_user_preference!
+}

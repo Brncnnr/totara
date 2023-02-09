@@ -1,0 +1,320 @@
+"""
+A schedule rule is used to define specific user actions that occur based on a specific time passing with additional user filters.
+"""
+type totara_useraction_scheduled_rule {
+  """
+  Internal database id of the user.
+  """
+  id: core_id!
+  """
+  Rules are either at the system level or within a tenant. If provided this identifies the tenant, otherwise it is a system client.
+  """
+  tenant_id: core_id
+  """
+  Name used to identify the scheduled rule.
+  """
+  name(format: core_string_format = HTML): String!
+  """
+  Description of the use of this scheduled rule.
+  """
+  description(format: core_text_format = HTML): String
+  """
+  The enabled status of the scheduled rule.
+  """
+  status: Boolean
+  """
+  The specific action instance.
+  """
+  action: totara_useraction_action!
+  """
+  The specific filters applied
+  """
+  filters: totara_useraction_filters!
+  """
+  The date this scheduled rule was created.
+  """
+  created(format: core_date_format = TIMESTAMP): String!
+  """
+  The date this scheduled rule was last updated.
+  """
+  updated(format: core_date_format = TIMESTAMP): String
+}
+
+"""
+Options available for the status filter.
+"""
+enum totara_useraction_filter_status {
+  SUSPENDED
+  DELETED
+}
+
+"""
+Columns used in the filtering.
+"""
+enum totara_useraction_filter_duration_source {
+  DATE_SUSPENDED
+}
+
+"""
+Time units used in durations.
+"""
+enum totara_useraction_filter_duration_unit {
+  DAY
+  MONTH
+  YEAR
+}
+
+"""
+Duration is made up of three parts, this type keeps them all together.
+"""
+type totara_useraction_filter_duration {
+  """
+  The source column used by the duration filter.
+  """
+  source: totara_useraction_filter_duration_source!
+  """
+  What the value represents.
+  """
+  unit: totara_useraction_filter_duration_unit!
+  """
+  The value of the unit field, exactly as entered.
+  """
+  value: Int!
+}
+
+"""
+Collection of audiences this rule is mapped to.
+"""
+type totara_useraction_filters_applies_to_audiences {
+  """
+  The label for this specific applies_to filter.
+  """
+  label: String!
+  """
+  The audiences that have been mapped.
+  """
+  audiences: [core_cohort!]!
+}
+"""
+Indicates there are no audiences involved
+"""
+type totara_useraction_filters_applies_to_all_users {
+  """
+  The label or this specific applies_to filter.
+  """
+  label: String!
+}
+
+"""
+The applies to field can either be nothing, or  it can be a collection of audiences.
+"""
+union totara_useraction_filter_applies_to =
+    totara_useraction_filters_applies_to_all_users
+  | totara_useraction_filters_applies_to_audiences
+
+"""
+Filter definitions for the scheduled rule.
+"""
+type totara_useraction_filters {
+  """
+  The status needed to run this rule.
+  """
+  user_status: totara_useraction_filter_status!
+  """
+  The duration fields needed for this rule.
+  """
+  duration: totara_useraction_filter_duration!
+  """
+  The audiences this rule is restricted to.
+  """
+  applies_to: totara_useraction_filter_applies_to!
+}
+
+"""
+A single user action instance.
+"""
+type totara_useraction_action {
+  """
+  The unique identifier for the action.
+  """
+  identifier: String!
+  """
+  The display name of the user action.
+  """
+  name: String!
+}
+
+"""
+Input for a duration. All three fields must go together.
+"""
+input totara_useraction_filter_duration_input {
+  """
+  Source column of the duration.
+  """
+  source: totara_useraction_filter_duration_source!
+  """
+  Unit of the value.
+  """
+  unit: totara_useraction_filter_duration_unit!
+  """
+  The number of days/weeks/years for this filter.
+  Must be a whole number, no negatives, no decimals.
+  """
+  value: Int!
+}
+
+"""
+Input for creating/updating the groups filter.
+"""
+input totara_useraction_filter_applies_to_input {
+  """
+  The audiences to map to. If all users, pass a NULL through, otherwise pass an array of audience Ids.
+  """
+  audiences: [core_id!]
+}
+
+"""
+Input provided when listing scheduled rules.
+"""
+input totara_useraction_scheduled_rules_input {
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input
+  """
+  If provided, load rules set in the tenant. Otherwise load rules at the system level.
+  """
+  tenant_id: core_id
+}
+
+"""
+Input provided when creating a new scheduled rule.
+"""
+input totara_useraction_scheduled_rule_input {
+  """
+  Name used to identify the scheduled rule.
+  """
+  name: String!
+  """
+  Optional description to describe this scheduled rule.
+  """
+  description: String
+  """
+  If provided, this rule will belong to the specified tenant. If not provided, this rule belongs to the system context.
+  """
+  tenant_id: core_id
+  """
+  The enabled status of the scheduled rule. Defaults to disabled.
+  """
+  status: Boolean
+  """
+  The specific action identifier.
+  """
+  action: String!
+  """
+  The user_status filter.
+  """
+  filter_user_status: totara_useraction_filter_status!
+  """
+  The duration filter fields.
+  """
+  filter_duration: totara_useraction_filter_duration_input!
+  """
+  The groups filter.
+  """
+  filter_applies_to: totara_useraction_filter_applies_to_input!
+}
+
+"""
+Input provided when updating a new scheduled rule.
+Fields are only updated if provided.
+"""
+input totara_useraction_update_scheduled_rule_input {
+  """
+  Internal database id of the user.
+  """
+  id: core_id!
+  """
+  Name used to identify the scheduled rule.
+  """
+  name: String
+  """
+  Optional description to describe this scheduled rule.
+  """
+  description: String
+  """
+  The enabled status of the scheduled rule. Defaults to disabled.
+  """
+  status: Boolean
+  """
+  The specific action identifier.
+  """
+  action: String
+  """
+  The user_status filter.
+  """
+  filter_user_status: totara_useraction_filter_status
+  """
+  The duration filter fields.
+  """
+  filter_duration: totara_useraction_filter_duration_input
+  """
+  The groups filter.
+  """
+  filter_applies_to: totara_useraction_filter_applies_to_input
+}
+
+"""
+Results of the scheduled rules query
+"""
+type totara_useraction_scheduled_rules_result implements core_pageable_result {
+  """
+  List of scheduled rules
+  """
+  items: [totara_useraction_scheduled_rule!]!
+  """
+  Total number of scheduled rules for this query.
+  """
+  total: Int!
+  """
+  Cursor to request the next batch of results for this query.
+  """
+  next_cursor: String!
+}
+
+extend type Query {
+  """
+  Query to fetch a paginated set of scheduled rules.
+  """
+  totara_useraction_scheduled_rules(
+    input: totara_useraction_scheduled_rules_input
+  ): totara_useraction_scheduled_rules_result
+
+  """
+  Fetch a single scheduled rule by ID.
+  """
+  totara_useraction_scheduled_rule(
+    id: core_id!
+  ): totara_useraction_scheduled_rule!
+}
+
+extend type Mutation {
+  """
+  Delete an existing scheduled rule by ID.
+  """
+  totara_useraction_delete_scheduled_rule(id: core_id!): Boolean!
+
+  """
+  Create a new scheduled rule.
+  """
+  totara_useraction_create_scheduled_rule(
+    input: totara_useraction_scheduled_rule_input!
+  ): totara_useraction_scheduled_rule!
+
+  """
+  Update an existing scheduled rule.
+  """
+  totara_useraction_update_scheduled_rule(
+    input: totara_useraction_update_scheduled_rule_input!
+  ): totara_useraction_scheduled_rule!
+}

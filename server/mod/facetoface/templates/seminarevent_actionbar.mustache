@@ -1,0 +1,78 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_actionbar
+
+    This template generates an action bar for seminar events and sessions.
+
+    Context variables required for this template:
+    * id: string id
+    * class: part of css class
+    * align: content alignment (far, center or near)
+    * label: label text for accessibility
+    * group: display as button group
+    * commandlinks: array containing buttons
+    * commandlinks.name: name used for part of the css class name
+    * commandlinks.primary: true to accent a button
+    * commandlinks.href: link url
+    * commandlinks.text: link text in HTML
+    * commandlinks.icon: use icon instead of text
+    * commandlinks.disabled: disable a button
+
+    Example content (json):
+    {
+        "id" : "id-123456",
+        "class" : "",
+        "align" : "far",
+        "label": "",
+        "group" : false,
+        "commandlinks" : [
+            {
+                "name" : "back",
+                "primary" : true,
+                "href" : "/index.php",
+                "text" : "Back"
+            },
+            {
+                "name" : "home",
+                "primary" : false,
+                "href" : "/index.php",
+                "text" : "Home"
+            }
+        ]
+    }
+}}
+
+<div class="mod_facetoface__action{{#class}} mod_facetoface__action-{{.}}{{/class}}{{#align}} mod_facetoface__action--{{.}}{{/align}}{{#group}} btn-group{{/group}}"{{#id}} id="{{.}}"{{/id}} role="group"{{#label}} aria-label="{{.}}"{{/label}}>
+    {{#commandlinks}}
+        {{#disabled}}
+            {{#icon}}<span role="link" aria-disabled="true" class="disabled commandlink mod_facetoface__action__{{name}}">{{#context}}{{> &&template }}{{/context}}</span>{{/icon}}
+            {{^icon}}<span role="button" aria-disabled="true" class="disabled commandlink btn {{#primary}}btn-primary{{/primary}}{{^primary}}btn-default{{/primary}} mod_facetoface__action__{{name}}">{{{text}}}</span>{{/icon}}
+        {{/disabled}}
+        {{^disabled}}
+            {{#icon}}<a href="{{href}}" class="commandlink mod_facetoface__action__{{name}}">{{#context}}{{> &&template }}{{/context}}</a>{{/icon}}
+            {{^icon}}<a href="{{href}}" role="button" class="commandlink btn {{#primary}}btn-primary{{/primary}}{{^primary}}btn-default{{/primary}} mod_facetoface__action__{{name}}">{{{text}}}</a>{{/icon}}
+        {{/disabled}}
+    {{/commandlinks}}
+</div>

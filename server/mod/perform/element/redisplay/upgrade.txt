@@ -1,0 +1,9 @@
+This files describes API changes in /mod/perform/element/redisplay/*,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+
+* Redisplay elements can now have missing records in the perform_section_element_reference table when the source activity
+  is deleted. To account for that, the performelement_redisplay\redisplay::post_update() method will no longer throw
+  an exception when the redisplay element does not have a record in perform_section_element_reference. Instead, it will
+  create a new one.

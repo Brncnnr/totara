@@ -1,0 +1,7 @@
+query totara_webapi_status {
+  totara_webapi_status {
+    status
+    timestamp
+    date: timestamp(format: DATELONG)
+  }
+}

@@ -1,0 +1,18 @@
+query mobile_findlearning_view_catalog($pointer: Int) {
+  catalogPage: mobile_findlearning_view_catalog(limit_from: $pointer) {
+    maxCount: max_count
+    pointer: limit_from
+    finalPage: final_records
+    items {
+      id
+      itemid
+      itemType: item_type
+      title
+      mobileImage: image_url
+      viewUrl: view_url
+      summary(format: MOBILE)
+      summaryFormat: summary_format
+      __typename
+    }
+  }
+}

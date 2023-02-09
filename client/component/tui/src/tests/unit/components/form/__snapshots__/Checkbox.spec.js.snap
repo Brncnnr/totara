@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox matches snapshot 1`] = `
+<div
+  class="tui-checkbox"
+>
+  <input
+    class="tui-checkbox__input"
+    id="id"
+    name="name"
+    type="checkbox"
+    value="bar"
+  />
+   
+  <label
+    class="tui-checkbox__label"
+    for="id"
+  >
+    content
+  </label>
+</div>
+`;

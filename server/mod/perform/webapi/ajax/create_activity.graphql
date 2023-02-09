@@ -1,0 +1,21 @@
+mutation mod_perform_create_activity(
+  $name: String!
+  $description: String
+  $type: core_id!
+) {
+  mod_perform_create_activity(
+    name: $name
+    description: $description
+    type: $type
+  ) {
+    activity {
+      id
+      name
+      description
+      type {
+        id
+        display_name
+      }
+    }
+  }
+}

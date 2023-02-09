@@ -1,0 +1,85 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Carl Anderson <carl.anderson@totaralearning.com>
+   @package totara_reportbuilder
+}}
+{{!
+
+    @template totara_reportbuilder/details
+
+    This template generates the details popover.
+
+    Data attributes required for JS:
+    * data-tw-create-report-create: Contains the URL's for creating a report
+    * data-tw-grid-item-toggle: The DOM element to close the details panel
+
+    Context variables required for this template:
+    * fullname: The name of the report source/template
+    * summary: A brief summary of what the report source/template is for
+    * defaultcolumns: A list of columns that are provided by default in the report source/template
+
+    Example context (json):
+    {
+        "fullname": "Report Name",
+        "summary": "long amounts for report summary",
+        "defaultcolumns": [
+            {
+                "groupName": "name",
+                "values": ["one", "two", "three"]
+            },
+            {
+                "groupName": "name 1",
+                "values": ["one", "two", "three"]
+            },
+        ]
+    }
+}}
+
+<h3 class="totara_reportbuilder__report_create_details_title">
+    {{fullname}}
+</h3>
+<p class="totara_reportbuilder__report_create_details_summary">
+    {{summary}}
+</p>
+
+<div class="totara_reportbuilder__report_create_details_buttons">
+    <button data-tw-create-report-create="/totara/reportbuilder/report.php">{{#str}}createandview, totara_reportbuilder{{/str}}</button>
+    <button data-tw-create-report-create="/totara/reportbuilder/general.php">{{#str}}createandedit, totara_reportbuilder{{/str}}</button>
+</div>
+
+<div class="totara_reportbuilder__report_create_details_columns">
+    <h4 class="totara_reportbuilder__report_create_details_columns-heading">{{#str}}defaultcolumns, totara_reportbuilder{{/str}}</h4>
+    <hr>
+    <ul class="totara_reportbuilder__report_create_details_columns-default">
+        {{#defaultcolumns}}
+            <li>
+                {{groupName}}
+                <ul>
+                    {{#values}}
+                    <li>{{.}}</li>
+                    {{/values}}
+                </ul>
+            </li>
+        {{/defaultcolumns}}
+    </ul>
+</div>
+{{! Down here for nicer SR flow}}
+<a href="#" class="totara_reportbuilder__report_create_details_close" data-tw-grid-item-toggle="">
+    {{#flex_icon}}close, closebuttontitle, core{{/flex_icon}}
+</a>

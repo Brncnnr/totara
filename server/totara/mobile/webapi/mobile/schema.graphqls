@@ -1,0 +1,593 @@
+"""
+Type describing mobile app user
+"""
+type totara_mobile_me {
+  user: totara_mobile_user!
+  system: totara_mobile_system!
+}
+
+"""
+Totara system information for mobile apps.
+"""
+type totara_mobile_system {
+  wwwroot: String!
+  apiurl: String!
+  release: String!
+  request_policy_agreement: Boolean!
+  request_user_consent: Boolean!
+  request_user_fields: Boolean!
+  password_change_required: Boolean!
+  """
+  Determines whether the user has permissions to view their own profile or not
+  """
+  view_own_profile: Boolean!
+  mobile_subplugins: [totara_mobile_subplugin]!
+}
+
+"""
+Some basic information on mobile subplugins
+"""
+type totara_mobile_subplugin {
+  name: String
+  version: String
+}
+
+"""
+User information for mobile app.
+"""
+type totara_mobile_user {
+  """
+  The user's base id
+  """
+  id: core_id!
+  """
+  The user's idnumber
+  """
+  idnumber: String
+  """
+  The user's username
+  """
+  username(format: core_format = PLAIN): String
+  """
+  The user's fullname, as defined in user policies
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  The user's first name
+  """
+  firstname(format: core_format = PLAIN): String
+  """
+  The user's last name
+  """
+  lastname(format: core_format = PLAIN): String
+  """
+  The user's middle name
+  """
+  middlename(format: core_format = PLAIN): String
+  """
+  The user's alternate name
+  """
+  alternatename(format: core_format = PLAIN): String
+  """
+  The user's email
+  """
+  email: String
+  """
+  The user's address
+  """
+  address(format: core_format = PLAIN): String
+  """
+  The user's first phone number
+  """
+  phone1(format: core_format = PLAIN): String
+  """
+  The user's secondary phone number
+  """
+  phone2(format: core_format = PLAIN): String
+  """
+  The user's department
+  """
+  department(format: core_format = PLAIN): String
+  """
+  The user's institution
+  """
+  institution(format: core_format = PLAIN): String
+  """
+  The user's city
+  """
+  city(format: core_format = PLAIN): String
+  """
+  The user's country
+  """
+  country: String
+  """
+  The user's description
+  """
+  description(format: core_format = HTML): String
+  """
+  The format of the user's description
+  """
+  descriptionformat: core_format
+  """
+  The url for the user's profile image
+  """
+  profileimageurl: String
+  """
+  The url for the user's profile image (small)
+  """
+  profileimageurlsmall: String
+  """
+  The url for the user's profile image (alt)
+  """
+  profileimagealt(format: core_format = PLAIN): String
+  """
+  The user's language
+  """
+  lang: String
+  """
+  The user's theme
+  """
+  theme: String
+  """
+  Whether the user is currently suspended from the system
+  """
+  suspended: Boolean
+  """
+  The user's timezone
+  """
+  timezone: String
+  """
+  The user's URL field
+  """
+  url(format: core_format = PLAIN): String
+  """
+  The user's skype
+  """
+  skype(format: core_format = PLAIN): String
+}
+
+"""
+Course information for mobile app.
+"""
+type totara_mobile_course {
+  course(courseid: core_id!): core_course
+  """
+  Grade max information pre-formatted by grade settings and handed through as string for display
+  as specified by the grade_decimalpoints setting
+  """
+  formatted_grademax: String
+  """
+  Grade final information pre-formatted by grade settings and handed through as string for display
+  as specified by the grade_decimalpoints setting
+  """
+  formatted_gradefinal: String
+  """
+  Flag indicating whether item is suitable for native mobile display
+  """
+  mobile_coursecompat: Boolean
+  """
+  A URL for the course image, but only if it isn't a default image
+  """
+  mobile_image: String
+}
+
+"""
+Program item for mobile app.
+"""
+type totara_mobile_program {
+  """
+  ID of the program
+  """
+  id: core_id!
+  """
+  Program fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Program shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Program idnumber
+  """
+  idnumber: String
+  """
+  Program summary
+  """
+  summary(format: core_format = MOBILE): String
+  """
+  The format of the program summary
+  """
+  summaryformat: core_format
+  """
+  Program endnnote to be displayed on completion
+  """
+  endnote(format: core_format = MOBILE): String
+  """
+  The format of the Certification endnote
+  """
+  endnoteformat: core_format
+  """
+  The date the current user is due in the program
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  The state of the duedate
+  """
+  duedate_state(format: core_format = PLAIN): String
+  """
+  The date/time the program is available from
+  """
+  availablefrom(format: core_date_format = TIMESTAMP): core_date
+  """
+  The date/time the program is available until
+  """
+  availableuntil(format: core_date_format = TIMESTAMP): core_date
+  """
+  The category this program is in
+  """
+  category: core_category
+  """
+  All of the coursesets in a program without additional formatting.
+  """
+  coursesets: [totara_mobile_program_courseset]
+  """
+  The coursesets of the program limited to the current courseset group for the viewing user.
+  """
+  current_coursesets: [[totara_mobile_program_courseset]]
+  """
+  A count of the coursesets after the current courseset group (split by a THEN condition)
+  """
+  count_unavailablesets: Int
+  """
+  A count of the coursesets in all the certifications completed courseset groups that a user did not have to complete.
+  """
+  count_optionalsets: Int
+  """
+  A count of the coursesets in all the certifications completed courseset groups that a user completed.
+  """
+  count_completedsets: Int
+  """
+  The header of the current courseset, combining count_optionalsets and count_completed steps into a string.
+  """
+  courseset_header: String
+  """
+  Current users completion information within the program
+  """
+  completion: totara_program_completion
+  """
+  A URL for the Program image, but only if it isn't a default image
+  """
+  mobile_image: String
+}
+
+"""
+Program courseset information for mobile programs
+Note: This differs slightly from core program coursesets for ease of use.
+"""
+type totara_mobile_program_courseset {
+  """
+  The database id of the courseset
+  """
+  id: core_id!
+  """
+  The name of the courseset
+  """
+  label(format: core_format = PLAIN): String!
+  """
+  An array of learning items (course type only) contained within the program
+  """
+  courses: [totara_mobile_program_content]
+  """
+  A string "then", "and", "or", describing the relation of the current courseset with the next one
+  """
+  nextsetoperator: totara_program_nextset
+  """
+  A string describing the criteria for completion of the courseset
+  """
+  criteria: [String!]!
+  """
+  The string status of the current user within the program
+  possible values: incomplete, complete
+  """
+  statuskey: String
+}
+
+"""
+Course content type returned as a current learning item
+"""
+type totara_mobile_program_content {
+  """
+  ID of the learning item
+  NOTE: This can not use the core_id type because we are adding the type to ensure uniqueness.
+  """
+  id: String!
+  """
+  Type of the learning item
+  (course, program, certification)
+  """
+  itemtype: String!
+  """
+  Component of the learning item
+  (core_course, totara_program, totara_certification)
+  """
+  itemcomponent: String!
+  """
+  Learning item shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Learning item fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Learning item description
+  """
+  description(format: core_format = MOBILE): String
+  """
+  The format of the learning item description
+  """
+  description_format: core_format
+  """
+  Learning item progress, a percentage of how far
+  through the item the user viewing it is.
+  """
+  progress: Float
+  """
+  Learning item URL, a link to view the learning item
+  """
+  url_view: String!
+  """
+  Learning item duedate, the date the learning item
+  is due for the viewing user.
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  Learning item duedate status, as computed by server. One of
+  "info", "warning", "danger", or "overdue".
+  """
+  duedate_state(format: core_format = PLAIN): String
+  """
+  Flag indicating whether item is suitable for native mobile display
+  """
+  mobile_coursecompat: Boolean
+  """
+  A URL for the course image, but only if it isn't a default image
+  """
+  mobile_image: String
+  """
+  Is item viewable
+  """
+  viewable: Boolean
+}
+
+"""
+Certification item for mobile app.
+"""
+type totara_mobile_certification {
+  """
+  Program ID of the certification
+  """
+  id: core_id!
+  """
+  Certification ID of the certification
+  """
+  certifid: core_id!
+  """
+  Certification fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Certification shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Certification idnumber
+  """
+  idnumber: String
+  """
+  Certification summary
+  """
+  summary(format: core_format = MOBILE): String
+  """
+  The format of the Certification summary
+  """
+  summaryformat: core_format
+  """
+  Certification endnnote to be displayed on completion
+  """
+  endnote(format: core_format = MOBILE): String
+  """
+  The format of the Certification endnote
+  """
+  endnoteformat: core_format
+  """
+  The date the current user is due in the Certification
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  The state of the duedate
+  """
+  duedate_state(format: core_format = PLAIN): String
+  """
+  The date/time the Certification is available from
+  """
+  availablefrom(format: core_date_format = TIMESTAMP): core_date
+  """
+  The date/time the Certification is available until
+  """
+  availableuntil(format: core_date_format = TIMESTAMP): core_date
+  """
+  The category this Certification is in
+  """
+  category: core_category
+  """
+  All of the coursesets in a Certification without any additional formatting.
+  """
+  coursesets: [totara_mobile_program_courseset]
+  """
+  The coursesets of the Certification limited to the current courseset group for the viewing user.
+  """
+  current_coursesets: [[totara_mobile_program_courseset]]
+  """
+  A count of the coursesets after the current courseset group (split by a THEN condition)
+  """
+  count_unavailablesets: Int
+  """
+  A count of the coursesets in all the certifications completed courseset groups that a user did not have to complete.
+  """
+  count_optionalsets: Int
+  """
+  A count of the coursesets in all the certifications completed courseset groups that a user completed.
+  """
+  count_completedsets: Int
+  """
+  The header of the current courseset, combining count_optionalsets and count_completed steps into a string.
+  """
+  courseset_header: String
+  """
+  Current users completion information within the Certification
+  """
+  completion: totara_certification_completion
+  """
+  A URL for the Certification image, but only if it isn't a default image
+  """
+  mobile_image: String
+}
+
+extend type Query {
+  """
+  Returns mobile app user info
+  """
+  totara_mobile_me: totara_mobile_me!
+
+  """
+  Return a users own profile information
+  """
+  totara_mobile_user_own_profile: totara_mobile_user!
+
+  """
+  Returns true if webview is active and usable, false otherwise.
+  """
+  totara_mobile_webview(secret: String!): Boolean!
+
+  """
+  Return a single course from its ID if the user can access it
+  The optional guestpw will grant guest access if there is an associated guest enrolment instance
+  """
+  totara_mobile_course(
+    courseid: core_id!
+    guestpw: String
+  ): totara_mobile_course!
+
+  """
+  Query to return a specific certification the user can access, given its program ID.
+  """
+  totara_mobile_certification(
+    certificationid: core_id!
+  ): totara_mobile_certification!
+
+  """
+  Query to return a specific program the user can access, given its ID.
+  """
+  totara_mobile_program(programid: core_id!): totara_mobile_program!
+
+  """
+  Queries to return details about SCORM activities
+  """
+  totara_mobile_scorm(scormid: core_id!): mod_scorm_scorm!
+
+  totara_mobile_scorm_current_status(
+    scormid: core_id!
+  ): mod_scorm_current_status!
+
+  """
+  Query to return additional details about a resource (file).
+  """
+  totara_mobile_resource(resourceid: core_id!): mod_resource_resource!
+
+  """
+  Query to return all mobile strings for the specific language
+  """
+  totara_mobile_language_strings(lang: String!): String!
+
+  """
+  Query to get messages
+  """
+  totara_mobile_messages: [message_popup_message]
+
+  """
+  Query to get count of unread messages
+  """
+  totara_mobile_unread_message_count: Int!
+}
+
+extend type Mutation {
+  """
+  Delete current mobile device registration
+  """
+  totara_mobile_delete_device: Boolean!
+
+  """
+  Set the fcm token for the current device
+  """
+  totara_mobile_set_fcmtoken(token: String): Boolean!
+
+  """
+  Request secret key for new webview
+  """
+  totara_mobile_create_webview(url: String!): String!
+
+  """
+  Delete previously requested webview
+  """
+  totara_mobile_delete_webview(secret: String!): Boolean!
+
+  """
+  Manually mark an activity as complete or incomplete
+  """
+  totara_mobile_completion_activity_self_complete(
+    cmid: core_id!
+    complete: Boolean!
+  ): Boolean!
+
+  """
+  Manually mark as course as self-completed
+  """
+  totara_mobile_completion_course_self_complete(courseid: core_id!): Boolean!
+
+  """
+  Mark one or more popup messages as read
+  """
+  totara_mobile_mark_messages_read(
+    input: message_popup_mark_messages_read_input
+  ): message_popup_mark_messages_read_result!
+
+  """
+  Mark an activity as viewed
+  """
+  totara_mobile_completion_activity_view(
+    cmid: core_id!
+    activity: String!
+  ): Boolean!
+
+  """
+  Mark a course as viewed for the current user
+  The course_id is mandatory, and the current user must be able to access the course
+  The section_id is optional, but if given must be the id of a section within the given course_id
+  """
+  totara_mobile_course_view(course_id: core_id!, section_id: core_id): Boolean!
+  """
+  Mark a program as viewed for the current user, the program_id is mandatory
+  """
+  totara_mobile_program_view(program_id: core_id!): Boolean!
+}
+
+"""
+Expected/Allowable results for the courseset nextsetoperator field
+"""
+enum totara_program_nextset {
+  OR
+  AND
+  THEN
+}

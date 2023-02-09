@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditorTextarea matches snapshot 1`] = `
+<div
+  class="tui-editorTextarea"
+  role="group"
+>
+  <select-stub
+    arialabel="[[format, core]]"
+    options="[object Object],[object Object],[object Object]"
+    value="1"
+  />
+   
+  <textarea-stub
+    arialabel="[[content, core]]"
+    charlength="full"
+    class="tui-editorTextarea__textarea"
+    rows="8"
+    value="text value"
+  />
+</div>
+`;

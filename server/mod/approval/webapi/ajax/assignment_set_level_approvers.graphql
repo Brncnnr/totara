@@ -1,0 +1,7 @@
+mutation mod_approval_assignment_set_level_approvers(
+  $input: mod_approval_assignment_set_level_approvers_input!
+) {
+  mod_approval_assignment_set_level_approvers(input: $input) {
+    success
+  }
+}

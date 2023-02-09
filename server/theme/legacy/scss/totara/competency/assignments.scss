@@ -1,0 +1,271 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-assignComp {
+  &__title {
+    @include tui-font-heading-page-title;
+  }
+
+  &__titleHelpIcon {
+    padding-left: var(--gap-2);
+  }
+
+  &__archiveActionModal {
+    &_confirm {
+      display: flex;
+      margin: var(--gap-6) 0;
+
+      input {
+        margin: var(--gap-1) var(--gap-4) 0 0;
+      }
+
+      label {
+        font-weight: normal;
+      }
+    }
+  }
+
+  &__backLink {
+    display: block;
+    padding-bottom: var(--gap-1);
+  }
+
+  &__btn {
+    @include bs-btn();
+    @include bs-btn-default();
+  }
+
+  &__expanded {
+    .tw-crumbWithTitle__heading {
+      height: auto;
+      white-space: normal;
+    }
+
+    &_block {
+      margin: var(--gap-4) 0;
+
+      &_title {
+        @include tui-font-heading-small();
+        margin: 0 0 var(--gap-2);
+      }
+    }
+
+    &_title {
+      @include tui-font-heading-medium();
+      margin: var(--gap-1) var(--gap-1) var(--gap-4) 0;
+    }
+  }
+
+  &__editProficiencyValueModal {
+    &_label {
+      @include tui-font-body-small();
+      display: block;
+    }
+  }
+}
+
+.tw-assignCompSave {
+  &__title {
+    @include tui-font-heading-page-title;
+  }
+
+  &__activate {
+    margin-bottom: var(--gap-2);
+  }
+
+  &__assign {
+    display: flex;
+    margin-bottom: var(--gap-4);
+
+    &_header {
+      height: 100%;
+      margin: auto 0;
+    }
+
+    &_selector {
+      margin-left: auto;
+      .tw-selectTree__current {
+        border-radius: var(--gap-1);
+        color: var(--color-state);
+        font-weight: normal;
+      }
+    }
+  }
+
+  &__backLink {
+    display: block;
+    padding-bottom: var(--gap-1);
+  }
+
+  &__basket {
+    border: 1px solid var(--color-neutral-3);
+    display: flex;
+    margin: var(--gap-4) 0;
+    padding: var(--gap-4);
+
+    &_link {
+      display: block;
+      margin: auto 0 auto auto;
+    }
+  }
+
+  &__overview {
+    background: var(--color-neutral-2);
+    display: flex;
+    padding: var(--gap-2) var(--gap-4);
+
+    &_btn {
+      margin-left: auto;
+    }
+
+    &_count {
+      @include tui-font-heading-x-small();
+      height: 100%;
+      margin: auto 0;
+      padding-right: var(--gap-4);
+    }
+
+    &_users {
+      height: 100%;
+      margin: auto 0;
+    }
+  }
+
+  &__selected {
+    margin-bottom: var(--gap-6);
+    position: relative;
+
+    &_empty {
+      border-bottom: 1px solid var(--color-neutral-4);
+      border-top: 1px solid var(--color-neutral-4);
+      font-style: italic;
+      padding: var(--gap-6) var(--gap-4);
+    }
+
+    &_group {
+      border: 1px solid var(--color-neutral-3);
+      border-radius: var(--gap-2);
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 var(--gap-2);
+      padding: var(--gap-4);
+
+      &_heading {
+        @include tui-font-heading-label-small();
+        flex-basis: 15%;
+        flex-shrink: 0;
+        margin: 0 0 var(--gap-4);
+        min-width: 150px;
+        word-break: break-all;
+      }
+
+      &_row {
+        display: flex;
+        padding: 0 0 var(--gap-2);
+
+        &_name {
+          font-weight: bold;
+          margin-right: var(--gap-2);
+          word-break: break-all;
+        }
+
+        &_icon {
+          margin: auto 0;
+
+          &:focus,
+          &:hover {
+            text-decoration: none;
+
+            .flex-icon {
+              color: var(--color-prompt-alert);
+              top: -1px;
+            }
+          }
+        }
+
+        &:last-child {
+          padding-bottom: var(--gap-1);
+        }
+
+        .flex-icon {
+          color: var(--color-neutral-4);
+          display: block;
+          font-weight: normal;
+          position: relative;
+          top: 0;
+          transition: all 0.06s ease;
+          transition-property: top, color;
+        }
+
+        &:hover {
+          .flex-icon {
+            color: var(--color-prompt-alert);
+          }
+        }
+      }
+    }
+  }
+
+  &__disabled {
+    color: var(--color-neutral-3);
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: var(--color-neutral-3);
+      cursor: default;
+      text-decoration: none;
+    }
+  }
+
+  &__hidden {
+    display: none;
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tw-assignComp {
+    &__pageBtns {
+      margin-bottom: var(--gap-2);
+      text-align: right;
+    }
+
+    &__title {
+      float: left;
+      margin-bottom: var(--gap-8);
+    }
+  }
+
+  .tw-assignCompSave {
+    &__selected {
+      &_group {
+        flex-direction: row;
+        padding: var(--gap-4) 0;
+
+        &_heading {
+          margin: 0 var(--gap-4);
+        }
+      }
+    }
+  }
+}

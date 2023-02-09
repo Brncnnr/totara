@@ -1,0 +1,5 @@
+{
+    "component": "totara_hierarchy",
+    "bundleWith": "totara_core",
+    "vendor": "totara"
+}

@@ -1,0 +1,25 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @module tuickage   tui
+
+:root {
+  --modal-container-padding: var(--gap-12);
+  --modal-sheet-padding: var(--gap-12);
+  --modal-border-radius: 0;
+
+  --modal-content-separation: var(--gap-2);
+  --modal-content-separation-large: var(--gap-8);
+  --modal-content-outer-padding: var(--gap-8);
+}

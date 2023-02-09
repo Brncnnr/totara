@@ -1,0 +1,11 @@
+mutation mod_approval_workflow_edit($input: mod_approval_workflow_edit_input!) {
+  mod_approval_workflow_edit(input: $input) {
+    workflow {
+      __typename
+      id
+      name
+      id_number
+      description
+    }
+  }
+}

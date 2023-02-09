@@ -1,0 +1,6 @@
+mutation totara_playlist_remove_resource(
+  $id: param_integer!
+  $instanceid: param_integer!
+) {
+  result: totara_playlist_remove_resource(id: $id, instanceid: $instanceid)
+}

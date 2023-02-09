@@ -1,0 +1,104 @@
+"""
+@deprecated since 16.0; only used together with deprecated query container_workspace_user_table_fields
+"""
+type container_workspace_user_table_field {
+  """
+  The field position that is pointing to card_display_field position.
+  Can either be from 0 to 3 - in total it is 4.
+  """
+  position: Int!
+  label: String!
+}
+
+"""
+Filters for querying users for workspace operations.
+"""
+input container_workspace_users_filter {
+  """
+  The workspace id to work with
+  """
+  workspace_id: core_id!
+  """
+  Other core filters.
+  """
+  core_filters: core_users_filter
+}
+
+"""
+input type for querying users for workspace operations.
+"""
+input container_workspace_user_query {
+  filters: container_workspace_users_filter!
+  order_by: String
+  order_dir: core_users_order_dir
+  result_size: param_integer
+  cursor: String
+}
+
+extend type Query {
+  """
+  Return filtered list of users in the system.
+  """
+  container_workspace_non_members(
+    query: container_workspace_user_query!
+  ): core_users_result!
+
+  """
+  A query to fetch users that are not members of a the workspace yet.
+
+  @deprecated since 16.0 Use container_workspace_non_member instead.
+  """
+  container_workspace_non_member_users(
+    """
+    The workspace's id that we are going to check against
+    """
+    workspace_id: param_integer!
+    """
+    User search term
+    """
+    search_term: param_text
+    """
+    The current cursor that we are looking at.
+    """
+    cursor: param_text
+  ): [core_user!]!
+
+  """
+  @deprecated since 16.0; not used anywhere.
+  """
+  container_workspace_non_member_users_cursor(
+    """
+    The workspace's id that we are going to check against.
+    """
+    workspace_id: param_integer!
+    """
+    User search term
+    """
+    search_term: param_text
+    """
+    The current cursor that help us to detect the next cursor.
+    """
+    cursor: param_text
+  ): container_workspace_cursor!
+
+  """
+  Query to fetch display fields, which will respect the setting of display card.
+  However - it will skip the the field fullname - as it is a default for workspace page.
+
+  @deprecated since 16.0; only used together with deprecated container_workspace_non_member_users
+  """
+  container_workspace_user_table_fields: [container_workspace_user_table_field!]!
+
+  """
+  A query to search for users by pattern.
+  This query is temporary to search for the users. It can be superceeded by the query
+  that sits in core if desire.
+  """
+  container_workspace_search_users(
+    """
+    Where this search is happening. Ideally that it must be done within a workspace.
+    """
+    workspace_id: param_integer!
+    pattern: param_text
+  ): [core_user!]!
+}

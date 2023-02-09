@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectRowCell Checks snapshot 1`] = `
+<div
+  class="tui-dataTableSelectRowCell"
+  role="cell"
+  selectrow="select row"
+>
+  <checkbox-stub
+    arialabel="fff:  the display name of the row"
+    id="id"
+  />
+</div>
+`;

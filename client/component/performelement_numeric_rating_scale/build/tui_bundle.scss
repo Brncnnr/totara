@@ -1,0 +1,48 @@
+.tui-numericRatingScaleAdminView {
+  &__input {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    & > * + * {
+      margin-left: var(--gap-4);
+    }
+  }
+}
+
+.tui-elementEditNumericRatingScaleParticipantForm {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  & > * + * {
+    margin-left: var(--gap-4);
+  }
+}
+
+.tui-numericRatingScaleParticipantPrint {
+  &__description {
+    margin-top: var(--gap-2);
+  }
+
+  &__formattedResponse {
+    margin-top: var(--gap-8);
+  }
+
+  &__notepadLines {
+    margin-top: var(--gap-4);
+  }
+
+  &--withDescription {
+    .tui-numericRatingScaleParticipantPrint {
+      &__formattedResponse {
+        margin-top: var(--gap-12);
+      }
+
+      &__notepadLines {
+        margin-top: var(--gap-8);
+      }
+    }
+  }
+}
+

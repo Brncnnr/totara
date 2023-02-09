@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    {
+      "name": "editor_weka"
+    },
+    {
+      "name": "totara_notification"
+    }
+  ]
+}

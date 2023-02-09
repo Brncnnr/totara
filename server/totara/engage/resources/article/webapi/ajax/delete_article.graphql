@@ -1,0 +1,3 @@
+mutation engage_article_delete_article($resourceid: param_integer!) {
+  result: engage_article_delete(resourceid: $resourceid)
+}

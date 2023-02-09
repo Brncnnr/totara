@@ -1,0 +1,174 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2018 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_roots
+
+@totara_style-btn-radius: @totara_style-spacing_x_small;
+@totara_style-btn-radius-small: 3px;
+
+.totara_style-btn {
+    background: @totara_style-color_neutral_1;
+    border: 1px solid @totara_style-color_neutral_5;
+    border-radius: @totara_style-btn-radius;
+    color: @totara_style-color_theme_1;
+    cursor: pointer;
+    display: inline-block;
+    font-size: @totara_style-size_16;
+    line-height: @totara_style-font_line_height_small;
+    margin: auto @totara_style-spacing_x_small;
+    padding: @totara_style-spacing_small;
+    position: relative;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: @totara_style-color_theme_1;
+        outline: 0;
+        text-decoration: none;
+    }
+
+    &:focus,
+    &:hover {
+        background: darken(@totara_style-color_neutral_1, 4%);
+        box-shadow: @totara_style-shadow_0;
+    }
+
+    &:active {
+        background: @totara_style-color_neutral_1;
+        box-shadow: none;
+    }
+
+    &_active {
+        background: darken(@totara_style-color_neutral_1, 4%);
+    }
+
+    &_prim {
+        background: @totara_style-color_theme_1;
+        color: @totara_style-color_neutral_1;
+        font-weight: bold;
+
+        &:active,
+        &:focus,
+        &:hover {
+            background: darken(@totara_style-color_theme_1, 3%);
+            color: @totara_style-color_neutral_1;
+        }
+
+        &:active {
+            background: @totara_style-color_theme_1;
+        }
+
+        &_active {
+            background: darken(@totara_style-color_theme_1, 3%);
+        }
+    }
+
+    &_small {
+        font-size: @totara_style-size_13;
+        line-height: 1.31;
+        padding: @totara_style-spacing_x_small @totara_style-spacing_small;
+
+        &_icon .flex-icon {
+            padding: 0 @totara_style-spacing_x_small 0 0;
+            vertical-align: baseline;
+            width: auto;
+
+            &.fa-caret-down {
+                padding: 0 0 0 @totara_style-spacing_x_small;
+            }
+        }
+    }
+
+    &_remove {
+        background: @totara_style-color_alert;
+        color: @totara_style-color_neutral_1;
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: @totara_style-color_neutral_1;
+        }
+
+        &:focus,
+        &:hover {
+            background: darken(@totara_style-color_alert, 4%);
+        }
+
+        &:active {
+            background: @totara_style-color_alert;
+        }
+    }
+
+    &_disabled {
+        border-color: lighten(@totara_style-color_neutral_5, 10%);
+        pointer-events: none;
+
+        &::after {
+            background: @totara_style-color_neutral_1;
+            border-radius: @totara_style-btn-radius-small;
+            content: '';
+            cursor: default;
+            display: block;
+            height: 100%;
+            left: 0;
+            opacity: .8;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+}
+
+.totara_style-btnGroup {
+    margin: auto 0;
+
+    .totara_style-btn {
+        margin: 0;
+
+        &:first-child {
+            border-radius: @totara_style-btn-radius 0 0 @totara_style-btn-radius;
+            border-right: none;
+        }
+        &:last-child {
+            border-radius: 0 @totara_style-btn-radius @totara_style-btn-radius 0;
+        }
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+            border-right: none;
+        }
+
+        &_active {
+            background: @totara_style-color_neutral_1;
+            color: @totara_style-color_neutral_6;
+            cursor: default;
+
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:hover {
+                box-shadow: none;
+            }
+        }
+    }
+}

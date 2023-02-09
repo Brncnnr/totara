@@ -1,0 +1,60 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Brian Barnes <brian.barnes@totaralearning.com>
+   @package block_current_learning
+}}
+{{!
+
+    @template block_current_learning/tile
+
+    This template generates a narrow item for catalog.
+
+    Classes required for JS:
+
+    Data attributes required for JS:
+    
+    Context variables required for this template:
+
+    Example context (json):
+    {
+    }
+}}
+<div class="block_current_learning-tiles" data-loading="true">
+  {{# haslearningitems }}
+    <div class="block_current_learning-tiles-loading">
+      {{#flex_icon}}loading, loading, core{{/flex_icon}}
+    </div>
+    <ul data-items-per-row="3">
+  {{/ haslearningitems }}
+  {{# learningitems }}
+      {{> block_current_learning/tile }}
+  {{/ learningitems }}
+  {{# haslearningitems }}
+    </ul>
+  {{/ haslearningitems }}
+  {{^ haslearningitems }}
+    <p class="current_learning-no-content">{{{ nocurrentlearning_rol_link }}}</p>
+  {{/ haslearningitems }}
+</div>
+{{> block_current_learning/paging}}
+{{#js}}
+require(['block_current_learning/current_learning_tiles'], function (current_learning) {
+    current_learning.init({{{contextdata}}});
+});
+{{/js}}

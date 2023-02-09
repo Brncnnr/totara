@@ -1,0 +1,30 @@
+{
+  "id": 1916572,
+  "assessable": false,
+  "collections": [],
+  "created_time": "2017-05-19T16:34:57+00:00",
+  "delivery": {
+    "duration": 0,
+    "mode": "self-paced"
+  },
+  "description": "<p>This course, intended for those who are either interviewing for a position with a new company or for a new role with their current employer, covers the fundamentals—the steps to take before, during, and after your interview.  Though many of the tips offered may feel “salesy”, the suggested approach is relevant to candidates in all spheres of business. After all, an interview is an exercise in sales – with you as the product! The course also includes two excellent TED talks, one on the topic of self-confidence, and another on the use of powerful body language, both critical to interview success. A short quiz follows each module.</p>",
+  "image": "\/totara\/contentmarketplace\/contentmarketplaces\/goone\/tests\/behat\/fixtures\/image.jpg",
+  "items": [],
+  "items_count": 9,
+  "language": "en",
+  "portal_collection": 4,
+  "pricing": {
+    "currency": "USD",
+    "price": 0,
+    "tax": 0,
+    "tax_included": false
+  },
+  "provider": {
+    "name": "GO1 Content"
+  },
+  "tags": [
+  ],
+  "title": "Interviewing 101",
+  "type": "course",
+  "updated_time": "2017-05-19T16:34:57+00:00"
+}

@@ -1,0 +1,17 @@
+query totara_api_client_settings($client_id: core_id!) {
+  settings: totara_api_client_settings(client_id: $client_id) {
+    client_settings {
+      id
+      client_rate_limit
+      default_token_expiry_time
+      response_debug
+    }
+    global_settings {
+      site_rate_limit
+      client_rate_limit
+      max_complexity_cost
+      default_token_expiry_time
+      response_debug
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Riana Rossouw <riana.rossouw@totaralearning.com>
+     @package totara_criteria
+}}
+{{!
+
+    @template totara_criteria/criterion_test
+
+    This template provides a test page for criteria templates
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-criterion-type: string Type of criterion being tested
+    * data-tw-editScaleValuePaths-criterion-key: string Criterion key
+    * data-tw-editScaleValuePaths-criterion-id int Criterion id
+
+    Context variables required for this template:
+    * type
+    * id
+    * name
+    * templatename
+
+    Other context variables for following partials:
+    * criterion templates
+
+    Strings:
+    * none
+
+}}
+
+<div class="criterion_test"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_criteria/criterion_test"
+     data-tw-criterion-type="{{type}}"
+     data-tw-editScaleValuePaths-criterion-key="tstcrit"
+     {{#id}}data-tw-editScaleValuePaths-criterion-id="{{.}}"{{/id}}>
+
+    <p style="font-weight: bold; font-size: larger">{{name}}</p>
+    <div class="criterion" style="border: 1px solid black; min-height: 3em; margin-top: 1.5em">
+        {{> &&criterion_templatename}}
+    </div>
+</div>

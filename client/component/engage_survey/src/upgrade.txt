@@ -1,0 +1,24 @@
+This files describes API changes in /client/component/engage_survey,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+* Updates in SurveyCard.vue to reference renamed css variable (---engage-card-height)
+  * SCSS changes
+* Updates in SurveySidePanel.vue
+  * Template changes
+
+=== 14.0 ===
+* Updated SurveyQuestionResult.vue adjusting the answer display to better suit longer answers
+  * Template & SCSS changes
+
+* Updated SurveyCardBody.vue adjusting the question to better suit longer questions
+  * Added displayName computed property
+  * Template changes
+
+* Updated SurveyResultBody.vue adjusting the question to better suit longer questions
+  * Added displayName computed property
+  * Template changes
+
+=== 13.2 ===
+* Updated SurveyResultBody.vue page to use a link instead of Label component
+  * Template & SCSS changes

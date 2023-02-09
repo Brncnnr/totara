@@ -1,0 +1,41 @@
+mutation totara_comment_update_reply(
+  $id: param_integer!
+  $content: String!
+  $format: param_integer
+  $draft_id: param_integer
+) {
+  reply: totara_comment_update_reply(
+    id: $id
+    content: $content
+    format: $format
+    draft_id: $draft_id
+  ) {
+    __typename
+    id
+    edited
+    deleted
+    content(format: HTML)
+    commentid
+    timedescription
+    user {
+      __typename
+      id
+      fullname
+      profileimagealt
+      profileimageurl
+    }
+    totalreactions
+    reasondeleted
+    interactor {
+      __typename
+      user_id
+      can_delete
+      can_report
+      can_update
+      can_react
+      can_follow_reply
+      reacted
+      can_view_author
+    }
+  }
+}

@@ -1,0 +1,5 @@
+check_oauth2verify_detailed,report_security
+check_oauth2verify_info_oauth2,report_security
+check_oauth2verify_info_ok,report_security
+check_oauth2verify_info_totara,report_security
+check_oauth2verify_info_totara_oauth2,report_security

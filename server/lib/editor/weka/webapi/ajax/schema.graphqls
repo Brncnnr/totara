@@ -1,0 +1,196 @@
+type editor_weka_extension {
+  name: String!
+  tuicomponent: String!
+
+  """
+  Options is an json_encoded string, this string should be decoded in the front-end and pass it to extension itself.
+  """
+  options: String
+}
+
+type editor_weka_editor {
+  extensions(
+    """
+    The component where the editor weka is used.
+    Deprecated in favour of usage_identifier.
+    """
+    component: param_component
+    """
+    The specific area within the component where the editor weka is used.
+    Deprecated in favour of usage_identifier.
+    """
+    area: param_area
+    """
+    Optional parameter to get the extensions. When the argument is passed, then it will
+    superceed the component/area to get the list of extension. Otherwise, by default the
+    list of extensions can be found by component/area
+    """
+    variant_name: param_alphaext
+    """
+    The parameter to pass down to the variant, as it can be treated as
+    extra data.
+    """
+    usage_identifier: core_editor_usage_identifier
+    """
+    A json encoded text string that the front-end want to pass to the server side for loading any other extra
+    extension, for example: specific custom extension.
+
+    The json content should look like:
+    [
+      {
+        "name": "valid_extension_name",
+        "options": {
+          "some_key": "valid_extension_value"
+        }
+      },
+      // And the list of extensions go on with the schema as same as object above.
+    ]
+    """
+    extra_extensions: param_text
+  ): [editor_weka_extension!]!
+  """
+  To tell whether we are displaying toolbar or not.
+  """
+  showtoolbar(
+    # This field is deprecated, and no longer needed
+    component: param_component
+    # This field is deprecated, and no longer needed
+    area: param_area
+  ): Boolean!
+    @deprecated(
+      reason: "The showtoolbar field had been deprecated and no longer needed"
+    )
+  """
+  The upload repository data
+  """
+  repository_data: editor_weka_repository_data!
+    @deprecated(
+      reason: "The repository_data is now fetched from query editor_weka_repository_data"
+    )
+  """
+  The context's id where the editor is being used. This has to be done as part of constructing
+  editor, most likely it can be context_system, if the component that is using editor is not providing one.
+  """
+  context_id: Int!
+  """
+  The current files within weka editor. If there are any.
+  """
+  files(
+    """
+    The component where the files are living.
+    By default, this will be 'user'
+    """
+    component: param_component
+    """
+    The file area which identify the place within the component.
+    By default, the value for this key will be 'draft'
+    """
+    file_area: param_area
+    """
+    The item's id - which should be the file draft id id.
+    """
+    item_id: param_integer
+  ): [editor_weka_file!]!
+    @deprecated(
+      reason: "The files field got deprecated in favour of query editor_weka_draft_file"
+    )
+
+  """
+  The current draft files within weka editor. If there are any.
+  """
+  draft_files(
+    """
+    The id of the draft area
+    """
+    draft_item_id: param_integer
+  ): [editor_weka_file!]!
+    @deprecated(
+      reason: "The files field got deprecated in favour of query editor_weka_draft_file"
+    )
+}
+
+type editor_weka_file {
+  filename: String!
+  file_size: Int!
+  mime_type: String!
+  url(force_download: Boolean!): String!
+  """
+  If media_type is null, then this file is not a part of any embbedded-able media files.
+  """
+  media_type: editor_weka_media_type
+  item_id: Int!
+}
+
+type editor_weka_repository_data {
+  url: String!
+  repository_id: Int!
+  """
+  A numeric string that represent for bytes. We are using string instead of
+  integer for this one because, graphql Integer does not support up to 64-bit integers but only 32-bit integers.
+  """
+  max_bytes: String!
+}
+
+type editor_weka_file_draft_area {
+  url: String!
+  draftid: Int!
+  repositoryid: Int!
+}
+
+enum editor_weka_media_type {
+  IMAGE
+  VIDEO
+  AUDIO
+}
+
+extend type Query {
+  editor_weka_editor(
+    """
+    Deprecated - in favour of parameter usage_identifier
+    """
+    component: param_component
+    """
+    Deprecated - in favour of parameter usage_identifier
+    """
+    area: param_area
+    """
+    Deprecated - in favour of parameter usage_identifier
+    """
+    instance_id: param_integer
+    """
+    The identifier where the editor is being used. The input includes the fields
+    component, area as required fields and optional for instance_id.
+    """
+    usage_identifier: core_editor_usage_identifier
+    """
+    Providing context_id so that the editor configuration can figure out where the editor is used.
+    """
+    context_id: param_integer
+  ): editor_weka_editor
+
+  """
+  A query to fetch the repository data for editor weka.
+  """
+  editor_weka_repository_data(
+    context_id: param_integer
+  ): editor_weka_repository_data!
+
+  """
+  A Query to get the file metadata of a draft file
+  """
+  editor_weka_draft_file(
+    item_id: param_integer!
+    filename: param_text!
+  ): editor_weka_file
+
+  """
+  Query to find the users by name's pattern.
+  """
+  editor_weka_users_by_pattern(
+    pattern: param_text!
+    contextid: param_integer
+    component: param_component
+    area: param_area
+    instance_id: param_integer
+  ): [core_user!]!
+}

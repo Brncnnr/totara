@@ -1,0 +1,9 @@
+This files describes API changes in the enrol_ldap code.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+=== 12.0 ===
+
+* enrol/ldap/cli/sync.php script has been deprecated in favour of enrol_ldap\task\sync_enrolments task.

@@ -1,0 +1,10 @@
+mutation mod_perform_update_activity_workflow_settings(
+  $input: workflow_settings!
+) {
+  mod_perform_update_activity_workflow_settings(input: $input) {
+    settings {
+      close_on_completion
+      close_on_due_date
+    }
+  }
+}

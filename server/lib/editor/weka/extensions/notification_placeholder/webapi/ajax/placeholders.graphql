@@ -1,0 +1,15 @@
+query weka_notification_placeholder_placeholders(
+  $context_id: param_integer!
+  $pattern: param_text!
+  $resolver_class_name: param_text!
+) {
+  placeholders: weka_notification_placeholder_placeholders(
+    context_id: $context_id
+    pattern: $pattern
+    resolver_class_name: $resolver_class_name
+  ) {
+    __typename
+    label
+    key
+  }
+}

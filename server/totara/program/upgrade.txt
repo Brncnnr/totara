@@ -1,0 +1,142 @@
+This files describes API changes in Totara Program,
+information provided here is intended especially for developers.
+
+=== 17.1 ===
+* The use of legacy program assignments will be removed in a future release.
+  * Function display_edit_assignment_form() has been deprecated.
+  * File program_assignment.js has been deprecated.
+
+=== 16.0 ===
+
+* Added new parameter $categoryid to totara_program_renderer::program_search_form(), to fix manage link button when user coming from a category.
+* Deprecated the string 'assignindividual'. It previously was used in the individual assignment dialog for displaying the users name and email address. Now the string is dynamically built in the backend.
+
+=== 15.0 ===
+
+* Introduced new config setting $CFG->program_message_prevent_resend_on_schedule_change. This is only relevant when
+  custom message types based on the legacy prog_eventbased_message class have been carried over from pre-14 versions.
+  When set to true, it switches off the default behaviour of resending program and certification messages on change of
+  message scheduling.
+
+=== 14.0 ===
+
+* DURATION_* globals have been deprecated. Please use the \totara_program\utils::DURATION_* constants instead.
+
+=== 13.0 ===
+
+* Added type hinting to prog_assignments_firstlogin function in totara/program/lib.php to force the first argument to
+  be of type integer.
+* Refactored several core program and certification functions. Most program and certification functions are now
+  completely separate - you should use the functions specific to the object you are manipulating.
+* The following functions were added:
+  * prog_set_status_complete
+* Removed deprecated methods:
+  * program::update_program_complete has been deprecated. Instead use prog_set_status_complete, certif_set_state_certified
+    certif_set_state_windowopen or certif_set_state_expired.
+  * program::is_required_learning()
+  * program::display_progress()
+* Class program_utilities has been moved into its own autoloaded class \totara_program\utils.
+* TIME_SELECTOR_* globals have been deprecated. Please use \totara_program\utils::TIME_SELECTOR_* constants.
+* $TIMEALLOWANCESTRINGS global variable has been deprecated. Please use \totara_program\utils::$timeallowancestrings.
+* Function program_get_context() has been deprecated. Please call context_program::instance instead.
+* EXCEPTIONTYPE_* globals have been deprecated. Please use \totara_program\exception\manager::EXCEPTIONTYPE_* constants.
+* SELECTIONTYPE_* globals have been deprecated. Please use \totara_program\exception\manager::SELECTIONTYPE_* constants.
+* SELECTIONACTION_* globals have been deprecated. Please use \totara_program\exception\manager::SELECTIONACTION_* constants.
+* RESULTS_PER_PAGE global has been deprecated. Please use \totara_program\exception\manager::RESULTS_PER_PAGE constant.
+* Deprecated the following classes and replaced with their autoloaded equivalents:
+  * prog_exceptions_manager, please use \totara_program\exception\manager instead.
+  * prog_exception, please use \totara_program\exception\base instead.
+  * time_allowance_exception, please use \totara_program\exception\time_allowance instead.
+  * already_assigned_exception, please use \totara_program\exception\already_assigned instead.
+  * duplicate_course_exception, please use \totara_program\exception\duplicate_course instead.
+  * completion_time_unknown_exception, please use \totara_program\exception\completion_time_unknown instead.
+  * unknown_exception, please use \totara_program\exception\unknown instead.
+* program::assigned_through_plan() method has been deprecated.
+* program::assigned_to_users_non_required_learning() method has been deprecated.
+* \totara_program\assignment\helper::can_update() added second argument $typeid.
+* prog_assignment_category::get_categories() added first argument $excludeui.
+* prog_format_seconds() added third argument $iscertif.
+
+=== 12.34 ===
+
+* Added totara_program\rb\display\program_assigned as a replacement for totara_program\rb\display\program_mandatory_status.
+
+=== 12.8 ===
+
+* Added new parameter $data to totara_program_renderer::display_set_completion(), this contains data to set the values of the set completion dialog.
+
+=== 12.0 ===
+
+* Removed deprecated file assignment/remove_item.php
+* Removed deprecated methods:
+  * program::is_accessible()
+  * program::delete_completion_record()
+  * course_set::get_course_warnings()
+  * prog_assignments::__get()
+  * prog_assignments::__call()
+  * prog_store_position_assignment()
+* Removed deprecated class user_assignment
+* Removed deprecated functions and properties in JavaScript:
+  * program_assignment.total_count
+  * program_assignment.is_setup
+  * program_assignment.update_total_user_count()
+  * program_assignment.setup()
+  * category.user_count_label
+  * category.update_user_count()
+* Deprecated the following report builder display functions and replaced with display classes
+  * rb_source_program_completion::rb_display_program_completion_status(), please call totara_program\rb\display\program_completion_status::display() instead.
+  * rb_source_program_membership::rb_display_prog_status(), please call totara_program\rb\display\program_completion_status::display() instead.
+  * rb_source_program_membership::rb_display_edit_completion(), please call totara_program\rb\display\program_edit_completion::display() instead.
+  * rb_source_program_overview::rb_display_program_completion_status(), please call totara_program\rb\display\program_completion_status::display() instead.
+  * rb_source_program_overview::rb_display_course_status_list(), please call totara_program\rb\display\program_course_status_list::display() instead.
+  * rb_source_program_overview::rb_display_category_link_list(), please call totara_program\rb\display\program_category_link_list::display() instead.
+  * rb_source_program_overview::rb_display_coursename_list(), please call totara_program\rb\display\program_course_name_list::display() instead.
+* Updated totara_program_renderer::coursecat_tree, removing a reference to an unnecessary JavaScript function call
+* totara_program_renderer::display_duedate_highlight_info() has changed, fixing a HTML validation issue
+
+=== 10.0 ===
+
+API Changes:
+
+* prog_update_completion() added a fourth argument to provide the users completion state if already calculated.
+* program::__construct() now accepts either an ID or a record from the database during construction.
+* program::is_program_complete() now returns a boolean, true when successful false otherwise.
+* program::is_program_inprogress() now returns a boolean, true when successful false otherwise.
+* program::is_accessible() now returns a boolean, true when successful false otherwise.
+* program_assignment_category::get_completion() added a third argument $canupdate.
+* program_assignment_category::build_table() allowed first argument to be a program instance as well as an id.
+This is an abstract method. These changes were applied to this method in its child categories (organisations_category,
+positions_category, cohorts_category, managers_category, individuals_category).
+* program_assignment_category::build_row() added a second argument $canupdate.
+This is an abstract method. These changes were applied to this method in its child categories (organisations_category,
+positions_category, cohorts_category, managers_category, individuals_category).
+* totara_program_renderer::display_edit_assignment_form() allowed first argument to be a program instance as well as an id.
+* program::set_timedue added optional parameter $message which overrides the default log message
+* program::display_completion_record_reason now ignores the second parameter
+* program::display_completion_record_reason now only returns the reasons a user might have a completion record, regardless
+of whether or not a completion record exists.
+* totara_program_renderer::get_completion_checker_results has been changed - the $data parameter now requires
+  fulllist, aggregatelist and totalcount.
+
+Deprecations:
+
+* program::is_accessible() has been deprecated, please call prog_is_accessible() instead.
+* prog_assignments::init_assignments() public access has been deprecated, please call prog_assignments::get_assignments() instead.
+* prog_assignments::$assignments public access has been deprecated, please call prog_assignments::get_assignments() instead.
+* prog_content::$coursesets public access has been deprecated, please call prog_content::get_course_sets() instead.
+* user_assignment class has been deprecated, use $program->set_timedue or prog_load_completion() and prog_write_completion() instead.
+* course_set::get_course_warnings() has being deprecated as the only warning it threw was removed
+
+JavaScript:
+* program_assignment.total_count property has been deprecated. Total program assignment count is no longer used.
+* program_assignment.is_setup property has been deprecated. This value is no longer used.
+* program_assignment.update_total_user_count() has been deprecated. The total program assignment count is no longer used.
+* program_assignment.setup() has been deprecated. This called update_total_user_count() which is no longer required.
+* category.user_count_label property has been deprecated. There element this referenced is no longer on the page.
+* category.update_user_count() has been deprecated. User count totals for categories are no longer used.
+* category.check_table_hidden_status() no longer calls category.update_user_count().
+* M.totara_programassignment.init no longer calls program_assignment.setup().
+* item.update_user_count no longer calls category.update_user_count().
+* The elements with classes 'overall_total' and 'user_count' which are used for the total amount of users to potentially be
+assigned, respectively, to a program overall and for a category, have been removed. As a result of the changes to JavaScript
+described in the points above, if elements with those classes are added back, they will not be updated with new user counts.

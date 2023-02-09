@@ -1,0 +1,347 @@
+"""
+Approver type enum.
+"""
+enum mod_approval_approver_type {
+  RELATIONSHIP
+  USER
+}
+
+"""
+Assignment type enum.
+"""
+enum mod_approval_assignment_type {
+  ORGANISATION
+  POSITION
+  COHORT
+}
+
+"""
+Input sort options for override assignments.
+"""
+enum mod_approval_override_assignments_sort_option_enums {
+  """
+  Sort by name ascending
+  """
+  NAME_ASC
+
+  """
+  Sort by name descending
+  """
+  NAME_DESC
+}
+
+"""
+Result type for ancestor_assignment_approval_levels query, a collection of assignment_approval_levels
+"""
+type mod_approval_ancestor_assignment_approval_levels_result {
+  items: [mod_approval_assignment_approval_level]!
+}
+
+"""
+Result for archiving an override assignment.
+"""
+type mod_approval_archive_override_assignment_result {
+  """
+  Result of operation
+  """
+  success: Boolean!
+
+  """
+  Archived assignment
+  """
+  assignment: mod_approval_workflow_assignment!
+}
+
+"""
+Properties relating to an assignment and approval level, such as approvers.
+"""
+type mod_approval_assignment_approval_level {
+  assignment: mod_approval_workflow_assignment!
+  approval_level: mod_approval_workflow_stage_approval_level!
+  approvers: [mod_approval_assignment_approver!]!
+  approvers_with_inheritance: [mod_approval_assignment_approver!]!
+  inherited_from_assignment_approval_level: mod_approval_assignment_approval_level
+}
+
+"""
+A single approver.
+"""
+type mod_approval_assignment_approver {
+  id: core_id!
+
+  """
+  Approver type
+  """
+  type: mod_approval_approver_type!
+
+  """
+  Approver's identity
+  """
+  approver_entity: mod_approval_approver_entity_union!
+}
+
+"""
+Workflow assignment result simple.
+"""
+type mod_approval_assignment_result {
+  """
+  Assignment.
+  """
+  assignment: mod_approval_workflow_assignment!
+
+  """
+  The approval levels, containing approvers, in the assignment.
+  """
+  assignment_approval_levels: [mod_approval_assignment_approval_level!]!
+}
+
+"""
+Paginated override assignments.
+"""
+type mod_approval_override_assignments_page_result implements core_pageable_result {
+  """
+  List of assignment overrides on the page.
+  """
+  items: [mod_approval_workflow_assignment_approvals!]!
+
+  """
+  Total number of override assignments.
+  """
+  total: Int!
+
+  """
+  Cursor to the next override assignment page.
+  """
+  next_cursor: String!
+}
+
+"""
+Workflow assignment.
+"""
+type mod_approval_workflow_assignment {
+  id: core_id!
+
+  """
+  Workflow assignment type.
+  """
+  assignment_type_label: String!
+
+  """
+  Status code
+  """
+  status: Int!
+
+  """
+  Status label
+  """
+  status_label: String!
+
+  """
+  Workflow assignment name.
+  """
+  name: String!
+
+  """
+  Module context id associated with this assignment
+  """
+  contextid: Int
+
+  """
+  User group the assignment is for.
+  """
+  assigned_to: mod_approval_workflow_assigned_to_union!
+}
+
+"""
+Workflow assignment approvals.
+"""
+type mod_approval_workflow_assignment_approvals {
+  """
+  Workflow assignment.
+  """
+  assignment: mod_approval_workflow_assignment!
+
+  """
+  The approval levels, containing approvers, in the assignment.
+  """
+  assignment_approval_levels: [mod_approval_assignment_approval_level!]!
+}
+
+"""
+A single approver's entity.
+"""
+union mod_approval_approver_entity_union = core_user | totara_core_relationship
+
+"""
+Input specifying an assignment and workflow_stage_id
+"""
+input mod_approval_ancestor_assignment_approval_levels_input {
+  assignment_id: core_id!
+  workflow_stage_id: core_id!
+}
+
+"""
+A single approver input.
+"""
+input mod_approval_approver_input {
+  assignment_approver_type: mod_approval_approver_type!
+  identifier: core_id!
+}
+
+"""
+Input for archive override assignment
+"""
+input mod_approval_archive_override_assignment_input {
+  """
+  Assignment id to archive.
+  """
+  assignment_id: core_id!
+}
+
+"""
+Input specifying an assignment approval level
+"""
+input mod_approval_assignment_approval_level_input {
+  assignment_id: core_id!
+  workflow_stage_approval_level_id: core_id!
+}
+
+"""
+Input for assignment_identifiers query
+"""
+input mod_approval_assignment_identifiers_input {
+  workflow_id: core_id!
+  assignment_type: mod_approval_assignment_type!
+}
+
+"""
+Input for new/exists assignment.
+"""
+input mod_approval_assignment_manage_input {
+  """
+  Assignment type code (organisation|position|cohort)
+  """
+  type: mod_approval_assignment_type!
+  """
+  ID of assignment database record
+  """
+  identifier: Int!
+  """
+  Workflow stage id
+  """
+  workflow_stage_id: core_id!
+}
+
+"""
+The input for setting the approvers in one approval level of an assignment.
+"""
+input mod_approval_assignment_set_level_approvers_input {
+  """
+  Assignment id.
+  """
+  assignment_id: core_id!
+
+  """
+  Approval level id.
+  """
+  approval_level_id: core_id!
+
+  """
+  Approvers to set.
+  """
+  approvers: [mod_approval_approver_input!]!
+}
+
+"""
+Input filters for override assignments.
+"""
+input mod_approval_override_assignments_filters_input {
+  """
+  Search for specific entity (e.g. organisation) name.
+  """
+  name: String
+}
+
+"""
+Input for override assignments.
+"""
+input mod_approval_override_assignments_input {
+  workflow_stage_id: core_id!
+
+  """
+  Pagination input
+  """
+  pagination: core_pagination_input
+
+  """
+  Filter results
+  """
+  filters: mod_approval_override_assignments_filters_input
+
+  """
+  Sort by input
+  """
+  sort_by: mod_approval_override_assignments_sort_option_enums = NAME_ASC
+}
+
+"""
+Input for override_for_assignment_type query
+"""
+input mod_approval_override_for_assignment_type_input {
+  workflow_id: core_id!
+  assignment_type: mod_approval_assignment_type!
+  assignment_identifier: core_id!
+}
+
+extend type Query {
+  """
+  Query to get ancestor assignment approval level.
+  """
+  mod_approval_ancestor_assignment_approval_levels(
+    input: mod_approval_ancestor_assignment_approval_levels_input!
+  ): mod_approval_ancestor_assignment_approval_levels_result!
+
+  """
+  Query to get the list of already-used identifiers for a given assignment type
+  """
+  mod_approval_assignment_identifiers(
+    input: mod_approval_assignment_identifiers_input!
+  ): [core_id]!
+
+  """
+  Query to get override assignments.
+  """
+  mod_approval_override_assignments(
+    input: mod_approval_override_assignments_input!
+  ): mod_approval_override_assignments_page_result!
+
+  """
+  Query to get the assignment for a given assignment type and identifier
+  """
+  mod_approval_override_for_assignment_type(
+    input: mod_approval_override_for_assignment_type_input!
+  ): mod_approval_workflow_assignment
+}
+
+extend type Mutation {
+  """
+  Archive an override assignment.
+  """
+  mod_approval_archive_override_assignment(
+    input: mod_approval_archive_override_assignment_input!
+  ): mod_approval_archive_override_assignment_result!
+
+  """
+  Create an assignment
+  """
+  mod_approval_assignment_manage(
+    input: mod_approval_assignment_manage_input!
+  ): mod_approval_assignment_result!
+
+  """
+  Set the approvers in one approval level of an assignment.
+  """
+  mod_approval_assignment_set_level_approvers(
+    input: mod_approval_assignment_set_level_approvers_input!
+  ): mod_approval_success_result!
+}

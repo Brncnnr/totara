@@ -1,0 +1,18 @@
+"""
+If you need to return custom content, then you will need to define a new type that implements this interface.
+"""
+interface totara_core_tui_tree_node_interface {
+  id: String!
+  label(format: core_format = PLAIN): String!
+  linkUrl: String
+}
+
+"""
+Represents a recursive tree node with a link and children for use in the tui tree component.
+"""
+type totara_core_tui_tree_node implements totara_core_tui_tree_node_interface {
+  id: String!
+  label(format: core_format = PLAIN): String!
+  linkUrl: String
+  children: [totara_core_tui_tree_node!]!
+}

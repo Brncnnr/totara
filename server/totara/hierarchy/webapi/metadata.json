@@ -1,0 +1,447 @@
+{
+  "OBJECT": {
+    "totara_hierarchy_position": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 27
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Senior project manager"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "senior_project_manager"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "PM3"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "A grade 3 project manager."
+          }
+        },
+        "frameworkid": {
+          "documentation": {
+            "example": 6
+          }
+        },
+        "framework": {
+          "documentation": {
+            "example": {
+              "id": 7,
+              "fullname": "Active company roles"
+            }
+          }
+        },
+        "path": {
+          "documentation": {
+            "example": "/4/22/27"
+          }
+        },
+        "parent": {
+          "documentation": {
+            "example": {
+              "id": 22,
+              "fullname": "Project Manager"
+            }
+          }
+        },
+        "children": {
+          "documentation": {
+            "example": []
+          }
+        },
+        "typeid": {
+          "documentation": {
+            "example": 7
+          }
+        },
+        "type": {
+          "documentation": {
+            "example": {
+              "id": 3,
+              "fullname": "Managerial roles"
+            }
+          }
+        }
+      }
+    },
+    "totara_hierarchy_position_type": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 3
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Managerial roles"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "manager_roles"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "MAN1"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This type defines positions with line management responsibility."
+          }
+        }
+      }
+    },
+    "totara_hierarchy_position_framework": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 7
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Active company roles"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "active_roles"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "ACTIVEROLES"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This is the main position framework for active positions used by our company."
+          }
+        }
+      }
+    },
+    "totara_hierarchy_organisation": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 27
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Sales and Marketing"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "sales"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "SM1"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "Sales and marketing are based in our US office."
+          }
+        },
+        "frameworkid": {
+          "documentation": {
+            "example": 6
+          }
+        },
+        "framework": {
+          "documentation": {
+            "example": {
+              "id": 7,
+              "fullname": "Global company organisation structure"
+            }
+          }
+        },
+        "path": {
+          "documentation": {
+            "example": "/4/22/27"
+          }
+        },
+        "parent": {
+          "documentation": {
+            "example": {
+              "id": 22,
+              "fullname": "Head Office"
+            }
+          }
+        },
+        "children": {
+          "documentation": {
+            "example": [
+              {
+                "id": 45,
+                "fullname": "US sales team"
+              },
+              {
+                "id": 37,
+                "fullname": "Europe sales team"
+              }
+            ]
+          }
+        },
+        "typeid": {
+          "documentation": {
+            "example": 7
+          }
+        },
+        "type": {
+          "documentation": {
+            "example": {
+              "id": 3,
+              "fullname": "Organisational units"
+            }
+          }
+        }
+      }
+    },
+    "totara_hierarchy_organisation_type": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 3
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Organisational units"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "org_units"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "ORG1"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This type defines organisation units with specific business functions."
+          }
+        }
+      }
+    },
+    "totara_hierarchy_organisation_framework": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 7
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Global company organisation structure"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "global_structure"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "MAIN1"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This is the main organisation framework for organisations for our company."
+          }
+        }
+      }
+    }
+  },
+  "INTERFACE": {
+    "totara_hierarchy_item": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 9
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Example hierarchy item"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "example_hierarchy_item"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "HI567"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This is an example hierarchy item."
+          }
+        },
+        "frameworkid": {
+          "documentation": {
+            "example": 5
+          }
+        },
+        "framework": {
+          "documentation": {
+            "example": {
+              "id": 8,
+              "fullname": "Example hierarchy framework"
+            }
+          }
+        },
+        "path": {
+          "documentation": {
+            "example": "/1/2/45"
+          }
+        },
+        "parent": {
+          "documentation": {
+            "example": {
+              "id": 16,
+              "fullname": "Example hierarchy item"
+            }
+          }
+        },
+        "children": {
+          "documentation": {
+            "example": [
+              {
+                "id": 5,
+                "fullname": "Example hierarchy item"
+              },
+              {
+                "id": 7,
+                "fullname": "Another example hierarchy item"
+              }
+            ]
+          }
+        },
+        "typeid": {
+          "documentation": {
+            "example": 14
+          }
+        },
+        "type": {
+          "documentation": {
+            "example": {
+              "id": 3,
+              "fullname": "Example hierarchy type"
+            }
+          }
+        }
+      }
+    },
+    "totara_hierarchy_type": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 3
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Example hierarchy type"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "example_hierarchy_type"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "HTY123"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This is an example hierarchy type."
+          }
+        }
+      }
+    },
+    "totara_hierarchy_framework": {
+      "fields": {
+        "id": {
+          "documentation": {
+            "example": 7
+          }
+        },
+        "fullname": {
+          "documentation": {
+            "example": "Example hierarchy framework"
+          }
+        },
+        "shortname": {
+          "documentation": {
+            "example": "example_hierarchy_framework"
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "HFW123"
+          }
+        },
+        "description": {
+          "documentation": {
+            "example": "This is an example hierarchy framework."
+          }
+        }
+      }
+    }
+  },
+  "INPUT_OBJECT": {
+    "totara_hierarchy_position_reference": {
+      "inputFields": {
+        "id": {
+          "documentation": {
+            "example": 4
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "pos1"
+          }
+        }
+      }
+    },
+    "totara_hierarchy_organisation_reference": {
+      "inputFields": {
+        "id": {
+          "documentation": {
+            "example": 4
+          }
+        },
+        "idnumber": {
+          "documentation": {
+            "example": "org1"
+          }
+        }
+      }
+    }
+  }
+}

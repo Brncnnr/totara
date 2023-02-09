@@ -1,0 +1,11 @@
+query mod_approval_workflow_stage_move_to(
+  $input: mod_approval_workflow_stage_input!
+) {
+  mod_approval_workflow_stage_move_to(input: $input) {
+    options {
+      name
+      value
+      data
+    }
+  }
+}

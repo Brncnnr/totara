@@ -1,0 +1,16 @@
+query totara_core_my_current_learning {
+  totara_core_my_current_learning {
+    id
+    itemtype
+    itemcomponent
+    shortname
+    fullname
+    description
+    description_format
+    progress
+    url_view
+    duedate
+    duedate_state
+    image_src
+  }
+}

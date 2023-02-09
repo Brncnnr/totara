@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmitCancelGroup Checks snapshot 1`] = `
+<div
+  class="tui-formBtnGroup"
+>
+  <button
+    class="tui-formBtn tui-formBtn--prim"
+    type="submit"
+  >
+    <span
+      class="tui-formBtn__text"
+    >
+      
+    fff
+  
+    </span>
+     
+    <!---->
+     
+    <span
+      aria-live="assertive"
+    >
+      <!---->
+    </span>
+  </button>
+   
+  <button
+    class="tui-formBtn"
+    type="button"
+  >
+    <span
+      class="tui-formBtn__text"
+    >
+      
+    fff
+  
+    </span>
+     
+    <!---->
+     
+    <span
+      aria-live="assertive"
+    >
+      <!---->
+    </span>
+  </button>
+</div>
+`;

@@ -1,0 +1,57 @@
+{{!
+/*
+ * This file is part of Totara LMS
+ *
+ * Copyright (C) 2019 onwards Totara Learning Solutions LTD
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author    Chris Snyder <chris.snyder@totaralearning.com>
+ * @package   totara_mobile
+ */
+}}
+{{!
+
+    @template totara_mobile/app_link_banner
+
+    Template for mobile app link banner.
+
+    Classes required for JS (in this template):
+    * none
+
+    Context variables required for this template:
+    * message string Message for banner.
+    * appurl string App link URL.
+    * pageurl string URL of current page.
+
+    Example context (json):
+    {
+        "appurl": "https://mobile.totaralearning.com/register",
+        "pageurl": "https://example.com/totara/"
+    }
+}}
+<div class="mobile-app-banner">
+    <div class="mobile-app-banner-message">
+        {{#flex_icon}} totara_mobile|icon {{/flex_icon}}
+        {{#str}} switchtoapp, totara_mobile {{/str}}
+    </div>
+    <a href="{{{appurl}}}" class="btn btn-primary mobile-app-banner-gotoapp">{{#str}} gotomobile, totara_mobile {{/str}}</a>
+    <a href="{{{pageurl}}}" class="btn btn-default mobile-app-banner-continue">{{#str}} continueinbrowser, totara_mobile {{/str}}</a>
+</div>
+{{#js}}
+    document.querySelector(".mobile-app-banner-continue").addEventListener("click", function(e){
+        e.preventDefault();
+        e.target.parentElement.outerHTML = "";
+    });
+{{/js}}

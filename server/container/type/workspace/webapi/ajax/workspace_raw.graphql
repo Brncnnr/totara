@@ -1,0 +1,10 @@
+query container_workspace_workspace_raw($id: param_integer!) {
+  workspace: container_workspace_workspace(id: $id) {
+    __typename
+    id
+    description(format: RAW)
+    description_format
+    name(format: RAW)
+    access
+  }
+}

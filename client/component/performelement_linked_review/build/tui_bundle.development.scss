@@ -1,0 +1,100 @@
+.tui-linkedReviewAdminView {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__card {
+    flex-direction: column;
+    padding: var(--gap-4);
+    background: var(--color-neutral-3);
+  }
+
+  &__footer {
+    margin-top: var(--gap-8);
+  }
+}
+
+.tui-linkedReviewParticipantForm {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__items {
+    & > * + * {
+      margin-top: var(--gap-8);
+    }
+  }
+
+  &__item {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+
+    &-card {
+      max-width: 1200px;
+      background: var(--color-neutral-3);
+    }
+
+    &-cardContent {
+      width: 100%;
+      padding: var(--gap-4);
+    }
+
+    &-cardActions {
+      display: flex;
+      align-items: flex-start;
+      width: var(--gap-9);
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__questions {
+    & > * + * {
+      margin-top: var(--gap-8);
+    }
+
+    &-content {
+      margin-top: var(--gap-8);
+
+      & > * + * {
+        margin-top: var(--gap-8);
+      }
+    }
+  }
+}
+
+.tui-linkedReviewSelectedContent {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__items {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__item {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+
+    &-card {
+      max-width: 1200px;
+      background: var(--color-neutral-3);
+    }
+
+    &-cardContent {
+      width: 100%;
+      padding: var(--gap-4);
+    }
+
+    &-cardActions {
+      display: flex;
+      align-items: flex-start;
+      width: var(--gap-9);
+      margin-top: var(--gap-2);
+    }
+  }
+}
+

@@ -1,0 +1,79 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Cody Finegan <cody.finegan@totaralearning.com>
+   @package block_totara_recently_viewed
+}}
+{{!
+    @template block_totara_recently_viewed/card_engage_article
+
+    An individual card representing one of the recently viewed elements.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * url: URL to the item
+    * title: Title to show at the top of the card
+    * image: URL to the card image
+    * show_reactions: Boolean, setting whether the reactions should be shown or not
+    * extra: Additional data used by the template
+    * extra -> timetoview: String, text of the time to view element
+    * extra -> likes: String, number of likes
+
+    Example context (json):
+    {
+        "url": "https://example.com/item"
+        "title": "Article Title",
+        "image": "https://example.com/banner.png",
+        "show_reactions": true,
+        "extra": {
+            "timetoview": "5-10 mins",
+            "likes": 5
+        }
+    }
+}}
+<div class="block-trv-card-wrapper">
+    <div class="block-trv-card-border">
+        <div class="block-trv-card">
+            <div class="block-trv-image-wrapper">
+                <div class="block-trv-image" style="background-image: url({{image}})"></div>
+            </div>
+            <div class="block-trv-content">
+                <h3 class="block-trv-title"><a href="{{url}}">{{title}}</a></h3>
+                {{#extra}}
+                    <div class="block-trv-reactions">
+                        <div class="block-trv-timetoview" title="{{timetoview}}">
+                            {{#flex_icon}}clock, timetoview, block_totara_recently_viewed, ft-size-200{{/flex_icon}}
+                            <div class="block-trv-timetoview-text">{{timetoview}}</div>
+                        </div>
+                        {{#show_reactions}}
+                            <div class="block-trv-likes">
+                                {{#flex_icon}}totara_core|like{{/flex_icon}}
+                                <span class="block-trv-likes-text">{{likes}}</span>
+                            </div>
+                        {{/show_reactions}}
+                    </div>
+                {{/extra}}
+            </div>
+        </div>
+    </div>
+</div>

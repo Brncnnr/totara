@@ -1,0 +1,157 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+    @template mod_facetoface/take_attendance
+
+    This template generate the form of take attendance.
+
+    Classes requried for JS:
+    * none
+
+    Context variables required for this template:
+    * url: The base url of taking attendance
+    * sessionid: Seminar's event id
+    * sessiondateid: The session date id of the current event, this could be zero.
+    * formattributes: The list of form attributes
+    * formattributes -> name: The name of attribute that need to be in the form
+    * formattributes -> value: Value of the attribute.
+    * hiddeninputs: The list of hidden inputs, within the form
+    * hiddeninputs -> name: Hidden input's name
+    * hiddeninputs -> value: Hidden input's value
+    * tablecontent: HTML code from totara_table, which is a part of this form
+    * sessionpicker: take_attendance_session_picker widget, if this is not set, then it won't displayed
+    * bulkaction: take_attendance_bulk_action widget.
+    * exports: List of options for exporting to file
+    * exports -> value: Export type
+    * exports -> label: Public string for export type
+    * notsetcode: code for state not_set, which the front-end needs
+    * csvexportforuploadurl: CSV export for Upload
+    * uploadattendanceurl: Upload event attendace and grades
+    * disableupload: Disable Upload event button for upcoming/in-progress event attendance
+    * showupload: Show Upload and CSV export for Upload for event only
+    * hasarchive: If any attendee has archive record
+    * archivenotification: Dispaly archive notification message if any attendee has archive record
+
+    Example context (json):
+        There is no example for this template
+
+     Other context variables for following partials:
+        * mod_facetoface/take_attendance_session_picker
+        * mod_facetoface/take_attendance_bulk_action
+}}
+
+{{#hasarchive}}{{{archivenotification}}}{{/hasarchive}}
+
+<div class="tw-takeAttendance"
+     data-url="{{url}}"
+     data-sessionid="{{sessionid}}"
+     data-sessiondateid="{{sessiondateid}}"
+     data-notsetcode="{{notsetcode}}"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="mod_facetoface/take_attendance">
+
+    {{#sessionpicker}}{{>mod_facetoface/take_attendance_session_picker}}{{/sessionpicker}}
+
+    <form {{#formattributes}} {{name}}='{{value}}'{{/formattributes}}>
+        {{#hiddeninputs}}
+            <input type="hidden" name="{{name}}"  value="{{value}}"/>
+        {{/hiddeninputs}}
+
+        {{#bulkaction}}{{>mod_facetoface/take_attendance_bulk_action}}{{/bulkaction}}
+
+        {{{ tablecontent }}}
+
+        <div class="actionsbuttons">
+            <input type="submit" name="saveattendance" value="{{#str}} saveattendance, mod_facetoface {{/str}}" id="f2f-save-taking-attendance"
+                class="btn btn-primary" {{#disabled}}disabled{{/disabled}}/>
+            <input type="submit" name="cancelform" value="{{#str}} cancel, moodle {{/str}}" id="f2f-cancel-taking-attendance"
+                class="btn btn-cancel" {{#disabled}}disabled{{/disabled}}/>
+        </div>
+
+    </form>
+<!-- TODO: do not remove until clear decision for DES-95
+    <form autocomplete="off" accept-charset="utf-8" id="mform501" class="mform import_export">
+        <fieldset class="clearfix collapsible" id="id_import_export">
+            <legend class="ftoggler">
+                <a href="#" class="fheader" role="button" aria-controls="id_import_export" aria-expanded="true">
+                    Activity completion
+                </a>
+            </legend>
+
+            <div class="fcontainer clearfix">
+                <div id="fgroup_id_import_export" class="fitem fitem_fgroup">
+                    <fieldset class="fgroup" data-fieldtype="group">
+
+                        <a href="#"
+                           role="button"
+                           class="btn btn-default btn-primary">
+                            Submit seminar completion
+                        </a>
+
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+-->
+    <form autocomplete="off" accept-charset="utf-8" id="mform500" class="mform import_export">
+        <fieldset class="clearfix collapsible" id="id_import_export">
+            {{#showupload}}
+                <legend class="ftoggler">
+                    <a href="#" class="fheader" role="button" aria-controls="id_import_export" aria-expanded="true">
+                        {{#str}} importexportattendancelegend, mod_facetoface {{/str}}
+                    </a>
+                </legend>
+            {{/showupload}}
+
+            <div id="fgroup_id_import_export" class="fcontainer clearfix fitem fitem_fgroup">
+                <fieldset class="fgroup" data-fieldtype="group">
+
+                    {{#showupload}}
+                        <a href="{{#disableupload}}#{{/disableupload}}{{^disableupload}}{{{uploadattendanceurl}}}{{/disableupload}}"
+                           role="button" {{#disableupload}}aria-disabled="true"{{/disableupload}}
+                           class="btn btn-default mod_facetoface__action_uploadattendance {{#disableupload}}disabled{{/disableupload}}">
+                            {{#str}} uploadattendance, mod_facetoface {{/str}}
+                        </a>
+
+                        <a href="{{{csvexportforuploadurl}}}"
+                           role="button" class="btn btn-default mod_facetoface__action_csvexportupload">
+                            {{#str}} exportcsvforupload, mod_facetoface {{/str}}
+                        </a>
+                    {{/showupload}}
+
+                    <label class="accesshide sr-only" for="menuf2f-export-actions">
+                        {{#str}} attendeeactions, mod_facetoface {{/str}}
+                    </label>
+                    <select name="f2f-export-actions" id="menuf2f-export-actions" autocomplete="off">
+                        <option value=""> {{#str}} selectexport, mod_facetoface {{/str}} </option>
+                        {{#exports}}
+                            <option value="{{value}}"> {{label}} </option>
+                        {{/exports}}
+                    </select>
+
+                </fieldset>
+            </div>
+        </fieldset>
+    </form>
+</div>

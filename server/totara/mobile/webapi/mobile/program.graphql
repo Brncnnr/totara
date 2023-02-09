@@ -1,0 +1,51 @@
+query totara_mobile_program($programid: core_id!) {
+  totara_mobile_program(programid: $programid) {
+    id
+    idnumber
+    fullname
+    shortname
+    duedate(format: ISO8601)
+    duedateState: duedate_state(format: PLAIN)
+    summary(format: MOBILE)
+    summaryformat
+    endnote(format: MOBILE)
+    endnoteformat
+    availablefrom(format: ISO8601)
+    availableuntil(format: ISO8601)
+    imageSrc: mobile_image
+    completion {
+      id
+      statuskey
+      progress
+      __typename
+    }
+    currentCourseSets: current_coursesets {
+      id
+      label
+      nextsetoperator
+      completionCriteria: criteria
+      statuskey
+      courses {
+        id
+        itemtype
+        itemcomponent
+        shortname
+        fullname
+        summary: description(format: MOBILE)
+        summaryFormat: description_format
+        progress
+        urlView: url_view
+        duedate(format: ISO8601)
+        duedateState: duedate_state
+        native: mobile_coursecompat
+        imageSrc: mobile_image
+        viewable
+        __typename
+      }
+      __typename
+    }
+    countUnavailableSets: count_unavailablesets
+    courseSetHeader: courseset_header
+    __typename
+  }
+}

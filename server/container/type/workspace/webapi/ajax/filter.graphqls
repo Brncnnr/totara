@@ -1,0 +1,129 @@
+"""
+Enum sorting option for the workspace
+"""
+enum container_workspace_workspace_sort {
+  RECENT
+  ALPHABET
+  SIZE
+}
+
+"""
+Enum sorting option for the members.
+"""
+enum container_workspace_member_sort {
+  RECENT_JOIN
+  NAME
+}
+
+enum container_workspace_discussion_sort {
+  RECENT
+  DATE_POSTED
+}
+
+enum container_workspace_file_sort {
+  RECENT
+  NAME
+  SIZE
+}
+
+"""
+Enum to determined how to load the workspace from.
+"""
+enum container_workspace_workspace_source {
+  """
+  All the workspaces in the system.
+  """
+  ALL
+
+  """
+  Only including the workspace that you are a creator.
+  """
+  OWNED
+
+  """
+  Only including the workspace that you are member of.
+  """
+  MEMBER
+
+  """
+  Other workspace that user is not a part of.
+  """
+  OTHER
+
+  """
+  Workspaces that user is member of or a creator.
+  """
+  MEMBER_AND_OWNED
+}
+
+type container_workspace_workspace_source_option {
+  value: container_workspace_workspace_source!
+  label(format: core_format!): String!
+}
+
+type container_workspace_workspace_sort_option {
+  value: container_workspace_workspace_sort!
+  label(format: core_format!): String!
+}
+
+type container_workspace_workspace_access_option {
+  value: container_workspace_access
+  label(format: core_format!): String!
+}
+
+type container_workspace_member_sort_option {
+  value: container_workspace_member_sort!
+  label(format: core_format!): String!
+}
+
+type container_workspace_discussion_sort_option {
+  value: container_workspace_discussion_sort!
+  label(format: core_format!): String!
+}
+
+type container_workspace_file_sort_option {
+  value: container_workspace_file_sort!
+  label(format: core_format!): String!
+}
+
+type container_workspace_file_extension_option {
+  value: String!
+  label(format: core_format!): String!
+}
+
+extend type Query {
+  """
+  Query to load the workspace source options
+  """
+  container_workspace_workspace_sources: [container_workspace_workspace_source_option!]!
+  """
+  Query to load the workspace sort options
+  """
+  container_workspace_workspace_sorts: [container_workspace_workspace_sort_option!]!
+  """
+  Query to load the workspace's member sort options
+  """
+  container_workspace_member_sorts: [container_workspace_member_sort_option!]!
+
+  """
+  Query to load the workspace's discussion sort options.
+  """
+  container_workspace_discussion_sorts: [container_workspace_discussion_sort_option!]!
+
+  """
+  Query to load the workspace's file sort options
+  """
+  container_workspace_file_sorts: [container_workspace_file_sort_option!]!
+
+  """
+  Query to load the file source options
+  """
+  container_workspace_file_extensions(
+    workspace_id: param_integer
+  ): [container_workspace_file_extension_option!]!
+
+  """
+  Query to load all the access options.
+  """
+  container_workspace_workspace_accesses: [container_workspace_workspace_access_option!]!
+}

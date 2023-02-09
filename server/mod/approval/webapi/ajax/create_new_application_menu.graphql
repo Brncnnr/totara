@@ -1,0 +1,10 @@
+query mod_approval_create_new_application_menu(
+  $query: mod_approval_create_new_application_menu_query
+) {
+  mod_approval_create_new_application_menu(query: $query) {
+    assignment_id
+    workflow_type
+    job_assignment
+    job_assignment_id
+  }
+}

@@ -1,0 +1,26 @@
+"""
+Type containing information about the current status of the API. status is always 'ok'.
+This is intended to test that you are able to successfully execute GraphQL queries.
+"""
+type totara_webapi_status {
+  """
+  The status of the API (always returns 'ok' if working).
+  """
+  status: String!
+  """
+  Timestamp of the request.
+  """
+  timestamp(
+    """
+    Format of the timestamp in the response.
+    """
+    format: core_date_format = TIMESTAMP
+  ): core_date
+}
+
+extend type Query {
+  """
+  Simple query returning "ok" to test that you are able to successfully execute GraphQL queries.
+  """
+  totara_webapi_status: totara_webapi_status
+}

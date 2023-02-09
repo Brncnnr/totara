@@ -1,0 +1,9 @@
+query totara_hierarchy_organisation_frameworks {
+  totara_hierarchy_organisation_frameworks {
+    id
+    fullname
+    shortname
+    idnumber
+    description
+  }
+}

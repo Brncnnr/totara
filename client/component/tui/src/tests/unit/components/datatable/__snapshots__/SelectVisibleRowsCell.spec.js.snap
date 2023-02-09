@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectVisibleRowsCell Checks snapshot 1`] = `
+<div
+  class="tui-dataTableSelectVisibleRowsCell"
+  role="cell"
+  selectallrows="select all rows"
+>
+  <checkbox-stub
+    arialabel="5"
+    id="id"
+  >
+    <span
+      class="tui-dataTableSelectVisibleRowsCell__label"
+    >
+      
+          5
+        
+    </span>
+  </checkbox-stub>
+</div>
+`;

@@ -1,0 +1,29 @@
+"""
+More in depth module information for a resource (file).
+"""
+type mod_resource_resource {
+  """
+  The id of the resource
+  """
+  id: core_id!
+  """
+  The mimetype of the associated file
+  """
+  mimetype: String!
+  """
+  The size of the associated file in bytes
+  """
+  size: Int!
+  """
+  The url of the resources file
+  """
+  fileurl(format: core_format = PLAIN): String!
+}
+
+extend type Query {
+  """
+  Query to return more information about a resource(file) given its database ID.
+  Note: That if coming from a course_module the instanceid is the id required here.
+  """
+  mod_resource_resource(resourceid: core_id!): mod_resource_resource
+}

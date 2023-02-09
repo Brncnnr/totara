@@ -1,0 +1,204 @@
+"""
+Field on which to sort retrieved company goal assignments.
+"""
+enum totara_hierarchy_company_goal_assignment_order_field {
+  ID
+  USER_ID
+  GOAL_ID
+  GOAL_NAME
+  TARGET_DATE
+}
+
+"""
+Details of a company goal
+"""
+type totara_hierarchy_company_goal {
+  """
+  Unique company goal identifier
+  """
+  id: core_id!
+  """
+  Company goal name
+  """
+  full_name(format: core_format = PLAIN): String
+  """
+  Company goal name
+  """
+  short_name(format: core_format = PLAIN): String
+  """
+  Domain specific alternative to company goal id
+  """
+  id_number: String
+  """
+  Company goal description
+  """
+  description(format: core_format = HTML): String
+  """
+  Goal completion target date if any.
+  """
+  target_date(format: core_date_format = DATE): core_date
+  """
+  Goal scope.
+  """
+  goal_scope: totara_hierarchy_goal_scope!
+  """
+  Goal type name
+  """
+  type_name(format: core_format = HTML): String
+}
+
+"""
+Details of a company goal assigned to a specific user
+"""
+type totara_hierarchy_company_goal_assignment {
+  """
+  Unique company goal/assignment combination identifier
+  """
+  id: core_id!
+  """
+  User to whom the company goal was assigned
+  """
+  user_id: core_id!
+  """
+  Assigned company goal
+  """
+  goal: totara_hierarchy_company_goal!
+  """
+  Indicates how the company goal was assigned to the user, e.g. cohort, manager,
+  etc. NB the same company goal can be assigned to the same user in multiple
+  ways.
+  """
+  assignment_types: [totara_hierarchy_goal_assignment_type_extended]!
+  """
+  Goal status.
+  """
+  scale_value: totara_hierarchy_goal_scale_value
+}
+
+"""
+Paginator holding a set of retrieved company goal assignments.
+"""
+type totara_hierarchy_company_goal_assignment_result implements core_pageable_result {
+  """
+  Retrieved company goal assignments
+  """
+  items: [totara_hierarchy_company_goal_assignment!]!
+  """
+  Total number of company goal assignments retrieved across all pages
+  """
+  total: Int!
+  """
+  Pointer to next page of company goal assignments
+  """
+  next_cursor: String!
+}
+
+"""
+Goal framework
+"""
+input totara_hierarchy_goal_filter_input {
+  check_goal_exist: param_boolean
+}
+
+type totara_hierarchy_company_goal_framework implements totara_hierarchy_framework {
+  id: core_id!
+  fullname(format: core_format = PLAIN): String!
+  idnumber: String
+  shortname(format: core_format = PLAIN): String
+  description(format: core_format = HTML): String
+}
+
+type totara_hierarchy_company_goal_frameworks_result {
+  items: [totara_hierarchy_company_goal_framework!]!
+}
+
+"""
+Goal type
+"""
+type totara_hierarchy_company_goal_type implements totara_hierarchy_type {
+  id: core_id!
+  fullname(format: core_format = PLAIN): String!
+  idnumber: String
+  shortname(format: core_format = PLAIN): String
+  description(format: core_format = HTML): String
+}
+
+type totara_hierarchy_company_goal_types_result {
+  items: [totara_hierarchy_company_goal_type!]!
+}
+
+"""
+Parameters to filter a set of retrieved company goal assignments.
+"""
+input totara_hierarchy_company_goal_assignment_filter {
+  """
+  Company goal assignment ids to look up
+  """
+  ids: [param_integer]
+  """
+  User whose company goal assignments are to be retrieved
+  """
+  user_id: param_integer
+  """
+  Company goal name to look up
+  """
+  goal_name: param_text
+  """
+  company goal framework id to look up
+  """
+  framework_id: param_integer
+  """
+  company goal type to look up
+  """
+  type_id: param_integer
+}
+
+"""
+Parameters to retrieve a set of company goal assignments.
+"""
+input totara_hierarchy_company_goal_assignment_input {
+  """
+  Filter values
+  """
+  filters: totara_hierarchy_company_goal_assignment_filter
+  """
+  Attribute on which to sort retrieved company goal assignments
+  """
+  order_by: totara_hierarchy_company_goal_assignment_order_field
+  """
+  Whether to sort retrieved company goal assignments in ascending or descending
+  order.
+  """
+  order_dir: totara_hierarchy_goal_order_dir
+  """
+  No of company goal assignments to retrieve at a time
+  """
+  result_size: param_integer
+  """
+  Pointer to next page of personal goals
+  """
+  cursor: String
+}
+
+extend type Query {
+  """
+  Retrieves a set of company goal assignments
+  """
+  totara_hierarchy_assigned_company_goals(
+    input: totara_hierarchy_company_goal_assignment_input
+  ): totara_hierarchy_company_goal_assignment_result!
+
+  """
+  Query to retrieve company goal frameworks.
+  """
+  totara_hierarchy_company_goal_frameworks(
+    input: totara_hierarchy_goal_filter_input
+  ): totara_hierarchy_company_goal_frameworks_result!
+
+  """
+  Query to retrieve company goal types.
+  """
+  totara_hierarchy_company_goal_types(
+    input: totara_hierarchy_goal_filter_input
+  ): totara_hierarchy_company_goal_types_result!
+}

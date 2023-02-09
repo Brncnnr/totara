@@ -1,0 +1,68 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @author    Dave Wallace <dave.wallace@totaralearning.com>
+// @package   theme_legacy
+
+// We prefer not to use IDs for styles but necessary
+// due to existing implementation.
+#page-footer {
+  margin-top: $line-height-computed;
+  padding: 0;
+  border-top: 1px solid var(--color-neutral-5);
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
+
+  .pagelayout-legacynolayout & {
+    margin-top: 0;
+  }
+
+  .page-footer-main-content,
+  .page-footer-poweredby {
+    margin-top: $padding-base-vertical;
+
+    a:link,
+    a:visited,
+    a:active {
+      color: var(--footer-text-color);
+      text-decoration: underline;
+    }
+    a:hover {
+      color: var(--footer-text-color-hover);
+    }
+  }
+}
+
+.page-footer {
+  // We can't easily add a .page-footer-purge-caches class currently.
+  .purgecaches {
+    margin-bottom: $line-height-computed;
+  }
+}
+
+.page-footer-main-content small {
+  font-size: $font-size-base;
+}
+
+.page-footer-poweredby {
+  display: block;
+  padding: $padding-base-vertical 0;
+}

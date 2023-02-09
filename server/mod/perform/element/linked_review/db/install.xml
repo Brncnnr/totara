@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/perform/element/linked_review/db" VERSION="20210301" COMMENT="XMLDB file for Moodle mod/perform/element/linked_review"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="perform_element_linked_review_content" COMMENT="Links external content to a performance activity">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="section_element_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="subject_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="selector_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="content_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="content_type" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="meta_data" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="additional metadata store as json encoded string"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="section_element_id" TYPE="foreign" FIELDS="section_element_id" REFTABLE="perform_section_element" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="subject_instance_id" TYPE="foreign" FIELDS="subject_instance_id" REFTABLE="perform_subject_instance" REFFIELDS="id" ONDELETE="cascade"/>
+        <KEY NAME="selector_id" TYPE="foreign" FIELDS="selector_id" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="content_id" UNIQUE="false" FIELDS="content_id"/>
+        <INDEX NAME="content_type_id" UNIQUE="false" FIELDS="content_type, content_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="perform_element_linked_review_content_response" COMMENT="Responses for sub-elements to the specified content">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="linked_review_content_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="child_element_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The child element that this is a response to"/>
+        <FIELD NAME="participant_instance_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="response_data" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="linked_review_content_id" TYPE="foreign" FIELDS="linked_review_content_id" REFTABLE="perform_element_linked_review_content" REFFIELDS="id"/>
+        <KEY NAME="child_element_id" TYPE="foreign" FIELDS="child_element_id" REFTABLE="perform_element" REFFIELDS="id"/>
+        <KEY NAME="participant_instance_id" TYPE="foreign" FIELDS="participant_instance_id" REFTABLE="perform_participant_instance" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

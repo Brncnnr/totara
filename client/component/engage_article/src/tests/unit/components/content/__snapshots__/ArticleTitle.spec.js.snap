@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ArticleTitle Checks snapshot 1`] = `
+<div class="tui-engageArticleTitle">
+  <div class="tui-engageArticleTitle__head">
+    <inlineediting-stub buttonarialabel="[editarticletitle - engage_article]" fullwidth="true" updateable="true">
+      <h3 class="tui-engageArticleTitle__title">
+        ArticleTitle
+      </h3>
+    </inlineediting-stub>
+    <!---->
+    <bookmarkbutton-stub size="300" bookmarked="true" circle="true"></bookmarkbutton-stub>
+  </div>
+</div>
+`;

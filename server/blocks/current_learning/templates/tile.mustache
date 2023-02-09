@@ -1,0 +1,69 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Brian Barnes <brian.barnes@totaralearning.com>
+   @package block_current_learning
+}}
+{{!
+
+    @template block_current_learning/tile
+
+    This template generates a narrow item for catalog.
+
+    Classes required for JS:
+
+    Data attributes required for JS:
+    
+    Context variables required for this template:
+
+    Example context (json):
+    {
+    }
+}}
+<li class="block_current_learning-tile"
+    title="{{fullname}}"
+    >
+    <div class="block_current_learning-tile__image">
+        <div class="block_current_learning-tile__image_ratio">
+            <div class="block_current_learning-tile__image_ratio_img" style="background-image: url('{{{image}}}')"></div>
+        </div>
+    </div>
+    <a href="{{url_view}}" class="block_current_learning-tile__link">
+        <h3 class="block_current_learning-tile__link_title">{{#shortentext}} 40, {{fullname}} {{/shortentext}}</h3>
+    </a>
+
+    <div class="block_current_learning-tile__content">
+        <div class="block_current_learning-tile__content_progress{{^progress}} block_current_learning-tile__content_progress-no_display{{/progress}}">
+            {{#progress}}
+                {{#pbar}}{{> core/progress_bar }}{{/pbar}}
+                {{^pbar}}
+                    {{! both summary & summarytext as they're for different sources }}
+                    <span class="label label-default">{{summarytext}}{{summary}}</span>
+                {{/pbar}}
+            {{/progress}}
+        </div>
+
+        <div class="block_current_learning-tile__content_duedate{{^dueinfo}} block_current_learning-tile__content_duedate-no_duedate{{/dueinfo}}">
+            {{# dueinfo }}
+            <span class="block_current_learning-tile__content_duedate_text block_current_learning-tile__content_duedate_text-{{state}}" data-toggle="tooltip" data-placement="top" data-container="body" title="{{tooltip}}">{{duetext}}</span>
+            {{/ dueinfo }}
+        </div>
+
+        <span class="block_current_learning-tile__content_component">{{component_name}}</span>
+    </div>
+</li>

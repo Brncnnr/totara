@@ -1,0 +1,9 @@
+mutation mod_approval_workflow_clone(
+  $input: mod_approval_workflow_clone_input!
+) {
+  mod_approval_workflow_clone(input: $input) {
+    workflow {
+      id
+    }
+  }
+}

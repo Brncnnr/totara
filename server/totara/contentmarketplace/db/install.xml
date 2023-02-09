@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/contentmarketplace/db" VERSION="20210218" COMMENT="XMLDB file for Totara Contentmarketplace"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_contentmarketplace_course_module_source" COMMENT="Stores the relationship between a course module and a totara_contentmarketplace plugin">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="cm_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="learning_object_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="marketplace_component" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="cm_id_fk" TYPE="foreign-unique" FIELDS="cm_id" REFTABLE="course_modules" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="learning_object_idx" UNIQUE="false" FIELDS="learning_object_id"/>
+        <INDEX NAME="marketplace_component_idx" UNIQUE="false" FIELDS="marketplace_component"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

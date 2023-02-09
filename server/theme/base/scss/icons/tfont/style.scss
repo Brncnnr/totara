@@ -1,0 +1,1858 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Brian Barnes <brian.barnesr@totaralearning.com>
+// @package   theme_base
+
+@import "variables";
+
+@font-face {
+  font-family: 'tfont';
+  src: url([[font:theme|tfont.eot]]);
+  src:
+      url([[font:theme|tfont.ttf]]) format('truetype'),
+      url([[font:theme|tfont.woff]]) format('woff'),
+      url([[font:theme|tfont.svg]]) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="tfont-var-"], [class*=" tfont-var-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'tfont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: middle;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tfont-var-area_chart {
+  &:before {
+    content: $tfont-var-area_chart;
+  }
+}
+.tfont-var-arrows-v {
+  &:before {
+    content: $tfont-var-arrows-v;
+  }
+}
+.tfont-var-file_earmark_paperclip {
+  &:before {
+    content: $tfont-var-file_earmark_paperclip;
+  }
+}
+.tfont-var-crosshair {
+  &:before {
+    content: $tfont-var-crosshair;
+  }
+}
+.tfont-var-popup {
+  &:before {
+    content: $tfont-var-popup;
+  }
+}
+.tfont-var-collection_handle_fill {
+  &:before {
+    content: $tfont-var-collection_handle_fill;
+  }
+}
+.tfont-var-collection_play {
+  &:before {
+    content: $tfont-var-collection_play;
+  }
+}
+.tfont-var-text_file_tick {
+  &:before {
+    content: $tfont-var-text_file_tick;
+  }
+}
+.tfont-var-journal_person {
+  &:before {
+    content: $tfont-var-journal_person;
+  }
+}
+.tfont-var-envelope_x {
+  &:before {
+    content: $tfont-var-envelope_x;
+  }
+}
+.tfont-var-envelope_check {
+  &:before {
+    content: $tfont-var-envelope_check;
+  }
+}
+.tfont-var-loudspeaker {
+  &:before {
+    content: $tfont-var-loudspeaker;
+  }
+}
+.tfont-var-person_group {
+  &:before {
+    content: $tfont-var-person_group;
+  }
+}
+.tfont-var-radio_button {
+  &:before {
+    content: $tfont-var-radio_button;
+  }
+}
+.tfont-var-chapter {
+  &:before {
+    content: $tfont-var-chapter;
+  }
+}
+.tfont-var-file_earmark_pin {
+  &:before {
+    content: $tfont-var-file_earmark_pin;
+  }
+}
+.tfont-var-window_list {
+  &:before {
+    content: $tfont-var-window_list;
+  }
+}
+.tfont-var-book_print {
+  &:before {
+    content: $tfont-var-book_print;
+  }
+}
+.tfont-var-box_arrow_right {
+  &:before {
+    content: $tfont-var-box_arrow_right;
+  }
+}
+.tfont-var-bullseye_tick {
+  &:before {
+    content: $tfont-var-bullseye_tick;
+  }
+}
+.tfont-var-person_alarm {
+  &:before {
+    content: $tfont-var-person_alarm;
+  }
+}
+.tfont-var-box_tick {
+  &:before {
+    content: $tfont-var-box_tick;
+  }
+}
+.tfont-var-person_hat_tick {
+  &:before {
+    content: $tfont-var-person_hat_tick;
+  }
+}
+.tfont-var-arrow_90deg_down {
+  &:before {
+    content: $tfont-var-arrow_90deg_down;
+  }
+}
+.tfont-var-stamp1 {
+  &:before {
+    content: $tfont-var-stamp1;
+  }
+}
+.tfont-var-highlighter {
+  &:before {
+    content: $tfont-var-highlighter;
+  }
+}
+.tfont-var-List_X {
+  &:before {
+    content: $tfont-var-List_X;
+  }
+}
+.tfont-var-briefcase_person_plus {
+  &:before {
+    content: $tfont-var-briefcase_person_plus;
+  }
+}
+.tfont-var-box_clock {
+  &:before {
+    content: $tfont-var-box_clock;
+  }
+}
+.tfont-var-groups_no {
+  &:before {
+    content: $tfont-var-groups_no;
+  }
+}
+.tfont-var-people_calendar1 {
+  &:before {
+    content: $tfont-var-people_calendar1;
+  }
+}
+.tfont-var-trophy2 {
+  &:before {
+    content: $tfont-var-trophy2;
+  }
+}
+.tfont-var-user-secret {
+  &:before {
+    content: $tfont-var-user-secret;
+  }
+}
+.tfont-var-trophy_check {
+  &:before {
+    content: $tfont-var-trophy_check;
+  }
+}
+.tfont-var-diagram_tree {
+  &:before {
+    content: $tfont-var-diagram_tree;
+  }
+}
+.tfont-var-person_x {
+  &:before {
+    content: $tfont-var-person_x;
+  }
+}
+.tfont-var-site_lock {
+  &:before {
+    content: $tfont-var-site_lock;
+  }
+}
+.tfont-var-exclamation_person {
+  &:before {
+    content: $tfont-var-exclamation_person;
+  }
+}
+.tfont-var-exclamation_code_slash {
+  &:before {
+    content: $tfont-var-exclamation_code_slash;
+  }
+}
+.tfont-var-globe_caret {
+  &:before {
+    content: $tfont-var-globe_caret;
+  }
+}
+.tfont-var-person_key {
+  &:before {
+    content: $tfont-var-person_key;
+  }
+}
+.tfont-var-star_10_points_filled {
+  &:before {
+    content: $tfont-var-star_10_points_filled;
+  }
+}
+.tfont-var-chats {
+  &:before {
+    content: $tfont-var-chats;
+  }
+}
+.tfont-var-key_slash {
+  &:before {
+    content: $tfont-var-key_slash;
+  }
+}
+.tfont-var-questionmark_exclamation {
+  &:before {
+    content: $tfont-var-questionmark_exclamation;
+  }
+}
+.tfont-var-file_chart {
+  &:before {
+    content: $tfont-var-file_chart;
+  }
+}
+.tfont-var-dollar {
+  &:before {
+    content: $tfont-var-dollar;
+  }
+}
+.tfont-var-phonebook_minus {
+  &:before {
+    content: $tfont-var-phonebook_minus;
+  }
+}
+.tfont-var-alarm_lightning {
+  &:before {
+    content: $tfont-var-alarm_lightning;
+  }
+}
+.tfont-var-Alarm-warning {
+  &:before {
+    content: $tfont-var-Alarm-warning;
+  }
+}
+.tfont-var-backpack1 {
+  &:before {
+    content: $tfont-var-backpack1;
+  }
+}
+.tfont-var-books1 {
+  &:before {
+    content: $tfont-var-books1;
+  }
+}
+.tfont-var-box_play {
+  &:before {
+    content: $tfont-var-box_play;
+  }
+}
+.tfont-var-boxes {
+  &:before {
+    content: $tfont-var-boxes;
+  }
+}
+.tfont-var-calculator_slash_filled {
+  &:before {
+    content: $tfont-var-calculator_slash_filled;
+  }
+}
+.tfont-var-certificate1 {
+  &:before {
+    content: $tfont-var-certificate1;
+  }
+}
+.tfont-var-chat_text_search {
+  &:before {
+    content: $tfont-var-chat_text_search;
+  }
+}
+.tfont-var-Clock-lock {
+  &:before {
+    content: $tfont-var-Clock-lock;
+  }
+}
+.tfont-var-completion-auto-enabled {
+  &:before {
+    content: $tfont-var-completion-auto-enabled;
+  }
+}
+.tfont-var-completion-manual-enabled {
+  &:before {
+    content: $tfont-var-completion-manual-enabled;
+  }
+}
+.tfont-var-computer_people {
+  &:before {
+    content: $tfont-var-computer_people;
+  }
+}
+.tfont-var-course-completed {
+  &:before {
+    content: $tfont-var-course-completed;
+  }
+}
+.tfont-var-database {
+  &:before {
+    content: $tfont-var-database;
+  }
+}
+.tfont-var-doublehead_arrow {
+  &:before {
+    content: $tfont-var-doublehead_arrow;
+  }
+}
+.tfont-var-email_slash_filled {
+  &:before {
+    content: $tfont-var-email_slash_filled;
+  }
+}
+.tfont-var-email_slash {
+  &:before {
+    content: $tfont-var-email_slash;
+  }
+}
+.tfont-var-exclamation_envelope {
+  &:before {
+    content: $tfont-var-exclamation_envelope;
+  }
+}
+.tfont-var-exclamation_gear {
+  &:before {
+    content: $tfont-var-exclamation_gear;
+  }
+}
+.tfont-var-explore {
+  &:before {
+    content: $tfont-var-explore;
+  }
+}
+.tfont-var-file_earmark_gear {
+  &:before {
+    content: $tfont-var-file_earmark_gear;
+  }
+}
+.tfont-var-files_copy {
+  &:before {
+    content: $tfont-var-files_copy;
+  }
+}
+.tfont-var-floppy_disk {
+  &:before {
+    content: $tfont-var-floppy_disk;
+  }
+}
+.tfont-var-folder_open_filled {
+  &:before {
+    content: $tfont-var-folder_open_filled;
+  }
+}
+.tfont-var-gear_lock {
+  &:before {
+    content: $tfont-var-gear_lock;
+  }
+}
+.tfont-var-journal_person_plus {
+  &:before {
+    content: $tfont-var-journal_person_plus;
+  }
+}
+.tfont-var-light_bulb {
+  &:before {
+    content: $tfont-var-light_bulb;
+  }
+}
+.tfont-var-list_x {
+  &:before {
+    content: $tfont-var-list_x;
+  }
+}
+.tfont-var-mean1 {
+  &:before {
+    content: $tfont-var-mean1;
+  }
+}
+.tfont-var-mouse_pointer_filled {
+  &:before {
+    content: $tfont-var-mouse_pointer_filled;
+  }
+}
+.tfont-var-outdent {
+  &:before {
+    content: $tfont-var-outdent;
+  }
+}
+.tfont-var-people_slash {
+  &:before {
+    content: $tfont-var-people_slash;
+  }
+}
+.tfont-var-person_arrow_clockwise {
+  &:before {
+    content: $tfont-var-person_arrow_clockwise;
+  }
+}
+.tfont-var-person_calendar {
+  &:before {
+    content: $tfont-var-person_calendar;
+  }
+}
+.tfont-var-person_check {
+  &:before {
+    content: $tfont-var-person_check;
+  }
+}
+.tfont-var-person_lock {
+  &:before {
+    content: $tfont-var-person_lock;
+  }
+}
+.tfont-var-person_noentry {
+  &:before {
+    content: $tfont-var-person_noentry;
+  }
+}
+.tfont-var-person_question {
+  &:before {
+    content: $tfont-var-person_question;
+  }
+}
+.tfont-var-person_times {
+  &:before {
+    content: $tfont-var-person_times;
+  }
+}
+.tfont-var-portfolio_add {
+  &:before {
+    content: $tfont-var-portfolio_add;
+  }
+}
+.tfont-var-reply-filled {
+  &:before {
+    content: $tfont-var-reply-filled;
+  }
+}
+.tfont-var-reply {
+  &:before {
+    content: $tfont-var-reply;
+  }
+}
+.tfont-var-risk-dataloss {
+  &:before {
+    content: $tfont-var-risk-dataloss;
+  }
+}
+.tfont-var-risk-xss {
+  &:before {
+    content: $tfont-var-risk-xss;
+  }
+}
+.tfont-var-scales {
+  &:before {
+    content: $tfont-var-scales;
+  }
+}
+.tfont-var-settings-menu {
+  &:before {
+    content: $tfont-var-settings-menu;
+  }
+}
+.tfont-var-sigma_plus {
+  &:before {
+    content: $tfont-var-sigma_plus;
+  }
+}
+.tfont-var-sigma1 {
+  &:before {
+    content: $tfont-var-sigma1;
+  }
+}
+.tfont-var-statistics {
+  &:before {
+    content: $tfont-var-statistics;
+  }
+}
+.tfont-var-tags {
+  &:before {
+    content: $tfont-var-tags;
+  }
+}
+.tfont-var-totara_filled {
+  &:before {
+    content: $tfont-var-totara_filled;
+  }
+}
+.tfont-var-unlink {
+  &:before {
+    content: $tfont-var-unlink;
+  }
+}
+.tfont-var-x {
+  &:before {
+    content: $tfont-var-x;
+  }
+}
+.tfont-var-backward_arrow-filled {
+  &:before {
+    content: $tfont-var-backward_arrow-filled;
+  }
+}
+.tfont-var-backward_arrow {
+  &:before {
+    content: $tfont-var-backward_arrow;
+  }
+}
+.tfont-var-bell_slash {
+  &:before {
+    content: $tfont-var-bell_slash;
+  }
+}
+.tfont-var-file_audio {
+  &:before {
+    content: $tfont-var-file_audio;
+  }
+}
+.tfont-var-file_camera {
+  &:before {
+    content: $tfont-var-file_camera;
+  }
+}
+.tfont-var-file_image {
+  &:before {
+    content: $tfont-var-file_image;
+  }
+}
+.tfont-var-file_p {
+  &:before {
+    content: $tfont-var-file_p;
+  }
+}
+.tfont-var-file_pdf {
+  &:before {
+    content: $tfont-var-file_pdf;
+  }
+}
+.tfont-var-file_w {
+  &:before {
+    content: $tfont-var-file_w;
+  }
+}
+.tfont-var-file_x {
+  &:before {
+    content: $tfont-var-file_x;
+  }
+}
+.tfont-var-globe {
+  &:before {
+    content: $tfont-var-globe;
+  }
+}
+.tfont-var-grid_list_filled {
+  &:before {
+    content: $tfont-var-grid_list_filled;
+  }
+}
+.tfont-var-hand_thumbs_up_filled {
+  &:before {
+    content: $tfont-var-hand_thumbs_up_filled;
+  }
+}
+.tfont-var-info_filled {
+  &:before {
+    content: $tfont-var-info_filled;
+  }
+}
+.tfont-var-info {
+  &:before {
+    content: $tfont-var-info;
+  }
+}
+.tfont-var-list_ol {
+  &:before {
+    content: $tfont-var-list_ol;
+  }
+}
+.tfont-var-list_plus {
+  &:before {
+    content: $tfont-var-list_plus;
+  }
+}
+.tfont-var-list_ul {
+  &:before {
+    content: $tfont-var-list_ul;
+  }
+}
+.tfont-var-progress_bars {
+  &:before {
+    content: $tfont-var-progress_bars;
+  }
+}
+.tfont-var-spinner {
+  &:before {
+    content: $tfont-var-spinner;
+  }
+}
+.tfont-var-archive-fill {
+  &:before {
+    content: $tfont-var-archive-fill;
+  }
+}
+.tfont-var-archive1 {
+  &:before {
+    content: $tfont-var-archive1;
+  }
+}
+.tfont-var-arrow-90deg-up {
+  &:before {
+    content: $tfont-var-arrow-90deg-up;
+  }
+}
+.tfont-var-arrow-clockwise {
+  &:before {
+    content: $tfont-var-arrow-clockwise;
+  }
+}
+.tfont-var-arrow-counterclockwise {
+  &:before {
+    content: $tfont-var-arrow-counterclockwise;
+  }
+}
+.tfont-var-arrow-down-up {
+  &:before {
+    content: $tfont-var-arrow-down-up;
+  }
+}
+.tfont-var-arrow-down {
+  &:before {
+    content: $tfont-var-arrow-down;
+  }
+}
+.tfont-var-arrow-left-right {
+  &:before {
+    content: $tfont-var-arrow-left-right;
+  }
+}
+.tfont-var-arrow-left {
+  &:before {
+    content: $tfont-var-arrow-left;
+  }
+}
+.tfont-var-arrow-repeat {
+  &:before {
+    content: $tfont-var-arrow-repeat;
+  }
+}
+.tfont-var-arrow-right-circle {
+  &:before {
+    content: $tfont-var-arrow-right-circle;
+  }
+}
+.tfont-var-arrow-right {
+  &:before {
+    content: $tfont-var-arrow-right;
+  }
+}
+.tfont-var-arrow-up-square {
+  &:before {
+    content: $tfont-var-arrow-up-square;
+  }
+}
+.tfont-var-arrow-up1 {
+  &:before {
+    content: $tfont-var-arrow-up1;
+  }
+}
+.tfont-var-arrows-angle-contract {
+  &:before {
+    content: $tfont-var-arrows-angle-contract;
+  }
+}
+.tfont-var-arrows-angle-expand {
+  &:before {
+    content: $tfont-var-arrows-angle-expand;
+  }
+}
+.tfont-var-arrows-fullscreen {
+  &:before {
+    content: $tfont-var-arrows-fullscreen;
+  }
+}
+.tfont-var-arrows-move {
+  &:before {
+    content: $tfont-var-arrows-move;
+  }
+}
+.tfont-var-asterisk {
+  &:before {
+    content: $tfont-var-asterisk;
+  }
+}
+.tfont-var-bar-chart-fill {
+  &:before {
+    content: $tfont-var-bar-chart-fill;
+  }
+}
+.tfont-var-bar-chart-line-fill {
+  &:before {
+    content: $tfont-var-bar-chart-line-fill;
+  }
+}
+.tfont-var-bar-chart-line {
+  &:before {
+    content: $tfont-var-bar-chart-line;
+  }
+}
+.tfont-var-bar-chart-steps {
+  &:before {
+    content: $tfont-var-bar-chart-steps;
+  }
+}
+.tfont-var-bell-fill {
+  &:before {
+    content: $tfont-var-bell-fill;
+  }
+}
+.tfont-var-bell {
+  &:before {
+    content: $tfont-var-bell;
+  }
+}
+.tfont-var-book1 {
+  &:before {
+    content: $tfont-var-book1;
+  }
+}
+.tfont-var-bookmark-fill {
+  &:before {
+    content: $tfont-var-bookmark-fill;
+  }
+}
+.tfont-var-bookmark {
+  &:before {
+    content: $tfont-var-bookmark;
+  }
+}
+.tfont-var-box-arrow-in-right {
+  &:before {
+    content: $tfont-var-box-arrow-in-right;
+  }
+}
+.tfont-var-box-arrow-right {
+  &:before {
+    content: $tfont-var-box-arrow-right;
+  }
+}
+.tfont-var-box-arrow-up-right {
+  &:before {
+    content: $tfont-var-box-arrow-up-right;
+  }
+}
+.tfont-var-box-arrow-up {
+  &:before {
+    content: $tfont-var-box-arrow-up;
+  }
+}
+.tfont-var-box-seam {
+  &:before {
+    content: $tfont-var-box-seam;
+  }
+}
+.tfont-var-box {
+  &:before {
+    content: $tfont-var-box;
+  }
+}
+.tfont-var-briefcase {
+  &:before {
+    content: $tfont-var-briefcase;
+  }
+}
+.tfont-var-bullseye {
+  &:before {
+    content: $tfont-var-bullseye;
+  }
+}
+.tfont-var-calculator-fill {
+  &:before {
+    content: $tfont-var-calculator-fill;
+  }
+}
+.tfont-var-calendar-check {
+  &:before {
+    content: $tfont-var-calendar-check;
+  }
+}
+.tfont-var-calendar {
+  &:before {
+    content: $tfont-var-calendar;
+  }
+}
+.tfont-var-calendar3 {
+  &:before {
+    content: $tfont-var-calendar3;
+  }
+}
+.tfont-var-camera-video {
+  &:before {
+    content: $tfont-var-camera-video;
+  }
+}
+.tfont-var-camera {
+  &:before {
+    content: $tfont-var-camera;
+  }
+}
+.tfont-var-card-image {
+  &:before {
+    content: $tfont-var-card-image;
+  }
+}
+.tfont-var-card-list {
+  &:before {
+    content: $tfont-var-card-list;
+  }
+}
+.tfont-var-card-text {
+  &:before {
+    content: $tfont-var-card-text;
+  }
+}
+.tfont-var-caret-down-fill {
+  &:before {
+    content: $tfont-var-caret-down-fill;
+  }
+}
+.tfont-var-caret-left-fill {
+  &:before {
+    content: $tfont-var-caret-left-fill;
+  }
+}
+.tfont-var-caret-left-square {
+  &:before {
+    content: $tfont-var-caret-left-square;
+  }
+}
+.tfont-var-caret-right-fill {
+  &:before {
+    content: $tfont-var-caret-right-fill;
+  }
+}
+.tfont-var-caret-right-square {
+  &:before {
+    content: $tfont-var-caret-right-square;
+  }
+}
+.tfont-var-caret-up-fill {
+  &:before {
+    content: $tfont-var-caret-up-fill;
+  }
+}
+.tfont-var-chat-fill {
+  &:before {
+    content: $tfont-var-chat-fill;
+  }
+}
+.tfont-var-chat {
+  &:before {
+    content: $tfont-var-chat;
+  }
+}
+.tfont-var-check-circle-fill {
+  &:before {
+    content: $tfont-var-check-circle-fill;
+  }
+}
+.tfont-var-check-circle {
+  &:before {
+    content: $tfont-var-check-circle;
+  }
+}
+.tfont-var-check-square {
+  &:before {
+    content: $tfont-var-check-square;
+  }
+}
+.tfont-var-check {
+  &:before {
+    content: $tfont-var-check;
+  }
+}
+.tfont-var-check2-square {
+  &:before {
+    content: $tfont-var-check2-square;
+  }
+}
+.tfont-var-chevron-double-down {
+  &:before {
+    content: $tfont-var-chevron-double-down;
+  }
+}
+.tfont-var-chevron-double-left {
+  &:before {
+    content: $tfont-var-chevron-double-left;
+  }
+}
+.tfont-var-chevron-double-right {
+  &:before {
+    content: $tfont-var-chevron-double-right;
+  }
+}
+.tfont-var-chevron-double-up {
+  &:before {
+    content: $tfont-var-chevron-double-up;
+  }
+}
+.tfont-var-chevron-down {
+  &:before {
+    content: $tfont-var-chevron-down;
+  }
+}
+.tfont-var-chevron-expand {
+  &:before {
+    content: $tfont-var-chevron-expand;
+  }
+}
+.tfont-var-chevron-left {
+  &:before {
+    content: $tfont-var-chevron-left;
+  }
+}
+.tfont-var-chevron-right {
+  &:before {
+    content: $tfont-var-chevron-right;
+  }
+}
+.tfont-var-chevron-up {
+  &:before {
+    content: $tfont-var-chevron-up;
+  }
+}
+.tfont-var-circle-fill {
+  &:before {
+    content: $tfont-var-circle-fill;
+  }
+}
+.tfont-var-circle {
+  &:before {
+    content: $tfont-var-circle;
+  }
+}
+.tfont-var-clipboard-check {
+  &:before {
+    content: $tfont-var-clipboard-check;
+  }
+}
+.tfont-var-clock {
+  &:before {
+    content: $tfont-var-clock;
+  }
+}
+.tfont-var-cloud-arrow-down {
+  &:before {
+    content: $tfont-var-cloud-arrow-down;
+  }
+}
+.tfont-var-cloud-arrow-up {
+  &:before {
+    content: $tfont-var-cloud-arrow-up;
+  }
+}
+.tfont-var-cloud {
+  &:before {
+    content: $tfont-var-cloud;
+  }
+}
+.tfont-var-code-slash {
+  &:before {
+    content: $tfont-var-code-slash;
+  }
+}
+.tfont-var-compass {
+  &:before {
+    content: $tfont-var-compass;
+  }
+}
+.tfont-var-cursor-text {
+  &:before {
+    content: $tfont-var-cursor-text;
+  }
+}
+.tfont-var-dash-circle-fill {
+  &:before {
+    content: $tfont-var-dash-circle-fill;
+  }
+}
+.tfont-var-dash-circle {
+  &:before {
+    content: $tfont-var-dash-circle;
+  }
+}
+.tfont-var-dash-square-fill {
+  &:before {
+    content: $tfont-var-dash-square-fill;
+  }
+}
+.tfont-var-dash-square {
+  &:before {
+    content: $tfont-var-dash-square;
+  }
+}
+.tfont-var-dash {
+  &:before {
+    content: $tfont-var-dash;
+  }
+}
+.tfont-var-diagram-3-fill {
+  &:before {
+    content: $tfont-var-diagram-3-fill;
+  }
+}
+.tfont-var-diagram-3 {
+  &:before {
+    content: $tfont-var-diagram-3;
+  }
+}
+.tfont-var-download {
+  &:before {
+    content: $tfont-var-download;
+  }
+}
+.tfont-var-emoji-frown {
+  &:before {
+    content: $tfont-var-emoji-frown;
+  }
+}
+.tfont-var-emoji-smile {
+  &:before {
+    content: $tfont-var-emoji-smile;
+  }
+}
+.tfont-var-envelope-fill {
+  &:before {
+    content: $tfont-var-envelope-fill;
+  }
+}
+.tfont-var-envelope {
+  &:before {
+    content: $tfont-var-envelope;
+  }
+}
+.tfont-var-exclamation-circle-fill {
+  &:before {
+    content: $tfont-var-exclamation-circle-fill;
+  }
+}
+.tfont-var-exclamation-circle {
+  &:before {
+    content: $tfont-var-exclamation-circle;
+  }
+}
+.tfont-var-exclamation-triangle-fill {
+  &:before {
+    content: $tfont-var-exclamation-triangle-fill;
+  }
+}
+.tfont-var-exclamation {
+  &:before {
+    content: $tfont-var-exclamation;
+  }
+}
+.tfont-var-eye-fill {
+  &:before {
+    content: $tfont-var-eye-fill;
+  }
+}
+.tfont-var-eye-slash-fill {
+  &:before {
+    content: $tfont-var-eye-slash-fill;
+  }
+}
+.tfont-var-eye-slash {
+  &:before {
+    content: $tfont-var-eye-slash;
+  }
+}
+.tfont-var-eye {
+  &:before {
+    content: $tfont-var-eye;
+  }
+}
+.tfont-var-file-earmark-code {
+  &:before {
+    content: $tfont-var-file-earmark-code;
+  }
+}
+.tfont-var-file-earmark-fill {
+  &:before {
+    content: $tfont-var-file-earmark-fill;
+  }
+}
+.tfont-var-file-earmark-plus {
+  &:before {
+    content: $tfont-var-file-earmark-plus;
+  }
+}
+.tfont-var-file-earmark-spreadsheet {
+  &:before {
+    content: $tfont-var-file-earmark-spreadsheet;
+  }
+}
+.tfont-var-file-earmark-text-fill {
+  &:before {
+    content: $tfont-var-file-earmark-text-fill;
+  }
+}
+.tfont-var-file-earmark-text {
+  &:before {
+    content: $tfont-var-file-earmark-text;
+  }
+}
+.tfont-var-file-earmark-zip {
+  &:before {
+    content: $tfont-var-file-earmark-zip;
+  }
+}
+.tfont-var-file-earmark {
+  &:before {
+    content: $tfont-var-file-earmark;
+  }
+}
+.tfont-var-file-person {
+  &:before {
+    content: $tfont-var-file-person;
+  }
+}
+.tfont-var-file {
+  &:before {
+    content: $tfont-var-file;
+  }
+}
+.tfont-var-files {
+  &:before {
+    content: $tfont-var-files;
+  }
+}
+.tfont-var-flag-fill {
+  &:before {
+    content: $tfont-var-flag-fill;
+  }
+}
+.tfont-var-flag {
+  &:before {
+    content: $tfont-var-flag;
+  }
+}
+.tfont-var-folder-plus {
+  &:before {
+    content: $tfont-var-folder-plus;
+  }
+}
+.tfont-var-folder {
+  &:before {
+    content: $tfont-var-folder;
+  }
+}
+.tfont-var-folder2-open {
+  &:before {
+    content: $tfont-var-folder2-open;
+  }
+}
+.tfont-var-fonts {
+  &:before {
+    content: $tfont-var-fonts;
+  }
+}
+.tfont-var-funnel {
+  &:before {
+    content: $tfont-var-funnel;
+  }
+}
+.tfont-var-gear {
+  &:before {
+    content: $tfont-var-gear;
+  }
+}
+.tfont-var-geo {
+  &:before {
+    content: $tfont-var-geo;
+  }
+}
+.tfont-var-graph-up {
+  &:before {
+    content: $tfont-var-graph-up;
+  }
+}
+.tfont-var-grid-3x3-gap-fill {
+  &:before {
+    content: $tfont-var-grid-3x3-gap-fill;
+  }
+}
+.tfont-var-grid-fill {
+  &:before {
+    content: $tfont-var-grid-fill;
+  }
+}
+.tfont-var-grid {
+  &:before {
+    content: $tfont-var-grid;
+  }
+}
+.tfont-var-hand-thumbs-down {
+  &:before {
+    content: $tfont-var-hand-thumbs-down;
+  }
+}
+.tfont-var-hand-thumbs-up {
+  &:before {
+    content: $tfont-var-hand-thumbs-up;
+  }
+}
+.tfont-var-hash {
+  &:before {
+    content: $tfont-var-hash;
+  }
+}
+.tfont-var-heart-fill {
+  &:before {
+    content: $tfont-var-heart-fill;
+  }
+}
+.tfont-var-heart {
+  &:before {
+    content: $tfont-var-heart;
+  }
+}
+.tfont-var-house-door {
+  &:before {
+    content: $tfont-var-house-door;
+  }
+}
+.tfont-var-info-circle-fill {
+  &:before {
+    content: $tfont-var-info-circle-fill;
+  }
+}
+.tfont-var-info1 {
+  &:before {
+    content: $tfont-var-info1;
+  }
+}
+.tfont-var-journal-code {
+  &:before {
+    content: $tfont-var-journal-code;
+  }
+}
+.tfont-var-justify {
+  &:before {
+    content: $tfont-var-justify;
+  }
+}
+.tfont-var-key {
+  &:before {
+    content: $tfont-var-key;
+  }
+}
+.tfont-var-laptop {
+  &:before {
+    content: $tfont-var-laptop;
+  }
+}
+.tfont-var-layout-three-columns {
+  &:before {
+    content: $tfont-var-layout-three-columns;
+  }
+}
+.tfont-var-lightning {
+  &:before {
+    content: $tfont-var-lightning;
+  }
+}
+.tfont-var-link-45deg {
+  &:before {
+    content: $tfont-var-link-45deg;
+  }
+}
+.tfont-var-list-ol {
+  &:before {
+    content: $tfont-var-list-ol;
+  }
+}
+.tfont-var-list-stars {
+  &:before {
+    content: $tfont-var-list-stars;
+  }
+}
+.tfont-var-list {
+  &:before {
+    content: $tfont-var-list;
+  }
+}
+.tfont-var-lock {
+  &:before {
+    content: $tfont-var-lock;
+  }
+}
+.tfont-var-menu-button-wide {
+  &:before {
+    content: $tfont-var-menu-button-wide;
+  }
+}
+.tfont-var-moon {
+  &:before {
+    content: $tfont-var-moon;
+  }
+}
+.tfont-var-newspaper {
+  &:before {
+    content: $tfont-var-newspaper;
+  }
+}
+.tfont-var-paperclip {
+  &:before {
+    content: $tfont-var-paperclip;
+  }
+}
+.tfont-var-pencil-square {
+  &:before {
+    content: $tfont-var-pencil-square;
+  }
+}
+.tfont-var-pencil {
+  &:before {
+    content: $tfont-var-pencil;
+  }
+}
+.tfont-var-people-fill {
+  &:before {
+    content: $tfont-var-people-fill;
+  }
+}
+.tfont-var-people {
+  &:before {
+    content: $tfont-var-people;
+  }
+}
+.tfont-var-person-plus {
+  &:before {
+    content: $tfont-var-person-plus;
+  }
+}
+.tfont-var-person {
+  &:before {
+    content: $tfont-var-person;
+  }
+}
+.tfont-var-pie-chart {
+  &:before {
+    content: $tfont-var-pie-chart;
+  }
+}
+.tfont-var-plug {
+  &:before {
+    content: $tfont-var-plug;
+  }
+}
+.tfont-var-plus-circle-fill {
+  &:before {
+    content: $tfont-var-plus-circle-fill;
+  }
+}
+.tfont-var-plus-circle {
+  &:before {
+    content: $tfont-var-plus-circle;
+  }
+}
+.tfont-var-plus-square-fill {
+  &:before {
+    content: $tfont-var-plus-square-fill;
+  }
+}
+.tfont-var-plus-square {
+  &:before {
+    content: $tfont-var-plus-square;
+  }
+}
+.tfont-var-plus {
+  &:before {
+    content: $tfont-var-plus;
+  }
+}
+.tfont-var-printer {
+  &:before {
+    content: $tfont-var-printer;
+  }
+}
+.tfont-var-puzzle-fill {
+  &:before {
+    content: $tfont-var-puzzle-fill;
+  }
+}
+.tfont-var-question-circle-fill {
+  &:before {
+    content: $tfont-var-question-circle-fill;
+  }
+}
+.tfont-var-question-circle {
+  &:before {
+    content: $tfont-var-question-circle;
+  }
+}
+.tfont-var-question {
+  &:before {
+    content: $tfont-var-question;
+  }
+}
+.tfont-var-reception-4 {
+  &:before {
+    content: $tfont-var-reception-4;
+  }
+}
+.tfont-var-rss {
+  &:before {
+    content: $tfont-var-rss;
+  }
+}
+.tfont-var-search {
+  &:before {
+    content: $tfont-var-search;
+  }
+}
+.tfont-var-share-fill {
+  &:before {
+    content: $tfont-var-share-fill;
+  }
+}
+.tfont-var-shield-exclamation {
+  &:before {
+    content: $tfont-var-shield-exclamation;
+  }
+}
+.tfont-var-shield-fill-exclamation {
+  &:before {
+    content: $tfont-var-shield-fill-exclamation;
+  }
+}
+.tfont-var-slash-circle {
+  &:before {
+    content: $tfont-var-slash-circle;
+  }
+}
+.tfont-var-slash1 {
+  &:before {
+    content: $tfont-var-slash1;
+  }
+}
+.tfont-var-sliders {
+  &:before {
+    content: $tfont-var-sliders;
+  }
+}
+.tfont-var-square {
+  &:before {
+    content: $tfont-var-square;
+  }
+}
+.tfont-var-star-fill {
+  &:before {
+    content: $tfont-var-star-fill;
+  }
+}
+.tfont-var-star-half {
+  &:before {
+    content: $tfont-var-star-half;
+  }
+}
+.tfont-var-star {
+  &:before {
+    content: $tfont-var-star;
+  }
+}
+.tfont-var-stop-fill {
+  &:before {
+    content: $tfont-var-stop-fill;
+  }
+}
+.tfont-var-table {
+  &:before {
+    content: $tfont-var-table;
+  }
+}
+.tfont-var-tag-fill {
+  &:before {
+    content: $tfont-var-tag-fill;
+  }
+}
+.tfont-var-tag {
+  &:before {
+    content: $tfont-var-tag;
+  }
+}
+.tfont-var-tags-fill {
+  &:before {
+    content: $tfont-var-tags-fill;
+  }
+}
+.tfont-var-tags1 {
+  &:before {
+    content: $tfont-var-tags1;
+  }
+}
+.tfont-var-text-center {
+  &:before {
+    content: $tfont-var-text-center;
+  }
+}
+.tfont-var-text-indent-left {
+  &:before {
+    content: $tfont-var-text-indent-left;
+  }
+}
+.tfont-var-text-indent-right {
+  &:before {
+    content: $tfont-var-text-indent-right;
+  }
+}
+.tfont-var-text-left {
+  &:before {
+    content: $tfont-var-text-left;
+  }
+}
+.tfont-var-text-right {
+  &:before {
+    content: $tfont-var-text-right;
+  }
+}
+.tfont-var-three-dots-vertical {
+  &:before {
+    content: $tfont-var-three-dots-vertical;
+  }
+}
+.tfont-var-three-dots {
+  &:before {
+    content: $tfont-var-three-dots;
+  }
+}
+.tfont-var-toggle-off {
+  &:before {
+    content: $tfont-var-toggle-off;
+  }
+}
+.tfont-var-toggle-on {
+  &:before {
+    content: $tfont-var-toggle-on;
+  }
+}
+.tfont-var-trash-fill {
+  &:before {
+    content: $tfont-var-trash-fill;
+  }
+}
+.tfont-var-trash {
+  &:before {
+    content: $tfont-var-trash;
+  }
+}
+.tfont-var-type-bold {
+  &:before {
+    content: $tfont-var-type-bold;
+  }
+}
+.tfont-var-type-italic {
+  &:before {
+    content: $tfont-var-type-italic;
+  }
+}
+.tfont-var-type-underline {
+  &:before {
+    content: $tfont-var-type-underline;
+  }
+}
+.tfont-var-type {
+  &:before {
+    content: $tfont-var-type;
+  }
+}
+.tfont-var-unlock-fill {
+  &:before {
+    content: $tfont-var-unlock-fill;
+  }
+}
+.tfont-var-unlock {
+  &:before {
+    content: $tfont-var-unlock;
+  }
+}
+.tfont-var-upload {
+  &:before {
+    content: $tfont-var-upload;
+  }
+}
+.tfont-var-volume-down {
+  &:before {
+    content: $tfont-var-volume-down;
+  }
+}
+.tfont-var-volume-mute {
+  &:before {
+    content: $tfont-var-volume-mute;
+  }
+}
+.tfont-var-volume-up {
+  &:before {
+    content: $tfont-var-volume-up;
+  }
+}
+.tfont-var-x-circle-fill {
+  &:before {
+    content: $tfont-var-x-circle-fill;
+  }
+}
+.tfont-var-x-circle {
+  &:before {
+    content: $tfont-var-x-circle;
+  }
+}
+.tfont-var-x-square {
+  &:before {
+    content: $tfont-var-x-square;
+  }
+}
+.tfont-var-x1 {
+  &:before {
+    content: $tfont-var-x1;
+  }
+}
+.tfont-var-add_to_list {
+  &:before {
+    content: $tfont-var-add_to_list;
+  }
+}
+.tfont-var-square-small {
+  &:before {
+    content: $tfont-var-square-small;
+  }
+}
+.tfont-var-backpack {
+  &:before {
+    content: $tfont-var-backpack;
+  }
+}
+.tfont-var-alfresco {
+  &:before {
+    content: $tfont-var-alfresco;
+  }
+}
+.tfont-var-certificate {
+  &:before {
+    content: $tfont-var-certificate;
+  }
+}
+.tfont-var-group-separate {
+  &:before {
+    content: $tfont-var-group-separate;
+  }
+}
+.tfont-var-log {
+  &:before {
+    content: $tfont-var-log;
+  }
+}
+.tfont-var-new {
+  &:before {
+    content: $tfont-var-new;
+  }
+}
+.tfont-var-columns {
+  &:before {
+    content: $tfont-var-columns;
+  }
+}
+.tfont-var-blended {
+  &:before {
+    content: $tfont-var-blended;
+  }
+}
+.tfont-var-slash {
+  &:before {
+    content: $tfont-var-slash;
+  }
+}
+.tfont-var-seminar {
+  &:before {
+    content: $tfont-var-seminar;
+  }
+}
+.tfont-var-totara {
+  &:before {
+    content: $tfont-var-totara;
+  }
+}
+.tfont-var-mahara {
+  &:before {
+    content: $tfont-var-mahara;
+  }
+}
+.tfont-var-view-tree {
+  &:before {
+    content: $tfont-var-view-tree;
+  }
+}
+.tfont-var-stamp {
+  &:before {
+    content: $tfont-var-stamp;
+  }
+}
+.tfont-var-sigma {
+  &:before {
+    content: $tfont-var-sigma;
+  }
+}
+.tfont-var-mean {
+  &:before {
+    content: $tfont-var-mean;
+  }
+}
+.tfont-var-mnethost {
+  &:before {
+    content: $tfont-var-mnethost;
+  }
+}
+.tfont-var-highlight {
+  &:before {
+    content: $tfont-var-highlight;
+  }
+}
+.tfont-var-grades {
+  &:before {
+    content: $tfont-var-grades;
+  }
+}
+.tfont-var-book-open {
+  &:before {
+    content: $tfont-var-book-open;
+  }
+}
+.tfont-var-checklist {
+  &:before {
+    content: $tfont-var-checklist;
+  }
+}
+.tfont-var-package {
+  &:before {
+    content: $tfont-var-package;
+  }
+}
+.tfont-var-archive {
+  &:before {
+    content: $tfont-var-archive;
+  }
+}
+.tfont-var-picasa {
+  &:before {
+    content: $tfont-var-picasa;
+  }
+}
+.tfont-var-book {
+  &:before {
+    content: $tfont-var-book;
+  }
+}
+.tfont-var-books {
+  &:before {
+    content: $tfont-var-books;
+  }
+}
+.tfont-var-profile {
+  &:before {
+    content: $tfont-var-profile;
+  }
+}
+.tfont-var-address-book {
+  &:before {
+    content: $tfont-var-address-book;
+  }
+}
+.tfont-var-alarm {
+  &:before {
+    content: $tfont-var-alarm;
+  }
+}
+.tfont-var-stats-bars {
+  &:before {
+    content: $tfont-var-stats-bars;
+  }
+}
+.tfont-var-google-drive {
+  &:before {
+    content: $tfont-var-google-drive;
+  }
+}
+

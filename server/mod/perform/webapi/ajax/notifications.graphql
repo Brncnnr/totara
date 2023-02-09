@@ -1,0 +1,16 @@
+# @deprecated since Totara 17.0
+query mod_perform_notifications($activity_id: core_id!) {
+  mod_perform_notifications(activity_id: $activity_id) {
+    id
+    name
+    class_key
+    active
+    recipients {
+      relationship_id
+      name
+      active
+    }
+    trigger_label
+    triggers
+  }
+}

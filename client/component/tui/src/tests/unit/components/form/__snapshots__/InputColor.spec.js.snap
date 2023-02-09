@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputColor Checks snapshot has not changed 1`] = `
+<div
+  class="tui-inputColor"
+>
+  <div
+    class="tui-inputColor__colorBlock tui-inputColor__colorBlock--disabled"
+    style="background-color: rgb(255, 0, 0);"
+  />
+   
+  <input-stub
+    aria-hidden="true"
+    class="tui-inputColor__picker"
+    disabled="true"
+    readonly="true"
+    styleclass="[object Object]"
+    tabindex="-1"
+    type="color"
+    value="#FF0000"
+  />
+   
+  <input-stub
+    ariadescribedby="#ariaDescription"
+    arialabel="aria label"
+    arialabelledby="#ariaLabel"
+    charlength="full"
+    class="tui-inputColor__input"
+    disabled="true"
+    id="inputid"
+    maxlength="7"
+    name="colorinput"
+    readonly="true"
+    required="true"
+    styleclass="[object Object]"
+    type="text"
+    value="red"
+  />
+</div>
+`;

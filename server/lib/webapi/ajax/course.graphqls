@@ -1,0 +1,94 @@
+extend type Query {
+  """
+  Return a single course from its id if the user can access it.
+  """
+  core_course(courseid: core_id!): core_course!
+
+  """
+  Return all the current user's enrolled courses. Internally calls enrol_get_my_courses().
+  """
+  core_my_courses(sort: core_course_sort_order = SORTORDER): [core_course!]!
+
+  """
+  Return all courses in the specified category visible to the current user. Excludes courses inside sub-categories.
+  """
+  core_courses_by_parent_category(
+    """
+    The id of the category of the courses to return.
+    """
+    categoryid: core_id!
+    """
+    Order of courses to return.
+    """
+    sort: core_course_sort_order = SORTORDER
+  ): [core_course!]!
+
+  """
+  Return a single category from its ID
+  """
+  core_category(categoryid: core_id!): core_category!
+
+  """
+  Return all categories in the specified category visible to the current user. Excludes non-direct decendants
+  (sub-sub-categories).
+  """
+  core_categories_by_parent_category(
+    """
+    The id of the parent category to return the children of.
+    """
+    categoryid: core_id!
+    """
+    Order of categories to return.
+    """
+    sort: core_category_sort_order = SORTORDER
+  ): [core_category!]!
+}
+
+"""
+Specify how a list of courses will be sorted.
+"""
+enum core_course_sort_order {
+  """
+  Sort in the order specified on the manage courses and categories page.
+  """
+  SORTORDER
+  """
+  Sort alphabetically by course fullname.
+  """
+  FULLNAME
+  """
+  Sort alphabetically by course shortname.
+  """
+  SHORTNAME
+  """
+  Sort alphabetically by course id number.
+  """
+  IDNUMBER
+}
+
+"""
+Specify how a list of categories will be sorted.
+"""
+enum core_category_sort_order {
+  """
+  Sort in the order specified on the manage courses and categories page.
+  """
+  SORTORDER
+  """
+  Sort alphabetically by category name.
+  """
+  NAME
+  """
+  Sort alphabetically by category id number.
+  """
+  IDNUMBER
+}
+
+extend type Mutation {
+  """
+  Mark a course as viewed for the current user
+  The course_id is mandatory, and the current user must be able to access the course
+  The section_id is optional, but if given must be the id of a section within the given course_id
+  """
+  core_course_view(course_id: core_id!, section_id: core_id): Boolean!
+}

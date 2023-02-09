@@ -1,0 +1,11 @@
+mutation mod_perform_set_manual_participants(
+  $subject_instance_id: core_id!
+  $participants: [mod_perform_set_manual_participants_input!]!
+) {
+  mod_perform_set_manual_participants(
+    subject_instance_id: $subject_instance_id
+    participants: $participants
+  ) {
+    success
+  }
+}

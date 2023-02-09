@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Checks snapshot 1`] = `
+<form
+  autocomplete="off"
+  class="tui-form tui-form--horizontal tui-form--inputWidth-limited"
+/>
+`;

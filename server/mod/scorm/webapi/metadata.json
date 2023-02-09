@@ -1,0 +1,21 @@
+{
+  "OBJECT": {
+    "Mutation": {
+      "fields": {
+        "mod_scorm_save_offline_attempts": {
+          "documentation": { "undocumented": true }
+        }
+      }
+    },
+    "Query": {
+      "fields": {
+        "mod_scorm_current_status": {
+          "documentation": { "undocumented": true }
+        },
+        "mod_scorm_scorm": {
+          "documentation": { "undocumented": true }
+        }
+      }
+    }
+  }
+}

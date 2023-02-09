@@ -1,0 +1,19 @@
+This files describes API changes in /user/*.
+
+=== 17.3 ===
+* user_helper::create_user() third optional parameter $tenant_id has been removed
+* user_helper::update_user() third optional parameter $tenant_id has been removed
+
+=== 17.0 ===
+* Added new method validate_field_from_inputs() to 'class profile_field_base' to validate user inputs
+* Added new method can_edit_locked_field() to 'class profile_field_base' to check if a field is locked
+
+=== 14.0 ===
+
+=== 13.0 ===
+* my_copy_page() function has been deprecated
+* user_can_loginas() has been deprecated, please use \core_user\access_controller::can_loginas() instead
+* \core_user\rb\source\report_trait::add_core_user_tables() supports specifying more complex join conditions
+
+=== 12.0 ===
+* useredit_update_bounces() has been deprecated, please use \core_user\email_bounce_counter instead

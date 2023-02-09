@@ -1,0 +1,19 @@
+"""
+Hashtag information.
+"""
+type core_hashtag {
+  id: core_id!
+  tag: String!
+}
+
+extend type Query {
+  """
+  A query to find the hashtags base on the pattern passed.
+  """
+  core_hashtags_by_pattern(
+    pattern: param_text!
+    contextid: param_integer
+    component: param_component
+    area: param_area
+  ): [core_hashtag!]!
+}

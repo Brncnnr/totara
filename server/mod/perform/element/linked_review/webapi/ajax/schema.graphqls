@@ -1,0 +1,99 @@
+"""
+A content type e.g. competency, goal that can be linked.
+"""
+type performelement_linked_review_content_type {
+  identifier: String!
+  display_name(format: core_format = PLAIN): String!
+  is_enabled: Boolean!
+  available_settings: String!
+  admin_settings_component: String
+  admin_view_component: String
+  content_picker_component: String!
+  participant_content_component: String!
+  participant_content_footer_component: String!
+}
+
+"""
+Represents a single content item
+"""
+type performelement_linked_review_content_item {
+  id: core_id!
+  content_id: core_id!
+  content: String
+  selector_id: core_id!
+  selector: core_user!
+  meta_data: String
+  created_at(format: core_date_format = TIMESTAMP): core_date!
+}
+
+"""
+Input required for updating the linked content.
+"""
+input performelement_linked_review_update_linked_content_input {
+  content: String!
+  """
+  @deprecated since Totara 15.0, please pass content only
+  """
+  content_ids: [core_id!]
+  section_element_id: core_id!
+  participant_instance_id: core_id!
+}
+
+"""
+Result for the content items query
+"""
+type performelement_linked_review_content_items_result {
+  items: [performelement_linked_review_content_item!]!
+}
+
+"""
+Input type for query to load content items
+"""
+input performelement_linked_review_content_items_input {
+  section_element_id: core_id!
+  participant_section_id: core_id
+  subject_instance_id: core_id!
+  token: String
+}
+
+"""
+Represents a user who selects content and related relationship
+"""
+type performelement_linked_review_content_update_check {
+  can_update: Boolean!
+  description(format: core_format = PLAIN): String
+}
+
+"""
+Represents a result for updating content
+"""
+type performelement_linked_review_update_linked_review_content_result {
+  validation_info: performelement_linked_review_content_update_check
+}
+
+extend type Query {
+  """
+  Get the available content types that can be selected.
+  """
+  performelement_linked_review_content_types(
+    section_id: core_id!
+  ): [performelement_linked_review_content_type]!
+
+  """
+  Load content items for given review question
+  """
+  performelement_linked_review_content_items(
+    input: performelement_linked_review_content_items_input!
+  ): performelement_linked_review_content_items_result!
+}
+
+extend type Mutation {
+  """
+  Update what content is linked to the activity.
+  Currently content can only be selected once.
+  If content already got selected by another user this will return the information who selected it.
+  """
+  performelement_linked_review_update_linked_review_content(
+    input: performelement_linked_review_update_linked_content_input!
+  ): performelement_linked_review_update_linked_review_content_result!
+}

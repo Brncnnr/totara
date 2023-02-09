@@ -1,0 +1,87 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Kian Nguyen <kian.nguyen@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+    @template mod_facetoface/take_attendance_status_picker
+
+    This template generate the selection box for attendance status picker
+
+    Classes required for JS:
+    * none
+
+    Context variables required for this template:
+    * name: The name of selection box, for form to use
+    * disbaled: Whether the select is disabled or not
+    * options: list of options for status
+    * options -> option_label: Public label for the option
+    * options -> selected: Whether this option has been selected or not
+    * options -> value: The status code for the option
+
+    Example context (json):
+        {
+            "name": "submissionid_20",
+            "label": "John Doe's attendance",
+            "options": [
+                {
+                    "option_label": "Fully attended",
+                    "selected": false,
+                      "value": 100
+                },
+                {
+                    "option_label": "Partially attended",
+                    "selected": false,
+                    "value": 90
+                },
+                {
+                    "option_label": "Unable to attend",
+                    "selected": false,
+                    "value": 85
+                },
+                {
+                    "option_label": "No show",
+                    "selected": false,
+                    "value": 80
+                },
+                {
+                    "option_label": "Not set",
+                    "selected": true,
+                    "value": 0
+                }
+            ],
+            "disabled": true
+        }
+}}
+
+<div class="tw-takeAttendanceStatusPicker">
+    <select {{#disabled}}disabled{{/disabled}} name="{{name}}" id="menu{{name}}" autocomplete="off"
+            class="mod_facetoface__take-attendance__status-picker" aria-label="{{label}}">
+
+        {{#options }}
+
+        <option value="{{value}}" {{#selected}}selected{{/selected}}>
+            {{ option_label }}
+        </option>
+
+        {{/options}}
+
+    </select>
+</div>

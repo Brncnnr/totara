@@ -1,0 +1,176 @@
+.tui-notifiableEventAction {
+  display: flex;
+  align-items: center;
+}
+
+.tui-notificationAction {
+  display: flex;
+  align-items: flex-start;
+}
+
+.tui-notificationDeliveryPreferenceForm {
+  &__overrideWrapper {
+    display: flex;
+    align-items: center;
+    margin-top: var(--gap-2);
+  }
+
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__tableHeader {
+    flex-direction: row;
+  }
+}
+
+.tui-notificationPreferenceForm {
+  &__additionalCriteria {
+    &-checkbox {
+      margin-bottom: var(--gap-2);
+    }
+  }
+  &__buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__bodyEditor {
+    height: 400px;
+  }
+
+  &__overide {
+    align-self: baseline;
+  }
+}
+
+.tui-forceDeliveryChannels {
+  &__forcedHeader {
+    display: flex;
+  }
+}
+
+.tui-placeholder {
+  display: inline-block;
+  white-space: normal;
+
+  &__text {
+    padding: 0 var(--gap-1);
+    border: var(--border-width-thin) solid var(--color-border);
+  }
+}
+
+.tui-notificationPreferenceModal {
+  &__form {
+    margin-top: var(--gap-6);
+  }
+}
+
+.tui-notificationTable {
+  margin-top: var(--gap-4);
+
+  &__actions {
+    display: flex;
+  }
+
+  &__actionsExpand {
+    flex-grow: 1;
+  }
+
+  &__actionsAudit {
+    margin-top: auto;
+  }
+
+  &__collapsible + &__collapsible {
+    border-top: var(--border-width-normal) solid var(--color-neutral-1);
+  }
+
+  &__header {
+    display: flex;
+  }
+
+  &__trigger {
+    display: inline-block;
+  }
+
+  &__triggerWarning {
+    display: inline-block;
+    color: var(--color-prompt-warning);
+
+    &:focus,
+    &:hover {
+      color: var(--color-prompt-warning);
+    }
+  }
+
+  &__triggerWarnings {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  &__subTable {
+    background-color: var(--color-text-disabled);
+  }
+
+  &__notification {
+    display: flex;
+    padding: var(--gap-2);
+    border: 1px solid var(--color-neutral-5);
+  }
+
+  &__notificationData {
+    flex-basis: 0;
+    flex-grow: 17;
+    flex-wrap: wrap;
+
+    @media (min-width: $tui-screen-sm) {
+      display: flex;
+    }
+
+    > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__notificationUnit {
+    flex-basis: 100%;
+
+    @media (min-width: $tui-screen-sm) {
+      flex-basis: 0;
+      margin-top: 0;
+    }
+  }
+
+  @media (min-width: $tui-screen-sm) {
+    &__notificationUnit--title,
+    &__notificationUnit--type,
+    &__notificationUnit--recipient {
+      flex-grow: 4;
+    }
+
+    &__notificationUnit--schedule {
+      flex-grow: 3;
+    }
+
+    &__notificationUnit--status {
+      flex-grow: 2;
+    }
+
+    &__notificationUnit--action {
+      flex-basis: 0;
+      flex-grow: 1;
+      align-self: center;
+    }
+  }
+
+  &__notificationLabel {
+    color: var(--color-neutral-6);
+    font-size: var(--font-size-14);
+  }
+}
+
+.tui-userPreferencesTable {
+  margin-top: var(--gap-4);
+}
+

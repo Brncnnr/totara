@@ -1,0 +1,11 @@
+mutation totara_competency_create_user_assignments(
+  $user_id: core_id!
+  $competency_ids: [core_id!]!
+) {
+  totara_competency_create_user_assignments(
+    user_id: $user_id
+    competency_ids: $competency_ids
+  ) {
+    id
+  }
+}

@@ -1,0 +1,10 @@
+List of upgrade and API changes in Totara criteria,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+* totara_criteria\entities\criteria_item has been moved to totara_criteria\entity\criteria_item
+* totara_criteria\entities\criteria_item_record has been moved to totara_criteria\entity\criteria_item_record
+* totara_criteria\entities\criteria_metadata has been moved to totara_criteria\entity\criteria_metadata
+* totara_criteria\entities\criterion has been moved to totara_criteria\entity\criterion
+* totara_criteria\entities\criterion_item has been moved to totara_criteria\entity\criterion_item
+* totara_criteria\entities\criterion_repository has been moved to totara_criteria\entity\criterion_repository

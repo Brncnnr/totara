@@ -1,0 +1,13 @@
+mutation totara_engage_share(
+  $itemid: param_integer!
+  $component: param_component!
+  $recipients: [totara_engage_recipient_in!]!
+) {
+  shares: totara_engage_share(
+    itemid: $itemid
+    component: $component
+    recipients: $recipients
+  ) {
+    sharedbycount
+  }
+}

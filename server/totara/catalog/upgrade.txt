@@ -1,0 +1,20 @@
+List of upgrade and API changes in Totara catalog,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+* updated totara_catalog/results_share template removing invalid href attribute on the share button
+
+=== 13.0 ===
+
+* added a redirecturl setting to totara_catalog/item_wide for when the details popup is disabled
+* added a redirecturl setting to totara_catalog/item_narrow for when the details popup is disabled
+* added totara_catalog/customise_page_block to display page customisation button
+* updated totara_catalog/manage_btns template to add page customisation button template and improve accessibility of create menu
+* updated totara_catalog/details template changing the text of the close button
+* updated totara_catalog/item_narrow template setting the role of the details section to dialog
+* updated totara_catalog/item_wide template setting the role of the details section to dialog
+* updated totara_catalog/item_style_toggle adding role attributes to improve accessibility
+* updated totara_catalog/results_share chaning the share button to an actual button
+* updated totara_catalog/results_count template, adding screen reader text for filters
+* updated totara_catalog/catalog template, adding aria atomic to grid section

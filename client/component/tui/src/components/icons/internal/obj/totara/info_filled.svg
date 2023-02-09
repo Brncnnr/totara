@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>info_filled</title>
+    <g id="info_filled" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <path d="M8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 Z M9.05322266,6.03027344 L7.17431641,6.03027344 L7.17431641,13 L9.05322266,13 L9.05322266,6.03027344 Z M9.05322266,3.28808594 L7.17431641,3.28808594 L7.17431641,4.85595703 L9.05322266,4.85595703 L9.05322266,3.28808594 Z" id="Combined-Shape"></path>
+    </g>
+</svg>

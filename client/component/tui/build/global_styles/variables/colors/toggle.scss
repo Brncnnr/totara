@@ -1,0 +1,54 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2020 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+:root {
+  /**/
+  /* Toggle colours*/
+  /**/
+
+  /* toggle buttons*/
+  --toggle-bg-color: var(--color-neutral-6);
+
+  /* Button background*/
+  --toggle-btn-bg-color: transparent;
+  --toggle-btn-bg-color-active: transparent;
+  --toggle-btn-bg-color-disabled: transparent;
+  --toggle-btn-bg-color-focus: transparent;
+  --toggle-btn-bg-color-selected: var(--color-neutral-1);
+
+  /* Button text colour*/
+  --toggle-btn-text-color: var(--color-neutral-1);
+  --toggle-btn-text-color-active: var(--color-neutral-1);
+  --toggle-btn-text-color-disabled: var(--color-neutral-1);
+  --toggle-btn-text-color-focus: var(--color-neutral-1);
+  --toggle-btn-text-color-selected: var(--color-neutral-7);
+
+  /**/
+  /* Toggle switch*/
+  /**/
+  --form-toggle-dot-color: var(--color-neutral-1);
+  --form-toggle-off-bg-color: var(--color-neutral-5);
+  --form-toggle-off-bg-color-hover-focus: var(--color-neutral-6);
+  --form-toggle-off-bg-color-disabled: var(--color-neutral-4);
+  --form-toggle-on-bg-color: var(--color-state);
+  --form-toggle-on-bg-color-hover-focus: var(--color-state-hover);
+  --form-toggle-on-bg-color-disabled: var(--color-prompt-success-bg);
+  --form-toggle-on-border-color: var(--color-state);
+  --form-toggle-on-border-color-hover-focus: var(--color-state-hover);
+  --form-toggle-border-color: var(--color-neutral-6);
+  --form-toggle-border-color-disabled: var(--color-neutral-5);
+}
+

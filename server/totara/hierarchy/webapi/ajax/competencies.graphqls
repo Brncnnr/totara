@@ -1,0 +1,161 @@
+"""
+Retrieved data sort order
+"""
+enum totara_hierarchy_competency_order_dir {
+  ASC
+  DESC
+}
+
+"""
+Field on which to sort retrieved competency assignments.
+"""
+enum totara_hierarchy_competency_order_field {
+  COMPETENCY_NAME
+  HIERARCHY
+  ACHIEVEMENT_PATH
+}
+
+"""
+achievent path data type
+"""
+type totara_hierarchy_competency_achievement_path {
+  id: core_id
+  type(format: core_format = PLAIN): String
+  name(format: core_format = PLAIN): String
+  instance_id: core_id
+}
+
+"""
+Details of a competency
+"""
+type totara_hierarchy_competency {
+  """
+  Unique competency identifier
+  """
+  id: core_id!
+  """
+  Competency name
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  achievement path
+  """
+  achievement_path: [totara_hierarchy_competency_achievement_path!]!
+  """
+  parents items
+  """
+  parents: [totara_hierarchy_competency!]!
+  """
+  return if this competency have child
+  """
+  has_children: Boolean!
+}
+
+"""
+Parameters to filter a set of retrieved competencies.
+"""
+input totara_hierarchy_competency_filter {
+  """
+  Competency ids to look up
+  """
+  ids: [param_integer]
+  """
+  Competency ids to be excluded
+  """
+  excluded_ids: [param_integer]
+  """
+  Competency name to look up
+  """
+  name: param_text
+  """
+  Competency framework are to be retrieved
+  """
+  framework_id: param_integer
+  """
+  Without achievement paths
+  """
+  no_path: param_boolean
+  """
+  no hierarchy
+  """
+  no_hierarchy: param_boolean
+  """
+  parent id
+  """
+  parent_id: param_integer
+}
+
+"""
+Pagination
+"""
+input totara_hierarchy_competency_pagination {
+  """
+  Number of competencies to retrieve at a time
+  """
+  limit: param_integer
+  """
+  Pointer to next page of competencies
+  """
+  cursor: String
+  """
+  Page number - only used by offset-based cursors
+  """
+  page: param_integer
+}
+
+"""
+Paginator holding a set of retrieved competencies.
+"""
+type totara_hierarchy_competency_result implements core_pageable_result {
+  """
+  Retrieved competencies
+  """
+  items: [totara_hierarchy_competency!]!
+  """
+  parents of given id
+  """
+  parents: [totara_hierarchy_competency]
+  """
+  current competency
+  """
+  current_level: totara_hierarchy_competency
+  """
+  Total number of competencies retrieved across all pages
+  """
+  total: Int!
+  """
+  Pointer to next page of competencies
+  """
+  next_cursor: String!
+}
+
+"""
+Parameters to retrieve a set of competencies.
+"""
+input totara_hierarchy_competency_input {
+  """
+  Filter values
+  """
+  filters: totara_hierarchy_competency_filter
+  """
+  Attribute on which to sort retrieved competencies
+  """
+  order_by: totara_hierarchy_competency_order_field
+  """
+  Whether to sort retrieved competencies in ascending or descending order.
+  """
+  order_dir: totara_hierarchy_competency_order_dir
+  """
+  Pagination
+  """
+  pagination: totara_hierarchy_competency_pagination
+}
+
+extend type Query {
+  """
+  Retrieves a set of competencies
+  """
+  totara_hierarchy_competencies(
+    input: totara_hierarchy_competency_input
+  ): totara_hierarchy_competency_result!
+}

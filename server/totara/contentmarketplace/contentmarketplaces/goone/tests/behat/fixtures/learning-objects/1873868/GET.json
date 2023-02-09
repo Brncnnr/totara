@@ -1,0 +1,34 @@
+{
+  "id": 1873868,
+  "assessable": true,
+  "collections": [],
+  "created_time": "2017-05-08T15:38:37+00:00",
+  "delivery": {
+    "duration": 0,
+    "mode": "self-paced"
+  },
+  "description": "<p>Many people would rather die than stand in front of a microphone. It doesn’t have to be that way. This brief course will show that anyone can become a polished public speaker with practice. We've designed it for the person who wants to feel confident while powerfully delivering a message to any audience, large or small.</p>\n\n<p>In an introductory video presentation a voice coach shares her secret to success in public speaking. An article provides some practical tips. The course concludes with a quiz based on both the video and the article.</p>",
+  "image": "\/totara\/contentmarketplace\/contentmarketplaces\/goone\/tests\/behat\/fixtures\/image.jpg",
+  "items": [],
+  "items_count": 3,
+  "language": "en",
+  "portal_collection": false,
+  "pricing": {
+    "currency": "USD",
+    "price": 0,
+    "tax": 0,
+    "tax_included": false
+  },
+  "provider": {
+    "name": "GO1 Content"
+  },
+  "reviews": {
+    "count": 1,
+    "rating": 5
+  },
+  "tags": [
+  ],
+  "title": "How to Master Public Speaking",
+  "type": "course",
+  "updated_time": "2017-05-08T15:38:37+00:00"
+}

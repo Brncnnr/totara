@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleSwitch Toggles aria-pressed on click Renders correctly with an empty slot and some text 1`] = `
+<div
+  class="tui-toggleSwitch"
+>
+  <button
+    class="tui-toggleSwitch__btn"
+    id="toggle"
+    type="button"
+  >
+    <span
+      class="tui-toggleSwitch__btn-text"
+    >
+      
+      toggle button text
+    
+    </span>
+  </button>
+   
+  <div
+    class="tui-toggleSwitch__icon"
+  />
+   
+  <span
+    aria-hidden="true"
+    class="tui-toggleSwitch__ui"
+  />
+</div>
+`;
+
+exports[`ToggleSwitch Toggles aria-pressed on click Renders correctly with an empty slot, an aria-label, and no text 1`] = `
+<div
+  class="tui-toggleSwitch"
+>
+  <button
+    aria-label="Aria label text"
+    class="tui-toggleSwitch__btn"
+    id="toggle"
+    type="button"
+  >
+    <span
+      class="tui-toggleSwitch__btn-text"
+    >
+      
+      
+    
+    </span>
+  </button>
+   
+  <div
+    class="tui-toggleSwitch__icon"
+  />
+   
+  <span
+    aria-hidden="true"
+    class="tui-toggleSwitch__ui"
+  />
+</div>
+`;
+
+exports[`ToggleSwitch Toggles aria-pressed on click Renders correctly with an empty slot, an aria-label, and some text 1`] = `
+<div
+  class="tui-toggleSwitch"
+>
+  <button
+    aria-label="Aria label text"
+    class="tui-toggleSwitch__btn"
+    id="toggle"
+    type="button"
+  >
+    <span
+      class="tui-toggleSwitch__btn-text"
+    >
+      
+      toggle button text
+    
+    </span>
+  </button>
+   
+  <div
+    class="tui-toggleSwitch__icon"
+  />
+   
+  <span
+    aria-hidden="true"
+    class="tui-toggleSwitch__ui"
+  />
+</div>
+`;
+
+exports[`ToggleSwitch Toggles aria-pressed on click Renders correctly with something in the slot 1`] = `
+<div
+  class="tui-toggleSwitch"
+>
+  <button
+    class="tui-toggleSwitch__btn"
+    id="toggle"
+    type="button"
+  >
+    <span
+      class="tui-toggleSwitch__btn-text"
+    >
+      
+      toggle button text
+    
+    </span>
+  </button>
+   
+  <div
+    class="tui-toggleSwitch__icon"
+  >
+    <div>
+      icon button
+    </div>
+  </div>
+   
+  <span
+    aria-hidden="true"
+    class="tui-toggleSwitch__ui"
+  />
+</div>
+`;
+
+exports[`ToggleSwitch Toggles aria-pressed on click Renders correctly with something in the slot and an aria-label 1`] = `
+<div
+  class="tui-toggleSwitch"
+>
+  <button
+    aria-label="Different button text"
+    class="tui-toggleSwitch__btn"
+    id="toggle"
+    type="button"
+  >
+    <span
+      class="tui-toggleSwitch__btn-text"
+    >
+      
+      toggle button text
+    
+    </span>
+  </button>
+   
+  <div
+    class="tui-toggleSwitch__icon"
+  >
+    <div>
+      icon button
+    </div>
+  </div>
+   
+  <span
+    aria-hidden="true"
+    class="tui-toggleSwitch__ui"
+  />
+</div>
+`;

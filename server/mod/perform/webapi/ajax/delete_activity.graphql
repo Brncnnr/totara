@@ -1,0 +1,5 @@
+mutation mod_perform_delete_activity(
+  $input: mod_perform_delete_activity_input!
+) {
+  mod_perform_delete_activity(input: $input)
+}

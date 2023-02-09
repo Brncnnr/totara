@@ -1,0 +1,14 @@
+query container_workspace_audiences(
+  $input: container_workspace_audiences_input!
+) {
+  paginatedAudiences: container_workspace_audiences(input: $input) {
+    items {
+      id
+      name
+      idnumber
+      members_count
+    }
+    total
+    next_cursor
+  }
+}

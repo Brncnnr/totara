@@ -1,0 +1,593 @@
+"""
+A list of possible actions
+"""
+enum mod_approval_application_action_enum {
+  APPROVE
+  REJECT
+  WITHDRAW_BEFORE_SUBMISSION
+  WITHDRAW_IN_APPROVALS
+}
+
+"""
+A list of possible overall_progress states that an application can be in
+"""
+enum mod_approval_application_overall_progress_states {
+  DRAFT
+  IN_PROGRESS
+  FINISHED
+  REJECTED
+  WITHDRAWN
+}
+
+"""
+A list of possible your_progress states that an application can be filtered by
+"""
+enum mod_approval_application_your_progress_states {
+  PENDING
+  APPROVED
+  REJECTED
+  NA
+}
+
+"""
+A list of possible sort_by options for my_applications
+"""
+enum mod_approval_my_applications_sort_by_options {
+  SUBMITTED
+  WORKFLOW_TYPE_NAME
+  ID_NUMBER
+  TITLE
+}
+
+"""
+A list of possible sort_by options for others_applications
+"""
+enum mod_approval_others_applications_sort_by_options {
+  SUBMITTED
+  WORKFLOW_TYPE_NAME
+  APPLICANT_NAME
+  ID_NUMBER
+  TITLE
+}
+
+"""
+An approval workflow application
+"""
+type mod_approval_application {
+  id: core_id!
+  """
+  Name of workflow type
+  """
+  workflow_type: String!
+  """
+  Application name for display purposes
+  """
+  title(format: core_format = PLAIN): String
+  """
+  Date created
+  """
+  created(format: core_date_format = TIMESTAMP): core_date
+  """
+  Date submitted
+  """
+  submitted(format: core_date_format = TIMESTAMP): core_date
+  """
+  User who submitted
+  """
+  submitter: core_user
+  """
+  Date completed
+  """
+  completed(format: core_date_format = TIMESTAMP): core_date
+  """
+  Overall progress ENUM
+  """
+  overall_progress: mod_approval_application_overall_progress_states!
+  """
+  Overall progress label
+  """
+  overall_progress_label: String!
+  """
+  Your progress ENUM
+  """
+  your_progress: mod_approval_application_your_progress_states
+  """
+  Your progress label
+  """
+  your_progress_label: String!
+  """
+  Latest published submission (excludes submissions saved as draft)
+  """
+  last_published_submission: mod_approval_application_submission
+  """
+  Reference ID number
+  """
+  id_number(format: core_format = PLAIN): String
+  """
+  Applicant user
+  """
+  user: core_user!
+  """
+  User who created the application
+  """
+  creator: core_user!
+  """
+  User who owns the application, initially the creator
+  """
+  owner: core_user!
+  """
+  Stages and activities
+  """
+  workflow_stages: [mod_approval_application_workflow_stage!]!
+  """
+  Interactor object for the current user
+  """
+  interactor: mod_approval_application_interactor!
+  """
+  The current state of the application
+  """
+  current_state: mod_approval_application_state
+  """
+  Last action for application
+  """
+  last_action: mod_approval_application_action
+  """
+  Approvers of the current approval level
+  """
+  approver_users: [core_user!]!
+  """
+  Application page URLs
+  """
+  page_urls: mod_approval_application_page_urls!
+}
+
+"""
+Actions in application
+"""
+type mod_approval_application_action {
+  id: core_id!
+  """
+  Action taken (approved, rejected, withdrawn)
+  """
+  label: String!
+  """
+  User who performed the action
+  """
+  user: core_user!
+  """
+  Creation timestamp
+  """
+  created(format: core_date_format = TIMESTAMP): core_date!
+}
+
+"""
+Activities in application
+"""
+type mod_approval_application_activity {
+  id: core_id!
+  """
+  Actor
+  """
+  user: core_user
+  """
+  Time taken
+  """
+  timestamp(format: core_date_format = TIMESTAMP): core_date
+  """
+  Internal activity type
+  """
+  activity_type: Int!
+  """
+  Human readable activity type name
+  """
+  activity_type_name(format: core_format = PLAIN): String!
+  """
+  Additional info
+  """
+  description(format: core_format = RAW): String!
+  """
+  Workflow stage
+  """
+  stage: mod_approval_workflow_stage
+
+  """
+  Approval level
+  """
+  approval_level: mod_approval_workflow_stage_approval_level
+}
+
+"""
+Form schema for application - this is full definition of a form with sections and fields
+"""
+type mod_approval_application_form_schema {
+  form_schema: String!
+  form_data: String!
+}
+
+"""
+Application interactor
+"""
+type mod_approval_application_interactor {
+  """
+  User can view this application
+  """
+  can_view: Boolean!
+  """
+  User can edit this application
+  """
+  can_edit: Boolean!
+  """
+  User can delete this application
+  """
+  can_delete: Boolean!
+  """
+  User can mark approval in this application
+  """
+  can_approve: Boolean!
+  """
+  User can clone this application
+  """
+  can_clone: Boolean!
+  """
+  User can withdraw this application
+  """
+  can_withdraw: Boolean!
+  """
+  User can edit application without invalidating
+  """
+  can_edit_without_invalidating: Boolean!
+}
+
+"""
+Page URLs
+"""
+type mod_approval_application_page_urls {
+  """
+  Edit page
+  """
+  edit: String!
+  """
+  Print preview page
+  """
+  preview: String!
+  """
+  View page
+  """
+  view: String!
+}
+
+"""
+Output of application
+"""
+type mod_approval_application_result {
+  application: mod_approval_application!
+}
+
+"""
+Current state of application
+"""
+type mod_approval_application_state {
+  """
+  Stage
+  """
+  stage: mod_approval_workflow_stage!
+  """
+  Aproval level
+  """
+  approval_level: mod_approval_workflow_stage_approval_level
+  """
+  Whether the state belongs to the "draft" stage
+  """
+  is_draft: Boolean!
+  """
+  Whether the state belongs to a "finsihed" stage
+  """
+  is_finished: Boolean!
+  """
+  Whether the application is in a state where it can be submitted
+  """
+  is_before_submission: Boolean!
+  """
+  Whether the application is awaiting approvals
+  """
+  is_in_approvals: Boolean!
+}
+
+"""
+Application submission
+"""
+type mod_approval_application_submission {
+  id: core_id!
+  """
+  Form data
+  """
+  form_data: String!
+  """
+  Date submitted
+  """
+  submitted(format: core_date_format = TIMESTAMP): core_date
+  """
+  Date last updated
+  """
+  updated(format: core_date_format = TIMESTAMP): core_date
+  """
+  User submitted
+  """
+  user: core_user!
+  """
+  Whether this submission is the first submission on the application
+  """
+  is_first_submission: Boolean!
+}
+
+"""
+Workflow stage of application
+"""
+type mod_approval_application_workflow_stage {
+  """
+  Associated stage
+  """
+  stage: mod_approval_workflow_stage!
+  """
+  Actities in this stage
+  """
+  activities: [mod_approval_application_activity!]!
+}
+
+"""
+Paginated list of applications for dashboards.
+"""
+type mod_approval_applications_page implements core_pageable_result {
+  """
+  List of applications
+  """
+  items: [mod_approval_application!]!
+  """
+  Total number of applications
+  """
+  total: Int!
+  """
+  Cursor to request the next set of results for this query
+  """
+  next_cursor: String!
+}
+
+"""
+Mutation returns application after creating a new one
+"""
+type mod_approval_create_application_result {
+  application_id: core_id!
+}
+
+"""
+Activities query result
+"""
+type mod_approval_load_application_activities_result {
+  activities: [mod_approval_application_activity!]
+}
+
+"""
+Application query result
+"""
+type mod_approval_load_application_result {
+  application: mod_approval_application!
+}
+
+"""
+Create new application menu item - used to select which assignment a new application should be created for
+"""
+type mod_approval_new_application_menu_item {
+  """
+  Assignment ID acts as a unique key
+  """
+  assignment_id: core_id!
+  """
+  Workflow_type name
+  """
+  workflow_type: String!
+  """
+  Job assignment name
+  """
+  job_assignment: String
+  """
+  Job assignment ID
+  """
+  job_assignment_id: core_id
+}
+
+"""
+Take an action on an application
+"""
+input mod_approval_application_action_input {
+  application_id: core_id!
+  action: mod_approval_application_action_enum!
+}
+
+"""
+Receive the application approvers
+"""
+input mod_approval_application_approvers_input {
+  application_id: Int!
+  workflow_stage_approval_level_id: Int!
+}
+
+"""
+Generic application input
+"""
+input mod_approval_application_input {
+  application_id: core_id!
+}
+
+"""
+Input for publish application
+"""
+input mod_approval_application_publish_input {
+  application_id: core_id!
+  form_data: String!
+  keep_approvals: Boolean
+}
+
+"""
+Input for save application
+"""
+input mod_approval_application_save_input {
+  application_id: core_id!
+  form_data: String!
+}
+
+"""
+Create a new application
+"""
+input mod_approval_create_application_input {
+  assignment_id: core_id!
+  job_assignment_id: core_id
+  applicant_id: core_id!
+}
+
+"""
+A user to create new application menu for
+"""
+input mod_approval_create_new_application_menu_query {
+  applicant_id: core_id
+  workflow_type_id: core_id
+}
+
+"""
+My applications dashboard filters
+"""
+input mod_approval_my_applications_filters {
+  application_id: [core_id!]
+  overall_progress: [mod_approval_application_overall_progress_states!]
+}
+
+"""
+My applications dashboard query options
+"""
+input mod_approval_my_applications_input {
+  pagination: core_pagination_input
+  filters: mod_approval_my_applications_filters
+  sort_by: mod_approval_my_applications_sort_by_options
+}
+
+"""
+Applications for Other dashboard filters
+"""
+input mod_approval_others_applications_filters {
+  application_id: [core_id!]
+  workflow_type_name: String
+  overall_progress: [mod_approval_application_overall_progress_states!]
+  your_progress: mod_approval_application_your_progress_states
+  applicant_name: String
+}
+
+"""
+Applications for Others dashboard query options
+"""
+input mod_approval_others_applications_input {
+  pagination: core_pagination_input
+  filters: mod_approval_others_applications_filters
+  sort_by: mod_approval_others_applications_sort_by_options
+}
+
+extend type Query {
+  """
+  Return array of approvers for this application stage and approval level
+  """
+  mod_approval_application_approvers(
+    input: mod_approval_application_approvers_input!
+  ): [core_user!]!
+
+  """
+  Form schema for particular application
+  """
+  mod_approval_application_form_schema(
+    input: mod_approval_application_input!
+    full_schema: Boolean
+  ): mod_approval_application_form_schema!
+
+  """
+  A list of the approval workflows to which the current user can apply.
+  """
+  mod_approval_create_new_application_menu(
+    query: mod_approval_create_new_application_menu_query
+  ): [mod_approval_new_application_menu_item!]!
+
+  """
+  Query to load a specific application
+  """
+  mod_approval_load_application(
+    input: mod_approval_application_input!
+  ): mod_approval_load_application_result!
+
+  """
+  Query to load a specific activities
+  """
+  mod_approval_load_application_activities(
+    input: mod_approval_application_input!
+  ): mod_approval_load_application_activities_result!
+
+  """
+  A list of all applications pertaining to the current user.
+  """
+  mod_approval_my_applications(
+    query_options: mod_approval_my_applications_input!
+  ): mod_approval_applications_page!
+
+  """
+  A list of applications the current user can see, which do not pertain to the current user
+  """
+  mod_approval_others_applications(
+    query_options: mod_approval_others_applications_input!
+  ): mod_approval_applications_page!
+}
+
+extend type Mutation {
+  """
+  Action
+  """
+  mod_approval_application_action(
+    input: mod_approval_application_action_input!
+  ): mod_approval_application_result!
+
+  """
+  Clone
+  """
+  mod_approval_application_clone(
+    input: mod_approval_application_input!
+  ): mod_approval_application_result!
+
+  """
+  Deletion
+  """
+  mod_approval_application_delete(
+    input: mod_approval_application_input!
+  ): Boolean!
+
+  """
+  Publish the form data. Only available while in-approvals.
+  """
+  mod_approval_application_publish(
+    input: mod_approval_application_publish_input!
+  ): mod_approval_application_result!
+
+  """
+  Save as draft. Doesn't perform validation. Only available if not submitted.
+  """
+  mod_approval_application_save_as_draft(
+    input: mod_approval_application_save_input!
+  ): mod_approval_application_result!
+
+  """
+  Submit the application.
+  """
+  mod_approval_application_submit(
+    input: mod_approval_application_save_input!
+  ): mod_approval_application_result!
+
+  """
+  Create a new application
+  """
+  mod_approval_create_application(
+    input: mod_approval_create_application_input!
+  ): mod_approval_create_application_result!
+}

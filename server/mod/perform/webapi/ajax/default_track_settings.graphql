@@ -1,0 +1,85 @@
+query mod_perform_default_track_settings($activity_id: param_integer!) {
+  mod_perform_default_track(activity_id: $activity_id) {
+    id
+    description
+    status
+    can_assign_positions
+    can_assign_organisations
+    subject_instance_generation
+    schedule_is_open
+    schedule_is_fixed
+    schedule_fixed_from {
+      iso
+      timezone
+    }
+    schedule_fixed_to {
+      iso
+      timezone
+    }
+    schedule_dynamic_from {
+      count
+      unit
+      direction
+    }
+    schedule_dynamic_to {
+      count
+      unit
+      direction
+    }
+    schedule_dynamic_source {
+      resolver_class_name
+      option_key
+      display_name
+      is_available
+      custom_setting_component
+      custom_data
+      resolver_base
+    }
+    schedule_use_anniversary
+    due_date_is_enabled
+    due_date_is_fixed
+    due_date_fixed {
+      iso
+      timezone
+    }
+    due_date_offset {
+      count
+      unit
+    }
+    repeating_is_enabled
+    repeating_type
+    repeating_trigger_interval
+    repeating_trigger_type
+    repeating_offset {
+      count
+      unit
+    }
+    repeating_is_limited
+    repeating_limit
+    subject_instance_generation
+    assignments {
+      type
+      group {
+        id
+        type
+        type_label
+        name
+        size
+        extra
+      }
+    }
+  }
+  mod_perform_available_dynamic_date_sources {
+    resolver_class_name
+    option_key
+    display_name
+    is_available
+    custom_setting_component
+    custom_data
+    resolver_base
+  }
+  mod_perform_default_fixed_date_setting {
+    iso
+    timezone
+  }
+}

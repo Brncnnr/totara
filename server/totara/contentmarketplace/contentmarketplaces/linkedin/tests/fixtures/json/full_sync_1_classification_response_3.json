@@ -1,0 +1,31 @@
+{
+  "paging": {
+    "start": 0,
+    "count": 100,
+    "links": [],
+    "total": 1
+  },
+  "elements": [
+    {
+      "name": {
+        "locale": {
+          "country": "US",
+          "language": "en"
+        },
+        "value": "C world"
+      },
+      "owner": {
+        "urn": "urn:li:organization:1337",
+        "name": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "LinkedIn"
+        }
+      },
+      "urn": "urn:li:lyndaCategory:458",
+      "type": "TOPIC"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2021 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+   @package contentmarketplace_linkedin
+}}
+{{!
+    @template contentmarketplace_linkedin/plugin_description
+
+    The description for this plugin on the Setup Content Marketplaces page.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * is_plugin_enabled: boolean, true if the plugin is enabled (requried in order to view the catalogue)
+    * browse_url: string, the URL for browsing LinkedIn content
+
+    Example context (json):
+    {
+        "is_plugin_enabled": true,
+        "browse_url": "/url_for_browsing_linkedin_content"
+    }
+}}
+
+<p>{{#str}}plugin_description, contentmarketplace_linkedin{{/str}}</p>
+{{#is_plugin_enabled}}
+<p>
+    <a href="{{browse_url}}">{{#str}}browse_learning_content, contentmarketplace_linkedin{{/str}}</a>
+</p>
+{{/is_plugin_enabled}}

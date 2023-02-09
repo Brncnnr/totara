@@ -1,0 +1,535 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-list {
+  &__bar {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: var(--gap-2);
+
+    > * {
+      padding-top: var(--gap-4);
+    }
+  }
+
+  &__btn {
+    @include bs-btn-default();
+  }
+
+  &__btnGroup {
+    margin-right: var(--gap-2);
+
+    .tw-list__btn {
+      @include bs-btn();
+      @include bs-btn-default();
+      color: var(--btn-toggle-text-color);
+      background: var(--btn-toggle-bg-color);
+      border-color: var(--btn-toggle-border-color);
+
+      &:hover,
+      &:focus {
+        color: var(--btn-toggle-text-color-focus);
+        background: var(--btn-toggle-bg-color-focus);
+        border-color: var(--btn-toggle-border-color-focus);
+      }
+
+      &_small {
+        font-size: 1.3rem;
+        padding: var(--gap-1) var(--gap-2);
+        line-height: 1.31;
+      }
+
+      &_active {
+        color: var(--btn-toggle-text-color-selected);
+        background: var(--btn-toggle-bg-color-selected);
+        border-color: var(--btn-toggle-border-color-selected);
+        cursor: default;
+
+        &:hover,
+        &:focus {
+          color: var(--btn-toggle-text-color-selected);
+          background: var(--btn-toggle-bg-color-selected);
+          border-color: var(--btn-toggle-border-color-selected);
+          box-shadow: none;
+        }
+      }
+    }
+
+    &.tw-list__btn_disabled {
+      .tw-list__btn {
+        color: var(--btn-toggle-text-color-disabled);
+        background: var(--btn-toggle-bg-color-disabled);
+        border-color: var(--btn-toggle-border-color-disabled);
+        box-shadow: none;
+      }
+    }
+
+    // must be after button style to work properly
+    @include bs-btn-group();
+  }
+
+  &__count {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-15);
+    font-weight: bold;
+    margin-left: auto;
+    order: 1;
+
+    &_num {
+      padding: 0 var(--gap-1);
+    }
+
+    &_text {
+      margin-right: var(--gap-2);
+    }
+  }
+
+  &__empty {
+    border-bottom: 1px solid var(--color-neutral-5);
+    border-top: 1px solid var(--color-neutral-5);
+    font-style: italic;
+    margin: var(--gap-2) 0;
+    padding: var(--gap-4) var(--gap-2);
+  }
+
+  &__cell {
+    height: 100%;
+    margin: auto var(--gap-2);
+    padding: 0 var(--gap-12) 0 var(--gap-8);
+
+    &_hierarchy {
+      margin: auto 0;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: var(--gap-1);
+      text-align: right;
+
+      &_btn {
+        display: inline-block;
+        font-size: var(--font-size-16);
+        margin-top: var(--gap-2);
+        padding: 0 var(--gap-2);
+      }
+    }
+
+    &_action {
+      &_btn {
+        display: inline-block;
+        line-height: 2;
+        margin-right: var(--gap-4);
+        margin-top: var(--gap-2);
+
+        &_disabled {
+          color: var(--color-neutral-4);
+          cursor: default;
+
+          .flex-icon {
+            color: var(--color-neutral-4);
+          }
+        }
+
+        &_hidden {
+          visibility: hidden;
+        }
+      }
+    }
+
+    &_label {
+      color: var(--color-neutral-6);
+      display: inline-block;
+      font-size: var(--font-size-11);
+      font-weight: bold;
+      margin-right: var(--gap-2);
+      padding-top: var(--gap-2);
+    }
+
+    &_primary {
+      font-weight: bold;
+      padding-top: var(--gap-2);
+    }
+
+    &_select {
+      margin: auto 0;
+      padding: 0;
+      position: absolute;
+
+      &_label {
+        margin-bottom: 0;
+        padding: 0.1rem var(--gap-4) var(--gap-1) 0;
+      }
+
+      &_checkbox {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__expanded {
+    display: none;
+
+    &_close {
+      font-size: 2rem;
+      position: absolute;
+      right: var(--gap-2);
+      top: 0.4rem;
+      z-index: 2;
+
+      .flex_icon {
+        vertical-align: text-top;
+      }
+    }
+
+    &_content {
+      background: var(--color-neutral-1);
+      border: 1px solid var(--color-neutral-5);
+      box-shadow: var(--shadow-2);
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding: var(--gap-4);
+      position: relative;
+    }
+
+    &_loading {
+      text-align: center;
+    }
+
+    &_placement {
+      height: 0;
+      left: 0;
+      padding: 0;
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      z-index: 4;
+    }
+
+    &_show {
+      display: block;
+    }
+  }
+
+  &__footer {
+    @include clearfix;
+  }
+
+  &__orderBy {
+    display: flex;
+    margin-left: auto;
+    order: 0;
+    width: 100%;
+
+    .tw-selectTree {
+      padding-right: 0;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    padding: var(--gap-4) 0 var(--gap-2);
+    position: relative;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-neutral-5);
+    }
+
+    &:hover:not(:first-child) {
+      background: var(--color-state-highlight-neutral);
+    }
+
+    &:last-child {
+      border-bottom: 1px solid var(--color-neutral-5);
+    }
+
+    &_active {
+      background: var(--color-neutral-2);
+
+      &:hover {
+        background: var(--color-neutral-2);
+      }
+    }
+
+    &_hover {
+      background: var(--color-state-highlight-neutral);
+    }
+
+    &_disabled {
+      color: var(--color-neutral-5);
+
+      .tw-list__row_trigger {
+        color: var(--color-neutral-5);
+      }
+    }
+
+    &_expanded {
+      .tw-list__row_trigger {
+        font-weight: bold;
+      }
+    }
+
+    &_header {
+      font-weight: bold;
+      padding: var(--gap-1) 0;
+
+      .tw-list__cell {
+        display: none;
+
+        &_label {
+          color: var(--color-neutral-7);
+          display: inline-block;
+          padding-left: var(--gap-1);
+        }
+
+        &_select {
+          display: block;
+          position: relative;
+        }
+      }
+    }
+
+    .tw-list__hover_warning {
+      color: var(--color-prompt-alert);
+    }
+  }
+
+  &__toggleView {
+    order: 1;
+    position: relative;
+  }
+}
+
+.modal-body {
+  .tw-list {
+    &__output {
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 2rem;
+    }
+  }
+}
+
+@media (min-width: 550px) {
+  .tw-list {
+    &__empty {
+      border-color: var(--color-neutral-4);
+    }
+
+    &__cell {
+      flex-basis: 40%;
+      flex-grow: 1;
+      margin: auto 0;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      padding: 0 var(--gap-4) 0 0;
+
+      &_hierarchy {
+        width: 3rem;
+        flex-shrink: 0;
+      }
+
+      &_action,
+      &_hierarchy {
+        flex-basis: auto;
+        margin-left: auto;
+        padding-right: var(--gap-1);
+        position: relative;
+        right: 0;
+        text-align: right;
+        top: 0;
+
+        &_btn {
+          margin: 0 var(--gap-2);
+          padding: 0;
+
+          .flex-icon {
+            vertical-align: baseline;
+          }
+        }
+      }
+
+      &_label {
+        display: none;
+      }
+
+      &_select {
+        flex-basis: auto;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: var(--gap-2);
+        padding: 0;
+        position: relative;
+        width: 3rem;
+
+        &_label {
+          cursor: pointer;
+          padding: var(--gap-1) var(--gap-2) var(--gap-1)
+            var(--gap-1);
+
+          &_disabled {
+            cursor: default;
+          }
+        }
+      }
+
+      &--sm {
+        flex-basis: 25%;
+        flex-grow: 0;
+      }
+
+      &--xs {
+        flex-basis: 15%;
+        flex-grow: 0;
+      }
+    }
+
+    &__expanded {
+      margin: var(--gap-4) 0;
+
+      &_arrow {
+        bottom: -1.5px;
+        margin: var(--gap-4) auto 0;
+        position: relative;
+        z-index: 4;
+
+        &::before,
+        &::after {
+          border: solid transparent;
+          bottom: 0.5px;
+          content: '';
+          height: 0;
+          left: var(--gap-10);
+          position: absolute;
+          width: 0;
+        }
+
+        &::before {
+          border-bottom-color: var(--color-neutral-5);
+          border-width: 16px;
+          margin-left: -16px;
+        }
+
+        &::after {
+          border-bottom-color: var(--color-neutral-1);
+          border-width: 15px;
+          margin-left: -15px;
+        }
+      }
+
+      &_content {
+        height: inherit;
+        overflow-y: hidden;
+      }
+
+      &_placement {
+        height: inherit;
+        left: 0;
+        position: relative;
+        top: inherit;
+        width: 100%;
+        z-index: initial;
+      }
+    }
+
+    &__row {
+      flex-direction: row;
+      padding: var(--gap-2) 0;
+
+      &_header {
+        .tw-list__cell {
+          display: block;
+
+          &_label {
+            display: none;
+          }
+        }
+      }
+
+      .tw-list__hover_warning {
+        color: var(--color-neutral-6);
+      }
+
+      .tw-list__cell_hierarchy_btn,
+      .tw-list__cell_action_btn {
+        color: var(--color-neutral-6);
+        display: inline-block;
+        position: relative;
+        top: 0;
+        transition: all 0.06s ease;
+        transition-property: top, color;
+      }
+
+      &_active,
+      &:hover {
+        .tw-list__cell_hierarchy_btn,
+        .tw-list__cell_action_btn {
+          color: var(--color-state);
+
+          &:focus,
+          &:hover {
+            top: -1px;
+          }
+        }
+
+        .tw-list__hover_warning {
+          color: var(--color-prompt-alert);
+        }
+      }
+    }
+  }
+  .tw-list--viewer {
+    .tw-list {
+      &__row {
+        padding-left: var(--gap-1);
+      }
+    }
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tw-list {
+    &__bar {
+      > * {
+        padding-top: var(--gap-2);
+      }
+    }
+
+    &__count {
+      margin-left: var(--gap-1);
+    }
+
+    &__orderBy {
+      order: 1;
+      width: auto;
+    }
+  }
+
+  .tw-list--viewer {
+    .tw-list__count_num {
+      padding-left: 0;
+    }
+  }
+}

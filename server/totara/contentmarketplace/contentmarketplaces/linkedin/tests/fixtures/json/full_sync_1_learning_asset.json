@@ -1,0 +1,308 @@
+{
+  "paging": {
+    "total": 1,
+    "start": 0,
+    "count": 100,
+    "links": []
+  },
+  "metadata": {},
+  "elements": [
+    {
+      "urn": "urn:li:lyndaCourse:252",
+      "details": {
+        "images": {
+          "primary": "https://cdn.lynda.com/course/252/252-636282989834935258-16x9.jpg"
+        },
+        "descriptionIncludingHtml": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "This is description"
+        },
+        "lastUpdatedAt": 1613522076915,
+        "publishedAt": 1170201600000,
+        "level": "BEGINNER",
+        "description": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "This is description"
+        },
+        "shortDescription": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "Short description"
+        },
+        "availability": "AVAILABLE",
+        "availableLocales": [
+          {
+            "country": "US",
+            "language": "en"
+          }
+        ],
+        "relationships": [],
+        "classifications": [
+          {
+            "assigner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "path": [],
+            "associatedClassification": {
+              "owner": {
+                "urn": "urn:li:organization:1337",
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "LinkedIn"
+                }
+              },
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Microsoft Excel"
+              },
+              "urn": "urn:li:skill:163",
+              "type": "SKILL"
+            }
+          },
+          {
+            "assigner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "path": [
+              {
+                "owner": {
+                  "urn": "urn:li:organization:1337",
+                  "name": {
+                    "locale": {
+                      "country": "US",
+                      "language": "en"
+                    },
+                    "value": "LinkedIn"
+                  }
+                },
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "CS is not CPP"
+                },
+                "urn": "urn:li:lyndaCategory:496",
+                "type": "SUBJECT"
+              },
+              {
+                "owner": {
+                  "urn": "urn:li:organization:1337",
+                  "name": {
+                    "locale": {
+                      "country": "US",
+                      "language": "en"
+                    },
+                    "value": "LinkedIn"
+                  }
+                },
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "Software Development"
+                },
+                "urn": "urn:li:lyndaCategory:456",
+                "type": "LIBRARY"
+              }
+            ],
+            "associatedClassification": {
+              "owner": {
+                "urn": "urn:li:organization:1337",
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "LinkedIn"
+                }
+              },
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "C world"
+              },
+              "urn": "urn:li:lyndaCategory:458",
+              "type": "TOPIC"
+            }
+          },
+          {
+            "assigner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "path": [
+              {
+                "owner": {
+                  "urn": "urn:li:organization:1337",
+                  "name": {
+                    "locale": {
+                      "country": "US",
+                      "language": "en"
+                    },
+                    "value": "LinkedIn"
+                  }
+                },
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "Software Development"
+                },
+                "urn": "urn:li:lyndaCategory:456",
+                "type": "LIBRARY"
+              }
+            ],
+            "associatedClassification": {
+              "owner": {
+                "urn": "urn:li:organization:1337",
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "LinkedIn"
+                }
+              },
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "CS is not CPP"
+              },
+              "urn": "urn:li:lyndaCategory:496",
+              "type": "SUBJECT"
+            }
+          },
+          {
+            "assigner": {
+              "urn": "urn:li:organization:1337",
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "LinkedIn"
+              }
+            },
+            "path": [],
+            "associatedClassification": {
+              "owner": {
+                "urn": "urn:li:organization:1337",
+                "name": {
+                  "locale": {
+                    "country": "US",
+                    "language": "en"
+                  },
+                  "value": "LinkedIn"
+                }
+              },
+              "name": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Software Development"
+              },
+              "urn": "urn:li:lyndaCategory:456",
+              "type": "LIBRARY"
+            }
+          }
+        ],
+        "urls": {
+          "ssoLaunch": "https://www.linkedin.com/checkpoint/enterprise/login/105587602?pathWildcard=105587602&application=learning&redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Flearning%2Fexcel-2007-essential-training%3Fu%3D105587602",
+          "webLaunch": "https://www.linkedin.com/learning/excel-2007-essential-training",
+          "aiccLaunch": "https://www.linkedin.com/learning/aicc?content=urn%3Ali%3AlyndaCourse%3A252&account=urn%3Ali%3AenterpriseApplicationInstance%3A%28urn%3Ali%3AenterpriseAccount%3A105587602%2C113669290%29"
+        },
+        "shortDescriptionIncludingHtml": {
+          "locale": {
+            "country": "US",
+            "language": "en"
+          },
+          "value": "Short description"
+        },
+        "contributors": [
+          {
+            "name": {
+              "locale": {
+                "country": "US",
+                "language": "en"
+              },
+              "value": "Lorna Daly"
+            },
+            "urn": "urn:li:lyndaAuthor:88",
+            "contributionType": "AUTHOR",
+            "authorDetails": {
+              "lastName": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Daly"
+              },
+              "firstName": {
+                "locale": {
+                  "country": "US",
+                  "language": "en"
+                },
+                "value": "Lorna"
+              }
+            }
+          }
+        ],
+        "timeToComplete": {
+          "duration": 18790,
+          "unit": "SECOND"
+        }
+      },
+      "title": {
+        "locale": {
+          "country": "US",
+          "language": "en"
+        },
+        "value": "Excel 2007 Essential Training"
+      },
+      "type": "COURSE",
+      "contents": []
+    }
+  ]
+}

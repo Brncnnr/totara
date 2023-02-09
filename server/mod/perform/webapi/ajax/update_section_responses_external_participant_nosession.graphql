@@ -1,0 +1,72 @@
+mutation mod_perform_update_section_responses_external_participant_nosession(
+  $input: mod_perform_update_section_responses_external_participant_input!
+) {
+  mod_perform_update_section_responses_external_participant(input: $input) {
+    participant_section {
+      id
+      progress_status
+      availability_status
+      can_answer
+      section {
+        display_title
+      }
+      section_element_responses {
+        section_element_id
+        element {
+          ...mod_perform_update_section_responses_external_participant_nosession_element_data
+          children {
+            id
+            ...mod_perform_update_section_responses_external_participant_nosession_element_data
+          }
+        }
+        sort_order
+        can_respond
+        response_data
+        response_data_raw: response_data(format: RAW)
+        response_data_formatted_lines
+        validation_errors {
+          error_code
+          error_message
+        }
+        other_responder_groups {
+          relationship_name
+          responses {
+            participant_instance {
+              participant {
+                fullname
+                profileimagealt
+                profileimageurlsmall
+              }
+            }
+            response_data
+            response_data_formatted_lines
+          }
+        }
+        visible_to {
+          participant {
+            fullname
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment mod_perform_update_section_responses_external_participant_nosession_element_data on mod_perform_element {
+  __typename
+  title
+  data
+  is_required
+  is_respondable
+  displays_responses
+  element_plugin {
+    participant_form_component
+    participant_response_component
+    child_element_config {
+      supports_child_elements
+      supports_repeating_child_elements
+      repeating_item_identifier
+      child_element_responses_identifier
+    }
+  }
+}

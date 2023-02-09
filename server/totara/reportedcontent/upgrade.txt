@@ -1,0 +1,6 @@
+This files describes API changes in /totara/reportedcontent/*.
+
+=== 13.1 ===
+
+* Deprecated the 'review.time_reviewed' GraphQL field in favour of 'review.time_reviewed_description' field.
+  The new field will accept a core_date_format parameter to return the time reviewed formatted.

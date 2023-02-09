@@ -1,0 +1,11 @@
+{
+  "OBJECT": {
+    "Query": {
+      "fields": {
+        "mod_resource_resource": {
+          "documentation": { "undocumented": true }
+        }
+      }
+    }
+  }
+}

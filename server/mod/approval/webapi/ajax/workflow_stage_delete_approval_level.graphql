@@ -1,0 +1,9 @@
+mutation mod_approval_workflow_stage_delete_approval_level(
+  $input: mod_approval_workflow_stage_delete_approval_level_input!
+) {
+  mod_approval_workflow_stage_delete_approval_level(input: $input) {
+    stage {
+      id
+    }
+  }
+}

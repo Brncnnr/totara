@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaylistForm Checks snapshot 1`] = `
+<form-stub
+  autocomplete="off"
+  class="tui-playlistForm"
+  inputwidth="full"
+  vertical="true"
+>
+  <formrow-stub
+    class="tui-playlistForm__title"
+    hidden="true"
+    isstacked="true"
+    label="playlisttitle, totara_playlist"
+    required="true"
+  />
+   
+  <div
+    class="tui-playlistForm__description"
+  >
+    <formrow-stub
+      class="tui-playlistForm__description-formRow"
+      hidden="true"
+      isstacked="true"
+      label="playlistdescription, totara_playlist"
+    />
+     
+    <div
+      class="tui-playlistForm__description-tip"
+    >
+      <p>
+        contributetip, totara_engage
+      </p>
+       
+      <infoiconbutton-stub
+        ishelpfor="hashtags, totara_engage"
+      >
+        
+        contributetip_help, totara_engage
+      
+      </infoiconbutton-stub>
+    </div>
+  </div>
+   
+  <buttongroup-stub
+    class="tui-playlistForm__buttons"
+  >
+    <button-stub
+      aria-label="createplaylistshort, totara_playlist"
+      disabled="true"
+      styleclass="[object Object]"
+      text="next, core"
+      type="button"
+    />
+     
+    <cancelbutton-stub />
+  </buttongroup-stub>
+   
+  <!---->
+</form-stub>
+`;

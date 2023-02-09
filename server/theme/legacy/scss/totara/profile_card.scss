@@ -1,0 +1,90 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kian Nguyen <kian.nguyen@totaralearning.com>
+// @package   theme_legacy
+
+.tw-profileCard {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--gap-4);
+
+  &__avatar {
+    margin-right: var(--gap-4);
+    &__img {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 2px solid var(--color-primary);
+      padding: var(--gap-1);
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+
+    &__text {
+      // We cannot use tui_typography, so here we are - look alike copied/pasted
+      // css rules.
+      color: var(--color-text);
+      font-weight: normal;
+      font-size: var(--font-size-15);
+      line-height: 1.33;
+      margin: 0;
+    }
+
+    &__link {
+      // We cannot use tui_typography, so here we are - look alike copied/pasted
+      // css rules.
+      color: var(--color-state);
+      font-size: var(--font-size-15);
+      line-height: 1.33;
+      cursor: pointer;
+      margin: 0;
+
+      &:hover,
+      &:focus {
+        color: var(--color-state-hover);
+      }
+
+      &:active,
+      &:active:hover,
+      &:active:focus {
+        color: var(--color-state-active);
+      }
+
+      &__header {
+        font-weight: bold;
+        font-size: var(--font-size-30);
+        line-height: 1;
+        margin: 0;
+        margin-bottom: var(--gap-2);
+      }
+    }
+
+    &__header {
+      font-weight: bold;
+      font-size: var(--font-size-30);
+      line-height: 1;
+      margin-bottom: var(--gap-2);
+    }
+  }
+}

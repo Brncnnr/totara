@@ -1,0 +1,2 @@
+# Ignore generated schema
+totara/webapi/tests/fixtures/schema_diff/previous_release.graphqls

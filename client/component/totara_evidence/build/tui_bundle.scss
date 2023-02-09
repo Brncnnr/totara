@@ -1,0 +1,29 @@
+.tui-linkedReviewViewEvidence {
+  &__heading {
+    @include tui-font-heading-x-small();
+    margin: 0;
+  }
+
+  &__customFields {
+    margin-top: var(--gap-4);
+
+    &-field {
+      @include tui-layout-sidebar(
+        $side-width: 22rem,
+        $content-min-width: 60%,
+        $gutter: var(--gap-1),
+        $sidebar-selector: 'dt',
+        $content-selector: 'dd'
+      );
+
+      & + & {
+        margin-top: var(--gap-2);
+      }
+    }
+  }
+
+  &__type {
+    color: var(--color-neutral-6);
+  }
+}
+

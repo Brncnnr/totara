@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`presentation/datatable/HeaderCell.vue Checks snapshot 1`] = `
+<div
+  class="tui-dataTableHeaderCell tui-dataTableCell--size_2"
+  role="columnheader"
+/>
+`;

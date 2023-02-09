@@ -1,0 +1,53 @@
+query mod_scorm_scorm($scormid: core_id!) {
+  mod_scorm_scorm(scormid: $scormid) {
+    id
+    courseid
+    name
+    scormtype
+    reference
+    intro
+    version
+    maxgrade
+    grademethod
+    whatgrade
+    maxattempt
+    forcecompleted
+    forcenewattempt
+    lastattemptlock
+    masteryoverride
+    displaycoursestructure
+    skipview
+    nav
+    navpositionleft
+    navpositiontop
+    auto
+    width
+    height
+    timeopen
+    timeclose
+    displayactivityname
+    autocommit
+    allowmobileoffline
+    completion
+    completionview
+    completionstatusrequired
+    completionscorerequired
+    completionstatusallscos
+    package_url
+    launch_url
+    repeat_url
+    attempts_current
+    calculated_grade
+    offline_package_url
+    offline_package_contenthash
+    offline_package_sco_identifiers
+    attempts {
+      attempt
+      timestarted
+      gradereported
+      defaults
+      objectives
+      interactions
+    }
+  }
+}

@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mod_approval/components/cards/MicroProfileCard Check snapshot with custom name 1`] = `
+<div
+  class="tui-mod_approval-microProfileCard tui-mod_approval-microProfileCard--xsmall"
+>
+  <avatar-stub
+    alt=""
+    size="xsmall"
+    src="https://example.com/user.jpg"
+  />
+   
+  <div
+    class="tui-mod_approval-microProfileCard__profile"
+  >
+    <a
+      class="tui-mod_approval-microProfileCard__name tui-mod_approval-microProfileCard__name--link"
+      href="http://foo/user/profile.php?id=42"
+    >
+      
+      Cus Tom Name
+    
+    </a>
+     
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`mod_approval/components/cards/MicroProfileCard Check snapshot with default 1`] = `
+<div
+  class="tui-mod_approval-microProfileCard tui-mod_approval-microProfileCard--xsmall"
+>
+  <avatar-stub
+    alt=""
+    size="xsmall"
+    src="https://example.com/user.jpg"
+  />
+   
+  <div
+    class="tui-mod_approval-microProfileCard__profile"
+  >
+    <a
+      class="tui-mod_approval-microProfileCard__name tui-mod_approval-microProfileCard__name--link"
+      href="http://foo/user/profile.php?id=42"
+    >
+      
+      Totara User
+    
+    </a>
+     
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`mod_approval/components/cards/MicroProfileCard Check snapshot with email 1`] = `
+<div
+  class="tui-mod_approval-microProfileCard tui-mod_approval-microProfileCard--xsmall"
+>
+  <avatar-stub
+    alt=""
+    size="xsmall"
+    src="https://example.com/user.jpg"
+  />
+   
+  <div
+    class="tui-mod_approval-microProfileCard__profile"
+  >
+    <a
+      class="tui-mod_approval-microProfileCard__name tui-mod_approval-microProfileCard__name--link tui-mod_approval-microProfileCard__name--primary"
+      href="http://foo/user/profile.php?id=42"
+    >
+      
+      Totara User
+    
+    </a>
+     
+    <a
+      class="tui-mod_approval-microProfileCard__email"
+      href="mailto:totara.user@example.com"
+    >
+      totara.user@example.com
+    </a>
+  </div>
+</div>
+`;
+
+exports[`mod_approval/components/cards/MicroProfileCard Check snapshot with emphasised 1`] = `
+<div
+  class="tui-mod_approval-microProfileCard tui-mod_approval-microProfileCard--xsmall"
+>
+  <avatar-stub
+    alt=""
+    size="xsmall"
+    src="https://example.com/user.jpg"
+  />
+   
+  <div
+    class="tui-mod_approval-microProfileCard__profile"
+  >
+    <a
+      class="tui-mod_approval-microProfileCard__name tui-mod_approval-microProfileCard__name--link tui-mod_approval-microProfileCard__name--primary"
+      href="http://foo/user/profile.php?id=42"
+    >
+      
+      Totara User
+    
+    </a>
+     
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`mod_approval/components/cards/MicroProfileCard Check snapshot with large size 1`] = `
+<div
+  class="tui-mod_approval-microProfileCard tui-mod_approval-microProfileCard--large"
+>
+  <avatar-stub
+    alt=""
+    size="large"
+    src="https://example.com/user.jpg"
+  />
+   
+  <div
+    class="tui-mod_approval-microProfileCard__profile"
+  >
+    <a
+      class="tui-mod_approval-microProfileCard__name tui-mod_approval-microProfileCard__name--link"
+      href="http://foo/user/profile.php?id=42"
+    >
+      
+      Totara User
+    
+    </a>
+     
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`mod_approval/components/cards/MicroProfileCard Check snapshot with readonly 1`] = `
+<div
+  class="tui-mod_approval-microProfileCard tui-mod_approval-microProfileCard--xsmall"
+>
+  <avatar-stub
+    alt=""
+    size="xsmall"
+    src="https://example.com/user.jpg"
+  />
+   
+  <div
+    class="tui-mod_approval-microProfileCard__profile"
+  >
+    <span
+      class="tui-mod_approval-microProfileCard__name"
+    >
+      Totara User
+    </span>
+     
+    <!---->
+  </div>
+</div>
+`;

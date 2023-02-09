@@ -1,0 +1,33 @@
+mutation totara_job_create_assignment(
+  $userid: core_id!
+  $idnumber: String!
+  $fullname: String
+  $shortname: String
+  $description: String
+  $positionid: core_id
+  $organisationid: core_id
+  $startdate: core_date
+  $enddate: core_date
+  $managerjaid: core_id
+  $tempmanagerjaid: core_id
+  $tempmanagerexpirydate: core_date
+  $appraiserid: core_id
+  $totarasync: param_boolean
+) {
+  totara_job_create_assignment(
+    userid: $userid
+    idnumber: $idnumber
+    fullname: $fullname
+    shortname: $shortname
+    description: $description
+    positionid: $positionid
+    organisationid: $organisationid
+    startdate: $startdate
+    enddate: $enddate
+    managerjaid: $managerjaid
+    tempmanagerjaid: $tempmanagerjaid
+    tempmanagerexpirydate: $tempmanagerexpirydate
+    appraiserid: $appraiserid
+    totarasync: $totarasync
+  )
+}

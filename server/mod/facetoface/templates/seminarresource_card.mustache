@@ -1,0 +1,59 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2020 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarresource_card
+
+    This template generates the informational card for a seminar resource.
+
+    Context variables required for this template:
+    * heading: heading text
+    * subtitle: sub heading text
+    * inactive: grayed out or not
+    * button: a link that looks like a button
+    * button.url: the url of the button
+    * button.hint: the aria-label of the button
+    * button.accent: primary button or not
+    * button.text: the label of the button
+
+    Example content (json):
+    {
+        "heading": "Gourmet Doughnuts",
+        "subtitle": "Subscribe for recipes",
+        "inavtive": true,
+        "button": {
+            "text": "Subscribe",
+            "url": "https://example.com/channel/123456",
+            "accent": false,
+            "hint": "Subscribe to the Gourmet Doughnuts channel"
+        }
+    }
+}}
+
+<div class="mod_facetoface__eventinfo__sidebars">
+    <div class="mod_facetoface__eventinfo__sidebar__panel mod_facetoface__resource-card mod_facetoface__resource-card--simple{{#inactive}} mod_facetoface__resource-card--inactive{{/inactive}}">
+        {{#heading}}<h3>{{.}}</h3>{{/heading}}
+        {{#subtitle}}<h4>{{.}}</h4>{{/subtitle}}
+        {{#button}}<div class="mod_facetoface__resource-card__button"><a role="button" href="{{url}}" class="btn {{#accent}}btn-primary{{/accent}}{{^accent}}btn-default{{/accent}}" target="_blank" rel="noopener noreferrer"{{#hint}} aria-label="{{.}}"{{/hint}}>{{text}}</a></div>{{/button}}
+    </div>
+</div>

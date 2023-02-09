@@ -1,0 +1,6 @@
+mutation core_completion_activity_self_complete(
+  $cmid: core_id!
+  $complete: Boolean!
+) {
+  core_completion_activity_self_complete(cmid: $cmid, complete: $complete)
+}

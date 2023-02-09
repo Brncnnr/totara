@@ -1,0 +1,5 @@
+{
+  "component": "totara_contentmarketplace",
+  "bundleWith": "totara_core",
+  "vendor": "totara"
+}

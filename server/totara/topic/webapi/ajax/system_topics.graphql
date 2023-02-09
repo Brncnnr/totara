@@ -1,0 +1,7 @@
+query totara_topic_system_topics {
+  topics: totara_topic_system_topics {
+    __typename
+    id
+    value(format: PLAIN)
+  }
+}

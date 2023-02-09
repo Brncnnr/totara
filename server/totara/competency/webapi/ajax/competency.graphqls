@@ -1,0 +1,404 @@
+"""
+This is the order direction
+"""
+enum totara_competency_order_dir {
+  ASC
+  DESC
+}
+
+"""
+Competency scale
+"""
+type totara_competency_scale {
+  id: core_id!
+  """
+  Human readable scale name
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Rich text description of the scale
+  """
+  description(format: core_format = HTML): String
+  """
+  Time the scale record was last updated
+  """
+  timemodified(format: core_date_format = TIMESTAMP): core_date!
+  """
+  User ID of the last user to modify the scale
+  """
+  usermodified: core_id
+  """
+  ID of the default scale value
+  """
+  defaultid: core_id
+  """
+  List of scale values associated with this scale
+  """
+  values: [totara_competency_scale_value!]!
+}
+
+"""
+Competency scale value
+"""
+type totara_competency_scale_value {
+  id: core_id!
+  """
+  Human readable label for this scale value item
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  The id number to identify the scale value item programmatically
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  Rich text description of this scale value item
+  """
+  description(format: core_format = HTML): String
+  """
+  ID of the scale this scale value is associated with
+  """
+  scaleid: core_id!
+  """
+  Optional numeric score associated with this scale value
+  """
+  numericscore: Float
+  """
+  Numeric sort order used to arrange the values in a scale relative to each other
+  """
+  sortorder: Int!
+  """
+  Time this scale value record was last changed
+  """
+  timemodified(format: core_date_format = TIMESTAMP): core_date!
+  """
+  ID of the user who made the last change to this scale value record
+  """
+  usermodified: core_id
+  """
+  True if the scale value is equal to or higher than the scale's minimum proficient value.
+  A user with a scale value that is proficient is considered proficient in the competency.
+  """
+  proficient: Boolean!
+}
+
+"""
+Competency
+
+NOTE: The query is responsible for ensuring the user can see the competency.
+"""
+interface totara_competency_competency_interface {
+  id: core_id!
+  """
+  Competency fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Competency idnumber
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  Competency shortname
+  """
+  shortname(format: core_format = PLAIN): String
+  """
+  Display name is a unified display name that can be used across different types of hierarchy item. Equivalent to fullname
+  """
+  display_name(format: core_format = PLAIN): String
+  """
+  Human readable rich-text description of this competency
+  """
+  description(format: core_format = HTML): String
+  """
+  Time of competency creation
+  """
+  timecreated(format: core_date_format = TIMESTAMP): core_date
+  """
+  Time when this competency record was last modified
+  """
+  timemodified(format: core_date_format = TIMESTAMP): core_date
+  """
+  ID of framework that this competency belongs to
+  """
+  frameworkid: core_id
+  """
+  Framework that this competency belongs to
+  """
+  framework: totara_competency_competency_framework
+  """
+  Slash separated list of ancestors of this competency including the competency's own ID. E.g. '/1/2/6/18'
+  """
+  path: String!
+  """
+  True if the competency is set to be visible
+  """
+  visible: Boolean!
+  """
+  ID of this competency's parent
+  """
+  parentid: core_id
+  """
+  Competency that this competency is a child of, or null for top level competency
+  """
+  parent: totara_competency_competency
+  """
+  List of competencies that are direct children of this competency
+  """
+  children: [totara_competency_competency]!
+  """
+  ID of this competency's type
+  """
+  typeid: core_id
+  """
+  Type object for this competency's type
+  """
+  type: totara_competency_competency_type
+  """
+  List of assignments related to this competency (groups of users assigned to it)
+  """
+  assignments: [totara_competency_assignment]
+  """
+  Legacy aggregation method used only in previous Totara versions for aggregating child competencies and linked courses
+  """
+  aggregation_method: Int
+}
+
+type totara_competency_competency implements totara_competency_competency_interface {
+  id: core_id!
+  """
+  Competency fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Competency idnumber
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  Competency shortname
+  """
+  shortname(format: core_format = PLAIN): String
+  """
+  Display name is a unified display name that can be used across different types of hierarchy item. Equivalent to fullname
+  """
+  display_name(format: core_format = PLAIN): String
+  """
+  Human readable rich-text description of this competency
+  """
+  description(format: core_format = HTML): String
+  """
+  Time of competency creation
+  """
+  timecreated(format: core_date_format = TIMESTAMP): core_date
+  """
+  Time when this competency record was last modified
+  """
+  timemodified(format: core_date_format = TIMESTAMP): core_date
+  """
+  ID of framework that this competency belongs to
+  """
+  frameworkid: core_id
+  """
+  Framework that this competency belongs to
+  """
+  framework: totara_competency_competency_framework
+  """
+  Slash separated list of ancestors of this competency including the competency's own ID. E.g. '/1/2/6/18'
+  """
+  path: String!
+  """
+  True if the competency is set to be visible
+  """
+  visible: Boolean!
+  """
+  ID of this competency's parent
+  """
+  parentid: core_id
+  """
+  Competency that this competency is a child of, or null for top level competency
+  """
+  parent: totara_competency_competency
+  """
+  List of competencies that are direct children of this competency
+  """
+  children: [totara_competency_competency]!
+  """
+  ID of this competency's type
+  """
+  typeid: core_id
+  """
+  Type object for this competency's type
+  """
+  type: totara_competency_competency_type
+  """
+  List of assignments related to this competency (groups of users assigned to it)
+  """
+  assignments: [totara_competency_assignment]
+  """
+  Array of integers representing ways the competency can be assigned (1 = assign to self, 2 = assign to others)
+  """
+  assign_availability: [Int]
+  """
+  List of custom field metadata associated with the current competency
+  """
+  display_custom_fields: [totara_competency_competency_custom_field]
+  """
+  Legacy aggregation method used only in previous Totara versions for aggregating child competencies and linked courses
+  """
+  aggregation_method: Int
+}
+
+"""
+Metadata for a single competency's custom field data
+"""
+type totara_competency_competency_custom_field {
+  """
+  The custom field type this data is for
+  """
+  type: String
+  """
+  Human readable title of the custom field name
+  """
+  title(format: core_format = PLAIN): String
+  """
+  Value for the custom field
+  """
+  value: String
+}
+
+"""
+Competency type
+
+NOTE: The query is responsible for ensuring the user can see the competency type
+"""
+type totara_competency_competency_type {
+  id: core_id!
+  """
+  Generic display name for this competency type (standardized name that can be used across group types, but currently returns fullname)
+  """
+  display_name(format: core_format = PLAIN): String
+  """
+  Competency type fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Competency type idnumber
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  Competency type shortname
+  """
+  shortname(format: core_format = PLAIN): String
+  """
+  Competency type rich-text description
+  """
+  description(format: core_format = HTML): String
+}
+
+"""
+Competency framework
+
+NOTE: The query is responsible for ensuring the user can see the competency framework
+"""
+type totara_competency_competency_framework {
+  id: core_id!
+  """
+  Generic display name for this competency framework (standardized name that can be used across group types, but currently returns fullname)
+  """
+  display_name(format: core_format = PLAIN): String
+  """
+  Competency framework fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Competency framework shortname
+  """
+  shortname(format: core_format = PLAIN): String
+  """
+  Competency framework idnumber
+  """
+  idnumber(format: core_format = PLAIN): String
+  """
+  Competency framework rich-text description
+  """
+  description(format: core_format = HTML): String
+  """
+  List of competencies belonging to this framework
+  """
+  competencies: [totara_competency_competency]
+  """
+  Scale that belongs to this competency
+  """
+  scale: totara_competency_scale
+}
+
+"""
+Linked course metadata
+"""
+type totara_competency_linked_course {
+  """
+  ID of the course that is linked to a competency
+  """
+  course_id: core_id!
+  """
+  Fullname for the linked course
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  True if the linked course is mandatory (must be completed), false otherwise
+  """
+  is_mandatory: Boolean!
+}
+
+extend type Query {
+  """
+  Returns data about a given competency by ID
+  """
+  totara_competency_competency(
+    competency_id: core_id!
+  ): totara_competency_competency!
+
+  """
+  Returns custom field data about a given competency by ID
+  """
+  totara_competency_competency_custom_fields(
+    competency_id: core_id!
+  ): totara_competency_competency_custom_field!
+
+  """
+  Returns information about a given competency scale for a given scale ID or competency ID
+  """
+  totara_competency_scale(
+    """
+    ID of scale to return. If provided competency_id/framework_id should be left blank
+    """
+    id: core_id
+    """
+    ID of a competency whose scale to return. If provided id/framework_id should be left blank
+    """
+    competency_id: core_id
+    """
+    ID of a framework whose scale to return. If provided id/competency_id should be left blank
+    """
+    framework_id: core_id
+  ): totara_competency_scale!
+
+  """
+  Returns information about multiple scales for a given set of scale IDs or competency IDs
+  """
+  totara_competency_scales(
+    """
+    List of scale IDs to return. If provided competency_id should be left blank
+    """
+    id: [core_id!]
+    """
+    List of competency_ids whose scale to return. If provided id should be left blank
+    """
+    competency_id: [core_id!]
+  ): [totara_competency_scale]!
+
+  """
+  Returns a list of linked courses associated with a specific competency by ID
+  """
+  totara_competency_linked_courses(
+    competency_id: core_id!
+  ): [totara_competency_linked_course]
+}

@@ -1,0 +1,29 @@
+query totara_competency_user_assignable_competencies(
+  $user_id: core_id!
+  $filters: totara_competency_self_assigned_competencies_filter
+  $order_by: String
+  $order_dir: totara_competency_order_dir
+  $cursor: String
+) {
+  totara_competency_user_assignable_competencies(
+    user_id: $user_id
+    filters: $filters
+    order_by: $order_by
+    order_dir: $order_dir
+    cursor: $cursor
+  ) {
+    items {
+      id
+      display_name
+      description
+      user_assignments {
+        id
+        type
+        user_group_type
+        reason_assigned
+      }
+    }
+    total
+    next_cursor
+  }
+}

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CloseIcon matches snapshot 1`] = `
+<buttonicon-stub
+  arialabel="[[closebuttontitle, core]]"
+  styleclass="[object Object]"
+  type="button"
+>
+  <closeicon-stub
+    size="200"
+  />
+</buttonicon-stub>
+`;

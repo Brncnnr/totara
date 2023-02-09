@@ -1,0 +1,5 @@
+query mod_approval_workflow_id_number_is_unique(
+  $input: mod_approval_workflow_id_number_is_unique_input!
+) {
+  mod_approval_workflow_id_number_is_unique(input: $input)
+}

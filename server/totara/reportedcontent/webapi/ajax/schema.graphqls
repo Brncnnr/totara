@@ -1,0 +1,41 @@
+type totara_reportedcontent_review {
+  id: core_id!
+  target_user: core_user!
+  complainer: core_user!
+  reviewer: core_user
+  content(format: core_format! = HTML): String!
+  url: String!
+  approved: Boolean!
+  removed: Boolean!
+  status: Int
+  time_created: Int!
+  time_content: Int
+  time_reviewed: Int @deprecated(reason: "Use `time_reviewed_description`.")
+  time_reviewed_description(format: core_date_format!): String
+  item_id: Int!
+  context_id: Int!
+  component: String!
+  area: String!
+}
+
+type totara_reportedcontent_review_create_status {
+  success: Boolean!
+  id: core_id
+}
+
+extend type Mutation {
+  totara_reportedcontent_create_review(
+    component: param_component!
+    area: param_area
+    item_id: param_integer!
+    url: param_url!
+  ): totara_reportedcontent_review_create_status!
+
+  totara_reportedcontent_approve_review(
+    review_id: param_integer!
+  ): totara_reportedcontent_review
+
+  totara_reportedcontent_remove_review(
+    review_id: param_integer!
+  ): totara_reportedcontent_review
+}

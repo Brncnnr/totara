@@ -1,0 +1,9 @@
+query engage_article_draft_item($resourceid: param_integer!) {
+  draft: engage_article_draft_item(resourceid: $resourceid) {
+    __typename
+    resourceid
+    content
+    format
+    file_item_id
+  }
+}

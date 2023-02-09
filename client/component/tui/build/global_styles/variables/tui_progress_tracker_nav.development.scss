@@ -1,0 +1,31 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2021 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Dave Wallace <dave.wallace@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+:root {
+  /* `-size--` units should be in either `px` or `rem` for JS container querying*/
+  --progress-tracker-horizontal-size--small: 10rem;
+  --progress-tracker-horizontal-size--medium: 20rem;
+  --progress-tracker-horizontal-size--large: 25rem;
+  --progress-tracker-horizontal-gap--small: var(--gap-2);
+  --progress-tracker-horizontal-gap--medium: var(--gap-4);
+  --progress-tracker-horizontal-gap--large: var(--gap-6);
+  --progress-tracker-vertical-gap--small: var(--gap-2);
+  --progress-tracker-vertical-gap--medium: var(--gap-4);
+  --progress-tracker-vertical-gap--large: var(--gap-6);
+  --progresstracker-full-marker-size: 2.8rem;
+  --progresstracker-connector-gap: 0.5rem;
+}
+

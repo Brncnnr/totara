@@ -1,0 +1,84 @@
+// This file is part of Totara Enterprise Extensions.
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// Totara Enterprise Extensions is provided only to Totara
+// Learning Solutions LTD's customers and partners, pursuant to
+// the terms and conditions of a separate agreement with Totara
+// Learning Solutions LTD or its affiliate.
+//
+// If you do not have an agreement with Totara Learning Solutions
+// LTD, you may not access, use, modify, or distribute this software.
+// Please contact [licensing@totaralearning.com] for more information.
+//
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @module tuickage   tui
+
+html {
+  font-size: 10px;
+}
+
+.tui-sr-only {
+  @include sr-only();
+}
+
+// rendered editor content
+.tui-rendered {
+  @include tui-font-body();
+  word-break: break-word;
+
+  h2 {
+    @include tui-font-heading-large();
+  }
+
+  h3 {
+    @include tui-font-heading-medium();
+  }
+
+  h4 {
+    @include tui-font-heading-small();
+  }
+
+  h5 {
+    @include tui-font-heading-x-small();
+  }
+
+  &__block {
+    margin-bottom: var(--paragraph-gap);
+  }
+
+  &__embedContainer {
+    max-width: var(--embedded-media-max-width);
+  }
+}
+
+// Color state for the icons.
+.tui-icon {
+  &--disabled {
+    color: var(--color-neutral-2);
+  }
+
+  &--action {
+    color: var(--color-state);
+  }
+
+  &--info {
+    color: var(--color-prompt-info);
+  }
+
+  &--alert {
+    color: var(--color-prompt-alert);
+  }
+
+  &--warning {
+    color: var(--color-prompt-warning);
+  }
+
+  &--success {
+    color: var(--color-prompt-success);
+  }
+
+  &--dimmed {
+    color: var(--color-neutral-6);
+  }
+}

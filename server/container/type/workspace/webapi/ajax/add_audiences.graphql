@@ -1,0 +1,7 @@
+mutation container_workspace_add_audiences(
+  $input: container_workspace_add_audiences_input!
+) {
+  container_workspace_add_audiences(input: $input) {
+    audience_ids
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "component": "performelement_custom_rating_scale",
+  "vendor": "totara",
+  "dependencies": [
+    "editor_weka"
+  ]
+}

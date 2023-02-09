@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputCurrency Checks snapshot has not changed 1`] = `
+<div
+  class="tui-formInputCurrency"
+>
+  <span
+    class="tui-formInputCurrency__symbol"
+  >
+    
+    $
+  
+  </span>
+   
+  <input-stub
+    ariadescribedby="#ariaDescription"
+    arialabel="aria label"
+    arialabelledby="#ariaLabel"
+    autocomplete="on"
+    autofocus="true"
+    charlength="full"
+    disabled="true"
+    id="inputid"
+    max="100"
+    min="0"
+    name="currencyinput"
+    pattern="[0-9\\\\.]"
+    placeholder="gimme money"
+    readonly="true"
+    required="true"
+    step="20"
+    styleclass="[object Object]"
+    type="number"
+    value="123456.789"
+  />
+   
+  <!---->
+</div>
+`;
+
+exports[`InputCurrency Checks snapshot has not changed with custom currency 1`] = `
+<div
+  class="tui-formInputCurrency"
+>
+  <!---->
+   
+  <input-stub
+    charlength="full"
+    step="0.1"
+    styleclass="[object Object]"
+    type="number"
+  />
+   
+  <span
+    class="tui-formInputCurrency__symbol"
+  >
+    
+    円
+  
+  </span>
+</div>
+`;
+
+exports[`InputCurrency Checks snapshot has not changed with default step 1`] = `
+<div
+  class="tui-formInputCurrency"
+>
+  <span
+    class="tui-formInputCurrency__symbol"
+  >
+    
+    £
+  
+  </span>
+   
+  <input-stub
+    charlength="full"
+    step="0.01"
+    styleclass="[object Object]"
+    type="number"
+  />
+   
+  <!---->
+</div>
+`;

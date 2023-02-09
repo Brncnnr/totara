@@ -1,0 +1,4 @@
+
+# Ignore generated documentation
+# /build/spectaql/*
+!/build/spectaql/.keep

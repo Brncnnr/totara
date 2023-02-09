@@ -1,0 +1,26 @@
+This files describes API changes in /badges/*,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.3 ===
+* /badges/preferences.php page has been deprecated and should not be used.
+* badges_preferences_form class has been deprecated and should not be used.
+
+=== 13.0 ===
+
+* BADGE_BACKPACKAPIURL and BADGE_BACKPACKWEBURL are deprecated and should not be used.
+* OBv2 has been set to the default value when the obversion is not defined.
+* BADGE_BACKPACKURL is deprecated and should not be used.
+* The WebService core_badges_get_user_badges now returns more information for each badge: notification, nextcron, email, version, language, imageauthorname, imageauthoremail, imageauthorurl, imagecaption, endorsement, competencies and relatedbadges.
+
+=== 12.0 ===
+
+* Deprecated the following report builder display functions and replaced with display classes
+  * rb_source_badge_issued::rb_display_issuernamelink(), please call core_badges\rb\display\badge_issuer_name_link::display() instead.
+  * rb_source_badge_issued::rb_display_badgestatus(), please call core_badges\rb\display\badge_status::display() instead.
+  * rb_source_badge_issued::rb_display_badgeimage(), please call core_badges\rb\display\badge_image::display() instead.
+
+=== 10.0 ===
+
+* core_badges_renderer::print_badge_status_box() has changed

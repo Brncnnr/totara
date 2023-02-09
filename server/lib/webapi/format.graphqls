@@ -1,0 +1,149 @@
+"""
+List of supported output formats for core_date scalar.
+
+The actual format used for userdate() is:
+get_string('strftime' . strtolower($arg['format']), 'langconfig')
+"""
+enum core_date_format {
+  """
+  A standard UNIX timestamp value. 0 will be replaced with null.
+  """
+  TIMESTAMP
+  """
+  ISO-8601 time string in current user timezone, null if no date. Example output: 2022-09-01T12:06:53+1200
+  """
+  ISO8601
+  """
+  Datetime string in the format: Thursday, 1 September 2022, 12:05 PM
+  """
+  DAYDATETIME
+  """
+  Time string in the format: 12:08 PM
+  """
+  TIME
+  """
+  Time string in the format: 12:08
+  """
+  TIMESHORT
+  """
+  Date string in the format: 1 September 2022
+  """
+  DATE
+  """
+  Date string in the format: 1 September
+  """
+  DATESHORT
+  """
+  Date string in the format: 1/09/2022
+  """
+  DATELONG
+  """
+  Datetime string in the format: 1 September 2022, 12:12 PM
+  """
+  DATETIME
+  """
+  Datetime string in the format: 1/09/22, 12:12
+  """
+  DATETIMESHORT
+  """
+  Datetime string in the format: 1/09/2022, 12:10
+  """
+  DATETIMELONG
+  """
+  Datetime string in the format: 1 Sep 2022 at 12:12:07
+  """
+  DATETIMESECONDS
+}
+
+"""
+Rich-text output format. Note that some rich-text formats may not be renderable in other formats.
+"""
+enum core_format {
+  """
+  Outputs the stored value unchanged. Most commonly used when editing a value.
+  """
+  RAW
+  """
+  Outputs the stored value for display within an HTML page. Handles escaping of HTML entities.
+  """
+  HTML
+  """
+  Outputs the stored value in a way suitable for plain-text display.
+  """
+  PLAIN
+  """
+  Outputs the stored value in Markdown format.
+  """
+  MARKDOWN
+  """
+  Outputs the stored value in a JSON structure, suitable for use by a compatible JSON editor (e.g. Weka).
+  """
+  JSON_EDITOR
+  """
+  Outputs the stored value in a format suitable for use within the Totara mobile app.
+  """
+  MOBILE
+}
+
+"""
+String output format.
+"""
+enum core_string_format {
+  """
+  Outputs the stored value unchanged. Most commonly used when editing a value.
+  """
+  RAW
+  """
+  Outputs the stored value for display within an HTML page. Handles escaping of HTML entities.
+  """
+  HTML
+  """
+  Outputs the stored value in a way suitable for plain text display.
+  """
+  PLAIN
+}
+
+"""
+Multiline plain-text (textarea) output format.
+"""
+enum core_text_format {
+  """
+  Outputs the stored value unchanged. Most commonly used when editing a value.
+  """
+  RAW
+  """
+  Outputs the stored value for display within an HTML page. Handles escaping of HTML entities.
+  """
+  HTML
+  """
+  Outputs the stored value in a way suitable for plain text display.
+  """
+  PLAIN
+  """
+  Outputs the stored value in a format suitable for use within the Totara mobile app.
+  """
+  MOBILE
+}
+
+"""
+Acceptable notification states, as defined in lib/classes/output/notification.php
+note: message, problem and redirect are deprecated.
+"""
+enum core_notification_state {
+  """
+  State to use when an operation succeeds without any problems.
+  """
+  success
+  """
+  State to use for a notification to provide information, rather than the result of an action.
+  """
+  info
+  """
+  State to use for a notification when there was an issue that you want to warn about, but that is not an error.
+  """
+  warning
+  """
+  State to use for a notification about an error, when something has failed in some way.
+  """
+  error
+}

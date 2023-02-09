@@ -1,0 +1,57 @@
+"""
+Represents a rating given in the subject instance
+"""
+type pathway_perform_rating_perform_rating {
+  id: core_id!
+  user_id: core_id!
+  user: core_user!
+  """
+  If the activity got deleted we can't load the rater or the role
+  """
+  rater_user: core_user
+  rater_relationship: totara_core_relationship
+  """
+  Role of the rater with respect to the user viewing the rating.
+  """
+  rater_role(format: core_format = PLAIN): String!
+  activity: mod_perform_activity
+  """
+  The scale value can be null if the rater explicit gave "no rating"
+  """
+  scale_value: totara_competency_scale_value
+  created_at(format: core_date_format = TIMESTAMP): core_date!
+}
+
+input pathway_perform_rating_linked_competencies_rate_input {
+  participant_instance_id: core_id!
+  competency_id: core_id!
+  scale_value_id: core_id
+  section_element_id: core_id!
+}
+
+type pathway_perform_rating_linked_competencies_rate_result {
+  rating: pathway_perform_rating_perform_rating!
+  already_exists: Boolean
+}
+
+input pathway_perform_rating_linked_competencies_rating_input {
+  competency_id: core_id!
+  user_id: core_id!
+}
+
+type pathway_perform_rating_linked_competencies_rating_result {
+  rating: pathway_perform_rating_perform_rating
+  default_profile_picture: String!
+}
+
+extend type Query {
+  pathway_perform_rating_linked_competencies_rating(
+    input: pathway_perform_rating_linked_competencies_rating_input!
+  ): pathway_perform_rating_linked_competencies_rating_result!
+}
+
+extend type Mutation {
+  pathway_perform_rating_linked_competencies_rate(
+    input: pathway_perform_rating_linked_competencies_rate_input
+  ): pathway_perform_rating_linked_competencies_rate_result!
+}

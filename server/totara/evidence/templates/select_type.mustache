@@ -1,0 +1,72 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/select_type
+
+    Creates a autocomplete field for selecting an evidence type
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-type-autocomplete  Detects the user selection
+    * data-type-infobox       Infobox about a type (can be hidden)
+    * data-type-metadata      Container for the type metadata template (totara_evidence/_select_type_no_types_message)
+    * data-type-buttons       Buttons container for event listener
+    * data-type-submit        Handles the submit button
+    * data-user-id            User ID if creating the type for another user
+    * data-type-cancel        Handles the cancel button
+
+    Context variables required for this template:
+    * has_types: boolean, is there at least one evidence type existing in the system?
+    * user_id: int, user ID if creating the type for another user
+
+    Example context (json):
+    {
+        "has_types": true,
+        "user_id": "2"
+    }
+}}
+{{#has_types}}
+<div class="tw-evidence__select_type"
+   data-core-autoinitialise="true"
+   data-core-autoinitialise-amd="totara_evidence/evidence_select_type">
+    <form class="tw-evidence__select_type_selector">
+        <label class="tw-evidence__select_type_selector_label" for="type_selector">{{#str}}select_type_label, totara_evidence{{/str}}</label>
+        <div class="tw-evidence__select_type_selector_element">
+            <select id="type_selector" data-type-autocomplete style="display: none"></select>
+        </div>
+    </form>
+    <div class="tw-evidence__select_type_info tw-evidence__content_container tw-evidence__hidden" data-type-infobox>
+        <div class="tw-evidence__select_type_info_metadata" data-type-metadata></div>
+        <div class="tw-evidence__select_type_info_buttons" data-type-buttons>
+            <a href="#" data-type-submit data-user-id="{{user_id}}" class="tw-evidence__select_type_info_button tw-evidence__select_type_info_button_primary">
+                {{#str}}select_type_submit, totara_evidence{{/str}}
+            </a>
+            <a href="#" data-type-cancel class="tw-evidence__select_type_info_button">{{#str}}cancel{{/str}}</a>
+        </div>
+    </div>
+</div>
+{{/has_types}}
+{{^has_types}}
+<div class="tw-evidence__no_data_message">{{#str}}no_evidence_types_available, totara_evidence{{/str}}</div>
+{{/has_types}}

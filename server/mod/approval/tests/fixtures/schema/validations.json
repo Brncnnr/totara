@@ -1,0 +1,18 @@
+{
+	"title": "Max Length",
+	"shortname": "MaxLength",
+	"revision": "1.0",
+	"version": "2021071500",
+	"language": "en-NZ",
+	"fields": [
+		{
+			"key": "forty_two",
+			"line": "a",
+			"label": "Forty Two",
+			"type": "text",
+			"attrs": {
+				"maxlength": 42
+			}
+		}
+	]
+}

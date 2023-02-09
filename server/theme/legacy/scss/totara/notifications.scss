@@ -1,0 +1,95 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Joby Harding <joby.harding@totaralearning.com>
+// @package   theme_legacy
+
+// Reset close styles so we can use our theme-specific
+// alert-close class and keep specificity flat.
+:root {
+  --alert-internal-border-radius: calc(#{$alert-border-radius} - var(--border-width-thin));
+}
+
+.alert {
+  border-width: 1px 1px 1px 20px;
+  border-width: var(--border-width-thin) var(--border-width-thin)
+    var(--border-width-thin) 20px;
+  clear: both;
+  display: flex;
+
+  > * {
+    vertical-align: middle;
+    display: inline;
+  }
+
+  // Extends the Bootstrap 3 alert component.
+  &.alert-with-icon {
+    padding: 0;
+    border-width: var(--border-width-thin);
+  }
+
+  .alert-message {
+    flex-grow: 1;
+    padding: $alert-padding ($alert-padding * 0.6);
+  }
+
+  .alert-close {
+    top: auto;
+    right: auto;
+    opacity: 1;
+    text-shadow: none;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: var(--color-neutral-1);
+    box-shadow: none;
+    padding: $padding-small-vertical $padding-small-vertical
+      floor(($padding-small-vertical * 1.5))
+      ceil(($padding-small-vertical * 1.5));
+    border-radius: 0 var(--alert-internal-border-radius) var(--alert-internal-border-radius) 0;
+
+    .flex-icon {
+      // Unfortunately there is no variable for the fixed
+      // width size of font totara fixed width icons. It
+      // is 1.3em and this needs to be square.
+      color: var(--color-neutral-6);
+    }
+  }
+}
+
+.alert-icon {
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: $alert-padding ($alert-padding * 0.6);
+  color: var(--color-neutral-1);
+  border-radius: var(--alert-internal-border-radius) 0 0 var(--alert-internal-border-radius);
+
+  .alert-info & {
+    background: $brand-info;
+  }
+  .alert-success & {
+    background: $brand-success;
+  }
+  .alert-warning & {
+    background: $brand-warning;
+  }
+  .alert-danger & {
+    background: $brand-danger;
+  }
+}

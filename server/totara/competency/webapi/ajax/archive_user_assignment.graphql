@@ -1,0 +1,7 @@
+mutation totara_competency_archive_user_assignment($assignment_id: core_id!) {
+  totara_competency_archive_user_assignment(assignment_id: $assignment_id) {
+    archived_assignment {
+      id
+    }
+  }
+}

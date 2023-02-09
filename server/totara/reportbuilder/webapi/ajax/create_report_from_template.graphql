@@ -1,0 +1,5 @@
+mutation totara_reportbuilder_create_report_from_template(
+  $key: param_alphanumext!
+) {
+  totara_reportbuilder_create_report_from_template(key: $key)
+}

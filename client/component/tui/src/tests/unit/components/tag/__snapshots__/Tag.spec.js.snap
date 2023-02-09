@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag Checks snapshot 1`] = `
+<div
+  class="tui-tag"
+>
+  <span
+    class="tui-tag__content"
+  >
+    Kakapo
+  </span>
+   
+</div>
+`;

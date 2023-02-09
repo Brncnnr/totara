@@ -1,0 +1,7 @@
+mutation totara_useraction_update_scheduled_rule(
+  $input: totara_useraction_update_scheduled_rule_input!
+) {
+  rule: totara_useraction_update_scheduled_rule(input: $input) {
+    id
+  }
+}

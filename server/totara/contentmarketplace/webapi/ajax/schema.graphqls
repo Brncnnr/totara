@@ -1,0 +1,17 @@
+"""
+Common external course data for all content marketplaces.
+Aligns with the summary_provider interface.
+"""
+interface totara_contentmarketplace_learning_object {
+  id: core_id!
+  name(format: core_format = PLAIN): String!
+  language: String!
+  image_url: String
+}
+
+enum totara_contentmarketplace_completion_condition {
+  """
+  Whether marking the completion base on the condition from content marketplace provider.
+  """
+  CONTENT_MARKETPLACE
+}

@@ -1,0 +1,1705 @@
+// Be mindful of theme colors when styling buttons and links.
+@mod_facetoface-error-colour: @state-danger-text;
+@mod_facetoface-overbooked: #f2d9b3;
+@mod_facetoface-cancelled: #e6bdbc;
+@mod_facetoface-upcomming: #daead3;
+@mod_facetoface-warning: #ffffc0;
+@mod_facetoface-full: #b3dab6;
+
+@mod_facetoface-spacing-default: @totara_style-spacing_small;
+@mod_facetoface-spacing-large: @totara_style-spacing_large;
+@mod_facetoface-spacing-small: @totara_style-spacing_x_small;
+
+@mod_facetoface-navbar-font-size: @totara_style-size_14;
+@mod_facetoface-navbar-font-height: @totara_style-size_14;
+@mod_facetoface-navbar-height: @mod_facetoface-navbar-font-height * 2;
+@mod_facetoface-cancel-close-size: 2rem; // use the same hard-coded value as tw-catalogDetails__close.
+@mod_facetoface-cancel-close-offset: @totara_style-size_base;
+
+@mod_facetoface-ui-dialog-width: 870px;
+
+@mod_facetoface-border-colour: @totara_style-color_neutral_3;
+@mod_facetoface-spacing-small: @totara_style-spacing_small;
+
+@mod_facetoface-breakpoint_mobile: @totara_style-screen_sm_min;
+@mod_facetoface-filter-label-font-size: @totara_style-size_11;
+
+
+.f2fsessionlinks,
+.f2fsessionnotice {
+    display: block;
+    padding: 12px 0 8px;
+}
+
+.f2factivityname {
+    line-height: @line-height-small;
+}
+
+body#page-mod-facetoface-room div.row-fluid {
+    margin: 0;
+}
+
+body#page-mod-facetoface-view div#page-content table.sessions {
+    width: 100%;
+}
+
+body.path-mod-facetoface table.mod-facetoface-attendees {
+    width: 100%;
+}
+
+body.path-mod-facetoface div#fgroup_id_recipients input[id*="id_booked_type"] {
+    margin-left: 15px;
+}
+
+#page-mod-facetoface-reports-assets,
+#page-mod-facetoface-reports-facilitators,
+#page-mod-facetoface-reports-rooms {
+    #page-content {
+        padding-top: 0;
+    }
+}
+
+[id^="editcustomfacilitator"] #fgroup_id_labeltype legend {
+    padding-left: 0;
+    padding-right: 0;
+    color: inherit;
+}
+
+.path-calendar .maincalendar .eventlist .event .mod_facetoface__calendar-event.description {
+    background-color: transparent;
+}
+
+.mod_facetoface__calendarfilter {
+    display: block;
+    margin-bottom: 16px;
+
+    label {
+        width: 100%;
+        vertical-align: middle;
+
+        + * {
+            vertical-align: middle;
+        }
+    }
+
+    @media (min-width: @screen-md-min) {
+        label {
+            width: 25%;
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    #module_filter_facetoface [name="applyfacetofacefilter"] {
+        margin-left: 25%;
+    }
+}
+
+.mod_facetoface-addremove button {
+    min-width: 100px;
+}
+
+.f2f dt {
+    word-wrap: break-word;
+}
+
+/** This is a hack to get full height divs for the status columns with background colours */
+.reportbuilder-table[data-source="rb_source_facetoface_summary"] tr,
+.reportbuilder-table[data-source="rb_source_facetoface_room_assignments"] tr,
+.reportbuilder-table[data-source="rb_source_facetoface_asset_assignments"] tr,
+.reportbuilder-table[data-source="rb_source_facetoface_facilitator_assignments"] tr {
+    height: 1px;
+}
+
+/** Firefox requires a different hack **/
+.gecko .reportbuilder-table[data-source="rb_source_facetoface_summary"] tr,
+.gecko .reportbuilder-table[data-source="rb_source_facetoface_room_assignments"] tr,
+.gecko .reportbuilder-table[data-source="rb_source_facetoface_asset_assignments"] tr,
+.gecko .reportbuilder-table[data-source="rb_source_facetoface_facilitator_assignments"] tr {
+    height: 100%;
+}
+
+/** IE requires quite a bit more hacking! **/
+.ie .reportbuilder-table[data-source="rb_source_facetoface_summary"] tr,
+.ie .reportbuilder-table[data-source="rb_source_facetoface_room_assignments"] tr,
+.ie .reportbuilder-table[data-source="rb_source_facetoface_asset_assignments"] tr,
+.ie .reportbuilder-table[data-source="rb_source_facetoface_facilitator_assignments"] tr {
+    height: 100%;
+}
+
+.ie .reportbuilder-table td.session_bookingstatus,
+.ie .reportbuilder-table td.session_overallstatus {
+    overflow: hidden;
+}
+
+.ie .reportbuilder-table td.session_bookingstatus div,
+.ie .reportbuilder-table td.session_overallstatus div {
+    padding-bottom: 9999px;
+    margin-bottom: -9999px;
+}
+
+.reportbuilder-table td.session_bookingstatus,
+.reportbuilder-table td.session_overallstatus {
+    padding: 0;
+    /** Part of the full-height hack mentioned above **/
+    height: inherit;
+}
+
+.reportbuilder-table td.session_bookingstatus > div,
+.reportbuilder-table td.session_overallstatus > div {
+    text-align: center;
+    /** Part of the full-height hack mentioned above **/
+    height: 100%;
+}
+
+.reportbuilder-table .session_bookingstatus > div > span,
+.reportbuilder-table .session_overallstatus > div > span {
+    display: inline-block;
+    margin: @totara_style-spacing_small;
+}
+
+.reportbuilder-table .session_bookingstatus .underbooked,
+.reportbuilder-table .session_overallstatus .ended {
+    background-color: @mod_facetoface-warning;
+}
+
+.reportbuilder-table .session_bookingstatus .available,
+.reportbuilder-table .session_overallstatus .upcoming {
+    background-color: @mod_facetoface-upcomming;
+}
+
+.reportbuilder-table .session_bookingstatus .overbooked {
+    background-color: @mod_facetoface-overbooked;
+}
+
+.reportbuilder-table .session_overallstatus .cancelled {
+    background-color: @mod_facetoface-cancelled;
+}
+
+.reportbuilder-table .session_bookingstatus .fullybooked,
+.reportbuilder-table .session_overallstatus .started {
+    background-color: @mod_facetoface-full;
+}
+
+.mform > #fitem_id_cancelinstruction {
+    > .fitemtitle {
+        display: none;
+    }
+    > .felement {
+        float: none;
+        width: 100%;
+    }
+}
+
+#page-mod-facetoface-attendees-list-addlist textarea[name="csvinput"] {
+    min-height: 200px;
+}
+
+.mod_facetoface-noshow {
+    display: none;
+}
+
+.mod_facetoface-show-selectdate-dialog {
+    float: right;
+}
+
+.mod_facetoface-date-other-virtual-room {
+    .mod_facetoface-show-selectdate-dialog,
+    [data-action="clonedate"] {
+        display: none;
+    }
+}
+
+.mod_facetoface-date-lock {
+    display: none;
+    float: right;
+  
+    .mod_facetoface-date-other-virtual-room & {
+        display: block;
+    }
+}
+  
+.mod_facetoface-duplicate-lock {
+    display: none;
+  
+    .mod_facetoface-date-other-virtual-room & {
+        display: inline;
+    }
+}
+
+.mod_facetoface-room_legacy,
+.mod_facetoface-room_pending_deletion {
+  display: none;
+}
+
+.mod_facetoface-resource-title {
+  .mod_facetoface-room_unavailable &,
+  .mod_facetoface-room_failure_creation &,
+  .mod_facetoface-room_failure_update &,
+  .mod_facetoface-room_failure_deletion & {
+    text-decoration: line-through;
+  }
+}
+  
+.mod_facetoface-assetlist,
+.mod_facetoface-roomlist,
+.mod_facetoface-facilitatorlist {
+    list-style-type: none;
+    margin: 0;
+}
+
+.ui-dialog [id^='selectassets'][id$='-dialog'] .select,
+.ui-dialog [id^='selectrooms'][id$='-dialog'] .select,
+.ui-dialog [id^='selectfacilitators'][id$='-dialog'] .select {
+    overflow: auto;
+}
+
+.ui-dialog [id^='selectassets'][id$='-dialog'] .dialog-footer,
+.ui-dialog [id^='selectrooms'][id$='-dialog'] .dialog-footer,
+.ui-dialog [id^='selectfacilitators'][id$='-dialog'] .dialog-footer {
+    padding-top: 0.5em;
+    display: block;
+    float: left;
+}
+
+.f2f-ignoreconflicts-checkbox {
+    padding: 10px;
+}
+
+.f2f-usersbox {
+    margin-bottom: 48px;
+}
+
+select.menuf2f-actions,
+select.menuf2f-select {
+    display: inline-block;
+}
+
+select.menuf2f-select {
+    margin-right: 0.5em;
+}
+
+.dir-rtl select.menuf2f-select {
+    margin-left: 0.5em;
+}
+
+// styles for the seminar event page
+
+.force-link-color() {
+    color: @link-color;
+
+    &:hover,
+    &:focus {
+        color: @link-hover-color;
+        text-decoration: @link-hover-decoration;
+    }
+}
+
+.force-link-style() {
+    &,
+    &:active,
+    &:focus,
+    &:hover,
+    &:active:focus,
+    &:active:hover {
+        background: transparent none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        cursor: pointer;
+        font: inherit;
+        margin: 0;
+        outline: none;
+        padding: 0;
+    }
+}
+
+.mod_facetoface {
+    // +++ Action bars +++ //
+    &__action {
+        display: flex;
+        align-items: center;
+
+        &--near {
+            justify-content: flex-start;
+        }
+        &--far {
+            justify-content: flex-end;
+        }
+        &--center {
+            justify-content: center;
+        }
+
+        &:not(.btn-group) > .commandlink + .commandlink {
+            margin-left: @totara_style-spacing_small;
+        }
+    }
+
+    .flex-wrap-vertical-center() {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .no-list-style() {
+        &, & > li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .seminar-event-state() {
+        // Simulate dimmed_text in T12
+        &:not(.userbooked) {
+            &.started,
+            &.cancelled,
+            &.fullybooked,
+            &.closed {
+                .text-muted;
+            }
+        }
+        // Un-commenting the following CSS rule brings back the old style.
+        // Simulate highlight in T12
+        // &.userbooked {
+        //     &:not(.over):not(.cancelled) {
+        //         .highlight;
+        //     }
+        // }
+    }
+
+    &__list-items {
+        .no-list-style();
+    }
+
+    // +++ Filters +++ //
+    // Note: do NOT use the 'ch' unit unless we can drop IE11
+    &__filter {
+        @filter-margin-outer: @totara_style-spacing_medium;
+        @filter-spacing-item-x: @totara_style-spacing_small;
+        @filter-spacing-item-y: @totara_style-spacing_small;
+        @filter-spacing-item-narrow-x: (@totara_style-spacing_x_small + @totara_style-spacing_small) / 2;
+
+        .flex-wrap-vertical-center();
+
+        border: 1px @mod_facetoface-border-colour solid;
+        border-radius: @border-radius-default;
+        margin: @filter-margin-outer 0;
+        padding: @filter-spacing-item-y @filter-spacing-item-x 0;
+
+        &__toggle-button > .flex-icon {
+            font-size: 24px;
+            margin-bottom: @filter-spacing-item-y;
+        }
+
+        .child() {
+            align-items: center;
+            display: flex;
+            margin: 0 @filter-spacing-item-x @filter-spacing-item-y;
+            max-width: 100%;
+        }
+
+        &__toggle {
+            display: none;
+        }
+
+        &__toggle-button {
+            &__loading,
+            &__label {
+                display: none;
+            }
+        }
+
+        &__item {
+            .child();
+
+            &__label {
+                margin: 0;
+                // Override Moodle form
+                font: inherit;
+                padding: 0 @filter-spacing-item-narrow-x @totara_style-size_1 0;
+            }
+
+            &__select {
+                // Override Moodle form
+                font-size: inherit;
+                margin-bottom: 0;
+                max-width: 100%;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .filter-select-fixed(@width: 15em) {
+                &__select {
+                    // Avoid min-width here
+                    // Otherwise the <select> element could cover the whole screen width if a room name is very loooong!
+                    text-overflow: ellipsis;
+                    width: @width; // do NOT use max-width as it freaks out IE11
+                }
+            }
+
+            .filter-select-variable(@width) {
+                &__select {
+                    min-width: @width;
+                }
+            }
+
+            &__room {
+                .filter-select-fixed();
+            }
+
+            &__facilitator {
+                .filter-select-fixed();
+            }
+
+            &__eventtime {
+                .filter-select-variable(8em);
+            }
+
+            &__advanced {
+                .filter-select-variable(10em);
+            }
+
+            &__book {
+                .filter-select-variable(8em);
+            }
+        }
+
+        &__link {
+            margin: 0 0 @filter-spacing-item-y @filter-spacing-item-x;
+            visibility: hidden;
+        }
+
+        &--active &__link {
+            visibility: visible;
+        }
+    }
+
+    // Container of upcoming and/or past event list
+    &__sessions {
+        &__spinner {
+            display: none;
+            font-size: 2em;
+        }
+
+        &.loading &__spinner {
+            display: block;
+        }
+
+        &.loading &__debug,
+        &.loading &__empty,
+        &.loading .mod_facetoface__sessionlist__reservation,
+        &.loading .mod_facetoface__sessionlist__pastlink,
+        &.loading .mod_facetoface__sessionlist {
+            display: none;
+        }
+    }
+
+    // Seminar event list tables
+    &__sessionlist {
+        // Make the session list table horizontally scrollable in the content area,
+        // so it wouldn't overlap the blocks on the right side.
+        margin-bottom: @totara_style-spacing_large;
+        overflow-x: auto;
+
+        &--empty {
+            padding: @totara_style-spacing_medium;
+        }
+
+        &__show-previous--hidden {
+            display: none;
+        }
+
+        &__table {
+            .table;
+            // Override .table
+            margin-bottom: 0;
+            max-width: none;
+
+            > thead,
+            > tbody,
+            > tfoot {
+                > tr {
+                    > th,
+                    > td {
+                        // Override the border inserted by Bootstrap
+                        border-top: none;
+                        border-bottom: none;
+                    }
+                }
+            }
+            // Add bottom border
+            > thead,
+            > tbody {
+                border-bottom: 2px solid @table-border-color;
+            }
+            // Always accent
+            > tbody > tr {
+                background-color: @table-bg-accent;
+                // We don't use the hover colour at the moment.
+                // &:hover {
+                //     background-color: @table-bg-hover;
+                // }
+            }
+
+            // Add a border between sessions
+            &__sessionrow {
+                @table-thin-border-color: mix(@table-border-color, @totara_style-color_neutral_7, 80%);
+                border-top: 1px solid @table-thin-border-color;
+
+                // Add a thick border between events
+                &.firstsession,
+                &.waitlisted {
+                    border-top: 2px solid @table-border-color;
+                }
+
+                .seminar-event-state();
+            }
+        }
+
+        &__roomdetails {
+            display: block;
+        }
+
+        &__eventtime {
+            white-space: nowrap;
+        }
+
+        &__event-status {
+            &__event,
+            &__booking,
+            &__user {
+                white-space: nowrap;
+            }
+            &__user {
+                font-size: @totara_style-size_13;
+            }
+        }
+
+        &__timezone {
+            font-size: @totara_style-size_12;
+            display: block;
+        }
+
+        // Override Bootstrap.
+        &__table td.mod_facetoface__sessionlist__actions {
+            padding-bottom: @totara_style-size_base;
+            padding-top: @totara_style-size_base;
+        }
+
+        &__actions {
+            // Chrome requires the width be greater than 0.
+            width: 1px;
+        }
+
+        &__action {
+            &__buttons {
+                display: flex;
+                justify-content: center;
+            }
+            &__buttons &__dropdown.dropdown-toggle {
+                padding: @padding-small-vertical @totara_style-spacing_small;
+            }
+            &__icons {
+                display: flex;
+                font-size: @totara_style-size_16;
+            }
+            &__icons + &__links {
+                margin-top: @totara_style-spacing_x_small;
+            }
+            &__dropdown {
+                margin-left: 2px;
+
+                > .flex-icon {
+                    font-size: 111%;
+                    // This hackery disables font hinting and grid fitting to get a better rendering result of the "..." button.
+                    transform: rotate(.001deg);
+                }
+
+                // Override Bootstrap.
+                &__menu.dropdown-menu {
+                    left: auto;
+                    margin: 0;
+                    position: fixed;
+                    right: auto;
+
+                    > li > a {
+                        color: @dropdown-link-color;
+                        &:hover, &:focus {
+                            color: @dropdown-link-hover-color;
+                            text-decoration: none;
+                            background-color: @dropdown-link-hover-bg;
+                        }
+                    }
+                }
+            }
+            &__link {
+                display: block;
+                white-space: nowrap;
+            }
+            &__reserve {
+                display: block;
+            }
+        }
+
+        &__attendance {
+            &--open__link {
+                font-weight: bold;
+            }
+
+            &--none,
+            &--locked,
+            &--open,
+            &--saved {
+                &__icon,
+                &__icon[class] { // override fontawesome
+                    vertical-align: baseline;
+                }
+            }
+        }
+
+        &__roomdetails {
+            display: block;
+            font-size: @totara_style-size_12;
+        }
+    }
+
+    &__event_details {
+        dt {
+            margin-top: @totara_style-spacing_small;
+        }
+        hr {
+            margin: @totara_style-spacing_small 0;
+        }
+        &__room,
+        &__asset,
+        &__facilitator {
+            margin-bottom: @totara_style-spacing_small;
+        }
+
+        &__sessions {
+            display: flex;
+            flex-direction: column;
+            margin-top: @totara_style-spacing_small;
+
+            .seminar-event-state();
+
+            .row() {
+                display: flex;
+                justify-content: space-around;
+                text-align: left;
+            }
+
+            .cell() {
+                padding: @totara_style-size_4;
+            }
+
+            &__rowheader {
+                .row();
+                border-bottom: 2px solid @mod_facetoface-border-colour;
+                font-weight: bold;
+            }
+
+            &__row {
+                .row();
+                border-bottom: 1px solid @mod_facetoface-border-colour;
+
+                &:last-child {
+                    border-bottom-width: 0;
+                }
+            }
+
+            &__cellheader {
+                .cell();
+                display: none;
+                font-weight: bold;
+            }
+
+            &__cell {
+                .cell();
+
+                &--status {
+                    flex: 1;
+                }
+                &--date {
+                    flex: 3;
+                }
+                &--rooms {
+                    flex: 2;
+                }
+                &--facilitators {
+                    flex: 2;
+                }
+                &--assets {
+                    flex: 2;
+                }
+                &--actions {
+                    flex: 1;
+                }
+            }
+
+            &__row > &__cell {
+                background: @table-bg-accent;
+            }
+        }
+    }
+
+    // Put "Add event", "Edit event" et al on the right side of the heading text.
+    &__action-dashboard,
+    &__action-eventinfo,
+    &__action-eventdetail {
+        float: right;
+    }
+    // For some reason, "Edit event" needs a different method.
+    &__action-editevent {
+        position: absolute;
+        right: floor((@grid-gutter-width / 2));
+    }
+    // Extra space below the upcoming sessions table.
+    &__action-detailfooter {
+        margin-top: @totara_style-spacing_medium;
+    }
+    &__sessionlist {
+        clear: right;
+    }
+
+    &__capacity {
+        &__current {
+            font-weight: bold;
+        }
+    }
+
+    &__booking {
+        &__dates {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            &--waitlisted {
+                font-style: italic;
+            }
+        }
+
+        &__date {
+            margin: 0 0 @mod_facetoface-spacing-small;
+            padding: 0;
+        }
+
+        &__users {
+            margin: 0;
+            padding: 0;
+        }
+
+        &__user {
+            margin: 0 0 0 @mod_facetoface-spacing-default;
+            padding: 0;
+        }
+    }
+
+    .divider() {
+        border-bottom: 1px solid @mod_facetoface-border-colour;
+    }
+
+    &__action-reservation {
+        border-top: 1px solid @mod_facetoface-border-colour;
+        padding-top: @mod_facetoface-spacing-default;
+    }
+
+    // +++ Navigation bar +++ //
+    &__navigation {
+        .divider();
+
+        background-color: @bg-default;
+        color: @color-default;
+        margin-left:  0px - ceil((@grid-gutter-width / 2));
+        margin-right: 0px - floor((@grid-gutter-width / 2));
+        padding-left:  ceil((@grid-gutter-width / 2));
+        padding-right: floor((@grid-gutter-width / 2));
+        position: relative; // IE11 does not support sticky position
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        &__items {
+            display: flex;
+
+            a {
+                border-right: 1px solid @mod_facetoface-border-colour;
+                font-size: @mod_facetoface-navbar-font-size;
+                line-height: @mod_facetoface-navbar-font-height;
+                margin: ((@mod_facetoface-navbar-height - @mod_facetoface-navbar-font-height) / 2) 0;
+                padding: 0 @mod_facetoface-spacing-default;
+
+                &:first-child {
+                    padding-left: 0;
+                }
+                &:last-child {
+                    border-right: none;
+                }
+            }
+        }
+
+        &__top {
+            line-height: @mod_facetoface-navbar-height;
+            position: absolute;
+            right: floor((@grid-gutter-width / 2));
+            top: 0;
+        }
+    }
+
+    // +++ Event page +++ //
+    &__eventinfo {
+        display: flex;
+        margin-bottom: @mod_facetoface-spacing-default;
+
+        &__content {
+            flex: 1;
+            order: 0;
+
+            &__management {
+                .divider();
+
+                margin-bottom: 0;
+                margin-left: 0px - ceil((@grid-gutter-width / 2));
+                padding: @mod_facetoface-spacing-small ceil((@grid-gutter-width / 2));
+
+                &__items {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                &__item {
+                    list-style: none;
+                    margin: .15rem;
+                    padding: 0;
+                }
+            }
+
+            .section_divider() {
+                .divider();
+                margin-bottom: @mod_facetoface-spacing-default;
+                padding-bottom: @mod_facetoface-spacing-default;
+            }
+
+            &__intro {
+                .section_divider();
+            }
+
+            &__eventdetail {
+                .section_divider();
+
+                &__heading {
+                    margin-top: 0;
+                    margin-bottom: 0;
+
+                    > a {
+                        &, &:hover, &:focus {
+                            color: inherit;
+                        }
+
+                        &::before {
+                            content: '';
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            display: inline-block;
+                        }
+
+                        &.f2f-collapsed::before {
+                            margin: 0 9px 0 7px;
+                            border-width: 8px 0 8px 8px;
+                            border-color: transparent currentColor transparent;
+                        }
+
+                        &.f2f-expanded::before {
+                            margin: 0 6px 4px 2px;
+                            border-width: 8px 8px 0;
+                            border-color: currentColor transparent transparent;
+                        }
+                    }
+                }
+
+                &__section {
+                    .section_divider();
+
+                    &.nodivider {
+                        border-bottom-style: none;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                    }
+
+                    > dl {
+                        margin-bottom: floor(@line-height-computed / 2);
+                        margin-top: floor(@line-height-computed / 2);
+
+                        > dt {
+                            margin-top: floor(@line-height-computed / 4);
+                        }
+                    }
+
+                    // We need the good-old clearfix in the description block of the detail page.
+                    &__intro::after {
+                        clear: both;
+                        content: '';
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .sidebar-panel-close() {
+            height: 0;
+            min-height: 0;
+            padding: 0;
+            transform: scaleY(0);
+            visibility: hidden;
+        }
+
+        .sidebar-panel-open() {
+            height: auto;
+            min-height: 200px; // DES-89
+            padding: @mod_facetoface-spacing-large;
+            transform: none;
+            visibility: visible;
+        }
+
+        &__sidebars {
+            width: 33%;
+            max-width: 480px;
+            min-width: 320px;
+            order: 1;
+            padding: @mod_facetoface-spacing-large @mod_facetoface-spacing-default 0;
+            margin-left: ceil((@grid-gutter-width / 2));
+        }
+
+        &__sidebar {
+            background-color: @bg-default;
+            color: @color-default;
+
+            // Here comes the good-old clearfix
+            .clearfix();
+
+            &__panel {
+                .sidebar-panel-open();
+
+                border-radius: @border-radius-default;
+                box-shadow: 0 1px 5px rgba(0,0,0,.5);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                position: relative;
+                transition: transform .4s;
+                transform-origin: top;
+                width: 100%;
+
+                // Cosmetic adjustments of Moodle form and its elements to fit in 320px
+                > .mform {
+                    .fdescription.required {
+                        margin-right: ~"calc(" @mod_facetoface-cancel-close-size ~" - " @mod_facetoface-spacing-large ~")";
+                    }
+
+                    .fitem {
+                        margin-bottom: 1em;
+
+                        .fitemtitle, .felement {
+                            float: none;
+                            width: auto;
+                        }
+
+                        .felement {
+                            padding-top: @totara_style-size_8;
+
+                            label {
+                                display: inline;
+                            }
+                        }
+
+                        .fdate_selector > .felement > span {
+                            white-space: nowrap; // nowrap between checkbox and label
+                        }
+
+                        &.fitem_fselect select,
+                        &.fitem_ftextarea textarea {
+                            max-width: 100%;
+                        }
+
+                        > fieldset {
+                            display: flex;
+                            flex-direction: column;
+
+                            > legend {
+                                margin-bottom: 0;
+                                width: auto;
+                            }
+                        }
+
+                        // NOTE: this is not `&__actionbuttons`
+                        &_actionbuttons > {
+                            margin-bottom: 0;
+
+                            div.felement {
+                                display: flex;
+                                justify-content: center;
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .fgroup {
+                        display: flex;
+                    }
+                }
+            }
+
+            .with-heading() {
+                text-align: center;
+
+                h3 {
+                    margin: 1.5em 0;
+                    padding: 0;
+                }
+            }
+
+            &__cancellation {
+                .with-heading();
+            }
+
+            &__cancellation-confirm {
+                .sidebar-panel-close();
+            }
+
+            &__signup-failure {
+                .with-heading();
+
+                background: mix(@bg, @bg-default);
+            }
+
+            &__cancellation-cancellation {  // NOTE: this is not a typo.
+                .force-link-style();
+                color: @link-color;
+
+                &:active,
+                &:focus,
+                &:hover,
+                &:active:focus,
+                &:active:hover {
+                    color: @link-hover-color;
+                }
+
+                &,
+                &:active,
+                &:focus,
+                &:hover,
+                &:active:focus,
+                &:active:hover {
+                    font-size: @mod_facetoface-cancel-close-size;
+                    line-height: 1;
+                    position: absolute;
+                    top: @mod_facetoface-cancel-close-offset;
+                    right: @mod_facetoface-spacing-default;
+                }
+            }
+        }
+
+        &__card {
+            &__toggle {
+                .force-link-color();
+                .force-link-style();
+            }
+        }
+
+        &__cancellation {
+            display: none;
+
+            &:checked {
+                & ~ .mod_facetoface__eventinfo__sidebar__cancellation {
+                    .sidebar-panel-close();
+                }
+                & ~ .mod_facetoface__eventinfo__sidebar__cancellation-confirm {
+                    .sidebar-panel-open();
+                }
+            }
+        }
+    }
+
+    .eventlist &__eventinfo {
+        display: block;
+    }
+
+    &__resource-card {
+        &__copy-container {
+            .sr-only;
+        }
+        &__copy {
+            line-height: 2;
+        }
+        &__copy-link {
+            .force-link-style();
+            color: @link-color;
+            display: inline-flex;
+            align-items: center;
+
+            &:focus,
+            &:hover {
+                color: @link-hover-color;
+                > .mod_facetoface__resource-card__copy-link-text {
+                    text-decoration: underline;
+                }
+            }
+        }
+        &--simple {
+            text-align: center;
+
+            > h3 {
+                margin-bottom: @mod_facetoface-spacing-large;
+                line-height: 1.5;
+            }
+        }
+
+        &--inactive {
+            background: mix(@bg, @bg-default);
+        }
+
+        &__buttons {
+            text-align: center;
+        }
+
+        &__button {
+            margin: @totara_style-spacing_x_small;
+        }
+
+        &__instruction {
+            font-size: @totara_style-size_14;
+        }
+    }
+}
+
+@media only screen and (max-width: @mod_facetoface-breakpoint_mobile) {
+    .mod_facetoface {
+        &__filter {
+            @filter-spacing-medium: @totara_style-spacing_medium;
+            @filter-spacing-small: @totara_style-spacing_small;
+
+            flex-direction: column;
+            flex-wrap: nowrap;
+            padding: 0;
+
+            &__item {
+                display: flex;
+            }
+
+            &__toggle-button__loading {
+                display: none;
+                padding: @filter-spacing-small 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            &__toggle-button {
+                align-items: center;
+                display: flex;
+                text-align: center;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                width: 100%;
+
+                > .flex-icon {
+                    display: none;
+                }
+
+                &__label {
+                    .force-link-color();
+                    .force-link-style();
+
+                    display: block;
+                    flex: 1;
+
+                    &__hidden,
+                    &__shown {
+                        padding: @filter-spacing-small 0;
+                    }
+
+                    &__hidden {
+                        display: none;
+                    }
+
+                    &__shown {
+                        display: block;
+                    }
+                }
+            }
+
+            &--loading &__toggle-button__loading {
+                display: block;
+            }
+
+            &--loading &__toggle-button__label {
+                display: none;
+            }
+
+            &--closed &__item {
+                display: none;
+            }
+
+            &--closed &__toggle-button__label__hidden {
+                display: block;
+            }
+
+            &--closed &__toggle-button__label__shown {
+                display: none;
+            }
+
+            &__item {
+                // Note: do NOT use the 'ch' unit unless we can drop IE11
+                @label-width: @mod_facetoface-filter-label-font-size * 8;
+
+                align-items: center;
+                flex-direction: row;
+                margin: 0 0 @filter-spacing-small;
+                padding: 0 @filter-spacing-small;
+                width: 100%;
+
+                &__eventtime,
+                &__room,
+                &__facilitator,
+                &__book,
+                &__advanced {
+                    &__select {
+                        max-width: initial;
+                        min-width: initial;
+                        width: ~"calc(100% - " @label-width ~")";
+                    }
+                }
+
+                &__label {
+                    width: @label-width;
+                }
+
+                &__select {
+                    flex: 1 1 auto;
+                    margin-bottom: 0;
+                }
+            }
+
+            &__link {
+                display: none;
+                margin: 0;
+                padding: @filter-spacing-medium 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            &--active &__toggle:checked ~ &__link {
+                display: block;
+            }
+        }
+
+        &__event_details {
+            &__sessions {
+                &__rowheader {
+                    display: none;
+                }
+
+                &__cellheader {
+                    display: block;
+                }
+
+                &__row {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                &__cellheader {
+                    width: 8em;
+
+                    &--date {
+                        visibility: hidden;
+                    }
+                }
+
+                &__cell {
+                    width: ~"calc(100% - 8em)";
+
+                    &--status, &--date, &--rooms, &--facilitators, &--assets, &--actions {
+                        flex: auto;
+                    }
+                }
+            }
+        }
+
+        &__navigation {
+            padding-left:  ceil((@grid-gutter-width / 3));
+            padding-right: floor((@grid-gutter-width / 3));
+        }
+
+        &__eventinfo {
+            flex-direction: column;
+
+            &__content {
+                flex: auto; // IE11 needs this
+                order: 1;
+            }
+
+            &__sidebars {
+                margin-left: 0;
+                margin-bottom: @mod_facetoface-spacing-large;
+                max-width: none;
+                min-width: auto;
+                order: 0;
+                padding-left: 0;
+                padding-right: 0;
+                width: auto;
+
+                > .mform {
+                    float: none;
+                    padding-bottom: @mod_facetoface-spacing-default;
+                }
+            }
+        }
+    }
+}
+
+#page-mod-facetoface-eventinfo {
+    // Remove the padding between the breadcrumbs and the navbar
+    #page-content {
+        padding-top: 0;
+    }
+}
+
+.f2f-inline-box {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.custom-facetoface-selection {
+    max-width: unset;
+}
+
+.custom-facetoface-label {
+    font-weight: normal;
+}
+
+.f2f-attendees-table {
+    margin-bottom: @form-group-margin-bottom;
+
+    input[name="saveattendance"] {
+        .btn-primary;
+    }
+
+    .actionsbuttons {
+        display: block;
+
+        @media (min-width: @totara_style-screen_md_min) {
+            margin-left: 33.3333%;
+        }
+
+        @media (min-width: @totara_style-screen_lg_min) {
+            margin-left: 25%;
+        }
+    }
+}
+
+.f2f-takeattendance-event-summary {
+    margin: 16px 0;
+}
+
+.f2f-takeattendance-bulk-action-box {
+    margin-bottom: @form-group-margin-bottom;
+    padding: @totara_style-spacing_small;
+    border: 1px #e6e6e6 solid;
+    border-radius: 2px;
+
+    .bulkactionstring {
+        margin-top: 7px;
+        margin-right: @totara_style-spacing_medium;
+        float: left;
+
+        @media (min-width: @totara_style-screen_md_min) {
+            width: 33.3333%;
+        }
+
+        @media (min-width: @totara_style-screen_lg_min) {
+            width: 25%;
+        }
+    }
+
+    .facetoface-bulk-actions-selector,
+    .facetoface-bulk-actions-picker {
+        float: left;
+    }
+
+    #selectoptionbefore {
+        display: none;
+        color: @mod_facetoface-error-colour;
+
+        &.f2f-selectionoptionbefore-error {
+            display: block;
+        }
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+div.mod-facetoface__export-options {
+    margin-top: 16px;
+}
+
+a.mod_facetoface__action_goback {
+    margin: 0 0 3px 5px;
+}
+
+.mod_facetoface__grade {
+    display: flex;
+
+    // extra & to override BS CSS
+    & &__input {
+        width: 6em;
+
+        &:focus::placeholder {
+            opacity: 0;
+        }
+        // Workaround for Edge, which does not see the :focus::placeholder.
+        &:focus::-ms-input-placeholder {
+            opacity: 0;
+        }
+    }
+}
+
+.path-mod-facetoface {
+    .mform.signinsheet {
+        .legend {
+            font: inherit;
+        }
+    }
+    form.mform_seminarevent_cancellation {
+        div.eventcancellationtext {
+            margin-bottom: @totara_style-spacing_medium;
+        }
+    }
+}
+
+.path-mod-facetoface {
+    form.import_export {
+        padding-top: @totara_style-spacing_large;
+        legend {
+            margin-bottom: @totara_style-spacing_medium;
+        }
+        .fitem {
+            margin-left: 0px;
+        }
+        div.fitem > fieldset {
+            a.mod_facetoface__action_uploadattendance,
+            a.mod_facetoface__action_csvexportupload,
+            select[name="f2f-export-actions"] {
+                margin: 0 10px 3px 0px;
+            }
+        }
+    }
+    table.userstoupload {
+        span.usernotfound {
+            margin-left: @totara_style-size_4;
+        }
+    }
+}
+
+.path-mod-facetoface,
+.path-admin-mod-facetoface {
+    dl > dd {
+        margin-bottom: @totara_style-spacing_small;
+    }
+    .ui-dialog {
+        .ui-dialog-titlebar {
+            padding: 13px 17px;
+            .ui-dialog-title {
+                margin: 0;
+                span.title {
+                    h2 {
+                        margin: 0;
+                        span#treeview_currently_selected_span_facilitator {
+                            display: none;
+                            label {
+                                margin-right: @totara_style-spacing_x_small;
+                            }
+                            span#treeview_selected_text_facilitator {
+                                font-style: italic;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .ui-dialog-content {
+            .tabtree {
+                margin: 0;
+            }
+            .ui-tabs .ui-tabs-nav {
+                // Override Bootstrap & jQuery UI.
+                padding: 0;
+                > li {
+                    border: 0;
+                    margin: 0;
+                }
+                .ui-tabs-active > a {
+                    @nav-tabs-link-color: @gray-light;
+                    // Taken from theme/basis/less/bootswatch/bootswatch.less
+                    background-color: #fff;
+                    border-right-color: @nav-tabs-border-color;
+                    border-left-color: @nav-tabs-border-color;
+                    &,
+                    &:hover,
+                    &:focus {
+                        color: @nav-tabs-link-color;
+                        background-color: @nav-tabs-active-link-hover-bg;
+                        border-top-color: lighten(@brand-primary, 10%);
+                        box-shadow:
+                            0 -2px lighten(@brand-primary, 10%),
+                            -3px 0 rgba(0, 0, 0, 0.03);
+                    }
+                }
+                .ui-tabs-active:first-child > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        box-shadow: 0 -2px lighten(@brand-primary, 10%);
+                    }
+                }
+            }
+            .ui-tabs-panel {
+                [id^="item_"] {
+                    margin-left: 2px;
+                }
+            }
+            #search-tab .mform {
+                .fitem {
+                    margin-bottom: @totara_style-spacing_x_small;
+                }
+                .fitemtitle {
+                    display: none;
+                }
+                .felement {
+                    padding-right:@totara_style-spacing_x_small ;
+                }
+            }
+            #search-tab {
+                #fitem_id_query {
+                    margin-bottom: 0;
+                    .fitemtitle {
+                        padding: @totara_style-spacing_x_small 0 0 0;
+                    }
+                    .ftext {
+                        padding-right: 0;
+                    }
+                }
+                #fitem_id_dialogsearchsubmitbutton {
+                    margin-bottom: 0;
+                    .fsubmit {
+                        margin-left: @totara_style-spacing_x_small;
+                    }
+                }
+            }
+            #browse-tab,
+            #search-tab {
+                ul.treeview li {
+                    font-size: @totara_style-size_13;
+                    span {
+                        margin-left: 2px;
+                    }
+                }
+            }
+        }
+        .selected {
+            .treeview-selected-item {
+                display: block;
+                font-size: @totara_style-size_13;
+            }
+            // Taken from theme/basis/less
+            div:hover span.deletebutton,
+            .deletebutton {
+                background: transparent url([[pix:totara_core|jquery_ui_dialog/ui-icons_cd0a0a_256x240]]) no-repeat -80px -128px;
+            }
+
+        }
+    }
+    .ui-dialog-content .mform {
+        .fitem {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .fitemtitle,
+        .felement,
+        legend {
+            padding-left: 0;
+        }
+
+        legend {
+            // reset to totara dialog modal colour
+            color: inherit;
+        }
+
+        .felement {
+            padding-right: 0;
+        }
+    }
+}
+
+.path-admin-mod-facetoface-facilitator {
+    form.manage_facilitator {
+        .felement > input.facilitator_search {
+            margin-right: 0;
+        }
+        input[name="facilitatorselector"] {
+            margin-right: @totara_style-spacing_small;
+        }
+    }
+    table#facetoface_facilitators {
+        td.facilitator_namelink,
+        td.facilitator_name {
+            span.userfullname {
+                margin-left: @totara_style-spacing_x_small;
+            }
+        }
+    }
+}
+
+.path-mod-facetoface-notification {
+    form.facetoface_notification_form {
+        div#fgroup_id_recipients {
+            fieldset.fgroup {
+                div.fitem {
+                    margin-bottom: @totara_style-size_8;
+                    span.recipients_status {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.path-course-view {
+    li.facetoface {
+        div.mod-indent-outer {
+            div.contentafterlink {
+                div.declare_interest {
+                    margin-left: 0px;
+                    margin-top: 12px;
+
+                    input[type=submit] {
+                        margin-left: 0px;
+                    }
+                }
+            }
+        }
+    }
+}

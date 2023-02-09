@@ -1,0 +1,8 @@
+This files describes API changes for code that uses the xapi API,
+information provided here is intended especially for developers.
+
+=== 17.0 ===
+
+* totara_xapi\handler\statement_handler::create_model_from_request() added first optional argument $client_id
+* Added new property 'client_id' into class totara_xapi\entity\xapi_statement
+* Added new property 'client_id' into class totara_xapi\model\xapi_statement

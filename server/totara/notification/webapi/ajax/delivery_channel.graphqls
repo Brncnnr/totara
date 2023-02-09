@@ -1,0 +1,72 @@
+"""
+A single instance of a delivery channel
+"""
+type totara_notification_delivery_channel {
+  """
+  Message component of this delivery channel.
+  """
+  component: String!
+  """
+  The human-readable lable
+  """
+  label: String!
+  """
+  Whether this channel is checked/in use or not
+  """
+  is_enabled: Boolean!
+  """
+  If true, this channel is considered a child of another channel (and must have that enabled)
+  """
+  is_sub_delivery_channel: Boolean!
+  """
+  The specific component of the parent delivery channel
+  """
+  parent_component: String
+  """
+  Order for display purposes
+  """
+  display_order: Int!
+}
+
+extend type Mutation {
+  """
+  Update the delivery channels attached to the specific event resolver (in the system context).
+  """
+  totara_notification_update_default_delivery_channels(
+    """
+    Notifiable event resolver class name
+    """
+    resolver_class_name: param_text!
+    """
+    Default delivery channels to enable. Any delivery channel not referenced will be disabled.
+    """
+    default_delivery_channels: [String!]!
+  ): [totara_notification_delivery_channel!]!
+
+  """
+  Update the delivery channels attached to the specific event resolver and the user (in the provided context).
+  """
+  totara_notification_update_notifiable_event_user_delivery_channels(
+    """
+    Notifiable event resolver class name
+    """
+    resolver_class_name: param_text!
+    """
+    Delivery channels to set. Accepts either a collection of channel strings to enable, or null to fall back to defaults.
+    """
+    delivery_channels: [String!]
+    """
+    ID of the user this preference belongs to
+    """
+    user_id: param_integer
+    """
+    Context to update enabled in.
+    Note: Only the system context is accepted currently.
+    """
+    extended_context: totara_notification_extended_context_input
+    """
+    ID of the user preference record if it already exists
+    """
+    user_preference_id: param_integer
+  ): totara_notification_notifiable_event_user_preference!
+}

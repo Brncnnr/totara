@@ -1,0 +1,10 @@
+query mod_perform_other_historic_activities {
+  mod_perform_other_historic_activities {
+    activity_name
+    activity_link
+    type
+    subject_user
+    relationship_to
+    status
+  }
+}

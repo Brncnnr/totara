@@ -1,0 +1,66 @@
+{{!
+     This file is part of Totara LMS
+
+     Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+     @author Brendan Cox <brendan.cox@totaralearning.com>
+     @package totara_competency
+}}
+{{!
+
+        @template totara_competency/competency_edit_linkedcourses
+
+        This is the outer template for editing linked courses
+
+        Classes required for JS:
+        * none
+
+        Data attributes required for JS:
+        * data-tw-editLinkedCourses-comp-id: int, Competency ID
+        * data-tw-editLinkedCourses-adder: modal adder target
+        * data-tw-editLinkedCourses-save: Save btn
+        * data-tw-editLinkedCourses-cancel: Cancel btn
+
+        Context variables required for this template:
+        * competency_id: int, Competency ID
+        * backurl: string, back url for previous page
+
+}}
+
+<div class="tw-editLinkedCourses tw-loader__overlay"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_competency/linked_courses"
+     data-tw-editLinkedCourses-comp-id="{{competency_id}}"
+     data-tw-loader-target="">
+
+    <div class="tw-editLinkedCourses__top_bar">
+        <h3 class="tw-editLinkedCourses__title">{{#str}}linked_courses, totara_competency{{/str}}</h3>
+        <button class="tw-editLinkedCourses__btn tw-editLinkedCourses__btn_small" data-tw-editLinkedCourses-adder="">
+            {{#str}}add_linked_courses, totara_competency{{/str}}
+        </button>
+    </div>
+
+    <div class="tw-editLinkedCourses__list">
+        {{> totara_competency/lists}}
+    </div>
+
+    <button class="tw-editLinkedCourses__btn tw-editLinkedCourses__btn_prim" data-tw-editLinkedCourses-save="">
+        {{#str}}savechanges, totara_competency{{/str}}
+    </button>
+    <button class="tw-editLinkedCourses__btn" data-tw-editLinkedCourses-cancel="{{{backurl}}}">
+        {{#str}}cancel, totara_competency{{/str}}
+    </button>
+</div>

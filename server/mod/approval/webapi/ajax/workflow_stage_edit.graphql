@@ -1,0 +1,11 @@
+mutation mod_approval_workflow_stage_edit(
+  $input: mod_approval_workflow_stage_edit_input!
+) {
+  mod_approval_workflow_stage_edit(input: $input) {
+    stage {
+      __typename
+      id
+      name
+    }
+  }
+}

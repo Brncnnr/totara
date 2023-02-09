@@ -1,0 +1,63 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+    @package totara_evidence
+}}
+{{!
+    @template totara_evidence/title_buttons
+
+    Title and optional edit button for an evidence item
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * title: string, the page title
+    * smaller_title: boolean, should the title be a bit smaller?
+    * has_buttons: boolean, are there buttons?
+    * buttons: array, page buttons
+    * buttons -> url: string, URL for the button
+    * buttons -> label: string, the button text
+
+    Example context (json):
+    {
+        "title": "Evidence item name",
+        "smaller_title": true,
+        "has_buttons": true,
+        "buttons": [
+            {
+                "url": "#ButtonURL",
+                "label": "Edit this item"
+            }
+        ]
+    }
+}}
+<div class="tw-evidence__header_titleBtns">
+    {{#title}}<h2 class="tw-evidence__header_titleBtns_title{{#smaller_title}}_small{{/smaller_title}}">{{title}}</h2>{{/title}}
+    {{#has_buttons}}
+        <div class="tw-evidence__header_titleBtns_buttons">
+            {{#buttons}}
+                <a href="{{{url}}}" class="tw-evidence__header_titleBtns_buttons_link">{{label}}</a>
+            {{/buttons}}
+        </div>
+    {{/has_buttons}}
+</div>

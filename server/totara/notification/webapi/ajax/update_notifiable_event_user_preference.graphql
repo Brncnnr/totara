@@ -1,0 +1,33 @@
+mutation totara_notification_update_notifiable_event_user_preference(
+  $resolver_class_name: param_text!
+  $is_enabled: param_boolean!
+  $user_id: param_integer
+  $extended_context: totara_notification_extended_context_input
+  $user_preference_id: param_integer
+) {
+  notifiable_event_user_preference: totara_notification_update_notifiable_event_user_preference(
+    resolver_class_name: $resolver_class_name
+    is_enabled: $is_enabled
+    user_id: $user_id
+    extended_context: $extended_context
+    user_preference_id: $user_preference_id
+  ) {
+    user_id
+    component
+    plugin_name
+    resolver_class_name
+    name
+    enabled
+    user_preference_id
+    overridden_delivery_channels
+    delivery_channels {
+      __typename
+      component
+      label
+      is_enabled
+      is_sub_delivery_channel
+      parent_component
+      display_order
+    }
+  }
+}

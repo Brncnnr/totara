@@ -1,0 +1,311 @@
+"""
+More in depth module information for scorm
+"""
+type mod_scorm_scorm {
+  """
+  The id of the scorm
+  """
+  id: core_id!
+  """
+  The id of the course containing the scorm
+  """
+  courseid: core_id!
+  """
+  The showgrades (show gradebook to learners) flag for the course
+  """
+  showgrades: Boolean!
+  """
+  The name of the scorm
+  """
+  name(format: core_format = HTML): String!
+  """
+  The type of scorm package: local, external, or repository
+  """
+  scormtype: String!
+  """
+  Package filename or URL
+  """
+  reference: String
+  """
+  The description of the scorm module
+  """
+  intro(format: core_format = HTML): String
+  introformat: core_format
+  """
+  Package SCORM version
+  """
+  version(format: core_format = PLAIN): String!
+  """
+  The maximum grade for this activity
+  """
+  maxgrade: Float!
+  """
+  How to calculate the attempt grade when multiple learning objects (scos) are present
+  """
+  grademethod: String!
+  """
+  How to calculate the activity grade when multiple attempts are made
+  """
+  whatgrade: String!
+  """
+  The maximum number of times a user can attempt the scorm.
+  """
+  maxattempt: Int
+  """
+  If enabled, the status of the current attempt is forced to completed
+  """
+  forcecompleted: Boolean!
+  """
+  If enabled, each new access of this scorm is considered a new attempt
+  """
+  forcenewattempt: Boolean!
+  """
+  If enabled, this scorm cannot be launched after a user's final attempt
+  """
+  lastattemptlock: Boolean!
+  """
+  If enabled and a mastery score is provided, then status will be calculated and override any status provided by the scorm
+  """
+  masteryoverride: Boolean!
+  """
+  Whether to display the course structure on the entry page
+  """
+  displaycoursestructure: Boolean!
+  """
+  Whether and how the content structure page of a multiple-sco scorm should be skipped
+  """
+  skipview: Int!
+  """
+  Whether and how to show navigation in the player
+  """
+  nav: Int!
+  """
+  Position of navigation from left edge
+  """
+  navpositionleft: Int
+  """
+  Position of navigation from top edge
+  """
+  navpositiontop: Int
+  """
+  Determines whether a Continue button is used to advance to the next learning object
+  """
+  auto: Boolean!
+  """
+  Ideal player width
+  """
+  width: Int
+  """
+  Ideal player height
+  """
+  height: Int
+  """
+  Date (unixtime) scorm activity becomes available
+  """
+  timeopen(format: core_date_format = TIMESTAMP): core_date
+  """
+  Date (unixtime) scorm activity becomes unavailable
+  """
+  timeclose(format: core_date_format = TIMESTAMP): core_date
+  """
+  Whether the activity name is displayed or not
+  """
+  displayactivityname: Boolean!
+  """
+  Whether the scorm auto commits data or not
+  """
+  autocommit: Boolean!
+  """
+  True indicates trainer says the package is compatible with mobile offline and
+  users are allowed to make offline attempts.
+  """
+  allowmobileoffline: Boolean!
+  """
+  Activity completion tracking
+  """
+  completion: Int!
+  """
+  Require view for completion
+  """
+  completionview: Boolean!
+  """
+  Require a particular status for completion
+  """
+  completionstatusrequired: Int
+  """
+  Require a minimum score for completion
+  """
+  completionscorerequired: Int
+  """
+  Require all scos to return 'completed' status
+  """
+  completionstatusallscos: Boolean!
+  """
+  The URL to download the scorm package, only local is really supported here.
+  """
+  package_url(format: core_format = PLAIN): String
+  """
+  The URL to webview launch the scorm activity with a new attempt
+  """
+  launch_url(format: core_format = PLAIN): String
+  """
+  The URL to webview launch the scorm activity with the same attempt
+  """
+  repeat_url(format: core_format = PLAIN): String
+  """
+  The current user's number of attempts at the scorm.
+  """
+  attempts_current: Int
+  """
+  The grade of the current user for the scorm
+  """
+  calculated_grade: String
+  """
+  Download link for SCORM 1.2 package, NULL for SCORM 2004 and AICC.
+  """
+  offline_package_url: String
+  """
+  SHA1 hash of SCORM package file contents, change indicates the package needs to be
+  downloaded and parsed again.
+  """
+  offline_package_contenthash: String
+  """
+  List of internal SCO identifiers from the SCORM package, this is intended
+  for validation of manifest parsing to prevent errors during submission of attempts.
+  """
+  offline_package_sco_identifiers: [String!]
+  """
+  The defaults for a new attempt encoded as json.
+  """
+  attempt_defaults: String!
+  """
+  List of current user's attempts at the scorm
+  """
+  attempts: [mod_scorm_scorm_attempt]
+}
+
+type mod_scorm_scorm_attempt {
+  """
+  Attempt number
+  """
+  attempt: Int!
+  """
+  Time when attempt was started in offline player, or null if new attempt
+  """
+  timestarted(format: core_date_format = TIMESTAMP): core_date
+  """
+  Reported grade for this attempt, or null if new attempt
+  """
+  gradereported: Int
+  """
+  Defaults for the scoes in this attempt, as JSON data
+  """
+  defaults: String!
+  """
+  Objectives for the scoes in this attempt, as JSON data
+  """
+  objectives: String!
+  """
+  Interactions for the scoes in this attempt, as JSON data
+  """
+  interactions: String!
+}
+
+"""
+Lightweight info for status update after one or more attempts is submitted
+"""
+type mod_scorm_current_status {
+  """
+  The maximum number of times a user can attempt the scorm.
+  """
+  maxattempt: Int
+  """
+  The current user's number of attempts at the scorm.
+  """
+  attempts_current: Int
+  """
+  Activity completion tracking
+  """
+  completion: String!
+  """
+  Require view for completion
+  """
+  completionview: Boolean!
+  """
+  Require a particular status for completion
+  """
+  completionstatusrequired: Int
+  """
+  Require a minimum score for completion
+  """
+  completionscorerequired: Int
+  """
+  Require all scos to return 'completed' status
+  """
+  completionstatusallscos: Boolean!
+  """
+  The completion status of the current user in the course module
+  """
+  completionstatus: String
+  """
+  The user's grade in the course as an absolute value
+  """
+  gradefinal: Float
+  """
+  The maximum achievable grade for the course
+  """
+  grademax: Float
+  """
+  The user's grade in the course as a percentage of grademax
+  """
+  gradepercentage: Float
+}
+
+extend type Query {
+  """
+  Query to return more information about a scorm given its database ID.
+  Note: That if coming from a course_module the instanceid is the id required here.
+  """
+  mod_scorm_scorm(scormid: core_id!): mod_scorm_scorm
+  """
+  Query to get activity status update after an attempt
+  """
+  mod_scorm_current_status(scormid: core_id!): mod_scorm_current_status
+}
+
+"""
+SCORM track info
+"""
+input mod_scorm_track {
+  """
+  Database field scorm_scoes.identifier, oranisation identifier from the manifest file.
+  """
+  identifier: String!
+  """
+  Element name such as 'cmi.core.lesson_status' or 'cmi.core.score.raw'
+  See https://scorm.com/scorm-explained/technical-scorm/run-time/run-time-reference/#section-2
+  """
+  element: String!
+  """
+  Element value
+  """
+  value: String!
+  """
+  Time when value was saved in offline player
+  """
+  timemodified: Int!
+}
+
+"""
+SCORM offline attempt
+"""
+input mod_scorm_attempt {
+  """
+  Time when attempt was started in offline player
+  """
+  timestarted: Int!
+  """
+  Tracks for all scoes in this attempt.
+  """
+  tracks: [mod_scorm_track!]!
+}

@@ -1,0 +1,16 @@
+{
+    "plugins": ["../../.stylelint_plugins.js"],
+    "rules": {
+        "totara/at-extend-only-placeholders": true,
+    },
+    "overrides": [
+        {
+            "files": ["*.scss", "**/*.scss"],
+            "customSyntax": "postcss-scss"
+        },
+        {
+            "files": ["*.vue", "**/*.vue"],
+            "customSyntax": "postcss-html"
+        }
+    ],
+}

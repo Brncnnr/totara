@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weka Mention Checks snapshot 1`] = `
+<span
+  class="tui-wekaMention"
+>
+  <mention-stub
+    fullname="Admin User"
+    userid="15"
+  />
+</span>
+`;

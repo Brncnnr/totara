@@ -1,0 +1,9 @@
+List of upgrade and API changes in contentmarketplace_linkedin,
+information provided here is intended especially for developers.
+
+=== 15.3 ===
+* \contentmarketplace_linkedin\contentmarketplace::get_setup_html() is removed
+
+=== 15.0 ===
+* \contentmarketplace_linkedin\contentmarketplace::get_setup_html() is deprecated and should not be used
+  It is only necessary for the LinkedIn Learning integration beta, and will be removed in Totara 16.0

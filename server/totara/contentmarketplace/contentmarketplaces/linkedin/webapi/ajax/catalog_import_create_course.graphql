@@ -1,0 +1,11 @@
+mutation contentmarketplace_linkedin_catalog_import_create_course(
+  $input: [contentmarketplace_linkedin_catalog_import_course_input!]!
+) {
+  payload: contentmarketplace_linkedin_catalog_import_create_course(
+    input: $input
+  ) {
+    message
+    success
+    redirect_url
+  }
+}

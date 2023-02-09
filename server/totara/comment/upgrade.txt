@@ -1,0 +1,29 @@
+This files describes API changes in /totara/comment/*.
+The information here is intended only for developers.
+
+=== 16.0 ===
+
+--- Update to Vue Components
+* CommentBox, CommentThread, and SidePanelCommentBox propagate update-comment, delete-comment, add-reply 
+  and update-react-status events.
+
+
+=== 14.0 ===
+
+--- Update to GraphQL ---
+* The query "totara_comment_editor_weka" had been deprecated and no longer used. The behaviour had also been changed,
+  please use query "editor_weka_editor" instead
+* The query "totara_comment_editor_weka_from_id" had been deprecated and no longer used. The behaviour had also been changed,
+  please use query "editor_weka_editor" instead
+* Added new field "can_view_author" to type "totara_comment_comment_interactor"
+* Added new field "can_view_author" to type "totara_comment_reply_interactor"
+* Introduced new query "totara_comment_editor_weka_from_id" to fetch editor weka metadata from comment's or reply's id.
+* Deprecated parameter "id"  in query "totara_comment_editor_weka", this parameter will no longer be used.
+  Please use query "totara_comment_editor_weka_from_id" instead.
+* Added new required parameter "instance_id" in query "totara_comment_editor_weka".
+
+--- Update to API ---
+* totara_comment\webapi\editor_weka_helper::create_mask_editor had been deprecated and longer used.
+  The behaviour of this function had also been changed. Please update all calls.
+* Added new parameter "$debug_info" into function totara_comment\exception\comment_exception::on_create.
+* Added new parameter "$debug_info" into function totara_comment\exception\comment_exception::on_update.

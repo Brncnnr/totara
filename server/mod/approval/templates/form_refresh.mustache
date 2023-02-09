@@ -1,0 +1,62 @@
+{{!
+    This file is part of Totara Learn
+
+    Copyright (C) 2022 onwards Totara Learning Solutions LTD
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    @author Chris Snyder <chris.snyder@totaralearning.com>
+    @package mod_approval
+}}
+{{!
+    @template mod_approval/form_refresh
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * content: HTML
+
+    Example context (json):
+    {
+        "title": string
+        "inuse": bool
+        "mform": "<form ...> ... </form>"
+    }
+}}
+<div class="form_refresh">
+  <h2>{{{title}}}</h2>
+  {{#inuse}}
+    <div class="alert alert-warning alert-with-icon">
+      <div class="alert-icon">{{#flex_icon}}core|notification-warning, , , ft-size-200{{/flex_icon}}</div>
+      <div class="alert-message">{{#str}}refresh_form_schema_warning, mod_approval{{/str}}</div>
+    </div>
+    {{#newkeys}}
+      <h3>{{#str}}new_form_keys, mod_approval{{/str}}</h3>
+      <ul>
+
+      </ul>
+    {{/newkeys}}
+    {{#missingkeys}}
+      <h3>{{#str}}missing_form_keys, mod_approval{{/str}}</h3>
+      <ul>
+
+      </ul>
+    {{/missingkeys}}
+  {{/inuse}}
+  {{{mform}}}
+</div>

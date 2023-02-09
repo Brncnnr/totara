@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectFilter SelectFilter with dropLabel matches snapshot 1`] = `
+<div
+  class="tui-selectFilter"
+>
+  <!---->
+   
+  <div
+    class="tui-select"
+  >
+    <select
+      aria-label="label text"
+      class="tui-select__input"
+      id="tempid"
+    >
+      <option
+        value="course"
+      >
+        
+        Include courses
+      
+      </option>
+    </select>
+  </div>
+</div>
+`;
+
+exports[`SelectFilter SelectFilter with label matches snapshot 1`] = `
+<div
+  class="tui-selectFilter"
+>
+  <label
+    class="tui-formLabel"
+    for="tempid"
+  >
+    <!---->
+    
+
+  label text
+  
+    <!---->
+  </label>
+   
+  <div
+    class="tui-select"
+  >
+    <select
+      class="tui-select__input"
+      id="tempid"
+    >
+      <option
+        value="course"
+      >
+        
+        Include courses
+      
+      </option>
+    </select>
+  </div>
+</div>
+`;

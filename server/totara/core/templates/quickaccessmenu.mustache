@@ -1,0 +1,62 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2018 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Carl Anderson <carl.anderson@totaralearning.com>
+   @package totara_core
+}}
+{{!
+    @template totara_core/quickaccessmenu
+
+    This template generates a user's quick access menu for admin navigation
+
+    Classes required for JS:
+    * popover-region
+    * popover-region-toggle
+    * popover-region-content
+    * collapsed
+
+    Data attributes required for JS:
+    * data-core-autoinitialise: true
+    * data-core-autoinitialise-amd: totara_core/quickaccessmenu
+
+   Context variables required for this template:
+    * none
+
+    Example context (json):
+      {
+      }
+ }}
+
+<div id="quickaccess-popover-container" class="totara_core__QuickAccess popover-region collapsed"
+     data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_core/quickaccessmenu">
+    <div class="nav-link totara_core__QuickAccess_icon popover-region-toggle"
+         role="button"
+         aria-controls="quickaccess-popover-content"
+         aria-haspopup="true"
+         aria-label="{{#str}}quickaccessmenu:showmenuwindow,totara_core{{/str}}"
+         tabindex="0">
+        {{#flex_icon}}settings{{/flex_icon}}{{#flex_icon}}nav-down,,,totara_core__QuickAccess_chevron{{/flex_icon}}
+    </div>
+
+    <aside id="quickaccess-popover-content" class="totara_core__QuickAccess_menu popover-region-content totara_core__QuickAccess_menu--loading">
+        <div class="totara_core__QuickAccess_menu_content_loadingContainer">
+            {{#flex_icon}}loading{{/flex_icon}}
+        </div>
+    </aside>
+</div>

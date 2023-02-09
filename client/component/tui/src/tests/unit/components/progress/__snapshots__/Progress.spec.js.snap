@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress render correctly 1`] = `
+<div
+  aria-valuemax="1000"
+  aria-valuemin="100"
+  aria-valuenow="500"
+  aria-valuetext="44%"
+  class="tui-progress tui-progress--hideBackground"
+  role="progressbar"
+>
+  <div
+    class="tui-progress__bar"
+    style="width: 44.44444444444444%;"
+  >
+    <span
+      class="tui-progress__label"
+    >
+      44%
+    </span>
+  </div>
+   
+  <span
+    class="tui-progress__label tui-progress__label--outside"
+  >
+    44%
+  </span>
+</div>
+`;

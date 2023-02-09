@@ -1,0 +1,40 @@
+query totara_competency_user_assignments(
+  $input: totara_competency_user_assignments_input!
+) {
+  totara_competency_user_assignments(input: $input) {
+    items {
+      id
+      competency {
+        id
+        display_name
+        description
+      }
+      assignment {
+        scale: assignment_specific_scale {
+          id
+          values {
+            id
+            name
+            proficient
+          }
+        }
+      }
+      my_value {
+        id
+        name
+        proficient
+      }
+      reason_assigned
+    }
+    filters {
+      name
+      status_name
+      status
+      type
+      user_group_id
+      user_group_type
+    }
+    total
+    next_cursor
+  }
+}

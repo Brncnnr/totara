@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputSearch Checks snapshot has not changed 1`] = `
+<input-stub
+  ariadescribedby="#ariaDescription"
+  arialabel="aria label"
+  arialabelledby="#ariaLabel"
+  autocomplete="on"
+  autofocus="true"
+  disabled="true"
+  id="searchinput"
+  maxlength="10"
+  minlength="1"
+  name="searchinput"
+  pattern="[A-Za-z]"
+  placeholder="search here"
+  readonly="true"
+  required="true"
+  size="20"
+  spellcheck="true"
+  styleclass="[object Object]"
+  type="search"
+  value="foo"
+/>
+`;

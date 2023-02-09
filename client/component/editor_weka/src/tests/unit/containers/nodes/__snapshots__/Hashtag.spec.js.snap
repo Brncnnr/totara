@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weka Hashtag Checks snapshot 1`] = `
+<dropdown-stub
+  animation="default"
+  canclose="true"
+  class="tui-wekaHashtag"
+  closeonclick="true"
+  contextmode="contained"
+  position="bottom-left"
+  role="menu"
+  separator="true"
+>
+   
+  <dropdownbutton-stub
+    role="menuitem"
+  >
+    
+    view_search_results-editor_weka
+  
+  </dropdownbutton-stub>
+</dropdown-stub>
+`;

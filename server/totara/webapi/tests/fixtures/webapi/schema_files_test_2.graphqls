@@ -1,0 +1,8 @@
+extend type Query {
+  """
+  This query is used to test duplication checks.
+  """
+  test_query_1: Boolean
+
+  test_query_3: Boolean
+}

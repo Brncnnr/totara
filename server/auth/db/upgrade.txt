@@ -1,0 +1,19 @@
+This files describes API changes in /auth/db/*,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+=== 12.0 ===
+
+* The CLI sync users script has been deprecated, use the scheduled task instead.
+* The config.html file was migrated to use the admin settings API.
+  The identifier for configuration data stored in config_plugins table was converted from 'auth/db' to 'auth_db'.
+* Added support for PDO drivers.
+
+=== 10.0 ===
+
+* The auth_plugin_db::clean_data() has been deprecated and will be removed
+  in a future version. Please update to use core_user::clean_data()
+  instead.

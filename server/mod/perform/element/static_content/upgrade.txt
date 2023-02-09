@@ -1,0 +1,8 @@
+This files describes API changes in /mod/perform/*,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+* Deprecated the following methods:
+  * \performelement_static_content\static_content::get_participant_response_component() - should only be used on respondable_element_plugin and classes extending it.
+* The following graphql schema changes have been made:
+  * mod_perform_element_plugin.participant_response_component graphql field has been change to return null for non-respondable element plugins

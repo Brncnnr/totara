@@ -1,0 +1,8 @@
+query totara_engage_advanced_features {
+  features: totara_engage_advanced_features {
+    __typename
+    library
+    recommenders
+    workspaces
+  }
+}

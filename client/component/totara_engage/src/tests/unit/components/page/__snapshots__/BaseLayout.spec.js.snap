@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage BaseLayout Checks snapshot 1`] = `
+<grid-stub
+  direction="horizontal"
+  gridtag="div"
+  maxunits="undefined"
+  usehorizontalgap="true"
+  useverticalgap="true"
+>
+  <griditem-stub
+    griditemtag="div"
+    hyphens="true"
+    shrinks="true"
+    sizedata="[object Object]"
+    units="7"
+  />
+   
+  <griditem-stub
+    griditemtag="div"
+    hyphens="true"
+    shrinks="true"
+    sizedata="[object Object]"
+    units="5"
+  />
+</grid-stub>
+`;

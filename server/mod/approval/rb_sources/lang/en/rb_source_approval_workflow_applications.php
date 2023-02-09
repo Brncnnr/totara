@@ -1,0 +1,27 @@
+<?php
+$string['applicant_name'] = 'Applicant name';
+$string['application_approval_level'] = 'Application approval level';
+$string['application_completed_date'] = 'Completed date';
+$string['application_form_response'] = 'Form response';
+$string['application_submitted_date'] = 'Submitted date';
+$string['application_status'] = 'Application status';
+$string['application_title'] = 'Application title';
+$string['application_idnumber'] = 'Application ID number';
+$string['form_plugin_name'] = 'Form plugin';
+$string['form_title'] = 'Form title';
+$string['form_version'] = 'Form version';
+$string['report_application_completed'] = 'Complete';
+$string['report_application_submitted'] = 'Submitted';
+$string['sourcelabel'] = 'Approval Workflow';
+$string['sourcesummary'] = 'Approval Workflows and their applications.';
+$string['sourcetitle'] = 'Approval Workflows Applications';
+$string['type_applicant'] = 'Applicant';
+$string['type_application'] = 'Approval Application';
+$string['type_workflow'] = 'Approval Workflows';
+$string['type_workflow_version'] = 'Approval Workflows version columns';
+$string['workflow_name'] = 'Workflow name';
+$string['workflow_stage'] = 'Workflow stage';
+$string['workflow_stage_id'] = 'Workflow stage id';
+$string['workflow_stage_type'] = 'Stage type';
+$string['workflow_version_id'] = 'Workflow version id';
+$string['workflow_version_status'] = 'Workflow version status';

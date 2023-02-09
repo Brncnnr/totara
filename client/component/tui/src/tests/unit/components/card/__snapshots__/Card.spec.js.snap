@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Checks snapshot 1`] = `
+<div
+  class="tui-card tui-card--clickable"
+  id="card"
+>
+  <!---->
+   
+</div>
+`;

@@ -1,0 +1,6 @@
+This files describes API changes in /blocks/tag_flickr/*,
+information provided here is intended especially for developers.
+
+=== 16.0 ===
+
+* Updated function \block_tag_flickr::get_content() to not allow unserialize to instantiate any classes when reading Flickr's response.

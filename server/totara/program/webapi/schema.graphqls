@@ -1,0 +1,101 @@
+"""
+Program type
+"""
+type totara_program_program {
+  """
+  ID of the program
+  """
+  id: core_id!
+  """
+  Program fullname
+  """
+  fullname(format: core_format = PLAIN): String!
+  """
+  Program shortname
+  """
+  shortname(format: core_format = PLAIN): String!
+  """
+  Program idnumber
+  """
+  idnumber: String
+  """
+  Program summary
+  """
+  summary(format: core_format = HTML): String
+  """
+  The format of the program summary
+  """
+  summaryformat: core_format
+  """
+  Program endnnote to be displayed on completion
+  """
+  endnote(format: core_format = HTML): String
+  """
+  The date the current user is due in the program
+  """
+  duedate(format: core_date_format = TIMESTAMP): core_date
+  """
+  The state of the duedate
+  """
+  duedate_state(format: core_format = PLAIN): core_notification_state
+  """
+  The date/time the program is available from
+  """
+  availablefrom(format: core_date_format = TIMESTAMP): core_date
+  """
+  The date/time the program is available until
+  """
+  availableuntil(format: core_date_format = TIMESTAMP): core_date
+  """
+  The category this program is in
+  """
+  category: core_category
+  """
+  Program content coursesets
+  """
+  coursesets: [totara_program_program_courseset!]!
+  """
+  Current users completion information within the program
+  """
+  completion: totara_program_completion
+}
+
+type totara_program_program_courseset {
+  """
+  ID of the courseset
+  """
+  id: core_id!
+  """
+  Courseset label
+  """
+  label(format: core_format = PLAIN): String
+  """
+  Courseset courses
+  """
+  courses: [core_course]!
+}
+
+type totara_program_completion {
+  """
+  The id of the completion record for the current user within the program
+  """
+  id: core_id!
+  """
+  The integer status of the current user within the program
+  possible values: 0, 1
+  """
+  status: Int
+  """
+  The string status of the current user within the program
+  possible values: incomplete, complete
+  """
+  statuskey: String
+  """
+  The time the user completed the program
+  """
+  timecompleted(format: core_date_format = TIMESTAMP): core_date
+  """
+  The progress (as a percentage) that the user has made in the program
+  """
+  progress: Float
+}

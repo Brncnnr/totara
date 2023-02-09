@@ -1,0 +1,59 @@
+{{!
+  This file is part of Totara Learn
+
+  Copyright (C) 2021 onwards Totara Learning Solutions LTD
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  @author Kunle Odusan <kunle.odusan@totaralearning.com>
+}}
+{{!
+    @template core_course/archive_progress_no_progress_recorded
+
+    This template generates a confirmation page to archive course progress of users.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * heading string title to display
+    * message string message displayed when there's no progress to reset
+    * button string button to redirect the user back
+
+    Other context variables for following partials:
+     * core_course/archive_progress_conflict_list
+
+    Example context (json):
+    {
+        "heading": "hello",
+        "message": "No progress yet",
+        "linked_progs_certs": [],
+        "button": "/site/course.php"
+    }
+}}
+
+<h2>{{{heading}}}</h2>
+<br>
+{{#linked_progs_certs}}
+  {{> core_course/archive_progress_conflict_list }}
+{{/linked_progs_certs}}
+{{^linked_progs_certs}}
+  {{{message}}}
+{{/linked_progs_certs}}
+
+<br><br><br>
+{{{button}}}

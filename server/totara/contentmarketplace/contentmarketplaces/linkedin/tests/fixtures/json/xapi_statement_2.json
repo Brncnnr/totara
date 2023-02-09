@@ -1,0 +1,28 @@
+{
+  "actor": {
+    "mbox": "mailto:kian.ng@example.com",
+    "objectType": "Agent"
+  },
+  "result": {
+    "duration": "PT4M30S",
+    "completion": true,
+    "extensions": {
+      "https://w3id.org/xapi/cmi5/result/extensions/progress": "100"
+    }
+  },
+  "verb": {
+    "display": {
+      "en-US": "COMPLETED"
+    },
+    "id": "http://adlnet.gov/expapi/verbs/completed"
+  },
+  "id": "212tvkodls-csacx-487f-9jiv34-1i93ikkvnid",
+  "object": {
+    "definition": {
+      "type": "http://adlnet.gov/expapi/activities/course"
+    },
+    "id": "urn:li:lyndaCourse:252",
+    "objectType": "Activity"
+  },
+  "timestamp": "2021-08-22T19:49:27.605Z"
+}

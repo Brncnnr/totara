@@ -1,0 +1,8 @@
+query mod_perform_historic_activities {
+  mod_perform_historic_activities {
+    activity_name
+    activity_link
+    type
+    status
+  }
+}

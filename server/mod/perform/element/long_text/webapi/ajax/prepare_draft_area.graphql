@@ -1,0 +1,9 @@
+mutation performelement_long_text_prepare_draft_area(
+  $section_element_id: core_id!
+  $participant_instance_id: core_id!
+) {
+  draft_id: performelement_long_text_prepare_draft_area(
+    section_element_id: $section_element_id
+    participant_instance_id: $participant_instance_id
+  )
+}

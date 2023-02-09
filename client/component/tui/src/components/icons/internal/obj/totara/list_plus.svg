@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>list_plus</title>
+    <g id="list_plus" stroke="none" stroke-width="1" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(6.000000, 6.500000)" stroke="currentColor">
+            <line x1="0.625" y1="4.375" x2="9.375" y2="4.375" id="Line-20"></line>
+            <line x1="5" y1="8.75" x2="5" y2="0" id="Line-20-Copy"></line>
+        </g>
+        <line x1="1" y1="1" x2="11" y2="1" id="Line-21" stroke="currentColor"></line>
+        <line x1="1" y1="4" x2="11" y2="4" id="Line-21-Copy" stroke="currentColor"></line>
+        <line x1="1" y1="7" x2="6" y2="7" id="Line-21-Copy-2" stroke="currentColor"></line>
+    </g>
+</svg>

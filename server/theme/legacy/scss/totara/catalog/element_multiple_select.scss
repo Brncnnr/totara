@@ -1,0 +1,84 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Matthias Bonk <matthias.bonk@totaralearning.com>
+// @package   theme_legacy
+
+.totara_catalog-multiple_select {
+  legend {
+    border: none;
+    font-size: var(--font-size-14);
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__selected {
+    max-width: 400px;
+  }
+
+  &__actions {
+    float: right;
+  }
+
+  li {
+    border-bottom: 1px solid var(--color-neutral-5);
+    padding: var(--gap-2) 0 var(--gap-2) var(--gap-1);
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  li:last-child
+    .totara_catalog-multiple_select__action[data-action='move-down'],
+  li:first-child
+    .totara_catalog-multiple_select__action[data-action='move-up'] {
+    visibility: hidden;
+  }
+
+  .totara_catalog-multiple_select__action[data-action='delete'] {
+    margin-left: 1.3em;
+  }
+}
+
+@media (min-width: $tui-screen-md) {
+  .totara_catalog-multiple_select {
+    legend {
+      float: left;
+      width: 25%;
+    }
+
+    &__selected {
+      float: left;
+      width: 75%;
+    }
+
+    &__addicon {
+      clear: left;
+      float: left;
+      margin: var(--gap-2) 0 0 25%;
+
+      .totara_catalog-multiple_select__noitems & {
+        clear: none;
+        margin: 0;
+      }
+    }
+  }
+}

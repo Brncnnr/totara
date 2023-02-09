@@ -1,0 +1,119 @@
+.tui-marketplaceLayoutBannerSidepanelTwoColumn {
+  &__heading {
+    @include tui-stack-vertical(var(--gap-2));
+  }
+
+  &__grid {
+    & > * {
+      margin-left: var(--gap-8);
+      @include tui-wordbreak--hard();
+    }
+
+    &--stacked {
+      & > * {
+        margin-left: var(--gap-4);
+      }
+    }
+  }
+
+  &__main {
+    @include tui-stack-vertical(var(--gap-9));
+  }
+
+  &__sidePanel {
+    height: 100%;
+    padding: var(--gap-4);
+    background: var(--color-neutral-3);
+    @include tui-wordbreak--hard();
+  }
+}
+
+.tui-marketplaceLayoutBannerTwoColumn {
+  &__heading {
+    @include tui-stack-vertical(var(--gap-2));
+  }
+
+  &__grid {
+    & > * {
+      margin-left: var(--gap-8);
+      @include tui-wordbreak--hard();
+    }
+
+    &--stacked {
+      & > * {
+        margin-left: var(--gap-4);
+      }
+    }
+  }
+
+  &__main {
+    @include tui-stack-vertical(var(--gap-9));
+  }
+}
+
+.tui-marketplaceOuterLayoutBanner {
+  @include tui-font-body();
+
+  &__banner {
+    position: relative;
+
+    &-image {
+      min-height: 120px;
+      padding-bottom: 18.04%;
+      background-color: var(--color-neutral-3);
+      background-position: center;
+      background-size: cover;
+    }
+
+    &-content {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      padding: var(--gap-4);
+    }
+
+    &-contentArea {
+      display: flex;
+    }
+  }
+
+  &__body {
+    margin: var(--gap-10) var(--gap-4) var(--gap-10) 0;
+  }
+}
+
+.tui-marketplaceOuterLayoutBannerSidepanel {
+  @include tui-font-body();
+
+  &__banner {
+    position: relative;
+    left: calc(var(--grid-gutter) * -1);
+    width: calc(var(--grid-gutter) + 100%);
+
+    &-image {
+      min-height: 120px;
+      padding-bottom: 18.04%;
+      background-color: var(--color-neutral-3);
+      background-position: center;
+      background-size: cover;
+    }
+
+    &-content {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      padding: var(--gap-4);
+    }
+
+    &-contentArea {
+      display: flex;
+    }
+  }
+
+  &__body {
+    margin: var(--gap-10) var(--gap-4) var(--gap-10) 0;
+  }
+}
+

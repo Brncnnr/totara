@@ -1,0 +1,24 @@
+This files describes API changes in /auth/cas/*,
+information provided here is intended especially for developers.
+
+=== 14.6 ===
+
+* Removed previously deprecated strings from language file to not cause database issues with duplicate records:
+  * accesCAS
+  * accesNOCAS
+  * CASform
+  * auth_cas_curl_ssl_version_SSLv2
+  * auth_cas_curl_ssl_version_SSLv3
+  * auth_cas_curl_ssl_version_TLSv1x
+  * auth_cas_curl_ssl_version_TLSv10
+  * auth_cas_curl_ssl_version_TLSv11
+  * auth_cas_curl_ssl_version_TLSv12
+
+=== 14.0 ===
+
+=== 13.0 ===
+
+=== 12.0 ===
+
+* The config.html file was migrated to use the admin settings API.
+  The identifier for configuration data stored in config_plugins table was converted from 'auth/cas' to 'auth_cas'.

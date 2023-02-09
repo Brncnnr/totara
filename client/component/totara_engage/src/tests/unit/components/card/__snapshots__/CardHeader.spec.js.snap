@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage CardHeader Checks snapshot 1`] = `
+<div
+  class="tui-engageCardHeader"
+>
+  <div
+    class="tui-engageCardHeader__first"
+  />
+   
+  <div
+    class="tui-engageCardHeader__second"
+  />
+   
+  <div
+    class="tui-engageCardHeader__third"
+  />
+</div>
+`;

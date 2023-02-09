@@ -1,0 +1,30 @@
+query criteria_childcompetency_achievements(
+  $instance_id: core_id!
+  $user_id: core_id!
+  $assignment_id: core_id!
+) {
+  criteria_childcompetency_achievements(
+    instance_id: $instance_id
+    user_id: $user_id
+    assignment_id: $assignment_id
+  ) {
+    current_user
+    aggregation_method
+    required_items
+    is_valid
+    items {
+      assigned
+      self_assignable
+      competency {
+        id
+        fullname
+        description
+      }
+      value {
+        id
+        name
+        proficient
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+query performelement_redisplay_subject_instance_previous_responses_nosession(
+  $input: subject_instance_previous_responses_input!
+) {
+  redisplayData: performelement_redisplay_subject_instance_previous_responses_external_participant(
+    input: $input
+  ) {
+    title
+    is_anonymous
+    your_response {
+      response_data
+      response_data_formatted_lines
+    }
+    other_responder_groups {
+      relationship_name
+      responses {
+        participant_instance {
+          participant {
+            fullname
+            profileimagealt
+            profileimageurlsmall
+          }
+        }
+        response_data
+        response_data_formatted_lines
+      }
+    }
+  }
+}

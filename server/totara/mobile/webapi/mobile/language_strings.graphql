@@ -1,0 +1,4 @@
+query totara_mobile_language_strings($lang: String!) {
+  json_string: totara_mobile_language_strings(lang: $lang)
+  __typename
+}

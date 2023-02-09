@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MiniProfileCard No link on profile image when no url supplied 1`] = `
+<div
+  class="tui-miniProfileCard tui-miniProfileCard--border tui-miniProfileCard--no-dropdown"
+>
+  <avatar-stub
+    alt="blah"
+    class="tui-miniProfileCard__avatar"
+    size="xsmall"
+    src="example.com"
+  />
+   
+  <div
+    class="tui-miniProfileCard__description"
+  />
+   
+  <!---->
+</div>
+`;
+
+exports[`MiniProfileCard hidden from screen readers when no alt for profile 1`] = `
+<div
+  class="tui-miniProfileCard tui-miniProfileCard--border tui-miniProfileCard--no-dropdown"
+>
+  <a
+    aria-hidden="true"
+    class="tui-miniProfileCard__avatar"
+    href="example.com"
+    tabindex="-1"
+  >
+    <avatar-stub
+      alt=""
+      size="xsmall"
+      src="example.com"
+    />
+  </a>
+   
+  <div
+    class="tui-miniProfileCard__description"
+  />
+   
+  <!---->
+</div>
+`;
+
+exports[`MiniProfileCard matches snapshot 1`] = `
+<div
+  class="tui-miniProfileCard tui-miniProfileCard--border tui-miniProfileCard--no-dropdown"
+>
+  <a
+    class="tui-miniProfileCard__avatar"
+    href="example.com"
+    tabindex=""
+  >
+    <avatar-stub
+      alt="My Name"
+      size="xsmall"
+      src="example.com"
+    />
+  </a>
+   
+  <div
+    class="tui-miniProfileCard__description"
+  />
+   
+  <!---->
+</div>
+`;

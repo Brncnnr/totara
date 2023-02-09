@@ -1,0 +1,24 @@
+query mobile_findlearning_filter_catalog(
+  $pointer: Int
+  $filter_data: mobile_findlearning_filter_input!
+) {
+  catalogPage: mobile_findlearning_filter_catalog(
+    limit_from: $pointer
+    filter_data: $filter_data
+  ) {
+    maxCount: max_count
+    pointer: limit_from
+    finalPage: final_records
+    items {
+      id
+      itemid
+      itemType: item_type
+      title
+      mobileImage: image_url
+      viewUrl: view_url
+      summary(format: MOBILE)
+      summaryFormat: summary_format
+      __typename
+    }
+  }
+}

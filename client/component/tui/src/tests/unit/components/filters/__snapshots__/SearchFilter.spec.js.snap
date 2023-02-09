@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchFilter matches snapshot 1`] = `
+<div
+  class="tui-searchFilter"
+>
+  <label
+    class="tui-formLabel tui-formLabel--hidden"
+    for="tempid"
+  >
+    <!---->
+    
+
+  bla
+  
+    <!---->
+  </label>
+   
+  <div
+    class="tui-searchFilter__group"
+  >
+    <div
+      class="tui-searchFilter__group-icon"
+    >
+      <searchicon-stub
+        size="200"
+      />
+    </div>
+     
+    <input
+      aria-label="label"
+      class="tui-formInput tui-searchFilter__search tui-formInput--preIcon tui-formInput--postIcon"
+      id="tempid"
+      type="search"
+    />
+     
+    <!---->
+  </div>
+</div>
+`;

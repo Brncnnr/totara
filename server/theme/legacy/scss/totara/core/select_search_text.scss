@@ -1,0 +1,112 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-selectSearchText {
+  display: flex;
+  padding: $selectSearchText-spacing-small $selectSearchText-spacing-x-small;
+
+  &__header {
+    height: 100%;
+    margin: auto $selectSearchText-spacing-medium auto 0;
+  }
+
+  &__hint {
+    height: 100%;
+    left: calc($selectSearchText-spacing-x-small * -1);
+    margin: auto $selectSearchText-spacing-small auto 0;
+    position: relative;
+  }
+
+  &__field {
+    display: flex;
+    flex-grow: 1;
+    min-width: 0;
+    position: relative;
+
+    &_input {
+      border: 1px solid $selectSearchText-border-color;
+      border-right: 1px solid transparent;
+      padding: $selectSearchText-spacing-small 2.5em
+        $selectSearchText-spacing-small $selectSearchText-spacing-small;
+      transition: border-color 0.2s ease;
+      width: 100%;
+
+      &:focus {
+        border: 1px solid $selectSearchText-border-color-focus;
+      }
+    }
+
+    input[type='text'].tw-selectSearchText__field_input {
+      max-width: none;
+
+      &::-ms-clear {
+        display: none;
+      }
+    }
+
+    &_clear {
+      align-items: center;
+      display: flex;
+      font-size: 1.3rem;
+      height: 100%;
+      padding: $selectSearchText-spacing-small;
+      position: absolute;
+      right: 0;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      .flex-icon {
+        margin: auto 0;
+      }
+    }
+  }
+
+  &__btn {
+    border-radius: 0;
+    font-size: inherit;
+    transition: background-color 0.2s ease;
+  }
+
+  &__hidden {
+    display: none;
+  }
+
+  button {
+    &.tw-selectSearchText__btn {
+      margin: 0;
+
+      .fa-search {
+        vertical-align: baseline;
+      }
+
+    }
+  }
+}
+
+@media (min-width: $totara-style-screen-sm-min) {
+  .tw-selectSearchText {
+    padding: $selectSearchText-spacing-small;
+  }
+}

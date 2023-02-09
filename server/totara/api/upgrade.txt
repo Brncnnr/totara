@@ -1,0 +1,7 @@
+This file describes changes in the totara API.
+Information provided here is intended especially for developers.
+
+=== 17.2 ===
+
+* Updated client_settings is refactored to handle optional fields / parameters. Replace three arguments with an array for
+the put and update methods.

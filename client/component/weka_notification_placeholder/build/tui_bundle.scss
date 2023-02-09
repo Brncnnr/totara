@@ -1,0 +1,10 @@
+.tui-wekaPlaceholderSuggestion {
+  position: absolute;
+  z-index: var(--zindex-popover);
+  width: 32.6rem;
+
+  &__label {
+    padding: var(--gap-1);
+  }
+}
+

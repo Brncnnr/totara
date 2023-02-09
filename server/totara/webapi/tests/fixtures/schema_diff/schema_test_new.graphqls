@@ -1,0 +1,161 @@
+"""
+Schema diff test schema
+"""
+type Mutation {
+  """
+  This documentation has been changed
+  """
+  my_mutation(
+    input: my_mutation_input!
+    arg_will_change_kind: String
+    required_arg_has_been_added: Boolean!
+  ): my_mutation_result
+
+  new_mutation_added(input: my_mutation_input!): my_mutation_result
+}
+
+"""
+Core query type
+"""
+type Query {
+  """
+  Here is a query
+  """
+  my_query(
+    visibility: my_enum!
+    arg_will_change_kind: String
+    optional_arg_has_been_added: Boolean
+  ): my_query_result
+
+  new_query_added(input: new_input_added!): my_query_result
+}
+
+"""
+Input type for my_mutation mutation.
+"""
+input my_mutation_input {
+  widget_id: my_id!
+  field_will_change_kind: String
+  field_has_been_added: Boolean
+  required_field_has_been_added: Boolean!
+  field_default_value_will_change: my_enum = PRIVATE
+  field_default_value_will_be_removed: my_enum!
+  input_field_type_will_be_required: String!
+}
+
+input new_input_added {
+  item_id: my_id!
+}
+
+type type_will_change_kind {
+  info: String!
+}
+
+enum my_enum {
+  PUBLIC
+  PRIVATE
+  HIDDEN
+  NEW_ENUM_ADDED
+}
+
+enum my_other_enum {
+  PUBLIC
+  DRAFT
+  ARCHIVED
+}
+
+enum new_enum_added {
+  CRITICAL
+  MAJOR
+  MINOR
+  DEFERRED
+}
+
+"""
+Result type for my_mutation
+"""
+type my_mutation_result {
+  success: Boolean!
+  field_will_change_kind: Boolean
+  field_has_been_added: Boolean
+  arg_will_be_removed: String
+  arg_will_change_kind(visibility: my_enum = PUBLIC): String
+  required_arg_will_added(visibility: my_enum!): String
+  arg_default_value_will_change(visibility: my_enum = PRIVATE): String
+  optional_arg_will_be_added(
+    visibility: my_enum = PUBLIC
+    priority: new_enum_added = MAJOR
+  ): String
+  field_type_will_become_nullable: String
+}
+
+"""
+Result type for my_query
+"""
+type my_query_result {
+  items: [search_result]
+}
+
+interface active {
+  id: my_id!
+  active: Boolean!
+}
+
+interface visible {
+  id: my_id!
+  public: Boolean!
+  status: my_enum!
+}
+
+interface my_new_interface {
+  coordinates: String!
+}
+
+type model_one implements visible & my_new_interface {
+  id: my_id!
+  name: String!
+  public: Boolean!
+  status: my_enum!
+  coordinates: String!
+}
+
+type model_two implements active {
+  id: my_id!
+  title: String!
+  active: Boolean!
+  timestamp: Int!
+}
+
+type model_three implements active & visible {
+  id: my_id!
+  summary: String!
+  active: Boolean!
+  public: Boolean!
+  status: my_enum!
+  timestamp: Int!
+}
+
+type new_type_added implements my_new_interface {
+  id: my_id!
+  coordinates: String!
+}
+
+type type_will_be_removed_from_union {
+  id: my_id!
+  slug: String!
+}
+
+union search_result = model_one | model_two | model_three | new_type_added
+
+union new_union_added = model_one | model_two
+
+scalar my_id
+
+scalar new_scalar_field
+
+directive @my_directive(
+  action: String = "Default value changed"
+  required_directive_arg_added: String!
+) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @new_directive_added(status: my_enum) on FIELD_DEFINITION

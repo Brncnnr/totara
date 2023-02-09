@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Engage ArticleContent Checks snapshot 1`] = `
+<div class="tui-engageArticleContent">
+  <div slot="content" class="tui-engageArticleContent__content"></div>
+  <!---->
+</div>
+`;

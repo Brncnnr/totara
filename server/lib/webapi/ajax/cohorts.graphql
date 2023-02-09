@@ -1,0 +1,14 @@
+query core_cohorts($query: core_cohorts_query) {
+  core_cohorts(query: $query) {
+    items {
+      id
+      name
+      idnumber
+      description
+      type
+      active
+    }
+    total
+    next_cursor
+  }
+}

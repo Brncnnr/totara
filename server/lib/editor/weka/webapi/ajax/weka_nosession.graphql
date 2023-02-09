@@ -1,0 +1,35 @@
+query editor_weka_weka_nosession(
+  $component: param_component!
+  $area: param_area!
+  $instance_id: param_integer
+  # Optional context's id - which developer can pass instead of instance's id.
+  $context_id: param_integer
+  $variant_name: param_alphaext
+  $extra_extensions: param_text
+) {
+  editor: editor_weka_editor(
+    usage_identifier: {
+      component: $component
+      area: $area
+      instance_id: $instance_id
+    }
+    context_id: $context_id
+  ) {
+    __typename
+    extensions(
+      usage_identifier: {
+        component: $component
+        area: $area
+        instance_id: $instance_id
+      }
+      variant_name: $variant_name
+      extra_extensions: $extra_extensions
+    ) {
+      __typename
+      name
+      tuicomponent
+      options
+    }
+    context_id
+  }
+}

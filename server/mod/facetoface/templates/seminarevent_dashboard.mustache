@@ -1,0 +1,88 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2019 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Tatsuhiro Kirihara <tatsuhiro.kirihara@totaralearning.com>
+   @package mod_facetoface
+}}
+
+{{!
+
+    @template mod_facetoface/seminarevent_dashboard
+
+    This template generates the seminar event dashboard page.
+
+    Context variables required for this template:
+    * title: the page title
+    * intro: the output of format_module_intro()
+    * selfcompletionform: the output of self_completion_form()
+    * selfapprovalnotice: the output of renderer::selfapproval_notice()
+    * attendeesexportform: the output of renderer::attendees_export_form()
+    * declareinterest: the output of renderer::declare_interest()
+    * filters: the template data for seminarevent_filterbar
+    * actions: the template data for seminarevent_actionbar
+    * tables: array of the template data for seminarevent_dashboard_sessions
+    * tables.heading: the heading text
+
+    Example content (json):
+    {
+        "title": "Events in Seminar 101",
+        "intro": "<p>...</p>",
+        "selfcompletionform": "<div>...</div>",
+        "selfapprovalnotice": "<div>...</div>",
+        "attendeesexportform": "<div>...</div>",
+        "declareinterest": "<div>...</div>",
+        "filters": { ... },
+        "actions": { ... },
+        "tables": [
+            {
+                "heading": "Upcoming events",
+                "type": "upcoming",
+                "legacystateclass": ""
+            },
+            {
+                "heading": "Past events",
+                "type": "past",
+                "legacystateclass": ""
+            }
+        ]
+    }
+}}
+
+<div class="mod_facetoface__event-dashboard" data-core-autoinitialise-amd="mod_facetoface/seminarevent_dashboard" data-core-autoinitialise="true">
+    <h2 class="mod_facetoface__event-dashboard__title">{{title}}</h2>
+
+    {{{selfcompletionform}}}
+
+    {{#intro}}<div id="intro" class="box generalbox">{{{.}}}</div>{{/intro}}
+
+    {{{selfapprovalnotice}}}
+
+    {{#filters}}{{> mod_facetoface/seminarevent_filterbar }}{{/filters}}
+    {{#actions}}{{> mod_facetoface/seminarevent_actionbar }}{{/actions}}
+
+    {{#tables}}
+        <section>
+            <h3>{{heading}}</h3>
+            {{> mod_facetoface/seminarevent_dashboard_sessions }}
+        </section>
+    {{/tables}}
+
+    {{{attendeesexportform}}}
+
+    {{{declareinterest}}}
+</div>

@@ -1,0 +1,923 @@
+.tui-assignmentProgress {
+  width: 180px;
+  padding: var(--gap-8) var(--gap-3) 0;
+
+  &__header {
+    margin-top: var(--gap-3);
+    overflow: hidden;
+    font-size: var(--font-size-16);
+    white-space: nowrap;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+
+  &__progress-card {
+    padding: 0 var(--gap-4);
+  }
+}
+
+.tui-competencyRatingScaleOverview {
+  &__title {
+    margin: 0;
+    @include tui-font-heading-x-small;
+  }
+
+  &__list {
+    margin: var(--gap-4) 0 0;
+
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+
+    &-item {
+      display: flex;
+    }
+  }
+
+  &__proficientStatus {
+    min-width: var(--gap-8);
+
+    .flex-icon {
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  &__scaleValue {
+    display: flex;
+    flex-direction: column;
+
+    &-name {
+      @include tui-font-heading-label;
+      margin: 0;
+    }
+
+    &-description {
+      margin: var(--gap-1) 0 0 var(--gap-3);
+    }
+  }
+}
+
+.tui-achievementLayout {
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding-right: var(--gap-4);
+  }
+
+  &--borderless &__left {
+    border-right: none;
+  }
+}
+
+@media (min-width: $tui-screen-xs) {
+  .tui-achievementLayout {
+    &__left {
+      border-right: var(--border-width-normal) solid var(--color-neutral-5);
+
+      .tui-grid--stacked & {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.tui-competencyAchievements {
+  margin-top: var(--gap-7);
+
+  &__empty {
+    font-size: var(--font-size-16);
+    @include tui-font-hint();
+  }
+
+  &__tabs {
+    margin-top: var(--gap-5);
+  }
+
+  &__title {
+    @include tui-font-heading-small();
+  }
+}
+
+.tui-progressCircle {
+  &__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    margin: var(--gap-6) auto 0;
+    background: var(--color-neutral-4);
+    border-radius: 100%;
+  }
+
+  &__label {
+    margin-top: var(--gap-1);
+    text-align: center;
+  }
+
+  &--complete &__circle {
+    background: var(--color-primary);
+  }
+}
+
+.tui-competencyAchievementsScale {
+  & > * + * {
+    margin-top: var(--gap-3);
+  }
+
+  &__title {
+    margin-left: var(--gap-2);
+    @include tui-font-heading-small();
+  }
+
+  &__item {
+    margin-top: var(--gap-4);
+    &:first-of-type {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__separator {
+    margin: var(--gap-4) var(--gap-4) 0;
+  }
+}
+
+.tui-competencyCopyPathwayCrumbtrail {
+  &__list {
+    margin: 0;
+    list-style: none;
+
+    &-current {
+      margin: 0;
+      @include tui-font-heading-x-small();
+    }
+
+    &-item {
+      @include tui-font-body-small();
+      display: inline;
+    }
+
+    &-multipleItems {
+      margin-top: var(--gap-4);
+    }
+  }
+}
+
+.tui-competencyCopyReviewingSelection {
+  &__count {
+    @include tui-font-heading-label();
+  }
+
+  &__heading {
+    margin: 0;
+    @include tui-font-heading-x-small();
+  }
+
+  &__loading {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__paging {
+    display: flex;
+    justify-content: center;
+  }
+
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+}
+
+.tui-competencyCopyPathwaySelectionTable {
+  &__content {
+    padding-right: var(--gap-2);
+
+    &-parents {
+      @include tui-font-body-x-small();
+      color: var(--color-neutral-6);
+    }
+
+    &-paths {
+      padding-top: var(--gap-1);
+      @include tui-font-body-small();
+    }
+
+    &-pathsLabel {
+      color: var(--color-neutral-6);
+    }
+
+    &-title {
+      @include tui-font-heading-label();
+      margin: 0;
+    }
+
+    & > * + * {
+      margin-top: var(--gap-1);
+    }
+  }
+
+  &__contentLoader {
+    display: flex;
+    flex-direction: column;
+    & > * + * {
+      margin-top: var(--gap-1);
+    }
+  }
+}
+
+.tui-competencyCopyPathwaySelection {
+  &__count {
+    @include tui-font-heading-label();
+  }
+
+  &__heading {
+    margin: 0;
+    @include tui-font-heading-x-small();
+  }
+
+  &__crumbtrail {
+    &-list {
+      margin: 0;
+      list-style: none;
+    }
+
+    &-listCurrent {
+      margin: 0;
+      @include tui-font-heading-x-small();
+    }
+
+    &-listItem {
+      @include tui-font-body-small();
+      display: inline;
+    }
+
+    &-listMultipleItems {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__body {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+
+  &__list {
+    margin-top: var(--gap-3);
+  }
+}
+
+.tui-competencyDetailActivityLog {
+  margin: var(--gap-2) var(--gap-4);
+
+  &__title {
+    @include tui-font-heading-small();
+    padding-top: var(--gap-2);
+  }
+}
+
+@media screen and (min-width: $tui-screen-xs) {
+  .tui-competencyDetailActivityLog {
+    &__proficient {
+      font-weight: bold;
+      &-srOnly {
+        @include sr-only();
+      }
+    }
+  }
+}
+
+.tui-competencyDetailActivityLogTable {
+  &__date {
+    word-wrap: break-word;
+  }
+
+  &__description {
+    .flex-icon {
+      position: relative;
+      top: -1px;
+    }
+
+    &-rating {
+      font-weight: bold;
+    }
+
+    &-tracking {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    &-system {
+      &::before {
+        content: '* ';
+      }
+      &::after {
+        content: ' *';
+      }
+    }
+  }
+}
+
+.tui-competencyDetailArchivedAssignments {
+  margin: var(--gap-2) var(--gap-4);
+
+  &__title {
+    @include tui-font-heading-small();
+    padding-top: var(--gap-2);
+  }
+}
+
+.tui-competencyDetailArchivedAssignmentsTable {
+  &__achievement {
+    display: flex;
+  }
+}
+
+.tui-competencyDetailAssignment {
+  &__bar {
+    padding: var(--gap-4);
+    background: var(--color-neutral-3);
+
+    &-filter.tui-selectFilter {
+      .tui-select {
+        max-width: initial;
+      }
+    }
+  }
+
+  &__actions {
+    padding: var(--gap-4) var(--gap-2);
+    text-align: right;
+  }
+
+  .tui-grid--stacked {
+    & > * + * {
+      justify-content: flex-start;
+      padding-top: var(--gap-4);
+    }
+  }
+
+  &__level {
+    display: flex;
+    align-items: center;
+
+    &-header {
+      display: flex;
+      margin: 0;
+      @include tui-font-body-small();
+    }
+
+    &-infoBtn {
+      padding-left: var(--gap-1);
+    }
+
+    &-text {
+      @include tui-font-heading-label-small();
+    }
+
+    &-wrap {
+      @include tui-font-body-small();
+      padding-left: var(--gap-2);
+      border-style: solid;
+      border-width: 0 0 0 var(--border-width-thick);
+
+      .dir-rtl & {
+        padding-right: var(--gap-2);
+        border-width: 0 var(--border-width-thick) 0 0;
+      }
+
+      &-pending {
+        border-color: var(--progresstracker-color-pending);
+      }
+
+      &-complete {
+        border-color: var(--progresstracker-color-complete);
+      }
+
+      &-achieved {
+        border-color: var(--progresstracker-color-achieved);
+      }
+    }
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    &-text {
+      margin-left: var(--gap-2);
+      @include tui-font-heading-small();
+
+      .dir-rtl & {
+        margin: 0 var(--gap-2) 0 0;
+      }
+
+      &-complete {
+        margin-left: var(--gap-1);
+
+        .dir-rtl & {
+          margin: 0 var(--gap-1) 0 0;
+        }
+      }
+    }
+  }
+}
+
+.tui-competencyDetailProficientStatus {
+  @media screen and (min-width: $tui-screen-xs) {
+    font-weight: bold;
+    &-srOnly {
+      @include sr-only();
+    }
+  }
+}
+
+.tui-competencyDetailProgress {
+  min-height: 65px;
+  margin: var(--gap-7) auto 0;
+
+  &__popover {
+    &-header {
+      margin-top: 0;
+      @include tui-font-heading-label();
+    }
+
+    &-body {
+      color: var(--color-neutral-6);
+    }
+
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+  }
+}
+
+.tui-linkedReviewAdminEditCompetency {
+  &__help {
+    padding-left: var(--gap-1);
+  }
+}
+
+.tui-linkedReviewViewCompetency {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__title {
+    @include tui-font-heading-x-small();
+    margin: 0;
+  }
+
+  &__overview {
+    & > * + * {
+      margin-top: var(--gap-1);
+    }
+  }
+
+  &__timestamp {
+    @include tui-font-body-small();
+  }
+
+  &__bar {
+    display: flex;
+    padding: var(--gap-4);
+    background: var(--color-neutral-1);
+    border: var(--border-width-thin) solid var(--color-neutral-5);
+
+    &-status {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      & > * + * {
+        margin-left: var(--gap-2);
+      }
+    }
+
+    &-statusText {
+      margin-left: var(--gap-2);
+      @include tui-font-heading-small();
+
+      .dir-rtl & {
+        margin: 0 var(--gap-2) 0 0;
+      }
+    }
+
+    &-statusTextComplete {
+      margin-left: var(--gap-1);
+
+      .dir-rtl & {
+        margin: 0 var(--gap-1) 0 0;
+      }
+    }
+
+    &-header {
+      margin: 0;
+      @include tui-font-body();
+    }
+
+    &-headerHelp {
+      display: inline-block;
+    }
+
+    &-value {
+      @include tui-font-heavy();
+    }
+
+    &-wrap {
+      padding-left: var(--gap-2);
+      border-style: solid;
+      border-width: 0 0 0 var(--border-width-thick);
+
+      .dir-rtl & {
+        padding-right: var(--gap-2);
+        border-width: 0 var(--border-width-thick) 0 0;
+      }
+
+      &-achieved {
+        border-color: var(--progresstracker-color-achieved);
+      }
+
+      &-complete {
+        border-color: var(--progresstracker-color-complete);
+      }
+
+      &-pending {
+        border-color: var(--progresstracker-color-pending);
+      }
+    }
+  }
+
+  &__ratings {
+    & > * + * {
+      margin-top: var(--gap-6);
+    }
+  }
+}
+
+.tui-competencyCharts {
+  &__chart {
+    padding: var(--gap-7) var(--gap-5);
+    border: 1px var(--color-neutral-5) solid;
+    border-radius: 4px;
+
+    &--center {
+      max-width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
+.tui-competencyProfileCurrentProgress {
+  &__empty {
+    margin-top: var(--gap-8);
+  }
+
+  &__progress {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (min-width: $tui-screen-xs) {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.tui-noCompetencyAssignments {
+  &__search-competencies {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 35px;
+  }
+}
+
+.tui-competencyProfileListFilters {
+  margin-bottom: var(--gap-4);
+}
+
+.tui-competencySummaryAchievementConfiguration {
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+
+  &__aggregation {
+    margin-top: var(--gap-4);
+    &-label {
+      @include tui-font-heavy();
+      margin-right: var(--gap-2);
+    }
+  }
+
+  &__noPaths {
+    color: var(--color-prompt-warning);
+  }
+
+  &__pathGroup {
+    flex-grow: 1;
+    padding: var(--gap-4);
+
+    & > * + * {
+      &.tui-grid {
+        margin-top: var(--gap-4);
+        padding-top: var(--gap-4);
+        border-top: var(--border-width-thin) solid var(--card-border-color);
+      }
+    }
+  }
+
+  &__scaleValue {
+    &-header {
+      margin: 0;
+      @include tui-font-heading-x-small();
+    }
+
+    &-or {
+      width: 50%;
+      margin: 0;
+    }
+  }
+}
+
+.tui-competencySummaryAchievementCriteria {
+  width: 100%;
+
+  &--multi {
+    padding: var(--gap-4);
+  }
+
+  &__and {
+    width: 50%;
+    margin: 0;
+  }
+
+  &__criterion {
+    &-header {
+      display: inline-block;
+      width: 40%;
+      margin: 0;
+      @include tui-font-heading-label();
+    }
+
+    &-aggregation {
+      @include tui-font-hint();
+    }
+
+    &-items {
+      margin-top: var(--gap-1);
+    }
+  }
+
+  &__warning {
+    color: var(--color-prompt-warning);
+  }
+}
+
+.tui-competencySummarySectionHeader {
+  display: flex;
+  align-items: center;
+  padding-bottom: var(--gap-1);
+  border-bottom: var(--border-width-thin) solid var(--color-neutral-5);
+
+  &__title {
+    margin: 0;
+    @include tui-font-heading-small();
+  }
+
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: auto;
+    padding-left: var(--gap-4);
+
+    & > * + * {
+      margin-left: var(--gap-4);
+    }
+  }
+}
+
+.tui-competencySelfAssignmentTable {
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+
+  &__header {
+    margin: 0;
+    @include tui-font-heading-small();
+  }
+
+  &__reasons {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  &__expand {
+    & > * + * {
+      margin: var(--gap-2) 0 0;
+    }
+
+    &-header {
+      @include tui-font-heading-small();
+    }
+
+    &-subHeader {
+      @include tui-font-heading-x-small();
+    }
+  }
+}
+
+.tui-competencyCopyPathway {
+  &__content {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+
+    &-body {
+      margin-top: var(--gap-8);
+    }
+
+    &-heading {
+      margin: 0;
+      @include tui-font-heading-small();
+    }
+  }
+
+  &__confirmModal {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+}
+
+.tui-competencyDetail {
+  &__content {
+    & > * + * {
+      margin-top: var(--gap-6);
+    }
+  }
+
+  &__body {
+    border-top: 1px solid var(--color-neutral-5);
+
+    &-title {
+      @include tui-font-heading-small();
+    }
+
+    &-empty {
+      @include tui-font-hint();
+    }
+  }
+
+  &__buttons {
+    text-align: right;
+
+    & > * + * {
+      margin-top: var(--gap-4);
+      margin-left: var(--gap-2);
+    }
+  }
+}
+
+@media (min-width: $tui-screen-xs) {
+  .tui-competencyDetail {
+    &__buttons {
+      > * {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.tui-competencyProfile {
+  /* disable scroll anchoring as it is problematic when switching between chart/list views*/
+  overflow-anchor: none;
+
+  & > * + * {
+    margin-top: var(--gap-8);
+  }
+
+  &__header {
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__currentHeading {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      margin: 0;
+      @include tui-font-heading-small();
+    }
+
+    &-buttons {
+      & > * {
+        margin-top: var(--gap-4);
+        margin-left: var(--gap-2);
+      }
+    }
+  }
+
+  &__competencies {
+    margin-top: var(--gap-6);
+    padding-top: var(--gap-6);
+    border-top: var(--border-width-thin) solid var(--color-neutral-5);
+
+    &-content {
+      & > * + * {
+        margin-top: var(--gap-8);
+      }
+    }
+  }
+
+  &__sectionTitle {
+    margin: 0;
+    @include tui-font-heading-small();
+  }
+
+  &__filtersBar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: $tui-screen-sm) {
+  .tui-competencyProfile {
+    &__currentHeading {
+      flex-direction: row;
+      &-buttons {
+        margin-left: auto;
+
+        & > * {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.tui-competencySummary {
+  @include tui-font-body();
+
+  & > * + * {
+    margin-top: var(--gap-2);
+  }
+
+  &__header {
+    & > * + * {
+      margin-top: var(--gap-8);
+    }
+
+    &-backLink {
+      display: inline-block;
+    }
+  }
+
+  &__content {
+    & > * + * {
+      margin-top: var(--gap-4);
+    }
+  }
+}
+
+.tui-competencySelfAssignment {
+  & > * + * {
+    margin-top: var(--gap-4);
+  }
+
+  &__actions {
+    justify-content: space-between;
+  }
+
+  &__header {
+    & > * + * {
+      margin-top: var(--gap-2);
+    }
+  }
+
+  &__filters {
+    margin-right: var(--gap-4);
+  }
+
+  &__loadMore {
+    margin-top: var(--gap-4);
+  }
+}
+

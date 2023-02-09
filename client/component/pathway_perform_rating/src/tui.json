@@ -1,0 +1,8 @@
+{
+  "component": "pathway_perform_rating",
+  "bundleWith": "totara_core",
+  "vendor": "totara",
+  "dependencies": [
+    "totara_competency"
+  ]
+}

@@ -1,0 +1,29 @@
+query totara_hierarchy_competencies($input: totara_hierarchy_competency_input) {
+  totara_hierarchy_competencies(input: $input) {
+    items {
+      id
+      name
+      achievement_path {
+        id
+        type
+        name
+        instance_id
+      }
+      parents {
+        id
+        name
+      }
+      has_children
+    }
+    parents {
+      id
+      name
+    }
+    current_level {
+      id
+      name
+    }
+    total
+    next_cursor
+  }
+}

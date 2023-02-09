@@ -1,0 +1,21 @@
+query core_users($query: core_users_query) {
+  core_users(query: $query) {
+    items {
+      id
+      fullname
+      email
+      card_display {
+        profile_picture_url
+        profile_picture_alt
+        profile_url
+        display_fields {
+          value
+          associate_url
+          label
+        }
+      }
+    }
+    total
+    next_cursor
+  }
+}

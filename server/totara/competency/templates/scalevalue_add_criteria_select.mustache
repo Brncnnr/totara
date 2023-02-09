@@ -1,0 +1,66 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2018 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Riana Rossouw <riana.rossouw@totaralearning.com>
+   @package totara_competency
+}}
+{{!
+
+    @template totara_competency/scalevalue_add_criteria_select
+
+    This template generates the drop down for the add criteria type selection
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-tw-editScaleValuePaths-dropDown
+    * data-tw-editScaleValuePaths-dropDown-item-template
+    * data-tw-editScaleValuePaths-dropDown-item-title
+    * data-tw-editScaleValuePaths-dropDown-item-type
+    * data-tw-editScaleValuePaths-dropDown-level
+    * data-tw-editScaleValuePaths-dropDown-singleUse
+
+    Context variables required for this template:
+    * criteria_type_level
+    * disabled
+    * singleuse
+    * criterion_templatename
+    * title
+    * type
+    * criteria_type_level
+
+}}
+
+<ul class="tw-editScaleValuePaths__addButtonList tw-editAchievementPaths--hidden" data-tw-editScaleValuePaths-dropDown="{{criteria_type_level}}">
+    {{#criteria_types}}
+    <li>
+        <button type="button" class="tw-editScaleValuePaths__addButtonList-button"
+            data-tw-editScaleValuePaths-dropDown-item-singleUse="{{singleuse}}"
+            data-tw-editScaleValuePaths-dropDown-item-template="{{criterion_templatename}}"
+            data-tw-editScaleValuePaths-dropDown-item-title="{{title}}"
+            data-tw-editScaleValuePaths-dropDown-item-type="{{type}}"
+            data-tw-editScaleValuePaths-dropDown-level="{{criteria_type_level}}"
+            {{#disabled}}disabled="disabled"{{/disabled}}>
+            {{title}}
+        </button>
+    </li>
+    {{/criteria_types}}
+</ul>
+
+

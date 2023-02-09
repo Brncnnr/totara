@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoleSelector Checks snapshot - has multiple roles: multipleRoles 1`] = `
+<div
+  class="tui-bulkManualRatingRoleSelector"
+>
+  <div
+    class="tui-bulkManualRatingRoleSelector__ratingAs"
+    id="id-rating-as"
+  >
+    
+    $str('rating_as_a', 'pathway_manual')
+  
+  </div>
+   
+  <div
+    class="tui-bulkManualRatingRoleSelector__selectRole"
+  >
+    <select-stub
+      arialabelledby="id-rating-as"
+      options="[object Object]"
+      value="-1"
+    />
+  </div>
+   
+  <confirmationmodal-stub
+    confirmbuttontext="$str('ok', 'core')"
+    size="normal"
+    title="$str('modal_confirm_update_role_title', 'pathway_manual')"
+  >
+    <span>
+      $str('modal_confirm_update_role_body', 'pathway_manual')
+    </span>
+  </confirmationmodal-stub>
+</div>
+`;
+
+exports[`RoleSelector Checks snapshot - has single role: singleRole 1`] = `
+<div
+  class="tui-bulkManualRatingRoleSelector"
+>
+  <div
+    class="tui-bulkManualRatingRoleSelector__ratingAs"
+    id="id-rating-as"
+  >
+    
+    $str('rating_as_a', 'pathway_manual')
+  
+  </div>
+   
+  <div
+    class="tui-bulkManualRatingRoleSelector__selectRole"
+  >
+    <select-stub
+      arialabelledby="id-rating-as"
+      options="[object Object]"
+      value="-1"
+    />
+  </div>
+   
+  <confirmationmodal-stub
+    confirmbuttontext="$str('ok', 'core')"
+    size="normal"
+    title="$str('modal_confirm_update_role_title', 'pathway_manual')"
+  >
+    <span>
+      $str('modal_confirm_update_role_body', 'pathway_manual')
+    </span>
+  </confirmationmodal-stub>
+</div>
+`;
+
+exports[`RoleSelector Checks snapshot - has specified role: specifiedRole 1`] = `
+<div
+  class="tui-bulkManualRatingRoleSelector"
+>
+  <div
+    class="tui-bulkManualRatingRoleSelector__ratingAs"
+    id="id-rating-as"
+  >
+    
+    $str('rating_as_appraiser', 'pathway_manual')
+  
+  </div>
+   
+  <!---->
+   
+  <confirmationmodal-stub
+    confirmbuttontext="$str('ok', 'core')"
+    size="normal"
+    title="$str('modal_confirm_update_role_title', 'pathway_manual')"
+  >
+    <span>
+      $str('modal_confirm_update_role_body', 'pathway_manual')
+    </span>
+  </confirmationmodal-stub>
+</div>
+`;

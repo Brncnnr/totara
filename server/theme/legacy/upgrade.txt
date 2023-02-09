@@ -1,0 +1,40 @@
+This file describes API changes for 'theme_legacy'.
+
+=== 17.3 ===
+* Removed float positioning from .path-course-view .completionprogress
+
+=== 17.1 ===
+* Fixed sidebar card width on medium screen
+
+=== 17.0 ===
+* Added "white-space" css for rename button to align text in file picker.
+* Added overflow ellipsis to all option tags inside criteria_course_value
+
+=== 15.0 ===
+* Fixed colours used in mustache template "server/theme/legacy/templates/core/email_html.mustache".
+
+=== 14 ===
+* Added intermediate "accent" variables for button colours to support styling through theme settings.
+
+=== 13.2 ===
+* Dropped !important background pseudo reset style on print media query from bootstrap _print.scss
+
+=== 13.0 (changes from roots/basis) ===
+
+* "secure" page layout now uses layout/secure.php
+* Styling changes applied to login page tui/styles/totara/login.scss
+* Updated tool_usertours/tourstep template
+* Upgraded Bootstrap to 3.4.1
+* Deprecated CSS file totara-menu was dropped
+* Removed tag argument for regions so that they render as divs
+
+=== BTNS ===
+=== Buttons have been switched over to new mixins to help with consistency between legacy & ventura
+* Switched the buttons in the following files from using local colour variables to common global colours
+* /totara/login.scss Login page button
+* /totaracatalog/details_link
+* /totaracatalog/manage_btns
+* /totara/catalog/results_share.scss
+* /totara/add_block_popover_content.scss
+
+* course.scss pagination yui button colours switched

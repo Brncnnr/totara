@@ -1,0 +1,104 @@
+"""
+Input to create a new element
+"""
+input mod_perform_create_element_input {
+  plugin_name: param_text!
+  element_details: mod_perform_element_details_input!
+}
+
+"""
+Element details input
+"""
+input mod_perform_element_details_input {
+  title: String
+  is_required: param_boolean
+  identifier: param_text
+  data: String
+}
+
+input mod_perform_create_child_element_input {
+  element: mod_perform_create_element_input!
+  parent: core_id!
+  after_sibling_element_id: core_id
+}
+
+"""
+Update a child element.
+"""
+input mod_perform_update_child_element_input {
+  element_details: mod_perform_element_details_input!
+  element_id: core_id!
+}
+
+"""
+Input to reorder a perform element within it's parent element.
+"""
+input mod_perform_reorder_child_element_input {
+  element_id: core_id!
+  after_sibling_element_id: core_id
+}
+
+"""
+Input for deleting a perform element.
+"""
+input mod_perform_delete_child_element_input {
+  element_id: core_id!
+}
+
+"""
+Result for creating a child perform element.
+"""
+type mod_perform_create_child_element_result {
+  parent_element: mod_perform_element!
+}
+
+"""
+Result for updating a perform element.
+"""
+type mod_perform_update_child_element_result {
+  element: mod_perform_element!
+}
+
+"""
+Result for reordering an element within it's parent element.
+"""
+type mod_perform_reorder_child_element_result {
+  parent_element: mod_perform_element!
+}
+
+"""
+Result for deleting a perform element.
+"""
+type mod_perform_delete_child_element_result {
+  parent_element: mod_perform_element!
+}
+
+extend type Mutation {
+  """
+  Create a child element for a perform element.
+  """
+  mod_perform_create_child_element(
+    input: mod_perform_create_child_element_input!
+  ): mod_perform_create_child_element_result!
+
+  """
+  Updates a perform element.
+  """
+  mod_perform_update_child_element(
+    input: mod_perform_update_child_element_input!
+  ): mod_perform_update_child_element_result!
+
+  """
+  Deletes a perform child element.
+  """
+  mod_perform_delete_child_element(
+    input: mod_perform_delete_child_element_input!
+  ): mod_perform_delete_child_element_result!
+
+  """
+  Reorder a perform child element within it's parent.
+  """
+  mod_perform_reorder_child_element(
+    input: mod_perform_reorder_child_element_input!
+  ): mod_perform_reorder_child_element_result!
+}

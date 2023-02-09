@@ -1,0 +1,64 @@
+{{!
+   This file is part of Totara TXP
+
+   Copyright (C) 2022 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Simon Coggins <simon.coggins@totaralearning.com>
+   @package totara_api
+}}
+{{!
+
+    @template totara_api/documentation_view
+
+    This template generates the documentation page
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * return_url: url to go back to previous page
+    * docs_not_found: error notification data if docs have not been generated yet
+    * docs_parse_error: error notification data if docs were generated but could not be parsed
+    * docs_mismatch: warning notification data if docs are not up to date with current schema
+    * docs_css: Quote-escaped string of CSS for docs
+    * docs_js: Quote-escaped string of JS for docs
+    * docs_html: Quote-escaped string of HTML for docs
+    * browser_error_html: Quote-escaped string of HTML for error if browser is not supported
+!}}
+
+<div>
+  <p><a href="{{return_url}}">&laquo; {{#str}}back_to_api, totara_api{{/str}}</a></p>
+  {{#docs_not_found}}
+    {{>core/notification_error}}
+  {{/docs_not_found}}
+  {{#docs_parse_error}}
+    {{>core/notification_error}}
+  {{/docs_parse_error}}
+  {{#docs_mismatch}}
+    {{>core/notification_warning}}
+  {{/docs_mismatch}}
+  {{^docs_parse_error}}
+  <div id="spectaql-shadow-container"></div>
+  {{#js}}
+    require(['totara_api/shadow_dom'], function(shadowDom) {
+      shadowDom.load("spectaql-shadow-container", "{{{docs_html}}}", "{{{docs_css}}}", "{{{docs_js}}}","{{{browser_error_html}}}");
+    });
+  {{/js}}
+  {{/docs_parse_error}}
+</div>

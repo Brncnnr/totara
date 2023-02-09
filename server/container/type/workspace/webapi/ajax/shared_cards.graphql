@@ -1,0 +1,88 @@
+query container_workspace_shared_cards(
+  $workspace_id: core_id!
+  $area: param_area!
+  $access: totara_engage_access
+  $type: param_component
+  $topic: param_integer
+  $sort: param_integer
+  $search: param_text
+  $section: param_integer
+  $saved: param_boolean
+  $shared: param_boolean
+  $owned: param_boolean
+  $include_footnotes: Boolean!
+  $footnotes_type: param_text
+  $footnotes_item_id: core_id
+  $footnotes_area: param_area
+  $footnotes_component: param_component
+  $source: String
+  $cursor: String
+  $theme: param_component
+) {
+  contribution: container_workspace_shared_cards(
+    workspace_id: $workspace_id
+    area: $area
+    filter: {
+      access: $access
+      type: $type
+      topic: $topic
+      sort: $sort
+      search: $search
+      section: $section
+      saved: $saved
+      shared: $shared
+      owned: $owned
+    }
+    footnotes: {
+      type: $footnotes_type
+      item_id: $footnotes_item_id
+      area: $footnotes_area
+      component: $footnotes_component
+    }
+    cursor: $cursor
+  ) {
+    cursor {
+      total
+      next
+    }
+    cards {
+      instanceid
+      name(format: PLAIN)
+      summary
+      component
+      tuicomponent
+      access
+      comments
+      reactions
+      timecreated
+      sharedbycount
+      bookmarked
+      extra(theme: $theme)
+      owned
+      user {
+        id
+        fullname
+        profileimageurl
+        profileimagealt
+      }
+      topics {
+        id
+        value(format: PLAIN)
+      }
+      footnotes(
+        type: $footnotes_type
+        item_id: $footnotes_item_id
+        area: $footnotes_area
+        component: $footnotes_component
+      ) @include(if: $include_footnotes) {
+        component
+        tuicomponent
+        props
+      }
+      url(source: $source)
+      interactor {
+        can_bookmark
+      }
+    }
+  }
+}

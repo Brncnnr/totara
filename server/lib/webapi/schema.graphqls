@@ -1,0 +1,139 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+"""
+Core mutation type
+"""
+type Mutation {
+  """
+  Placeholder mutation because Mutation type declaration can't be empty
+  """
+  placeholder_mutation: Boolean
+}
+
+"""
+Core query type
+"""
+type Query {
+  """
+  Placeholder query because Query type declaration can't be empty
+  """
+  placeholder_query: Boolean
+}
+
+"""
+Input parameter equivalent to PARAM_ALPHA.
+"""
+scalar param_alpha
+
+"""
+Input parameter equivalent to PARAM_ALPHAEXT.
+"""
+scalar param_alphaext
+
+"""
+Input parameter equivalent to PARAM_ALPHANUM.
+"""
+scalar param_alphanum
+
+"""
+Input parameter equivalent to PARAM_ALPHANUMEXT.
+"""
+scalar param_alphanumext
+
+"""
+Input parameter equivalent to PARAM_AREA, '' is converted to NULL.
+"""
+scalar param_area
+
+"""
+Input parameter equivalent to PARAM_BOOL, '' is converted to NULL.
+"""
+scalar param_boolean
+
+"""
+Input parameter equivalent to PARAM_COMPONENT, '' is converted to NULL.
+"""
+scalar param_component
+
+"""
+Input parameter equivalent to PARAM_EMAIL, '' is converted to NULL.
+"""
+scalar param_email
+
+"""
+Input parameter equivalent to PARAM_INT, '' is converted to NULL.
+"""
+scalar param_integer
+
+"""
+Input parameter equivalent to PARAM_LANG, '' is converted to NULL.
+"""
+scalar param_lang
+
+"""
+Input parameter equivalent to PARAM_PLUGIN, '' is converted to NULL.
+"""
+scalar param_plugin
+
+"""
+Input parameter equivalent to PARAM_SAFEDIR, '' is converted to NULL.
+"""
+scalar param_safedir
+
+"""
+Input parameter equivalent to PARAM_SAFEPATH, '' is converted to NULL.
+"""
+scalar param_safepath
+
+"""
+Input parameter equivalent to PARAM_STRINGID, '' is converted to NULL.
+"""
+scalar param_stringid
+
+"""
+Input parameter equivalent to PARAM_TEXT.
+"""
+scalar param_text
+
+"""
+Input parameter equivalent to PARAM_THEME, '' is converted to NULL.
+"""
+scalar param_theme
+
+"""
+Input parameter equivalent to PARAM_USERNAME, '' is converted to NULL.
+"""
+scalar param_username
+
+"""
+Input parameter equivalent to PARAM_URL, '' is converted to NULL
+"""
+scalar param_url
+
+"""
+Input parameter equivalent to PARAM_FILE, '' is converted to NULL.
+"""
+scalar param_file
+
+"""
+Input parameter equivalent to PARAM_PATH, '' is converted to NULL.
+"""
+scalar param_path
+
+"""
+Represents database id fields (numeric string). 0 is converted to NULL.
+"""
+scalar core_id
+
+"""
+Represents standard unix timestamps stored in database.
+
+For input, use either an integer timestamp, numeric string or an ISO-8601 string.
+
+Output can usually be selected via format argument. See core_date_format
+enum for the list of supported formats.
+"""
+scalar core_date

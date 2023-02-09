@@ -1,0 +1,170 @@
+{
+  "case1": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "url": "@@PLUGINFILE@@/space.jpg",
+          "filename": "space.jpg",
+          "alttext": "test alt"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Text Node"
+          }
+        ]
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/second-image.png"
+        }
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/watch?v=1",
+          "loading": false,
+          "image": "https:\/\/example.com\/sample-image.jpg",
+          "title": "Example Video",
+          "description": "An example video",
+          "resolution": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    ]
+  },
+  "case2": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Text Node"
+          }
+        ]
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/second-image.png"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "url": "@@PLUGINFILE@@/space.jpg",
+          "filename": "space.jpg",
+          "alttext": null
+        }
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/watch?v=1",
+          "loading": false,
+          "image": "https:\/\/example.com\/sample-image.jpg",
+          "title": "Example Video",
+          "description": "An example video",
+          "resolution": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    ]
+  },
+  "case3": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Text Node"
+          }
+        ]
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/watch?v=1",
+          "loading": false,
+          "image": "https:\/\/example.com\/sample-image.jpg",
+          "title": "Example Video",
+          "description": "An example video",
+          "resolution": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/second-image.png"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "url": "@@PLUGINFILE@@/space.jpg",
+          "filename": "space.jpg",
+          "alttext": null
+        }
+      }
+    ]
+  },
+  "case4": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Text Node"
+          }
+        ]
+      },
+      {
+        "type": "link_media",
+        "attrs": {
+          "url": "https:\/\/example.com\/watch?v=1",
+          "loading": false,
+          "image": null,
+          "title": "Example Video",
+          "description": "An example video",
+          "resolution": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    ]
+  },
+  "case5": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Text Node"
+          }
+        ]
+      }
+    ]
+  }
+}

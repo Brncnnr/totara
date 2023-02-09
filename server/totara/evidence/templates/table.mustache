@@ -1,0 +1,123 @@
+{{!
+   This file is part of Totara Learn
+
+   Copyright (C) 2018 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   @author Mark Metcalfe <mark.metcalfe@totaralearning.com>
+   @package totara_evidence
+}}
+{{!
+    @template totara_evidence/table
+
+    Creates a simple table.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * data-table-actions
+    * data-row-id
+    * data-actions
+    * data-no-data-message
+
+    Context variables required for this template:
+    * id: string, the html attribute id of the table (used for behat)
+    * has_actions: boolean, whether or not the table has an actions column
+    * row: array, a table row, has cells (and actions)
+    * row -> row_id: int, ID of the entity that the row represents
+    * row -> cell: array of HTML, cell data
+    * row -> action: array of HTML, action icons
+    * has_rows: boolean, whether or not the table has rows
+    * column_count: int, number of columns in the table
+    * no_data_message: string, message shown when there are no rows
+
+    Example context (json):
+    {
+        "id": "table-evidence-types",
+        "header": [
+            "Type name",
+            "Type ID number"
+        ],
+        "has_rows": true,
+        "has_actions": true,
+        "no_data_message": "No evidence types have been defined",
+        "column_count": 3,
+        "row": [
+            {
+                "row_id": "1",
+                "cell": [
+                    "Inspection Diploma",
+                    "INSP105"
+                ],
+                "action": [
+                    "<a href=\"#?type=1\" class=\"action-icon\"><span data-flex-icon=\"core|t/edit\" class=\"flex-icon ft-fw ft fa-cog\" title=\"Edit\"></span><span class=\"sr-only\">Edit</span></a>",
+                    "<a href=\"#\" class=\"action-icon\" data-action-icon data-action-delete><span data-flex-icon=\"core|t/delete\" class=\"flex-icon ft-fw ft fa-times ft-state-danger\" title=\"Delete\"></span><span class=\"sr-only\">Delete</span></a>"
+                ]
+            },
+            {
+                "row_id": "2",
+                "cell": [
+                    "Security Licence",
+                    "SECU206"
+                ],
+                "action": [
+                    "<a href=\"#?type=2\" class=\"action-icon\"><span data-flex-icon=\"core|t/edit\" class=\"flex-icon ft-fw ft fa-cog\" title=\"Edit\"></span><span class=\"sr-only\">Edit</span></a>",
+                    "<a href=\"#\" class=\"action-icon\" data-action-icon data-action-delete><span data-flex-icon=\"core|t/delete\" class=\"flex-icon ft-fw ft fa-times ft-state-danger\" title=\"Delete\"></span><span class=\"sr-only\">Delete</span></a>"
+                ]
+            },
+            {
+                "row_id": "3",
+                "cell": [
+                    "Security Permit",
+                    "SECU301"
+                ],
+                "action": [
+                    "<a href=\"#?type=3\" class=\"action-icon\"><span data-flex-icon=\"core|t/edit\" class=\"flex-icon ft-fw ft fa-cog\" title=\"Edit\"></span><span class=\"sr-only\">Edit</span></a>",
+                    "<a href=\"#\" class=\"action-icon\" data-action-icon data-action-delete><span data-flex-icon=\"core|t/delete\" class=\"flex-icon ft-fw ft fa-times ft-state-danger\" title=\"Delete\"></span><span class=\"sr-only\">Delete</span></a>"
+                ]
+            }
+        ]
+    }
+}}
+<table class="generaltable tw-evidence__table" id="{{id}}" data-table-actions>
+    <thead>
+        <tr>
+            {{#header}}
+            <th>{{{.}}}</th>
+            {{/header}}
+            {{#has_actions}}
+            <th>{{#str}}actions{{/str}}</th>
+            {{/has_actions}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#row}}
+        <tr data-row-id="{{row_id}}">
+            {{#cell}}
+            <td>{{{.}}}</td>
+            {{/cell}}
+            {{#has_actions}}
+            <td data-actions>
+            {{#action}}{{{.}}}{{/action}}
+            </td>
+            {{/has_actions}}
+        </tr>
+        {{/row}}
+        <tr class="tw-evidence__no_data_message{{#has_rows}} tw-evidence__hidden{{/has_rows}}" data-no-data-message>
+            <td colspan="{{column_count}}">{{no_data_message}}</td>
+        </tr>
+    </tbody>
+</table>

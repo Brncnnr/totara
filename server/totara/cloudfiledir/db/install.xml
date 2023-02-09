@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/cloudfiledir/db" VERSION="20200629" COMMENT="XMLDB file for totara/cloudfiledir"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_cloudfiledir_sync" COMMENT="Table for tracking of cloud file content storage sync - main purpose is to improve peformance">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="idnumber" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Store identifier"/>
+        <FIELD NAME="contenthash" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false" COMMENT="This is the content file identifier - SHA1 hash of file content"/>
+        <FIELD NAME="localproblem" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" ALLOWED_VALUES="0,1" COMMENT="1 means that local content is missing, it used to improve performance by skipping missing or invalid content files during sync"/>
+        <FIELD NAME="timeuploaded" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Time when was the file uploaded to cloud storage or if unknown time when the sync record was added"/>
+        <FIELD NAME="timedownloaded" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Time when the file was last downloaded from the cloud storage, can be used when local filedir is used as cache only"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="contenthash-idnumber" UNIQUE="true" FIELDS="contenthash, idnumber"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

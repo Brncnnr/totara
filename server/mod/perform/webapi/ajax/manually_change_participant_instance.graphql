@@ -1,0 +1,9 @@
+mutation mod_perform_manually_change_participant_instance(
+  $input: mod_perform_manually_change_participant_instance_input!
+) {
+  mod_perform_manually_change_participant_instance(input: $input) {
+    participant_instance {
+      id
+    }
+  }
+}

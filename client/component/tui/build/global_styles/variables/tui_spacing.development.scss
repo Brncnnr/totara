@@ -1,0 +1,60 @@
+/* This file is part of Totara Enterprise Extensions.*/
+/**/
+/* Copyright (C) 2020 onwards Totara Learning Solutions LTD*/
+/**/
+/* Totara Enterprise Extensions is provided only to Totara*/
+/* Learning Solutions LTD's customers and partners, pursuant to*/
+/* the terms and conditions of a separate agreement with Totara*/
+/* Learning Solutions LTD or its affiliate.*/
+/**/
+/* If you do not have an agreement with Totara Learning Solutions*/
+/* LTD, you may not access, use, modify, or distribute this software.*/
+/* Please contact [licensing@totaralearning.com] for more information.*/
+/**/
+/* @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>*/
+/* @module tuickage   tui*/
+
+$tui-gap: 0.4rem;
+
+:root {
+  /* Common spacing used for margin & padding*/
+  --gap-1: ($tui-gap * 1);
+  --gap-2: ($tui-gap * 2);
+  --gap-3: ($tui-gap * 3);
+  --gap-4: ($tui-gap * 4);
+  --gap-5: ($tui-gap * 5);
+  --gap-6: ($tui-gap * 6);
+  --gap-7: ($tui-gap * 7);
+  --gap-8: ($tui-gap * 8);
+  --gap-9: ($tui-gap * 9);
+  --gap-10: ($tui-gap * 10);
+  --gap-11: ($tui-gap * 11);
+  --gap-12: ($tui-gap * 12);
+
+  /**/
+  /* Grid*/
+  /**/
+
+  /* default gutter value starts with a global gutter value, changes to other*/
+  /* global gutter values at viewport/container breakpoints*/
+  --grid-gutter: var(--gap-5);
+  /* Global default for 'how many columns are in the grid'*/
+  /* specified for use with theme.getVar('grid-maxunits') in Grid.vue*/
+  --grid-maxunits: 12;
+
+  --paragraph-gap: 1rem;
+}
+
+/* Outside-in spacing: Stack*/
+/* Stacks provide spacing between their children.*/
+@mixin tui-stack-vertical($gap) {
+  & > * + * {
+    margin-top: $gap;
+  }
+}
+@mixin tui-stack-horizontal($gap) {
+  & > * + * {
+    margin-left: $gap;
+  }
+}
+

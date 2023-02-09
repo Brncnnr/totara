@@ -1,0 +1,3 @@
+query mod_perform_activity_users_to_assign_count($activity_id: core_id!) {
+  mod_perform_activity_users_to_assign_count(activity_id: $activity_id)
+}

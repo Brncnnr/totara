@@ -1,0 +1,38 @@
+// Styles used by the job management listing template.
+// totara/job/templates/job_management_listing.mustache
+.totara-job-management-listing {
+
+    margin-left: -10px; // Counters how dd is indented.
+
+    > .joblist {
+
+        margin-left: 0;
+
+        > li {
+            transition: all .06s ease;
+            transition-property: background;
+
+            &:first-of-type a[data-action="up"] {
+                visibility: hidden;
+            }
+            &:last-of-type a[data-action="down"] {
+                visibility: hidden;
+            }
+            &.highlight {
+                background-color: #fefdb2;
+            }
+        }
+    }
+
+    .nojobassignments {
+        display: none;
+    }
+
+    &[data-jobcount="0"] .nojobassignments {
+        display: block;
+    }
+
+    .addjobassignment {
+        margin-top: 5px;
+    }
+}

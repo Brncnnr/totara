@@ -1,0 +1,7 @@
+mutation container_workspace_remove_audience(
+  $input: container_workspace_remove_audience_input!
+) {
+  result: container_workspace_remove_audience(input: $input) {
+    result
+  }
+}

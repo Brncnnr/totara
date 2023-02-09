@@ -1,0 +1,18 @@
+query engage_survey_vote_result($resourceid: param_integer!) {
+  questions: engage_survey_vote_result(resourceid: $resourceid) {
+    __typename
+    id
+    value(format: PLAIN)
+    votes
+    answertype
+    participants
+
+    options {
+      __typename
+      value(format: PLAIN)
+      questionid
+      id
+      votes
+    }
+  }
+}

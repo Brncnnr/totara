@@ -1,0 +1,12 @@
+mutation performelement_linked_review_update_linked_review_content(
+  $input: performelement_linked_review_update_linked_content_input!
+) {
+  data: performelement_linked_review_update_linked_review_content(
+    input: $input
+  ) {
+    validation_info {
+      can_update
+      description
+    }
+  }
+}

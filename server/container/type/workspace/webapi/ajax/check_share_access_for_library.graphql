@@ -1,0 +1,17 @@
+query container_workspace_check_share_access_for_library(
+  $items: [totara_engage_share_item!]!
+  $workspace_id: param_integer!
+) {
+  result: container_workspace_check_share_access(
+    items: $items
+    workspace: {
+      instanceid: $workspace_id
+      component: "container_workspace"
+      area: "library"
+    }
+  ) {
+    __typename
+    warning
+    message
+  }
+}

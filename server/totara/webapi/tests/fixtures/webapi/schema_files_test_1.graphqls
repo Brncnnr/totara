@@ -1,0 +1,8 @@
+extend type Query {
+  """
+  This query is used to test duplication checks.
+  """
+  test_query_1: Int
+
+  test_query_2: Int
+}

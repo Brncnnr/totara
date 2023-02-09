@@ -1,0 +1,82 @@
+<?php $maxlength=70; ?>
+
+<form action="course.php" method="post">
+    <div class="row-fluid user-multiselect">
+        <div class="span5">
+            <label for="removeoutcomes">
+                <?php print_string('outcomescourse', 'grades'); ?>
+            </label>
+            <select id="removeoutcomes" size="20" name="removeoutcomes[]" multiple="multiple">
+                <?php
+                if ($co_standard_notused) {
+                    echo '<optgroup label="'.get_string('outcomescoursenotused', 'grades').'">';
+                    foreach ($co_standard_notused as $outcome) {
+                        echo '<option value="'.$outcome->id.'">'.shorten_text($outcome->get_name(), $maxlength).'</option>';
+                    }
+                    echo '</optgroup>';
+                }
+                if ($co_standard_used) {
+                    echo '<optgroup label="'.get_string('outcomescourseused', 'grades').'">';
+                    foreach ($co_standard_used as $outcome) {
+                        echo '<option value="'.$outcome->id.'">'.shorten_text($outcome->get_name(), $maxlength).'</option>';
+                    }
+                    echo '</optgroup>';
+                }
+                if ($co_custom) {
+                    echo '<optgroup label="'.get_string('outcomescoursecustom', 'grades').'">';
+                    foreach ($co_custom as $outcome) {
+                        echo '<option value="'.$outcome->id.'">'.shorten_text($outcome->get_name(), $maxlength).'</option>';
+                    }
+                    echo '</optgroup>';
+                }
+                ?>
+            </select>
+        </div>
+
+        <?php
+            if (has_capability('moodle/grade:manageoutcomes', $context)) {
+            ?>
+        <div class="span2 controls">
+            <div id="addcontrols">
+                <input name="add" id="add" type="submit"
+                    value="<?php echo $OUTPUT->larrow().'&nbsp; '.get_string('add'); ?>"
+                    title="<?php print_string('add'); ?>" class="btn btn-secondary" />
+            </div>
+
+            <div id="removecontrols">
+                <input name="remove" id="remove" type="submit"
+                    value="<?php echo get_string('remove').'&nbsp; '.$OUTPUT->rarrow(); ?>"
+                    title="<?php print_string('remove'); ?>" class="btn btn-secondary" />
+            </div>
+        </div>
+        <?php } ?>
+        <div class="span5">
+            <label for="addoutcomes">
+                <?php print_string('outcomesstandardavailable', 'grades'); ?>
+            </label>
+            <select id="addoutcomes" size="20" name="addoutcomes[]" multiple="multiple">
+
+                <?php
+                foreach ($standardoutcomes as $outcome) {
+                    echo '<option value="'.$outcome->id.'">'.shorten_text($outcome->get_name(), $maxlength).'</option>';
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+
+    <?php
+if (has_capability('moodle/grade:manageoutcomes', $context)) {
+?>
+    <p class="mdl-align">
+        <a href="<?php echo $CFG->wwwroot ?>/grade/edit/outcome/index.php?id=<?php echo $courseid; ?>">
+            <?php echo get_string('editoutcomes','grades'); ?>
+        </a>
+    </p>
+    <?php
+}
+?>
+
+    <input name="id" type="hidden" value="<?php echo $courseid?>" />
+    <input type="hidden" name="sesskey" value="<?php echo sesskey() ?>" />
+</form>

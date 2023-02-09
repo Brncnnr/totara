@@ -1,0 +1,278 @@
+"""
+A row from the competency activity log of a particular user
+"""
+type totara_competency_activity_log_row {
+  """
+  Time the event occurred
+  """
+  timestamp(format: core_date_format = TIMESTAMP): core_date
+  """
+  Human readable description of the event
+  """
+  description(format: core_format = PLAIN): String
+  """
+  Human readable comment, e.g. for manual rating
+  """
+  comment(format: core_format = PLAIN): String
+  """
+  Whether the user is deemed proficient in this competency after the event
+  """
+  proficient_status: Boolean
+  """
+  The assignment object which the event is related to
+  """
+  assignment: totara_competency_assignment
+  """
+  The action for this activity log event, e.g. 'assigned' or 'tracking_started'
+  See ACTION constants in competency_assignment_user_log for full list
+  """
+  assignment_action: String
+  """
+  The type of activity log event that this entry refers to, e.g. 'assignment' 'competency_achievement', 'configuration_change' or 'competency_achieved_via'
+  See classes within totara_competency\models\activity_log for a full list
+  """
+  type: String
+}
+
+"""
+Competency profile overall progress
+"""
+type totara_competency_profile_overall_progress {
+  """
+  User object for the target user
+  """
+  user: core_user
+  """
+  List of progress items
+  """
+  items: [totara_competency_profile_progress_item!]
+  """
+  String identifying the user's most recent achieved competency
+  """
+  latest_achievement(format: core_format = PLAIN): String
+  """
+  Optional set of filters to restrict the items returned
+  """
+  filters: [totara_competency_profile_assignment_filter_option!]
+}
+
+"""
+Competency profile overall progress individual items
+To simplify, it is a list of assignments grouped by assignment type, user group type and user group id
+"""
+type totara_competency_profile_progress_item {
+  """
+  Overall progress as a percentage (0 to 100)
+  """
+  overall_progress: Int!
+  """
+  Name of the progress item
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  List of items that make up the progress
+  """
+  items: [totara_competency_profile_assignment_progress]
+}
+
+"""
+Competency profile progress item per assignment,
+"""
+type totara_competency_profile_assignment_progress {
+  """
+  The ID of the assignment
+  """
+  id: core_id!
+  """
+  The assignment for which progress is being displayed
+  """
+  assignment: totara_competency_assignment
+  """
+  The competency the assignment is related to
+  """
+  competency: totara_competency_competency
+  """
+  True if the user is considered proficient, false otherwise
+  """
+  proficient: Boolean
+    @deprecated(
+      reason: "This field returns null no matter what. Use `my_value.proficient` instead."
+    )
+  """
+  The value currently held by the user
+  """
+  my_value: totara_competency_profile_scale_value_progress
+  """
+  The minimum required proficiency for this competency
+  """
+  min_value: totara_competency_profile_scale_value_progress!
+  """
+  The reason why assignment is assigned
+  """
+  reason_assigned: String
+  """
+  Whether the user is currently assigned
+  """
+  is_assigned(user_id: core_id!): Boolean!
+  """
+  If the user is not assigned then this returns the date the user got unassigned last
+  """
+  unassigned_at(
+    format: core_date_format = TIMESTAMP
+    user_id: core_id!
+  ): core_date
+}
+
+"""
+Competency profile progress item per competency, with a list of assignments (for a given user)
+"""
+type totara_competency_profile_competency_progress {
+  """
+  The competency progress is shown for
+  """
+  competency: totara_competency_competency
+  """
+  List of items that make up the progress
+  """
+  items: [totara_competency_profile_assignment_progress]
+}
+
+"""
+Competency profile scale_value progress type that includes extra details (the percentage towards competency progress)
+"""
+type totara_competency_profile_scale_value_progress {
+  """
+  ID of the scale value achieved
+  """
+  id: core_id
+  """
+  ID of the scale this scale value belongs to
+  """
+  scale_id: core_id
+  """
+  Name for the scale value
+  """
+  name(format: core_format = PLAIN): String!
+  """
+  Relative percentage for the current proficient value where 0% is no value (value not achieved)
+  and a 100% is the highest value on the scale
+  """
+  percentage: Int
+  """
+  True if the scale value is proficient
+  """
+  proficient: Boolean
+}
+
+"""
+Competency profile assignment filter option
+"""
+type totara_competency_profile_assignment_filter_option {
+  name(format: core_format = PLAIN): String!
+  """
+  Type of group to filter by (one of 'user', 'position', 'organisation' or 'cohort')
+  """
+  user_group_type: String!
+  """
+  ID of group instance to filter by
+  """
+  user_group_id: Int!
+  """
+  Assignment type (one of 'admin', 'self', 'system' or 'other')
+  """
+  type: String!
+  """
+  Filter by assignment status. Code matching one of the totara_competency\entity\assignment STATUS_ constants (e.g. 0 => 'draft', 1 => 'active', 2 => 'archived')
+  """
+  status: Int!
+  """
+  Human readable string describing status
+  """
+  status_name(format: core_format = PLAIN): String!
+}
+
+"""
+Competency profile assignment filters
+"""
+input totara_competency_profile_assignment_filters {
+  """
+  Type of group being filtered by (one of 'user', 'position', 'organisation' or 'cohort')
+  """
+  user_group_type: String
+  """
+  ID of group instance being filtered by
+  """
+  user_group_id: Int
+  """
+  Assignment type (one of 'admin', 'self', 'system' or 'other')
+  """
+  type: String
+  """
+  Filter by assignment status. Code matching one of the totara_competency\entity\assignment STATUS_ constants (e.g. 0 => 'draft', 1 => 'active', 2 => 'archived')
+  """
+  status: Int
+  """
+  Filter to only assignments with a specific proficiency
+  """
+  proficient: Boolean
+  """
+  Text string to search with LIKE against competency fullname and description
+  """
+  search: String
+  """
+  An array of competency ids for querying the selected competenies
+  """
+  ids: [core_id!]
+}
+
+"""
+Input type for filtering competency activity log
+"""
+input totara_competency_activity_log_filters {
+  """
+  ID of the assignment to filter by
+  """
+  assignment_id: core_id
+}
+
+extend type Query {
+  """
+  Activity log entries for a single user/competency pair, optionally filtered.
+  """
+  totara_competency_activity_log(
+    competency_id: core_id!
+    user_id: core_id!
+    filters: totara_competency_activity_log_filters
+  ): [totara_competency_activity_log_row]
+
+  """
+  Competency profile overall progress data for a specified user by ID, optionally filtered.
+  """
+  totara_competency_profile_progress(
+    user_id: core_id!
+    filters: totara_competency_profile_assignment_filters
+  ): totara_competency_profile_overall_progress
+
+  """
+  Competency profile detailed competency progress data for a specified user by ID, optionally filtered and ordered.
+  """
+  totara_competency_profile_competency_progress(
+    user_id: core_id!
+    order: String
+    filters: totara_competency_profile_assignment_filters
+  ): [totara_competency_profile_competency_progress]
+
+  """
+  Competency profile detailed competency progress data for a single user/competency pair.
+  """
+  totara_competency_profile_competency_details(
+    user_id: core_id!
+    competency_id: core_id!
+    status: Int
+  ): totara_competency_profile_competency_progress
+
+  """
+  Gets a single user
+  """
+  totara_competency_user(user_id: core_id!): core_user!
+}

@@ -1,0 +1,34 @@
+mutation mod_perform_update_child_element(
+  $input: mod_perform_update_child_element_input!
+) {
+  mod_perform_update_child_element(input: $input) {
+    element {
+      id
+      title
+      raw_title: title(format: RAW)
+      data
+      raw_data: data(format: RAW)
+      element_plugin {
+        plugin_name
+        name
+        plugin_config {
+          is_respondable
+          has_title
+          has_reporting_id
+          title_text
+          is_title_required
+          is_response_required_enabled
+        }
+
+        admin_edit_component
+        admin_view_component
+        admin_summary_component
+        participant_form_component
+        participant_print_component
+        group
+      }
+      identifier
+      is_required
+    }
+  }
+}

@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageUpload Checks snapshot 1`] = `
+<div
+  class="tui-formImageUpload"
+>
+  <div
+    class="tui-formImageUpload__actions"
+  >
+    <button
+      aria-describedby=""
+      aria-label="add,totara_core"
+      class="tui-iconBtn tui-iconBtn--hasText"
+      type="button"
+    >
+      <span
+        class="tui-iconBtn__wrap"
+      >
+        <span
+          class="tui-iconBtn__label"
+        >
+          <span
+            aria-hidden="true"
+            class="tui-iconBtn__icon"
+          >
+            <span
+              class=""
+            />
+          </span>
+           
+          <span
+            class="tui-iconBtn__text"
+          >
+            
+        add,totara_core
+      
+          </span>
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </span>
+    </button>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="tui-formImageUpload__filearea"
+  >
+    <input
+      style="display: none;"
+      type="file"
+    />
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <!---->
+</div>
+`;
+
+exports[`ImageUpload Error functionality loads as expected 1`] = `
+<div
+  class="tui-formImageUpload tui-formImageUpload--isError"
+>
+  <div
+    class="tui-formImageUpload__actions"
+  >
+    <button
+      aria-describedby="id-field-error"
+      aria-label="add,totara_core"
+      class="tui-iconBtn tui-iconBtn--hasText"
+      type="button"
+    >
+      <span
+        class="tui-iconBtn__wrap"
+      >
+        <span
+          class="tui-iconBtn__label"
+        >
+          <span
+            aria-hidden="true"
+            class="tui-iconBtn__icon"
+          >
+            <span
+              class=""
+            />
+          </span>
+           
+          <span
+            class="tui-iconBtn__text"
+          >
+            
+        add,totara_core
+      
+          </span>
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </span>
+    </button>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="tui-formImageUpload__filearea"
+  >
+    <input
+      style="display: none;"
+      type="file"
+    />
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <div
+    class="tui-formFieldError"
+    id="id-field-error"
+  >
+    <div
+      class="tui-formFieldError__inner"
+    >
+      
+    you fail
+
+    
+      <!---->
+    </div>
+  </div>
+</div>
+`;

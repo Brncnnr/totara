@@ -1,0 +1,8 @@
+query performelement_linked_review_content_types($section_id: core_id!) {
+  types: performelement_linked_review_content_types(section_id: $section_id) {
+    id: identifier
+    label: display_name
+    available_settings
+    admin_settings_component
+  }
+}

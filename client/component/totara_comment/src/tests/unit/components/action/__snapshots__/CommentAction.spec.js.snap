@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentAction Checks snapshot 1`] = `
+<div
+  class="tui-commentAction"
+>
+  <simplelike-stub
+    area="comment"
+    buttonarialabel="removelikeforcomment-totara_comment"
+    class="tui-commentAction__likeButton"
+    component="totara_comment"
+    instanceid="5"
+    liked="true"
+    totallikes="100"
+  />
+   
+  <div
+    class="tui-commentAction__replyBox"
+  >
+    <replybuttonicon-stub
+      small="true"
+      transparent="true"
+    />
+     
+    <span
+      class="tui-commentAction__replyBox-text tui-commentAction__replyBox-text--small"
+    >
+      
+      bracketnumber-totara_comment
+    
+    </span>
+  </div>
+</div>
+`;
+
+exports[`CommentAction Checks snapshot without thumbs up 1`] = `
+<div
+  class="tui-commentAction"
+>
+  <!---->
+   
+  <div
+    class="tui-commentAction__replyBox"
+  >
+    <replybuttonicon-stub
+      small="true"
+      transparent="true"
+    />
+     
+    <span
+      class="tui-commentAction__replyBox-text tui-commentAction__replyBox-text--small"
+    >
+      
+      bracketnumber-totara_comment
+    
+    </span>
+  </div>
+</div>
+`;

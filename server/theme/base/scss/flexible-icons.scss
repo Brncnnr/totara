@@ -1,0 +1,44 @@
+//
+// This file is part of Totara LMS
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <ht    tp://www.gnu.org/licenses/>.
+//
+// @copyright 2020 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Brian Barnes <brian.barnes@totaralearning.com>
+// @package   theme_base
+
+$fa-font-size-base: 14px !default;
+$ft-size-100: $fa-font-size-base !default; // 14px
+$ft-size-200: ceil(($fa-font-size-base * 1.14)) !default; // 16px
+$ft-size-300: ceil(($fa-font-size-base * 1.4)) !default; // 20px
+$ft-size-400: ceil(($fa-font-size-base * 1.7)) !default; // 24px
+$ft-size-500: ceil(($fa-font-size-base * 2)) !default; // 28px
+$ft-size-600: ceil(($fa-font-size-base * 2.28)) !default; // 32px
+$ft-size-700: ceil(($fa-font-size-base * 2.71)) !default; // 38px
+
+@import 'theme_base/icons/fa/variables.scss';
+@import 'theme_base/icons/fa/icons.scss';
+@import 'theme_base/icons/fa/animated.scss';
+
+@import 'theme_base/icons/ft/ft-variables.scss';
+@import 'theme_base/icons/ft/ft-icons.scss';
+@import 'theme_base/icons/ft/ft.scss';
+
+@import 'theme_base/icons/tfont/style.scss';
+@import 'theme_base/icons/tfont/variables.scss';
+@import 'theme_base/icons/tfont/tfont.scss';
+  

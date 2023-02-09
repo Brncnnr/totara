@@ -1,0 +1,12 @@
+query totara_reportbuilder_source($key: String) {
+  totara_reportbuilder_source(key: $key) {
+    key
+    fullname
+    label
+    summary
+    defaultcolumns {
+      type
+      name
+    }
+  }
+}

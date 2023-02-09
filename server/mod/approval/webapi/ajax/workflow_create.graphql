@@ -1,0 +1,18 @@
+mutation mod_approval_workflow_create(
+  $input: mod_approval_workflow_create_input!
+) {
+  mod_approval_workflow_create(input: $input) {
+    workflow {
+      __typename
+      id
+      name
+      workflow_type {
+        __typename
+        id
+        name
+      }
+      id_number
+      description
+    }
+  }
+}

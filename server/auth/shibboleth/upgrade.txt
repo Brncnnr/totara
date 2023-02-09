@@ -1,0 +1,20 @@
+This files describes API changes in /auth/shibboleth/*,
+information provided here is intended especially for developers.
+
+=== 14.0 ===
+
+* The 'Data modification API' (convert_data) setting can no longer be configured to use files located within the
+  current site data directory ($CFG->dataroot), as it exposes the site to security risks.
+
+
+=== 13.0 ===
+
+* Attribute names are now validated in order to ensure that reserved $_SERVER variables have not been used.
+  This validation can be optionally disabled should it cause backwards compatibility problems. To do so add
+  the following in your config.php file:
+      $CFG->auth_shibboleth_disable_server_attribute_validation = true;
+
+=== 12.0 ===
+
+* The config.html file was migrated to use the admin settings API.
+  The identifier for configuration data stored in config_plugins table was converted from 'auth/shibboleth' to 'auth_shibboleth'.

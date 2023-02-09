@@ -1,0 +1,19 @@
+extend type Mutation {
+  """
+  Marks a self-completing course as complete
+  """
+  core_completion_course_self_complete(courseid: core_id!): Boolean!
+
+  """
+  Toggles completion for a self-completing activity
+  """
+  core_completion_activity_self_complete(
+    cmid: core_id!
+    complete: Boolean!
+  ): Boolean!
+
+  """
+  Mark an activity as view
+  """
+  core_completion_activity_view(cmid: core_id!, activity: String!): Boolean!
+}

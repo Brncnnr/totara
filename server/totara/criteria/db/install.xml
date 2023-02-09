@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="totara/criteria/db" VERSION="20191210" COMMENT="Database layer definition for totara criteria"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="totara_criteria" COMMENT="Totara boolean criteria definitions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="plugin_type" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="Type of criterion"/>
+        <FIELD NAME="idnumber" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="External systems ID number"/>
+        <FIELD NAME="aggregation_method" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Aggregation method"/>
+        <FIELD NAME="aggregation_params" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Additional parameters required by the aggregation method"/>
+        <FIELD NAME="criterion_modified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time when criterion configuration was last changed"/>
+        <FIELD NAME="last_evaluated" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Time when user completion of this criterion was last evaluated"/>
+        <FIELD NAME="valid" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Is the criterion in a valid state"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="totcrit_mod_ix" UNIQUE="false" FIELDS="criterion_modified"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_criteria_item" COMMENT="Items linked to a specific criterion">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="criterion_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the criterion this item is used in"/>
+        <FIELD NAME="item_type" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Item type"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the item instance"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_criterion_id" TYPE="foreign" FIELDS="criterion_id" REFTABLE="totara_criteria" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="totara_criteria_item_record" COMMENT="Record regarding whether a user met a specific criterion item or not">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User"/>
+        <FIELD NAME="criterion_item_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the item instance"/>
+        <FIELD NAME="criterion_met" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="true/false"/>
+        <FIELD NAME="timeevaluated" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="false" COMMENT="Last time this criterion has been evaluated for the user"/>
+        <FIELD NAME="timeachieved" TYPE="int" LENGTH="18" NOTNULL="false" SEQUENCE="false" COMMENT="The time this criterion has been achieved"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="crititmrec_fk_user" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="crititmrec_fk_itm" TYPE="foreign" FIELDS="criterion_item_id" REFTABLE="totara_criteria_item" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="crititmrec_ev_ix" UNIQUE="false" FIELDS="timeevaluated"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="totara_criteria_metadata" COMMENT="Additional data for a specific criterion">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="criterion_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the criterion this data relates to"/>
+        <FIELD NAME="metakey" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="Key for this piece of metadata"/>
+        <FIELD NAME="metavalue" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="Value for this piece of metadata"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_criterion__meta_id" TYPE="foreign" FIELDS="criterion_id" REFTABLE="totara_criteria" REFFIELDS="id" ONDELETE="cascade"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

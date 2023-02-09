@@ -1,0 +1,21 @@
+query criteria_coursecompletion_achievements(
+  $instance_id: core_id!
+  $user_id: core_id!
+) {
+  criteria_coursecompletion_achievements(
+    instance_id: $instance_id
+    user_id: $user_id
+  ) {
+    aggregation_method
+    required_items
+    is_valid
+    items {
+      course {
+        fullname
+        description
+        progress
+        url_view
+      }
+    }
+  }
+}

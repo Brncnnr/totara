@@ -1,0 +1,89 @@
+type core_editor {
+  """
+  Name of the front-end module to load for this editor.
+  """
+  js_module(framework: param_alpha): String
+  """
+  The context's id where editor is being used.
+  """
+  context_id: Int!
+  """
+  The editor's name
+  """
+  name: String!
+  """
+  Variant of the editor.
+  """
+  variant(
+    """
+    The variant name to find the variant metadata for editor.
+    Default  to standard variant if none is provided.
+    """
+    variant_name: param_alphaext
+    """
+    The parameter to pass down to the variant, as it can be treated as
+    extra data.
+    """
+    usage_identifier: core_editor_usage_identifier
+    """
+    A json encoded text string that the front-end want to pass to the server side for loading any other extra
+    extension, for example: specific custom extension.
+
+    The json content should look like:
+    [
+      {
+        "name": "valid_extension_name",
+        "options": {
+          "some_key": "valid_extension_value"
+        }
+      },
+      // And the list of extensions go on with the schema as same as object above.
+    ]
+    """
+    extra_extensions: param_text
+  ): core_editor_variant!
+}
+
+type core_editor_variant {
+  """
+  JSON blob for extra options that the variant supports.
+  """
+  options: String
+  """
+  The variant name
+  """
+  name: String!
+}
+
+"""
+An input for usage identifier to pass to the editor.
+"""
+input core_editor_usage_identifier {
+  component: param_component!
+  area: param_area!
+  """
+  Sometimes the editor is used to create a new instance.
+  Hence this instance_id field can be null-able.
+  """
+  instance_id: param_integer
+}
+
+extend type Query {
+  core_editor(
+    """
+    The context's id where editor is being used.
+    Default to context system if none is provided.
+    """
+    context_id: param_integer
+    """
+    The editor's format that is used to get the editor we want.
+    By default format that is set in user's preference will used if none is given.
+    """
+    format: param_integer
+    """
+    Name of the front-end framework we are using.
+    Only editors supporting this framework will be returned.
+    """
+    framework: param_alpha
+  ): core_editor!
+}

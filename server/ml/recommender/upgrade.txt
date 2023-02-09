@@ -1,0 +1,13 @@
+This files describes API changes in /ml/recommender/*,
+information provided here is intended especially for developers.
+
+
+=== 14.0 ===
+
+* The function ml_recommender\local\import::get_component_id has been deprecated.
+  Please use ml_recommender\local\unique_id::normalise_unique_id instead.
+
+--- Update to graphQL ---
+* Added optional "theme" parameter to "ml_recommender_get_recommended_articles" query
+* Added optional "theme" parameter to "ml_recommender_get_recommended_playlists" query
+* Added optional "theme" parameter to "ml_recommender_get_recommended_user_workspaces" query

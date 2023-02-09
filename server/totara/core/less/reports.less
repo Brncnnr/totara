@@ -1,0 +1,341 @@
+
+// Base variables
+@myReports_base-color_neutral_2: @totara_style-color_neutral_2;
+@myReports_base-color_neutral_3: @totara_style-color_neutral_3;
+@myReports_base-color_neutral_5: @totara_style-color_neutral_5;
+@myReports_base-color_neutral_7: @totara_style-color_neutral_7;
+@myReports_base-color_theme_1: @totara_style-color_theme_1;
+@myReports_base-border-color: @myReports_base-color_neutral_5;
+@myReports_base-image-background: #f0f0f0; // taken from svg
+
+@myReports_base-title_font-size: @totara_style-font_body_x_small_size;
+@myReports_base-description_font-size: 1.2rem;
+@myReports_base-controls_font-size: 1.2em;
+
+@myReports_base-spacing_x_small: @totara_style-spacing_x_small;
+@myReports_base-spacing_small: @totara_style-spacing_small;
+
+@myReports_base-screen_xsm_min: 500px;
+@myReports_base-screen_sm_min: @totara_style-screen_sm_min;
+
+.totara_core__myreports__container {
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+
+    &.tw-list-toggle-loaded {
+        opacity: 1;
+    }
+}
+
+.totara_core__myreports__list {
+    clear: both;
+    padding: 1rem 0;
+
+    &__item {
+
+        &__content {
+            // Hover animation
+            transition-property: box-shadow;
+            transition-duration: 200ms;
+            transition-timing-function: ease-in-out;
+
+            display: block;
+            color: @myReports_base-color_neutral_7;
+
+            &:hover,
+            &:active,
+            &:focus {
+                box-shadow: @totara_style-shadow_1;
+                text-decoration: none;
+                color: @myReports_base-color_neutral_7;
+                position: relative; // this lifts the shadow above the image
+            }
+        }
+    }
+}
+
+// ------------------------------
+//  GRID VIEW
+// ------------------------------
+
+@myReports_grid-card-width: 18em;
+
+@myReports_grid-padding: @totara_style-spacing_small;
+
+@myReports_grid-title_font-size: @myReports_base-title_font-size;
+@myReports_grid-description_font-size: @myReports_base-description_font-size;
+@myReports_grid-controls_font-size: @myReports_base-controls_font-size;
+
+@myReports_grid-spacing: @totara_style-spacing_small;
+@myReports_grid-border-color: @myReports_base-border-color;
+
+.totara_core__myreports__list--grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    & .totara_core__myreports__list {
+
+        &__item {
+            width: 100%;
+            min-width: 140px;
+
+            @media (min-width: @myReports_base-screen_xsm_min) {
+                & {
+                    width: 50%;
+                }
+            }
+
+            @media (min-width: @totara_style-screen_md_min) {
+                & {
+                    width: 33%;
+                }
+            }
+
+            @media (min-width: @totara_style-screen_lg_min) {
+                & {
+                    width: 25%;
+                }
+            }
+
+            @media (min-width: @totara_style-screen_xl_min) {
+                & {
+                    width: 20%;
+                }
+            }
+
+            &__content {
+                border: 1px solid @myReports_grid-border-color;
+                margin: @myReports_grid-spacing;
+
+                &__image {
+                    background-color: @myReports_base-image-background;
+
+                    img.icon {
+                        display: block;
+                        width: 100%;
+                        height: 120px;
+
+                        margin: 0 auto;
+                    }
+                }
+
+                &__title {
+                    .totara_style-heading_x_small;
+                    height: 4.6rem;
+                    margin: @myReports_grid-padding;
+                    overflow: hidden;
+                    font-weight: 600;
+                }
+
+                &__description {
+                    margin: 0 @myReports_grid-padding @myReports_grid-padding;
+                    font-size: @myReports_grid-description_font-size;
+                    height: 8.4rem;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
+
+// ------------------------------
+//  TABLE VIEW
+// ------------------------------
+
+@myReports_table-padding: @totara_style-spacing_small;
+
+@myReports_table-description_font-size: @myReports_base-description_font-size;
+@myReports_table-controls_font-size: @myReports_base-controls_font-size;
+
+@myReports_table-border-color: @myReports_base-border-color;
+
+.totara_core__myreports__list--table {
+
+    & .totara_core__myreports__list {
+        &__item {
+            &:first-child {
+                border-top: 1px solid @myReports_table-border-color;
+            }
+            border-bottom: 1px solid @myReports_table-border-color;
+
+            &__content {
+                display: flex;
+                height: 50px;
+
+                @media screen and (min-width: @myReports_base-screen_xsm_min) {
+                    height: 70px;                
+                }
+
+                &__image {
+                    max-height: 100%;
+
+                    width: auto;
+                    height: 100%;
+
+                    flex: 0 0 auto;
+
+                    img.icon {
+                        width: auto;
+                        height: 100%;
+
+                        max-height: 100%;
+                        background-color: @myReports_base-image-background;
+
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+
+                &__title {
+                    margin: @myReports_table-padding;
+                    overflow: hidden;
+
+                    /* Shorthand flex doesn't work in IE11 with flex-basis being set to 0 */
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    flex-basis: 0;
+                    font-size: @myReports_table-description_font-size;
+
+                    @media screen and (min-width: @myReports_base-screen_xsm_min) {
+                        .totara_style-heading_x_small;
+                        font-weight: 600;                    
+                    }
+                }
+
+                &__description {
+                    margin: @myReports_table-padding auto;
+                    overflow: hidden;
+                    /* Shorthand flex doesn't work in IE11 with flex-basis being set to 0 */
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    flex-basis: 0;
+                    font-size: @myReports_table-description_font-size;
+                }
+            }
+        }
+    }
+}
+
+// ------------------------------
+//  TITLE BUTTONS
+// ------------------------------
+
+@myReports_btns-color_neutral_2: @myReports_base-color_neutral_2;
+@myReports_btns-color_neutral_3: @myReports_base-color_neutral_3;
+@myReports_btns-color_neutral_5: @myReports_base-color_neutral_5;
+@myReports_btns-color_neutral_7: @myReports_base-color_neutral_7;
+
+@myReports_btns_font_size: @totara_style-font_heading_label_small_size;
+@myReports_btns_border-radius: 3px;
+
+@myReports_btns-spacing_x_small: @myReports_base-spacing_x_small;
+@myReports_btns-spacing_small: @myReports_base-spacing_small;
+@myReports_btns-spacing_med: @totara_style-spacing_medium;
+
+.totara_core__myreports__title {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: @myReports_btns-spacing_med;
+    margin-bottom: @myReports_btns-spacing_med;
+    border-bottom: 1px solid @myReports_btns-color_neutral_3;
+
+    &__btn {
+        border: 1px solid @myReports_btns-color_neutral_5;
+        border-radius: @myReports_btns_border-radius;
+        color: inherit;
+        cursor: pointer;
+        display: inline-block;
+        font-size: @myReports_btns_font_size;
+        margin: @myReports_btns-spacing_x_small;
+        padding: @myReports_btns-spacing_small;
+        transition: background-color 0.2s ease;
+
+        &:active,
+        &:focus,
+        &:hover {
+            background: @myReports_btns-color_neutral_2;
+            color: @myReports_btns-color_neutral_7;
+            outline: 0;
+            text-decoration: none;
+        }
+    }
+}
+
+// ------------------------------
+//  LIST ITEM TOGGLE
+// ------------------------------
+
+// Colours
+@myReports_Toggle-color_neutral_2: @myReports_base-color_neutral_2;
+@myReports_Toggle-color_neutral_3: @myReports_base-color_neutral_3;
+@myReports_Toggle-color_neutral_5: @myReports_base-color_neutral_5;
+@myReports_Toggle-color_neutral_7: @myReports_base-color_neutral_7;
+@myReports_Toggle-color_theme_1: @myReports_base-color_theme_1;
+// Spacing
+@myReports_Toggle-spacing_x_small: @myReports_base-spacing_x_small;
+@myReports_Toggle-spacing_small: @myReports_base-spacing_small;
+// Font Size
+@myReports_Toggle-btn_font_size: @myReports_btns_font_size;
+// Breakpoint
+@myReports_Toggle-screen_xsm_min: @myReports_base-screen_xsm_min;
+@myReports_Toggle-screen_sm_min: @myReports_base-screen_sm_min;
+
+@myReports_Toggle_border-radius: 3px;
+
+.totara_core__myreports__itemstyletoggle {
+    display: flex;
+    margin: auto @myReports_Toggle-spacing_x_small @myReports_Toggle-spacing_x_small auto;
+    float: right;
+
+    &__btn {
+        border: 1px solid @myReports_Toggle-color_neutral_5;
+        color: @myReports_Toggle-color_theme_1;
+        font-size: @myReports_Toggle-btn_font_size;
+        padding: @myReports_Toggle-spacing_small;
+        transition: background-color 0.2s ease;
+
+        &--grid {
+            border-radius: @myReports_Toggle_border-radius 0 0 @myReports_Toggle_border-radius;
+        }
+
+        &--list {
+            border-left: 0px;
+            border-radius: 0 @myReports_Toggle_border-radius @myReports_Toggle_border-radius 0;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            background: @myReports_Toggle-color_neutral_2;
+            color: @myReports_Toggle-color_neutral_7;
+            outline: 0;
+            text-decoration: none;
+        }
+
+        &_active {
+            background: @myReports_Toggle-color_neutral_3;
+            color: @myReports_Toggle-color_neutral_7;
+            cursor: default;
+
+            &:active,
+            &:focus,
+            &:hover {
+                background: @myReports_Toggle-color_neutral_3;
+                color: @myReports_Toggle-color_neutral_7;
+            }
+        }
+    }
+
+    @media (min-width: @myReports_Toggle-screen_xsm_min) {
+        & {
+            margin: auto @myReports_Toggle-spacing_x_small @myReports_Toggle-spacing_x_small 0;
+        }
+    }
+
+    @media (min-width: @myReports_Toggle-screen_sm_min) {
+        & {
+            margin-right: 0;
+        }
+    }
+}

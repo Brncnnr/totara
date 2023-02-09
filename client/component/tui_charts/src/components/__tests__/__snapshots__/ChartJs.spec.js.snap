@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartJs Renders correctly 1`] = `
+<div>
+  <div
+    class="tui-chartJs__header"
+    title="This is an example header"
+  >
+    
+    This is an example header
+  
+  </div>
+   
+  <canvas
+    aria-label="This is an example header"
+    class="chartjs-render-monitor"
+    height="0"
+    role="img"
+    style="display: block;"
+    width="0"
+  >
+    <p>
+      This is an example header
+    </p>
+  </canvas>
+</div>
+`;

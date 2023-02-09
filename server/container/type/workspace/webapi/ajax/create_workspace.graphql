@@ -1,0 +1,39 @@
+mutation container_workspace_create_workspace(
+  $name: String!
+  $description: String
+  $description_format: param_integer
+  $draft_id: param_integer
+  $private: param_boolean!
+  $hidden: param_boolean!
+  $theme: param_component
+) {
+  workspace: container_workspace_create(
+    name: $name
+    description: $description
+    description_format: $description_format
+    draft_id: $draft_id
+    private: $private
+    hidden: $hidden
+  ) {
+    __typename
+    id
+    name(format: PLAIN)
+    description(format: PLAIN)
+    description_format
+    time_description
+    image(theme: $theme)
+    total_members
+    interactor {
+      __typename
+      joined
+      workspaces_admin
+      own
+      can_update
+      can_delete
+      can_invite
+      can_join
+    }
+    url
+    access
+  }
+}

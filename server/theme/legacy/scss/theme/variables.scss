@@ -1,0 +1,264 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2020 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+// workaround for div&
+// before: div& {}
+// after: @include prepend-current('div') {}
+@mixin prepend-current($element-name) {
+  @at-root #{selector-append($element-name, &)} {
+    @content;
+  }
+}
+
+//
+// Theme colours for legacy bootstrap
+// Legacy bootstrap is dependent on SCSS colour functions such as lighter/darken/mix which
+// aren't compatible with CSS variables. To keep bootstrap output consistent, we are providing
+// SCSS versions of core CSS variables
+//
+
+// Primary colour
+// Often used for default image, backgrounds, line separators & visiual indicators
+$boot-color-primary: #69bd45;
+
+// Secondary colour
+// Often used for visual components such as progress bars & charts
+$boot-color-secondary: #007ab8;
+
+//
+// Interactive state colours
+//
+
+// Default state colour, shows an element is interactive
+$boot-color-state: #4b7e2b;
+
+// Hover state colour, shown when cursor is over interactive element
+$boot-color-state-hover: #3c6721;
+// Focus state colour, shown when element has focus (keyboard tabbing)
+$boot-color-state-focus: #3c6721;
+// Active state colour, shown when element is active (clicked)
+$boot-color-state-active: #30541a;
+// Highlight, visual clue for hover/focus on components such as a list row
+$boot-color-state-highlight: #f7f8e0;
+
+//
+// Visual prompt colours
+//
+
+// Used to indicate an important message (error, danger)
+$boot-color-prompt-alert: #cc2428;
+// Used to indicate a warning message
+$boot-color-prompt-warning: #b2611f;
+// Used to indicate a success message
+$boot-color-prompt-success: #4b7e2b;
+
+//
+// Neutral colour ranges
+//
+
+// Often used for navigation bar, backgrounds & footer
+$boot-color-neutral-1: #fff;
+// Often used for content background
+$boot-color-neutral-2: #fafafa;
+// Often used for side panel background & disabled buttons
+$boot-color-neutral-3: #f4f4f4;
+// Often used for progress bar background
+$boot-color-neutral-4: #e6e4e4;
+// Often used for card component borders, line separators & disabled button
+$boot-color-neutral-5: #c7c7c7;
+// Often used for icons and form component borders
+$boot-color-neutral-6: #767676;
+// Often used for headers and body text
+$boot-color-neutral-7: #262626;
+// Only used for legacy theme (Deprecated)
+$boot-color-neutral-legacy-7: #3d444b;
+
+$pagination-active-bg: var(--btn-prim-accent-color);
+
+//
+// Font mixins
+//
+
+/**/
+/* Body text*/
+/**/
+
+@mixin tui-font-body {
+  color: var(--color-text);
+  font-weight: normal;
+  font-size: var(--font-size-15);
+  line-height: 1.33;
+}
+
+@mixin tui-font-body-small {
+  font-weight: normal;
+  font-size: var(--font-size-13);
+  line-height: 1.2;
+}
+
+@mixin tui-font-body-x-small {
+  font-weight: normal;
+  font-size: var(--font-size-12);
+  line-height: 1.25;
+}
+
+@mixin tui-font-body-xx-small {
+  font-weight: normal;
+  font-size: var(--font-size-11);
+  line-height: 1.2;
+}
+
+@mixin tui-font-body-disabled {
+  color: var(--color-text-disabled);
+}
+
+@mixin tui-font-body-placeholder {
+  color: var(--color-text-hint);
+}
+
+@mixin tui-font-heavy {
+  font-weight: bold;
+}
+
+@mixin tui-font-hint {
+  color: var(--color-text-hint);
+  font-style: italic;
+}
+
+/**/
+/* Link text*/
+/**/
+
+@mixin tui-font-link {
+  color: var(--color-state);
+  font-size: var(--font-size-15);
+  line-height: 1.33;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-state-hover);
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-state-active);
+  }
+}
+
+@mixin tui-font-link-large {
+  color: var(--color-state);
+  font-size: var(--font-size-16);
+  line-height: 1.33;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-state-hover);
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-state-active);
+  }
+}
+
+@mixin tui-font-link-small {
+  color: var(--color-state);
+  font-size: var(--font-size-13);
+  line-height: 1.33;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-state-hover);
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: var(--color-state-active);
+  }
+}
+
+/**/
+/* Heading text*/
+/**/
+
+@mixin tui-font-heading-large {
+  font-weight: bold;
+  font-size: var(--font-size-50);
+  line-height: 1;
+}
+
+@mixin tui-font-heading-medium {
+  font-weight: 500;
+  font-size: var(--font-size-30);
+  line-height: 1;
+}
+
+@mixin tui-font-heading-small {
+  font-weight: bold;
+  font-size: var(--font-size-20);
+  line-height: 1.25;
+}
+
+@mixin tui-font-heading-small-regular {
+  font-weight: normal;
+  font-size: var(--font-size-20);
+  line-height: 1.25;
+}
+
+@mixin tui-font-heading-x-small {
+  font-weight: bold;
+  font-size: var(--font-size-16);
+  line-height: 1.25;
+}
+
+@mixin tui-font-heading-label {
+  font-weight: bold;
+  font-size: var(--font-size-15);
+  line-height: 1.2;
+}
+
+@mixin tui-font-heading-label-small {
+  font-weight: bold;
+  font-size: var(--font-size-13);
+  line-height: 1.15;
+}
+
+@mixin tui-font-heading-page-title {
+  margin: 0;
+  @include tui-font-heading-medium;
+}
+
+//
+// Display breakpoints
+//
+$tui-screen-xs: 600px;
+$tui-screen-sm: 768px; // Matches @screen-sm-min
+$tui-screen-md: 992px; // Matches @screen-md-min
+$tui-screen-lg: 1200px; // Matches @screen-lg-min
+$tui-screen-xl: 1400px;

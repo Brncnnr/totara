@@ -1,0 +1,110 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2022 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2022 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Simon Chester <simon.chester@totaralearning.com>
+// @package   theme_legacy
+
+.jsoneditor-image-block {
+  // Pick a width % value between small_frac and large_frac equivalent to where
+  // our available width lies between small_anchor and large_anchor, clamped to
+  // stay in that range.
+  // This is overly complicated due to limitations of CSS / calc, but is equivalent to
+  // width = available_width * lerp(small_frac, large_frac, clamp01(inverse_lerp(small_anchor, large_anchor, available_width)))
+  @function lerp-responsive-width(
+    $small_anchor,
+    $small_frac,
+    $large_anchor,
+    $large_frac
+  ) {
+    $factor: (($large_anchor * $large_frac / $small_frac) - $small_anchor) /
+      ($large_anchor - $small_anchor);
+    $factor_fixed: $small_anchor - ($small_anchor * $factor);
+    $width: calc((#{$factor * 100%} + #{$factor_fixed}) * #{$small_frac});
+    $width: calc(
+      min(max(#{$width}, #{$small_anchor * $small_frac}), #{100% * $small_frac})
+    );
+    $width: calc(
+      max(min(#{$width}, #{$large_anchor * $large_frac}), #{100% * $large_frac})
+    );
+    @return $width;
+  }
+
+  $img-named-sizes: (
+    'large': (
+      'fixed': 100%,
+      'responsive': 100%,
+    ),
+    'medium': (
+      'fixed': 66%,
+      'responsive': lerp-responsive-width(300px, 0.8, 700px, 0.66),
+    ),
+    'small': (
+      'fixed': 33%,
+      'responsive': lerp-responsive-width(300px, 0.5, 700px, 0.33),
+    ),
+  );
+
+  // same spacing as paragraph
+  margin: 0 0 ($line-height-computed / 2) 0;
+
+  &__img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &--display-size &__img {
+    width: 100%;
+  }
+
+  @each $name, $size in $img-named-sizes {
+    &--display-size-#{$name} {
+      // IE11 does not support the responsive sizes, so specify a fixed fallback
+      width: map-get($size, 'fixed');
+      width: map-get($size, 'responsive');
+    }
+  }
+}
+
+.jsoneditor-figcaption {
+  color: var(--color-neutral-6);
+  margin-bottom: 1.6rem;
+}
+
+.jsoneditor-layout-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.jsoneditor-layout-column {
+  // Switch to single column layout below 50rem
+  // https://every-layout.dev/layouts/switcher/
+  flex-basis: calc((50rem - 100%) * 999);
+  flex-grow: 1;
+  min-width: 0;
+  border-right: var(--gap-4) solid transparent;
+  &:last-child {
+    border-right: none;
+  }
+
+  &--sidebar {
+    flex-grow: .4;
+  }
+}

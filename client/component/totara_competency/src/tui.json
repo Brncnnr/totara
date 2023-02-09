@@ -1,0 +1,8 @@
+{
+  "component": "totara_competency",
+  "bundleWith": "totara_core",
+  "vendor": "totara",
+  "dependencies": [
+    "tui_charts"
+  ]
+}

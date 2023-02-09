@@ -1,0 +1,100 @@
+{{!
+   This file is part of Totara LMS
+
+   Copyright (C) 2015 onwards Totara Learning Solutions LTD
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See  the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+
+    @template totara_core/report_list
+
+    Report List.
+
+    This template generates a simple list of available report builder reports with an edit link if appropriate.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * report_list A array of reports that is required information to generate the list.
+
+    Example context (json):
+    {
+        "report_list": {
+            "tiles": [
+                {
+                    "name":"My Objectives",
+                    "href": "http://example.com",
+                   "edit_href": "http://example.com",
+                    "icon": {
+                        "template": "core/flex_icon",
+                        "context": {
+                            "identifier" : "edit",
+                            "customdata": {
+                                "alt": "Edit report x"
+                            },
+                            "classes": "fa-edit"
+                        }
+                    }
+                },
+                {
+                    "name":"My Users",
+                    "href": "http://example.com",
+                    "edit_href": "http://example.com",
+                    "icon": {
+                        "template": "core/flex_icon",
+                        "context": {
+                            "identifier" : "edit",
+                            "customdata": {
+                                "alt": "Edit report x"
+                            },
+                            "classes": "fa-edit"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}}
+
+<div data-core-autoinitialise="true"
+     data-core-autoinitialise-amd="totara_core/list_toggle"
+     data-tw-target=".totara_core__myreports__list"
+     data-tw-target-class="totara_core__myreports__list" class="totara_core__myreports__container">
+
+    {{! Switcher }}
+    <div class="totara_core__myreports__itemstyletoggle" data-tw-switcher>
+        <a href="#" class="totara_core__myreports__itemstyletoggle__btn totara_core__myreports__itemstyletoggle__btn--narrow"
+           data-tw-trigger="grid">
+            {{#flex_icon}}view-grid, tile_view, totara_catalog,{{/flex_icon}}
+        </a>
+        <a href="#" class="totara_core__myreports__itemstyletoggle__btn totara_core__myreports__itemstyletoggle__btn--wide"
+           data-tw-trigger="table">
+            {{#flex_icon}}view-list, list_view, totara_catalog,{{/flex_icon}}
+        </a>
+    </div>
+
+    <ul class="reportmanager totara_core__myreports__list{{#isgrid}} totara_core__myreports__list--grid{{/isgrid}}{{#islist}} totara_core__myreports__list--table{{/islist}}">
+        {{#report_list}}
+            {{#tiles}}
+                {{#template_data}}{{> &&template_name }}{{/template_data}}
+            {{/tiles}}
+        {{/report_list}}
+    </ul>
+</div>
+

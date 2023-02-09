@@ -1,0 +1,12 @@
+"""
+Bogus job assignment type to make schema_files_test happy.
+Why? Because the schema loader is looking in this directory for plugin schema, but still looks in server/lib/webapi
+for core schema. So it loads core_user, which depends on totara_job_job_assignment, but it doesn't find that type
+anywhere else because it is no longer looking in $pluginname/webapi but in $pluginname/test/fixtures/webapi.
+"""
+type totara_job_job_assignment {
+  """
+  Internal database id of the job assignment.
+  """
+  id: core_id!
+}

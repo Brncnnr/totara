@@ -1,0 +1,24 @@
+query totara_hierarchy_goal_filters(
+  $input: totara_hierarchy_goal_filter_input
+) {
+  company_goal_frameworks: totara_hierarchy_company_goal_frameworks(
+    input: $input
+  ) {
+    items {
+      id
+      fullname
+    }
+  }
+  company_goal_types: totara_hierarchy_company_goal_types(input: $input) {
+    items {
+      id
+      fullname
+    }
+  }
+  personal_goal_types: totara_hierarchy_personal_goal_types(input: $input) {
+    items {
+      id
+      fullname
+    }
+  }
+}

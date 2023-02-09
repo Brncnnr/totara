@@ -1,0 +1,108 @@
+//
+// This file is part of Totara Learn
+//
+// Copyright (C) 2019 onwards Totara Learning Solutions LTD
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @copyright 2019 onwards Totara Learning Solutions LTD
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+// @author    Kevin Hottinger <kevin.hottinger@totaralearning.com>
+// @package   theme_legacy
+
+.tw-selectMulti__list {
+  list-style: none;
+  margin: 0;
+}
+
+.tw-selectMulti__link {
+  border-radius: 6px;
+  color: $selectMulti-text-color;
+  display: flex;
+  margin: $selectMulti-spacing-x-small 0;
+  padding: $selectMulti-spacing-small $selectMulti-spacing-x-small;
+  transition: background-color 0.2s ease;
+
+  &:active,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+
+    .tw-selectMulti__link_text {
+      color: $selectMulti-text-color;
+    }
+  }
+
+  &:active {
+    .tw-selectMulti__link_close {
+      color: $selectMulti-text-color;
+    }
+  }
+
+  &:hover {
+    background: $selectMulti-bg-color-hover;
+
+    .ios &,
+    .andriod & {
+      background: inherit;
+    }
+  }
+
+  &_active {
+    background: $selectMulti-bg-color-active;
+
+    @include prepend-current('.ios .tw-selectMulti__link, .android .tw-selectMulti__link') {
+      background: $selectMulti-bg-color-active;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      .tw-selectMulti__link_text {
+        color: $selectMulti-text-color-selected;
+      }
+    }
+
+    .tw-selectMulti__link_text {
+      color: $selectMulti-text-color-selected;
+    }
+  }
+
+  &_close {
+    height: 100%;
+    line-height: 0;
+    margin: auto auto auto $selectMulti-spacing-small;
+
+    .flex-icon {
+      font-size: 1.3rem;
+      padding: 0.14em;
+    }
+  }
+
+  &_text {
+    flex-grow: 1;
+    min-width: 0;
+    word-wrap: break-word;
+  }
+}
+
+.tw-selectMulti__hidden {
+  display: none;
+}
+
+@media (min-width: $totara-style-screen-sm-min) {
+  .tw-selectMulti__link {
+    padding: $selectMulti-spacing-x-small $selectMulti-spacing-small;
+  }
+}
